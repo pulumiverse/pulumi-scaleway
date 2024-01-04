@@ -21,7 +21,7 @@ class GetIamApplicationResult:
     """
     A collection of values returned by getIamApplication.
     """
-    def __init__(__self__, application_id=None, created_at=None, description=None, editable=None, id=None, name=None, organization_id=None, updated_at=None):
+    def __init__(__self__, application_id=None, created_at=None, description=None, editable=None, id=None, name=None, organization_id=None, tags=None, updated_at=None):
         if application_id and not isinstance(application_id, str):
             raise TypeError("Expected argument 'application_id' to be a str")
         pulumi.set(__self__, "application_id", application_id)
@@ -43,6 +43,9 @@ class GetIamApplicationResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -86,6 +89,11 @@ class GetIamApplicationResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         return pulumi.get(self, "updated_at")
@@ -104,6 +112,7 @@ class AwaitableGetIamApplicationResult(GetIamApplicationResult):
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
+            tags=self.tags,
             updated_at=self.updated_at)
 
 
@@ -147,6 +156,7 @@ def get_iam_application(application_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 
 

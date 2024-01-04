@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var mainObjectBucketWebsiteConfiguration = new ObjectBucketWebsiteConfiguration(&#34;mainObjectBucketWebsiteConfiguration&#34;, ObjectBucketWebsiteConfigurationArgs.builder()        
- *             .bucket(mainObjectBucket.name())
+ *             .bucket(mainObjectBucket.id())
  *             .indexDocument(ObjectBucketWebsiteConfigurationIndexDocumentArgs.builder()
  *                 .suffix(&#34;index.html&#34;)
  *                 .build())
@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var mainObjectBucketPolicy = new ObjectBucketPolicy(&#34;mainObjectBucketPolicy&#34;, ObjectBucketPolicyArgs.builder()        
- *             .bucket(mainObjectBucket.name())
+ *             .bucket(mainObjectBucket.id())
  *             .policy(serializeJson(
  *                 jsonObject(
  *                     jsonProperty(&#34;Version&#34;, &#34;2012-10-17&#34;),
@@ -108,7 +108,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var mainObjectBucketWebsiteConfiguration = new ObjectBucketWebsiteConfiguration(&#34;mainObjectBucketWebsiteConfiguration&#34;, ObjectBucketWebsiteConfigurationArgs.builder()        
- *             .bucket(mainObjectBucket.name())
+ *             .bucket(mainObjectBucket.id())
  *             .indexDocument(ObjectBucketWebsiteConfigurationIndexDocumentArgs.builder()
  *                 .suffix(&#34;index.html&#34;)
  *                 .build())

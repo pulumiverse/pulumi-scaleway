@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Database instance authorized IPs.
@@ -179,12 +178,6 @@ func (i *DatabaseAcl) ToDatabaseAclOutputWithContext(ctx context.Context) Databa
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclOutput)
 }
 
-func (i *DatabaseAcl) ToOutput(ctx context.Context) pulumix.Output[*DatabaseAcl] {
-	return pulumix.Output[*DatabaseAcl]{
-		OutputState: i.ToDatabaseAclOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DatabaseAclArrayInput is an input type that accepts DatabaseAclArray and DatabaseAclArrayOutput values.
 // You can construct a concrete instance of `DatabaseAclArrayInput` via:
 //
@@ -208,12 +201,6 @@ func (i DatabaseAclArray) ToDatabaseAclArrayOutput() DatabaseAclArrayOutput {
 
 func (i DatabaseAclArray) ToDatabaseAclArrayOutputWithContext(ctx context.Context) DatabaseAclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclArrayOutput)
-}
-
-func (i DatabaseAclArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseAcl] {
-	return pulumix.Output[[]*DatabaseAcl]{
-		OutputState: i.ToDatabaseAclArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DatabaseAclMapInput is an input type that accepts DatabaseAclMap and DatabaseAclMapOutput values.
@@ -241,12 +228,6 @@ func (i DatabaseAclMap) ToDatabaseAclMapOutputWithContext(ctx context.Context) D
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseAclMapOutput)
 }
 
-func (i DatabaseAclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseAcl] {
-	return pulumix.Output[map[string]*DatabaseAcl]{
-		OutputState: i.ToDatabaseAclMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DatabaseAclOutput struct{ *pulumi.OutputState }
 
 func (DatabaseAclOutput) ElementType() reflect.Type {
@@ -259,12 +240,6 @@ func (o DatabaseAclOutput) ToDatabaseAclOutput() DatabaseAclOutput {
 
 func (o DatabaseAclOutput) ToDatabaseAclOutputWithContext(ctx context.Context) DatabaseAclOutput {
 	return o
-}
-
-func (o DatabaseAclOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabaseAcl] {
-	return pulumix.Output[*DatabaseAcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of ACLs (structure is described below)
@@ -298,12 +273,6 @@ func (o DatabaseAclArrayOutput) ToDatabaseAclArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o DatabaseAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseAcl] {
-	return pulumix.Output[[]*DatabaseAcl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DatabaseAclArrayOutput) Index(i pulumi.IntInput) DatabaseAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseAcl {
 		return vs[0].([]*DatabaseAcl)[vs[1].(int)]
@@ -322,12 +291,6 @@ func (o DatabaseAclMapOutput) ToDatabaseAclMapOutput() DatabaseAclMapOutput {
 
 func (o DatabaseAclMapOutput) ToDatabaseAclMapOutputWithContext(ctx context.Context) DatabaseAclMapOutput {
 	return o
-}
-
-func (o DatabaseAclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseAcl] {
-	return pulumix.Output[map[string]*DatabaseAcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DatabaseAclMapOutput) MapIndex(k pulumi.StringInput) DatabaseAclOutput {

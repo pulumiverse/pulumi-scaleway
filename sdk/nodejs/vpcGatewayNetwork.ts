@@ -13,6 +13,61 @@ import * as utilities from "./utilities";
  *
  * ## Example
  *
+ * ### Create a gateway network with IPAM config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const main = new scaleway.VpcGatewayNetwork("main", {
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     enableMasquerade: true,
+ *     ipamConfigs: [{
+ *         pushDefaultRoute: true,
+ *     }],
+ * });
+ * ```
+ *
+ * ### Create a gateway network with a booked IPAM IP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const ip01 = new scaleway.IpamIp("ip01", {
+ *     address: "172.16.64.7/22",
+ *     sources: [{
+ *         privateNetworkId: pn01.id,
+ *     }],
+ * });
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const main = new scaleway.VpcGatewayNetwork("main", {
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     enableMasquerade: true,
+ *     ipamConfigs: [{
+ *         pushDefaultRoute: true,
+ *         ipamIpId: ip01.id,
+ *     }],
+ * });
+ * ```
+ *
  * ### Create a gateway network with DHCP
  *
  * ```typescript
@@ -52,30 +107,6 @@ import * as utilities from "./utilities";
  *     enableDhcp: false,
  *     enableMasquerade: true,
  *     staticAddress: "192.168.1.42/24",
- * });
- * ```
- *
- * ### Create a gateway network with IPAM config
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
- *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
- *     ipv4Subnet: {
- *         subnet: "172.16.64.0/22",
- *     },
- *     vpcId: vpc01.id,
- * });
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
- * const main = new scaleway.VpcGatewayNetwork("main", {
- *     gatewayId: pg01.id,
- *     privateNetworkId: pn01.id,
- *     enableMasquerade: true,
- *     ipamConfigs: [{
- *         pushDefaultRoute: true,
- *     }],
  * });
  * ```
  *
@@ -140,9 +171,9 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
-     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
-    public readonly ipamConfigs!: pulumi.Output<outputs.VpcGatewayNetworkIpamConfig[] | undefined>;
+    public readonly ipamConfigs!: pulumi.Output<outputs.VpcGatewayNetworkIpamConfig[]>;
     /**
      * The mac address of the creation of the gateway network.
      */
@@ -250,7 +281,7 @@ export interface VpcGatewayNetworkState {
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     ipamConfigs?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkIpamConfig>[]>;
     /**
@@ -304,7 +335,7 @@ export interface VpcGatewayNetworkArgs {
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     ipamConfigs?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkIpamConfig>[]>;
     /**

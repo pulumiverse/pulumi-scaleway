@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance private NIC.
@@ -143,12 +142,6 @@ func (o LookupInstancePrivateNicResultOutput) ToLookupInstancePrivateNicResultOu
 
 func (o LookupInstancePrivateNicResultOutput) ToLookupInstancePrivateNicResultOutputWithContext(ctx context.Context) LookupInstancePrivateNicResultOutput {
 	return o
-}
-
-func (o LookupInstancePrivateNicResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstancePrivateNicResult] {
-	return pulumix.Output[LookupInstancePrivateNicResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

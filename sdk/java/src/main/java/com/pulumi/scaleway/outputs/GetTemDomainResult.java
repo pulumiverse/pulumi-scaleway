@@ -4,9 +4,11 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.scaleway.outputs.GetTemDomainReputation;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,15 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetTemDomainResult {
     private Boolean acceptTos;
-    /**
-     * @return The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
-     * 
-     */
     private String createdAt;
-    /**
-     * @return The DKIM public key, as should be recorded in the DNS zone.
-     * 
-     */
     private String dkimConfig;
     private @Nullable String domainId;
     /**
@@ -30,85 +24,31 @@ public final class GetTemDomainResult {
      * 
      */
     private String id;
-    /**
-     * @return The error message if the last check failed.
-     * 
-     */
     private String lastError;
-    /**
-     * @return The date and time the domain was last found to be valid (RFC 3339 format).
-     * 
-     */
     private String lastValidAt;
+    private String mxBlackhole;
     private @Nullable String name;
-    /**
-     * @return The date and time of the next scheduled check (RFC 3339 format).
-     * 
-     */
     private String nextCheckAt;
     private String projectId;
     private @Nullable String region;
-    /**
-     * @return The date and time of the revocation of the domain (RFC 3339 format).
-     * 
-     */
+    private List<GetTemDomainReputation> reputations;
     private String revokedAt;
-    /**
-     * @return The SMTP host to use to send emails.
-     * 
-     */
     private String smtpHost;
-    /**
-     * @return The SMTP port to use to send emails over TLS.
-     * 
-     */
     private Integer smtpPort;
-    /**
-     * @return The SMTP port to use to send emails over TLS.
-     * 
-     */
     private Integer smtpPortAlternative;
-    /**
-     * @return The SMTP port to use to send emails.
-     * 
-     */
     private Integer smtpPortUnsecure;
-    /**
-     * @return The SMTPS port to use to send emails over TLS Wrapper.
-     * 
-     */
     private Integer smtpsPort;
-    /**
-     * @return The SMTPS port to use to send emails over TLS Wrapper.
-     * 
-     */
     private Integer smtpsPortAlternative;
-    /**
-     * @return The snippet of the SPF record that should be registered in the DNS zone.
-     * 
-     */
     private String spfConfig;
-    /**
-     * @return The status of the Transaction Email Domain.
-     * 
-     */
     private String status;
 
     private GetTemDomainResult() {}
     public Boolean acceptTos() {
         return this.acceptTos;
     }
-    /**
-     * @return The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
-     * 
-     */
     public String createdAt() {
         return this.createdAt;
     }
-    /**
-     * @return The DKIM public key, as should be recorded in the DNS zone.
-     * 
-     */
     public String dkimConfig() {
         return this.dkimConfig;
     }
@@ -122,27 +62,18 @@ public final class GetTemDomainResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @return The error message if the last check failed.
-     * 
-     */
     public String lastError() {
         return this.lastError;
     }
-    /**
-     * @return The date and time the domain was last found to be valid (RFC 3339 format).
-     * 
-     */
     public String lastValidAt() {
         return this.lastValidAt;
+    }
+    public String mxBlackhole() {
+        return this.mxBlackhole;
     }
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
-    /**
-     * @return The date and time of the next scheduled check (RFC 3339 format).
-     * 
-     */
     public String nextCheckAt() {
         return this.nextCheckAt;
     }
@@ -152,66 +83,33 @@ public final class GetTemDomainResult {
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
-    /**
-     * @return The date and time of the revocation of the domain (RFC 3339 format).
-     * 
-     */
+    public List<GetTemDomainReputation> reputations() {
+        return this.reputations;
+    }
     public String revokedAt() {
         return this.revokedAt;
     }
-    /**
-     * @return The SMTP host to use to send emails.
-     * 
-     */
     public String smtpHost() {
         return this.smtpHost;
     }
-    /**
-     * @return The SMTP port to use to send emails over TLS.
-     * 
-     */
     public Integer smtpPort() {
         return this.smtpPort;
     }
-    /**
-     * @return The SMTP port to use to send emails over TLS.
-     * 
-     */
     public Integer smtpPortAlternative() {
         return this.smtpPortAlternative;
     }
-    /**
-     * @return The SMTP port to use to send emails.
-     * 
-     */
     public Integer smtpPortUnsecure() {
         return this.smtpPortUnsecure;
     }
-    /**
-     * @return The SMTPS port to use to send emails over TLS Wrapper.
-     * 
-     */
     public Integer smtpsPort() {
         return this.smtpsPort;
     }
-    /**
-     * @return The SMTPS port to use to send emails over TLS Wrapper.
-     * 
-     */
     public Integer smtpsPortAlternative() {
         return this.smtpsPortAlternative;
     }
-    /**
-     * @return The snippet of the SPF record that should be registered in the DNS zone.
-     * 
-     */
     public String spfConfig() {
         return this.spfConfig;
     }
-    /**
-     * @return The status of the Transaction Email Domain.
-     * 
-     */
     public String status() {
         return this.status;
     }
@@ -232,10 +130,12 @@ public final class GetTemDomainResult {
         private String id;
         private String lastError;
         private String lastValidAt;
+        private String mxBlackhole;
         private @Nullable String name;
         private String nextCheckAt;
         private String projectId;
         private @Nullable String region;
+        private List<GetTemDomainReputation> reputations;
         private String revokedAt;
         private String smtpHost;
         private Integer smtpPort;
@@ -255,10 +155,12 @@ public final class GetTemDomainResult {
     	      this.id = defaults.id;
     	      this.lastError = defaults.lastError;
     	      this.lastValidAt = defaults.lastValidAt;
+    	      this.mxBlackhole = defaults.mxBlackhole;
     	      this.name = defaults.name;
     	      this.nextCheckAt = defaults.nextCheckAt;
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
+    	      this.reputations = defaults.reputations;
     	      this.revokedAt = defaults.revokedAt;
     	      this.smtpHost = defaults.smtpHost;
     	      this.smtpPort = defaults.smtpPort;
@@ -306,6 +208,11 @@ public final class GetTemDomainResult {
             return this;
         }
         @CustomType.Setter
+        public Builder mxBlackhole(String mxBlackhole) {
+            this.mxBlackhole = Objects.requireNonNull(mxBlackhole);
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
@@ -324,6 +231,14 @@ public final class GetTemDomainResult {
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
+        }
+        @CustomType.Setter
+        public Builder reputations(List<GetTemDomainReputation> reputations) {
+            this.reputations = Objects.requireNonNull(reputations);
+            return this;
+        }
+        public Builder reputations(GetTemDomainReputation... reputations) {
+            return reputations(List.of(reputations));
         }
         @CustomType.Setter
         public Builder revokedAt(String revokedAt) {
@@ -379,10 +294,12 @@ public final class GetTemDomainResult {
             o.id = id;
             o.lastError = lastError;
             o.lastValidAt = lastValidAt;
+            o.mxBlackhole = mxBlackhole;
             o.name = name;
             o.nextCheckAt = nextCheckAt;
             o.projectId = projectId;
             o.region = region;
+            o.reputations = reputations;
             o.revokedAt = revokedAt;
             o.smtpHost = smtpHost;
             o.smtpPort = smtpPort;

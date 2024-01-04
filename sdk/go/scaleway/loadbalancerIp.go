@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancers IPs.
@@ -180,12 +179,6 @@ func (i *LoadbalancerIp) ToLoadbalancerIpOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpOutput)
 }
 
-func (i *LoadbalancerIp) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerIp] {
-	return pulumix.Output[*LoadbalancerIp]{
-		OutputState: i.ToLoadbalancerIpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LoadbalancerIpArrayInput is an input type that accepts LoadbalancerIpArray and LoadbalancerIpArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerIpArrayInput` via:
 //
@@ -209,12 +202,6 @@ func (i LoadbalancerIpArray) ToLoadbalancerIpArrayOutput() LoadbalancerIpArrayOu
 
 func (i LoadbalancerIpArray) ToLoadbalancerIpArrayOutputWithContext(ctx context.Context) LoadbalancerIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpArrayOutput)
-}
-
-func (i LoadbalancerIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerIp] {
-	return pulumix.Output[[]*LoadbalancerIp]{
-		OutputState: i.ToLoadbalancerIpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LoadbalancerIpMapInput is an input type that accepts LoadbalancerIpMap and LoadbalancerIpMapOutput values.
@@ -242,12 +229,6 @@ func (i LoadbalancerIpMap) ToLoadbalancerIpMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerIpMapOutput)
 }
 
-func (i LoadbalancerIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerIp] {
-	return pulumix.Output[map[string]*LoadbalancerIp]{
-		OutputState: i.ToLoadbalancerIpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LoadbalancerIpOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerIpOutput) ElementType() reflect.Type {
@@ -260,12 +241,6 @@ func (o LoadbalancerIpOutput) ToLoadbalancerIpOutput() LoadbalancerIpOutput {
 
 func (o LoadbalancerIpOutput) ToLoadbalancerIpOutputWithContext(ctx context.Context) LoadbalancerIpOutput {
 	return o
-}
-
-func (o LoadbalancerIpOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerIp] {
-	return pulumix.Output[*LoadbalancerIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP Address
@@ -317,12 +292,6 @@ func (o LoadbalancerIpArrayOutput) ToLoadbalancerIpArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o LoadbalancerIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerIp] {
-	return pulumix.Output[[]*LoadbalancerIp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LoadbalancerIpArrayOutput) Index(i pulumi.IntInput) LoadbalancerIpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerIp {
 		return vs[0].([]*LoadbalancerIp)[vs[1].(int)]
@@ -341,12 +310,6 @@ func (o LoadbalancerIpMapOutput) ToLoadbalancerIpMapOutput() LoadbalancerIpMapOu
 
 func (o LoadbalancerIpMapOutput) ToLoadbalancerIpMapOutputWithContext(ctx context.Context) LoadbalancerIpMapOutput {
 	return o
-}
-
-func (o LoadbalancerIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerIp] {
-	return pulumix.Output[map[string]*LoadbalancerIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LoadbalancerIpMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerIpOutput {

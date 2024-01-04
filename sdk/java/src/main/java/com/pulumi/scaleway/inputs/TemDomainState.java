@@ -5,9 +5,11 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.TemDomainReputationArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -95,6 +97,21 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The Scaleway&#39;s blackhole MX server to use if you do not have one.
+     * 
+     */
+    @Import(name="mxBlackhole")
+    private @Nullable Output<String> mxBlackhole;
+
+    /**
+     * @return The Scaleway&#39;s blackhole MX server to use if you do not have one.
+     * 
+     */
+    public Optional<Output<String>> mxBlackhole() {
+        return Optional.ofNullable(this.mxBlackhole);
+    }
+
+    /**
      * The domain name, must not be used in another Transactional Email Domain.
      * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
@@ -157,6 +174,21 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The domain&#39;s reputation.
+     * 
+     */
+    @Import(name="reputations")
+    private @Nullable Output<List<TemDomainReputationArgs>> reputations;
+
+    /**
+     * @return The domain&#39;s reputation.
+     * 
+     */
+    public Optional<Output<List<TemDomainReputationArgs>>> reputations() {
+        return Optional.ofNullable(this.reputations);
+    }
+
+    /**
      * The date and time of the revocation of the domain (RFC 3339 format).
      * 
      */
@@ -172,14 +204,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SMTP host to use to send emails
+     * The SMTP host to use to send emails.
      * 
      */
     @Import(name="smtpHost")
     private @Nullable Output<String> smtpHost;
 
     /**
-     * @return SMTP host to use to send emails
+     * @return The SMTP host to use to send emails.
      * 
      */
     public Optional<Output<String>> smtpHost() {
@@ -187,14 +219,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SMTP port to use to send emails over TLS. (Port 587)
+     * The SMTP port to use to send emails over TLS.
      * 
      */
     @Import(name="smtpPort")
     private @Nullable Output<Integer> smtpPort;
 
     /**
-     * @return SMTP port to use to send emails over TLS. (Port 587)
+     * @return The SMTP port to use to send emails over TLS.
      * 
      */
     public Optional<Output<Integer>> smtpPort() {
@@ -202,14 +234,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SMTP port to use to send emails over TLS. (Port 2587)
+     * The SMTP port to use to send emails over TLS.
      * 
      */
     @Import(name="smtpPortAlternative")
     private @Nullable Output<Integer> smtpPortAlternative;
 
     /**
-     * @return SMTP port to use to send emails over TLS. (Port 2587)
+     * @return The SMTP port to use to send emails over TLS.
      * 
      */
     public Optional<Output<Integer>> smtpPortAlternative() {
@@ -217,14 +249,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SMTP port to use to send emails. (Port 25)
+     * The SMTP port to use to send emails.
      * 
      */
     @Import(name="smtpPortUnsecure")
     private @Nullable Output<Integer> smtpPortUnsecure;
 
     /**
-     * @return SMTP port to use to send emails. (Port 25)
+     * @return The SMTP port to use to send emails.
      * 
      */
     public Optional<Output<Integer>> smtpPortUnsecure() {
@@ -232,14 +264,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     @Import(name="smtpsPort")
     private @Nullable Output<Integer> smtpsPort;
 
     /**
-     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     public Optional<Output<Integer>> smtpsPort() {
@@ -247,14 +279,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     @Import(name="smtpsPortAlternative")
     private @Nullable Output<Integer> smtpsPortAlternative;
 
     /**
-     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     public Optional<Output<Integer>> smtpsPortAlternative() {
@@ -277,14 +309,14 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The status of the Transaction Email Domain.
+     * The status of the domain&#39;s reputation.
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return The status of the Transaction Email Domain.
+     * @return The status of the domain&#39;s reputation.
      * 
      */
     public Optional<Output<String>> status() {
@@ -299,10 +331,12 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         this.dkimConfig = $.dkimConfig;
         this.lastError = $.lastError;
         this.lastValidAt = $.lastValidAt;
+        this.mxBlackhole = $.mxBlackhole;
         this.name = $.name;
         this.nextCheckAt = $.nextCheckAt;
         this.projectId = $.projectId;
         this.region = $.region;
+        this.reputations = $.reputations;
         this.revokedAt = $.revokedAt;
         this.smtpHost = $.smtpHost;
         this.smtpPort = $.smtpPort;
@@ -440,6 +474,27 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param mxBlackhole The Scaleway&#39;s blackhole MX server to use if you do not have one.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mxBlackhole(@Nullable Output<String> mxBlackhole) {
+            $.mxBlackhole = mxBlackhole;
+            return this;
+        }
+
+        /**
+         * @param mxBlackhole The Scaleway&#39;s blackhole MX server to use if you do not have one.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mxBlackhole(String mxBlackhole) {
+            return mxBlackhole(Output.of(mxBlackhole));
+        }
+
+        /**
          * @param name The domain name, must not be used in another Transactional Email Domain.
          * &gt; **Important:** Updates to `name` will recreate the domain.
          * 
@@ -526,6 +581,37 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param reputations The domain&#39;s reputation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reputations(@Nullable Output<List<TemDomainReputationArgs>> reputations) {
+            $.reputations = reputations;
+            return this;
+        }
+
+        /**
+         * @param reputations The domain&#39;s reputation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reputations(List<TemDomainReputationArgs> reputations) {
+            return reputations(Output.of(reputations));
+        }
+
+        /**
+         * @param reputations The domain&#39;s reputation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reputations(TemDomainReputationArgs... reputations) {
+            return reputations(List.of(reputations));
+        }
+
+        /**
          * @param revokedAt The date and time of the revocation of the domain (RFC 3339 format).
          * 
          * @return builder
@@ -547,7 +633,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpHost SMTP host to use to send emails
+         * @param smtpHost The SMTP host to use to send emails.
          * 
          * @return builder
          * 
@@ -558,7 +644,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpHost SMTP host to use to send emails
+         * @param smtpHost The SMTP host to use to send emails.
          * 
          * @return builder
          * 
@@ -568,7 +654,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpPort SMTP port to use to send emails over TLS. (Port 587)
+         * @param smtpPort The SMTP port to use to send emails over TLS.
          * 
          * @return builder
          * 
@@ -579,7 +665,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpPort SMTP port to use to send emails over TLS. (Port 587)
+         * @param smtpPort The SMTP port to use to send emails over TLS.
          * 
          * @return builder
          * 
@@ -589,7 +675,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpPortAlternative SMTP port to use to send emails over TLS. (Port 2587)
+         * @param smtpPortAlternative The SMTP port to use to send emails over TLS.
          * 
          * @return builder
          * 
@@ -600,7 +686,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpPortAlternative SMTP port to use to send emails over TLS. (Port 2587)
+         * @param smtpPortAlternative The SMTP port to use to send emails over TLS.
          * 
          * @return builder
          * 
@@ -610,7 +696,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpPortUnsecure SMTP port to use to send emails. (Port 25)
+         * @param smtpPortUnsecure The SMTP port to use to send emails.
          * 
          * @return builder
          * 
@@ -621,7 +707,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpPortUnsecure SMTP port to use to send emails. (Port 25)
+         * @param smtpPortUnsecure The SMTP port to use to send emails.
          * 
          * @return builder
          * 
@@ -631,7 +717,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpsPort SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+         * @param smtpsPort The SMTPS port to use to send emails over TLS Wrapper.
          * 
          * @return builder
          * 
@@ -642,7 +728,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpsPort SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+         * @param smtpsPort The SMTPS port to use to send emails over TLS Wrapper.
          * 
          * @return builder
          * 
@@ -652,7 +738,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpsPortAlternative SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+         * @param smtpsPortAlternative The SMTPS port to use to send emails over TLS Wrapper.
          * 
          * @return builder
          * 
@@ -663,7 +749,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param smtpsPortAlternative SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+         * @param smtpsPortAlternative The SMTPS port to use to send emails over TLS Wrapper.
          * 
          * @return builder
          * 
@@ -694,7 +780,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status The status of the Transaction Email Domain.
+         * @param status The status of the domain&#39;s reputation.
          * 
          * @return builder
          * 
@@ -705,7 +791,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status The status of the Transaction Email Domain.
+         * @param status The status of the domain&#39;s reputation.
          * 
          * @return builder
          * 

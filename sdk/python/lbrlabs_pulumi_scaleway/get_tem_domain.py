@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetTemDomainResult',
@@ -21,7 +22,7 @@ class GetTemDomainResult:
     """
     A collection of values returned by getTemDomain.
     """
-    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, name=None, next_check_at=None, project_id=None, region=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, status=None):
+    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, status=None):
         if accept_tos and not isinstance(accept_tos, bool):
             raise TypeError("Expected argument 'accept_tos' to be a bool")
         pulumi.set(__self__, "accept_tos", accept_tos)
@@ -43,6 +44,9 @@ class GetTemDomainResult:
         if last_valid_at and not isinstance(last_valid_at, str):
             raise TypeError("Expected argument 'last_valid_at' to be a str")
         pulumi.set(__self__, "last_valid_at", last_valid_at)
+        if mx_blackhole and not isinstance(mx_blackhole, str):
+            raise TypeError("Expected argument 'mx_blackhole' to be a str")
+        pulumi.set(__self__, "mx_blackhole", mx_blackhole)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -55,6 +59,9 @@ class GetTemDomainResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if reputations and not isinstance(reputations, list):
+            raise TypeError("Expected argument 'reputations' to be a list")
+        pulumi.set(__self__, "reputations", reputations)
         if revoked_at and not isinstance(revoked_at, str):
             raise TypeError("Expected argument 'revoked_at' to be a str")
         pulumi.set(__self__, "revoked_at", revoked_at)
@@ -91,17 +98,11 @@ class GetTemDomainResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date and time of the Transaction Email Domain's creation (RFC 3339 format).
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="dkimConfig")
     def dkim_config(self) -> str:
-        """
-        The DKIM public key, as should be recorded in the DNS zone.
-        """
         return pulumi.get(self, "dkim_config")
 
     @property
@@ -120,18 +121,17 @@ class GetTemDomainResult:
     @property
     @pulumi.getter(name="lastError")
     def last_error(self) -> str:
-        """
-        The error message if the last check failed.
-        """
         return pulumi.get(self, "last_error")
 
     @property
     @pulumi.getter(name="lastValidAt")
     def last_valid_at(self) -> str:
-        """
-        The date and time the domain was last found to be valid (RFC 3339 format).
-        """
         return pulumi.get(self, "last_valid_at")
+
+    @property
+    @pulumi.getter(name="mxBlackhole")
+    def mx_blackhole(self) -> str:
+        return pulumi.get(self, "mx_blackhole")
 
     @property
     @pulumi.getter
@@ -141,9 +141,6 @@ class GetTemDomainResult:
     @property
     @pulumi.getter(name="nextCheckAt")
     def next_check_at(self) -> str:
-        """
-        The date and time of the next scheduled check (RFC 3339 format).
-        """
         return pulumi.get(self, "next_check_at")
 
     @property
@@ -157,75 +154,53 @@ class GetTemDomainResult:
         return pulumi.get(self, "region")
 
     @property
+    @pulumi.getter
+    def reputations(self) -> Sequence['outputs.GetTemDomainReputationResult']:
+        return pulumi.get(self, "reputations")
+
+    @property
     @pulumi.getter(name="revokedAt")
     def revoked_at(self) -> str:
-        """
-        The date and time of the revocation of the domain (RFC 3339 format).
-        """
         return pulumi.get(self, "revoked_at")
 
     @property
     @pulumi.getter(name="smtpHost")
     def smtp_host(self) -> str:
-        """
-        The SMTP host to use to send emails.
-        """
         return pulumi.get(self, "smtp_host")
 
     @property
     @pulumi.getter(name="smtpPort")
     def smtp_port(self) -> int:
-        """
-        The SMTP port to use to send emails over TLS.
-        """
         return pulumi.get(self, "smtp_port")
 
     @property
     @pulumi.getter(name="smtpPortAlternative")
     def smtp_port_alternative(self) -> int:
-        """
-        The SMTP port to use to send emails over TLS.
-        """
         return pulumi.get(self, "smtp_port_alternative")
 
     @property
     @pulumi.getter(name="smtpPortUnsecure")
     def smtp_port_unsecure(self) -> int:
-        """
-        The SMTP port to use to send emails.
-        """
         return pulumi.get(self, "smtp_port_unsecure")
 
     @property
     @pulumi.getter(name="smtpsPort")
     def smtps_port(self) -> int:
-        """
-        The SMTPS port to use to send emails over TLS Wrapper.
-        """
         return pulumi.get(self, "smtps_port")
 
     @property
     @pulumi.getter(name="smtpsPortAlternative")
     def smtps_port_alternative(self) -> int:
-        """
-        The SMTPS port to use to send emails over TLS Wrapper.
-        """
         return pulumi.get(self, "smtps_port_alternative")
 
     @property
     @pulumi.getter(name="spfConfig")
     def spf_config(self) -> str:
-        """
-        The snippet of the SPF record that should be registered in the DNS zone.
-        """
         return pulumi.get(self, "spf_config")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of the Transaction Email Domain.
-        """
         return pulumi.get(self, "status")
 
 
@@ -242,10 +217,12 @@ class AwaitableGetTemDomainResult(GetTemDomainResult):
             id=self.id,
             last_error=self.last_error,
             last_valid_at=self.last_valid_at,
+            mx_blackhole=self.mx_blackhole,
             name=self.name,
             next_check_at=self.next_check_at,
             project_id=self.project_id,
             region=self.region,
+            reputations=self.reputations,
             revoked_at=self.revoked_at,
             smtp_host=self.smtp_host,
             smtp_port=self.smtp_port,
@@ -264,9 +241,20 @@ def get_tem_domain(domain_id: Optional[str] = None,
     """
     Gets information about a transactional email domain.
 
+    ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_domain = scaleway.get_tem_domain(domain_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str domain_id: The domain id.
+           Only one of `name` and `domain_id` should be specified.
     :param str name: The domain name.
-           Only one of `name` and `id` should be specified.
+           Only one of `name` and `domain_id` should be specified.
     :param str region: `region`) The region in which the domain exists.
     """
     __args__ = dict()
@@ -284,10 +272,12 @@ def get_tem_domain(domain_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         last_error=pulumi.get(__ret__, 'last_error'),
         last_valid_at=pulumi.get(__ret__, 'last_valid_at'),
+        mx_blackhole=pulumi.get(__ret__, 'mx_blackhole'),
         name=pulumi.get(__ret__, 'name'),
         next_check_at=pulumi.get(__ret__, 'next_check_at'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        reputations=pulumi.get(__ret__, 'reputations'),
         revoked_at=pulumi.get(__ret__, 'revoked_at'),
         smtp_host=pulumi.get(__ret__, 'smtp_host'),
         smtp_port=pulumi.get(__ret__, 'smtp_port'),
@@ -307,9 +297,20 @@ def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = Non
     """
     Gets information about a transactional email domain.
 
+    ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_domain = scaleway.get_tem_domain(domain_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str domain_id: The domain id.
+           Only one of `name` and `domain_id` should be specified.
     :param str name: The domain name.
-           Only one of `name` and `id` should be specified.
+           Only one of `name` and `domain_id` should be specified.
     :param str region: `region`) The region in which the domain exists.
     """
     ...

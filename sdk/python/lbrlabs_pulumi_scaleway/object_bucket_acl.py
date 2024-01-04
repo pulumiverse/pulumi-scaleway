@@ -24,7 +24,7 @@ class ObjectBucketAclArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectBucketAcl resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
@@ -47,7 +47,7 @@ class ObjectBucketAclArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[str]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -129,7 +129,7 @@ class _ObjectBucketAclState:
         Input properties used for looking up and filtering ObjectBucketAcl resources.
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
@@ -175,7 +175,7 @@ class _ObjectBucketAclState:
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -241,7 +241,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         some_bucket = scaleway.ObjectBucket("someBucket")
         main = scaleway.ObjectBucketAcl("main",
-            bucket=scaleway_object_bucket["main"]["name"],
+            bucket=scaleway_object_bucket["main"]["id"],
             acl="private")
         ```
         ## Example with Grants
@@ -252,7 +252,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket")
         main_object_bucket_acl = scaleway.ObjectBucketAcl("mainObjectBucketAcl",
-            bucket=main_object_bucket.name,
+            bucket=main_object_bucket.id,
             access_control_policy=scaleway.ObjectBucketAclAccessControlPolicyArgs(
                 grants=[
                     scaleway.ObjectBucketAclAccessControlPolicyGrantArgs(
@@ -330,7 +330,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
@@ -350,7 +350,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         some_bucket = scaleway.ObjectBucket("someBucket")
         main = scaleway.ObjectBucketAcl("main",
-            bucket=scaleway_object_bucket["main"]["name"],
+            bucket=scaleway_object_bucket["main"]["id"],
             acl="private")
         ```
         ## Example with Grants
@@ -361,7 +361,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket")
         main_object_bucket_acl = scaleway.ObjectBucketAcl("mainObjectBucketAcl",
-            bucket=main_object_bucket.name,
+            bucket=main_object_bucket.id,
             access_control_policy=scaleway.ObjectBucketAclAccessControlPolicyArgs(
                 grants=[
                     scaleway.ObjectBucketAclAccessControlPolicyGrantArgs(
@@ -498,7 +498,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
@@ -535,7 +535,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     @pulumi.getter
     def bucket(self) -> pulumi.Output[str]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 

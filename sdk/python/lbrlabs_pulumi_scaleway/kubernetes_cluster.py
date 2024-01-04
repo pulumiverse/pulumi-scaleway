@@ -50,10 +50,10 @@ class KubernetesClusterArgs:
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -236,10 +236,10 @@ class KubernetesClusterArgs:
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        Any subsequent change after this field got set will prompt for cluster recreation.
+        > **Important:** Changes to this field will recreate a new resource.
 
-        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -350,10 +350,10 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -596,10 +596,10 @@ class _KubernetesClusterState:
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        Any subsequent change after this field got set will prompt for cluster recreation.
+        > **Important:** Changes to this field will recreate a new resource.
 
-        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -755,9 +755,11 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         jack = scaleway.KubernetesCluster("jack",
             version="1.24.3",
             cni="cilium",
+            private_network_id=hedy.id,
             delete_additional_resources=False)
         john = scaleway.KubernetesNodePool("john",
             cluster_id=jack.id,
@@ -791,6 +793,7 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
             description="my awesome cluster",
             version="1.24.3",
@@ -799,6 +802,7 @@ class KubernetesCluster(pulumi.CustomResource):
                 "i'm an awesome tag",
                 "yay",
             ],
+            private_network_id=hedy.id,
             delete_additional_resources=False,
             autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
                 disable_scale_down=False,
@@ -844,10 +848,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -877,9 +881,11 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         jack = scaleway.KubernetesCluster("jack",
             version="1.24.3",
             cni="cilium",
+            private_network_id=hedy.id,
             delete_additional_resources=False)
         john = scaleway.KubernetesNodePool("john",
             cluster_id=jack.id,
@@ -913,6 +919,7 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
             description="my awesome cluster",
             version="1.24.3",
@@ -921,6 +928,7 @@ class KubernetesCluster(pulumi.CustomResource):
                 "i'm an awesome tag",
                 "yay",
             ],
+            private_network_id=hedy.id,
             delete_additional_resources=False,
             autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
                 disable_scale_down=False,
@@ -1081,10 +1089,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -1252,10 +1260,10 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        Any subsequent change after this field got set will prompt for cluster recreation.
+        > **Important:** Changes to this field will recreate a new resource.
 
-        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 

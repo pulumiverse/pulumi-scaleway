@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Function Token.
@@ -226,12 +225,6 @@ func (i *FunctionToken) ToFunctionTokenOutputWithContext(ctx context.Context) Fu
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionTokenOutput)
 }
 
-func (i *FunctionToken) ToOutput(ctx context.Context) pulumix.Output[*FunctionToken] {
-	return pulumix.Output[*FunctionToken]{
-		OutputState: i.ToFunctionTokenOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FunctionTokenArrayInput is an input type that accepts FunctionTokenArray and FunctionTokenArrayOutput values.
 // You can construct a concrete instance of `FunctionTokenArrayInput` via:
 //
@@ -255,12 +248,6 @@ func (i FunctionTokenArray) ToFunctionTokenArrayOutput() FunctionTokenArrayOutpu
 
 func (i FunctionTokenArray) ToFunctionTokenArrayOutputWithContext(ctx context.Context) FunctionTokenArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionTokenArrayOutput)
-}
-
-func (i FunctionTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionToken] {
-	return pulumix.Output[[]*FunctionToken]{
-		OutputState: i.ToFunctionTokenArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FunctionTokenMapInput is an input type that accepts FunctionTokenMap and FunctionTokenMapOutput values.
@@ -288,12 +275,6 @@ func (i FunctionTokenMap) ToFunctionTokenMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionTokenMapOutput)
 }
 
-func (i FunctionTokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionToken] {
-	return pulumix.Output[map[string]*FunctionToken]{
-		OutputState: i.ToFunctionTokenMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FunctionTokenOutput struct{ *pulumi.OutputState }
 
 func (FunctionTokenOutput) ElementType() reflect.Type {
@@ -306,12 +287,6 @@ func (o FunctionTokenOutput) ToFunctionTokenOutput() FunctionTokenOutput {
 
 func (o FunctionTokenOutput) ToFunctionTokenOutputWithContext(ctx context.Context) FunctionTokenOutput {
 	return o
-}
-
-func (o FunctionTokenOutput) ToOutput(ctx context.Context) pulumix.Output[*FunctionToken] {
-	return pulumix.Output[*FunctionToken]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The description of the token.
@@ -362,12 +337,6 @@ func (o FunctionTokenArrayOutput) ToFunctionTokenArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o FunctionTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionToken] {
-	return pulumix.Output[[]*FunctionToken]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FunctionTokenArrayOutput) Index(i pulumi.IntInput) FunctionTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FunctionToken {
 		return vs[0].([]*FunctionToken)[vs[1].(int)]
@@ -386,12 +355,6 @@ func (o FunctionTokenMapOutput) ToFunctionTokenMapOutput() FunctionTokenMapOutpu
 
 func (o FunctionTokenMapOutput) ToFunctionTokenMapOutputWithContext(ctx context.Context) FunctionTokenMapOutput {
 	return o
-}
-
-func (o FunctionTokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionToken] {
-	return pulumix.Output[map[string]*FunctionToken]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FunctionTokenMapOutput) MapIndex(k pulumi.StringInput) FunctionTokenOutput {

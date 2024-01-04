@@ -197,7 +197,7 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly registryImage!: pulumi.Output<string>;
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     public readonly registrySha256!: pulumi.Output<string | undefined>;
     /**
@@ -372,7 +372,7 @@ export interface ContainerState {
      */
     registryImage?: pulumi.Input<string>;
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     registrySha256?: pulumi.Input<string>;
     /**
@@ -464,7 +464,7 @@ export interface ContainerArgs {
      */
     registryImage?: pulumi.Input<string>;
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     registrySha256?: pulumi.Input<string>;
     /**

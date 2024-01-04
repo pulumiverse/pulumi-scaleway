@@ -15,18 +15,23 @@ import javax.annotation.Nullable;
 
 /**
  * Creates and manages Scaleway object storage bucket policy.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
+ * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
  * 
  * ## Example Usage
+ * ### Example with an IAM user
  * ```java
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+ * import com.pulumi.scaleway.inputs.GetIamUserArgs;
+ * import com.pulumi.scaleway.IamPolicy;
+ * import com.pulumi.scaleway.IamPolicyArgs;
+ * import com.pulumi.scaleway.inputs.IamPolicyRuleArgs;
  * import com.pulumi.scaleway.ObjectBucket;
- * import com.pulumi.scaleway.IamApplication;
- * import com.pulumi.scaleway.IamApplicationArgs;
  * import com.pulumi.scaleway.ObjectBucketPolicy;
  * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
@@ -43,29 +48,39 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var bucket = new ObjectBucket(&#34;bucket&#34;);
- * 
- *         var main = new IamApplication(&#34;main&#34;, IamApplicationArgs.builder()        
- *             .description(&#34;a description&#34;)
+ *         final var default = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+ *             .name(&#34;default&#34;)
  *             .build());
  * 
- *         var policy = new ObjectBucketPolicy(&#34;policy&#34;, ObjectBucketPolicyArgs.builder()        
+ *         final var user = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()
+ *             .email(&#34;user@scaleway.com&#34;)
+ *             .build());
+ * 
+ *         var policyIamPolicy = new IamPolicy(&#34;policyIamPolicy&#34;, IamPolicyArgs.builder()        
+ *             .userId(user.applyValue(getIamUserResult -&gt; getIamUserResult.id()))
+ *             .rules(IamPolicyRuleArgs.builder()
+ *                 .projectIds(default_.id())
+ *                 .permissionSetNames(&#34;ObjectStorageFullAccess&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var bucket = new ObjectBucket(&#34;bucket&#34;);
+ * 
+ *         var policyObjectBucketPolicy = new ObjectBucketPolicy(&#34;policyObjectBucketPolicy&#34;, ObjectBucketPolicyArgs.builder()        
  *             .bucket(bucket.name())
- *             .policy(Output.tuple(main.id(), bucket.name(), bucket.name()).applyValue(values -&gt; {
- *                 var id = values.t1;
- *                 var bucketName = values.t2;
- *                 var bucketName1 = values.t3;
+ *             .policy(Output.tuple(bucket.name(), bucket.name()).applyValue(values -&gt; {
+ *                 var bucketName = values.t1;
+ *                 var bucketName1 = values.t2;
  *                 return serializeJson(
  *                     jsonObject(
  *                         jsonProperty(&#34;Version&#34;, &#34;2023-04-17&#34;),
  *                         jsonProperty(&#34;Id&#34;, &#34;MyBucketPolicy&#34;),
  *                         jsonProperty(&#34;Statement&#34;, jsonArray(jsonObject(
- *                             jsonProperty(&#34;Sid&#34;, &#34;Delegate access&#34;),
  *                             jsonProperty(&#34;Effect&#34;, &#34;Allow&#34;),
+ *                             jsonProperty(&#34;Action&#34;, jsonArray(&#34;s3:*&#34;)),
  *                             jsonProperty(&#34;Principal&#34;, jsonObject(
- *                                 jsonProperty(&#34;SCW&#34;, String.format(&#34;application_id:%s&#34;, id))
+ *                                 jsonProperty(&#34;SCW&#34;, String.format(&#34;user_id:%s&#34;, user.applyValue(getIamUserResult -&gt; getIamUserResult.id())))
  *                             )),
- *                             jsonProperty(&#34;Action&#34;, &#34;s3:ListBucket&#34;),
  *                             jsonProperty(&#34;Resource&#34;, jsonArray(
  *                                 bucketName, 
  *                                 String.format(&#34;%s/*&#34;, bucketName1)
@@ -78,14 +93,140 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ## Example with aws provider
- * 
+ * ### Example with an IAM application
+ * ### Creating a bucket and delegating read access to an application
  * ```java
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+ * import com.pulumi.scaleway.IamApplication;
+ * import com.pulumi.scaleway.IamPolicy;
+ * import com.pulumi.scaleway.IamPolicyArgs;
+ * import com.pulumi.scaleway.inputs.IamPolicyRuleArgs;
+ * import com.pulumi.scaleway.ObjectBucket;
+ * import com.pulumi.scaleway.ObjectBucketPolicy;
+ * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var default = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+ *             .name(&#34;default&#34;)
+ *             .build());
+ * 
+ *         var reading_app = new IamApplication(&#34;reading-app&#34;);
+ * 
+ *         var policyIamPolicy = new IamPolicy(&#34;policyIamPolicy&#34;, IamPolicyArgs.builder()        
+ *             .applicationId(reading_app.id())
+ *             .rules(IamPolicyRuleArgs.builder()
+ *                 .projectIds(default_.id())
+ *                 .permissionSetNames(&#34;ObjectStorageBucketsRead&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var bucket = new ObjectBucket(&#34;bucket&#34;);
+ * 
+ *         var policyObjectBucketPolicy = new ObjectBucketPolicy(&#34;policyObjectBucketPolicy&#34;, ObjectBucketPolicyArgs.builder()        
+ *             .bucket(bucket.id())
+ *             .policy(Output.tuple(reading_app.id(), bucket.name(), bucket.name()).applyValue(values -&gt; {
+ *                 var id = values.t1;
+ *                 var bucketName = values.t2;
+ *                 var bucketName1 = values.t3;
+ *                 return serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty(&#34;Version&#34;, &#34;2023-04-17&#34;),
+ *                         jsonProperty(&#34;Statement&#34;, jsonArray(jsonObject(
+ *                             jsonProperty(&#34;Sid&#34;, &#34;Delegate read access&#34;),
+ *                             jsonProperty(&#34;Effect&#34;, &#34;Allow&#34;),
+ *                             jsonProperty(&#34;Principal&#34;, jsonObject(
+ *                                 jsonProperty(&#34;SCW&#34;, String.format(&#34;application_id:%s&#34;, id))
+ *                             )),
+ *                             jsonProperty(&#34;Action&#34;, jsonArray(
+ *                                 &#34;s3:ListBucket&#34;, 
+ *                                 &#34;s3:GetObject&#34;
+ *                             )),
+ *                             jsonProperty(&#34;Resource&#34;, jsonArray(
+ *                                 bucketName, 
+ *                                 String.format(&#34;%s/*&#34;, bucketName1)
+ *                             ))
+ *                         )))
+ *                     ));
+ *             }))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Reading the bucket with the application
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetIamApplicationArgs;
+ * import com.pulumi.scaleway.IamApiKey;
+ * import com.pulumi.scaleway.IamApiKeyArgs;
+ * import com.pulumi.scaleway.Provider;
+ * import com.pulumi.scaleway.ProviderArgs;
+ * import com.pulumi.scaleway.inputs.GetObjectBucketArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var reading-app = ScalewayFunctions.getIamApplication(GetIamApplicationArgs.builder()
+ *             .name(&#34;reading-app&#34;)
+ *             .build());
+ * 
+ *         var reading_api_key = new IamApiKey(&#34;reading-api-key&#34;, IamApiKeyArgs.builder()        
+ *             .applicationId(reading_app.id())
+ *             .build());
+ * 
+ *         var reading_profile = new Provider(&#34;reading-profile&#34;, ProviderArgs.builder()        
+ *             .accessKey(reading_api_key.accessKey())
+ *             .secretKey(reading_api_key.secretKey())
+ *             .build());
+ * 
+ *         final var bucket = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
+ *             .name(&#34;some-unique-name&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example with AWS provider
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
  * import com.pulumi.scaleway.ObjectBucket;
  * import com.pulumi.aws.iam.IamFunctions;
  * import com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;
@@ -104,17 +245,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         final var default = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+ *             .name(&#34;default&#34;)
+ *             .build());
+ * 
  *         var bucket = new ObjectBucket(&#34;bucket&#34;);
  * 
  *         final var policy = IamFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
- *             .version(&#34;2023-04-17&#34;)
- *             .id(&#34;MyBucketPolicy&#34;)
+ *             .version(&#34;2012-10-17&#34;)
  *             .statements(GetPolicyDocumentStatementArgs.builder()
  *                 .sid(&#34;Delegate access&#34;)
  *                 .effect(&#34;Allow&#34;)
  *                 .principals(GetPolicyDocumentStatementPrincipalArgs.builder()
  *                     .type(&#34;SCW&#34;)
- *                     .identifiers(&#34;application_id:&lt;APPLICATION_ID&gt;&#34;)
+ *                     .identifiers(String.format(&#34;project_id:%s&#34;, default_.id()))
  *                     .build())
  *                 .actions(&#34;s3:ListBucket&#34;)
  *                 .resources(                
@@ -124,13 +268,79 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var main = new ObjectBucketPolicy(&#34;main&#34;, ObjectBucketPolicyArgs.builder()        
- *             .bucket(bucket.name())
+ *             .bucket(bucket.id())
  *             .policy(policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult).applyValue(policy -&gt; policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.json())))
  *             .build());
  * 
  *     }
  * }
  * ```
+ * ### Example with deprecated version 2012-10-17
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.ScalewayFunctions;
+ * import com.pulumi.scaleway.inputs.GetAccountProjectArgs;
+ * import com.pulumi.scaleway.ObjectBucket;
+ * import com.pulumi.scaleway.ObjectBucketArgs;
+ * import com.pulumi.scaleway.ObjectBucketPolicy;
+ * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var default = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()
+ *             .name(&#34;default&#34;)
+ *             .build());
+ * 
+ *         var bucket = new ObjectBucket(&#34;bucket&#34;, ObjectBucketArgs.builder()        
+ *             .region(&#34;fr-par&#34;)
+ *             .build());
+ * 
+ *         var policy = new ObjectBucketPolicy(&#34;policy&#34;, ObjectBucketPolicyArgs.builder()        
+ *             .bucket(bucket.name())
+ *             .policy(Output.tuple(bucket.name(), bucket.name()).applyValue(values -&gt; {
+ *                 var bucketName = values.t1;
+ *                 var bucketName1 = values.t2;
+ *                 return serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty(&#34;Version&#34;, &#34;2012-10-17&#34;),
+ *                         jsonProperty(&#34;Statement&#34;, jsonArray(jsonObject(
+ *                             jsonProperty(&#34;Effect&#34;, &#34;Allow&#34;),
+ *                             jsonProperty(&#34;Action&#34;, jsonArray(
+ *                                 &#34;s3:ListBucket&#34;, 
+ *                                 &#34;s3:GetObjectTagging&#34;
+ *                             )),
+ *                             jsonProperty(&#34;Principal&#34;, jsonObject(
+ *                                 jsonProperty(&#34;SCW&#34;, String.format(&#34;project_id:%s&#34;, default_.id()))
+ *                             )),
+ *                             jsonProperty(&#34;Resource&#34;, jsonArray(
+ *                                 bucketName, 
+ *                                 String.format(&#34;%s/*&#34;, bucketName1)
+ *                             ))
+ *                         )))
+ *                     ));
+ *             }))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
  * 
  * ## Import
  * 
@@ -144,14 +354,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/objectBucketPolicy:ObjectBucketPolicy")
 public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
     /**
-     * The name of the bucket.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
-     * @return The name of the bucket.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Database Users.
@@ -220,12 +219,6 @@ func (i *DatabaseUser) ToDatabaseUserOutputWithContext(ctx context.Context) Data
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserOutput)
 }
 
-func (i *DatabaseUser) ToOutput(ctx context.Context) pulumix.Output[*DatabaseUser] {
-	return pulumix.Output[*DatabaseUser]{
-		OutputState: i.ToDatabaseUserOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DatabaseUserArrayInput is an input type that accepts DatabaseUserArray and DatabaseUserArrayOutput values.
 // You can construct a concrete instance of `DatabaseUserArrayInput` via:
 //
@@ -249,12 +242,6 @@ func (i DatabaseUserArray) ToDatabaseUserArrayOutput() DatabaseUserArrayOutput {
 
 func (i DatabaseUserArray) ToDatabaseUserArrayOutputWithContext(ctx context.Context) DatabaseUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserArrayOutput)
-}
-
-func (i DatabaseUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseUser] {
-	return pulumix.Output[[]*DatabaseUser]{
-		OutputState: i.ToDatabaseUserArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DatabaseUserMapInput is an input type that accepts DatabaseUserMap and DatabaseUserMapOutput values.
@@ -282,12 +269,6 @@ func (i DatabaseUserMap) ToDatabaseUserMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserMapOutput)
 }
 
-func (i DatabaseUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseUser] {
-	return pulumix.Output[map[string]*DatabaseUser]{
-		OutputState: i.ToDatabaseUserMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DatabaseUserOutput struct{ *pulumi.OutputState }
 
 func (DatabaseUserOutput) ElementType() reflect.Type {
@@ -300,12 +281,6 @@ func (o DatabaseUserOutput) ToDatabaseUserOutput() DatabaseUserOutput {
 
 func (o DatabaseUserOutput) ToDatabaseUserOutputWithContext(ctx context.Context) DatabaseUserOutput {
 	return o
-}
-
-func (o DatabaseUserOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabaseUser] {
-	return pulumix.Output[*DatabaseUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 // UUID of the rdb instance.
@@ -351,12 +326,6 @@ func (o DatabaseUserArrayOutput) ToDatabaseUserArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o DatabaseUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseUser] {
-	return pulumix.Output[[]*DatabaseUser]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DatabaseUserArrayOutput) Index(i pulumi.IntInput) DatabaseUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseUser {
 		return vs[0].([]*DatabaseUser)[vs[1].(int)]
@@ -375,12 +344,6 @@ func (o DatabaseUserMapOutput) ToDatabaseUserMapOutput() DatabaseUserMapOutput {
 
 func (o DatabaseUserMapOutput) ToDatabaseUserMapOutputWithContext(ctx context.Context) DatabaseUserMapOutput {
 	return o
-}
-
-func (o DatabaseUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseUser] {
-	return pulumix.Output[map[string]*DatabaseUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DatabaseUserMapOutput) MapIndex(k pulumi.StringInput) DatabaseUserOutput {

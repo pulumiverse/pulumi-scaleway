@@ -402,14 +402,14 @@ public class Container extends com.pulumi.resources.CustomResource {
         return this.registryImage;
     }
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      * 
      */
     @Export(name="registrySha256", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> registrySha256;
 
     /**
-     * @return The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * @return The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      * 
      */
     public Output<Optional<String>> registrySha256() {

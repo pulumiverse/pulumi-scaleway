@@ -17,14 +17,14 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
     public static final CockpitTokenState Empty = new CockpitTokenState();
 
     /**
-     * The name of the token
+     * The name of the token.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the token
+     * @return The name of the token.
      * 
      */
     public Optional<Output<String>> name() {
@@ -47,14 +47,14 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Allowed scopes
+     * Allowed scopes.
      * 
      */
     @Import(name="scopes")
     private @Nullable Output<CockpitTokenScopesArgs> scopes;
 
     /**
-     * @return Allowed scopes
+     * @return Allowed scopes.
      * 
      */
     public Optional<Output<CockpitTokenScopesArgs>> scopes() {
@@ -62,14 +62,14 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The secret key of the token
+     * The secret key of the token.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return The secret key of the token
+     * @return The secret key of the token.
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -104,7 +104,7 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the token
+         * @param name The name of the token.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the token
+         * @param name The name of the token.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Allowed scopes
+         * @param scopes Allowed scopes.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Allowed scopes
+         * @param scopes Allowed scopes.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretKey The secret key of the token
+         * @param secretKey The secret key of the token.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class CockpitTokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretKey The secret key of the token
+         * @param secretKey The secret key of the token.
          * 
          * @return builder
          * 

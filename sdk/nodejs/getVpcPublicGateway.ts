@@ -71,6 +71,7 @@ export interface GetVpcPublicGatewayResult {
     readonly organizationId: string;
     readonly projectId: string;
     readonly publicGatewayId?: string;
+    readonly status: string;
     readonly tags: string[];
     readonly type: string;
     readonly updatedAt: string;

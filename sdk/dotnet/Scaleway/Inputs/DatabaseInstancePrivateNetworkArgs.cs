@@ -14,6 +14,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class DatabaseInstancePrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        /// </summary>
+        [Input("enableIpam")]
+        public Input<bool>? EnableIpam { get; set; }
+
+        /// <summary>
         /// The ID of the endpoint.
         /// </summary>
         [Input("endpointId")]
@@ -40,6 +46,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the private network.
+        /// </summary>
         [Input("pnId", required: true)]
         public Input<string> PnId { get; set; } = null!;
 

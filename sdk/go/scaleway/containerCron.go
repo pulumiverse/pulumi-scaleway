@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
@@ -233,12 +232,6 @@ func (i *ContainerCron) ToContainerCronOutputWithContext(ctx context.Context) Co
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerCronOutput)
 }
 
-func (i *ContainerCron) ToOutput(ctx context.Context) pulumix.Output[*ContainerCron] {
-	return pulumix.Output[*ContainerCron]{
-		OutputState: i.ToContainerCronOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ContainerCronArrayInput is an input type that accepts ContainerCronArray and ContainerCronArrayOutput values.
 // You can construct a concrete instance of `ContainerCronArrayInput` via:
 //
@@ -262,12 +255,6 @@ func (i ContainerCronArray) ToContainerCronArrayOutput() ContainerCronArrayOutpu
 
 func (i ContainerCronArray) ToContainerCronArrayOutputWithContext(ctx context.Context) ContainerCronArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerCronArrayOutput)
-}
-
-func (i ContainerCronArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerCron] {
-	return pulumix.Output[[]*ContainerCron]{
-		OutputState: i.ToContainerCronArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ContainerCronMapInput is an input type that accepts ContainerCronMap and ContainerCronMapOutput values.
@@ -295,12 +282,6 @@ func (i ContainerCronMap) ToContainerCronMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerCronMapOutput)
 }
 
-func (i ContainerCronMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerCron] {
-	return pulumix.Output[map[string]*ContainerCron]{
-		OutputState: i.ToContainerCronMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ContainerCronOutput struct{ *pulumi.OutputState }
 
 func (ContainerCronOutput) ElementType() reflect.Type {
@@ -313,12 +294,6 @@ func (o ContainerCronOutput) ToContainerCronOutput() ContainerCronOutput {
 
 func (o ContainerCronOutput) ToContainerCronOutputWithContext(ctx context.Context) ContainerCronOutput {
 	return o
-}
-
-func (o ContainerCronOutput) ToOutput(ctx context.Context) pulumix.Output[*ContainerCron] {
-	return pulumix.Output[*ContainerCron]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The key-value mapping to define arguments that will be passed to your container’s event object
@@ -363,12 +338,6 @@ func (o ContainerCronArrayOutput) ToContainerCronArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o ContainerCronArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerCron] {
-	return pulumix.Output[[]*ContainerCron]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ContainerCronArrayOutput) Index(i pulumi.IntInput) ContainerCronOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContainerCron {
 		return vs[0].([]*ContainerCron)[vs[1].(int)]
@@ -387,12 +356,6 @@ func (o ContainerCronMapOutput) ToContainerCronMapOutput() ContainerCronMapOutpu
 
 func (o ContainerCronMapOutput) ToContainerCronMapOutputWithContext(ctx context.Context) ContainerCronMapOutput {
 	return o
-}
-
-func (o ContainerCronMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerCron] {
-	return pulumix.Output[map[string]*ContainerCron]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ContainerCronMapOutput) MapIndex(k pulumi.StringInput) ContainerCronOutput {

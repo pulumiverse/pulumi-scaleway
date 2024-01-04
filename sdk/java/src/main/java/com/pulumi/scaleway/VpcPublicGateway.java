@@ -178,6 +178,20 @@ public class VpcPublicGateway extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
+     * The status of the public gateway.
+     * 
+     */
+    @Export(name="status", refs={String.class}, tree="[0]")
+    private Output<String> status;
+
+    /**
+     * @return The status of the public gateway.
+     * 
+     */
+    public Output<String> status() {
+        return this.status;
+    }
+    /**
      * The tags associated with the public gateway.
      * 
      */

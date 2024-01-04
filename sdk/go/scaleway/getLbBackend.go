@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Backends.
@@ -161,12 +160,6 @@ func (o GetLbBackendResultOutput) ToGetLbBackendResultOutput() GetLbBackendResul
 
 func (o GetLbBackendResultOutput) ToGetLbBackendResultOutputWithContext(ctx context.Context) GetLbBackendResultOutput {
 	return o
-}
-
-func (o GetLbBackendResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbBackendResult] {
-	return pulumix.Output[GetLbBackendResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetLbBackendResultOutput) BackendId() pulumi.StringPtrOutput {

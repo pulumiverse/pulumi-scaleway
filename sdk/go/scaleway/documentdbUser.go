@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Database DocumentDB Users.
@@ -220,12 +219,6 @@ func (i *DocumentdbUser) ToDocumentdbUserOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbUserOutput)
 }
 
-func (i *DocumentdbUser) ToOutput(ctx context.Context) pulumix.Output[*DocumentdbUser] {
-	return pulumix.Output[*DocumentdbUser]{
-		OutputState: i.ToDocumentdbUserOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DocumentdbUserArrayInput is an input type that accepts DocumentdbUserArray and DocumentdbUserArrayOutput values.
 // You can construct a concrete instance of `DocumentdbUserArrayInput` via:
 //
@@ -249,12 +242,6 @@ func (i DocumentdbUserArray) ToDocumentdbUserArrayOutput() DocumentdbUserArrayOu
 
 func (i DocumentdbUserArray) ToDocumentdbUserArrayOutputWithContext(ctx context.Context) DocumentdbUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbUserArrayOutput)
-}
-
-func (i DocumentdbUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentdbUser] {
-	return pulumix.Output[[]*DocumentdbUser]{
-		OutputState: i.ToDocumentdbUserArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DocumentdbUserMapInput is an input type that accepts DocumentdbUserMap and DocumentdbUserMapOutput values.
@@ -282,12 +269,6 @@ func (i DocumentdbUserMap) ToDocumentdbUserMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbUserMapOutput)
 }
 
-func (i DocumentdbUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentdbUser] {
-	return pulumix.Output[map[string]*DocumentdbUser]{
-		OutputState: i.ToDocumentdbUserMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DocumentdbUserOutput struct{ *pulumi.OutputState }
 
 func (DocumentdbUserOutput) ElementType() reflect.Type {
@@ -300,12 +281,6 @@ func (o DocumentdbUserOutput) ToDocumentdbUserOutput() DocumentdbUserOutput {
 
 func (o DocumentdbUserOutput) ToDocumentdbUserOutputWithContext(ctx context.Context) DocumentdbUserOutput {
 	return o
-}
-
-func (o DocumentdbUserOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentdbUser] {
-	return pulumix.Output[*DocumentdbUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 // UUID of the documentDB instance.
@@ -351,12 +326,6 @@ func (o DocumentdbUserArrayOutput) ToDocumentdbUserArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o DocumentdbUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentdbUser] {
-	return pulumix.Output[[]*DocumentdbUser]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DocumentdbUserArrayOutput) Index(i pulumi.IntInput) DocumentdbUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbUser {
 		return vs[0].([]*DocumentdbUser)[vs[1].(int)]
@@ -375,12 +344,6 @@ func (o DocumentdbUserMapOutput) ToDocumentdbUserMapOutput() DocumentdbUserMapOu
 
 func (o DocumentdbUserMapOutput) ToDocumentdbUserMapOutputWithContext(ctx context.Context) DocumentdbUserMapOutput {
 	return o
-}
-
-func (o DocumentdbUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentdbUser] {
-	return pulumix.Output[map[string]*DocumentdbUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DocumentdbUserMapOutput) MapIndex(k pulumi.StringInput) DocumentdbUserOutput {

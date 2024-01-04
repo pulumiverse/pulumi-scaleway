@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway flexible IPs.
@@ -335,12 +334,6 @@ func (i *FlexibleIp) ToFlexibleIpOutputWithContext(ctx context.Context) Flexible
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleIpOutput)
 }
 
-func (i *FlexibleIp) ToOutput(ctx context.Context) pulumix.Output[*FlexibleIp] {
-	return pulumix.Output[*FlexibleIp]{
-		OutputState: i.ToFlexibleIpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FlexibleIpArrayInput is an input type that accepts FlexibleIpArray and FlexibleIpArrayOutput values.
 // You can construct a concrete instance of `FlexibleIpArrayInput` via:
 //
@@ -364,12 +357,6 @@ func (i FlexibleIpArray) ToFlexibleIpArrayOutput() FlexibleIpArrayOutput {
 
 func (i FlexibleIpArray) ToFlexibleIpArrayOutputWithContext(ctx context.Context) FlexibleIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleIpArrayOutput)
-}
-
-func (i FlexibleIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*FlexibleIp] {
-	return pulumix.Output[[]*FlexibleIp]{
-		OutputState: i.ToFlexibleIpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FlexibleIpMapInput is an input type that accepts FlexibleIpMap and FlexibleIpMapOutput values.
@@ -397,12 +384,6 @@ func (i FlexibleIpMap) ToFlexibleIpMapOutputWithContext(ctx context.Context) Fle
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleIpMapOutput)
 }
 
-func (i FlexibleIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FlexibleIp] {
-	return pulumix.Output[map[string]*FlexibleIp]{
-		OutputState: i.ToFlexibleIpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FlexibleIpOutput struct{ *pulumi.OutputState }
 
 func (FlexibleIpOutput) ElementType() reflect.Type {
@@ -415,12 +396,6 @@ func (o FlexibleIpOutput) ToFlexibleIpOutput() FlexibleIpOutput {
 
 func (o FlexibleIpOutput) ToFlexibleIpOutputWithContext(ctx context.Context) FlexibleIpOutput {
 	return o
-}
-
-func (o FlexibleIpOutput) ToOutput(ctx context.Context) pulumix.Output[*FlexibleIp] {
-	return pulumix.Output[*FlexibleIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the Flexible IP (Format ISO 8601).
@@ -497,12 +472,6 @@ func (o FlexibleIpArrayOutput) ToFlexibleIpArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FlexibleIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FlexibleIp] {
-	return pulumix.Output[[]*FlexibleIp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FlexibleIpArrayOutput) Index(i pulumi.IntInput) FlexibleIpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FlexibleIp {
 		return vs[0].([]*FlexibleIp)[vs[1].(int)]
@@ -521,12 +490,6 @@ func (o FlexibleIpMapOutput) ToFlexibleIpMapOutput() FlexibleIpMapOutput {
 
 func (o FlexibleIpMapOutput) ToFlexibleIpMapOutputWithContext(ctx context.Context) FlexibleIpMapOutput {
 	return o
-}
-
-func (o FlexibleIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FlexibleIp] {
-	return pulumix.Output[map[string]*FlexibleIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FlexibleIpMapOutput) MapIndex(k pulumi.StringInput) FlexibleIpOutput {

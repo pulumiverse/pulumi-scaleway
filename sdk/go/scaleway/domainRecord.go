@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Domain record.\
@@ -481,12 +480,6 @@ func (i *DomainRecord) ToDomainRecordOutputWithContext(ctx context.Context) Doma
 	return pulumi.ToOutputWithContext(ctx, i).(DomainRecordOutput)
 }
 
-func (i *DomainRecord) ToOutput(ctx context.Context) pulumix.Output[*DomainRecord] {
-	return pulumix.Output[*DomainRecord]{
-		OutputState: i.ToDomainRecordOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainRecordArrayInput is an input type that accepts DomainRecordArray and DomainRecordArrayOutput values.
 // You can construct a concrete instance of `DomainRecordArrayInput` via:
 //
@@ -510,12 +503,6 @@ func (i DomainRecordArray) ToDomainRecordArrayOutput() DomainRecordArrayOutput {
 
 func (i DomainRecordArray) ToDomainRecordArrayOutputWithContext(ctx context.Context) DomainRecordArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainRecordArrayOutput)
-}
-
-func (i DomainRecordArray) ToOutput(ctx context.Context) pulumix.Output[[]*DomainRecord] {
-	return pulumix.Output[[]*DomainRecord]{
-		OutputState: i.ToDomainRecordArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DomainRecordMapInput is an input type that accepts DomainRecordMap and DomainRecordMapOutput values.
@@ -543,12 +530,6 @@ func (i DomainRecordMap) ToDomainRecordMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DomainRecordMapOutput)
 }
 
-func (i DomainRecordMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DomainRecord] {
-	return pulumix.Output[map[string]*DomainRecord]{
-		OutputState: i.ToDomainRecordMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainRecordOutput struct{ *pulumi.OutputState }
 
 func (DomainRecordOutput) ElementType() reflect.Type {
@@ -561,12 +542,6 @@ func (o DomainRecordOutput) ToDomainRecordOutput() DomainRecordOutput {
 
 func (o DomainRecordOutput) ToDomainRecordOutputWithContext(ctx context.Context) DomainRecordOutput {
 	return o
-}
-
-func (o DomainRecordOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainRecord] {
-	return pulumix.Output[*DomainRecord]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
@@ -648,12 +623,6 @@ func (o DomainRecordArrayOutput) ToDomainRecordArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o DomainRecordArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DomainRecord] {
-	return pulumix.Output[[]*DomainRecord]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainRecordArrayOutput) Index(i pulumi.IntInput) DomainRecordOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DomainRecord {
 		return vs[0].([]*DomainRecord)[vs[1].(int)]
@@ -672,12 +641,6 @@ func (o DomainRecordMapOutput) ToDomainRecordMapOutput() DomainRecordMapOutput {
 
 func (o DomainRecordMapOutput) ToDomainRecordMapOutputWithContext(ctx context.Context) DomainRecordMapOutput {
 	return o
-}
-
-func (o DomainRecordMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DomainRecord] {
-	return pulumix.Output[map[string]*DomainRecord]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainRecordMapOutput) MapIndex(k pulumi.StringInput) DomainRecordOutput {

@@ -54,7 +54,6 @@ export interface GetInstanceVolumeArgs {
  */
 export interface GetInstanceVolumeResult {
     readonly fromSnapshotId: string;
-    readonly fromVolumeId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

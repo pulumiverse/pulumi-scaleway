@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -32,7 +31,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
-//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Name),
+//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Id),
 //				Acl:    pulumi.String("private"),
 //			})
 //			if err != nil {
@@ -62,7 +61,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "mainObjectBucketAcl", &scaleway.ObjectBucketAclArgs{
-//				Bucket: mainObjectBucket.Name,
+//				Bucket: mainObjectBucket.ID(),
 //				AccessControlPolicy: &scaleway.ObjectBucketAclAccessControlPolicyArgs{
 //					Grants: scaleway.ObjectBucketAclAccessControlPolicyGrantArray{
 //						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
@@ -152,7 +151,7 @@ type ObjectBucketAcl struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyOutput `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrOutput `pulumi:"expectedBucketOwner"`
@@ -199,7 +198,7 @@ type objectBucketAclState struct {
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
@@ -214,7 +213,7 @@ type ObjectBucketAclState struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
@@ -233,7 +232,7 @@ type objectBucketAclArgs struct {
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
@@ -249,7 +248,7 @@ type ObjectBucketAclArgs struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
@@ -282,12 +281,6 @@ func (i *ObjectBucketAcl) ToObjectBucketAclOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclOutput)
 }
 
-func (i *ObjectBucketAcl) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketAcl] {
-	return pulumix.Output[*ObjectBucketAcl]{
-		OutputState: i.ToObjectBucketAclOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ObjectBucketAclArrayInput is an input type that accepts ObjectBucketAclArray and ObjectBucketAclArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketAclArrayInput` via:
 //
@@ -311,12 +304,6 @@ func (i ObjectBucketAclArray) ToObjectBucketAclArrayOutput() ObjectBucketAclArra
 
 func (i ObjectBucketAclArray) ToObjectBucketAclArrayOutputWithContext(ctx context.Context) ObjectBucketAclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclArrayOutput)
-}
-
-func (i ObjectBucketAclArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketAcl] {
-	return pulumix.Output[[]*ObjectBucketAcl]{
-		OutputState: i.ToObjectBucketAclArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ObjectBucketAclMapInput is an input type that accepts ObjectBucketAclMap and ObjectBucketAclMapOutput values.
@@ -344,12 +331,6 @@ func (i ObjectBucketAclMap) ToObjectBucketAclMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclMapOutput)
 }
 
-func (i ObjectBucketAclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketAcl] {
-	return pulumix.Output[map[string]*ObjectBucketAcl]{
-		OutputState: i.ToObjectBucketAclMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ObjectBucketAclOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketAclOutput) ElementType() reflect.Type {
@@ -364,12 +345,6 @@ func (o ObjectBucketAclOutput) ToObjectBucketAclOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ObjectBucketAclOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketAcl] {
-	return pulumix.Output[*ObjectBucketAcl]{
-		OutputState: o.OutputState,
-	}
-}
-
 // A configuration block that sets the ACL permissions for an object per grantee documented below.
 func (o ObjectBucketAclOutput) AccessControlPolicy() ObjectBucketAclAccessControlPolicyOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) ObjectBucketAclAccessControlPolicyOutput { return v.AccessControlPolicy }).(ObjectBucketAclAccessControlPolicyOutput)
@@ -380,7 +355,7 @@ func (o ObjectBucketAclOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }
 
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectBucketAclOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -414,12 +389,6 @@ func (o ObjectBucketAclArrayOutput) ToObjectBucketAclArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o ObjectBucketAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketAcl] {
-	return pulumix.Output[[]*ObjectBucketAcl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ObjectBucketAclArrayOutput) Index(i pulumi.IntInput) ObjectBucketAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucketAcl {
 		return vs[0].([]*ObjectBucketAcl)[vs[1].(int)]
@@ -438,12 +407,6 @@ func (o ObjectBucketAclMapOutput) ToObjectBucketAclMapOutput() ObjectBucketAclMa
 
 func (o ObjectBucketAclMapOutput) ToObjectBucketAclMapOutputWithContext(ctx context.Context) ObjectBucketAclMapOutput {
 	return o
-}
-
-func (o ObjectBucketAclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketAcl] {
-	return pulumix.Output[map[string]*ObjectBucketAcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ObjectBucketAclMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketAclOutput {

@@ -17,14 +17,14 @@ public final class ObjectItemArgs extends com.pulumi.resources.ResourceArgs {
     public static final ObjectItemArgs Empty = new ObjectItemArgs();
 
     /**
-     * The name of the bucket.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Import(name="bucket", required=true)
     private Output<String> bucket;
 
     /**
-     * @return The name of the bucket.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {
@@ -232,7 +232,7 @@ public final class ObjectItemArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bucket The name of the bucket.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 
@@ -243,7 +243,7 @@ public final class ObjectItemArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bucket The name of the bucket.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 

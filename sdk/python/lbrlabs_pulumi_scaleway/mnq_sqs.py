@@ -128,14 +128,24 @@ class MnqSqs(pulumi.CustomResource):
 
         ### Basic
 
+        Activate SQS for default project
+
         ```python
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
 
-        # For default project in default region
         main = scaleway.MnqSqs("main")
-        # For specific project in default region
-        for_project = scaleway.MnqSqs("forProject", project_id=scaleway_account_project["main"]["id"])
+        ```
+
+        Activate SQS for a specific project
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_scaleway as scaleway
+
+        project = scaleway.get_account_project(name="default")
+        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
         ```
 
         ## Import
@@ -167,14 +177,24 @@ class MnqSqs(pulumi.CustomResource):
 
         ### Basic
 
+        Activate SQS for default project
+
         ```python
         import pulumi
         import lbrlabs_pulumi_scaleway as scaleway
 
-        # For default project in default region
         main = scaleway.MnqSqs("main")
-        # For specific project in default region
-        for_project = scaleway.MnqSqs("forProject", project_id=scaleway_account_project["main"]["id"])
+        ```
+
+        Activate SQS for a specific project
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+        import pulumi_scaleway as scaleway
+
+        project = scaleway.get_account_project(name="default")
+        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
         ```
 
         ## Import

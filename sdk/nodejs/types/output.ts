@@ -102,52 +102,64 @@ export interface BaremetalServerPrivateNetwork {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL
+     * The alertmanager URL.
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL
+     * The grafana URL.
      */
     grafanaUrl: string;
     /**
-     * The logs URL
+     * The logs URL.
      */
     logsUrl: string;
     /**
-     * The metrics URL
+     * The metrics URL.
      */
     metricsUrl: string;
+    /**
+     * The traces URL.
+     */
+    tracesUrl: string;
 }
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs
+     * Query logs.
      */
     queryLogs?: boolean;
     /**
-     * Query metrics
+     * Query metrics.
      */
     queryMetrics?: boolean;
     /**
-     * Setup alerts
+     * Query traces.
+     */
+    queryTraces?: boolean;
+    /**
+     * Setup alerts.
      */
     setupAlerts?: boolean;
     /**
-     * Setup logs rules
+     * Setup logs rules.
      */
     setupLogsRules?: boolean;
     /**
-     * Setup metrics rules
+     * Setup metrics rules.
      */
     setupMetricsRules?: boolean;
     /**
-     * Write logs
+     * Write logs.
      */
     writeLogs?: boolean;
     /**
-     * Write metrics
+     * Write metrics.
      */
     writeMetrics?: boolean;
+    /**
+     * Write traces.
+     */
+    writeTraces?: boolean;
 }
 
 export interface ContainerTriggerNats {
@@ -224,6 +236,10 @@ export interface DatabaseInstanceLoadBalancer {
 
 export interface DatabaseInstancePrivateNetwork {
     /**
+     * Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+     */
+    enableIpam: boolean;
+    /**
      * The ID of the endpoint.
      */
     endpointId: string;
@@ -240,6 +256,9 @@ export interface DatabaseInstancePrivateNetwork {
      * The name of the Database Instance.
      */
     name: string;
+    /**
+     * The ID of the private network.
+     */
     pnId: string;
     /**
      * Port in the Private Network.
@@ -644,6 +663,7 @@ export interface GetCockpitEndpoint {
      * The metrics URL
      */
     metricsUrl: string;
+    tracesUrl: string;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -670,6 +690,7 @@ export interface GetDatabaseInstanceLoadBalancer {
 }
 
 export interface GetDatabaseInstancePrivateNetwork {
+    enableIpam: boolean;
     endpointId: string;
     hostname: string;
     ip: string;
@@ -1033,9 +1054,13 @@ export interface GetIpamIpResource {
      */
     id?: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The name of the resource to get the IP from.
      */
-    type?: string;
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
 }
 
 export interface GetKubernetesClusterAutoUpgrade {
@@ -1215,6 +1240,9 @@ export interface GetLbAclsAclMatch {
      * The matched HTTP filter.
      */
     httpFilter: string;
+    /**
+     * A list of possible values for the HTTP filter based on the HTTP header.
+     */
     httpFilterOption: string;
     /**
      * The possible values matched for a given HTTP filter.
@@ -1723,7 +1751,16 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetTemDomainReputation {
+    previousScore: number;
+    previousScoredAt: string;
+    score: number;
+    scoredAt: string;
+    status: string;
+}
+
 export interface GetVpcGatewayNetworkIpamConfig {
+    ipamIpId: string;
     pushDefaultRoute: boolean;
 }
 
@@ -2151,6 +2188,40 @@ export interface IotRouteS3 {
     strategy: string;
 }
 
+export interface IpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The MAC Address of the resource the IP is attached to.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name: string;
+    /**
+     * The type of resource the IP is attached to.
+     */
+    type: string;
+}
+
+export interface IpamIpSource {
+    /**
+     * The private network the IP lives in if the IP is a private IP.
+     */
+    privateNetworkId: string;
+    /**
+     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     */
+    subnetId: string;
+    /**
+     * The zone the IP lives in if the IP is a public zoned one
+     */
+    zonal: string;
+}
+
 export interface KubernetesClusterAutoUpgrade {
     /**
      * Set to `true` to enable Kubernetes patch version auto upgrades.
@@ -2324,6 +2395,9 @@ export interface LoadbalancerAclMatch {
      * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
      */
     httpFilter?: string;
+    /**
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
+     */
     httpFilterOption?: string;
     /**
      * A list of possible values to match for the given HTTP filter.
@@ -2458,6 +2532,9 @@ export interface LoadbalancerFrontendAclMatch {
      * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
      */
     httpFilter?: string;
+    /**
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
+     */
     httpFilterOption?: string;
     /**
      * A list of possible values to match for the given HTTP filter.
@@ -2494,58 +2571,19 @@ export interface LoadbalancerPrivateNetwork {
     zone: string;
 }
 
-export interface MnqCredentialNatsCredentials {
-    /**
-     * Raw content of the NATS credentials file.
-     */
-    content: string;
-}
-
-export interface MnqCredentialSqsSnsCredentials {
-    /**
-     * The ID of the key.
-     */
-    accessKey: string;
-    /**
-     * List of permissions associated to this Credential. Only one of permissions may be set.
-     */
-    permissions?: outputs.MnqCredentialSqsSnsCredentialsPermissions;
-    /**
-     * The Secret value of the key.
-     */
-    secretKey: string;
-}
-
-export interface MnqCredentialSqsSnsCredentialsPermissions {
+export interface MnqSnsCredentialsPermissions {
     /**
      * . Defines if user can manage the associated resource(s).
      */
-    canManage?: boolean;
+    canManage: boolean;
     /**
      * . Defines if user can publish messages to the service.
      */
-    canPublish?: boolean;
+    canPublish: boolean;
     /**
      * . Defines if user can receive messages from the service.
      */
-    canReceive?: boolean;
-}
-
-export interface MnqQueueNats {
-    credentials: string;
-    endpoint?: string;
-    retentionPolicy?: string;
-}
-
-export interface MnqQueueSqs {
-    accessKey: string;
-    contentBasedDeduplication?: boolean;
-    endpoint?: string;
-    fifoQueue?: boolean;
-    receiveWaitTimeSeconds?: number;
-    secretKey: string;
-    url: string;
-    visibilityTimeoutSeconds?: number;
+    canReceive: boolean;
 }
 
 export interface MnqSqsCredentialsPermissions {
@@ -2753,9 +2791,36 @@ export interface RedisClusterPublicNetwork {
     port: number;
 }
 
+export interface TemDomainReputation {
+    /**
+     * The previously-calculated domain's reputation score.
+     */
+    previousScore: number;
+    /**
+     * The time and date the previous reputation score was calculated.
+     */
+    previousScoredAt: string;
+    /**
+     * A range from 0 to 100 that determines your domain's reputation score.
+     */
+    score: number;
+    /**
+     * The time and date the score was calculated.
+     */
+    scoredAt: string;
+    /**
+     * The status of the domain's reputation.
+     */
+    status: string;
+}
+
 export interface VpcGatewayNetworkIpamConfig {
     /**
-     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+     */
+    ipamIpId: string;
+    /**
+     * Defines whether the default route is enabled on that Gateway Network.
      */
     pushDefaultRoute?: boolean;
 }

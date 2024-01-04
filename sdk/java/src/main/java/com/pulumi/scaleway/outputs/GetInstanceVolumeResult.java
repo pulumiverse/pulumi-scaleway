@@ -14,7 +14,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetInstanceVolumeResult {
     private String fromSnapshotId;
-    private String fromVolumeId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -37,9 +36,6 @@ public final class GetInstanceVolumeResult {
     private GetInstanceVolumeResult() {}
     public String fromSnapshotId() {
         return this.fromSnapshotId;
-    }
-    public String fromVolumeId() {
-        return this.fromVolumeId;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -90,7 +86,6 @@ public final class GetInstanceVolumeResult {
     @CustomType.Builder
     public static final class Builder {
         private String fromSnapshotId;
-        private String fromVolumeId;
         private String id;
         private @Nullable String name;
         private String organizationId;
@@ -105,7 +100,6 @@ public final class GetInstanceVolumeResult {
         public Builder(GetInstanceVolumeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.fromSnapshotId = defaults.fromSnapshotId;
-    	      this.fromVolumeId = defaults.fromVolumeId;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.organizationId = defaults.organizationId;
@@ -121,11 +115,6 @@ public final class GetInstanceVolumeResult {
         @CustomType.Setter
         public Builder fromSnapshotId(String fromSnapshotId) {
             this.fromSnapshotId = Objects.requireNonNull(fromSnapshotId);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder fromVolumeId(String fromVolumeId) {
-            this.fromVolumeId = Objects.requireNonNull(fromVolumeId);
             return this;
         }
         @CustomType.Setter
@@ -184,7 +173,6 @@ public final class GetInstanceVolumeResult {
         public GetInstanceVolumeResult build() {
             final var o = new GetInstanceVolumeResult();
             o.fromSnapshotId = fromSnapshotId;
-            o.fromVolumeId = fromVolumeId;
             o.id = id;
             o.name = name;
             o.organizationId = organizationId;

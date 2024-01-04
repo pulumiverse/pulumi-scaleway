@@ -94,14 +94,14 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     @Import(name="ipamConfigs")
     private @Nullable Output<List<VpcGatewayNetworkIpamConfigArgs>> ipamConfigs;
 
     /**
-     * @return Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * @return Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     public Optional<Output<List<VpcGatewayNetworkIpamConfigArgs>>> ipamConfigs() {
@@ -291,7 +291,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 
@@ -302,7 +302,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 
@@ -312,7 +312,7 @@ public final class VpcGatewayNetworkArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+         * @param ipamConfigs Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
          * 
          * @return builder
          * 

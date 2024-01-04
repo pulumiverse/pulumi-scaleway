@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a registry namespace.
@@ -120,12 +119,6 @@ func (o LookupRegistryNamespaceResultOutput) ToLookupRegistryNamespaceResultOutp
 
 func (o LookupRegistryNamespaceResultOutput) ToLookupRegistryNamespaceResultOutputWithContext(ctx context.Context) LookupRegistryNamespaceResultOutput {
 	return o
-}
-
-func (o LookupRegistryNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRegistryNamespaceResult] {
-	return pulumix.Output[LookupRegistryNamespaceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupRegistryNamespaceResultOutput) Description() pulumi.StringOutput {

@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetObjectBucketResult {
     private String acl;
+    private String apiEndpoint;
     private List<GetObjectBucketCorsRule> corsRules;
     /**
      * @return The endpoint URL of the bucket
@@ -41,6 +42,9 @@ public final class GetObjectBucketResult {
     private GetObjectBucketResult() {}
     public String acl() {
         return this.acl;
+    }
+    public String apiEndpoint() {
+        return this.apiEndpoint;
     }
     public List<GetObjectBucketCorsRule> corsRules() {
         return this.corsRules;
@@ -94,6 +98,7 @@ public final class GetObjectBucketResult {
     @CustomType.Builder
     public static final class Builder {
         private String acl;
+        private String apiEndpoint;
         private List<GetObjectBucketCorsRule> corsRules;
         private String endpoint;
         private Boolean forceDestroy;
@@ -109,6 +114,7 @@ public final class GetObjectBucketResult {
         public Builder(GetObjectBucketResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.acl = defaults.acl;
+    	      this.apiEndpoint = defaults.apiEndpoint;
     	      this.corsRules = defaults.corsRules;
     	      this.endpoint = defaults.endpoint;
     	      this.forceDestroy = defaults.forceDestroy;
@@ -125,6 +131,11 @@ public final class GetObjectBucketResult {
         @CustomType.Setter
         public Builder acl(String acl) {
             this.acl = Objects.requireNonNull(acl);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder apiEndpoint(String apiEndpoint) {
+            this.apiEndpoint = Objects.requireNonNull(apiEndpoint);
             return this;
         }
         @CustomType.Setter
@@ -194,6 +205,7 @@ public final class GetObjectBucketResult {
         public GetObjectBucketResult build() {
             final var o = new GetObjectBucketResult();
             o.acl = acl;
+            o.apiEndpoint = apiEndpoint;
             o.corsRules = corsRules;
             o.endpoint = endpoint;
             o.forceDestroy = forceDestroy;

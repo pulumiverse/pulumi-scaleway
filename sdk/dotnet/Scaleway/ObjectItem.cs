@@ -26,7 +26,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class ObjectItem : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -145,7 +145,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ObjectItemArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -237,7 +237,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ObjectItemState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }

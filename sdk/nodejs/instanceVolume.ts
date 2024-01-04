@@ -57,13 +57,9 @@ export class InstanceVolume extends pulumi.CustomResource {
     }
 
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     public readonly fromSnapshotId!: pulumi.Output<string | undefined>;
-    /**
-     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
-     */
-    public readonly fromVolumeId!: pulumi.Output<string | undefined>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
@@ -81,7 +77,7 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public /*out*/ readonly serverId!: pulumi.Output<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+     * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     public readonly sizeInGb!: pulumi.Output<number | undefined>;
     /**
@@ -111,7 +107,6 @@ export class InstanceVolume extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as InstanceVolumeState | undefined;
             resourceInputs["fromSnapshotId"] = state ? state.fromSnapshotId : undefined;
-            resourceInputs["fromVolumeId"] = state ? state.fromVolumeId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -126,7 +121,6 @@ export class InstanceVolume extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["fromSnapshotId"] = args ? args.fromSnapshotId : undefined;
-            resourceInputs["fromVolumeId"] = args ? args.fromVolumeId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["sizeInGb"] = args ? args.sizeInGb : undefined;
@@ -146,13 +140,9 @@ export class InstanceVolume extends pulumi.CustomResource {
  */
 export interface InstanceVolumeState {
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     fromSnapshotId?: pulumi.Input<string>;
-    /**
-     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
-     */
-    fromVolumeId?: pulumi.Input<string>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
@@ -170,7 +160,7 @@ export interface InstanceVolumeState {
      */
     serverId?: pulumi.Input<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+     * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
@@ -192,13 +182,9 @@ export interface InstanceVolumeState {
  */
 export interface InstanceVolumeArgs {
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     fromSnapshotId?: pulumi.Input<string>;
-    /**
-     * If set, the new volume will be copied from this volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
-     */
-    fromVolumeId?: pulumi.Input<string>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
@@ -208,7 +194,7 @@ export interface InstanceVolumeArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
+     * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     sizeInGb?: pulumi.Input<number>;
     /**

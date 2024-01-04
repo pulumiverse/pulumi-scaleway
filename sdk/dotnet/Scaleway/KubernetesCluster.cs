@@ -25,10 +25,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var hedy = new Scaleway.VpcPrivateNetwork("hedy");
+    /// 
     ///     var jack = new Scaleway.KubernetesCluster("jack", new()
     ///     {
     ///         Version = "1.24.3",
     ///         Cni = "cilium",
+    ///         PrivateNetworkId = hedy.Id,
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
@@ -83,6 +86,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var hedy = new Scaleway.VpcPrivateNetwork("hedy");
+    /// 
     ///     var johnKubernetesCluster = new Scaleway.KubernetesCluster("johnKubernetesCluster", new()
     ///     {
     ///         Description = "my awesome cluster",
@@ -93,6 +98,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     ///             "i'm an awesome tag",
     ///             "yay",
     ///         },
+    ///         PrivateNetworkId = hedy.Id,
     ///         DeleteAdditionalResources = false,
     ///         AutoscalerConfig = new Scaleway.Inputs.KubernetesClusterAutoscalerConfigArgs
     ///         {
@@ -221,10 +227,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -424,10 +430,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -600,10 +606,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

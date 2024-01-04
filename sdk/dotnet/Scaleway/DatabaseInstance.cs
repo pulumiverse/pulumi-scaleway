@@ -11,6 +11,95 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Database Instances.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Example Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with Settings
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "MySQL-8",
+    ///         InitSettings = 
+    ///         {
+    ///             { "lower_case_table_names", "1" },
+    ///         },
+    ///         NodeType = "db-dev-s",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Settings = 
+    ///         {
+    ///             { "max_connections", "350" },
+    ///         },
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with backup schedule
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         BackupScheduleFrequency = 24,
+    ///         BackupScheduleRetention = 7,
+    ///         DisableBackup = false,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Limitations
+    /// 
+    /// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+    /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+    /// 
     /// ## Import
     /// 
     /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
@@ -76,6 +165,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
@@ -89,7 +180,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
@@ -105,6 +197,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -165,10 +260,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
-        public Output<string?> UserName { get; private set; } = null!;
+        public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
@@ -269,6 +366,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -284,6 +383,19 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
+        [Input("loadBalancers")]
+        private InputList<Inputs.DatabaseInstanceLoadBalancerArgs>? _loadBalancers;
+
+        /// <summary>
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// </summary>
+        public InputList<Inputs.DatabaseInstanceLoadBalancerArgs> LoadBalancers
+        {
+            get => _loadBalancers ?? (_loadBalancers = new InputList<Inputs.DatabaseInstanceLoadBalancerArgs>());
+            set => _loadBalancers = value;
+        }
+
         /// <summary>
         /// The name of the Database Instance.
         /// </summary>
@@ -295,6 +407,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -369,6 +484,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
@@ -444,6 +561,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -463,7 +582,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs> LoadBalancers
         {
@@ -482,6 +602,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -574,6 +697,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }

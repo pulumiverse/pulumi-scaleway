@@ -17,14 +17,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration")
 public class ObjectBucketLockConfiguration extends com.pulumi.resources.CustomResource {
     /**
-     * The bucket name.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
-     * @return The bucket name.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {

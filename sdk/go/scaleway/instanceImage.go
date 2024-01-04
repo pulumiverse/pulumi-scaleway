@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Images.
@@ -308,12 +307,6 @@ func (i *InstanceImage) ToInstanceImageOutputWithContext(ctx context.Context) In
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceImageOutput)
 }
 
-func (i *InstanceImage) ToOutput(ctx context.Context) pulumix.Output[*InstanceImage] {
-	return pulumix.Output[*InstanceImage]{
-		OutputState: i.ToInstanceImageOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceImageArrayInput is an input type that accepts InstanceImageArray and InstanceImageArrayOutput values.
 // You can construct a concrete instance of `InstanceImageArrayInput` via:
 //
@@ -337,12 +330,6 @@ func (i InstanceImageArray) ToInstanceImageArrayOutput() InstanceImageArrayOutpu
 
 func (i InstanceImageArray) ToInstanceImageArrayOutputWithContext(ctx context.Context) InstanceImageArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceImageArrayOutput)
-}
-
-func (i InstanceImageArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceImage] {
-	return pulumix.Output[[]*InstanceImage]{
-		OutputState: i.ToInstanceImageArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceImageMapInput is an input type that accepts InstanceImageMap and InstanceImageMapOutput values.
@@ -370,12 +357,6 @@ func (i InstanceImageMap) ToInstanceImageMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceImageMapOutput)
 }
 
-func (i InstanceImageMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceImage] {
-	return pulumix.Output[map[string]*InstanceImage]{
-		OutputState: i.ToInstanceImageMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceImageOutput struct{ *pulumi.OutputState }
 
 func (InstanceImageOutput) ElementType() reflect.Type {
@@ -388,12 +369,6 @@ func (o InstanceImageOutput) ToInstanceImageOutput() InstanceImageOutput {
 
 func (o InstanceImageOutput) ToInstanceImageOutputWithContext(ctx context.Context) InstanceImageOutput {
 	return o
-}
-
-func (o InstanceImageOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceImage] {
-	return pulumix.Output[*InstanceImage]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of IDs of the snapshots of the additional volumes to be attached to the image.
@@ -482,12 +457,6 @@ func (o InstanceImageArrayOutput) ToInstanceImageArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o InstanceImageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceImage] {
-	return pulumix.Output[[]*InstanceImage]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceImageArrayOutput) Index(i pulumi.IntInput) InstanceImageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceImage {
 		return vs[0].([]*InstanceImage)[vs[1].(int)]
@@ -506,12 +475,6 @@ func (o InstanceImageMapOutput) ToInstanceImageMapOutput() InstanceImageMapOutpu
 
 func (o InstanceImageMapOutput) ToInstanceImageMapOutputWithContext(ctx context.Context) InstanceImageMapOutput {
 	return o
-}
-
-func (o InstanceImageMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceImage] {
-	return pulumix.Output[map[string]*InstanceImage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceImageMapOutput) MapIndex(k pulumi.StringInput) InstanceImageOutput {

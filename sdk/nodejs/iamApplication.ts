@@ -65,13 +65,17 @@ export class IamApplication extends pulumi.CustomResource {
      */
     public /*out*/ readonly editable!: pulumi.Output<boolean>;
     /**
-     * .The name of the iam application.
+     * The name of the iam application.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * `organizationId`) The ID of the organization the application is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
+    /**
+     * The tags associated with the application.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the application.
      */
@@ -95,12 +99,14 @@ export class IamApplication extends pulumi.CustomResource {
             resourceInputs["editable"] = state ? state.editable : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as IamApplicationArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["editable"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -127,13 +133,17 @@ export interface IamApplicationState {
      */
     editable?: pulumi.Input<boolean>;
     /**
-     * .The name of the iam application.
+     * The name of the iam application.
      */
     name?: pulumi.Input<string>;
     /**
      * `organizationId`) The ID of the organization the application is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The tags associated with the application.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The date and time of the last update of the application.
      */
@@ -149,11 +159,15 @@ export interface IamApplicationArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * .The name of the iam application.
+     * The name of the iam application.
      */
     name?: pulumi.Input<string>;
     /**
      * `organizationId`) The ID of the organization the application is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The tags associated with the application.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

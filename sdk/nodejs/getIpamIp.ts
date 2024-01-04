@@ -18,10 +18,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find the private IPv4 using resource name
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * // Get Instance IP in a private network
  * const nic = new scaleway.InstancePrivateNic("nic", {
  *     serverId: scaleway_instance_server.server.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn.id,
+ *     privateNetworkId: pn.id,
  * });
  * const byMac = scaleway.getIpamIpOutput({
  *     macAddress: nic.macAddress,
@@ -34,6 +36,24 @@ import * as utilities from "./utilities";
  *     },
  *     type: "ipv4",
  * });
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * const byName = scaleway.getIpamIpOutput({
+ *     resource: {
+ *         name: main.name,
+ *         type: "rdb_instance",
+ *     },
+ *     type: "ipv4",
+ * });
  * ```
  */
 export function getIpamIp(args: GetIpamIpArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpResult> {
@@ -42,9 +62,12 @@ export function getIpamIp(args: GetIpamIpArgs, opts?: pulumi.InvokeOptions): Pro
     return pulumi.runtime.invoke("scaleway:index/getIpamIp:getIpamIp", {
         "macAddress": args.macAddress,
         "privateNetworkId": args.privateNetworkId,
+        "projectId": args.projectId,
         "region": args.region,
         "resource": args.resource,
+        "tags": args.tags,
         "type": args.type,
+        "zonal": args.zonal,
     }, opts);
 }
 
@@ -61,17 +84,30 @@ export interface GetIpamIpArgs {
      */
     privateNetworkId?: string;
     /**
+     * `projectId`) The ID of the project the IP is associated with.
+     */
+    projectId?: string;
+    /**
      * `region`) The region in which the IP exists.
      */
     region?: string;
     /**
-     * Filter by resource ID and type, both attributes must be set
+     * Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
      */
     resource?: inputs.GetIpamIpResource;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The tags associated with the IP.
+     * As datasource only returns one IP, the search with given tags must return only one result.
+     */
+    tags?: string[];
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      */
     type: string;
+    /**
+     * Only IPs that are zonal, and in this zone, will be returned.
+     */
+    zonal?: string;
 }
 
 /**
@@ -87,10 +123,14 @@ export interface GetIpamIpResult {
      */
     readonly id: string;
     readonly macAddress?: string;
+    readonly organizationId: string;
     readonly privateNetworkId?: string;
+    readonly projectId: string;
     readonly region: string;
     readonly resource?: outputs.GetIpamIpResource;
+    readonly tags?: string[];
     readonly type: string;
+    readonly zonal: string;
 }
 /**
  * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
@@ -104,10 +144,12 @@ export interface GetIpamIpResult {
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find the private IPv4 using resource name
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * // Get Instance IP in a private network
  * const nic = new scaleway.InstancePrivateNic("nic", {
  *     serverId: scaleway_instance_server.server.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn.id,
+ *     privateNetworkId: pn.id,
  * });
  * const byMac = scaleway.getIpamIpOutput({
  *     macAddress: nic.macAddress,
@@ -117,6 +159,24 @@ export interface GetIpamIpResult {
  *     resource: {
  *         id: nic.id,
  *         type: "instance_private_nic",
+ *     },
+ *     type: "ipv4",
+ * });
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * const byName = scaleway.getIpamIpOutput({
+ *     resource: {
+ *         name: main.name,
+ *         type: "rdb_instance",
  *     },
  *     type: "ipv4",
  * });
@@ -139,15 +199,28 @@ export interface GetIpamIpOutputArgs {
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
+     * `projectId`) The ID of the project the IP is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
      * `region`) The region in which the IP exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * Filter by resource ID and type, both attributes must be set
+     * Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
      */
     resource?: pulumi.Input<inputs.GetIpamIpResourceArgs>;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The tags associated with the IP.
+     * As datasource only returns one IP, the search with given tags must return only one result.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      */
     type: pulumi.Input<string>;
+    /**
+     * Only IPs that are zonal, and in this zone, will be returned.
+     */
+    zonal?: pulumi.Input<string>;
 }

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
@@ -393,6 +392,8 @@ type InstanceServer struct {
 	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
 	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	//
+	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
@@ -513,6 +514,8 @@ type instanceServerState struct {
 	// The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
 	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	//
+	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds []string `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address *string `pulumi:"ipv6Address"`
@@ -601,6 +604,8 @@ type InstanceServerState struct {
 	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
 	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	//
+	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayInput
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
 	Ipv6Address pulumi.StringPtrInput
@@ -693,6 +698,8 @@ type instanceServerArgs struct {
 	// The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
 	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	//
+	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds []string `pulumi:"ipIds"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -768,6 +775,8 @@ type InstanceServerArgs struct {
 	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
 	// List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+	//
+	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
@@ -837,12 +846,6 @@ func (i *InstanceServer) ToInstanceServerOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerOutput)
 }
 
-func (i *InstanceServer) ToOutput(ctx context.Context) pulumix.Output[*InstanceServer] {
-	return pulumix.Output[*InstanceServer]{
-		OutputState: i.ToInstanceServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceServerArrayInput is an input type that accepts InstanceServerArray and InstanceServerArrayOutput values.
 // You can construct a concrete instance of `InstanceServerArrayInput` via:
 //
@@ -866,12 +869,6 @@ func (i InstanceServerArray) ToInstanceServerArrayOutput() InstanceServerArrayOu
 
 func (i InstanceServerArray) ToInstanceServerArrayOutputWithContext(ctx context.Context) InstanceServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerArrayOutput)
-}
-
-func (i InstanceServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceServer] {
-	return pulumix.Output[[]*InstanceServer]{
-		OutputState: i.ToInstanceServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceServerMapInput is an input type that accepts InstanceServerMap and InstanceServerMapOutput values.
@@ -899,12 +896,6 @@ func (i InstanceServerMap) ToInstanceServerMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerMapOutput)
 }
 
-func (i InstanceServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceServer] {
-	return pulumix.Output[map[string]*InstanceServer]{
-		OutputState: i.ToInstanceServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceServerOutput struct{ *pulumi.OutputState }
 
 func (InstanceServerOutput) ElementType() reflect.Type {
@@ -917,12 +908,6 @@ func (o InstanceServerOutput) ToInstanceServerOutput() InstanceServerOutput {
 
 func (o InstanceServerOutput) ToInstanceServerOutputWithContext(ctx context.Context) InstanceServerOutput {
 	return o
-}
-
-func (o InstanceServerOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceServer] {
-	return pulumix.Output[*InstanceServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
@@ -976,6 +961,8 @@ func (o InstanceServerOutput) IpId() pulumi.StringPtrOutput {
 }
 
 // List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+//
+// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 func (o InstanceServerOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
@@ -1114,12 +1101,6 @@ func (o InstanceServerArrayOutput) ToInstanceServerArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o InstanceServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceServer] {
-	return pulumix.Output[[]*InstanceServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceServerArrayOutput) Index(i pulumi.IntInput) InstanceServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceServer {
 		return vs[0].([]*InstanceServer)[vs[1].(int)]
@@ -1138,12 +1119,6 @@ func (o InstanceServerMapOutput) ToInstanceServerMapOutput() InstanceServerMapOu
 
 func (o InstanceServerMapOutput) ToInstanceServerMapOutputWithContext(ctx context.Context) InstanceServerMapOutput {
 	return o
-}
-
-func (o InstanceServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceServer] {
-	return pulumix.Output[map[string]*InstanceServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceServerMapOutput) MapIndex(k pulumi.StringInput) InstanceServerOutput {

@@ -20,6 +20,10 @@ public final class LoadbalancerFrontendAclMatch {
      * 
      */
     private @Nullable String httpFilter;
+    /**
+     * @return If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header&#39;s value.
+     * 
+     */
     private @Nullable String httpFilterOption;
     /**
      * @return A list of possible values to match for the given HTTP filter.
@@ -48,6 +52,10 @@ public final class LoadbalancerFrontendAclMatch {
     public Optional<String> httpFilter() {
         return Optional.ofNullable(this.httpFilter);
     }
+    /**
+     * @return If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header&#39;s value.
+     * 
+     */
     public Optional<String> httpFilterOption() {
         return Optional.ofNullable(this.httpFilterOption);
     }

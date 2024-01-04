@@ -4,12 +4,14 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 
 @CustomType
 public final class GetDatabaseInstancePrivateNetwork {
+    private Boolean enableIpam;
     private String endpointId;
     private String hostname;
     private String ip;
@@ -25,6 +27,9 @@ public final class GetDatabaseInstancePrivateNetwork {
     private String zone;
 
     private GetDatabaseInstancePrivateNetwork() {}
+    public Boolean enableIpam() {
+        return this.enableIpam;
+    }
     public String endpointId() {
         return this.endpointId;
     }
@@ -64,6 +69,7 @@ public final class GetDatabaseInstancePrivateNetwork {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean enableIpam;
         private String endpointId;
         private String hostname;
         private String ip;
@@ -75,6 +81,7 @@ public final class GetDatabaseInstancePrivateNetwork {
         public Builder() {}
         public Builder(GetDatabaseInstancePrivateNetwork defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.enableIpam = defaults.enableIpam;
     	      this.endpointId = defaults.endpointId;
     	      this.hostname = defaults.hostname;
     	      this.ip = defaults.ip;
@@ -85,6 +92,11 @@ public final class GetDatabaseInstancePrivateNetwork {
     	      this.zone = defaults.zone;
         }
 
+        @CustomType.Setter
+        public Builder enableIpam(Boolean enableIpam) {
+            this.enableIpam = Objects.requireNonNull(enableIpam);
+            return this;
+        }
         @CustomType.Setter
         public Builder endpointId(String endpointId) {
             this.endpointId = Objects.requireNonNull(endpointId);
@@ -127,6 +139,7 @@ public final class GetDatabaseInstancePrivateNetwork {
         }
         public GetDatabaseInstancePrivateNetwork build() {
             final var o = new GetDatabaseInstancePrivateNetwork();
+            o.enableIpam = enableIpam;
             o.endpointId = endpointId;
             o.hostname = hostname;
             o.ip = ip;

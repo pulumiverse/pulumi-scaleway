@@ -16,14 +16,14 @@ public final class ObjectBucketPolicyArgs extends com.pulumi.resources.ResourceA
     public static final ObjectBucketPolicyArgs Empty = new ObjectBucketPolicyArgs();
 
     /**
-     * The name of the bucket.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Import(name="bucket", required=true)
     private Output<String> bucket;
 
     /**
-     * @return The name of the bucket.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {
@@ -107,7 +107,7 @@ public final class ObjectBucketPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param bucket The name of the bucket.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 
@@ -118,7 +118,7 @@ public final class ObjectBucketPolicyArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param bucket The name of the bucket.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 

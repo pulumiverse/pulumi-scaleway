@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Database read replicas.
@@ -257,12 +256,6 @@ func (i *DatabaseReadReplica) ToDatabaseReadReplicaOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseReadReplicaOutput)
 }
 
-func (i *DatabaseReadReplica) ToOutput(ctx context.Context) pulumix.Output[*DatabaseReadReplica] {
-	return pulumix.Output[*DatabaseReadReplica]{
-		OutputState: i.ToDatabaseReadReplicaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DatabaseReadReplicaArrayInput is an input type that accepts DatabaseReadReplicaArray and DatabaseReadReplicaArrayOutput values.
 // You can construct a concrete instance of `DatabaseReadReplicaArrayInput` via:
 //
@@ -286,12 +279,6 @@ func (i DatabaseReadReplicaArray) ToDatabaseReadReplicaArrayOutput() DatabaseRea
 
 func (i DatabaseReadReplicaArray) ToDatabaseReadReplicaArrayOutputWithContext(ctx context.Context) DatabaseReadReplicaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseReadReplicaArrayOutput)
-}
-
-func (i DatabaseReadReplicaArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseReadReplica] {
-	return pulumix.Output[[]*DatabaseReadReplica]{
-		OutputState: i.ToDatabaseReadReplicaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DatabaseReadReplicaMapInput is an input type that accepts DatabaseReadReplicaMap and DatabaseReadReplicaMapOutput values.
@@ -319,12 +306,6 @@ func (i DatabaseReadReplicaMap) ToDatabaseReadReplicaMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseReadReplicaMapOutput)
 }
 
-func (i DatabaseReadReplicaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseReadReplica] {
-	return pulumix.Output[map[string]*DatabaseReadReplica]{
-		OutputState: i.ToDatabaseReadReplicaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DatabaseReadReplicaOutput struct{ *pulumi.OutputState }
 
 func (DatabaseReadReplicaOutput) ElementType() reflect.Type {
@@ -337,12 +318,6 @@ func (o DatabaseReadReplicaOutput) ToDatabaseReadReplicaOutput() DatabaseReadRep
 
 func (o DatabaseReadReplicaOutput) ToDatabaseReadReplicaOutputWithContext(ctx context.Context) DatabaseReadReplicaOutput {
 	return o
-}
-
-func (o DatabaseReadReplicaOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabaseReadReplica] {
-	return pulumix.Output[*DatabaseReadReplica]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Creates a direct access endpoint to rdb replica.
@@ -387,12 +362,6 @@ func (o DatabaseReadReplicaArrayOutput) ToDatabaseReadReplicaArrayOutputWithCont
 	return o
 }
 
-func (o DatabaseReadReplicaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseReadReplica] {
-	return pulumix.Output[[]*DatabaseReadReplica]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DatabaseReadReplicaArrayOutput) Index(i pulumi.IntInput) DatabaseReadReplicaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseReadReplica {
 		return vs[0].([]*DatabaseReadReplica)[vs[1].(int)]
@@ -411,12 +380,6 @@ func (o DatabaseReadReplicaMapOutput) ToDatabaseReadReplicaMapOutput() DatabaseR
 
 func (o DatabaseReadReplicaMapOutput) ToDatabaseReadReplicaMapOutputWithContext(ctx context.Context) DatabaseReadReplicaMapOutput {
 	return o
-}
-
-func (o DatabaseReadReplicaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseReadReplica] {
-	return pulumix.Output[map[string]*DatabaseReadReplica]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DatabaseReadReplicaMapOutput) MapIndex(k pulumi.StringInput) DatabaseReadReplicaOutput {

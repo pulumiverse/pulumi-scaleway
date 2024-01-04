@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Container Registry.
@@ -199,12 +198,6 @@ func (i *RegistryNamespace) ToRegistryNamespaceOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(RegistryNamespaceOutput)
 }
 
-func (i *RegistryNamespace) ToOutput(ctx context.Context) pulumix.Output[*RegistryNamespace] {
-	return pulumix.Output[*RegistryNamespace]{
-		OutputState: i.ToRegistryNamespaceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RegistryNamespaceArrayInput is an input type that accepts RegistryNamespaceArray and RegistryNamespaceArrayOutput values.
 // You can construct a concrete instance of `RegistryNamespaceArrayInput` via:
 //
@@ -228,12 +221,6 @@ func (i RegistryNamespaceArray) ToRegistryNamespaceArrayOutput() RegistryNamespa
 
 func (i RegistryNamespaceArray) ToRegistryNamespaceArrayOutputWithContext(ctx context.Context) RegistryNamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegistryNamespaceArrayOutput)
-}
-
-func (i RegistryNamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*RegistryNamespace] {
-	return pulumix.Output[[]*RegistryNamespace]{
-		OutputState: i.ToRegistryNamespaceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RegistryNamespaceMapInput is an input type that accepts RegistryNamespaceMap and RegistryNamespaceMapOutput values.
@@ -261,12 +248,6 @@ func (i RegistryNamespaceMap) ToRegistryNamespaceMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RegistryNamespaceMapOutput)
 }
 
-func (i RegistryNamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RegistryNamespace] {
-	return pulumix.Output[map[string]*RegistryNamespace]{
-		OutputState: i.ToRegistryNamespaceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RegistryNamespaceOutput struct{ *pulumi.OutputState }
 
 func (RegistryNamespaceOutput) ElementType() reflect.Type {
@@ -279,12 +260,6 @@ func (o RegistryNamespaceOutput) ToRegistryNamespaceOutput() RegistryNamespaceOu
 
 func (o RegistryNamespaceOutput) ToRegistryNamespaceOutputWithContext(ctx context.Context) RegistryNamespaceOutput {
 	return o
-}
-
-func (o RegistryNamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*RegistryNamespace] {
-	return pulumix.Output[*RegistryNamespace]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The description of the namespace.
@@ -338,12 +313,6 @@ func (o RegistryNamespaceArrayOutput) ToRegistryNamespaceArrayOutputWithContext(
 	return o
 }
 
-func (o RegistryNamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RegistryNamespace] {
-	return pulumix.Output[[]*RegistryNamespace]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RegistryNamespaceArrayOutput) Index(i pulumi.IntInput) RegistryNamespaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RegistryNamespace {
 		return vs[0].([]*RegistryNamespace)[vs[1].(int)]
@@ -362,12 +331,6 @@ func (o RegistryNamespaceMapOutput) ToRegistryNamespaceMapOutput() RegistryNames
 
 func (o RegistryNamespaceMapOutput) ToRegistryNamespaceMapOutputWithContext(ctx context.Context) RegistryNamespaceMapOutput {
 	return o
-}
-
-func (o RegistryNamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RegistryNamespace] {
-	return pulumix.Output[map[string]*RegistryNamespace]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RegistryNamespaceMapOutput) MapIndex(k pulumi.StringInput) RegistryNamespaceOutput {

@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * Instance servers can be imported using the `{zone}/{id}`, e.g. bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+ *  $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class AppleSliconValleyServer extends pulumi.CustomResource {
@@ -81,8 +81,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The state of the server. Check the possible values on
-     * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+     * The state of the server.
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
@@ -181,8 +180,7 @@ export interface AppleSliconValleyServerState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The state of the server. Check the possible values on
-     * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+     * The state of the server.
      */
     state?: pulumi.Input<string>;
     /**

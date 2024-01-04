@@ -14,6 +14,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class GetDatabaseInstancePrivateNetworkResult
     {
+        public readonly bool EnableIpam;
         public readonly string EndpointId;
         public readonly string Hostname;
         public readonly string Ip;
@@ -29,6 +30,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
         [OutputConstructor]
         private GetDatabaseInstancePrivateNetworkResult(
+            bool enableIpam,
+
             string endpointId,
 
             string hostname,
@@ -45,6 +48,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string zone)
         {
+            EnableIpam = enableIpam;
             EndpointId = endpointId;
             Hostname = hostname;
             Ip = ip;

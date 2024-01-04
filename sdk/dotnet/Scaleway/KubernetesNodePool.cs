@@ -123,13 +123,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// The size of the system volume of the nodes in gigabyte
         /// </summary>
         [Output("rootVolumeSizeInGb")]
-        public Output<int?> RootVolumeSizeInGb { get; private set; } = null!;
+        public Output<int> RootVolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
         /// System volume type of the nodes composing the pool
         /// </summary>
         [Output("rootVolumeType")]
-        public Output<string?> RootVolumeType { get; private set; } = null!;
+        public Output<string> RootVolumeType { get; private set; } = null!;
 
         /// <summary>
         /// The size of the pool.

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a gateway network.
@@ -145,12 +144,6 @@ func (o LookupVpcGatewayNetworkResultOutput) ToLookupVpcGatewayNetworkResultOutp
 
 func (o LookupVpcGatewayNetworkResultOutput) ToLookupVpcGatewayNetworkResultOutputWithContext(ctx context.Context) LookupVpcGatewayNetworkResultOutput {
 	return o
-}
-
-func (o LookupVpcGatewayNetworkResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcGatewayNetworkResult] {
-	return pulumix.Output[LookupVpcGatewayNetworkResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupVpcGatewayNetworkResultOutput) CleanupDhcp() pulumi.BoolOutput {

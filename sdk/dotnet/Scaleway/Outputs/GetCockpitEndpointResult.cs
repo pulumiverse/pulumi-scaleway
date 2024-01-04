@@ -30,6 +30,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// The metrics URL
         /// </summary>
         public readonly string MetricsUrl;
+        public readonly string TracesUrl;
 
         [OutputConstructor]
         private GetCockpitEndpointResult(
@@ -39,12 +40,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string logsUrl,
 
-            string metricsUrl)
+            string metricsUrl,
+
+            string tracesUrl)
         {
             AlertmanagerUrl = alertmanagerUrl;
             GrafanaUrl = grafanaUrl;
             LogsUrl = logsUrl;
             MetricsUrl = metricsUrl;
+            TracesUrl = tracesUrl;
         }
     }
 }

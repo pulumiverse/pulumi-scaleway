@@ -63,32 +63,18 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/instanceVolume:InstanceVolume")
 public class InstanceVolume extends com.pulumi.resources.CustomResource {
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     @Export(name="fromSnapshotId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fromSnapshotId;
 
     /**
-     * @return If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * @return If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     public Output<Optional<String>> fromSnapshotId() {
         return Codegen.optional(this.fromSnapshotId);
-    }
-    /**
-     * If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-     * 
-     */
-    @Export(name="fromVolumeId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> fromVolumeId;
-
-    /**
-     * @return If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-     * 
-     */
-    public Output<Optional<String>> fromVolumeId() {
-        return Codegen.optional(this.fromVolumeId);
     }
     /**
      * The name of the volume. If not provided it will be randomly generated.
@@ -147,14 +133,14 @@ public class InstanceVolume extends com.pulumi.resources.CustomResource {
         return this.serverId;
     }
     /**
-     * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     @Export(name="sizeInGb", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sizeInGb;
 
     /**
-     * @return The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * @return The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     public Output<Optional<Integer>> sizeInGb() {

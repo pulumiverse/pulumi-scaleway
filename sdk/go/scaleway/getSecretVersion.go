@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opts ...pulumi.InvokeOption) (*LookupSecretVersionResult, error) {
@@ -102,12 +101,6 @@ func (o LookupSecretVersionResultOutput) ToLookupSecretVersionResultOutput() Loo
 
 func (o LookupSecretVersionResultOutput) ToLookupSecretVersionResultOutputWithContext(ctx context.Context) LookupSecretVersionResultOutput {
 	return o
-}
-
-func (o LookupSecretVersionResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSecretVersionResult] {
-	return pulumix.Output[LookupSecretVersionResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Date and time of secret version's creation (RFC 3339 format).

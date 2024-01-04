@@ -47,14 +47,14 @@ public final class ObjectBucketAclState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The name of the bucket.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Import(name="bucket")
     private @Nullable Output<String> bucket;
 
     /**
-     * @return The name of the bucket.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Optional<Output<String>> bucket() {
@@ -178,7 +178,7 @@ public final class ObjectBucketAclState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param bucket The name of the bucket.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 
@@ -189,7 +189,7 @@ public final class ObjectBucketAclState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param bucket The name of the bucket.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 

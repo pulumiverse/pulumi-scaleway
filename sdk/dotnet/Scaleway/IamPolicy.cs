@@ -13,6 +13,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// <summary>
     /// Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
     /// 
+    /// &gt; You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
+    /// 
     /// ## Example Usage
     /// ### Create a policy for an organization's project
     /// 
@@ -97,7 +99,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// .The name of the iam policy.
+        /// The name of the iam policy.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -121,6 +123,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.IamPolicyRule>> Rules { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags associated with the iam policy.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the last update of the policy.
@@ -200,7 +208,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// .The name of the iam policy.
+        /// The name of the iam policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -229,6 +237,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         {
             get => _rules ?? (_rules = new InputList<Inputs.IamPolicyRuleArgs>());
             set => _rules = value;
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the iam policy.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -276,7 +296,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// .The name of the iam policy.
+        /// The name of the iam policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -305,6 +325,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         {
             get => _rules ?? (_rules = new InputList<Inputs.IamPolicyRuleGetArgs>());
             set => _rules = value;
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the iam policy.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
         }
 
         /// <summary>

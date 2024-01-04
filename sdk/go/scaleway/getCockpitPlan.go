@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Scaleway Cockpit plan.
@@ -104,12 +103,6 @@ func (o GetCockpitPlanResultOutput) ToGetCockpitPlanResultOutput() GetCockpitPla
 
 func (o GetCockpitPlanResultOutput) ToGetCockpitPlanResultOutputWithContext(ctx context.Context) GetCockpitPlanResultOutput {
 	return o
-}
-
-func (o GetCockpitPlanResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCockpitPlanResult] {
-	return pulumix.Output[GetCockpitPlanResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

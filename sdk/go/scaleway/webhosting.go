@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Web Hostings.
@@ -283,12 +282,6 @@ func (i *Webhosting) ToWebhostingOutputWithContext(ctx context.Context) Webhosti
 	return pulumi.ToOutputWithContext(ctx, i).(WebhostingOutput)
 }
 
-func (i *Webhosting) ToOutput(ctx context.Context) pulumix.Output[*Webhosting] {
-	return pulumix.Output[*Webhosting]{
-		OutputState: i.ToWebhostingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WebhostingArrayInput is an input type that accepts WebhostingArray and WebhostingArrayOutput values.
 // You can construct a concrete instance of `WebhostingArrayInput` via:
 //
@@ -312,12 +305,6 @@ func (i WebhostingArray) ToWebhostingArrayOutput() WebhostingArrayOutput {
 
 func (i WebhostingArray) ToWebhostingArrayOutputWithContext(ctx context.Context) WebhostingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebhostingArrayOutput)
-}
-
-func (i WebhostingArray) ToOutput(ctx context.Context) pulumix.Output[[]*Webhosting] {
-	return pulumix.Output[[]*Webhosting]{
-		OutputState: i.ToWebhostingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WebhostingMapInput is an input type that accepts WebhostingMap and WebhostingMapOutput values.
@@ -345,12 +332,6 @@ func (i WebhostingMap) ToWebhostingMapOutputWithContext(ctx context.Context) Web
 	return pulumi.ToOutputWithContext(ctx, i).(WebhostingMapOutput)
 }
 
-func (i WebhostingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Webhosting] {
-	return pulumix.Output[map[string]*Webhosting]{
-		OutputState: i.ToWebhostingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebhostingOutput struct{ *pulumi.OutputState }
 
 func (WebhostingOutput) ElementType() reflect.Type {
@@ -363,12 +344,6 @@ func (o WebhostingOutput) ToWebhostingOutput() WebhostingOutput {
 
 func (o WebhostingOutput) ToWebhostingOutputWithContext(ctx context.Context) WebhostingOutput {
 	return o
-}
-
-func (o WebhostingOutput) ToOutput(ctx context.Context) pulumix.Output[*Webhosting] {
-	return pulumix.Output[*Webhosting]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The URL to connect to cPanel Dashboard and to Webmail interface.
@@ -475,12 +450,6 @@ func (o WebhostingArrayOutput) ToWebhostingArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o WebhostingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Webhosting] {
-	return pulumix.Output[[]*Webhosting]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebhostingArrayOutput) Index(i pulumi.IntInput) WebhostingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Webhosting {
 		return vs[0].([]*Webhosting)[vs[1].(int)]
@@ -499,12 +468,6 @@ func (o WebhostingMapOutput) ToWebhostingMapOutput() WebhostingMapOutput {
 
 func (o WebhostingMapOutput) ToWebhostingMapOutputWithContext(ctx context.Context) WebhostingMapOutput {
 	return o
-}
-
-func (o WebhostingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Webhosting] {
-	return pulumix.Output[map[string]*Webhosting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebhostingMapOutput) MapIndex(k pulumi.StringInput) WebhostingOutput {

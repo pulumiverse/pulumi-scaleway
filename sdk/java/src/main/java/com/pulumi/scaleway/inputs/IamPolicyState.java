@@ -94,14 +94,14 @@ public final class IamPolicyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * .The name of the iam policy.
+     * The name of the iam policy.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return .The name of the iam policy.
+     * @return The name of the iam policy.
      * 
      */
     public Optional<Output<String>> name() {
@@ -158,6 +158,21 @@ public final class IamPolicyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The tags associated with the iam policy.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<String>> tags;
+
+    /**
+     * @return The tags associated with the iam policy.
+     * 
+     */
+    public Optional<Output<List<String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * The date and time of the last update of the policy.
      * 
      */
@@ -199,6 +214,7 @@ public final class IamPolicyState extends com.pulumi.resources.ResourceArgs {
         this.noPrincipal = $.noPrincipal;
         this.organizationId = $.organizationId;
         this.rules = $.rules;
+        this.tags = $.tags;
         this.updatedAt = $.updatedAt;
         this.userId = $.userId;
     }
@@ -327,7 +343,7 @@ public final class IamPolicyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name .The name of the iam policy.
+         * @param name The name of the iam policy.
          * 
          * @return builder
          * 
@@ -338,7 +354,7 @@ public final class IamPolicyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name .The name of the iam policy.
+         * @param name The name of the iam policy.
          * 
          * @return builder
          * 
@@ -422,6 +438,37 @@ public final class IamPolicyState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder rules(IamPolicyRuleArgs... rules) {
             return rules(List.of(rules));
+        }
+
+        /**
+         * @param tags The tags associated with the iam policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags The tags associated with the iam policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<String> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags The tags associated with the iam policy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
         }
 
         /**

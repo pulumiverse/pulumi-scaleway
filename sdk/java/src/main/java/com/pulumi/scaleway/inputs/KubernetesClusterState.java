@@ -240,10 +240,10 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     /**
      * The ID of the private network of the cluster.
      * 
-     * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-     * Any subsequent change after this field got set will prompt for cluster recreation.
+     * &gt; **Important:** Changes to this field will recreate a new resource.
      * 
-     * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+     * &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+     * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      * 
      */
     @Import(name="privateNetworkId")
@@ -252,10 +252,10 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     /**
      * @return The ID of the private network of the cluster.
      * 
-     * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-     * Any subsequent change after this field got set will prompt for cluster recreation.
+     * &gt; **Important:** Changes to this field will recreate a new resource.
      * 
-     * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+     * &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+     * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -799,10 +799,10 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
          * 
-         * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-         * Any subsequent change after this field got set will prompt for cluster recreation.
+         * &gt; **Important:** Changes to this field will recreate a new resource.
          * 
-         * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+         * &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+         * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
          * 
          * @return builder
          * 
@@ -815,10 +815,10 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
          * 
-         * &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-         * Any subsequent change after this field got set will prompt for cluster recreation.
+         * &gt; **Important:** Changes to this field will recreate a new resource.
          * 
-         * &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can&#39;t be found.
+         * &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+         * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
          * 
          * @return builder
          * 

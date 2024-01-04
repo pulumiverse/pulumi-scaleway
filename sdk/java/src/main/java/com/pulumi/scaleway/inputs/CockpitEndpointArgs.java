@@ -16,14 +16,14 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
     public static final CockpitEndpointArgs Empty = new CockpitEndpointArgs();
 
     /**
-     * The alertmanager URL
+     * The alertmanager URL.
      * 
      */
     @Import(name="alertmanagerUrl")
     private @Nullable Output<String> alertmanagerUrl;
 
     /**
-     * @return The alertmanager URL
+     * @return The alertmanager URL.
      * 
      */
     public Optional<Output<String>> alertmanagerUrl() {
@@ -31,14 +31,14 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The grafana URL
+     * The grafana URL.
      * 
      */
     @Import(name="grafanaUrl")
     private @Nullable Output<String> grafanaUrl;
 
     /**
-     * @return The grafana URL
+     * @return The grafana URL.
      * 
      */
     public Optional<Output<String>> grafanaUrl() {
@@ -46,14 +46,14 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The logs URL
+     * The logs URL.
      * 
      */
     @Import(name="logsUrl")
     private @Nullable Output<String> logsUrl;
 
     /**
-     * @return The logs URL
+     * @return The logs URL.
      * 
      */
     public Optional<Output<String>> logsUrl() {
@@ -61,18 +61,33 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The metrics URL
+     * The metrics URL.
      * 
      */
     @Import(name="metricsUrl")
     private @Nullable Output<String> metricsUrl;
 
     /**
-     * @return The metrics URL
+     * @return The metrics URL.
      * 
      */
     public Optional<Output<String>> metricsUrl() {
         return Optional.ofNullable(this.metricsUrl);
+    }
+
+    /**
+     * The traces URL.
+     * 
+     */
+    @Import(name="tracesUrl")
+    private @Nullable Output<String> tracesUrl;
+
+    /**
+     * @return The traces URL.
+     * 
+     */
+    public Optional<Output<String>> tracesUrl() {
+        return Optional.ofNullable(this.tracesUrl);
     }
 
     private CockpitEndpointArgs() {}
@@ -82,6 +97,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         this.grafanaUrl = $.grafanaUrl;
         this.logsUrl = $.logsUrl;
         this.metricsUrl = $.metricsUrl;
+        this.tracesUrl = $.tracesUrl;
     }
 
     public static Builder builder() {
@@ -103,7 +119,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param alertmanagerUrl The alertmanager URL
+         * @param alertmanagerUrl The alertmanager URL.
          * 
          * @return builder
          * 
@@ -114,7 +130,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param alertmanagerUrl The alertmanager URL
+         * @param alertmanagerUrl The alertmanager URL.
          * 
          * @return builder
          * 
@@ -124,7 +140,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param grafanaUrl The grafana URL
+         * @param grafanaUrl The grafana URL.
          * 
          * @return builder
          * 
@@ -135,7 +151,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param grafanaUrl The grafana URL
+         * @param grafanaUrl The grafana URL.
          * 
          * @return builder
          * 
@@ -145,7 +161,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param logsUrl The logs URL
+         * @param logsUrl The logs URL.
          * 
          * @return builder
          * 
@@ -156,7 +172,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param logsUrl The logs URL
+         * @param logsUrl The logs URL.
          * 
          * @return builder
          * 
@@ -166,7 +182,7 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param metricsUrl The metrics URL
+         * @param metricsUrl The metrics URL.
          * 
          * @return builder
          * 
@@ -177,13 +193,34 @@ public final class CockpitEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param metricsUrl The metrics URL
+         * @param metricsUrl The metrics URL.
          * 
          * @return builder
          * 
          */
         public Builder metricsUrl(String metricsUrl) {
             return metricsUrl(Output.of(metricsUrl));
+        }
+
+        /**
+         * @param tracesUrl The traces URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tracesUrl(@Nullable Output<String> tracesUrl) {
+            $.tracesUrl = tracesUrl;
+            return this;
+        }
+
+        /**
+         * @param tracesUrl The traces URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tracesUrl(String tracesUrl) {
+            return tracesUrl(Output.of(tracesUrl));
         }
 
         public CockpitEndpointArgs build() {

@@ -10,9 +10,11 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.scaleway.TemDomainArgs;
 import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.TemDomainState;
+import com.pulumi.scaleway.outputs.TemDomainReputation;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import javax.annotation.Nullable;
 
 /**
@@ -187,6 +189,20 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
         return this.lastValidAt;
     }
     /**
+     * The Scaleway&#39;s blackhole MX server to use if you do not have one.
+     * 
+     */
+    @Export(name="mxBlackhole", refs={String.class}, tree="[0]")
+    private Output<String> mxBlackhole;
+
+    /**
+     * @return The Scaleway&#39;s blackhole MX server to use if you do not have one.
+     * 
+     */
+    public Output<String> mxBlackhole() {
+        return this.mxBlackhole;
+    }
+    /**
      * The domain name, must not be used in another Transactional Email Domain.
      * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
@@ -245,6 +261,20 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
+     * The domain&#39;s reputation.
+     * 
+     */
+    @Export(name="reputations", refs={List.class,TemDomainReputation.class}, tree="[0,1]")
+    private Output<List<TemDomainReputation>> reputations;
+
+    /**
+     * @return The domain&#39;s reputation.
+     * 
+     */
+    public Output<List<TemDomainReputation>> reputations() {
+        return this.reputations;
+    }
+    /**
      * The date and time of the revocation of the domain (RFC 3339 format).
      * 
      */
@@ -259,84 +289,84 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
         return this.revokedAt;
     }
     /**
-     * SMTP host to use to send emails
+     * The SMTP host to use to send emails.
      * 
      */
     @Export(name="smtpHost", refs={String.class}, tree="[0]")
     private Output<String> smtpHost;
 
     /**
-     * @return SMTP host to use to send emails
+     * @return The SMTP host to use to send emails.
      * 
      */
     public Output<String> smtpHost() {
         return this.smtpHost;
     }
     /**
-     * SMTP port to use to send emails over TLS. (Port 587)
+     * The SMTP port to use to send emails over TLS.
      * 
      */
     @Export(name="smtpPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> smtpPort;
 
     /**
-     * @return SMTP port to use to send emails over TLS. (Port 587)
+     * @return The SMTP port to use to send emails over TLS.
      * 
      */
     public Output<Integer> smtpPort() {
         return this.smtpPort;
     }
     /**
-     * SMTP port to use to send emails over TLS. (Port 2587)
+     * The SMTP port to use to send emails over TLS.
      * 
      */
     @Export(name="smtpPortAlternative", refs={Integer.class}, tree="[0]")
     private Output<Integer> smtpPortAlternative;
 
     /**
-     * @return SMTP port to use to send emails over TLS. (Port 2587)
+     * @return The SMTP port to use to send emails over TLS.
      * 
      */
     public Output<Integer> smtpPortAlternative() {
         return this.smtpPortAlternative;
     }
     /**
-     * SMTP port to use to send emails. (Port 25)
+     * The SMTP port to use to send emails.
      * 
      */
     @Export(name="smtpPortUnsecure", refs={Integer.class}, tree="[0]")
     private Output<Integer> smtpPortUnsecure;
 
     /**
-     * @return SMTP port to use to send emails. (Port 25)
+     * @return The SMTP port to use to send emails.
      * 
      */
     public Output<Integer> smtpPortUnsecure() {
         return this.smtpPortUnsecure;
     }
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     @Export(name="smtpsPort", refs={Integer.class}, tree="[0]")
     private Output<Integer> smtpsPort;
 
     /**
-     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     public Output<Integer> smtpsPort() {
         return this.smtpsPort;
     }
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     @Export(name="smtpsPortAlternative", refs={Integer.class}, tree="[0]")
     private Output<Integer> smtpsPortAlternative;
 
     /**
-     * @return SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * @return The SMTPS port to use to send emails over TLS Wrapper.
      * 
      */
     public Output<Integer> smtpsPortAlternative() {
@@ -357,14 +387,14 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
         return this.spfConfig;
     }
     /**
-     * The status of the Transaction Email Domain.
+     * The status of the domain&#39;s reputation.
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return The status of the Transaction Email Domain.
+     * @return The status of the domain&#39;s reputation.
      * 
      */
     public Output<String> status() {

@@ -17,10 +17,15 @@ public final class GetIpamIpResource {
      */
     private @Nullable String id;
     /**
-     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * @return The name of the resource to get the IP from.
      * 
      */
-    private @Nullable String type;
+    private @Nullable String name;
+    /**
+     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * 
+     */
+    private String type;
 
     private GetIpamIpResource() {}
     /**
@@ -31,11 +36,18 @@ public final class GetIpamIpResource {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * @return The name of the resource to get the IP from.
      * 
      */
-    public Optional<String> type() {
-        return Optional.ofNullable(this.type);
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
+    }
+    /**
+     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * 
+     */
+    public String type() {
+        return this.type;
     }
 
     public static Builder builder() {
@@ -48,11 +60,13 @@ public final class GetIpamIpResource {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String id;
-        private @Nullable String type;
+        private @Nullable String name;
+        private String type;
         public Builder() {}
         public Builder(GetIpamIpResource defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
+    	      this.name = defaults.name;
     	      this.type = defaults.type;
         }
 
@@ -62,13 +76,19 @@ public final class GetIpamIpResource {
             return this;
         }
         @CustomType.Setter
-        public Builder type(@Nullable String type) {
-            this.type = type;
+        public Builder name(@Nullable String name) {
+            this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder type(String type) {
+            this.type = Objects.requireNonNull(type);
             return this;
         }
         public GetIpamIpResource build() {
             final var o = new GetIpamIpResource();
             o.id = id;
+            o.name = name;
             o.type = type;
             return o;
         }

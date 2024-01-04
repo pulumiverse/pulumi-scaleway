@@ -35,6 +35,139 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
+    /// ## With ACLs
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var frontend01 = new Scaleway.LoadbalancerFrontend("frontend01", new()
+    ///     {
+    ///         LbId = scaleway_lb.Lb01.Id,
+    ///         BackendId = scaleway_lb_backend.Backend01.Id,
+    ///         InboundPort = 80,
+    ///         Acls = new[]
+    ///         {
+    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             {
+    ///                 Name = "blacklist wellknwon IPs",
+    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 {
+    ///                     IpSubnets = new[]
+    ///                     {
+    ///                         "192.168.0.1",
+    ///                         "192.168.0.2",
+    ///                         "192.168.10.0/24",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "deny",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 {
+    ///                     IpSubnets = new[]
+    ///                     {
+    ///                         "51.51.51.51",
+    ///                     },
+    ///                     HttpFilter = "regex",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "^foo*bar$",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 {
+    ///                     HttpFilter = "path_begin",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "foo",
+    ///                         "bar",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 {
+    ///                     HttpFilter = "path_begin",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "hi",
+    ///                     },
+    ///                     Invert = true,
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 {
+    ///                     HttpFilter = "http_header_match",
+    ///                     HttpFilterValues = "foo",
+    ///                     HttpFilterOption = "bar",
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "redirect",
+    ///                     Redirects = new[]
+    ///                     {
+    ///                         new Scaleway.Inputs.LoadbalancerFrontendAclActionRedirectArgs
+    ///                         {
+    ///                             Type = "location",
+    ///                             Target = "https://example.com",
+    ///                             Code = 307,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 {
+    ///                     IpSubnets = new[]
+    ///                     {
+    ///                         "10.0.0.10",
+    ///                     },
+    ///                     HttpFilter = "path_begin",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "foo",
+    ///                         "bar",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash

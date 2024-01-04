@@ -14,46 +14,58 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class CockpitTokenScopesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Query logs
+        /// Query logs.
         /// </summary>
         [Input("queryLogs")]
         public Input<bool>? QueryLogs { get; set; }
 
         /// <summary>
-        /// Query metrics
+        /// Query metrics.
         /// </summary>
         [Input("queryMetrics")]
         public Input<bool>? QueryMetrics { get; set; }
 
         /// <summary>
-        /// Setup alerts
+        /// Query traces.
+        /// </summary>
+        [Input("queryTraces")]
+        public Input<bool>? QueryTraces { get; set; }
+
+        /// <summary>
+        /// Setup alerts.
         /// </summary>
         [Input("setupAlerts")]
         public Input<bool>? SetupAlerts { get; set; }
 
         /// <summary>
-        /// Setup logs rules
+        /// Setup logs rules.
         /// </summary>
         [Input("setupLogsRules")]
         public Input<bool>? SetupLogsRules { get; set; }
 
         /// <summary>
-        /// Setup metrics rules
+        /// Setup metrics rules.
         /// </summary>
         [Input("setupMetricsRules")]
         public Input<bool>? SetupMetricsRules { get; set; }
 
         /// <summary>
-        /// Write logs
+        /// Write logs.
         /// </summary>
         [Input("writeLogs")]
         public Input<bool>? WriteLogs { get; set; }
 
         /// <summary>
-        /// Write metrics
+        /// Write metrics.
         /// </summary>
         [Input("writeMetrics")]
         public Input<bool>? WriteMetrics { get; set; }
+
+        /// <summary>
+        /// Write traces.
+        /// </summary>
+        [Input("writeTraces")]
+        public Input<bool>? WriteTraces { get; set; }
 
         public CockpitTokenScopesArgs()
         {

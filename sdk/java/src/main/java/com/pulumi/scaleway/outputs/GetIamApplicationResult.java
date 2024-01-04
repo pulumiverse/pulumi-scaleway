@@ -6,6 +6,7 @@ package com.pulumi.scaleway.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -23,6 +24,7 @@ public final class GetIamApplicationResult {
     private String id;
     private @Nullable String name;
     private @Nullable String organizationId;
+    private List<String> tags;
     private String updatedAt;
 
     private GetIamApplicationResult() {}
@@ -51,6 +53,9 @@ public final class GetIamApplicationResult {
     public Optional<String> organizationId() {
         return Optional.ofNullable(this.organizationId);
     }
+    public List<String> tags() {
+        return this.tags;
+    }
     public String updatedAt() {
         return this.updatedAt;
     }
@@ -71,6 +76,7 @@ public final class GetIamApplicationResult {
         private String id;
         private @Nullable String name;
         private @Nullable String organizationId;
+        private List<String> tags;
         private String updatedAt;
         public Builder() {}
         public Builder(GetIamApplicationResult defaults) {
@@ -82,6 +88,7 @@ public final class GetIamApplicationResult {
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.organizationId = defaults.organizationId;
+    	      this.tags = defaults.tags;
     	      this.updatedAt = defaults.updatedAt;
         }
 
@@ -121,6 +128,14 @@ public final class GetIamApplicationResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(List<String> tags) {
+            this.tags = Objects.requireNonNull(tags);
+            return this;
+        }
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
             this.updatedAt = Objects.requireNonNull(updatedAt);
             return this;
@@ -134,6 +149,7 @@ public final class GetIamApplicationResult {
             o.id = id;
             o.name = name;
             o.organizationId = organizationId;
+            o.tags = tags;
             o.updatedAt = updatedAt;
             return o;
         }

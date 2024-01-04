@@ -31,7 +31,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
@@ -58,7 +58,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var mainObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["Version"] = "2012-10-17",
@@ -85,7 +85,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",

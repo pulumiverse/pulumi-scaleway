@@ -316,14 +316,14 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      * 
      */
     @Import(name="registrySha256")
     private @Nullable Output<String> registrySha256;
 
     /**
-     * @return The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * @return The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      * 
      */
     public Optional<Output<String>> registrySha256() {
@@ -833,7 +833,7 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param registrySha256 The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+         * @param registrySha256 The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
          * 
          * @return builder
          * 
@@ -844,7 +844,7 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param registrySha256 The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+         * @param registrySha256 The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
          * 
          * @return builder
          * 

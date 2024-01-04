@@ -24,6 +24,127 @@ import javax.annotation.Nullable;
  * 
  * ## Example
  * 
+ * ### Create a gateway network with IPAM config
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.Vpc;
+ * import com.pulumi.scaleway.VpcPrivateNetwork;
+ * import com.pulumi.scaleway.VpcPrivateNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;
+ * import com.pulumi.scaleway.VpcPublicGateway;
+ * import com.pulumi.scaleway.VpcPublicGatewayArgs;
+ * import com.pulumi.scaleway.VpcGatewayNetwork;
+ * import com.pulumi.scaleway.VpcGatewayNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcGatewayNetworkIpamConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc01 = new Vpc(&#34;vpc01&#34;);
+ * 
+ *         var pn01 = new VpcPrivateNetwork(&#34;pn01&#34;, VpcPrivateNetworkArgs.builder()        
+ *             .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()
+ *                 .subnet(&#34;172.16.64.0/22&#34;)
+ *                 .build())
+ *             .vpcId(vpc01.id())
+ *             .build());
+ * 
+ *         var pg01 = new VpcPublicGateway(&#34;pg01&#34;, VpcPublicGatewayArgs.builder()        
+ *             .type(&#34;VPC-GW-S&#34;)
+ *             .build());
+ * 
+ *         var main = new VpcGatewayNetwork(&#34;main&#34;, VpcGatewayNetworkArgs.builder()        
+ *             .gatewayId(pg01.id())
+ *             .privateNetworkId(pn01.id())
+ *             .enableMasquerade(true)
+ *             .ipamConfigs(VpcGatewayNetworkIpamConfigArgs.builder()
+ *                 .pushDefaultRoute(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Create a gateway network with a booked IPAM IP
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.Vpc;
+ * import com.pulumi.scaleway.VpcPrivateNetwork;
+ * import com.pulumi.scaleway.VpcPrivateNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;
+ * import com.pulumi.scaleway.IpamIp;
+ * import com.pulumi.scaleway.IpamIpArgs;
+ * import com.pulumi.scaleway.inputs.IpamIpSourceArgs;
+ * import com.pulumi.scaleway.VpcPublicGateway;
+ * import com.pulumi.scaleway.VpcPublicGatewayArgs;
+ * import com.pulumi.scaleway.VpcGatewayNetwork;
+ * import com.pulumi.scaleway.VpcGatewayNetworkArgs;
+ * import com.pulumi.scaleway.inputs.VpcGatewayNetworkIpamConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc01 = new Vpc(&#34;vpc01&#34;);
+ * 
+ *         var pn01 = new VpcPrivateNetwork(&#34;pn01&#34;, VpcPrivateNetworkArgs.builder()        
+ *             .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()
+ *                 .subnet(&#34;172.16.64.0/22&#34;)
+ *                 .build())
+ *             .vpcId(vpc01.id())
+ *             .build());
+ * 
+ *         var ip01 = new IpamIp(&#34;ip01&#34;, IpamIpArgs.builder()        
+ *             .address(&#34;172.16.64.7/22&#34;)
+ *             .sources(IpamIpSourceArgs.builder()
+ *                 .privateNetworkId(pn01.id())
+ *                 .build())
+ *             .build());
+ * 
+ *         var pg01 = new VpcPublicGateway(&#34;pg01&#34;, VpcPublicGatewayArgs.builder()        
+ *             .type(&#34;VPC-GW-S&#34;)
+ *             .build());
+ * 
+ *         var main = new VpcGatewayNetwork(&#34;main&#34;, VpcGatewayNetworkArgs.builder()        
+ *             .gatewayId(pg01.id())
+ *             .privateNetworkId(pn01.id())
+ *             .enableMasquerade(true)
+ *             .ipamConfigs(VpcGatewayNetworkIpamConfigArgs.builder()
+ *                 .pushDefaultRoute(true)
+ *                 .ipamIpId(ip01.id())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ### Create a gateway network with DHCP
  * ```java
  * package generated_program;
@@ -115,61 +236,6 @@ import javax.annotation.Nullable;
  *             .enableDhcp(false)
  *             .enableMasquerade(true)
  *             .staticAddress(&#34;192.168.1.42/24&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * ### Create a gateway network with IPAM config
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.Vpc;
- * import com.pulumi.scaleway.VpcPrivateNetwork;
- * import com.pulumi.scaleway.VpcPrivateNetworkArgs;
- * import com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;
- * import com.pulumi.scaleway.VpcPublicGateway;
- * import com.pulumi.scaleway.VpcPublicGatewayArgs;
- * import com.pulumi.scaleway.VpcGatewayNetwork;
- * import com.pulumi.scaleway.VpcGatewayNetworkArgs;
- * import com.pulumi.scaleway.inputs.VpcGatewayNetworkIpamConfigArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var vpc01 = new Vpc(&#34;vpc01&#34;);
- * 
- *         var pn01 = new VpcPrivateNetwork(&#34;pn01&#34;, VpcPrivateNetworkArgs.builder()        
- *             .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()
- *                 .subnet(&#34;172.16.64.0/22&#34;)
- *                 .build())
- *             .vpcId(vpc01.id())
- *             .build());
- * 
- *         var pg01 = new VpcPublicGateway(&#34;pg01&#34;, VpcPublicGatewayArgs.builder()        
- *             .type(&#34;VPC-GW-S&#34;)
- *             .build());
- * 
- *         var main = new VpcGatewayNetwork(&#34;main&#34;, VpcGatewayNetworkArgs.builder()        
- *             .gatewayId(pg01.id())
- *             .privateNetworkId(pn01.id())
- *             .enableMasquerade(true)
- *             .ipamConfigs(VpcGatewayNetworkIpamConfigArgs.builder()
- *                 .pushDefaultRoute(true)
- *                 .build())
  *             .build());
  * 
  *     }
@@ -272,18 +338,18 @@ public class VpcGatewayNetwork extends com.pulumi.resources.CustomResource {
         return this.gatewayId;
     }
     /**
-     * Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
     @Export(name="ipamConfigs", refs={List.class,VpcGatewayNetworkIpamConfig.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<VpcGatewayNetworkIpamConfig>> ipamConfigs;
+    private Output<List<VpcGatewayNetworkIpamConfig>> ipamConfigs;
 
     /**
-     * @return Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service).
+     * @return Auto-configure the Gateway Network using Scaleway&#39;s IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
      * 
      */
-    public Output<Optional<List<VpcGatewayNetworkIpamConfig>>> ipamConfigs() {
-        return Codegen.optional(this.ipamConfigs);
+    public Output<List<VpcGatewayNetworkIpamConfig>> ipamConfigs() {
+        return this.ipamConfigs;
     }
     /**
      * The mac address of the creation of the gateway network.

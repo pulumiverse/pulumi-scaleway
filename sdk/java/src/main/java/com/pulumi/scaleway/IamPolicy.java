@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
 /**
  * Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
  * 
+ * &gt; You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
+ * 
  * ## Example Usage
  * ### Create a policy for an organization&#39;s project
  * ```java
@@ -148,14 +150,14 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.groupId);
     }
     /**
-     * .The name of the iam policy.
+     * The name of the iam policy.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return .The name of the iam policy.
+     * @return The name of the iam policy.
      * 
      */
     public Output<String> name() {
@@ -206,6 +208,20 @@ public class IamPolicy extends com.pulumi.resources.CustomResource {
      */
     public Output<List<IamPolicyRule>> rules() {
         return this.rules;
+    }
+    /**
+     * The tags associated with the iam policy.
+     * 
+     */
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tags;
+
+    /**
+     * @return The tags associated with the iam policy.
+     * 
+     */
+    public Output<Optional<List<String>>> tags() {
+        return Codegen.optional(this.tags);
     }
     /**
      * The date and time of the last update of the policy.

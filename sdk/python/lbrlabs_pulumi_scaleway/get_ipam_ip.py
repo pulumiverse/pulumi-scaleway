@@ -23,7 +23,7 @@ class GetIpamIpResult:
     """
     A collection of values returned by getIpamIp.
     """
-    def __init__(__self__, address=None, id=None, mac_address=None, private_network_id=None, region=None, resource=None, type=None):
+    def __init__(__self__, address=None, id=None, mac_address=None, organization_id=None, private_network_id=None, project_id=None, region=None, resource=None, tags=None, type=None, zonal=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -33,18 +33,30 @@ class GetIpamIpResult:
         if mac_address and not isinstance(mac_address, str):
             raise TypeError("Expected argument 'mac_address' to be a str")
         pulumi.set(__self__, "mac_address", mac_address)
+        if organization_id and not isinstance(organization_id, str):
+            raise TypeError("Expected argument 'organization_id' to be a str")
+        pulumi.set(__self__, "organization_id", organization_id)
         if private_network_id and not isinstance(private_network_id, str):
             raise TypeError("Expected argument 'private_network_id' to be a str")
         pulumi.set(__self__, "private_network_id", private_network_id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
         if resource and not isinstance(resource, dict):
             raise TypeError("Expected argument 'resource' to be a dict")
         pulumi.set(__self__, "resource", resource)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if zonal and not isinstance(zonal, str):
+            raise TypeError("Expected argument 'zonal' to be a str")
+        pulumi.set(__self__, "zonal", zonal)
 
     @property
     @pulumi.getter
@@ -68,9 +80,19 @@ class GetIpamIpResult:
         return pulumi.get(self, "mac_address")
 
     @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> str:
+        return pulumi.get(self, "organization_id")
+
+    @property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[str]:
         return pulumi.get(self, "private_network_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
@@ -84,8 +106,18 @@ class GetIpamIpResult:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def type(self) -> str:
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def zonal(self) -> str:
+        return pulumi.get(self, "zonal")
 
 
 class AwaitableGetIpamIpResult(GetIpamIpResult):
@@ -97,17 +129,24 @@ class AwaitableGetIpamIpResult(GetIpamIpResult):
             address=self.address,
             id=self.id,
             mac_address=self.mac_address,
+            organization_id=self.organization_id,
             private_network_id=self.private_network_id,
+            project_id=self.project_id,
             region=self.region,
             resource=self.resource,
-            type=self.type)
+            tags=self.tags,
+            type=self.type,
+            zonal=self.zonal)
 
 
 def get_ipam_ip(mac_address: Optional[str] = None,
                 private_network_id: Optional[str] = None,
+                project_id: Optional[str] = None,
                 region: Optional[str] = None,
                 resource: Optional[pulumi.InputType['GetIpamIpResourceArgs']] = None,
+                tags: Optional[Sequence[str]] = None,
                 type: Optional[str] = None,
+                zonal: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpamIpResult:
     """
     Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
@@ -121,10 +160,12 @@ def get_ipam_ip(mac_address: Optional[str] = None,
     import lbrlabs_pulumi_scaleway as scaleway
     import pulumi_scaleway as scaleway
 
+    # Find the private IPv4 using resource name
+    pn = scaleway.VpcPrivateNetwork("pn")
     # Get Instance IP in a private network
     nic = scaleway.InstancePrivateNic("nic",
         server_id=scaleway_instance_server["server"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn"]["id"])
+        private_network_id=pn.id)
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
     by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
@@ -132,21 +173,43 @@ def get_ipam_ip(mac_address: Optional[str] = None,
             type="instance_private_nic",
         ),
         type="ipv4")
+    main = scaleway.DatabaseInstance("main",
+        node_type="DB-DEV-S",
+        engine="PostgreSQL-15",
+        is_ha_cluster=True,
+        disable_backup=True,
+        user_name="my_initial_user",
+        password="thiZ_is_v&ry_s3cret",
+        private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+            pn_id=pn.id,
+        ))
+    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
+            name=main.name,
+            type="rdb_instance",
+        ),
+        type="ipv4")
     ```
 
 
     :param str mac_address: The Mac Address linked to the IP.
     :param str private_network_id: The ID of the private network the IP belong to.
+    :param str project_id: `project_id`) The ID of the project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
-    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID and type, both attributes must be set
-    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
+    :param Sequence[str] tags: The tags associated with the IP.
+           As datasource only returns one IP, the search with given tags must return only one result.
+    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     __args__ = dict()
     __args__['macAddress'] = mac_address
     __args__['privateNetworkId'] = private_network_id
+    __args__['projectId'] = project_id
     __args__['region'] = region
     __args__['resource'] = resource
+    __args__['tags'] = tags
     __args__['type'] = type
+    __args__['zonal'] = zonal
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIpamIp:getIpamIp', __args__, opts=opts, typ=GetIpamIpResult).value
 
@@ -154,18 +217,25 @@ def get_ipam_ip(mac_address: Optional[str] = None,
         address=pulumi.get(__ret__, 'address'),
         id=pulumi.get(__ret__, 'id'),
         mac_address=pulumi.get(__ret__, 'mac_address'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         resource=pulumi.get(__ret__, 'resource'),
-        type=pulumi.get(__ret__, 'type'))
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        zonal=pulumi.get(__ret__, 'zonal'))
 
 
 @_utilities.lift_output_func(get_ipam_ip)
 def get_ipam_ip_output(mac_address: Optional[pulumi.Input[Optional[str]]] = None,
                        private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
                        resource: Optional[pulumi.Input[Optional[pulumi.InputType['GetIpamIpResourceArgs']]]] = None,
+                       tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        type: Optional[pulumi.Input[str]] = None,
+                       zonal: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpamIpResult]:
     """
     Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
@@ -179,10 +249,12 @@ def get_ipam_ip_output(mac_address: Optional[pulumi.Input[Optional[str]]] = None
     import lbrlabs_pulumi_scaleway as scaleway
     import pulumi_scaleway as scaleway
 
+    # Find the private IPv4 using resource name
+    pn = scaleway.VpcPrivateNetwork("pn")
     # Get Instance IP in a private network
     nic = scaleway.InstancePrivateNic("nic",
         server_id=scaleway_instance_server["server"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn"]["id"])
+        private_network_id=pn.id)
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
     by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
@@ -190,13 +262,32 @@ def get_ipam_ip_output(mac_address: Optional[pulumi.Input[Optional[str]]] = None
             type="instance_private_nic",
         ),
         type="ipv4")
+    main = scaleway.DatabaseInstance("main",
+        node_type="DB-DEV-S",
+        engine="PostgreSQL-15",
+        is_ha_cluster=True,
+        disable_backup=True,
+        user_name="my_initial_user",
+        password="thiZ_is_v&ry_s3cret",
+        private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+            pn_id=pn.id,
+        ))
+    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
+            name=main.name,
+            type="rdb_instance",
+        ),
+        type="ipv4")
     ```
 
 
     :param str mac_address: The Mac Address linked to the IP.
     :param str private_network_id: The ID of the private network the IP belong to.
+    :param str project_id: `project_id`) The ID of the project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
-    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID and type, both attributes must be set
-    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
+    :param Sequence[str] tags: The tags associated with the IP.
+           As datasource only returns one IP, the search with given tags must return only one result.
+    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     ...

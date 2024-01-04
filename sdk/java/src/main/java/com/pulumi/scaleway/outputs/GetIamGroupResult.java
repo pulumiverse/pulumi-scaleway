@@ -25,6 +25,7 @@ public final class GetIamGroupResult {
     private String id;
     private @Nullable String name;
     private @Nullable String organizationId;
+    private List<String> tags;
     private String updatedAt;
     private List<String> userIds;
 
@@ -57,6 +58,9 @@ public final class GetIamGroupResult {
     public Optional<String> organizationId() {
         return Optional.ofNullable(this.organizationId);
     }
+    public List<String> tags() {
+        return this.tags;
+    }
     public String updatedAt() {
         return this.updatedAt;
     }
@@ -81,6 +85,7 @@ public final class GetIamGroupResult {
         private String id;
         private @Nullable String name;
         private @Nullable String organizationId;
+        private List<String> tags;
         private String updatedAt;
         private List<String> userIds;
         public Builder() {}
@@ -94,6 +99,7 @@ public final class GetIamGroupResult {
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.organizationId = defaults.organizationId;
+    	      this.tags = defaults.tags;
     	      this.updatedAt = defaults.updatedAt;
     	      this.userIds = defaults.userIds;
         }
@@ -142,6 +148,14 @@ public final class GetIamGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(List<String> tags) {
+            this.tags = Objects.requireNonNull(tags);
+            return this;
+        }
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
             this.updatedAt = Objects.requireNonNull(updatedAt);
             return this;
@@ -164,6 +178,7 @@ public final class GetIamGroupResult {
             o.id = id;
             o.name = name;
             o.organizationId = organizationId;
+            o.tags = tags;
             o.updatedAt = updatedAt;
             o.userIds = userIds;
             return o;

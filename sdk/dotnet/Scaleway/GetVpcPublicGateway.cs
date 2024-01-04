@@ -161,6 +161,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string OrganizationId;
         public readonly string ProjectId;
         public readonly string? PublicGatewayId;
+        public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string Type;
         public readonly string UpdatedAt;
@@ -189,6 +190,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? publicGatewayId,
 
+            string status,
+
             ImmutableArray<string> tags,
 
             string type,
@@ -209,6 +212,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicGatewayId = publicGatewayId;
+            Status = status;
             Tags = tags;
             Type = type;
             UpdatedAt = updatedAt;

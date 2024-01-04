@@ -28,11 +28,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find the private IPv4 using resource name
+        ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+        /// 
         ///     // Get Instance IP in a private network
         ///     var nic = new Scaleway.InstancePrivateNic("nic", new()
         ///     {
         ///         ServerId = scaleway_instance_server.Server.Id,
-        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn.Id,
+        ///         PrivateNetworkId = pn.Id,
         ///     });
         /// 
         ///     var byMac = Scaleway.GetIpamIp.Invoke(new()
@@ -47,6 +50,30 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         ///         {
         ///             Id = nic.Id,
         ///             Type = "instance_private_nic",
+        ///         },
+        ///         Type = "ipv4",
+        ///     });
+        /// 
+        ///     var main = new Scaleway.DatabaseInstance("main", new()
+        ///     {
+        ///         NodeType = "DB-DEV-S",
+        ///         Engine = "PostgreSQL-15",
+        ///         IsHaCluster = true,
+        ///         DisableBackup = true,
+        ///         UserName = "my_initial_user",
+        ///         Password = "thiZ_is_v&amp;ry_s3cret",
+        ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+        ///         {
+        ///             PnId = pn.Id,
+        ///         },
+        ///     });
+        /// 
+        ///     var byName = Scaleway.GetIpamIp.Invoke(new()
+        ///     {
+        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         {
+        ///             Name = main.Name,
+        ///             Type = "rdb_instance",
         ///         },
         ///         Type = "ipv4",
         ///     });
@@ -73,11 +100,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find the private IPv4 using resource name
+        ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+        /// 
         ///     // Get Instance IP in a private network
         ///     var nic = new Scaleway.InstancePrivateNic("nic", new()
         ///     {
         ///         ServerId = scaleway_instance_server.Server.Id,
-        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn.Id,
+        ///         PrivateNetworkId = pn.Id,
         ///     });
         /// 
         ///     var byMac = Scaleway.GetIpamIp.Invoke(new()
@@ -92,6 +122,30 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         ///         {
         ///             Id = nic.Id,
         ///             Type = "instance_private_nic",
+        ///         },
+        ///         Type = "ipv4",
+        ///     });
+        /// 
+        ///     var main = new Scaleway.DatabaseInstance("main", new()
+        ///     {
+        ///         NodeType = "DB-DEV-S",
+        ///         Engine = "PostgreSQL-15",
+        ///         IsHaCluster = true,
+        ///         DisableBackup = true,
+        ///         UserName = "my_initial_user",
+        ///         Password = "thiZ_is_v&amp;ry_s3cret",
+        ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+        ///         {
+        ///             PnId = pn.Id,
+        ///         },
+        ///     });
+        /// 
+        ///     var byName = Scaleway.GetIpamIp.Invoke(new()
+        ///     {
+        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         {
+        ///             Name = main.Name,
+        ///             Type = "rdb_instance",
         ///         },
         ///         Type = "ipv4",
         ///     });
@@ -119,22 +173,47 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public string? PrivateNetworkId { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the IP is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the IP exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         /// <summary>
-        /// Filter by resource ID and type, both attributes must be set
+        /// Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
         /// </summary>
         [Input("resource")]
         public Inputs.GetIpamIpResourceArgs? Resource { get; set; }
 
+        [Input("tags")]
+        private List<string>? _tags;
+
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        /// The tags associated with the IP.
+        /// As datasource only returns one IP, the search with given tags must return only one result.
+        /// </summary>
+        public List<string> Tags
+        {
+            get => _tags ?? (_tags = new List<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         /// </summary>
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
+
+        /// <summary>
+        /// Only IPs that are zonal, and in this zone, will be returned.
+        /// </summary>
+        [Input("zonal")]
+        public string? Zonal { get; set; }
 
         public GetIpamIpArgs()
         {
@@ -157,22 +236,47 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the IP is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the IP exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Filter by resource ID and type, both attributes must be set
+        /// Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
         /// </summary>
         [Input("resource")]
         public Input<Inputs.GetIpamIpResourceInputArgs>? Resource { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        /// The tags associated with the IP.
+        /// As datasource only returns one IP, the search with given tags must return only one result.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        /// <summary>
+        /// Only IPs that are zonal, and in this zone, will be returned.
+        /// </summary>
+        [Input("zonal")]
+        public Input<string>? Zonal { get; set; }
 
         public GetIpamIpInvokeArgs()
         {
@@ -193,10 +297,14 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? MacAddress;
+        public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
+        public readonly string ProjectId;
         public readonly string Region;
         public readonly Outputs.GetIpamIpResourceResult? Resource;
+        public readonly ImmutableArray<string> Tags;
         public readonly string Type;
+        public readonly string Zonal;
 
         [OutputConstructor]
         private GetIpamIpResult(
@@ -206,21 +314,33 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? macAddress,
 
+            string organizationId,
+
             string? privateNetworkId,
+
+            string projectId,
 
             string region,
 
             Outputs.GetIpamIpResourceResult? resource,
 
-            string type)
+            ImmutableArray<string> tags,
+
+            string type,
+
+            string zonal)
         {
             Address = address;
             Id = id;
             MacAddress = macAddress;
+            OrganizationId = organizationId;
             PrivateNetworkId = privateNetworkId;
+            ProjectId = projectId;
             Region = region;
             Resource = resource;
+            Tags = tags;
             Type = type;
+            Zonal = zonal;
         }
     }
 }

@@ -55,15 +55,15 @@ import javax.annotation.Nullable;
  *         var mainMnqSqsCredentials = new MnqSqsCredentials(&#34;mainMnqSqsCredentials&#34;, MnqSqsCredentialsArgs.builder()        
  *             .projectId(mainMnqSqs.projectId())
  *             .permissions(MnqSqsCredentialsPermissionsArgs.builder()
- *                 .canManage(false)
- *                 .canReceive(true)
+ *                 .canManage(true)
+ *                 .canReceive(false)
  *                 .canPublish(false)
  *                 .build())
  *             .build());
  * 
  *         var mainMnqSqsQueue = new MnqSqsQueue(&#34;mainMnqSqsQueue&#34;, MnqSqsQueueArgs.builder()        
  *             .projectId(mainMnqSqs.projectId())
- *             .endpoint(mainMnqSqs.endpoint())
+ *             .sqsEndpoint(mainMnqSqs.endpoint())
  *             .accessKey(mainMnqSqsCredentials.accessKey())
  *             .secretKey(mainMnqSqsCredentials.secretKey())
  *             .build());
@@ -110,20 +110,6 @@ public class MnqSqsQueue extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> contentBasedDeduplication() {
         return this.contentBasedDeduplication;
-    }
-    /**
-     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     * 
-     */
-    @Export(name="endpoint", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> endpoint;
-
-    /**
-     * @return The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     * 
-     */
-    public Output<Optional<String>> endpoint() {
-        return Codegen.optional(this.endpoint);
     }
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
@@ -250,6 +236,20 @@ public class MnqSqsQueue extends com.pulumi.resources.CustomResource {
      */
     public Output<String> secretKey() {
         return this.secretKey;
+    }
+    /**
+     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     * 
+     */
+    @Export(name="sqsEndpoint", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> sqsEndpoint;
+
+    /**
+     * @return The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     * 
+     */
+    public Output<Optional<String>> sqsEndpoint() {
+        return Codegen.optional(this.sqsEndpoint);
     }
     /**
      * The URL of the queue.

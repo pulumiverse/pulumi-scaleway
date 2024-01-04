@@ -16,6 +16,10 @@ public final class GetLbAclsAclMatch {
      * 
      */
     private String httpFilter;
+    /**
+     * @return A list of possible values for the HTTP filter based on the HTTP header.
+     * 
+     */
     private String httpFilterOption;
     /**
      * @return The possible values matched for a given HTTP filter.
@@ -41,6 +45,10 @@ public final class GetLbAclsAclMatch {
     public String httpFilter() {
         return this.httpFilter;
     }
+    /**
+     * @return A list of possible values for the HTTP filter based on the HTTP header.
+     * 
+     */
     public String httpFilterOption() {
         return this.httpFilterOption;
     }

@@ -139,6 +139,21 @@ public final class VpcPublicGatewayState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The status of the public gateway.
+     * 
+     */
+    @Import(name="status")
+    private @Nullable Output<String> status;
+
+    /**
+     * @return The status of the public gateway.
+     * 
+     */
+    public Optional<Output<String>> status() {
+        return Optional.ofNullable(this.status);
+    }
+
+    /**
      * The tags associated with the public gateway.
      * 
      */
@@ -224,6 +239,7 @@ public final class VpcPublicGatewayState extends com.pulumi.resources.ResourceAr
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.projectId = $.projectId;
+        this.status = $.status;
         this.tags = $.tags;
         this.type = $.type;
         this.updatedAt = $.updatedAt;
@@ -415,6 +431,27 @@ public final class VpcPublicGatewayState extends com.pulumi.resources.ResourceAr
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param status The status of the public gateway.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(@Nullable Output<String> status) {
+            $.status = status;
+            return this;
+        }
+
+        /**
+         * @param status The status of the public gateway.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(String status) {
+            return status(Output.of(status));
         }
 
         /**

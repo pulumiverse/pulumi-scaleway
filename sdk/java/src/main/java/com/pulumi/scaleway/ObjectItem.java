@@ -31,14 +31,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/objectItem:ObjectItem")
 public class ObjectItem extends com.pulumi.resources.CustomResource {
     /**
-     * The name of the bucket.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
-     * @return The name of the bucket.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {

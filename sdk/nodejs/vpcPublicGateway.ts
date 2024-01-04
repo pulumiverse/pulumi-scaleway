@@ -92,6 +92,10 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * The status of the public gateway.
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
      * The tags associated with the public gateway.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
@@ -133,6 +137,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -155,6 +160,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -198,6 +204,10 @@ export interface VpcPublicGatewayState {
      * `projectId`) The ID of the project the public gateway is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * The status of the public gateway.
+     */
+    status?: pulumi.Input<string>;
     /**
      * The tags associated with the public gateway.
      */

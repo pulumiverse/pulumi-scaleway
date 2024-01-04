@@ -30,24 +30,40 @@ public final class GetIpamIpResource extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The name of the resource to get the IP from.
      * 
      */
-    @Import(name="type")
-    private @Nullable String type;
+    @Import(name="name")
+    private @Nullable String name;
 
     /**
-     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * @return The name of the resource to get the IP from.
      * 
      */
-    public Optional<String> type() {
-        return Optional.ofNullable(this.type);
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * 
+     */
+    @Import(name="type", required=true)
+    private String type;
+
+    /**
+     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * 
+     */
+    public String type() {
+        return this.type;
     }
 
     private GetIpamIpResource() {}
 
     private GetIpamIpResource(GetIpamIpResource $) {
         this.id = $.id;
+        this.name = $.name;
         this.type = $.type;
     }
 
@@ -81,17 +97,29 @@ public final class GetIpamIpResource extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+         * @param name The name of the resource to get the IP from.
          * 
          * @return builder
          * 
          */
-        public Builder type(@Nullable String type) {
+        public Builder name(@Nullable String name) {
+            $.name = name;
+            return this;
+        }
+
+        /**
+         * @param type The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(String type) {
             $.type = type;
             return this;
         }
 
         public GetIpamIpResource build() {
+            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
             return $;
         }
     }

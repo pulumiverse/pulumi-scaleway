@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['TemDomainArgs', 'TemDomain']
 
@@ -94,10 +96,12 @@ class _TemDomainState:
                  dkim_config: Optional[pulumi.Input[str]] = None,
                  last_error: Optional[pulumi.Input[str]] = None,
                  last_valid_at: Optional[pulumi.Input[str]] = None,
+                 mx_blackhole: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  next_check_at: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 reputations: Optional[pulumi.Input[Sequence[pulumi.Input['TemDomainReputationArgs']]]] = None,
                  revoked_at: Optional[pulumi.Input[str]] = None,
                  smtp_host: Optional[pulumi.Input[str]] = None,
                  smtp_port: Optional[pulumi.Input[int]] = None,
@@ -115,20 +119,22 @@ class _TemDomainState:
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
+        :param pulumi.Input[str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
+        :param pulumi.Input[Sequence[pulumi.Input['TemDomainReputationArgs']]] reputations: The domain's reputation.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
-        :param pulumi.Input[str] smtp_host: SMTP host to use to send emails
-        :param pulumi.Input[int] smtp_port: SMTP port to use to send emails over TLS. (Port 587)
-        :param pulumi.Input[int] smtp_port_alternative: SMTP port to use to send emails over TLS. (Port 2587)
-        :param pulumi.Input[int] smtp_port_unsecure: SMTP port to use to send emails. (Port 25)
-        :param pulumi.Input[int] smtps_port: SMTPS port to use to send emails over TLS Wrapper. (Port 465)
-        :param pulumi.Input[int] smtps_port_alternative: SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        :param pulumi.Input[str] smtp_host: The SMTP host to use to send emails.
+        :param pulumi.Input[int] smtp_port: The SMTP port to use to send emails over TLS.
+        :param pulumi.Input[int] smtp_port_alternative: The SMTP port to use to send emails over TLS.
+        :param pulumi.Input[int] smtp_port_unsecure: The SMTP port to use to send emails.
+        :param pulumi.Input[int] smtps_port: The SMTPS port to use to send emails over TLS Wrapper.
+        :param pulumi.Input[int] smtps_port_alternative: The SMTPS port to use to send emails over TLS Wrapper.
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
-        :param pulumi.Input[str] status: The status of the Transaction Email Domain.
+        :param pulumi.Input[str] status: The status of the domain's reputation.
         """
         if accept_tos is not None:
             pulumi.set(__self__, "accept_tos", accept_tos)
@@ -140,6 +146,8 @@ class _TemDomainState:
             pulumi.set(__self__, "last_error", last_error)
         if last_valid_at is not None:
             pulumi.set(__self__, "last_valid_at", last_valid_at)
+        if mx_blackhole is not None:
+            pulumi.set(__self__, "mx_blackhole", mx_blackhole)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if next_check_at is not None:
@@ -148,6 +156,8 @@ class _TemDomainState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if reputations is not None:
+            pulumi.set(__self__, "reputations", reputations)
         if revoked_at is not None:
             pulumi.set(__self__, "revoked_at", revoked_at)
         if smtp_host is not None:
@@ -229,6 +239,18 @@ class _TemDomainState:
         pulumi.set(self, "last_valid_at", value)
 
     @property
+    @pulumi.getter(name="mxBlackhole")
+    def mx_blackhole(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Scaleway's blackhole MX server to use if you do not have one.
+        """
+        return pulumi.get(self, "mx_blackhole")
+
+    @mx_blackhole.setter
+    def mx_blackhole(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mx_blackhole", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -278,6 +300,18 @@ class _TemDomainState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter
+    def reputations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TemDomainReputationArgs']]]]:
+        """
+        The domain's reputation.
+        """
+        return pulumi.get(self, "reputations")
+
+    @reputations.setter
+    def reputations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TemDomainReputationArgs']]]]):
+        pulumi.set(self, "reputations", value)
+
+    @property
     @pulumi.getter(name="revokedAt")
     def revoked_at(self) -> Optional[pulumi.Input[str]]:
         """
@@ -293,7 +327,7 @@ class _TemDomainState:
     @pulumi.getter(name="smtpHost")
     def smtp_host(self) -> Optional[pulumi.Input[str]]:
         """
-        SMTP host to use to send emails
+        The SMTP host to use to send emails.
         """
         return pulumi.get(self, "smtp_host")
 
@@ -305,7 +339,7 @@ class _TemDomainState:
     @pulumi.getter(name="smtpPort")
     def smtp_port(self) -> Optional[pulumi.Input[int]]:
         """
-        SMTP port to use to send emails over TLS. (Port 587)
+        The SMTP port to use to send emails over TLS.
         """
         return pulumi.get(self, "smtp_port")
 
@@ -317,7 +351,7 @@ class _TemDomainState:
     @pulumi.getter(name="smtpPortAlternative")
     def smtp_port_alternative(self) -> Optional[pulumi.Input[int]]:
         """
-        SMTP port to use to send emails over TLS. (Port 2587)
+        The SMTP port to use to send emails over TLS.
         """
         return pulumi.get(self, "smtp_port_alternative")
 
@@ -329,7 +363,7 @@ class _TemDomainState:
     @pulumi.getter(name="smtpPortUnsecure")
     def smtp_port_unsecure(self) -> Optional[pulumi.Input[int]]:
         """
-        SMTP port to use to send emails. (Port 25)
+        The SMTP port to use to send emails.
         """
         return pulumi.get(self, "smtp_port_unsecure")
 
@@ -341,7 +375,7 @@ class _TemDomainState:
     @pulumi.getter(name="smtpsPort")
     def smtps_port(self) -> Optional[pulumi.Input[int]]:
         """
-        SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        The SMTPS port to use to send emails over TLS Wrapper.
         """
         return pulumi.get(self, "smtps_port")
 
@@ -353,7 +387,7 @@ class _TemDomainState:
     @pulumi.getter(name="smtpsPortAlternative")
     def smtps_port_alternative(self) -> Optional[pulumi.Input[int]]:
         """
-        SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        The SMTPS port to use to send emails over TLS Wrapper.
         """
         return pulumi.get(self, "smtps_port_alternative")
 
@@ -377,7 +411,7 @@ class _TemDomainState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the Transaction Email Domain.
+        The status of the domain's reputation.
         """
         return pulumi.get(self, "status")
 
@@ -541,7 +575,9 @@ class TemDomain(pulumi.CustomResource):
             __props__.__dict__["dkim_config"] = None
             __props__.__dict__["last_error"] = None
             __props__.__dict__["last_valid_at"] = None
+            __props__.__dict__["mx_blackhole"] = None
             __props__.__dict__["next_check_at"] = None
+            __props__.__dict__["reputations"] = None
             __props__.__dict__["revoked_at"] = None
             __props__.__dict__["smtp_host"] = None
             __props__.__dict__["smtp_port"] = None
@@ -566,10 +602,12 @@ class TemDomain(pulumi.CustomResource):
             dkim_config: Optional[pulumi.Input[str]] = None,
             last_error: Optional[pulumi.Input[str]] = None,
             last_valid_at: Optional[pulumi.Input[str]] = None,
+            mx_blackhole: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             next_check_at: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            reputations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TemDomainReputationArgs']]]]] = None,
             revoked_at: Optional[pulumi.Input[str]] = None,
             smtp_host: Optional[pulumi.Input[str]] = None,
             smtp_port: Optional[pulumi.Input[int]] = None,
@@ -592,20 +630,22 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
+        :param pulumi.Input[str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TemDomainReputationArgs']]]] reputations: The domain's reputation.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
-        :param pulumi.Input[str] smtp_host: SMTP host to use to send emails
-        :param pulumi.Input[int] smtp_port: SMTP port to use to send emails over TLS. (Port 587)
-        :param pulumi.Input[int] smtp_port_alternative: SMTP port to use to send emails over TLS. (Port 2587)
-        :param pulumi.Input[int] smtp_port_unsecure: SMTP port to use to send emails. (Port 25)
-        :param pulumi.Input[int] smtps_port: SMTPS port to use to send emails over TLS Wrapper. (Port 465)
-        :param pulumi.Input[int] smtps_port_alternative: SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        :param pulumi.Input[str] smtp_host: The SMTP host to use to send emails.
+        :param pulumi.Input[int] smtp_port: The SMTP port to use to send emails over TLS.
+        :param pulumi.Input[int] smtp_port_alternative: The SMTP port to use to send emails over TLS.
+        :param pulumi.Input[int] smtp_port_unsecure: The SMTP port to use to send emails.
+        :param pulumi.Input[int] smtps_port: The SMTPS port to use to send emails over TLS Wrapper.
+        :param pulumi.Input[int] smtps_port_alternative: The SMTPS port to use to send emails over TLS Wrapper.
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
-        :param pulumi.Input[str] status: The status of the Transaction Email Domain.
+        :param pulumi.Input[str] status: The status of the domain's reputation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -616,10 +656,12 @@ class TemDomain(pulumi.CustomResource):
         __props__.__dict__["dkim_config"] = dkim_config
         __props__.__dict__["last_error"] = last_error
         __props__.__dict__["last_valid_at"] = last_valid_at
+        __props__.__dict__["mx_blackhole"] = mx_blackhole
         __props__.__dict__["name"] = name
         __props__.__dict__["next_check_at"] = next_check_at
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["reputations"] = reputations
         __props__.__dict__["revoked_at"] = revoked_at
         __props__.__dict__["smtp_host"] = smtp_host
         __props__.__dict__["smtp_port"] = smtp_port
@@ -673,6 +715,14 @@ class TemDomain(pulumi.CustomResource):
         return pulumi.get(self, "last_valid_at")
 
     @property
+    @pulumi.getter(name="mxBlackhole")
+    def mx_blackhole(self) -> pulumi.Output[str]:
+        """
+        The Scaleway's blackhole MX server to use if you do not have one.
+        """
+        return pulumi.get(self, "mx_blackhole")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -706,6 +756,14 @@ class TemDomain(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @property
+    @pulumi.getter
+    def reputations(self) -> pulumi.Output[Sequence['outputs.TemDomainReputation']]:
+        """
+        The domain's reputation.
+        """
+        return pulumi.get(self, "reputations")
+
+    @property
     @pulumi.getter(name="revokedAt")
     def revoked_at(self) -> pulumi.Output[str]:
         """
@@ -717,7 +775,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="smtpHost")
     def smtp_host(self) -> pulumi.Output[str]:
         """
-        SMTP host to use to send emails
+        The SMTP host to use to send emails.
         """
         return pulumi.get(self, "smtp_host")
 
@@ -725,7 +783,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="smtpPort")
     def smtp_port(self) -> pulumi.Output[int]:
         """
-        SMTP port to use to send emails over TLS. (Port 587)
+        The SMTP port to use to send emails over TLS.
         """
         return pulumi.get(self, "smtp_port")
 
@@ -733,7 +791,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="smtpPortAlternative")
     def smtp_port_alternative(self) -> pulumi.Output[int]:
         """
-        SMTP port to use to send emails over TLS. (Port 2587)
+        The SMTP port to use to send emails over TLS.
         """
         return pulumi.get(self, "smtp_port_alternative")
 
@@ -741,7 +799,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="smtpPortUnsecure")
     def smtp_port_unsecure(self) -> pulumi.Output[int]:
         """
-        SMTP port to use to send emails. (Port 25)
+        The SMTP port to use to send emails.
         """
         return pulumi.get(self, "smtp_port_unsecure")
 
@@ -749,7 +807,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="smtpsPort")
     def smtps_port(self) -> pulumi.Output[int]:
         """
-        SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        The SMTPS port to use to send emails over TLS Wrapper.
         """
         return pulumi.get(self, "smtps_port")
 
@@ -757,7 +815,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="smtpsPortAlternative")
     def smtps_port_alternative(self) -> pulumi.Output[int]:
         """
-        SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        The SMTPS port to use to send emails over TLS Wrapper.
         """
         return pulumi.get(self, "smtps_port_alternative")
 
@@ -773,7 +831,7 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the Transaction Email Domain.
+        The status of the domain's reputation.
         """
         return pulumi.get(self, "status")
 

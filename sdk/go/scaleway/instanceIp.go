@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
@@ -201,12 +200,6 @@ func (i *InstanceIp) ToInstanceIpOutputWithContext(ctx context.Context) Instance
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpOutput)
 }
 
-func (i *InstanceIp) ToOutput(ctx context.Context) pulumix.Output[*InstanceIp] {
-	return pulumix.Output[*InstanceIp]{
-		OutputState: i.ToInstanceIpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceIpArrayInput is an input type that accepts InstanceIpArray and InstanceIpArrayOutput values.
 // You can construct a concrete instance of `InstanceIpArrayInput` via:
 //
@@ -230,12 +223,6 @@ func (i InstanceIpArray) ToInstanceIpArrayOutput() InstanceIpArrayOutput {
 
 func (i InstanceIpArray) ToInstanceIpArrayOutputWithContext(ctx context.Context) InstanceIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpArrayOutput)
-}
-
-func (i InstanceIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceIp] {
-	return pulumix.Output[[]*InstanceIp]{
-		OutputState: i.ToInstanceIpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceIpMapInput is an input type that accepts InstanceIpMap and InstanceIpMapOutput values.
@@ -263,12 +250,6 @@ func (i InstanceIpMap) ToInstanceIpMapOutputWithContext(ctx context.Context) Ins
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpMapOutput)
 }
 
-func (i InstanceIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceIp] {
-	return pulumix.Output[map[string]*InstanceIp]{
-		OutputState: i.ToInstanceIpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceIpOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpOutput) ElementType() reflect.Type {
@@ -281,12 +262,6 @@ func (o InstanceIpOutput) ToInstanceIpOutput() InstanceIpOutput {
 
 func (o InstanceIpOutput) ToInstanceIpOutputWithContext(ctx context.Context) InstanceIpOutput {
 	return o
-}
-
-func (o InstanceIpOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceIp] {
-	return pulumix.Output[*InstanceIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP address.
@@ -350,12 +325,6 @@ func (o InstanceIpArrayOutput) ToInstanceIpArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o InstanceIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceIp] {
-	return pulumix.Output[[]*InstanceIp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceIpArrayOutput) Index(i pulumi.IntInput) InstanceIpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceIp {
 		return vs[0].([]*InstanceIp)[vs[1].(int)]
@@ -374,12 +343,6 @@ func (o InstanceIpMapOutput) ToInstanceIpMapOutput() InstanceIpMapOutput {
 
 func (o InstanceIpMapOutput) ToInstanceIpMapOutputWithContext(ctx context.Context) InstanceIpMapOutput {
 	return o
-}
-
-func (o InstanceIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceIp] {
-	return pulumix.Output[map[string]*InstanceIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceIpMapOutput) MapIndex(k pulumi.StringInput) InstanceIpOutput {

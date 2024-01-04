@@ -164,12 +164,16 @@ public final class InstanceServerArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
      * 
+     * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+     * 
      */
     @Import(name="ipIds")
     private @Nullable Output<List<String>> ipIds;
 
     /**
      * @return List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+     * 
+     * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
      * 
      */
     public Optional<Output<List<String>>> ipIds() {
@@ -668,6 +672,8 @@ public final class InstanceServerArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param ipIds List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
          * 
+         * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+         * 
          * @return builder
          * 
          */
@@ -679,6 +685,8 @@ public final class InstanceServerArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param ipIds List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
          * 
+         * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+         * 
          * @return builder
          * 
          */
@@ -688,6 +696,8 @@ public final class InstanceServerArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param ipIds List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+         * 
+         * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
          * 
          * @return builder
          * 

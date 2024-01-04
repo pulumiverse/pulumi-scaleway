@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer Backends.
@@ -494,12 +493,6 @@ func (i *LoadbalancerBackend) ToLoadbalancerBackendOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendOutput)
 }
 
-func (i *LoadbalancerBackend) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerBackend] {
-	return pulumix.Output[*LoadbalancerBackend]{
-		OutputState: i.ToLoadbalancerBackendOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LoadbalancerBackendArrayInput is an input type that accepts LoadbalancerBackendArray and LoadbalancerBackendArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerBackendArrayInput` via:
 //
@@ -523,12 +516,6 @@ func (i LoadbalancerBackendArray) ToLoadbalancerBackendArrayOutput() Loadbalance
 
 func (i LoadbalancerBackendArray) ToLoadbalancerBackendArrayOutputWithContext(ctx context.Context) LoadbalancerBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendArrayOutput)
-}
-
-func (i LoadbalancerBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerBackend] {
-	return pulumix.Output[[]*LoadbalancerBackend]{
-		OutputState: i.ToLoadbalancerBackendArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LoadbalancerBackendMapInput is an input type that accepts LoadbalancerBackendMap and LoadbalancerBackendMapOutput values.
@@ -556,12 +543,6 @@ func (i LoadbalancerBackendMap) ToLoadbalancerBackendMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerBackendMapOutput)
 }
 
-func (i LoadbalancerBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerBackend] {
-	return pulumix.Output[map[string]*LoadbalancerBackend]{
-		OutputState: i.ToLoadbalancerBackendMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LoadbalancerBackendOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerBackendOutput) ElementType() reflect.Type {
@@ -574,12 +555,6 @@ func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutput() LoadbalancerBac
 
 func (o LoadbalancerBackendOutput) ToLoadbalancerBackendOutputWithContext(ctx context.Context) LoadbalancerBackendOutput {
 	return o
-}
-
-func (o LoadbalancerBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerBackend] {
-	return pulumix.Output[*LoadbalancerBackend]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Scaleway S3 bucket website to be served in case all backend servers are down.
@@ -751,12 +726,6 @@ func (o LoadbalancerBackendArrayOutput) ToLoadbalancerBackendArrayOutputWithCont
 	return o
 }
 
-func (o LoadbalancerBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerBackend] {
-	return pulumix.Output[[]*LoadbalancerBackend]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LoadbalancerBackendArrayOutput) Index(i pulumi.IntInput) LoadbalancerBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerBackend {
 		return vs[0].([]*LoadbalancerBackend)[vs[1].(int)]
@@ -775,12 +744,6 @@ func (o LoadbalancerBackendMapOutput) ToLoadbalancerBackendMapOutput() Loadbalan
 
 func (o LoadbalancerBackendMapOutput) ToLoadbalancerBackendMapOutputWithContext(ctx context.Context) LoadbalancerBackendMapOutput {
 	return o
-}
-
-func (o LoadbalancerBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerBackend] {
-	return pulumix.Output[map[string]*LoadbalancerBackend]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LoadbalancerBackendMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerBackendOutput {

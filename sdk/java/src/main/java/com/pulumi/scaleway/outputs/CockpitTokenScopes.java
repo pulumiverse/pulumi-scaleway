@@ -12,90 +12,114 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CockpitTokenScopes {
     /**
-     * @return Query logs
+     * @return Query logs.
      * 
      */
     private @Nullable Boolean queryLogs;
     /**
-     * @return Query metrics
+     * @return Query metrics.
      * 
      */
     private @Nullable Boolean queryMetrics;
     /**
-     * @return Setup alerts
+     * @return Query traces.
+     * 
+     */
+    private @Nullable Boolean queryTraces;
+    /**
+     * @return Setup alerts.
      * 
      */
     private @Nullable Boolean setupAlerts;
     /**
-     * @return Setup logs rules
+     * @return Setup logs rules.
      * 
      */
     private @Nullable Boolean setupLogsRules;
     /**
-     * @return Setup metrics rules
+     * @return Setup metrics rules.
      * 
      */
     private @Nullable Boolean setupMetricsRules;
     /**
-     * @return Write logs
+     * @return Write logs.
      * 
      */
     private @Nullable Boolean writeLogs;
     /**
-     * @return Write metrics
+     * @return Write metrics.
      * 
      */
     private @Nullable Boolean writeMetrics;
+    /**
+     * @return Write traces.
+     * 
+     */
+    private @Nullable Boolean writeTraces;
 
     private CockpitTokenScopes() {}
     /**
-     * @return Query logs
+     * @return Query logs.
      * 
      */
     public Optional<Boolean> queryLogs() {
         return Optional.ofNullable(this.queryLogs);
     }
     /**
-     * @return Query metrics
+     * @return Query metrics.
      * 
      */
     public Optional<Boolean> queryMetrics() {
         return Optional.ofNullable(this.queryMetrics);
     }
     /**
-     * @return Setup alerts
+     * @return Query traces.
+     * 
+     */
+    public Optional<Boolean> queryTraces() {
+        return Optional.ofNullable(this.queryTraces);
+    }
+    /**
+     * @return Setup alerts.
      * 
      */
     public Optional<Boolean> setupAlerts() {
         return Optional.ofNullable(this.setupAlerts);
     }
     /**
-     * @return Setup logs rules
+     * @return Setup logs rules.
      * 
      */
     public Optional<Boolean> setupLogsRules() {
         return Optional.ofNullable(this.setupLogsRules);
     }
     /**
-     * @return Setup metrics rules
+     * @return Setup metrics rules.
      * 
      */
     public Optional<Boolean> setupMetricsRules() {
         return Optional.ofNullable(this.setupMetricsRules);
     }
     /**
-     * @return Write logs
+     * @return Write logs.
      * 
      */
     public Optional<Boolean> writeLogs() {
         return Optional.ofNullable(this.writeLogs);
     }
     /**
-     * @return Write metrics
+     * @return Write metrics.
      * 
      */
     public Optional<Boolean> writeMetrics() {
         return Optional.ofNullable(this.writeMetrics);
+    }
+    /**
+     * @return Write traces.
+     * 
+     */
+    public Optional<Boolean> writeTraces() {
+        return Optional.ofNullable(this.writeTraces);
     }
 
     public static Builder builder() {
@@ -109,21 +133,25 @@ public final class CockpitTokenScopes {
     public static final class Builder {
         private @Nullable Boolean queryLogs;
         private @Nullable Boolean queryMetrics;
+        private @Nullable Boolean queryTraces;
         private @Nullable Boolean setupAlerts;
         private @Nullable Boolean setupLogsRules;
         private @Nullable Boolean setupMetricsRules;
         private @Nullable Boolean writeLogs;
         private @Nullable Boolean writeMetrics;
+        private @Nullable Boolean writeTraces;
         public Builder() {}
         public Builder(CockpitTokenScopes defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.queryLogs = defaults.queryLogs;
     	      this.queryMetrics = defaults.queryMetrics;
+    	      this.queryTraces = defaults.queryTraces;
     	      this.setupAlerts = defaults.setupAlerts;
     	      this.setupLogsRules = defaults.setupLogsRules;
     	      this.setupMetricsRules = defaults.setupMetricsRules;
     	      this.writeLogs = defaults.writeLogs;
     	      this.writeMetrics = defaults.writeMetrics;
+    	      this.writeTraces = defaults.writeTraces;
         }
 
         @CustomType.Setter
@@ -134,6 +162,11 @@ public final class CockpitTokenScopes {
         @CustomType.Setter
         public Builder queryMetrics(@Nullable Boolean queryMetrics) {
             this.queryMetrics = queryMetrics;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder queryTraces(@Nullable Boolean queryTraces) {
+            this.queryTraces = queryTraces;
             return this;
         }
         @CustomType.Setter
@@ -161,15 +194,22 @@ public final class CockpitTokenScopes {
             this.writeMetrics = writeMetrics;
             return this;
         }
+        @CustomType.Setter
+        public Builder writeTraces(@Nullable Boolean writeTraces) {
+            this.writeTraces = writeTraces;
+            return this;
+        }
         public CockpitTokenScopes build() {
             final var o = new CockpitTokenScopes();
             o.queryLogs = queryLogs;
             o.queryMetrics = queryMetrics;
+            o.queryTraces = queryTraces;
             o.setupAlerts = setupAlerts;
             o.setupLogsRules = setupLogsRules;
             o.setupMetricsRules = setupMetricsRules;
             o.writeLogs = writeLogs;
             o.writeMetrics = writeMetrics;
+            o.writeTraces = writeTraces;
             return o;
         }
     }

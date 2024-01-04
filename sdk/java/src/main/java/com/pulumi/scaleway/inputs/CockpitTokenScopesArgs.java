@@ -16,14 +16,14 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     public static final CockpitTokenScopesArgs Empty = new CockpitTokenScopesArgs();
 
     /**
-     * Query logs
+     * Query logs.
      * 
      */
     @Import(name="queryLogs")
     private @Nullable Output<Boolean> queryLogs;
 
     /**
-     * @return Query logs
+     * @return Query logs.
      * 
      */
     public Optional<Output<Boolean>> queryLogs() {
@@ -31,14 +31,14 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Query metrics
+     * Query metrics.
      * 
      */
     @Import(name="queryMetrics")
     private @Nullable Output<Boolean> queryMetrics;
 
     /**
-     * @return Query metrics
+     * @return Query metrics.
      * 
      */
     public Optional<Output<Boolean>> queryMetrics() {
@@ -46,14 +46,29 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Setup alerts
+     * Query traces.
+     * 
+     */
+    @Import(name="queryTraces")
+    private @Nullable Output<Boolean> queryTraces;
+
+    /**
+     * @return Query traces.
+     * 
+     */
+    public Optional<Output<Boolean>> queryTraces() {
+        return Optional.ofNullable(this.queryTraces);
+    }
+
+    /**
+     * Setup alerts.
      * 
      */
     @Import(name="setupAlerts")
     private @Nullable Output<Boolean> setupAlerts;
 
     /**
-     * @return Setup alerts
+     * @return Setup alerts.
      * 
      */
     public Optional<Output<Boolean>> setupAlerts() {
@@ -61,14 +76,14 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Setup logs rules
+     * Setup logs rules.
      * 
      */
     @Import(name="setupLogsRules")
     private @Nullable Output<Boolean> setupLogsRules;
 
     /**
-     * @return Setup logs rules
+     * @return Setup logs rules.
      * 
      */
     public Optional<Output<Boolean>> setupLogsRules() {
@@ -76,14 +91,14 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Setup metrics rules
+     * Setup metrics rules.
      * 
      */
     @Import(name="setupMetricsRules")
     private @Nullable Output<Boolean> setupMetricsRules;
 
     /**
-     * @return Setup metrics rules
+     * @return Setup metrics rules.
      * 
      */
     public Optional<Output<Boolean>> setupMetricsRules() {
@@ -91,14 +106,14 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Write logs
+     * Write logs.
      * 
      */
     @Import(name="writeLogs")
     private @Nullable Output<Boolean> writeLogs;
 
     /**
-     * @return Write logs
+     * @return Write logs.
      * 
      */
     public Optional<Output<Boolean>> writeLogs() {
@@ -106,18 +121,33 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Write metrics
+     * Write metrics.
      * 
      */
     @Import(name="writeMetrics")
     private @Nullable Output<Boolean> writeMetrics;
 
     /**
-     * @return Write metrics
+     * @return Write metrics.
      * 
      */
     public Optional<Output<Boolean>> writeMetrics() {
         return Optional.ofNullable(this.writeMetrics);
+    }
+
+    /**
+     * Write traces.
+     * 
+     */
+    @Import(name="writeTraces")
+    private @Nullable Output<Boolean> writeTraces;
+
+    /**
+     * @return Write traces.
+     * 
+     */
+    public Optional<Output<Boolean>> writeTraces() {
+        return Optional.ofNullable(this.writeTraces);
     }
 
     private CockpitTokenScopesArgs() {}
@@ -125,11 +155,13 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
     private CockpitTokenScopesArgs(CockpitTokenScopesArgs $) {
         this.queryLogs = $.queryLogs;
         this.queryMetrics = $.queryMetrics;
+        this.queryTraces = $.queryTraces;
         this.setupAlerts = $.setupAlerts;
         this.setupLogsRules = $.setupLogsRules;
         this.setupMetricsRules = $.setupMetricsRules;
         this.writeLogs = $.writeLogs;
         this.writeMetrics = $.writeMetrics;
+        this.writeTraces = $.writeTraces;
     }
 
     public static Builder builder() {
@@ -151,7 +183,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param queryLogs Query logs
+         * @param queryLogs Query logs.
          * 
          * @return builder
          * 
@@ -162,7 +194,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param queryLogs Query logs
+         * @param queryLogs Query logs.
          * 
          * @return builder
          * 
@@ -172,7 +204,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param queryMetrics Query metrics
+         * @param queryMetrics Query metrics.
          * 
          * @return builder
          * 
@@ -183,7 +215,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param queryMetrics Query metrics
+         * @param queryMetrics Query metrics.
          * 
          * @return builder
          * 
@@ -193,7 +225,28 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param setupAlerts Setup alerts
+         * @param queryTraces Query traces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder queryTraces(@Nullable Output<Boolean> queryTraces) {
+            $.queryTraces = queryTraces;
+            return this;
+        }
+
+        /**
+         * @param queryTraces Query traces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder queryTraces(Boolean queryTraces) {
+            return queryTraces(Output.of(queryTraces));
+        }
+
+        /**
+         * @param setupAlerts Setup alerts.
          * 
          * @return builder
          * 
@@ -204,7 +257,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param setupAlerts Setup alerts
+         * @param setupAlerts Setup alerts.
          * 
          * @return builder
          * 
@@ -214,7 +267,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param setupLogsRules Setup logs rules
+         * @param setupLogsRules Setup logs rules.
          * 
          * @return builder
          * 
@@ -225,7 +278,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param setupLogsRules Setup logs rules
+         * @param setupLogsRules Setup logs rules.
          * 
          * @return builder
          * 
@@ -235,7 +288,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param setupMetricsRules Setup metrics rules
+         * @param setupMetricsRules Setup metrics rules.
          * 
          * @return builder
          * 
@@ -246,7 +299,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param setupMetricsRules Setup metrics rules
+         * @param setupMetricsRules Setup metrics rules.
          * 
          * @return builder
          * 
@@ -256,7 +309,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param writeLogs Write logs
+         * @param writeLogs Write logs.
          * 
          * @return builder
          * 
@@ -267,7 +320,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param writeLogs Write logs
+         * @param writeLogs Write logs.
          * 
          * @return builder
          * 
@@ -277,7 +330,7 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param writeMetrics Write metrics
+         * @param writeMetrics Write metrics.
          * 
          * @return builder
          * 
@@ -288,13 +341,34 @@ public final class CockpitTokenScopesArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param writeMetrics Write metrics
+         * @param writeMetrics Write metrics.
          * 
          * @return builder
          * 
          */
         public Builder writeMetrics(Boolean writeMetrics) {
             return writeMetrics(Output.of(writeMetrics));
+        }
+
+        /**
+         * @param writeTraces Write traces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeTraces(@Nullable Output<Boolean> writeTraces) {
+            $.writeTraces = writeTraces;
+            return this;
+        }
+
+        /**
+         * @param writeTraces Write traces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeTraces(Boolean writeTraces) {
+            return writeTraces(Output.of(writeTraces));
         }
 
         public CockpitTokenScopesArgs build() {

@@ -6,6 +6,7 @@ package com.pulumi.scaleway.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.scaleway.outputs.GetIpamIpResource;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -23,10 +24,14 @@ public final class GetIpamIpResult {
      */
     private String id;
     private @Nullable String macAddress;
+    private String organizationId;
     private @Nullable String privateNetworkId;
+    private String projectId;
     private String region;
     private @Nullable GetIpamIpResource resource;
+    private @Nullable List<String> tags;
     private String type;
+    private String zonal;
 
     private GetIpamIpResult() {}
     /**
@@ -46,8 +51,14 @@ public final class GetIpamIpResult {
     public Optional<String> macAddress() {
         return Optional.ofNullable(this.macAddress);
     }
+    public String organizationId() {
+        return this.organizationId;
+    }
     public Optional<String> privateNetworkId() {
         return Optional.ofNullable(this.privateNetworkId);
+    }
+    public String projectId() {
+        return this.projectId;
     }
     public String region() {
         return this.region;
@@ -55,8 +66,14 @@ public final class GetIpamIpResult {
     public Optional<GetIpamIpResource> resource() {
         return Optional.ofNullable(this.resource);
     }
+    public List<String> tags() {
+        return this.tags == null ? List.of() : this.tags;
+    }
     public String type() {
         return this.type;
+    }
+    public String zonal() {
+        return this.zonal;
     }
 
     public static Builder builder() {
@@ -71,20 +88,28 @@ public final class GetIpamIpResult {
         private String address;
         private String id;
         private @Nullable String macAddress;
+        private String organizationId;
         private @Nullable String privateNetworkId;
+        private String projectId;
         private String region;
         private @Nullable GetIpamIpResource resource;
+        private @Nullable List<String> tags;
         private String type;
+        private String zonal;
         public Builder() {}
         public Builder(GetIpamIpResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.address = defaults.address;
     	      this.id = defaults.id;
     	      this.macAddress = defaults.macAddress;
+    	      this.organizationId = defaults.organizationId;
     	      this.privateNetworkId = defaults.privateNetworkId;
+    	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.resource = defaults.resource;
+    	      this.tags = defaults.tags;
     	      this.type = defaults.type;
+    	      this.zonal = defaults.zonal;
         }
 
         @CustomType.Setter
@@ -103,8 +128,18 @@ public final class GetIpamIpResult {
             return this;
         }
         @CustomType.Setter
+        public Builder organizationId(String organizationId) {
+            this.organizationId = Objects.requireNonNull(organizationId);
+            return this;
+        }
+        @CustomType.Setter
         public Builder privateNetworkId(@Nullable String privateNetworkId) {
             this.privateNetworkId = privateNetworkId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder projectId(String projectId) {
+            this.projectId = Objects.requireNonNull(projectId);
             return this;
         }
         @CustomType.Setter
@@ -118,8 +153,21 @@ public final class GetIpamIpResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(@Nullable List<String> tags) {
+            this.tags = tags;
+            return this;
+        }
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder zonal(String zonal) {
+            this.zonal = Objects.requireNonNull(zonal);
             return this;
         }
         public GetIpamIpResult build() {
@@ -127,10 +175,14 @@ public final class GetIpamIpResult {
             o.address = address;
             o.id = id;
             o.macAddress = macAddress;
+            o.organizationId = organizationId;
             o.privateNetworkId = privateNetworkId;
+            o.projectId = projectId;
             o.region = region;
             o.resource = resource;
+            o.tags = tags;
             o.type = type;
+            o.zonal = zonal;
             return o;
         }
     }

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Bucket.
@@ -29,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
 //				Tags: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
@@ -37,12 +36,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
-//				Name: pulumi.StringRef("bucket.test.com"),
+//			_ = scaleway.LookupObjectBucketOutput(ctx, scaleway.GetObjectBucketOutputArgs{
+//				Name: main.ID(),
 //			}, nil)
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}
@@ -86,18 +82,18 @@ func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts 
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketArgs struct {
-	// The bucket name.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the Object Storage exists.
+	// `region`) The region in which the bucket exists.
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getObjectBucket.
 type LookupObjectBucketResult struct {
-	Acl       string                    `pulumi:"acl"`
-	CorsRules []GetObjectBucketCorsRule `pulumi:"corsRules"`
+	Acl         string                    `pulumi:"acl"`
+	ApiEndpoint string                    `pulumi:"apiEndpoint"`
+	CorsRules   []GetObjectBucketCorsRule `pulumi:"corsRules"`
 	// The endpoint URL of the bucket
 	Endpoint     string `pulumi:"endpoint"`
 	ForceDestroy bool   `pulumi:"forceDestroy"`
@@ -127,11 +123,10 @@ func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutput
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketOutputArgs struct {
-	// The bucket name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`) The region in which the Object Storage exists.
+	// `region`) The region in which the bucket exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -154,14 +149,12 @@ func (o LookupObjectBucketResultOutput) ToLookupObjectBucketResultOutputWithCont
 	return o
 }
 
-func (o LookupObjectBucketResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectBucketResult] {
-	return pulumix.Output[LookupObjectBucketResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LookupObjectBucketResultOutput) Acl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectBucketResult) string { return v.Acl }).(pulumi.StringOutput)
+}
+
+func (o LookupObjectBucketResultOutput) ApiEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupObjectBucketResult) string { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
 func (o LookupObjectBucketResultOutput) CorsRules() GetObjectBucketCorsRuleArrayOutput {

@@ -17,14 +17,14 @@ public final class CockpitTokenArgs extends com.pulumi.resources.ResourceArgs {
     public static final CockpitTokenArgs Empty = new CockpitTokenArgs();
 
     /**
-     * The name of the token
+     * The name of the token.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the token
+     * @return The name of the token.
      * 
      */
     public Optional<Output<String>> name() {
@@ -47,14 +47,14 @@ public final class CockpitTokenArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Allowed scopes
+     * Allowed scopes.
      * 
      */
     @Import(name="scopes")
     private @Nullable Output<CockpitTokenScopesArgs> scopes;
 
     /**
-     * @return Allowed scopes
+     * @return Allowed scopes.
      * 
      */
     public Optional<Output<CockpitTokenScopesArgs>> scopes() {
@@ -88,7 +88,7 @@ public final class CockpitTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the token
+         * @param name The name of the token.
          * 
          * @return builder
          * 
@@ -99,7 +99,7 @@ public final class CockpitTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the token
+         * @param name The name of the token.
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class CockpitTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Allowed scopes
+         * @param scopes Allowed scopes.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class CockpitTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Allowed scopes
+         * @param scopes Allowed scopes.
          * 
          * @return builder
          * 

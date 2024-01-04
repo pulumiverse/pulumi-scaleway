@@ -184,6 +184,20 @@ public class IamGroup extends com.pulumi.resources.CustomResource {
         return this.organizationId;
     }
     /**
+     * The tags associated with the group.
+     * 
+     */
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tags;
+
+    /**
+     * @return The tags associated with the group.
+     * 
+     */
+    public Output<Optional<List<String>>> tags() {
+        return Codegen.optional(this.tags);
+    }
+    /**
      * The date and time of the last update of the group
      * 
      */

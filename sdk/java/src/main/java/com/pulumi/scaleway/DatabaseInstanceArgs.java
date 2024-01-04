@@ -5,6 +5,7 @@ package com.pulumi.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.scaleway.inputs.DatabaseInstanceLoadBalancerArgs;
 import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -104,6 +105,8 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
      * 
      * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
      * 
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
+     * 
      */
     @Import(name="initSettings")
     private @Nullable Output<Map<String,String>> initSettings;
@@ -112,6 +115,8 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
      * @return Map of engine settings to be set at database initialisation.
      * 
      * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+     * 
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
      * 
      */
     public Optional<Output<Map<String,String>>> initSettings() {
@@ -138,6 +143,23 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
+     * 
+     */
+    @Import(name="loadBalancers")
+    private @Nullable Output<List<DatabaseInstanceLoadBalancerArgs>> loadBalancers;
+
+    /**
+     * @return List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
+     * 
+     */
+    public Optional<Output<List<DatabaseInstanceLoadBalancerArgs>>> loadBalancers() {
+        return Optional.ofNullable(this.loadBalancers);
+    }
+
+    /**
      * The name of the Database Instance.
      * 
      */
@@ -158,6 +180,9 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
      * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
      * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+     * 
      */
     @Import(name="nodeType", required=true)
     private Output<String> nodeType;
@@ -167,6 +192,9 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
      * 
      * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      * 
      */
     public Output<String> nodeType() {
@@ -289,12 +317,16 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
     /**
      * Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+     * 
      */
     @Import(name="volumeSizeInGb")
     private @Nullable Output<Integer> volumeSizeInGb;
 
     /**
      * @return Volume size (in GB) when `volume_type` is set to `bssd`.
+     * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
      * 
      */
     public Optional<Output<Integer>> volumeSizeInGb() {
@@ -326,6 +358,7 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
         this.engine = $.engine;
         this.initSettings = $.initSettings;
         this.isHaCluster = $.isHaCluster;
+        this.loadBalancers = $.loadBalancers;
         this.name = $.name;
         this.nodeType = $.nodeType;
         this.password = $.password;
@@ -471,6 +504,8 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
          * 
          * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
          * 
+         * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
+         * 
          * @return builder
          * 
          */
@@ -483,6 +518,8 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
          * @param initSettings Map of engine settings to be set at database initialisation.
          * 
          * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+         * 
+         * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
          * 
          * @return builder
          * 
@@ -517,6 +554,40 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param loadBalancers List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+         * This block must be defined if you want a public endpoint in addition to your private endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loadBalancers(@Nullable Output<List<DatabaseInstanceLoadBalancerArgs>> loadBalancers) {
+            $.loadBalancers = loadBalancers;
+            return this;
+        }
+
+        /**
+         * @param loadBalancers List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+         * This block must be defined if you want a public endpoint in addition to your private endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loadBalancers(List<DatabaseInstanceLoadBalancerArgs> loadBalancers) {
+            return loadBalancers(Output.of(loadBalancers));
+        }
+
+        /**
+         * @param loadBalancers List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+         * This block must be defined if you want a public endpoint in addition to your private endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loadBalancers(DatabaseInstanceLoadBalancerArgs... loadBalancers) {
+            return loadBalancers(List.of(loadBalancers));
+        }
+
+        /**
          * @param name The name of the Database Instance.
          * 
          * @return builder
@@ -543,6 +614,9 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
          * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
          * interruption. Keep in mind that you cannot downgrade a Database Instance.
          * 
+         * &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+         * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+         * 
          * @return builder
          * 
          */
@@ -556,6 +630,9 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
          * 
          * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
          * interruption. Keep in mind that you cannot downgrade a Database Instance.
+         * 
+         * &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+         * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
          * 
          * @return builder
          * 
@@ -732,6 +809,8 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`.
          * 
+         * &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+         * 
          * @return builder
          * 
          */
@@ -742,6 +821,8 @@ public final class DatabaseInstanceArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`.
+         * 
+         * &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
          * 
          * @return builder
          * 

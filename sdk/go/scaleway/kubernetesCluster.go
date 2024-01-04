@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
@@ -31,9 +30,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			if err != nil {
+//				return err
+//			}
 //			jack, err := scaleway.NewKubernetesCluster(ctx, "jack", &scaleway.KubernetesClusterArgs{
 //				Version:                   pulumi.String("1.24.3"),
 //				Cni:                       pulumi.String("cilium"),
+//				PrivateNetworkId:          hedy.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -107,6 +111,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			if err != nil {
+//				return err
+//			}
 //			johnKubernetesCluster, err := scaleway.NewKubernetesCluster(ctx, "johnKubernetesCluster", &scaleway.KubernetesClusterArgs{
 //				Description: pulumi.String("my awesome cluster"),
 //				Version:     pulumi.String("1.24.3"),
@@ -115,6 +123,7 @@ import (
 //					pulumi.String("i'm an awesome tag"),
 //					pulumi.String("yay"),
 //				},
+//				PrivateNetworkId:          hedy.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				AutoscalerConfig: &scaleway.KubernetesClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
@@ -192,10 +201,10 @@ type KubernetesCluster struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -299,10 +308,10 @@ type kubernetesClusterState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -364,10 +373,10 @@ type KubernetesClusterState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -425,10 +434,10 @@ type kubernetesClusterArgs struct {
 	OpenIdConnectConfig *KubernetesClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -475,10 +484,10 @@ type KubernetesClusterArgs struct {
 	OpenIdConnectConfig KubernetesClusterOpenIdConnectConfigPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -521,12 +530,6 @@ func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterOutput)
 }
 
-func (i *KubernetesCluster) ToOutput(ctx context.Context) pulumix.Output[*KubernetesCluster] {
-	return pulumix.Output[*KubernetesCluster]{
-		OutputState: i.ToKubernetesClusterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KubernetesClusterArrayInput is an input type that accepts KubernetesClusterArray and KubernetesClusterArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterArrayInput` via:
 //
@@ -550,12 +553,6 @@ func (i KubernetesClusterArray) ToKubernetesClusterArrayOutput() KubernetesClust
 
 func (i KubernetesClusterArray) ToKubernetesClusterArrayOutputWithContext(ctx context.Context) KubernetesClusterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterArrayOutput)
-}
-
-func (i KubernetesClusterArray) ToOutput(ctx context.Context) pulumix.Output[[]*KubernetesCluster] {
-	return pulumix.Output[[]*KubernetesCluster]{
-		OutputState: i.ToKubernetesClusterArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // KubernetesClusterMapInput is an input type that accepts KubernetesClusterMap and KubernetesClusterMapOutput values.
@@ -583,12 +580,6 @@ func (i KubernetesClusterMap) ToKubernetesClusterMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterMapOutput)
 }
 
-func (i KubernetesClusterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*KubernetesCluster] {
-	return pulumix.Output[map[string]*KubernetesCluster]{
-		OutputState: i.ToKubernetesClusterMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KubernetesClusterOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterOutput) ElementType() reflect.Type {
@@ -601,12 +592,6 @@ func (o KubernetesClusterOutput) ToKubernetesClusterOutput() KubernetesClusterOu
 
 func (o KubernetesClusterOutput) ToKubernetesClusterOutputWithContext(ctx context.Context) KubernetesClusterOutput {
 	return o
-}
-
-func (o KubernetesClusterOutput) ToOutput(ctx context.Context) pulumix.Output[*KubernetesCluster] {
-	return pulumix.Output[*KubernetesCluster]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
@@ -684,10 +669,10 @@ func (o KubernetesClusterOutput) OrganizationId() pulumi.StringOutput {
 
 // The ID of the private network of the cluster.
 //
-// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-// Any subsequent change after this field got set will prompt for cluster recreation.
+// > **Important:** Changes to this field will recreate a new resource.
 //
-// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 func (o KubernetesClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
@@ -757,12 +742,6 @@ func (o KubernetesClusterArrayOutput) ToKubernetesClusterArrayOutputWithContext(
 	return o
 }
 
-func (o KubernetesClusterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*KubernetesCluster] {
-	return pulumix.Output[[]*KubernetesCluster]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o KubernetesClusterArrayOutput) Index(i pulumi.IntInput) KubernetesClusterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *KubernetesCluster {
 		return vs[0].([]*KubernetesCluster)[vs[1].(int)]
@@ -781,12 +760,6 @@ func (o KubernetesClusterMapOutput) ToKubernetesClusterMapOutput() KubernetesClu
 
 func (o KubernetesClusterMapOutput) ToKubernetesClusterMapOutputWithContext(ctx context.Context) KubernetesClusterMapOutput {
 	return o
-}
-
-func (o KubernetesClusterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*KubernetesCluster] {
-	return pulumix.Output[map[string]*KubernetesCluster]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KubernetesClusterMapOutput) MapIndex(k pulumi.StringInput) KubernetesClusterOutput {

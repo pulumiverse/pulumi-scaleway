@@ -229,7 +229,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> RegistryImage { get; private set; } = null!;
 
         /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         [Output("registrySha256")]
         public Output<string?> RegistrySha256 { get; private set; } = null!;
@@ -412,7 +412,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? RegistryImage { get; set; }
 
         /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }
@@ -580,7 +580,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? RegistryImage { get; set; }
 
         /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }

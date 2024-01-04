@@ -14,11 +14,16 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     [OutputType]
     public sealed class GetVpcGatewayNetworkIpamConfigResult
     {
+        public readonly string IpamIpId;
         public readonly bool PushDefaultRoute;
 
         [OutputConstructor]
-        private GetVpcGatewayNetworkIpamConfigResult(bool pushDefaultRoute)
+        private GetVpcGatewayNetworkIpamConfigResult(
+            string ipamIpId,
+
+            bool pushDefaultRoute)
         {
+            IpamIpId = ipamIpId;
             PushDefaultRoute = pushDefaultRoute;
         }
     }

@@ -12,6 +12,7 @@ import com.pulumi.scaleway.Utilities;
 import com.pulumi.scaleway.inputs.IamApplicationState;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -102,14 +103,14 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
         return this.editable;
     }
     /**
-     * .The name of the iam application.
+     * The name of the iam application.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return .The name of the iam application.
+     * @return The name of the iam application.
      * 
      */
     public Output<String> name() {
@@ -128,6 +129,20 @@ public class IamApplication extends com.pulumi.resources.CustomResource {
      */
     public Output<String> organizationId() {
         return this.organizationId;
+    }
+    /**
+     * The tags associated with the application.
+     * 
+     */
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tags;
+
+    /**
+     * @return The tags associated with the application.
+     * 
+     */
+    public Output<Optional<List<String>>> tags() {
+        return Codegen.optional(this.tags);
     }
     /**
      * The date and time of the last update of the application.

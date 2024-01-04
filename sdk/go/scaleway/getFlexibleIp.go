@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Flexible IP.
@@ -96,12 +95,6 @@ func (o LookupFlexibleIpResultOutput) ToLookupFlexibleIpResultOutput() LookupFle
 
 func (o LookupFlexibleIpResultOutput) ToLookupFlexibleIpResultOutputWithContext(ctx context.Context) LookupFlexibleIpResultOutput {
 	return o
-}
-
-func (o LookupFlexibleIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFlexibleIpResult] {
-	return pulumix.Output[LookupFlexibleIpResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupFlexibleIpResultOutput) CreatedAt() pulumi.StringOutput {

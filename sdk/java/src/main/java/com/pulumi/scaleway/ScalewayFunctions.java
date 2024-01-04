@@ -25,6 +25,10 @@ import com.pulumi.scaleway.inputs.GetBaremetalServerArgs;
 import com.pulumi.scaleway.inputs.GetBaremetalServerPlainArgs;
 import com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;
 import com.pulumi.scaleway.inputs.GetBillingInvoicesPlainArgs;
+import com.pulumi.scaleway.inputs.GetBlockSnapshotArgs;
+import com.pulumi.scaleway.inputs.GetBlockSnapshotPlainArgs;
+import com.pulumi.scaleway.inputs.GetBlockVolumeArgs;
+import com.pulumi.scaleway.inputs.GetBlockVolumePlainArgs;
 import com.pulumi.scaleway.inputs.GetCockpitArgs;
 import com.pulumi.scaleway.inputs.GetCockpitPlainArgs;
 import com.pulumi.scaleway.inputs.GetCockpitPlanArgs;
@@ -172,6 +176,8 @@ import com.pulumi.scaleway.outputs.GetBaremetalOsResult;
 import com.pulumi.scaleway.outputs.GetBaremetalServerResult;
 import com.pulumi.scaleway.outputs.GetBillingConsumptionsResult;
 import com.pulumi.scaleway.outputs.GetBillingInvoicesResult;
+import com.pulumi.scaleway.outputs.GetBlockSnapshotResult;
+import com.pulumi.scaleway.outputs.GetBlockVolumeResult;
 import com.pulumi.scaleway.outputs.GetCockpitPlanResult;
 import com.pulumi.scaleway.outputs.GetCockpitResult;
 import com.pulumi.scaleway.outputs.GetContainerNamespaceResult;
@@ -2199,6 +2205,42 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetBillingInvoicesResult> getBillingInvoicesPlain(GetBillingInvoicesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getBillingInvoices:getBillingInvoices", TypeShape.of(GetBillingInvoicesResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetBlockSnapshotResult> getBlockSnapshot() {
+        return getBlockSnapshot(GetBlockSnapshotArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBlockSnapshotResult> getBlockSnapshotPlain() {
+        return getBlockSnapshotPlain(GetBlockSnapshotPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetBlockSnapshotResult> getBlockSnapshot(GetBlockSnapshotArgs args) {
+        return getBlockSnapshot(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBlockSnapshotResult> getBlockSnapshotPlain(GetBlockSnapshotPlainArgs args) {
+        return getBlockSnapshotPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetBlockSnapshotResult> getBlockSnapshot(GetBlockSnapshotArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getBlockSnapshot:getBlockSnapshot", TypeShape.of(GetBlockSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetBlockSnapshotResult> getBlockSnapshotPlain(GetBlockSnapshotPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getBlockSnapshot:getBlockSnapshot", TypeShape.of(GetBlockSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetBlockVolumeResult> getBlockVolume() {
+        return getBlockVolume(GetBlockVolumeArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBlockVolumeResult> getBlockVolumePlain() {
+        return getBlockVolumePlain(GetBlockVolumePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetBlockVolumeResult> getBlockVolume(GetBlockVolumeArgs args) {
+        return getBlockVolume(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetBlockVolumeResult> getBlockVolumePlain(GetBlockVolumePlainArgs args) {
+        return getBlockVolumePlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetBlockVolumeResult> getBlockVolume(GetBlockVolumeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getBlockVolume:getBlockVolume", TypeShape.of(GetBlockVolumeResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetBlockVolumeResult> getBlockVolumePlain(GetBlockVolumePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getBlockVolume:getBlockVolume", TypeShape.of(GetBlockVolumeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about the Scaleway Cockpit.
@@ -9002,11 +9044,15 @@ public final class ScalewayFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.VpcPrivateNetwork;
      * import com.pulumi.scaleway.InstancePrivateNic;
      * import com.pulumi.scaleway.InstancePrivateNicArgs;
      * import com.pulumi.scaleway.ScalewayFunctions;
      * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
      * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import com.pulumi.scaleway.DatabaseInstance;
+     * import com.pulumi.scaleway.DatabaseInstanceArgs;
+     * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -9020,9 +9066,11 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         var pn = new VpcPrivateNetwork(&#34;pn&#34;);
+     * 
      *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
      *             .serverId(scaleway_instance_server.server().id())
-     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .privateNetworkId(pn.id())
      *             .build());
      * 
      *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
@@ -9034,6 +9082,26 @@ public final class ScalewayFunctions {
      *             .resource(GetIpamIpResourceArgs.builder()
      *                 .id(nic.id())
      *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+     *             .nodeType(&#34;DB-DEV-S&#34;)
+     *             .engine(&#34;PostgreSQL-15&#34;)
+     *             .isHaCluster(true)
+     *             .disableBackup(true)
+     *             .userName(&#34;my_initial_user&#34;)
+     *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+     *             .privateNetwork(DatabaseInstancePrivateNetworkArgs.builder()
+     *                 .pnId(pn.id())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .name(main.name())
+     *                 .type(&#34;rdb_instance&#34;)
      *                 .build())
      *             .type(&#34;ipv4&#34;)
      *             .build());
@@ -9058,11 +9126,15 @@ public final class ScalewayFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.VpcPrivateNetwork;
      * import com.pulumi.scaleway.InstancePrivateNic;
      * import com.pulumi.scaleway.InstancePrivateNicArgs;
      * import com.pulumi.scaleway.ScalewayFunctions;
      * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
      * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import com.pulumi.scaleway.DatabaseInstance;
+     * import com.pulumi.scaleway.DatabaseInstanceArgs;
+     * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -9076,9 +9148,11 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         var pn = new VpcPrivateNetwork(&#34;pn&#34;);
+     * 
      *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
      *             .serverId(scaleway_instance_server.server().id())
-     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .privateNetworkId(pn.id())
      *             .build());
      * 
      *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
@@ -9090,6 +9164,26 @@ public final class ScalewayFunctions {
      *             .resource(GetIpamIpResourceArgs.builder()
      *                 .id(nic.id())
      *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+     *             .nodeType(&#34;DB-DEV-S&#34;)
+     *             .engine(&#34;PostgreSQL-15&#34;)
+     *             .isHaCluster(true)
+     *             .disableBackup(true)
+     *             .userName(&#34;my_initial_user&#34;)
+     *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+     *             .privateNetwork(DatabaseInstancePrivateNetworkArgs.builder()
+     *                 .pnId(pn.id())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .name(main.name())
+     *                 .type(&#34;rdb_instance&#34;)
      *                 .build())
      *             .type(&#34;ipv4&#34;)
      *             .build());
@@ -9114,11 +9208,15 @@ public final class ScalewayFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.VpcPrivateNetwork;
      * import com.pulumi.scaleway.InstancePrivateNic;
      * import com.pulumi.scaleway.InstancePrivateNicArgs;
      * import com.pulumi.scaleway.ScalewayFunctions;
      * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
      * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import com.pulumi.scaleway.DatabaseInstance;
+     * import com.pulumi.scaleway.DatabaseInstanceArgs;
+     * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -9132,9 +9230,11 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         var pn = new VpcPrivateNetwork(&#34;pn&#34;);
+     * 
      *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
      *             .serverId(scaleway_instance_server.server().id())
-     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .privateNetworkId(pn.id())
      *             .build());
      * 
      *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
@@ -9146,6 +9246,26 @@ public final class ScalewayFunctions {
      *             .resource(GetIpamIpResourceArgs.builder()
      *                 .id(nic.id())
      *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+     *             .nodeType(&#34;DB-DEV-S&#34;)
+     *             .engine(&#34;PostgreSQL-15&#34;)
+     *             .isHaCluster(true)
+     *             .disableBackup(true)
+     *             .userName(&#34;my_initial_user&#34;)
+     *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+     *             .privateNetwork(DatabaseInstancePrivateNetworkArgs.builder()
+     *                 .pnId(pn.id())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .name(main.name())
+     *                 .type(&#34;rdb_instance&#34;)
      *                 .build())
      *             .type(&#34;ipv4&#34;)
      *             .build());
@@ -9170,11 +9290,15 @@ public final class ScalewayFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.VpcPrivateNetwork;
      * import com.pulumi.scaleway.InstancePrivateNic;
      * import com.pulumi.scaleway.InstancePrivateNicArgs;
      * import com.pulumi.scaleway.ScalewayFunctions;
      * import com.pulumi.scaleway.inputs.GetIpamIpArgs;
      * import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
+     * import com.pulumi.scaleway.DatabaseInstance;
+     * import com.pulumi.scaleway.DatabaseInstanceArgs;
+     * import com.pulumi.scaleway.inputs.DatabaseInstancePrivateNetworkArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -9188,9 +9312,11 @@ public final class ScalewayFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         var pn = new VpcPrivateNetwork(&#34;pn&#34;);
+     * 
      *         var nic = new InstancePrivateNic(&#34;nic&#34;, InstancePrivateNicArgs.builder()        
      *             .serverId(scaleway_instance_server.server().id())
-     *             .privateNetworkId(scaleway_vpc_private_network.pn().id())
+     *             .privateNetworkId(pn.id())
      *             .build());
      * 
      *         final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
@@ -9202,6 +9328,26 @@ public final class ScalewayFunctions {
      *             .resource(GetIpamIpResourceArgs.builder()
      *                 .id(nic.id())
      *                 .type(&#34;instance_private_nic&#34;)
+     *                 .build())
+     *             .type(&#34;ipv4&#34;)
+     *             .build());
+     * 
+     *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+     *             .nodeType(&#34;DB-DEV-S&#34;)
+     *             .engine(&#34;PostgreSQL-15&#34;)
+     *             .isHaCluster(true)
+     *             .disableBackup(true)
+     *             .userName(&#34;my_initial_user&#34;)
+     *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+     *             .privateNetwork(DatabaseInstancePrivateNetworkArgs.builder()
+     *                 .pnId(pn.id())
+     *                 .build())
+     *             .build());
+     * 
+     *         final var byName = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()
+     *             .resource(GetIpamIpResourceArgs.builder()
+     *                 .name(main.name())
+     *                 .type(&#34;rdb_instance&#34;)
      *                 .build())
      *             .type(&#34;ipv4&#34;)
      *             .build());
@@ -13201,7 +13347,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
-     *             .name(&#34;bucket.test.com&#34;)
+     *             .name(main.id())
      *             .build());
      * 
      *     }
@@ -13275,7 +13421,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
-     *             .name(&#34;bucket.test.com&#34;)
+     *             .name(main.id())
      *             .build());
      * 
      *     }
@@ -13349,7 +13495,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
-     *             .name(&#34;bucket.test.com&#34;)
+     *             .name(main.id())
      *             .build());
      * 
      *     }
@@ -13423,7 +13569,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
-     *             .name(&#34;bucket.test.com&#34;)
+     *             .name(main.id())
      *             .build());
      * 
      *     }
@@ -13497,7 +13643,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
-     *             .name(&#34;bucket.test.com&#34;)
+     *             .name(main.id())
      *             .build());
      * 
      *     }
@@ -13571,7 +13717,7 @@ public final class ScalewayFunctions {
      *             .build());
      * 
      *         final var selected = ScalewayFunctions.getObjectBucket(GetObjectBucketArgs.builder()
-     *             .name(&#34;bucket.test.com&#34;)
+     *             .name(main.id())
      *             .build());
      * 
      *     }
@@ -14758,7 +14904,6 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14781,7 +14926,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
-     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .domainId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14796,7 +14941,6 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14819,7 +14963,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
-     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .domainId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14834,7 +14978,6 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14857,7 +15000,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
-     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .domainId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14872,7 +15015,6 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14895,7 +15037,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
-     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .domainId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14910,7 +15052,6 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14933,7 +15074,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
-     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .domainId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }
@@ -14948,7 +15089,6 @@ public final class ScalewayFunctions {
      * Gets information about a transactional email domain.
      * 
      * ## Example Usage
-     * 
      * ```java
      * package generated_program;
      * 
@@ -14971,7 +15111,7 @@ public final class ScalewayFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()
-     *             .id(&#34;11111111-1111-1111-1111-111111111111&#34;)
+     *             .domainId(&#34;11111111-1111-1111-1111-111111111111&#34;)
      *             .build());
      * 
      *     }

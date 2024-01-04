@@ -118,6 +118,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> LastValidAt { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway's blackhole MX server to use if you do not have one.
+        /// </summary>
+        [Output("mxBlackhole")]
+        public Output<string> MxBlackhole { get; private set; } = null!;
+
+        /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
         /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
@@ -143,43 +149,49 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
+        /// The domain's reputation.
+        /// </summary>
+        [Output("reputations")]
+        public Output<ImmutableArray<Outputs.TemDomainReputation>> Reputations { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the revocation of the domain (RFC 3339 format).
         /// </summary>
         [Output("revokedAt")]
         public Output<string> RevokedAt { get; private set; } = null!;
 
         /// <summary>
-        /// SMTP host to use to send emails
+        /// The SMTP host to use to send emails.
         /// </summary>
         [Output("smtpHost")]
         public Output<string> SmtpHost { get; private set; } = null!;
 
         /// <summary>
-        /// SMTP port to use to send emails over TLS. (Port 587)
+        /// The SMTP port to use to send emails over TLS.
         /// </summary>
         [Output("smtpPort")]
         public Output<int> SmtpPort { get; private set; } = null!;
 
         /// <summary>
-        /// SMTP port to use to send emails over TLS. (Port 2587)
+        /// The SMTP port to use to send emails over TLS.
         /// </summary>
         [Output("smtpPortAlternative")]
         public Output<int> SmtpPortAlternative { get; private set; } = null!;
 
         /// <summary>
-        /// SMTP port to use to send emails. (Port 25)
+        /// The SMTP port to use to send emails.
         /// </summary>
         [Output("smtpPortUnsecure")]
         public Output<int> SmtpPortUnsecure { get; private set; } = null!;
 
         /// <summary>
-        /// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        /// The SMTPS port to use to send emails over TLS Wrapper.
         /// </summary>
         [Output("smtpsPort")]
         public Output<int> SmtpsPort { get; private set; } = null!;
 
         /// <summary>
-        /// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        /// The SMTPS port to use to send emails over TLS Wrapper.
         /// </summary>
         [Output("smtpsPortAlternative")]
         public Output<int> SmtpsPortAlternative { get; private set; } = null!;
@@ -191,7 +203,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> SpfConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the Transaction Email Domain.
+        /// The status of the domain's reputation.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -309,6 +321,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? LastValidAt { get; set; }
 
         /// <summary>
+        /// The Scaleway's blackhole MX server to use if you do not have one.
+        /// </summary>
+        [Input("mxBlackhole")]
+        public Input<string>? MxBlackhole { get; set; }
+
+        /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
         /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
@@ -333,6 +351,18 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("reputations")]
+        private InputList<Inputs.TemDomainReputationGetArgs>? _reputations;
+
+        /// <summary>
+        /// The domain's reputation.
+        /// </summary>
+        public InputList<Inputs.TemDomainReputationGetArgs> Reputations
+        {
+            get => _reputations ?? (_reputations = new InputList<Inputs.TemDomainReputationGetArgs>());
+            set => _reputations = value;
+        }
+
         /// <summary>
         /// The date and time of the revocation of the domain (RFC 3339 format).
         /// </summary>
@@ -340,37 +370,37 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? RevokedAt { get; set; }
 
         /// <summary>
-        /// SMTP host to use to send emails
+        /// The SMTP host to use to send emails.
         /// </summary>
         [Input("smtpHost")]
         public Input<string>? SmtpHost { get; set; }
 
         /// <summary>
-        /// SMTP port to use to send emails over TLS. (Port 587)
+        /// The SMTP port to use to send emails over TLS.
         /// </summary>
         [Input("smtpPort")]
         public Input<int>? SmtpPort { get; set; }
 
         /// <summary>
-        /// SMTP port to use to send emails over TLS. (Port 2587)
+        /// The SMTP port to use to send emails over TLS.
         /// </summary>
         [Input("smtpPortAlternative")]
         public Input<int>? SmtpPortAlternative { get; set; }
 
         /// <summary>
-        /// SMTP port to use to send emails. (Port 25)
+        /// The SMTP port to use to send emails.
         /// </summary>
         [Input("smtpPortUnsecure")]
         public Input<int>? SmtpPortUnsecure { get; set; }
 
         /// <summary>
-        /// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+        /// The SMTPS port to use to send emails over TLS Wrapper.
         /// </summary>
         [Input("smtpsPort")]
         public Input<int>? SmtpsPort { get; set; }
 
         /// <summary>
-        /// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+        /// The SMTPS port to use to send emails over TLS Wrapper.
         /// </summary>
         [Input("smtpsPortAlternative")]
         public Input<int>? SmtpsPortAlternative { get; set; }
@@ -382,7 +412,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? SpfConfig { get; set; }
 
         /// <summary>
-        /// The status of the Transaction Email Domain.
+        /// The status of the domain's reputation.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

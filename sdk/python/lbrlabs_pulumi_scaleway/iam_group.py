@@ -19,6 +19,7 @@ class IamGroupArgs:
                  external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a IamGroup resource.
@@ -27,6 +28,7 @@ class IamGroupArgs:
         :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
         """
         if application_ids is not None:
@@ -39,6 +41,8 @@ class IamGroupArgs:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if user_ids is not None:
             pulumi.set(__self__, "user_ids", user_ids)
 
@@ -103,6 +107,18 @@ class IamGroupArgs:
         pulumi.set(self, "organization_id", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the group.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="userIds")
     def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -124,6 +140,7 @@ class _IamGroupState:
                  external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -134,6 +151,7 @@ class _IamGroupState:
         :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the group.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the group
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
         """
@@ -149,6 +167,8 @@ class _IamGroupState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if user_ids is not None:
@@ -227,6 +247,18 @@ class _IamGroupState:
         pulumi.set(self, "organization_id", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the group.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
@@ -261,6 +293,7 @@ class IamGroup(pulumi.CustomResource):
                  external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -308,6 +341,7 @@ class IamGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
         """
         ...
@@ -374,6 +408,7 @@ class IamGroup(pulumi.CustomResource):
                  external_membership: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -389,6 +424,7 @@ class IamGroup(pulumi.CustomResource):
             __props__.__dict__["external_membership"] = external_membership
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["user_ids"] = user_ids
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
@@ -408,6 +444,7 @@ class IamGroup(pulumi.CustomResource):
             external_membership: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'IamGroup':
         """
@@ -423,6 +460,7 @@ class IamGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[str] name: The name of the IAM group.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the group.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the group
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
         """
@@ -436,6 +474,7 @@ class IamGroup(pulumi.CustomResource):
         __props__.__dict__["external_membership"] = external_membership
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_ids"] = user_ids
         return IamGroup(resource_name, opts=opts, __props__=__props__)
@@ -487,6 +526,14 @@ class IamGroup(pulumi.CustomResource):
         `organization_id`) The ID of the organization the group is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The tags associated with the group.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")

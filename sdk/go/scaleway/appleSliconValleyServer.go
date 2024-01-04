@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Apple silicon M1. For more information,
@@ -50,7 +49,7 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+//	$ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer main fr-par-1/11111111-1111-1111-1111-111111111111
 //
 // ```
 type AppleSliconValleyServer struct {
@@ -69,8 +68,7 @@ type AppleSliconValleyServer struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The state of the server. Check the possible values on
-	// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+	// The state of the server.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
@@ -131,8 +129,7 @@ type appleSliconValleyServerState struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The state of the server. Check the possible values on
-	// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+	// The state of the server.
 	State *string `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
@@ -161,8 +158,7 @@ type AppleSliconValleyServerState struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// The state of the server. Check the possible values on
-	// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+	// The state of the server.
 	State pulumi.StringPtrInput
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
@@ -235,12 +231,6 @@ func (i *AppleSliconValleyServer) ToAppleSliconValleyServerOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerOutput)
 }
 
-func (i *AppleSliconValleyServer) ToOutput(ctx context.Context) pulumix.Output[*AppleSliconValleyServer] {
-	return pulumix.Output[*AppleSliconValleyServer]{
-		OutputState: i.ToAppleSliconValleyServerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AppleSliconValleyServerArrayInput is an input type that accepts AppleSliconValleyServerArray and AppleSliconValleyServerArrayOutput values.
 // You can construct a concrete instance of `AppleSliconValleyServerArrayInput` via:
 //
@@ -264,12 +254,6 @@ func (i AppleSliconValleyServerArray) ToAppleSliconValleyServerArrayOutput() App
 
 func (i AppleSliconValleyServerArray) ToAppleSliconValleyServerArrayOutputWithContext(ctx context.Context) AppleSliconValleyServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerArrayOutput)
-}
-
-func (i AppleSliconValleyServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*AppleSliconValleyServer] {
-	return pulumix.Output[[]*AppleSliconValleyServer]{
-		OutputState: i.ToAppleSliconValleyServerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AppleSliconValleyServerMapInput is an input type that accepts AppleSliconValleyServerMap and AppleSliconValleyServerMapOutput values.
@@ -297,12 +281,6 @@ func (i AppleSliconValleyServerMap) ToAppleSliconValleyServerMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSliconValleyServerMapOutput)
 }
 
-func (i AppleSliconValleyServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AppleSliconValleyServer] {
-	return pulumix.Output[map[string]*AppleSliconValleyServer]{
-		OutputState: i.ToAppleSliconValleyServerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AppleSliconValleyServerOutput struct{ *pulumi.OutputState }
 
 func (AppleSliconValleyServerOutput) ElementType() reflect.Type {
@@ -315,12 +293,6 @@ func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutput() AppleSl
 
 func (o AppleSliconValleyServerOutput) ToAppleSliconValleyServerOutputWithContext(ctx context.Context) AppleSliconValleyServerOutput {
 	return o
-}
-
-func (o AppleSliconValleyServerOutput) ToOutput(ctx context.Context) pulumix.Output[*AppleSliconValleyServer] {
-	return pulumix.Output[*AppleSliconValleyServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the Apple Silicon server.
@@ -354,8 +326,7 @@ func (o AppleSliconValleyServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The state of the server. Check the possible values on
-// our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+// The state of the server.
 func (o AppleSliconValleyServerOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
@@ -397,12 +368,6 @@ func (o AppleSliconValleyServerArrayOutput) ToAppleSliconValleyServerArrayOutput
 	return o
 }
 
-func (o AppleSliconValleyServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AppleSliconValleyServer] {
-	return pulumix.Output[[]*AppleSliconValleyServer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AppleSliconValleyServerArrayOutput) Index(i pulumi.IntInput) AppleSliconValleyServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AppleSliconValleyServer {
 		return vs[0].([]*AppleSliconValleyServer)[vs[1].(int)]
@@ -421,12 +386,6 @@ func (o AppleSliconValleyServerMapOutput) ToAppleSliconValleyServerMapOutput() A
 
 func (o AppleSliconValleyServerMapOutput) ToAppleSliconValleyServerMapOutputWithContext(ctx context.Context) AppleSliconValleyServerMapOutput {
 	return o
-}
-
-func (o AppleSliconValleyServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AppleSliconValleyServer] {
-	return pulumix.Output[map[string]*AppleSliconValleyServer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AppleSliconValleyServerMapOutput) MapIndex(k pulumi.StringInput) AppleSliconValleyServerOutput {

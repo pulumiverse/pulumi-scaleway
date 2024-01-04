@@ -10,13 +10,13 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway object storage bucket policy.
-// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
+// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
 //
 // ## Example Usage
+// ### Example with an IAM user
 //
 // ```go
 // package main
@@ -33,34 +33,326 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			main, err := scaleway.NewIamApplication(ctx, "main", &scaleway.IamApplicationArgs{
-//				Description: pulumi.String("a description"),
+//			user, err := scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
+//				Email: pulumi.StringRef("user@scaleway.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamPolicy(ctx, "policyIamPolicy", &scaleway.IamPolicyArgs{
+//				UserId: *pulumi.String(user.Id),
+//				Rules: scaleway.IamPolicyRuleArray{
+//					&scaleway.IamPolicyRuleArgs{
+//						ProjectIds: pulumi.StringArray{
+//							*pulumi.String(_default.Id),
+//						},
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("ObjectStorageFullAccess"),
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policyObjectBucketPolicy", &scaleway.ObjectBucketPolicyArgs{
 //				Bucket: bucket.Name,
-//				Policy: pulumi.All(main.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
-//					id := _args[0].(string)
-//					bucketName := _args[1].(string)
-//					bucketName1 := _args[2].(string)
+//				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
+//					bucketName := _args[0].(string)
+//					bucketName1 := _args[1].(string)
 //					var _zero string
 //					tmpJSON0, err := json.Marshal(map[string]interface{}{
 //						"Version": "2023-04-17",
 //						"Id":      "MyBucketPolicy",
 //						"Statement": []map[string]interface{}{
 //							map[string]interface{}{
-//								"Sid":    "Delegate access",
+//								"Effect": "Allow",
+//								"Action": []string{
+//									"s3:*",
+//								},
+//								"Principal": map[string]interface{}{
+//									"SCW": fmt.Sprintf("user_id:%v", user.Id),
+//								},
+//								"Resource": []string{
+//									bucketName,
+//									fmt.Sprintf("%v/*", bucketName1),
+//								},
+//							},
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return json0, nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example with an IAM application
+// ### Creating a bucket and delegating read access to an application
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//	"fmt"
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamApplication(ctx, "reading-app", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamPolicy(ctx, "policyIamPolicy", &scaleway.IamPolicyArgs{
+//				ApplicationId: reading_app.ID(),
+//				Rules: scaleway.IamPolicyRuleArray{
+//					&scaleway.IamPolicyRuleArgs{
+//						ProjectIds: pulumi.StringArray{
+//							*pulumi.String(_default.Id),
+//						},
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("ObjectStorageBucketsRead"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policyObjectBucketPolicy", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.ID(),
+//				Policy: pulumi.All(reading_app.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
+//					id := _args[0].(string)
+//					bucketName := _args[1].(string)
+//					bucketName1 := _args[2].(string)
+//					var _zero string
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"Version": "2023-04-17",
+//						"Statement": []map[string]interface{}{
+//							map[string]interface{}{
+//								"Sid":    "Delegate read access",
 //								"Effect": "Allow",
 //								"Principal": map[string]interface{}{
 //									"SCW": fmt.Sprintf("application_id:%v", id),
 //								},
-//								"Action": "s3:ListBucket",
+//								"Action": []string{
+//									"s3:ListBucket",
+//									"s3:GetObject",
+//								},
+//								"Resource": []string{
+//									bucketName,
+//									fmt.Sprintf("%v/*", bucketName1),
+//								},
+//							},
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return json0, nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Reading the bucket with the application
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			reading_app, err := scaleway.LookupIamApplication(ctx, &scaleway.LookupIamApplicationArgs{
+//				Name: pulumi.StringRef("reading-app"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamApiKey(ctx, "reading-api-key", &scaleway.IamApiKeyArgs{
+//				ApplicationId: *pulumi.String(reading_app.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewProvider(ctx, "reading-profile", &scaleway.ProviderArgs{
+//				AccessKey: reading_api_key.AccessKey,
+//				SecretKey: reading_api_key.SecretKey,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
+//				Name: pulumi.StringRef("some-unique-name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example with AWS provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			policy := iam.GetPolicyDocumentOutput(ctx, iam.GetPolicyDocumentOutputArgs{
+//				Version: pulumi.String("2012-10-17"),
+//				Statements: iam.GetPolicyDocumentStatementArray{
+//					&iam.GetPolicyDocumentStatementArgs{
+//						Sid:    pulumi.String("Delegate access"),
+//						Effect: pulumi.String("Allow"),
+//						Principals: iam.GetPolicyDocumentStatementPrincipalArray{
+//							&iam.GetPolicyDocumentStatementPrincipalArgs{
+//								Type: pulumi.String("SCW"),
+//								Identifiers: pulumi.StringArray{
+//									pulumi.String(fmt.Sprintf("project_id:%v", _default.Id)),
+//								},
+//							},
+//						},
+//						Actions: pulumi.StringArray{
+//							pulumi.String("s3:ListBucket"),
+//						},
+//						Resources: pulumi.StringArray{
+//							bucket.Name,
+//							bucket.Name.ApplyT(func(name string) (string, error) {
+//								return fmt.Sprintf("%v/*", name), nil
+//							}).(pulumi.StringOutput),
+//						},
+//					},
+//				},
+//			}, nil)
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.ID(),
+//				Policy: policy.ApplyT(func(policy iam.GetPolicyDocumentResult) (*string, error) {
+//					return &policy.Json, nil
+//				}).(pulumi.StringPtrOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example with deprecated version 2012-10-17
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//	"fmt"
+//
+//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//				Region: pulumi.String("fr-par"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.Name,
+//				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
+//					bucketName := _args[0].(string)
+//					bucketName1 := _args[1].(string)
+//					var _zero string
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"Version": "2012-10-17",
+//						"Statement": []map[string]interface{}{
+//							map[string]interface{}{
+//								"Effect": "Allow",
+//								"Action": []string{
+//									"s3:ListBucket",
+//									"s3:GetObjectTagging",
+//								},
+//								"Principal": map[string]interface{}{
+//									"SCW": fmt.Sprintf("project_id:%v", _default.Id),
+//								},
 //								"Resource": []string{
 //									bucketName,
 //									fmt.Sprintf("%v/*", bucketName1),
@@ -84,6 +376,8 @@ import (
 //
 // ```
 //
+// **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+//
 // ## Import
 //
 // Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
@@ -96,7 +390,7 @@ import (
 type ObjectBucketPolicy struct {
 	pulumi.CustomResourceState
 
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The text of the policy.
 	Policy pulumi.StringOutput `pulumi:"policy"`
@@ -144,7 +438,7 @@ func GetObjectBucketPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectBucketPolicy resources.
 type objectBucketPolicyState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The text of the policy.
 	Policy *string `pulumi:"policy"`
@@ -157,7 +451,7 @@ type objectBucketPolicyState struct {
 }
 
 type ObjectBucketPolicyState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The text of the policy.
 	Policy pulumi.StringPtrInput
@@ -174,7 +468,7 @@ func (ObjectBucketPolicyState) ElementType() reflect.Type {
 }
 
 type objectBucketPolicyArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The text of the policy.
 	Policy string `pulumi:"policy"`
@@ -188,7 +482,7 @@ type objectBucketPolicyArgs struct {
 
 // The set of arguments for constructing a ObjectBucketPolicy resource.
 type ObjectBucketPolicyArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The text of the policy.
 	Policy pulumi.StringInput
@@ -223,12 +517,6 @@ func (i *ObjectBucketPolicy) ToObjectBucketPolicyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketPolicyOutput)
 }
 
-func (i *ObjectBucketPolicy) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketPolicy] {
-	return pulumix.Output[*ObjectBucketPolicy]{
-		OutputState: i.ToObjectBucketPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ObjectBucketPolicyArrayInput is an input type that accepts ObjectBucketPolicyArray and ObjectBucketPolicyArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketPolicyArrayInput` via:
 //
@@ -252,12 +540,6 @@ func (i ObjectBucketPolicyArray) ToObjectBucketPolicyArrayOutput() ObjectBucketP
 
 func (i ObjectBucketPolicyArray) ToObjectBucketPolicyArrayOutputWithContext(ctx context.Context) ObjectBucketPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketPolicyArrayOutput)
-}
-
-func (i ObjectBucketPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketPolicy] {
-	return pulumix.Output[[]*ObjectBucketPolicy]{
-		OutputState: i.ToObjectBucketPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ObjectBucketPolicyMapInput is an input type that accepts ObjectBucketPolicyMap and ObjectBucketPolicyMapOutput values.
@@ -285,12 +567,6 @@ func (i ObjectBucketPolicyMap) ToObjectBucketPolicyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketPolicyMapOutput)
 }
 
-func (i ObjectBucketPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketPolicy] {
-	return pulumix.Output[map[string]*ObjectBucketPolicy]{
-		OutputState: i.ToObjectBucketPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ObjectBucketPolicyOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketPolicyOutput) ElementType() reflect.Type {
@@ -305,13 +581,7 @@ func (o ObjectBucketPolicyOutput) ToObjectBucketPolicyOutputWithContext(ctx cont
 	return o
 }
 
-func (o ObjectBucketPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketPolicy] {
-	return pulumix.Output[*ObjectBucketPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectBucketPolicyOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -347,12 +617,6 @@ func (o ObjectBucketPolicyArrayOutput) ToObjectBucketPolicyArrayOutputWithContex
 	return o
 }
 
-func (o ObjectBucketPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketPolicy] {
-	return pulumix.Output[[]*ObjectBucketPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ObjectBucketPolicyArrayOutput) Index(i pulumi.IntInput) ObjectBucketPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucketPolicy {
 		return vs[0].([]*ObjectBucketPolicy)[vs[1].(int)]
@@ -371,12 +635,6 @@ func (o ObjectBucketPolicyMapOutput) ToObjectBucketPolicyMapOutput() ObjectBucke
 
 func (o ObjectBucketPolicyMapOutput) ToObjectBucketPolicyMapOutputWithContext(ctx context.Context) ObjectBucketPolicyMapOutput {
 	return o
-}
-
-func (o ObjectBucketPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketPolicy] {
-	return pulumix.Output[map[string]*ObjectBucketPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ObjectBucketPolicyMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketPolicyOutput {

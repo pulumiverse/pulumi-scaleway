@@ -17,9 +17,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
+ * const hedy = new scaleway.VpcPrivateNetwork("hedy", {});
  * const jack = new scaleway.KubernetesCluster("jack", {
  *     version: "1.24.3",
  *     cni: "cilium",
+ *     privateNetworkId: hedy.id,
  *     deleteAdditionalResources: false,
  * });
  * const john = new scaleway.KubernetesNodePool("john", {
@@ -57,6 +59,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
+ * const hedy = new scaleway.VpcPrivateNetwork("hedy", {});
  * const johnKubernetesCluster = new scaleway.KubernetesCluster("johnKubernetesCluster", {
  *     description: "my awesome cluster",
  *     version: "1.24.3",
@@ -65,6 +68,7 @@ import * as utilities from "./utilities";
  *         "i'm an awesome tag",
  *         "yay",
  *     ],
+ *     privateNetworkId: hedy.id,
  *     deleteAdditionalResources: false,
  *     autoscalerConfig: {
  *         disableScaleDown: false,
@@ -185,10 +189,10 @@ export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * The ID of the private network of the cluster.
      *
-     * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-     * Any subsequent change after this field got set will prompt for cluster recreation.
+     * > **Important:** Changes to this field will recreate a new resource.
      *
-     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+     * > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+     * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
@@ -380,10 +384,10 @@ export interface KubernetesClusterState {
     /**
      * The ID of the private network of the cluster.
      *
-     * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-     * Any subsequent change after this field got set will prompt for cluster recreation.
+     * > **Important:** Changes to this field will recreate a new resource.
      *
-     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+     * > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+     * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -480,10 +484,10 @@ export interface KubernetesClusterArgs {
     /**
      * The ID of the private network of the cluster.
      *
-     * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-     * Any subsequent change after this field got set will prompt for cluster recreation.
+     * > **Important:** Changes to this field will recreate a new resource.
      *
-     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+     * > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+     * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**

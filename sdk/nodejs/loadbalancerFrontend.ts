@@ -24,6 +24,94 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## With ACLs
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ *
+ * const frontend01 = new scaleway.LoadbalancerFrontend("frontend01", {
+ *     lbId: scaleway_lb.lb01.id,
+ *     backendId: scaleway_lb_backend.backend01.id,
+ *     inboundPort: 80,
+ *     acls: [
+ *         {
+ *             name: "blacklist wellknwon IPs",
+ *             action: {
+ *                 type: "allow",
+ *             },
+ *             match: {
+ *                 ipSubnets: [
+ *                     "192.168.0.1",
+ *                     "192.168.0.2",
+ *                     "192.168.10.0/24",
+ *                 ],
+ *             },
+ *         },
+ *         {
+ *             action: {
+ *                 type: "deny",
+ *             },
+ *             match: {
+ *                 ipSubnets: ["51.51.51.51"],
+ *                 httpFilter: "regex",
+ *                 httpFilterValues: ["^foo*bar$"],
+ *             },
+ *         },
+ *         {
+ *             action: {
+ *                 type: "allow",
+ *             },
+ *             match: {
+ *                 httpFilter: "path_begin",
+ *                 httpFilterValues: [
+ *                     "foo",
+ *                     "bar",
+ *                 ],
+ *             },
+ *         },
+ *         {
+ *             action: {
+ *                 type: "allow",
+ *             },
+ *             match: {
+ *                 httpFilter: "path_begin",
+ *                 httpFilterValues: ["hi"],
+ *                 invert: true,
+ *             },
+ *         },
+ *         {
+ *             action: {
+ *                 type: "allow",
+ *             },
+ *             match: {
+ *                 httpFilter: "http_header_match",
+ *                 httpFilterValues: "foo",
+ *                 httpFilterOption: "bar",
+ *             },
+ *         },
+ *         {
+ *             action: {
+ *                 type: "redirect",
+ *                 redirects: [{
+ *                     type: "location",
+ *                     target: "https://example.com",
+ *                     code: 307,
+ *                 }],
+ *             },
+ *             match: {
+ *                 ipSubnets: ["10.0.0.10"],
+ *                 httpFilter: "path_begin",
+ *                 httpFilterValues: [
+ *                     "foo",
+ *                     "bar",
+ *                 ],
+ *             },
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash

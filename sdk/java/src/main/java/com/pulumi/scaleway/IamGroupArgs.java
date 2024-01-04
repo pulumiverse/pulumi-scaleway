@@ -93,6 +93,21 @@ public final class IamGroupArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The tags associated with the group.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<String>> tags;
+
+    /**
+     * @return The tags associated with the group.
+     * 
+     */
+    public Optional<Output<List<String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * The list of IDs of the users attached to the group.
      * 
      */
@@ -115,6 +130,7 @@ public final class IamGroupArgs extends com.pulumi.resources.ResourceArgs {
         this.externalMembership = $.externalMembership;
         this.name = $.name;
         this.organizationId = $.organizationId;
+        this.tags = $.tags;
         this.userIds = $.userIds;
     }
 
@@ -249,6 +265,37 @@ public final class IamGroupArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder organizationId(String organizationId) {
             return organizationId(Output.of(organizationId));
+        }
+
+        /**
+         * @param tags The tags associated with the group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags The tags associated with the group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<String> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags The tags associated with the group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
         }
 
         /**

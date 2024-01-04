@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketPolicy = new scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     policy: JSON.stringify({
  *         Version: "2012-10-17",
  *         Id: "MyPolicy",
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },

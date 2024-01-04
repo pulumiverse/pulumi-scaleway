@@ -17,7 +17,6 @@ class MnqSqsQueueArgs:
                  access_key: pulumi.Input[str],
                  secret_key: pulumi.Input[str],
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
                  fifo_queue: Optional[pulumi.Input[bool]] = None,
                  message_max_age: Optional[pulumi.Input[int]] = None,
                  message_max_size: Optional[pulumi.Input[int]] = None,
@@ -26,13 +25,13 @@ class MnqSqsQueueArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 sqs_endpoint: Optional[pulumi.Input[str]] = None,
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a MnqSqsQueue resource.
         :param pulumi.Input[str] access_key: The access key of the SQS queue.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
@@ -41,14 +40,13 @@ class MnqSqsQueueArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "secret_key", secret_key)
         if content_based_deduplication is not None:
             pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
         if fifo_queue is not None:
             pulumi.set(__self__, "fifo_queue", fifo_queue)
         if message_max_age is not None:
@@ -65,6 +63,8 @@ class MnqSqsQueueArgs:
             pulumi.set(__self__, "receive_wait_time_seconds", receive_wait_time_seconds)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if sqs_endpoint is not None:
+            pulumi.set(__self__, "sqs_endpoint", sqs_endpoint)
         if visibility_timeout_seconds is not None:
             pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
 
@@ -103,18 +103,6 @@ class MnqSqsQueueArgs:
     @content_based_deduplication.setter
     def content_based_deduplication(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "content_based_deduplication", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        """
-        The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        """
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
 
     @property
     @pulumi.getter(name="fifoQueue")
@@ -213,6 +201,18 @@ class MnqSqsQueueArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="sqsEndpoint")
+    def sqs_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        """
+        return pulumi.get(self, "sqs_endpoint")
+
+    @sqs_endpoint.setter
+    def sqs_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sqs_endpoint", value)
+
+    @property
     @pulumi.getter(name="visibilityTimeoutSeconds")
     def visibility_timeout_seconds(self) -> Optional[pulumi.Input[int]]:
         """
@@ -230,7 +230,6 @@ class _MnqSqsQueueState:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
                  fifo_queue: Optional[pulumi.Input[bool]] = None,
                  message_max_age: Optional[pulumi.Input[int]] = None,
                  message_max_size: Optional[pulumi.Input[int]] = None,
@@ -240,13 +239,13 @@ class _MnqSqsQueueState:
                  receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
+                 sqs_endpoint: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering MnqSqsQueue resources.
         :param pulumi.Input[str] access_key: The access key of the SQS queue.
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
@@ -256,6 +255,7 @@ class _MnqSqsQueueState:
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
+        :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] url: The URL of the queue.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
@@ -263,8 +263,6 @@ class _MnqSqsQueueState:
             pulumi.set(__self__, "access_key", access_key)
         if content_based_deduplication is not None:
             pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
         if fifo_queue is not None:
             pulumi.set(__self__, "fifo_queue", fifo_queue)
         if message_max_age is not None:
@@ -283,6 +281,8 @@ class _MnqSqsQueueState:
             pulumi.set(__self__, "region", region)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
+        if sqs_endpoint is not None:
+            pulumi.set(__self__, "sqs_endpoint", sqs_endpoint)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if visibility_timeout_seconds is not None:
@@ -311,18 +311,6 @@ class _MnqSqsQueueState:
     @content_based_deduplication.setter
     def content_based_deduplication(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "content_based_deduplication", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        """
-        The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        """
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
 
     @property
     @pulumi.getter(name="fifoQueue")
@@ -433,6 +421,18 @@ class _MnqSqsQueueState:
         pulumi.set(self, "secret_key", value)
 
     @property
+    @pulumi.getter(name="sqsEndpoint")
+    def sqs_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        """
+        return pulumi.get(self, "sqs_endpoint")
+
+    @sqs_endpoint.setter
+    def sqs_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sqs_endpoint", value)
+
+    @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -464,7 +464,6 @@ class MnqSqsQueue(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
                  fifo_queue: Optional[pulumi.Input[bool]] = None,
                  message_max_age: Optional[pulumi.Input[int]] = None,
                  message_max_size: Optional[pulumi.Input[int]] = None,
@@ -474,6 +473,7 @@ class MnqSqsQueue(pulumi.CustomResource):
                  receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
+                 sqs_endpoint: Optional[pulumi.Input[str]] = None,
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -493,13 +493,13 @@ class MnqSqsQueue(pulumi.CustomResource):
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
             permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=False,
-                can_receive=True,
+                can_manage=True,
+                can_receive=False,
                 can_publish=False,
             ))
         main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
             project_id=main_mnq_sqs.project_id,
-            endpoint=main_mnq_sqs.endpoint,
+            sqs_endpoint=main_mnq_sqs.endpoint,
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
@@ -516,7 +516,6 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The access key of the SQS queue.
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
@@ -526,6 +525,7 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
+        :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
         ...
@@ -551,13 +551,13 @@ class MnqSqsQueue(pulumi.CustomResource):
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
             permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=False,
-                can_receive=True,
+                can_manage=True,
+                can_receive=False,
                 can_publish=False,
             ))
         main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
             project_id=main_mnq_sqs.project_id,
-            endpoint=main_mnq_sqs.endpoint,
+            sqs_endpoint=main_mnq_sqs.endpoint,
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
@@ -587,7 +587,6 @@ class MnqSqsQueue(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
                  fifo_queue: Optional[pulumi.Input[bool]] = None,
                  message_max_age: Optional[pulumi.Input[int]] = None,
                  message_max_size: Optional[pulumi.Input[int]] = None,
@@ -597,6 +596,7 @@ class MnqSqsQueue(pulumi.CustomResource):
                  receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
+                 sqs_endpoint: Optional[pulumi.Input[str]] = None,
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -611,7 +611,6 @@ class MnqSqsQueue(pulumi.CustomResource):
                 raise TypeError("Missing required property 'access_key'")
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
             __props__.__dict__["content_based_deduplication"] = content_based_deduplication
-            __props__.__dict__["endpoint"] = endpoint
             __props__.__dict__["fifo_queue"] = fifo_queue
             __props__.__dict__["message_max_age"] = message_max_age
             __props__.__dict__["message_max_size"] = message_max_size
@@ -623,6 +622,7 @@ class MnqSqsQueue(pulumi.CustomResource):
             if secret_key is None and not opts.urn:
                 raise TypeError("Missing required property 'secret_key'")
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
+            __props__.__dict__["sqs_endpoint"] = sqs_endpoint
             __props__.__dict__["visibility_timeout_seconds"] = visibility_timeout_seconds
             __props__.__dict__["url"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey"])
@@ -639,7 +639,6 @@ class MnqSqsQueue(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
             content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-            endpoint: Optional[pulumi.Input[str]] = None,
             fifo_queue: Optional[pulumi.Input[bool]] = None,
             message_max_age: Optional[pulumi.Input[int]] = None,
             message_max_size: Optional[pulumi.Input[int]] = None,
@@ -649,6 +648,7 @@ class MnqSqsQueue(pulumi.CustomResource):
             receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
+            sqs_endpoint: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
             visibility_timeout_seconds: Optional[pulumi.Input[int]] = None) -> 'MnqSqsQueue':
         """
@@ -660,7 +660,6 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The access key of the SQS queue.
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
@@ -670,6 +669,7 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
+        :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] url: The URL of the queue.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
@@ -679,7 +679,6 @@ class MnqSqsQueue(pulumi.CustomResource):
 
         __props__.__dict__["access_key"] = access_key
         __props__.__dict__["content_based_deduplication"] = content_based_deduplication
-        __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["fifo_queue"] = fifo_queue
         __props__.__dict__["message_max_age"] = message_max_age
         __props__.__dict__["message_max_size"] = message_max_size
@@ -689,6 +688,7 @@ class MnqSqsQueue(pulumi.CustomResource):
         __props__.__dict__["receive_wait_time_seconds"] = receive_wait_time_seconds
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_key"] = secret_key
+        __props__.__dict__["sqs_endpoint"] = sqs_endpoint
         __props__.__dict__["url"] = url
         __props__.__dict__["visibility_timeout_seconds"] = visibility_timeout_seconds
         return MnqSqsQueue(resource_name, opts=opts, __props__=__props__)
@@ -708,14 +708,6 @@ class MnqSqsQueue(pulumi.CustomResource):
         Specifies whether to enable content-based deduplication. Defaults to `false`.
         """
         return pulumi.get(self, "content_based_deduplication")
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> pulumi.Output[Optional[str]]:
-        """
-        The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        """
-        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter(name="fifoQueue")
@@ -788,6 +780,14 @@ class MnqSqsQueue(pulumi.CustomResource):
         The secret key of the SQS queue.
         """
         return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter(name="sqsEndpoint")
+    def sqs_endpoint(self) -> pulumi.Output[Optional[str]]:
+        """
+        The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        """
+        return pulumi.get(self, "sqs_endpoint")
 
     @property
     @pulumi.getter

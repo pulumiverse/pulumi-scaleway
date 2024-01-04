@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance IP.
@@ -119,12 +118,6 @@ func (o LookupInstanceIpResultOutput) ToLookupInstanceIpResultOutput() LookupIns
 
 func (o LookupInstanceIpResultOutput) ToLookupInstanceIpResultOutputWithContext(ctx context.Context) LookupInstanceIpResultOutput {
 	return o
-}
-
-func (o LookupInstanceIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceIpResult] {
-	return pulumix.Output[LookupInstanceIpResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP address.

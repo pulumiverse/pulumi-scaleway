@@ -388,6 +388,93 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             inbound_port=80)
         ```
 
+        ## With ACLs
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            backend_id=scaleway_lb_backend["backend01"]["id"],
+            inbound_port=80,
+            acls=[
+                scaleway.LoadbalancerFrontendAclArgs(
+                    name="blacklist wellknwon IPs",
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        ip_subnets=[
+                            "192.168.0.1",
+                            "192.168.0.2",
+                            "192.168.10.0/24",
+                        ],
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="deny",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        ip_subnets=["51.51.51.51"],
+                        http_filter="regex",
+                        http_filter_values=["^foo*bar$"],
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        http_filter="path_begin",
+                        http_filter_values=[
+                            "foo",
+                            "bar",
+                        ],
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        http_filter="path_begin",
+                        http_filter_values=["hi"],
+                        invert=True,
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        http_filter="http_header_match",
+                        http_filter_values="foo",
+                        http_filter_option="bar",
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="redirect",
+                        redirects=[scaleway.LoadbalancerFrontendAclActionRedirectArgs(
+                            type="location",
+                            target="https://example.com",
+                            code=307,
+                        )],
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        ip_subnets=["10.0.0.10"],
+                        http_filter="path_begin",
+                        http_filter_values=[
+                            "foo",
+                            "bar",
+                        ],
+                    ),
+                ),
+            ])
+        ```
+
         ## Import
 
         Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
@@ -434,6 +521,93 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             lb_id=scaleway_lb["lb01"]["id"],
             backend_id=scaleway_lb_backend["backend01"]["id"],
             inbound_port=80)
+        ```
+
+        ## With ACLs
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_scaleway as scaleway
+
+        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+            lb_id=scaleway_lb["lb01"]["id"],
+            backend_id=scaleway_lb_backend["backend01"]["id"],
+            inbound_port=80,
+            acls=[
+                scaleway.LoadbalancerFrontendAclArgs(
+                    name="blacklist wellknwon IPs",
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        ip_subnets=[
+                            "192.168.0.1",
+                            "192.168.0.2",
+                            "192.168.10.0/24",
+                        ],
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="deny",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        ip_subnets=["51.51.51.51"],
+                        http_filter="regex",
+                        http_filter_values=["^foo*bar$"],
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        http_filter="path_begin",
+                        http_filter_values=[
+                            "foo",
+                            "bar",
+                        ],
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        http_filter="path_begin",
+                        http_filter_values=["hi"],
+                        invert=True,
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="allow",
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        http_filter="http_header_match",
+                        http_filter_values="foo",
+                        http_filter_option="bar",
+                    ),
+                ),
+                scaleway.LoadbalancerFrontendAclArgs(
+                    action=scaleway.LoadbalancerFrontendAclActionArgs(
+                        type="redirect",
+                        redirects=[scaleway.LoadbalancerFrontendAclActionRedirectArgs(
+                            type="location",
+                            target="https://example.com",
+                            code=307,
+                        )],
+                    ),
+                    match=scaleway.LoadbalancerFrontendAclMatchArgs(
+                        ip_subnets=["10.0.0.10"],
+                        http_filter="path_begin",
+                        http_filter_values=[
+                            "foo",
+                            "bar",
+                        ],
+                    ),
+                ),
+            ])
         ```
 
         ## Import

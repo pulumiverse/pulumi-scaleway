@@ -17,6 +17,105 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ## Example
     /// 
+    /// ### Create a gateway network with IPAM config
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         EnableMasquerade = true,
+    ///         IpamConfigs = new[]
+    ///         {
+    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
+    ///             {
+    ///                 PushDefaultRoute = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Create a gateway network with a booked IPAM IP
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     {
+    ///         Address = "172.16.64.7/22",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             {
+    ///                 PrivateNetworkId = pn01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         EnableMasquerade = true,
+    ///         IpamConfigs = new[]
+    ///         {
+    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
+    ///             {
+    ///                 PushDefaultRoute = true,
+    ///                 IpamIpId = ip01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Create a gateway network with DHCP
     /// 
     /// ```csharp
@@ -84,49 +183,6 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Create a gateway network with IPAM config
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
-    /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
-    ///     {
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
-    ///         {
-    ///             Subnet = "172.16.64.0/22",
-    ///         },
-    ///         VpcId = vpc01.Id,
-    ///     });
-    /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
-    ///     {
-    ///         Type = "VPC-GW-S",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
-    ///     {
-    ///         GatewayId = pg01.Id,
-    ///         PrivateNetworkId = pn01.Id,
-    ///         EnableMasquerade = true,
-    ///         IpamConfigs = new[]
-    ///         {
-    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
-    ///             {
-    ///                 PushDefaultRoute = true,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
@@ -175,7 +231,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Output("ipamConfigs")]
         public Output<ImmutableArray<Outputs.VpcGatewayNetworkIpamConfig>> IpamConfigs { get; private set; } = null!;
@@ -297,7 +353,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.VpcGatewayNetworkIpamConfigArgs>? _ipamConfigs;
 
         /// <summary>
-        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         public InputList<Inputs.VpcGatewayNetworkIpamConfigArgs> IpamConfigs
         {
@@ -371,7 +427,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs>? _ipamConfigs;
 
         /// <summary>
-        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         public InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs> IpamConfigs
         {

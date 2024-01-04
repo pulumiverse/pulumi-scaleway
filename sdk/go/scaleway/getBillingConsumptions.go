@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetBillingConsumptions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetBillingConsumptionsResult, error) {
@@ -55,12 +54,6 @@ func (o GetBillingConsumptionsResultOutput) ToGetBillingConsumptionsResultOutput
 
 func (o GetBillingConsumptionsResultOutput) ToGetBillingConsumptionsResultOutputWithContext(ctx context.Context) GetBillingConsumptionsResultOutput {
 	return o
-}
-
-func (o GetBillingConsumptionsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBillingConsumptionsResult] {
-	return pulumix.Output[GetBillingConsumptionsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetBillingConsumptionsResultOutput) Consumptions() GetBillingConsumptionsConsumptionArrayOutput {

@@ -21,13 +21,10 @@ class GetInstanceVolumeResult:
     """
     A collection of values returned by getInstanceVolume.
     """
-    def __init__(__self__, from_snapshot_id=None, from_volume_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
+    def __init__(__self__, from_snapshot_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
         if from_snapshot_id and not isinstance(from_snapshot_id, str):
             raise TypeError("Expected argument 'from_snapshot_id' to be a str")
         pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
-        if from_volume_id and not isinstance(from_volume_id, str):
-            raise TypeError("Expected argument 'from_volume_id' to be a str")
-        pulumi.set(__self__, "from_volume_id", from_volume_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -63,11 +60,6 @@ class GetInstanceVolumeResult:
     @pulumi.getter(name="fromSnapshotId")
     def from_snapshot_id(self) -> str:
         return pulumi.get(self, "from_snapshot_id")
-
-    @property
-    @pulumi.getter(name="fromVolumeId")
-    def from_volume_id(self) -> str:
-        return pulumi.get(self, "from_volume_id")
 
     @property
     @pulumi.getter
@@ -133,7 +125,6 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
             yield self
         return GetInstanceVolumeResult(
             from_snapshot_id=self.from_snapshot_id,
-            from_volume_id=self.from_volume_id,
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
@@ -178,7 +169,6 @@ def get_instance_volume(name: Optional[str] = None,
 
     return AwaitableGetInstanceVolumeResult(
         from_snapshot_id=pulumi.get(__ret__, 'from_snapshot_id'),
-        from_volume_id=pulumi.get(__ret__, 'from_volume_id'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),

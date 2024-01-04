@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an instance volume.
@@ -64,7 +63,6 @@ type LookupInstanceVolumeArgs struct {
 // A collection of values returned by getInstanceVolume.
 type LookupInstanceVolumeResult struct {
 	FromSnapshotId string `pulumi:"fromSnapshotId"`
-	FromVolumeId   string `pulumi:"fromVolumeId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id   string  `pulumi:"id"`
 	Name *string `pulumi:"name"`
@@ -123,18 +121,8 @@ func (o LookupInstanceVolumeResultOutput) ToLookupInstanceVolumeResultOutputWith
 	return o
 }
 
-func (o LookupInstanceVolumeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceVolumeResult] {
-	return pulumix.Output[LookupInstanceVolumeResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LookupInstanceVolumeResultOutput) FromSnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.FromSnapshotId }).(pulumi.StringOutput)
-}
-
-func (o LookupInstanceVolumeResultOutput) FromVolumeId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.FromVolumeId }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

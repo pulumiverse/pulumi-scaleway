@@ -36,9 +36,17 @@ public final class LoadbalancerFrontendAclMatchArgs extends com.pulumi.resources
         return Optional.ofNullable(this.httpFilter);
     }
 
+    /**
+     * If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header&#39;s value.
+     * 
+     */
     @Import(name="httpFilterOption")
     private @Nullable Output<String> httpFilterOption;
 
+    /**
+     * @return If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header&#39;s value.
+     * 
+     */
     public Optional<Output<String>> httpFilterOption() {
         return Optional.ofNullable(this.httpFilterOption);
     }
@@ -143,11 +151,23 @@ public final class LoadbalancerFrontendAclMatchArgs extends com.pulumi.resources
             return httpFilter(Output.of(httpFilter));
         }
 
+        /**
+         * @param httpFilterOption If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header&#39;s value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder httpFilterOption(@Nullable Output<String> httpFilterOption) {
             $.httpFilterOption = httpFilterOption;
             return this;
         }
 
+        /**
+         * @param httpFilterOption If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header&#39;s value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder httpFilterOption(String httpFilterOption) {
             return httpFilterOption(Output.of(httpFilterOption));
         }

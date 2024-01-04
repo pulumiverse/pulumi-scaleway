@@ -97,6 +97,10 @@ export class IamGroup extends pulumi.CustomResource {
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
+     * The tags associated with the group.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
      * The date and time of the last update of the group
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
@@ -124,6 +128,7 @@ export class IamGroup extends pulumi.CustomResource {
             resourceInputs["externalMembership"] = state ? state.externalMembership : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userIds"] = state ? state.userIds : undefined;
         } else {
@@ -133,6 +138,7 @@ export class IamGroup extends pulumi.CustomResource {
             resourceInputs["externalMembership"] = args ? args.externalMembership : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userIds"] = args ? args.userIds : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -171,6 +177,10 @@ export interface IamGroupState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The tags associated with the group.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The date and time of the last update of the group
      */
     updatedAt?: pulumi.Input<string>;
@@ -204,6 +214,10 @@ export interface IamGroupArgs {
      * `organizationId`) The ID of the organization the group is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The tags associated with the group.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The list of IDs of the users attached to the group.
      */

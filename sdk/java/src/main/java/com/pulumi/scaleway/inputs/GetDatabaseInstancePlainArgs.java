@@ -49,6 +49,21 @@ public final class GetDatabaseInstancePlainArgs extends com.pulumi.resources.Inv
     }
 
     /**
+     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable String projectId;
+
+    /**
+     * @return The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     * 
+     */
+    public Optional<String> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * `region`) The region in which the RDB instance exists.
      * 
      */
@@ -68,6 +83,7 @@ public final class GetDatabaseInstancePlainArgs extends com.pulumi.resources.Inv
     private GetDatabaseInstancePlainArgs(GetDatabaseInstancePlainArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.projectId = $.projectId;
         this.region = $.region;
     }
 
@@ -110,6 +126,17 @@ public final class GetDatabaseInstancePlainArgs extends com.pulumi.resources.Inv
          */
         public Builder name(@Nullable String name) {
             $.name = name;
+            return this;
+        }
+
+        /**
+         * @param projectId The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable String projectId) {
+            $.projectId = projectId;
             return this;
         }
 

@@ -17,14 +17,14 @@ public final class ObjectBucketLockConfigurationArgs extends com.pulumi.resource
     public static final ObjectBucketLockConfigurationArgs Empty = new ObjectBucketLockConfigurationArgs();
 
     /**
-     * The bucket name.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Import(name="bucket", required=true)
     private Output<String> bucket;
 
     /**
-     * @return The bucket name.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {
@@ -104,7 +104,7 @@ public final class ObjectBucketLockConfigurationArgs extends com.pulumi.resource
         }
 
         /**
-         * @param bucket The bucket name.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class ObjectBucketLockConfigurationArgs extends com.pulumi.resource
         }
 
         /**
-         * @param bucket The bucket name.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 

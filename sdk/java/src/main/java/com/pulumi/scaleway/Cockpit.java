@@ -29,14 +29,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/cockpit:Cockpit")
 public class Cockpit extends com.pulumi.resources.CustomResource {
     /**
-     * Endpoints
+     * Endpoints.
      * 
      */
     @Export(name="endpoints", refs={List.class,CockpitEndpoint.class}, tree="[0,1]")
     private Output<List<CockpitEndpoint>> endpoints;
 
     /**
-     * @return Endpoints
+     * @return Endpoints.
      * 
      */
     public Output<List<CockpitEndpoint>> endpoints() {
@@ -57,14 +57,14 @@ public class Cockpit extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.plan);
     }
     /**
-     * The ID of the current plan
+     * The ID of the current plan.
      * 
      */
     @Export(name="planId", refs={String.class}, tree="[0]")
     private Output<String> planId;
 
     /**
-     * @return The ID of the current plan
+     * @return The ID of the current plan.
      * 
      */
     public Output<String> planId() {

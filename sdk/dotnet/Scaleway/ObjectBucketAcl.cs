@@ -25,7 +25,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var main = new Scaleway.ObjectBucketAcl("main", new()
     ///     {
-    ///         Bucket = scaleway_object_bucket.Main.Name,
+    ///         Bucket = scaleway_object_bucket.Main.Id,
     ///         Acl = "private",
     ///     });
     /// 
@@ -45,7 +45,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     ///     var mainObjectBucketAcl = new Scaleway.ObjectBucketAcl("mainObjectBucketAcl", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         AccessControlPolicy = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyArgs
     ///         {
     ///             Grants = new[]
@@ -145,7 +145,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Acl { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -228,7 +228,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Acl { get; set; }
 
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -272,7 +272,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Acl { get; set; }
 
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }

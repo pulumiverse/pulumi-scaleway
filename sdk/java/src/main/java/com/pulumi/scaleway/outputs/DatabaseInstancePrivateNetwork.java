@@ -4,6 +4,7 @@
 package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -12,6 +13,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatabaseInstancePrivateNetwork {
+    /**
+     * @return Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+     * 
+     */
+    private @Nullable Boolean enableIpam;
     /**
      * @return The ID of the endpoint.
      * 
@@ -33,6 +39,10 @@ public final class DatabaseInstancePrivateNetwork {
      * 
      */
     private @Nullable String name;
+    /**
+     * @return The ID of the private network.
+     * 
+     */
     private String pnId;
     /**
      * @return Port in the Private Network.
@@ -42,6 +52,13 @@ public final class DatabaseInstancePrivateNetwork {
     private @Nullable String zone;
 
     private DatabaseInstancePrivateNetwork() {}
+    /**
+     * @return Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+     * 
+     */
+    public Optional<Boolean> enableIpam() {
+        return Optional.ofNullable(this.enableIpam);
+    }
     /**
      * @return The ID of the endpoint.
      * 
@@ -73,6 +90,10 @@ public final class DatabaseInstancePrivateNetwork {
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The ID of the private network.
+     * 
+     */
     public String pnId() {
         return this.pnId;
     }
@@ -96,6 +117,7 @@ public final class DatabaseInstancePrivateNetwork {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean enableIpam;
         private @Nullable String endpointId;
         private @Nullable String hostname;
         private @Nullable String ip;
@@ -107,6 +129,7 @@ public final class DatabaseInstancePrivateNetwork {
         public Builder() {}
         public Builder(DatabaseInstancePrivateNetwork defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.enableIpam = defaults.enableIpam;
     	      this.endpointId = defaults.endpointId;
     	      this.hostname = defaults.hostname;
     	      this.ip = defaults.ip;
@@ -117,6 +140,11 @@ public final class DatabaseInstancePrivateNetwork {
     	      this.zone = defaults.zone;
         }
 
+        @CustomType.Setter
+        public Builder enableIpam(@Nullable Boolean enableIpam) {
+            this.enableIpam = enableIpam;
+            return this;
+        }
         @CustomType.Setter
         public Builder endpointId(@Nullable String endpointId) {
             this.endpointId = endpointId;
@@ -159,6 +187,7 @@ public final class DatabaseInstancePrivateNetwork {
         }
         public DatabaseInstancePrivateNetwork build() {
             final var o = new DatabaseInstancePrivateNetwork();
+            o.enableIpam = enableIpam;
             o.endpointId = endpointId;
             o.hostname = hostname;
             o.ip = ip;

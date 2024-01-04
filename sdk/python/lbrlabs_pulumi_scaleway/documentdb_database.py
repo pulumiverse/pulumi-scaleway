@@ -222,7 +222,7 @@ class DocumentdbDatabase(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway DocumentDB database.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 
         ## Examples
 
@@ -260,7 +260,7 @@ class DocumentdbDatabase(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway DocumentDB database.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 
         ## Examples
 

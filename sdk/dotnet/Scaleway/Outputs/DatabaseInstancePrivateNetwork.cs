@@ -15,6 +15,10 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class DatabaseInstancePrivateNetwork
     {
         /// <summary>
+        /// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        /// </summary>
+        public readonly bool? EnableIpam;
+        /// <summary>
         /// The ID of the endpoint.
         /// </summary>
         public readonly string? EndpointId;
@@ -31,6 +35,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// The name of the Database Instance.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The ID of the private network.
+        /// </summary>
         public readonly string PnId;
         /// <summary>
         /// Port in the Private Network.
@@ -40,6 +47,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
         [OutputConstructor]
         private DatabaseInstancePrivateNetwork(
+            bool? enableIpam,
+
             string? endpointId,
 
             string? hostname,
@@ -56,6 +65,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string? zone)
         {
+            EnableIpam = enableIpam;
             EndpointId = endpointId;
             Hostname = hostname;
             Ip = ip;

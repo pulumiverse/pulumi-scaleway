@@ -14,16 +14,26 @@ public final class GetTemDomainPlainArgs extends com.pulumi.resources.InvokeArgs
 
     public static final GetTemDomainPlainArgs Empty = new GetTemDomainPlainArgs();
 
+    /**
+     * The domain id.
+     * Only one of `name` and `domain_id` should be specified.
+     * 
+     */
     @Import(name="domainId")
     private @Nullable String domainId;
 
+    /**
+     * @return The domain id.
+     * Only one of `name` and `domain_id` should be specified.
+     * 
+     */
     public Optional<String> domainId() {
         return Optional.ofNullable(this.domainId);
     }
 
     /**
      * The domain name.
-     * Only one of `name` and `id` should be specified.
+     * Only one of `name` and `domain_id` should be specified.
      * 
      */
     @Import(name="name")
@@ -31,7 +41,7 @@ public final class GetTemDomainPlainArgs extends com.pulumi.resources.InvokeArgs
 
     /**
      * @return The domain name.
-     * Only one of `name` and `id` should be specified.
+     * Only one of `name` and `domain_id` should be specified.
      * 
      */
     public Optional<String> name() {
@@ -79,6 +89,13 @@ public final class GetTemDomainPlainArgs extends com.pulumi.resources.InvokeArgs
             $ = new GetTemDomainPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param domainId The domain id.
+         * Only one of `name` and `domain_id` should be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainId(@Nullable String domainId) {
             $.domainId = domainId;
             return this;
@@ -86,7 +103,7 @@ public final class GetTemDomainPlainArgs extends com.pulumi.resources.InvokeArgs
 
         /**
          * @param name The domain name.
-         * Only one of `name` and `id` should be specified.
+         * Only one of `name` and `domain_id` should be specified.
          * 
          * @return builder
          * 

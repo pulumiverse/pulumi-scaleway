@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Cockpit Tokens.
@@ -92,13 +91,13 @@ import (
 type CockpitToken struct {
 	pulumi.CustomResourceState
 
-	// The name of the token
+	// The name of the token.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes CockpitTokenScopesOutput `pulumi:"scopes"`
-	// The secret key of the token
+	// The secret key of the token.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 }
 
@@ -136,24 +135,24 @@ func GetCockpitToken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitToken resources.
 type cockpitTokenState struct {
-	// The name of the token
+	// The name of the token.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
-	// The secret key of the token
+	// The secret key of the token.
 	SecretKey *string `pulumi:"secretKey"`
 }
 
 type CockpitTokenState struct {
-	// The name of the token
+	// The name of the token.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes CockpitTokenScopesPtrInput
-	// The secret key of the token
+	// The secret key of the token.
 	SecretKey pulumi.StringPtrInput
 }
 
@@ -162,21 +161,21 @@ func (CockpitTokenState) ElementType() reflect.Type {
 }
 
 type cockpitTokenArgs struct {
-	// The name of the token
+	// The name of the token.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
 }
 
 // The set of arguments for constructing a CockpitToken resource.
 type CockpitTokenArgs struct {
-	// The name of the token
+	// The name of the token.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes CockpitTokenScopesPtrInput
 }
 
@@ -201,12 +200,6 @@ func (i *CockpitToken) ToCockpitTokenOutput() CockpitTokenOutput {
 
 func (i *CockpitToken) ToCockpitTokenOutputWithContext(ctx context.Context) CockpitTokenOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenOutput)
-}
-
-func (i *CockpitToken) ToOutput(ctx context.Context) pulumix.Output[*CockpitToken] {
-	return pulumix.Output[*CockpitToken]{
-		OutputState: i.ToCockpitTokenOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CockpitTokenArrayInput is an input type that accepts CockpitTokenArray and CockpitTokenArrayOutput values.
@@ -234,12 +227,6 @@ func (i CockpitTokenArray) ToCockpitTokenArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenArrayOutput)
 }
 
-func (i CockpitTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*CockpitToken] {
-	return pulumix.Output[[]*CockpitToken]{
-		OutputState: i.ToCockpitTokenArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CockpitTokenMapInput is an input type that accepts CockpitTokenMap and CockpitTokenMapOutput values.
 // You can construct a concrete instance of `CockpitTokenMapInput` via:
 //
@@ -265,12 +252,6 @@ func (i CockpitTokenMap) ToCockpitTokenMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitTokenMapOutput)
 }
 
-func (i CockpitTokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CockpitToken] {
-	return pulumix.Output[map[string]*CockpitToken]{
-		OutputState: i.ToCockpitTokenMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CockpitTokenOutput struct{ *pulumi.OutputState }
 
 func (CockpitTokenOutput) ElementType() reflect.Type {
@@ -285,13 +266,7 @@ func (o CockpitTokenOutput) ToCockpitTokenOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o CockpitTokenOutput) ToOutput(ctx context.Context) pulumix.Output[*CockpitToken] {
-	return pulumix.Output[*CockpitToken]{
-		OutputState: o.OutputState,
-	}
-}
-
-// The name of the token
+// The name of the token.
 func (o CockpitTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -301,12 +276,12 @@ func (o CockpitTokenOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Allowed scopes
+// Allowed scopes.
 func (o CockpitTokenOutput) Scopes() CockpitTokenScopesOutput {
 	return o.ApplyT(func(v *CockpitToken) CockpitTokenScopesOutput { return v.Scopes }).(CockpitTokenScopesOutput)
 }
 
-// The secret key of the token
+// The secret key of the token.
 func (o CockpitTokenOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }
@@ -323,12 +298,6 @@ func (o CockpitTokenArrayOutput) ToCockpitTokenArrayOutput() CockpitTokenArrayOu
 
 func (o CockpitTokenArrayOutput) ToCockpitTokenArrayOutputWithContext(ctx context.Context) CockpitTokenArrayOutput {
 	return o
-}
-
-func (o CockpitTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CockpitToken] {
-	return pulumix.Output[[]*CockpitToken]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CockpitTokenArrayOutput) Index(i pulumi.IntInput) CockpitTokenOutput {
@@ -349,12 +318,6 @@ func (o CockpitTokenMapOutput) ToCockpitTokenMapOutput() CockpitTokenMapOutput {
 
 func (o CockpitTokenMapOutput) ToCockpitTokenMapOutputWithContext(ctx context.Context) CockpitTokenMapOutput {
 	return o
-}
-
-func (o CockpitTokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CockpitToken] {
-	return pulumix.Output[map[string]*CockpitToken]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CockpitTokenMapOutput) MapIndex(k pulumi.StringInput) CockpitTokenOutput {

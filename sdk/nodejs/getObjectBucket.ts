@@ -20,8 +20,8 @@ import * as utilities from "./utilities";
  * const main = new scaleway.ObjectBucket("main", {tags: {
  *     foo: "bar",
  * }});
- * const selected = scaleway.getObjectBucket({
- *     name: "bucket.test.com",
+ * const selected = scaleway.getObjectBucketOutput({
+ *     name: main.id,
  * });
  * ```
  * ### Fetching the bucket from a specific project
@@ -51,16 +51,13 @@ export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getObjectBucket.
  */
 export interface GetObjectBucketArgs {
-    /**
-     * The bucket name.
-     */
     name?: string;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      */
     projectId?: string;
     /**
-     * `region`) The region in which the Object Storage exists.
+     * `region`) The region in which the bucket exists.
      */
     region?: string;
 }
@@ -70,6 +67,7 @@ export interface GetObjectBucketArgs {
  */
 export interface GetObjectBucketResult {
     readonly acl: string;
+    readonly apiEndpoint: string;
     readonly corsRules: outputs.GetObjectBucketCorsRule[];
     /**
      * The endpoint URL of the bucket
@@ -102,8 +100,8 @@ export interface GetObjectBucketResult {
  * const main = new scaleway.ObjectBucket("main", {tags: {
  *     foo: "bar",
  * }});
- * const selected = scaleway.getObjectBucket({
- *     name: "bucket.test.com",
+ * const selected = scaleway.getObjectBucketOutput({
+ *     name: main.id,
  * });
  * ```
  * ### Fetching the bucket from a specific project
@@ -126,16 +124,13 @@ export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: p
  * A collection of arguments for invoking getObjectBucket.
  */
 export interface GetObjectBucketOutputArgs {
-    /**
-     * The bucket name.
-     */
     name?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Object Storage exists.
+     * `region`) The region in which the bucket exists.
      */
     region?: pulumi.Input<string>;
 }

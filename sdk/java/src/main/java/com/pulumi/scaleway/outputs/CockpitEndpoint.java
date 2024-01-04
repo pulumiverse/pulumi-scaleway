@@ -12,54 +12,66 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CockpitEndpoint {
     /**
-     * @return The alertmanager URL
+     * @return The alertmanager URL.
      * 
      */
     private @Nullable String alertmanagerUrl;
     /**
-     * @return The grafana URL
+     * @return The grafana URL.
      * 
      */
     private @Nullable String grafanaUrl;
     /**
-     * @return The logs URL
+     * @return The logs URL.
      * 
      */
     private @Nullable String logsUrl;
     /**
-     * @return The metrics URL
+     * @return The metrics URL.
      * 
      */
     private @Nullable String metricsUrl;
+    /**
+     * @return The traces URL.
+     * 
+     */
+    private @Nullable String tracesUrl;
 
     private CockpitEndpoint() {}
     /**
-     * @return The alertmanager URL
+     * @return The alertmanager URL.
      * 
      */
     public Optional<String> alertmanagerUrl() {
         return Optional.ofNullable(this.alertmanagerUrl);
     }
     /**
-     * @return The grafana URL
+     * @return The grafana URL.
      * 
      */
     public Optional<String> grafanaUrl() {
         return Optional.ofNullable(this.grafanaUrl);
     }
     /**
-     * @return The logs URL
+     * @return The logs URL.
      * 
      */
     public Optional<String> logsUrl() {
         return Optional.ofNullable(this.logsUrl);
     }
     /**
-     * @return The metrics URL
+     * @return The metrics URL.
      * 
      */
     public Optional<String> metricsUrl() {
         return Optional.ofNullable(this.metricsUrl);
+    }
+    /**
+     * @return The traces URL.
+     * 
+     */
+    public Optional<String> tracesUrl() {
+        return Optional.ofNullable(this.tracesUrl);
     }
 
     public static Builder builder() {
@@ -75,6 +87,7 @@ public final class CockpitEndpoint {
         private @Nullable String grafanaUrl;
         private @Nullable String logsUrl;
         private @Nullable String metricsUrl;
+        private @Nullable String tracesUrl;
         public Builder() {}
         public Builder(CockpitEndpoint defaults) {
     	      Objects.requireNonNull(defaults);
@@ -82,6 +95,7 @@ public final class CockpitEndpoint {
     	      this.grafanaUrl = defaults.grafanaUrl;
     	      this.logsUrl = defaults.logsUrl;
     	      this.metricsUrl = defaults.metricsUrl;
+    	      this.tracesUrl = defaults.tracesUrl;
         }
 
         @CustomType.Setter
@@ -104,12 +118,18 @@ public final class CockpitEndpoint {
             this.metricsUrl = metricsUrl;
             return this;
         }
+        @CustomType.Setter
+        public Builder tracesUrl(@Nullable String tracesUrl) {
+            this.tracesUrl = tracesUrl;
+            return this;
+        }
         public CockpitEndpoint build() {
             final var o = new CockpitEndpoint();
             o.alertmanagerUrl = alertmanagerUrl;
             o.grafanaUrl = grafanaUrl;
             o.logsUrl = logsUrl;
             o.metricsUrl = metricsUrl;
+            o.tracesUrl = tracesUrl;
             return o;
         }
     }

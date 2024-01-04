@@ -14,17 +14,9 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
 
     public static final GetObjectBucketPlainArgs Empty = new GetObjectBucketPlainArgs();
 
-    /**
-     * The bucket name.
-     * 
-     */
     @Import(name="name")
     private @Nullable String name;
 
-    /**
-     * @return The bucket name.
-     * 
-     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
@@ -45,14 +37,14 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * `region`) The region in which the Object Storage exists.
+     * `region`) The region in which the bucket exists.
      * 
      */
     @Import(name="region")
     private @Nullable String region;
 
     /**
-     * @return `region`) The region in which the Object Storage exists.
+     * @return `region`) The region in which the bucket exists.
      * 
      */
     public Optional<String> region() {
@@ -85,12 +77,6 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
             $ = new GetObjectBucketPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The bucket name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;
@@ -108,7 +94,7 @@ public final class GetObjectBucketPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param region `region`) The region in which the Object Storage exists.
+         * @param region `region`) The region in which the bucket exists.
          * 
          * @return builder
          * 

@@ -28,7 +28,7 @@ class ObjectItemArgs:
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectItem resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
@@ -68,7 +68,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[str]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -226,7 +226,7 @@ class _ObjectItemState:
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ObjectItem resources.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
@@ -268,7 +268,7 @@ class _ObjectItemState:
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -441,7 +441,7 @@ class ObjectItem(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
@@ -553,7 +553,7 @@ class ObjectItem(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
@@ -588,7 +588,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def bucket(self) -> pulumi.Output[str]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 

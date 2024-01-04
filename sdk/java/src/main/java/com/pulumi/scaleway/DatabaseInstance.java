@@ -22,6 +22,125 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Creates and manages Scaleway Database Instances.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ * 
+ * ## Examples
+ * 
+ * ### Example Basic
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .disableBackup(true)
+ *             .engine(&#34;PostgreSQL-11&#34;)
+ *             .isHaCluster(true)
+ *             .nodeType(&#34;DB-DEV-S&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Example with Settings
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .disableBackup(true)
+ *             .engine(&#34;MySQL-8&#34;)
+ *             .initSettings(Map.of(&#34;lower_case_table_names&#34;, 1))
+ *             .nodeType(&#34;db-dev-s&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .settings(Map.of(&#34;max_connections&#34;, &#34;350&#34;))
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Example with backup schedule
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.scaleway.DatabaseInstance;
+ * import com.pulumi.scaleway.DatabaseInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var main = new DatabaseInstance(&#34;main&#34;, DatabaseInstanceArgs.builder()        
+ *             .backupScheduleFrequency(24)
+ *             .backupScheduleRetention(7)
+ *             .disableBackup(false)
+ *             .engine(&#34;PostgreSQL-11&#34;)
+ *             .isHaCluster(true)
+ *             .nodeType(&#34;DB-DEV-S&#34;)
+ *             .password(&#34;thiZ_is_v&amp;ry_s3cret&#34;)
+ *             .userName(&#34;my_initial_user&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## Limitations
+ * 
+ * The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+ * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+ * section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+ * 
  * ## Import
  * 
  * Database Instance can be imported using the `{region}/{id}`, e.g. bash
@@ -158,6 +277,8 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
      * 
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
+     * 
      */
     @Export(name="initSettings", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> initSettings;
@@ -166,6 +287,8 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * @return Map of engine settings to be set at database initialisation.
      * 
      * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+     * 
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
      * 
      */
     public Output<Optional<Map<String,String>>> initSettings() {
@@ -190,14 +313,16 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.isHaCluster);
     }
     /**
-     * List of load balancer endpoints of the database instance.
+     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
      * 
      */
     @Export(name="loadBalancers", refs={List.class,DatabaseInstanceLoadBalancer.class}, tree="[0,1]")
     private Output<List<DatabaseInstanceLoadBalancer>> loadBalancers;
 
     /**
-     * @return List of load balancer endpoints of the database instance.
+     * @return List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
      * 
      */
     public Output<List<DatabaseInstanceLoadBalancer>> loadBalancers() {
@@ -223,6 +348,9 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
      * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+     * 
      */
     @Export(name="nodeType", refs={String.class}, tree="[0]")
     private Output<String> nodeType;
@@ -232,6 +360,9 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      * 
      */
     public Output<String> nodeType() {
@@ -360,7 +491,7 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="userName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> userName;
+    private Output<String> userName;
 
     /**
      * @return Identifier for the first user of the database instance.
@@ -368,11 +499,13 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
      * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
      * 
      */
-    public Output<Optional<String>> userName() {
-        return Codegen.optional(this.userName);
+    public Output<String> userName() {
+        return this.userName;
     }
     /**
      * Volume size (in GB) when `volume_type` is set to `bssd`.
+     * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
      * 
      */
     @Export(name="volumeSizeInGb", refs={Integer.class}, tree="[0]")
@@ -380,6 +513,8 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Volume size (in GB) when `volume_type` is set to `bssd`.
+     * 
+     * &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
      * 
      */
     public Output<Integer> volumeSizeInGb() {

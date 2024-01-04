@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Container Token.
@@ -223,12 +222,6 @@ func (i *ContainerToken) ToContainerTokenOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerTokenOutput)
 }
 
-func (i *ContainerToken) ToOutput(ctx context.Context) pulumix.Output[*ContainerToken] {
-	return pulumix.Output[*ContainerToken]{
-		OutputState: i.ToContainerTokenOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ContainerTokenArrayInput is an input type that accepts ContainerTokenArray and ContainerTokenArrayOutput values.
 // You can construct a concrete instance of `ContainerTokenArrayInput` via:
 //
@@ -252,12 +245,6 @@ func (i ContainerTokenArray) ToContainerTokenArrayOutput() ContainerTokenArrayOu
 
 func (i ContainerTokenArray) ToContainerTokenArrayOutputWithContext(ctx context.Context) ContainerTokenArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerTokenArrayOutput)
-}
-
-func (i ContainerTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerToken] {
-	return pulumix.Output[[]*ContainerToken]{
-		OutputState: i.ToContainerTokenArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ContainerTokenMapInput is an input type that accepts ContainerTokenMap and ContainerTokenMapOutput values.
@@ -285,12 +272,6 @@ func (i ContainerTokenMap) ToContainerTokenMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerTokenMapOutput)
 }
 
-func (i ContainerTokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerToken] {
-	return pulumix.Output[map[string]*ContainerToken]{
-		OutputState: i.ToContainerTokenMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ContainerTokenOutput struct{ *pulumi.OutputState }
 
 func (ContainerTokenOutput) ElementType() reflect.Type {
@@ -303,12 +284,6 @@ func (o ContainerTokenOutput) ToContainerTokenOutput() ContainerTokenOutput {
 
 func (o ContainerTokenOutput) ToContainerTokenOutputWithContext(ctx context.Context) ContainerTokenOutput {
 	return o
-}
-
-func (o ContainerTokenOutput) ToOutput(ctx context.Context) pulumix.Output[*ContainerToken] {
-	return pulumix.Output[*ContainerToken]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the container.
@@ -359,12 +334,6 @@ func (o ContainerTokenArrayOutput) ToContainerTokenArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o ContainerTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerToken] {
-	return pulumix.Output[[]*ContainerToken]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ContainerTokenArrayOutput) Index(i pulumi.IntInput) ContainerTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContainerToken {
 		return vs[0].([]*ContainerToken)[vs[1].(int)]
@@ -383,12 +352,6 @@ func (o ContainerTokenMapOutput) ToContainerTokenMapOutput() ContainerTokenMapOu
 
 func (o ContainerTokenMapOutput) ToContainerTokenMapOutputWithContext(ctx context.Context) ContainerTokenMapOutput {
 	return o
-}
-
-func (o ContainerTokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerToken] {
-	return pulumix.Output[map[string]*ContainerToken]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ContainerTokenMapOutput) MapIndex(k pulumi.StringInput) ContainerTokenOutput {

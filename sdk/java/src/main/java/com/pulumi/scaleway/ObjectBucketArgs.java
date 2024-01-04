@@ -158,12 +158,18 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * A list of tags (key / value) for the bucket.
      * 
+     * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+     * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
+     * 
      */
     @Import(name="tags")
     private @Nullable Output<Map<String,String>> tags;
 
     /**
      * @return A list of tags (key / value) for the bucket.
+     * 
+     * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+     * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
      * 
      */
     public Optional<Output<Map<String,String>>> tags() {
@@ -423,6 +429,9 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param tags A list of tags (key / value) for the bucket.
          * 
+         * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+         * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
+         * 
          * @return builder
          * 
          */
@@ -433,6 +442,9 @@ public final class ObjectBucketArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param tags A list of tags (key / value) for the bucket.
+         * 
+         * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+         * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
          * 
          * @return builder
          * 

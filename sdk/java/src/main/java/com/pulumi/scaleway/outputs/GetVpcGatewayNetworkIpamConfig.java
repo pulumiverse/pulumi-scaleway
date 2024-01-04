@@ -5,13 +5,18 @@ package com.pulumi.scaleway.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 
 @CustomType
 public final class GetVpcGatewayNetworkIpamConfig {
+    private String ipamIpId;
     private Boolean pushDefaultRoute;
 
     private GetVpcGatewayNetworkIpamConfig() {}
+    public String ipamIpId() {
+        return this.ipamIpId;
+    }
     public Boolean pushDefaultRoute() {
         return this.pushDefaultRoute;
     }
@@ -25,13 +30,20 @@ public final class GetVpcGatewayNetworkIpamConfig {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String ipamIpId;
         private Boolean pushDefaultRoute;
         public Builder() {}
         public Builder(GetVpcGatewayNetworkIpamConfig defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.ipamIpId = defaults.ipamIpId;
     	      this.pushDefaultRoute = defaults.pushDefaultRoute;
         }
 
+        @CustomType.Setter
+        public Builder ipamIpId(String ipamIpId) {
+            this.ipamIpId = Objects.requireNonNull(ipamIpId);
+            return this;
+        }
         @CustomType.Setter
         public Builder pushDefaultRoute(Boolean pushDefaultRoute) {
             this.pushDefaultRoute = Objects.requireNonNull(pushDefaultRoute);
@@ -39,6 +51,7 @@ public final class GetVpcGatewayNetworkIpamConfig {
         }
         public GetVpcGatewayNetworkIpamConfig build() {
             final var o = new GetVpcGatewayNetworkIpamConfig();
+            o.ipamIpId = ipamIpId;
             o.pushDefaultRoute = pushDefaultRoute;
             return o;
         }

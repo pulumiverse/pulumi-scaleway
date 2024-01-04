@@ -16,12 +16,14 @@ class IamApplicationArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 organization_id: Optional[pulumi.Input[str]] = None):
+                 organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a IamApplication resource.
         :param pulumi.Input[str] description: The description of the iam application.
-        :param pulumi.Input[str] name: .The name of the iam application.
+        :param pulumi.Input[str] name: The name of the iam application.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the application is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the application.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -29,6 +31,8 @@ class IamApplicationArgs:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -46,7 +50,7 @@ class IamApplicationArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        .The name of the iam application.
+        The name of the iam application.
         """
         return pulumi.get(self, "name")
 
@@ -66,6 +70,18 @@ class IamApplicationArgs:
     def organization_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization_id", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the application.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _IamApplicationState:
@@ -75,14 +91,16 @@ class _IamApplicationState:
                  editable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IamApplication resources.
         :param pulumi.Input[str] created_at: The date and time of the creation of the application.
         :param pulumi.Input[str] description: The description of the iam application.
         :param pulumi.Input[bool] editable: Whether the application is editable.
-        :param pulumi.Input[str] name: .The name of the iam application.
+        :param pulumi.Input[str] name: The name of the iam application.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the application is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the application.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the application.
         """
         if created_at is not None:
@@ -95,6 +113,8 @@ class _IamApplicationState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
@@ -138,7 +158,7 @@ class _IamApplicationState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        .The name of the iam application.
+        The name of the iam application.
         """
         return pulumi.get(self, "name")
 
@@ -157,6 +177,18 @@ class _IamApplicationState:
     @organization_id.setter
     def organization_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the application.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -179,6 +211,7 @@ class IamApplication(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway IAM Applications. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e).
@@ -203,8 +236,9 @@ class IamApplication(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the iam application.
-        :param pulumi.Input[str] name: .The name of the iam application.
+        :param pulumi.Input[str] name: The name of the iam application.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the application is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the application.
         """
         ...
     @overload
@@ -250,6 +284,7 @@ class IamApplication(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -262,6 +297,7 @@ class IamApplication(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["editable"] = None
             __props__.__dict__["updated_at"] = None
@@ -280,6 +316,7 @@ class IamApplication(pulumi.CustomResource):
             editable: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'IamApplication':
         """
         Get an existing IamApplication resource's state with the given name, id, and optional extra
@@ -291,8 +328,9 @@ class IamApplication(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The date and time of the creation of the application.
         :param pulumi.Input[str] description: The description of the iam application.
         :param pulumi.Input[bool] editable: Whether the application is editable.
-        :param pulumi.Input[str] name: .The name of the iam application.
+        :param pulumi.Input[str] name: The name of the iam application.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the application is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the application.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the application.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -304,6 +342,7 @@ class IamApplication(pulumi.CustomResource):
         __props__.__dict__["editable"] = editable
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         return IamApplication(resource_name, opts=opts, __props__=__props__)
 
@@ -335,7 +374,7 @@ class IamApplication(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        .The name of the iam application.
+        The name of the iam application.
         """
         return pulumi.get(self, "name")
 
@@ -346,6 +385,14 @@ class IamApplication(pulumi.CustomResource):
         `organization_id`) The ID of the organization the application is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The tags associated with the application.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")

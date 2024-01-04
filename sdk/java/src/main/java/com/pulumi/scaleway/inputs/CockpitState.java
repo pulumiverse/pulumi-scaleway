@@ -18,14 +18,14 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
     public static final CockpitState Empty = new CockpitState();
 
     /**
-     * Endpoints
+     * Endpoints.
      * 
      */
     @Import(name="endpoints")
     private @Nullable Output<List<CockpitEndpointArgs>> endpoints;
 
     /**
-     * @return Endpoints
+     * @return Endpoints.
      * 
      */
     public Optional<Output<List<CockpitEndpointArgs>>> endpoints() {
@@ -48,14 +48,14 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the current plan
+     * The ID of the current plan.
      * 
      */
     @Import(name="planId")
     private @Nullable Output<String> planId;
 
     /**
-     * @return The ID of the current plan
+     * @return The ID of the current plan.
      * 
      */
     public Optional<Output<String>> planId() {
@@ -105,7 +105,7 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoints Endpoints
+         * @param endpoints Endpoints.
          * 
          * @return builder
          * 
@@ -116,7 +116,7 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoints Endpoints
+         * @param endpoints Endpoints.
          * 
          * @return builder
          * 
@@ -126,7 +126,7 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoints Endpoints
+         * @param endpoints Endpoints.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param planId The ID of the current plan
+         * @param planId The ID of the current plan.
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class CockpitState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param planId The ID of the current plan
+         * @param planId The ID of the current plan.
          * 
          * @return builder
          * 

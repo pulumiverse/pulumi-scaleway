@@ -18,33 +18,18 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
     public static final InstanceVolumeArgs Empty = new InstanceVolumeArgs();
 
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     @Import(name="fromSnapshotId")
     private @Nullable Output<String> fromSnapshotId;
 
     /**
-     * @return If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * @return If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     public Optional<Output<String>> fromSnapshotId() {
         return Optional.ofNullable(this.fromSnapshotId);
-    }
-
-    /**
-     * If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-     * 
-     */
-    @Import(name="fromVolumeId")
-    private @Nullable Output<String> fromVolumeId;
-
-    /**
-     * @return If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-     * 
-     */
-    public Optional<Output<String>> fromVolumeId() {
-        return Optional.ofNullable(this.fromVolumeId);
     }
 
     /**
@@ -78,14 +63,14 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     @Import(name="sizeInGb")
     private @Nullable Output<Integer> sizeInGb;
 
     /**
-     * @return The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+     * @return The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
      * 
      */
     public Optional<Output<Integer>> sizeInGb() {
@@ -141,7 +126,6 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
 
     private InstanceVolumeArgs(InstanceVolumeArgs $) {
         this.fromSnapshotId = $.fromSnapshotId;
-        this.fromVolumeId = $.fromVolumeId;
         this.name = $.name;
         this.projectId = $.projectId;
         this.sizeInGb = $.sizeInGb;
@@ -169,7 +153,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param fromSnapshotId If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+         * @param fromSnapshotId If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 
@@ -180,34 +164,13 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param fromSnapshotId If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+         * @param fromSnapshotId If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 
          */
         public Builder fromSnapshotId(String fromSnapshotId) {
             return fromSnapshotId(Output.of(fromSnapshotId));
-        }
-
-        /**
-         * @param fromVolumeId If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder fromVolumeId(@Nullable Output<String> fromVolumeId) {
-            $.fromVolumeId = fromVolumeId;
-            return this;
-        }
-
-        /**
-         * @param fromVolumeId If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder fromVolumeId(String fromVolumeId) {
-            return fromVolumeId(Output.of(fromVolumeId));
         }
 
         /**
@@ -253,7 +216,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sizeInGb The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+         * @param sizeInGb The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 
@@ -264,7 +227,7 @@ public final class InstanceVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sizeInGb The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+         * @param sizeInGb The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
          * 
          * @return builder
          * 

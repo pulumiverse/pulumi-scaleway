@@ -108,16 +108,14 @@ public final class AppleSliconValleyServerState extends com.pulumi.resources.Res
     }
 
     /**
-     * The state of the server. Check the possible values on
-     * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+     * The state of the server.
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return The state of the server. Check the possible values on
-     * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+     * @return The state of the server.
      * 
      */
     public Optional<Output<String>> state() {
@@ -353,8 +351,7 @@ public final class AppleSliconValleyServerState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param state The state of the server. Check the possible values on
-         * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+         * @param state The state of the server.
          * 
          * @return builder
          * 
@@ -365,8 +362,7 @@ public final class AppleSliconValleyServerState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param state The state of the server. Check the possible values on
-         * our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+         * @param state The state of the server.
          * 
          * @return builder
          * 

@@ -50,6 +50,21 @@ public final class GetDatabaseInstanceArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
+     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * `region`) The region in which the RDB instance exists.
      * 
      */
@@ -69,6 +84,7 @@ public final class GetDatabaseInstanceArgs extends com.pulumi.resources.InvokeAr
     private GetDatabaseInstanceArgs(GetDatabaseInstanceArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.projectId = $.projectId;
         this.region = $.region;
     }
 
@@ -134,6 +150,27 @@ public final class GetDatabaseInstanceArgs extends com.pulumi.resources.InvokeAr
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param projectId The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

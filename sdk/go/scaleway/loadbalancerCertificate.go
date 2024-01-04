@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LoadbalancerCertificate struct {
@@ -182,12 +181,6 @@ func (i *LoadbalancerCertificate) ToLoadbalancerCertificateOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerCertificateOutput)
 }
 
-func (i *LoadbalancerCertificate) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerCertificate] {
-	return pulumix.Output[*LoadbalancerCertificate]{
-		OutputState: i.ToLoadbalancerCertificateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LoadbalancerCertificateArrayInput is an input type that accepts LoadbalancerCertificateArray and LoadbalancerCertificateArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerCertificateArrayInput` via:
 //
@@ -211,12 +204,6 @@ func (i LoadbalancerCertificateArray) ToLoadbalancerCertificateArrayOutput() Loa
 
 func (i LoadbalancerCertificateArray) ToLoadbalancerCertificateArrayOutputWithContext(ctx context.Context) LoadbalancerCertificateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerCertificateArrayOutput)
-}
-
-func (i LoadbalancerCertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerCertificate] {
-	return pulumix.Output[[]*LoadbalancerCertificate]{
-		OutputState: i.ToLoadbalancerCertificateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LoadbalancerCertificateMapInput is an input type that accepts LoadbalancerCertificateMap and LoadbalancerCertificateMapOutput values.
@@ -244,12 +231,6 @@ func (i LoadbalancerCertificateMap) ToLoadbalancerCertificateMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerCertificateMapOutput)
 }
 
-func (i LoadbalancerCertificateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerCertificate] {
-	return pulumix.Output[map[string]*LoadbalancerCertificate]{
-		OutputState: i.ToLoadbalancerCertificateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LoadbalancerCertificateOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerCertificateOutput) ElementType() reflect.Type {
@@ -262,12 +243,6 @@ func (o LoadbalancerCertificateOutput) ToLoadbalancerCertificateOutput() Loadbal
 
 func (o LoadbalancerCertificateOutput) ToLoadbalancerCertificateOutputWithContext(ctx context.Context) LoadbalancerCertificateOutput {
 	return o
-}
-
-func (o LoadbalancerCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerCertificate] {
-	return pulumix.Output[*LoadbalancerCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Main domain of the certificate. A new certificate will be created if this field is changed.
@@ -340,12 +315,6 @@ func (o LoadbalancerCertificateArrayOutput) ToLoadbalancerCertificateArrayOutput
 	return o
 }
 
-func (o LoadbalancerCertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerCertificate] {
-	return pulumix.Output[[]*LoadbalancerCertificate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LoadbalancerCertificateArrayOutput) Index(i pulumi.IntInput) LoadbalancerCertificateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerCertificate {
 		return vs[0].([]*LoadbalancerCertificate)[vs[1].(int)]
@@ -364,12 +333,6 @@ func (o LoadbalancerCertificateMapOutput) ToLoadbalancerCertificateMapOutput() L
 
 func (o LoadbalancerCertificateMapOutput) ToLoadbalancerCertificateMapOutputWithContext(ctx context.Context) LoadbalancerCertificateMapOutput {
 	return o
-}
-
-func (o LoadbalancerCertificateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerCertificate] {
-	return pulumix.Output[map[string]*LoadbalancerCertificate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LoadbalancerCertificateMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerCertificateOutput {

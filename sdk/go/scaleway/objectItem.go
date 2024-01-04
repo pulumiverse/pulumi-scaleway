@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway object storage objects.
@@ -28,7 +27,7 @@ import (
 type ObjectItem struct {
 	pulumi.CustomResourceState
 
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrOutput `pulumi:"content"`
@@ -90,7 +89,7 @@ func GetObjectItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectItem resources.
 type objectItemState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -117,7 +116,7 @@ type objectItemState struct {
 }
 
 type ObjectItemState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -148,7 +147,7 @@ func (ObjectItemState) ElementType() reflect.Type {
 }
 
 type objectItemArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -176,7 +175,7 @@ type objectItemArgs struct {
 
 // The set of arguments for constructing a ObjectItem resource.
 type ObjectItemArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -225,12 +224,6 @@ func (i *ObjectItem) ToObjectItemOutputWithContext(ctx context.Context) ObjectIt
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectItemOutput)
 }
 
-func (i *ObjectItem) ToOutput(ctx context.Context) pulumix.Output[*ObjectItem] {
-	return pulumix.Output[*ObjectItem]{
-		OutputState: i.ToObjectItemOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ObjectItemArrayInput is an input type that accepts ObjectItemArray and ObjectItemArrayOutput values.
 // You can construct a concrete instance of `ObjectItemArrayInput` via:
 //
@@ -254,12 +247,6 @@ func (i ObjectItemArray) ToObjectItemArrayOutput() ObjectItemArrayOutput {
 
 func (i ObjectItemArray) ToObjectItemArrayOutputWithContext(ctx context.Context) ObjectItemArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectItemArrayOutput)
-}
-
-func (i ObjectItemArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectItem] {
-	return pulumix.Output[[]*ObjectItem]{
-		OutputState: i.ToObjectItemArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ObjectItemMapInput is an input type that accepts ObjectItemMap and ObjectItemMapOutput values.
@@ -287,12 +274,6 @@ func (i ObjectItemMap) ToObjectItemMapOutputWithContext(ctx context.Context) Obj
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectItemMapOutput)
 }
 
-func (i ObjectItemMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectItem] {
-	return pulumix.Output[map[string]*ObjectItem]{
-		OutputState: i.ToObjectItemMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ObjectItemOutput struct{ *pulumi.OutputState }
 
 func (ObjectItemOutput) ElementType() reflect.Type {
@@ -307,13 +288,7 @@ func (o ObjectItemOutput) ToObjectItemOutputWithContext(ctx context.Context) Obj
 	return o
 }
 
-func (o ObjectItemOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectItem] {
-	return pulumix.Output[*ObjectItem]{
-		OutputState: o.OutputState,
-	}
-}
-
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectItemOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -387,12 +362,6 @@ func (o ObjectItemArrayOutput) ToObjectItemArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ObjectItemArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectItem] {
-	return pulumix.Output[[]*ObjectItem]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ObjectItemArrayOutput) Index(i pulumi.IntInput) ObjectItemOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectItem {
 		return vs[0].([]*ObjectItem)[vs[1].(int)]
@@ -411,12 +380,6 @@ func (o ObjectItemMapOutput) ToObjectItemMapOutput() ObjectItemMapOutput {
 
 func (o ObjectItemMapOutput) ToObjectItemMapOutputWithContext(ctx context.Context) ObjectItemMapOutput {
 	return o
-}
-
-func (o ObjectItemMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectItem] {
-	return pulumix.Output[map[string]*ObjectItem]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ObjectItemMapOutput) MapIndex(k pulumi.StringInput) ObjectItemOutput {

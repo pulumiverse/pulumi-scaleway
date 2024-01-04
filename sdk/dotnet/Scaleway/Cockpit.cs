@@ -23,7 +23,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class Cockpit : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Endpoints
+        /// Endpoints.
         /// </summary>
         [Output("endpoints")]
         public Output<ImmutableArray<Outputs.CockpitEndpoint>> Endpoints { get; private set; } = null!;
@@ -35,7 +35,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Output<string?> Plan { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the current plan
+        /// The ID of the current plan.
         /// </summary>
         [Output("planId")]
         public Output<string> PlanId { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         private InputList<Inputs.CockpitEndpointGetArgs>? _endpoints;
 
         /// <summary>
-        /// Endpoints
+        /// Endpoints.
         /// </summary>
         public InputList<Inputs.CockpitEndpointGetArgs> Endpoints
         {
@@ -132,7 +132,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public Input<string>? Plan { get; set; }
 
         /// <summary>
-        /// The ID of the current plan
+        /// The ID of the current plan.
         /// </summary>
         [Input("planId")]
         public Input<string>? PlanId { get; set; }

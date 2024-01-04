@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get information on an existing IAM user based on its ID or email address.
@@ -118,12 +117,6 @@ func (o LookupIamUserResultOutput) ToLookupIamUserResultOutput() LookupIamUserRe
 
 func (o LookupIamUserResultOutput) ToLookupIamUserResultOutputWithContext(ctx context.Context) LookupIamUserResultOutput {
 	return o
-}
-
-func (o LookupIamUserResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamUserResult] {
-	return pulumix.Output[LookupIamUserResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupIamUserResultOutput) Email() pulumi.StringPtrOutput {

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *         var someBucket = new ObjectBucket(&#34;someBucket&#34;);
  * 
  *         var main = new ObjectBucketAcl(&#34;main&#34;, ObjectBucketAclArgs.builder()        
- *             .bucket(scaleway_object_bucket.main().name())
+ *             .bucket(scaleway_object_bucket.main().id())
  *             .acl(&#34;private&#34;)
  *             .build());
  * 
@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
  *         var mainObjectBucket = new ObjectBucket(&#34;mainObjectBucket&#34;);
  * 
  *         var mainObjectBucketAcl = new ObjectBucketAcl(&#34;mainObjectBucketAcl&#34;, ObjectBucketAclArgs.builder()        
- *             .bucket(mainObjectBucket.name())
+ *             .bucket(mainObjectBucket.id())
  *             .accessControlPolicy(ObjectBucketAclAccessControlPolicyArgs.builder()
  *                 .grants(                
  *                     ObjectBucketAclAccessControlPolicyGrantArgs.builder()
@@ -186,14 +186,14 @@ public class ObjectBucketAcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.acl);
     }
     /**
-     * The name of the bucket.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Export(name="bucket", refs={String.class}, tree="[0]")
     private Output<String> bucket;
 
     /**
-     * @return The name of the bucket.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Output<String> bucket() {

@@ -20,6 +20,9 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
         /// Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
         /// </summary>
         public readonly string? HttpFilter;
+        /// <summary>
+        /// If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        /// </summary>
         public readonly string? HttpFilterOption;
         /// <summary>
         /// A list of possible values to match for the given HTTP filter.

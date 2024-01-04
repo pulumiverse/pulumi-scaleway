@@ -44,7 +44,7 @@ export class Cockpit extends pulumi.CustomResource {
     }
 
     /**
-     * Endpoints
+     * Endpoints.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.CockpitEndpoint[]>;
     /**
@@ -52,7 +52,7 @@ export class Cockpit extends pulumi.CustomResource {
      */
     public readonly plan!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the current plan
+     * The ID of the current plan.
      */
     public /*out*/ readonly planId!: pulumi.Output<string>;
     /**
@@ -94,7 +94,7 @@ export class Cockpit extends pulumi.CustomResource {
  */
 export interface CockpitState {
     /**
-     * Endpoints
+     * Endpoints.
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.CockpitEndpoint>[]>;
     /**
@@ -102,7 +102,7 @@ export interface CockpitState {
      */
     plan?: pulumi.Input<string>;
     /**
-     * The ID of the current plan
+     * The ID of the current plan.
      */
     planId?: pulumi.Input<string>;
     /**

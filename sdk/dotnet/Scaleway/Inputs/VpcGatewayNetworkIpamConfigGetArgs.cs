@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class VpcGatewayNetworkIpamConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        /// </summary>
+        [Input("ipamIpId")]
+        public Input<string>? IpamIpId { get; set; }
+
+        /// <summary>
+        /// Defines whether the default route is enabled on that Gateway Network.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }

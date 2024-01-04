@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * const someBucket = new scaleway.ObjectBucket("someBucket", {});
  * const main = new scaleway.ObjectBucketAcl("main", {
- *     bucket: scaleway_object_bucket.main.name,
+ *     bucket: scaleway_object_bucket.main.id,
  *     acl: "private",
  * });
  * ```
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {});
  * const mainObjectBucketAcl = new scaleway.ObjectBucketAcl("mainObjectBucketAcl", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     accessControlPolicy: {
  *         grants: [
  *             {
@@ -139,7 +139,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
@@ -204,7 +204,7 @@ export interface ObjectBucketAclState {
      */
     acl?: pulumi.Input<string>;
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket?: pulumi.Input<string>;
     /**
@@ -234,7 +234,7 @@ export interface ObjectBucketAclArgs {
      */
     acl?: pulumi.Input<string>;
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
     /**

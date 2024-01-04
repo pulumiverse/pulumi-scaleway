@@ -39,6 +39,11 @@ public final class GetRegistryImageResult {
      */
     private List<String> tags;
     /**
+     * @return The date the image of the last update
+     * 
+     */
+    private String updatedAt;
+    /**
      * @return The privacy policy of the registry image.
      * 
      */
@@ -89,6 +94,13 @@ public final class GetRegistryImageResult {
         return this.tags;
     }
     /**
+     * @return The date the image of the last update
+     * 
+     */
+    public String updatedAt() {
+        return this.updatedAt;
+    }
+    /**
      * @return The privacy policy of the registry image.
      * 
      */
@@ -114,6 +126,7 @@ public final class GetRegistryImageResult {
         private String region;
         private Integer size;
         private List<String> tags;
+        private String updatedAt;
         private String visibility;
         public Builder() {}
         public Builder(GetRegistryImageResult defaults) {
@@ -127,6 +140,7 @@ public final class GetRegistryImageResult {
     	      this.region = defaults.region;
     	      this.size = defaults.size;
     	      this.tags = defaults.tags;
+    	      this.updatedAt = defaults.updatedAt;
     	      this.visibility = defaults.visibility;
         }
 
@@ -179,6 +193,11 @@ public final class GetRegistryImageResult {
             return tags(List.of(tags));
         }
         @CustomType.Setter
+        public Builder updatedAt(String updatedAt) {
+            this.updatedAt = Objects.requireNonNull(updatedAt);
+            return this;
+        }
+        @CustomType.Setter
         public Builder visibility(String visibility) {
             this.visibility = Objects.requireNonNull(visibility);
             return this;
@@ -194,6 +213,7 @@ public final class GetRegistryImageResult {
             o.region = region;
             o.size = size;
             o.tags = tags;
+            o.updatedAt = updatedAt;
             o.visibility = visibility;
             return o;
         }

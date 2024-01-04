@@ -28,6 +28,7 @@ public final class GetVpcPublicGatewayResult {
     private String organizationId;
     private String projectId;
     private @Nullable String publicGatewayId;
+    private String status;
     private List<String> tags;
     private String type;
     private String updatedAt;
@@ -69,6 +70,9 @@ public final class GetVpcPublicGatewayResult {
     public Optional<String> publicGatewayId() {
         return Optional.ofNullable(this.publicGatewayId);
     }
+    public String status() {
+        return this.status;
+    }
     public List<String> tags() {
         return this.tags;
     }
@@ -104,6 +108,7 @@ public final class GetVpcPublicGatewayResult {
         private String organizationId;
         private String projectId;
         private @Nullable String publicGatewayId;
+        private String status;
         private List<String> tags;
         private String type;
         private String updatedAt;
@@ -122,6 +127,7 @@ public final class GetVpcPublicGatewayResult {
     	      this.organizationId = defaults.organizationId;
     	      this.projectId = defaults.projectId;
     	      this.publicGatewayId = defaults.publicGatewayId;
+    	      this.status = defaults.status;
     	      this.tags = defaults.tags;
     	      this.type = defaults.type;
     	      this.updatedAt = defaults.updatedAt;
@@ -180,6 +186,11 @@ public final class GetVpcPublicGatewayResult {
             return this;
         }
         @CustomType.Setter
+        public Builder status(String status) {
+            this.status = Objects.requireNonNull(status);
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             this.tags = Objects.requireNonNull(tags);
             return this;
@@ -222,6 +233,7 @@ public final class GetVpcPublicGatewayResult {
             o.organizationId = organizationId;
             o.projectId = projectId;
             o.publicGatewayId = publicGatewayId;
+            o.status = status;
             o.tags = tags;
             o.type = type;
             o.updatedAt = updatedAt;

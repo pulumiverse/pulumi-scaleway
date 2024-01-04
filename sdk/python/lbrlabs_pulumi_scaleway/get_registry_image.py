@@ -21,7 +21,7 @@ class GetRegistryImageResult:
     """
     A collection of values returned by getRegistryImage.
     """
-    def __init__(__self__, id=None, image_id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, size=None, tags=None, visibility=None):
+    def __init__(__self__, id=None, image_id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, size=None, tags=None, updated_at=None, visibility=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -49,6 +49,9 @@ class GetRegistryImageResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
         if visibility and not isinstance(visibility, str):
             raise TypeError("Expected argument 'visibility' to be a str")
         pulumi.set(__self__, "visibility", visibility)
@@ -111,6 +114,14 @@ class GetRegistryImageResult:
         return pulumi.get(self, "tags")
 
     @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The date the image of the last update
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
     @pulumi.getter
     def visibility(self) -> str:
         """
@@ -134,6 +145,7 @@ class AwaitableGetRegistryImageResult(GetRegistryImageResult):
             region=self.region,
             size=self.size,
             tags=self.tags,
+            updated_at=self.updated_at,
             visibility=self.visibility)
 
 
@@ -187,6 +199,7 @@ def get_registry_image(image_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         size=pulumi.get(__ret__, 'size'),
         tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
         visibility=pulumi.get(__ret__, 'visibility'))
 
 

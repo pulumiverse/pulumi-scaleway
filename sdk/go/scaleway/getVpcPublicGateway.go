@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway.
@@ -80,6 +79,7 @@ type LookupVpcPublicGatewayResult struct {
 	OrganizationId     string   `pulumi:"organizationId"`
 	ProjectId          string   `pulumi:"projectId"`
 	PublicGatewayId    *string  `pulumi:"publicGatewayId"`
+	Status             string   `pulumi:"status"`
 	Tags               []string `pulumi:"tags"`
 	Type               string   `pulumi:"type"`
 	UpdatedAt          string   `pulumi:"updatedAt"`
@@ -129,12 +129,6 @@ func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutput
 	return o
 }
 
-func (o LookupVpcPublicGatewayResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayResult] {
-	return pulumix.Output[LookupVpcPublicGatewayResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LookupVpcPublicGatewayResultOutput) BastionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) bool { return v.BastionEnabled }).(pulumi.BoolOutput)
 }
@@ -174,6 +168,10 @@ func (o LookupVpcPublicGatewayResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o LookupVpcPublicGatewayResultOutput) PublicGatewayId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) *string { return v.PublicGatewayId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupVpcPublicGatewayResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o LookupVpcPublicGatewayResultOutput) Tags() pulumi.StringArrayOutput {

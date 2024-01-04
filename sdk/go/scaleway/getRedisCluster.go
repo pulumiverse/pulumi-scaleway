@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
@@ -127,12 +126,6 @@ func (o LookupRedisClusterResultOutput) ToLookupRedisClusterResultOutput() Looku
 
 func (o LookupRedisClusterResultOutput) ToLookupRedisClusterResultOutputWithContext(ctx context.Context) LookupRedisClusterResultOutput {
 	return o
-}
-
-func (o LookupRedisClusterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRedisClusterResult] {
-	return pulumix.Output[LookupRedisClusterResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupRedisClusterResultOutput) Acls() GetRedisClusterAclArrayOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway IAM Applications. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e).
@@ -58,10 +57,12 @@ type IamApplication struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Whether the application is editable.
 	Editable pulumi.BoolOutput `pulumi:"editable"`
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The tags associated with the application.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the application.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -102,10 +103,12 @@ type iamApplicationState struct {
 	Description *string `pulumi:"description"`
 	// Whether the application is editable.
 	Editable *bool `pulumi:"editable"`
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the application.
+	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the application.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -117,10 +120,12 @@ type IamApplicationState struct {
 	Description pulumi.StringPtrInput
 	// Whether the application is editable.
 	Editable pulumi.BoolPtrInput
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the application.
+	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the application.
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -132,20 +137,24 @@ func (IamApplicationState) ElementType() reflect.Type {
 type iamApplicationArgs struct {
 	// The description of the iam application.
 	Description *string `pulumi:"description"`
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the application.
+	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a IamApplication resource.
 type IamApplicationArgs struct {
 	// The description of the iam application.
 	Description pulumi.StringPtrInput
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the application.
+	Tags pulumi.StringArrayInput
 }
 
 func (IamApplicationArgs) ElementType() reflect.Type {
@@ -169,12 +178,6 @@ func (i *IamApplication) ToIamApplicationOutput() IamApplicationOutput {
 
 func (i *IamApplication) ToIamApplicationOutputWithContext(ctx context.Context) IamApplicationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamApplicationOutput)
-}
-
-func (i *IamApplication) ToOutput(ctx context.Context) pulumix.Output[*IamApplication] {
-	return pulumix.Output[*IamApplication]{
-		OutputState: i.ToIamApplicationOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IamApplicationArrayInput is an input type that accepts IamApplicationArray and IamApplicationArrayOutput values.
@@ -202,12 +205,6 @@ func (i IamApplicationArray) ToIamApplicationArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(IamApplicationArrayOutput)
 }
 
-func (i IamApplicationArray) ToOutput(ctx context.Context) pulumix.Output[[]*IamApplication] {
-	return pulumix.Output[[]*IamApplication]{
-		OutputState: i.ToIamApplicationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IamApplicationMapInput is an input type that accepts IamApplicationMap and IamApplicationMapOutput values.
 // You can construct a concrete instance of `IamApplicationMapInput` via:
 //
@@ -233,12 +230,6 @@ func (i IamApplicationMap) ToIamApplicationMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(IamApplicationMapOutput)
 }
 
-func (i IamApplicationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamApplication] {
-	return pulumix.Output[map[string]*IamApplication]{
-		OutputState: i.ToIamApplicationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IamApplicationOutput struct{ *pulumi.OutputState }
 
 func (IamApplicationOutput) ElementType() reflect.Type {
@@ -251,12 +242,6 @@ func (o IamApplicationOutput) ToIamApplicationOutput() IamApplicationOutput {
 
 func (o IamApplicationOutput) ToIamApplicationOutputWithContext(ctx context.Context) IamApplicationOutput {
 	return o
-}
-
-func (o IamApplicationOutput) ToOutput(ctx context.Context) pulumix.Output[*IamApplication] {
-	return pulumix.Output[*IamApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the application.
@@ -274,7 +259,7 @@ func (o IamApplicationOutput) Editable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.BoolOutput { return v.Editable }).(pulumi.BoolOutput)
 }
 
-// .The name of the iam application.
+// The name of the iam application.
 func (o IamApplicationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -282,6 +267,11 @@ func (o IamApplicationOutput) Name() pulumi.StringOutput {
 // `organizationId`) The ID of the organization the application is associated with.
 func (o IamApplicationOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The tags associated with the application.
+func (o IamApplicationOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IamApplication) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The date and time of the last update of the application.
@@ -303,12 +293,6 @@ func (o IamApplicationArrayOutput) ToIamApplicationArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o IamApplicationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IamApplication] {
-	return pulumix.Output[[]*IamApplication]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IamApplicationArrayOutput) Index(i pulumi.IntInput) IamApplicationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IamApplication {
 		return vs[0].([]*IamApplication)[vs[1].(int)]
@@ -327,12 +311,6 @@ func (o IamApplicationMapOutput) ToIamApplicationMapOutput() IamApplicationMapOu
 
 func (o IamApplicationMapOutput) ToIamApplicationMapOutputWithContext(ctx context.Context) IamApplicationMapOutput {
 	return o
-}
-
-func (o IamApplicationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamApplication] {
-	return pulumix.Output[map[string]*IamApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IamApplicationMapOutput) MapIndex(k pulumi.StringInput) IamApplicationOutput {

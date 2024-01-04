@@ -261,28 +261,28 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="rootVolumeSizeInGb", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> rootVolumeSizeInGb;
+    private Output<Integer> rootVolumeSizeInGb;
 
     /**
      * @return The size of the system volume of the nodes in gigabyte
      * 
      */
-    public Output<Optional<Integer>> rootVolumeSizeInGb() {
-        return Codegen.optional(this.rootVolumeSizeInGb);
+    public Output<Integer> rootVolumeSizeInGb() {
+        return this.rootVolumeSizeInGb;
     }
     /**
      * System volume type of the nodes composing the pool
      * 
      */
     @Export(name="rootVolumeType", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> rootVolumeType;
+    private Output<String> rootVolumeType;
 
     /**
      * @return System volume type of the nodes composing the pool
      * 
      */
-    public Output<Optional<String>> rootVolumeType() {
-        return Codegen.optional(this.rootVolumeType);
+    public Output<String> rootVolumeType() {
+        return this.rootVolumeType;
     }
     /**
      * The size of the pool.

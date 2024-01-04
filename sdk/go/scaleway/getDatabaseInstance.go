@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
@@ -31,6 +30,8 @@ type LookupDatabaseInstanceArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the RDB instance exists.
 	Region *string `pulumi:"region"`
 }
@@ -87,6 +88,8 @@ type LookupDatabaseInstanceOutputArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the RDB instance exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -108,12 +111,6 @@ func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutput
 
 func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutputWithContext(ctx context.Context) LookupDatabaseInstanceResultOutput {
 	return o
-}
-
-func (o LookupDatabaseInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseInstanceResult] {
-	return pulumix.Output[LookupDatabaseInstanceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupDatabaseInstanceResultOutput) BackupSameRegion() pulumi.BoolOutput {

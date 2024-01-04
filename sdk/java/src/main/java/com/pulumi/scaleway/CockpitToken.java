@@ -105,14 +105,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/cockpitToken:CockpitToken")
 public class CockpitToken extends com.pulumi.resources.CustomResource {
     /**
-     * The name of the token
+     * The name of the token.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the token
+     * @return The name of the token.
      * 
      */
     public Output<String> name() {
@@ -133,28 +133,28 @@ public class CockpitToken extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Allowed scopes
+     * Allowed scopes.
      * 
      */
     @Export(name="scopes", refs={CockpitTokenScopes.class}, tree="[0]")
     private Output<CockpitTokenScopes> scopes;
 
     /**
-     * @return Allowed scopes
+     * @return Allowed scopes.
      * 
      */
     public Output<CockpitTokenScopes> scopes() {
         return this.scopes;
     }
     /**
-     * The secret key of the token
+     * The secret key of the token.
      * 
      */
     @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output<String> secretKey;
 
     /**
-     * @return The secret key of the token
+     * @return The secret key of the token.
      * 
      */
     public Output<String> secretKey() {

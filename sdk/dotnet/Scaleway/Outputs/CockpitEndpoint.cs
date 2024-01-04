@@ -15,21 +15,25 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
     public sealed class CockpitEndpoint
     {
         /// <summary>
-        /// The alertmanager URL
+        /// The alertmanager URL.
         /// </summary>
         public readonly string? AlertmanagerUrl;
         /// <summary>
-        /// The grafana URL
+        /// The grafana URL.
         /// </summary>
         public readonly string? GrafanaUrl;
         /// <summary>
-        /// The logs URL
+        /// The logs URL.
         /// </summary>
         public readonly string? LogsUrl;
         /// <summary>
-        /// The metrics URL
+        /// The metrics URL.
         /// </summary>
         public readonly string? MetricsUrl;
+        /// <summary>
+        /// The traces URL.
+        /// </summary>
+        public readonly string? TracesUrl;
 
         [OutputConstructor]
         private CockpitEndpoint(
@@ -39,12 +43,15 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Outputs
 
             string? logsUrl,
 
-            string? metricsUrl)
+            string? metricsUrl,
+
+            string? tracesUrl)
         {
             AlertmanagerUrl = alertmanagerUrl;
             GrafanaUrl = grafanaUrl;
             LogsUrl = logsUrl;
             MetricsUrl = metricsUrl;
+            TracesUrl = tracesUrl;
         }
     }
 }

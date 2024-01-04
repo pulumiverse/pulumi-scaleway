@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -47,6 +48,21 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
+     * `project_id`) The ID of the project the IP is associated with.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return `project_id`) The ID of the project the IP is associated with.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * `region`) The region in which the IP exists.
      * 
      */
@@ -62,14 +78,14 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Filter by resource ID and type, both attributes must be set
+     * Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
      * 
      */
     @Import(name="resource")
     private @Nullable Output<GetIpamIpResourceArgs> resource;
 
     /**
-     * @return Filter by resource ID and type, both attributes must be set
+     * @return Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
      * 
      */
     public Optional<Output<GetIpamIpResourceArgs>> resource() {
@@ -77,18 +93,50 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The tags associated with the IP.
+     * As datasource only returns one IP, the search with given tags must return only one result.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<String>> tags;
+
+    /**
+     * @return The tags associated with the IP.
+     * As datasource only returns one IP, the search with given tags must return only one result.
+     * 
+     */
+    public Optional<Output<List<String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * @return The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      * 
      */
     public Output<String> type() {
         return this.type;
+    }
+
+    /**
+     * Only IPs that are zonal, and in this zone, will be returned.
+     * 
+     */
+    @Import(name="zonal")
+    private @Nullable Output<String> zonal;
+
+    /**
+     * @return Only IPs that are zonal, and in this zone, will be returned.
+     * 
+     */
+    public Optional<Output<String>> zonal() {
+        return Optional.ofNullable(this.zonal);
     }
 
     private GetIpamIpArgs() {}
@@ -96,9 +144,12 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
     private GetIpamIpArgs(GetIpamIpArgs $) {
         this.macAddress = $.macAddress;
         this.privateNetworkId = $.privateNetworkId;
+        this.projectId = $.projectId;
         this.region = $.region;
         this.resource = $.resource;
+        this.tags = $.tags;
         this.type = $.type;
+        this.zonal = $.zonal;
     }
 
     public static Builder builder() {
@@ -162,6 +213,27 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
+         * @param projectId `project_id`) The ID of the project the IP is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId `project_id`) The ID of the project the IP is associated with.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
+        }
+
+        /**
          * @param region `region`) The region in which the IP exists.
          * 
          * @return builder
@@ -183,7 +255,7 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param resource Filter by resource ID and type, both attributes must be set
+         * @param resource Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
          * 
          * @return builder
          * 
@@ -194,7 +266,7 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param resource Filter by resource ID and type, both attributes must be set
+         * @param resource Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
          * 
          * @return builder
          * 
@@ -204,7 +276,41 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+         * @param tags The tags associated with the IP.
+         * As datasource only returns one IP, the search with given tags must return only one result.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags The tags associated with the IP.
+         * As datasource only returns one IP, the search with given tags must return only one result.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<String> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags The tags associated with the IP.
+         * As datasource only returns one IP, the search with given tags must return only one result.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
+        }
+
+        /**
+         * @param type The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
          * 
          * @return builder
          * 
@@ -215,13 +321,34 @@ public final class GetIpamIpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+         * @param type The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
          * 
          * @return builder
          * 
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param zonal Only IPs that are zonal, and in this zone, will be returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder zonal(@Nullable Output<String> zonal) {
+            $.zonal = zonal;
+            return this;
+        }
+
+        /**
+         * @param zonal Only IPs that are zonal, and in this zone, will be returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder zonal(String zonal) {
+            return zonal(Output.of(zonal));
         }
 
         public GetIpamIpArgs build() {

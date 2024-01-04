@@ -524,12 +524,16 @@ public class InstanceServer extends com.pulumi.resources.CustomResource {
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
      * 
+     * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+     * 
      */
     @Export(name="ipIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ipIds;
 
     /**
      * @return List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+     * 
+     * &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
      * 
      */
     public Output<Optional<List<String>>> ipIds() {

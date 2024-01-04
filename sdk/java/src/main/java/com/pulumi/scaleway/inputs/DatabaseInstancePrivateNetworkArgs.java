@@ -5,6 +5,7 @@ package com.pulumi.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DatabaseInstancePrivateNetworkArgs Empty = new DatabaseInstancePrivateNetworkArgs();
+
+    /**
+     * Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+     * 
+     */
+    @Import(name="enableIpam")
+    private @Nullable Output<Boolean> enableIpam;
+
+    /**
+     * @return Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+     * 
+     */
+    public Optional<Output<Boolean>> enableIpam() {
+        return Optional.ofNullable(this.enableIpam);
+    }
 
     /**
      * The ID of the endpoint.
@@ -83,9 +99,17 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The ID of the private network.
+     * 
+     */
     @Import(name="pnId", required=true)
     private Output<String> pnId;
 
+    /**
+     * @return The ID of the private network.
+     * 
+     */
     public Output<String> pnId() {
         return this.pnId;
     }
@@ -115,6 +139,7 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
     private DatabaseInstancePrivateNetworkArgs() {}
 
     private DatabaseInstancePrivateNetworkArgs(DatabaseInstancePrivateNetworkArgs $) {
+        this.enableIpam = $.enableIpam;
         this.endpointId = $.endpointId;
         this.hostname = $.hostname;
         this.ip = $.ip;
@@ -141,6 +166,27 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
 
         public Builder(DatabaseInstancePrivateNetworkArgs defaults) {
             $ = new DatabaseInstancePrivateNetworkArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param enableIpam Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableIpam(@Nullable Output<Boolean> enableIpam) {
+            $.enableIpam = enableIpam;
+            return this;
+        }
+
+        /**
+         * @param enableIpam Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableIpam(Boolean enableIpam) {
+            return enableIpam(Output.of(enableIpam));
         }
 
         /**
@@ -236,11 +282,23 @@ public final class DatabaseInstancePrivateNetworkArgs extends com.pulumi.resourc
             return name(Output.of(name));
         }
 
+        /**
+         * @param pnId The ID of the private network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pnId(Output<String> pnId) {
             $.pnId = pnId;
             return this;
         }
 
+        /**
+         * @param pnId The ID of the private network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pnId(String pnId) {
             return pnId(Output.of(pnId));
         }

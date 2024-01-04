@@ -355,6 +355,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
@@ -617,6 +619,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -825,6 +829,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {

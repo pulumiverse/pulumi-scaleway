@@ -35,7 +35,7 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
     }
 
     /**
-     * The bucket name.
+     * The bucket's name or regional ID.
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
@@ -91,7 +91,7 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
  */
 export interface ObjectBucketLockConfigurationState {
     /**
-     * The bucket name.
+     * The bucket's name or regional ID.
      */
     bucket?: pulumi.Input<string>;
     /**
@@ -113,7 +113,7 @@ export interface ObjectBucketLockConfigurationState {
  */
 export interface ObjectBucketLockConfigurationArgs {
     /**
-     * The bucket name.
+     * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
     /**

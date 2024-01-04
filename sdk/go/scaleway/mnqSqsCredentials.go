@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Messaging and queuing SQS Credentials.
@@ -193,12 +192,6 @@ func (i *MnqSqsCredentials) ToMnqSqsCredentialsOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsCredentialsOutput)
 }
 
-func (i *MnqSqsCredentials) ToOutput(ctx context.Context) pulumix.Output[*MnqSqsCredentials] {
-	return pulumix.Output[*MnqSqsCredentials]{
-		OutputState: i.ToMnqSqsCredentialsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MnqSqsCredentialsArrayInput is an input type that accepts MnqSqsCredentialsArray and MnqSqsCredentialsArrayOutput values.
 // You can construct a concrete instance of `MnqSqsCredentialsArrayInput` via:
 //
@@ -222,12 +215,6 @@ func (i MnqSqsCredentialsArray) ToMnqSqsCredentialsArrayOutput() MnqSqsCredentia
 
 func (i MnqSqsCredentialsArray) ToMnqSqsCredentialsArrayOutputWithContext(ctx context.Context) MnqSqsCredentialsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsCredentialsArrayOutput)
-}
-
-func (i MnqSqsCredentialsArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqSqsCredentials] {
-	return pulumix.Output[[]*MnqSqsCredentials]{
-		OutputState: i.ToMnqSqsCredentialsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MnqSqsCredentialsMapInput is an input type that accepts MnqSqsCredentialsMap and MnqSqsCredentialsMapOutput values.
@@ -255,12 +242,6 @@ func (i MnqSqsCredentialsMap) ToMnqSqsCredentialsMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsCredentialsMapOutput)
 }
 
-func (i MnqSqsCredentialsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqSqsCredentials] {
-	return pulumix.Output[map[string]*MnqSqsCredentials]{
-		OutputState: i.ToMnqSqsCredentialsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MnqSqsCredentialsOutput struct{ *pulumi.OutputState }
 
 func (MnqSqsCredentialsOutput) ElementType() reflect.Type {
@@ -273,12 +254,6 @@ func (o MnqSqsCredentialsOutput) ToMnqSqsCredentialsOutput() MnqSqsCredentialsOu
 
 func (o MnqSqsCredentialsOutput) ToMnqSqsCredentialsOutputWithContext(ctx context.Context) MnqSqsCredentialsOutput {
 	return o
-}
-
-func (o MnqSqsCredentialsOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqSqsCredentials] {
-	return pulumix.Output[*MnqSqsCredentials]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the key.
@@ -325,12 +300,6 @@ func (o MnqSqsCredentialsArrayOutput) ToMnqSqsCredentialsArrayOutputWithContext(
 	return o
 }
 
-func (o MnqSqsCredentialsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqSqsCredentials] {
-	return pulumix.Output[[]*MnqSqsCredentials]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MnqSqsCredentialsArrayOutput) Index(i pulumi.IntInput) MnqSqsCredentialsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqSqsCredentials {
 		return vs[0].([]*MnqSqsCredentials)[vs[1].(int)]
@@ -349,12 +318,6 @@ func (o MnqSqsCredentialsMapOutput) ToMnqSqsCredentialsMapOutput() MnqSqsCredent
 
 func (o MnqSqsCredentialsMapOutput) ToMnqSqsCredentialsMapOutputWithContext(ctx context.Context) MnqSqsCredentialsMapOutput {
 	return o
-}
-
-func (o MnqSqsCredentialsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqSqsCredentials] {
-	return pulumix.Output[map[string]*MnqSqsCredentials]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MnqSqsCredentialsMapOutput) MapIndex(k pulumi.StringInput) MnqSqsCredentialsOutput {

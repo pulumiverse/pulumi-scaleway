@@ -40,6 +40,9 @@ class ObjectBucketArgs:
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
@@ -173,6 +176,9 @@ class ObjectBucketArgs:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A list of tags (key / value) for the bucket.
+
+        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
 
@@ -197,6 +203,7 @@ class ObjectBucketArgs:
 class _ObjectBucketState:
     def __init__(__self__, *,
                  acl: Optional[pulumi.Input[str]] = None,
+                 api_endpoint: Optional[pulumi.Input[str]] = None,
                  cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
@@ -210,6 +217,7 @@ class _ObjectBucketState:
         """
         Input properties used for looking up and filtering ObjectBucket resources.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
@@ -222,6 +230,9 @@ class _ObjectBucketState:
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
@@ -229,6 +240,8 @@ class _ObjectBucketState:
             pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
+        if api_endpoint is not None:
+            pulumi.set(__self__, "api_endpoint", api_endpoint)
         if cors_rules is not None:
             pulumi.set(__self__, "cors_rules", cors_rules)
         if endpoint is not None:
@@ -264,6 +277,18 @@ class _ObjectBucketState:
     @acl.setter
     def acl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "acl", value)
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        API URL of the bucket
+        """
+        return pulumi.get(self, "api_endpoint")
+
+    @api_endpoint.setter
+    def api_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_endpoint", value)
 
     @property
     @pulumi.getter(name="corsRules")
@@ -369,6 +394,9 @@ class _ObjectBucketState:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A list of tags (key / value) for the bucket.
+
+        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
 
@@ -474,7 +502,7 @@ class ObjectBucket(pulumi.CustomResource):
                         "tag1": "value1",
                     },
                     transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=0,
+                        days=1,
                         storage_class="GLACIER",
                     )],
                 ),
@@ -514,6 +542,9 @@ class ObjectBucket(pulumi.CustomResource):
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         ...
@@ -591,7 +622,7 @@ class ObjectBucket(pulumi.CustomResource):
                         "tag1": "value1",
                     },
                     transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=0,
+                        days=1,
                         storage_class="GLACIER",
                     )],
                 ),
@@ -661,6 +692,7 @@ class ObjectBucket(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             __props__.__dict__["versioning"] = versioning
+            __props__.__dict__["api_endpoint"] = None
             __props__.__dict__["endpoint"] = None
         super(ObjectBucket, __self__).__init__(
             'scaleway:index/objectBucket:ObjectBucket',
@@ -673,6 +705,7 @@ class ObjectBucket(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             acl: Optional[pulumi.Input[str]] = None,
+            api_endpoint: Optional[pulumi.Input[str]] = None,
             cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]]] = None,
             endpoint: Optional[pulumi.Input[str]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
@@ -691,6 +724,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
@@ -703,6 +737,9 @@ class ObjectBucket(pulumi.CustomResource):
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -710,6 +747,7 @@ class ObjectBucket(pulumi.CustomResource):
         __props__ = _ObjectBucketState.__new__(_ObjectBucketState)
 
         __props__.__dict__["acl"] = acl
+        __props__.__dict__["api_endpoint"] = api_endpoint
         __props__.__dict__["cors_rules"] = cors_rules
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["force_destroy"] = force_destroy
@@ -732,6 +770,14 @@ class ObjectBucket(pulumi.CustomResource):
         pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
 
         return pulumi.get(self, "acl")
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> pulumi.Output[str]:
+        """
+        API URL of the bucket
+        """
+        return pulumi.get(self, "api_endpoint")
 
     @property
     @pulumi.getter(name="corsRules")
@@ -805,6 +851,9 @@ class ObjectBucket(pulumi.CustomResource):
     def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         A list of tags (key / value) for the bucket.
+
+        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
 

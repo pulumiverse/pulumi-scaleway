@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Load Balancer.
@@ -131,12 +130,6 @@ func (o LookupLoadbalancerResultOutput) ToLookupLoadbalancerResultOutput() Looku
 
 func (o LookupLoadbalancerResultOutput) ToLookupLoadbalancerResultOutputWithContext(ctx context.Context) LookupLoadbalancerResultOutput {
 	return o
-}
-
-func (o LookupLoadbalancerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLoadbalancerResult] {
-	return pulumix.Output[LookupLoadbalancerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupLoadbalancerResultOutput) AssignFlexibleIp() pulumi.BoolOutput {

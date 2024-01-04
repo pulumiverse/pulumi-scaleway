@@ -56,7 +56,6 @@ import javax.annotation.Nullable;
  * ```
  * 
  * ## With ACLs
- * 
  * ```java
  * package generated_program;
  * 
@@ -136,7 +135,7 @@ import javax.annotation.Nullable;
  *                     .match(LoadbalancerFrontendAclMatchArgs.builder()
  *                         .httpFilter(&#34;http_header_match&#34;)
  *                         .httpFilterValues(&#34;foo&#34;)
- *                         .httpValueOption(&#34;bar&#34;)
+ *                         .httpFilterOption(&#34;bar&#34;)
  *                         .build())
  *                     .build(),
  *                 LoadbalancerFrontendAclArgs.builder()

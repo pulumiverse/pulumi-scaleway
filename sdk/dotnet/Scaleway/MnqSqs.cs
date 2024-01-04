@@ -19,6 +19,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// ### Basic
     /// 
+    /// Activate SQS for default project
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,13 +29,30 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // For default project in default region
     ///     var main = new Scaleway.MnqSqs("main");
     /// 
-    ///     // For specific project in default region
+    /// });
+    /// ```
+    /// 
+    /// Activate SQS for a specific project
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Lbrlabs.PulumiPackage.Scaleway;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = Scaleway.GetAccountProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
     ///     var forProject = new Scaleway.MnqSqs("forProject", new()
     ///     {
-    ///         ProjectId = scaleway_account_project.Main.Id,
+    ///         ProjectId = project.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id),
     ///     });
     /// 
     /// });

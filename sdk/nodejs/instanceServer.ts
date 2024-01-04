@@ -117,7 +117,7 @@ import * as utilities from "./utilities";
  *     image: "ubuntu_jammy",
  *     userData: {
  *         foo: "bar",
- *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`),
+ *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`, "utf8"),
  *     },
  * });
  * ```
@@ -272,6 +272,8 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly ipId!: pulumi.Output<string | undefined>;
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+     *
+     * > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
      */
     public readonly ipIds!: pulumi.Output<string[] | undefined>;
     /**
@@ -507,6 +509,8 @@ export interface InstanceServerState {
     ipId?: pulumi.Input<string>;
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+     *
+     * > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -659,6 +663,8 @@ export interface InstanceServerArgs {
     ipId?: pulumi.Input<string>;
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
+     *
+     * > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

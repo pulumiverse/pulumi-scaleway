@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about your Invoices.
@@ -112,12 +111,6 @@ func (o GetBillingInvoicesResultOutput) ToGetBillingInvoicesResultOutput() GetBi
 
 func (o GetBillingInvoicesResultOutput) ToGetBillingInvoicesResultOutputWithContext(ctx context.Context) GetBillingInvoicesResultOutput {
 	return o
-}
-
-func (o GetBillingInvoicesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBillingInvoicesResult] {
-	return pulumix.Output[GetBillingInvoicesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Flexible IP Mac Addresses.
@@ -269,12 +268,6 @@ func (i *FlexibleIpMacAddress) ToFlexibleIpMacAddressOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleIpMacAddressOutput)
 }
 
-func (i *FlexibleIpMacAddress) ToOutput(ctx context.Context) pulumix.Output[*FlexibleIpMacAddress] {
-	return pulumix.Output[*FlexibleIpMacAddress]{
-		OutputState: i.ToFlexibleIpMacAddressOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FlexibleIpMacAddressArrayInput is an input type that accepts FlexibleIpMacAddressArray and FlexibleIpMacAddressArrayOutput values.
 // You can construct a concrete instance of `FlexibleIpMacAddressArrayInput` via:
 //
@@ -298,12 +291,6 @@ func (i FlexibleIpMacAddressArray) ToFlexibleIpMacAddressArrayOutput() FlexibleI
 
 func (i FlexibleIpMacAddressArray) ToFlexibleIpMacAddressArrayOutputWithContext(ctx context.Context) FlexibleIpMacAddressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleIpMacAddressArrayOutput)
-}
-
-func (i FlexibleIpMacAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]*FlexibleIpMacAddress] {
-	return pulumix.Output[[]*FlexibleIpMacAddress]{
-		OutputState: i.ToFlexibleIpMacAddressArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FlexibleIpMacAddressMapInput is an input type that accepts FlexibleIpMacAddressMap and FlexibleIpMacAddressMapOutput values.
@@ -331,12 +318,6 @@ func (i FlexibleIpMacAddressMap) ToFlexibleIpMacAddressMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleIpMacAddressMapOutput)
 }
 
-func (i FlexibleIpMacAddressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FlexibleIpMacAddress] {
-	return pulumix.Output[map[string]*FlexibleIpMacAddress]{
-		OutputState: i.ToFlexibleIpMacAddressMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FlexibleIpMacAddressOutput struct{ *pulumi.OutputState }
 
 func (FlexibleIpMacAddressOutput) ElementType() reflect.Type {
@@ -349,12 +330,6 @@ func (o FlexibleIpMacAddressOutput) ToFlexibleIpMacAddressOutput() FlexibleIpMac
 
 func (o FlexibleIpMacAddressOutput) ToFlexibleIpMacAddressOutputWithContext(ctx context.Context) FlexibleIpMacAddressOutput {
 	return o
-}
-
-func (o FlexibleIpMacAddressOutput) ToOutput(ctx context.Context) pulumix.Output[*FlexibleIpMacAddress] {
-	return pulumix.Output[*FlexibleIpMacAddress]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The Virtual MAC address.
@@ -412,12 +387,6 @@ func (o FlexibleIpMacAddressArrayOutput) ToFlexibleIpMacAddressArrayOutputWithCo
 	return o
 }
 
-func (o FlexibleIpMacAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FlexibleIpMacAddress] {
-	return pulumix.Output[[]*FlexibleIpMacAddress]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FlexibleIpMacAddressArrayOutput) Index(i pulumi.IntInput) FlexibleIpMacAddressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FlexibleIpMacAddress {
 		return vs[0].([]*FlexibleIpMacAddress)[vs[1].(int)]
@@ -436,12 +405,6 @@ func (o FlexibleIpMacAddressMapOutput) ToFlexibleIpMacAddressMapOutput() Flexibl
 
 func (o FlexibleIpMacAddressMapOutput) ToFlexibleIpMacAddressMapOutputWithContext(ctx context.Context) FlexibleIpMacAddressMapOutput {
 	return o
-}
-
-func (o FlexibleIpMacAddressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FlexibleIpMacAddress] {
-	return pulumix.Output[map[string]*FlexibleIpMacAddress]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FlexibleIpMacAddressMapOutput) MapIndex(k pulumi.StringInput) FlexibleIpMacAddressOutput {

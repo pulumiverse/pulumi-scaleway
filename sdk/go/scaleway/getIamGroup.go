@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing IAM group. For more information, please
@@ -80,6 +79,7 @@ type LookupIamGroupResult struct {
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
 	OrganizationId *string  `pulumi:"organizationId"`
+	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 	UserIds        []string `pulumi:"userIds"`
 }
@@ -129,12 +129,6 @@ func (o LookupIamGroupResultOutput) ToLookupIamGroupResultOutputWithContext(ctx 
 	return o
 }
 
-func (o LookupIamGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamGroupResult] {
-	return pulumix.Output[LookupIamGroupResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LookupIamGroupResultOutput) ApplicationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) []string { return v.ApplicationIds }).(pulumi.StringArrayOutput)
 }
@@ -166,6 +160,10 @@ func (o LookupIamGroupResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupIamGroupResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamGroupResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIamGroupResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupIamGroupResultOutput) UpdatedAt() pulumi.StringOutput {

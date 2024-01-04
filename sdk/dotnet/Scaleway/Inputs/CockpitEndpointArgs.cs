@@ -14,28 +14,34 @@ namespace Lbrlabs.PulumiPackage.Scaleway.Inputs
     public sealed class CockpitEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The alertmanager URL
+        /// The alertmanager URL.
         /// </summary>
         [Input("alertmanagerUrl")]
         public Input<string>? AlertmanagerUrl { get; set; }
 
         /// <summary>
-        /// The grafana URL
+        /// The grafana URL.
         /// </summary>
         [Input("grafanaUrl")]
         public Input<string>? GrafanaUrl { get; set; }
 
         /// <summary>
-        /// The logs URL
+        /// The logs URL.
         /// </summary>
         [Input("logsUrl")]
         public Input<string>? LogsUrl { get; set; }
 
         /// <summary>
-        /// The metrics URL
+        /// The metrics URL.
         /// </summary>
         [Input("metricsUrl")]
         public Input<string>? MetricsUrl { get; set; }
+
+        /// <summary>
+        /// The traces URL.
+        /// </summary>
+        [Input("tracesUrl")]
+        public Input<string>? TracesUrl { get; set; }
 
         public CockpitEndpointArgs()
         {

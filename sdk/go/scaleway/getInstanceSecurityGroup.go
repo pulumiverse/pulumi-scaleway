@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Security Group.
@@ -125,12 +124,6 @@ func (o LookupInstanceSecurityGroupResultOutput) ToLookupInstanceSecurityGroupRe
 
 func (o LookupInstanceSecurityGroupResultOutput) ToLookupInstanceSecurityGroupResultOutputWithContext(ctx context.Context) LookupInstanceSecurityGroupResultOutput {
 	return o
-}
-
-func (o LookupInstanceSecurityGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceSecurityGroupResult] {
-	return pulumix.Output[LookupInstanceSecurityGroupResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupInstanceSecurityGroupResultOutput) Description() pulumi.StringOutput {

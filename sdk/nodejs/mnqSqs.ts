@@ -13,14 +13,26 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * Activate SQS for default project
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  *
- * // For default project in default region
  * const main = new scaleway.MnqSqs("main", {});
- * // For specific project in default region
- * const forProject = new scaleway.MnqSqs("forProject", {projectId: scaleway_account_project.main.id});
+ * ```
+ *
+ * Activate SQS for a specific project
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const project = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * const forProject = new scaleway.MnqSqs("forProject", {projectId: project.then(project => project.id)});
  * ```
  *
  * ## Import

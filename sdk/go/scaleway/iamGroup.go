@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway IAM Groups.
@@ -102,6 +101,8 @@ type IamGroup struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The tags associated with the group.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the group
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The list of IDs of the users attached to the group.
@@ -150,6 +151,8 @@ type iamGroupState struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the group.
+	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the group
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The list of IDs of the users attached to the group.
@@ -169,6 +172,8 @@ type IamGroupState struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the group.
+	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the group
 	UpdatedAt pulumi.StringPtrInput
 	// The list of IDs of the users attached to the group.
@@ -190,6 +195,8 @@ type iamGroupArgs struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the group.
+	Tags []string `pulumi:"tags"`
 	// The list of IDs of the users attached to the group.
 	UserIds []string `pulumi:"userIds"`
 }
@@ -206,6 +213,8 @@ type IamGroupArgs struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the group.
+	Tags pulumi.StringArrayInput
 	// The list of IDs of the users attached to the group.
 	UserIds pulumi.StringArrayInput
 }
@@ -233,12 +242,6 @@ func (i *IamGroup) ToIamGroupOutputWithContext(ctx context.Context) IamGroupOutp
 	return pulumi.ToOutputWithContext(ctx, i).(IamGroupOutput)
 }
 
-func (i *IamGroup) ToOutput(ctx context.Context) pulumix.Output[*IamGroup] {
-	return pulumix.Output[*IamGroup]{
-		OutputState: i.ToIamGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IamGroupArrayInput is an input type that accepts IamGroupArray and IamGroupArrayOutput values.
 // You can construct a concrete instance of `IamGroupArrayInput` via:
 //
@@ -262,12 +265,6 @@ func (i IamGroupArray) ToIamGroupArrayOutput() IamGroupArrayOutput {
 
 func (i IamGroupArray) ToIamGroupArrayOutputWithContext(ctx context.Context) IamGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamGroupArrayOutput)
-}
-
-func (i IamGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*IamGroup] {
-	return pulumix.Output[[]*IamGroup]{
-		OutputState: i.ToIamGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IamGroupMapInput is an input type that accepts IamGroupMap and IamGroupMapOutput values.
@@ -295,12 +292,6 @@ func (i IamGroupMap) ToIamGroupMapOutputWithContext(ctx context.Context) IamGrou
 	return pulumi.ToOutputWithContext(ctx, i).(IamGroupMapOutput)
 }
 
-func (i IamGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamGroup] {
-	return pulumix.Output[map[string]*IamGroup]{
-		OutputState: i.ToIamGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IamGroupOutput struct{ *pulumi.OutputState }
 
 func (IamGroupOutput) ElementType() reflect.Type {
@@ -313,12 +304,6 @@ func (o IamGroupOutput) ToIamGroupOutput() IamGroupOutput {
 
 func (o IamGroupOutput) ToIamGroupOutputWithContext(ctx context.Context) IamGroupOutput {
 	return o
-}
-
-func (o IamGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*IamGroup] {
-	return pulumix.Output[*IamGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The list of IDs of the applications attached to the group.
@@ -351,6 +336,11 @@ func (o IamGroupOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamGroup) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The tags associated with the group.
+func (o IamGroupOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IamGroup) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
 // The date and time of the last update of the group
 func (o IamGroupOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamGroup) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -375,12 +365,6 @@ func (o IamGroupArrayOutput) ToIamGroupArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o IamGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IamGroup] {
-	return pulumix.Output[[]*IamGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IamGroupArrayOutput) Index(i pulumi.IntInput) IamGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IamGroup {
 		return vs[0].([]*IamGroup)[vs[1].(int)]
@@ -399,12 +383,6 @@ func (o IamGroupMapOutput) ToIamGroupMapOutput() IamGroupMapOutput {
 
 func (o IamGroupMapOutput) ToIamGroupMapOutputWithContext(ctx context.Context) IamGroupMapOutput {
 	return o
-}
-
-func (o IamGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamGroup] {
-	return pulumix.Output[map[string]*IamGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IamGroupMapOutput) MapIndex(k pulumi.StringInput) IamGroupOutput {

@@ -45,6 +45,21 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * API URL of the bucket
+     * 
+     */
+    @Import(name="apiEndpoint")
+    private @Nullable Output<String> apiEndpoint;
+
+    /**
+     * @return API URL of the bucket
+     * 
+     */
+    public Optional<Output<String>> apiEndpoint() {
+        return Optional.ofNullable(this.apiEndpoint);
+    }
+
+    /**
      * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
      * 
      */
@@ -173,12 +188,18 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
     /**
      * A list of tags (key / value) for the bucket.
      * 
+     * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+     * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
+     * 
      */
     @Import(name="tags")
     private @Nullable Output<Map<String,String>> tags;
 
     /**
      * @return A list of tags (key / value) for the bucket.
+     * 
+     * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+     * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
      * 
      */
     public Optional<Output<Map<String,String>>> tags() {
@@ -204,6 +225,7 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
 
     private ObjectBucketState(ObjectBucketState $) {
         this.acl = $.acl;
+        this.apiEndpoint = $.apiEndpoint;
         this.corsRules = $.corsRules;
         this.endpoint = $.endpoint;
         this.forceDestroy = $.forceDestroy;
@@ -261,6 +283,27 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
         @Deprecated /* ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead. */
         public Builder acl(String acl) {
             return acl(Output.of(acl));
+        }
+
+        /**
+         * @param apiEndpoint API URL of the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiEndpoint(@Nullable Output<String> apiEndpoint) {
+            $.apiEndpoint = apiEndpoint;
+            return this;
+        }
+
+        /**
+         * @param apiEndpoint API URL of the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiEndpoint(String apiEndpoint) {
+            return apiEndpoint(Output.of(apiEndpoint));
         }
 
         /**
@@ -460,6 +503,9 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param tags A list of tags (key / value) for the bucket.
          * 
+         * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+         * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
+         * 
          * @return builder
          * 
          */
@@ -470,6 +516,9 @@ public final class ObjectBucketState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param tags A list of tags (key / value) for the bucket.
+         * 
+         * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+         * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
          * 
          * @return builder
          * 

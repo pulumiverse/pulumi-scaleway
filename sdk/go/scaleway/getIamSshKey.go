@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get SSH key information based on its ID or name.
@@ -115,12 +114,6 @@ func (o LookupIamSshKeyResultOutput) ToLookupIamSshKeyResultOutput() LookupIamSs
 
 func (o LookupIamSshKeyResultOutput) ToLookupIamSshKeyResultOutputWithContext(ctx context.Context) LookupIamSshKeyResultOutput {
 	return o
-}
-
-func (o LookupIamSshKeyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamSshKeyResult] {
-	return pulumix.Output[LookupIamSshKeyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the SSH key.

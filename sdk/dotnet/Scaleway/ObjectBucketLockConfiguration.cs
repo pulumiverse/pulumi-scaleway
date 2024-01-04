@@ -14,7 +14,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public partial class ObjectBucketLockConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The bucket name.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -85,7 +85,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ObjectBucketLockConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The bucket name.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -117,7 +117,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
     public sealed class ObjectBucketLockConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The bucket name.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }

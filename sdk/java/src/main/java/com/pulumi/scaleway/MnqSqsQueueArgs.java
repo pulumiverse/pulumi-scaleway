@@ -48,21 +48,6 @@ public final class MnqSqsQueueArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     * 
-     */
-    @Import(name="endpoint")
-    private @Nullable Output<String> endpoint;
-
-    /**
-     * @return The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     * 
-     */
-    public Optional<Output<String>> endpoint() {
-        return Optional.ofNullable(this.endpoint);
-    }
-
-    /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      * 
      */
@@ -198,6 +183,21 @@ public final class MnqSqsQueueArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     * 
+     */
+    @Import(name="sqsEndpoint")
+    private @Nullable Output<String> sqsEndpoint;
+
+    /**
+     * @return The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     * 
+     */
+    public Optional<Output<String>> sqsEndpoint() {
+        return Optional.ofNullable(this.sqsEndpoint);
+    }
+
+    /**
      * The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
      * 
      */
@@ -217,7 +217,6 @@ public final class MnqSqsQueueArgs extends com.pulumi.resources.ResourceArgs {
     private MnqSqsQueueArgs(MnqSqsQueueArgs $) {
         this.accessKey = $.accessKey;
         this.contentBasedDeduplication = $.contentBasedDeduplication;
-        this.endpoint = $.endpoint;
         this.fifoQueue = $.fifoQueue;
         this.messageMaxAge = $.messageMaxAge;
         this.messageMaxSize = $.messageMaxSize;
@@ -227,6 +226,7 @@ public final class MnqSqsQueueArgs extends com.pulumi.resources.ResourceArgs {
         this.receiveWaitTimeSeconds = $.receiveWaitTimeSeconds;
         this.region = $.region;
         this.secretKey = $.secretKey;
+        this.sqsEndpoint = $.sqsEndpoint;
         this.visibilityTimeoutSeconds = $.visibilityTimeoutSeconds;
     }
 
@@ -288,27 +288,6 @@ public final class MnqSqsQueueArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder contentBasedDeduplication(Boolean contentBasedDeduplication) {
             return contentBasedDeduplication(Output.of(contentBasedDeduplication));
-        }
-
-        /**
-         * @param endpoint The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder endpoint(@Nullable Output<String> endpoint) {
-            $.endpoint = endpoint;
-            return this;
-        }
-
-        /**
-         * @param endpoint The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder endpoint(String endpoint) {
-            return endpoint(Output.of(endpoint));
         }
 
         /**
@@ -498,6 +477,27 @@ public final class MnqSqsQueueArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder secretKey(String secretKey) {
             return secretKey(Output.of(secretKey));
+        }
+
+        /**
+         * @param sqsEndpoint The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sqsEndpoint(@Nullable Output<String> sqsEndpoint) {
+            $.sqsEndpoint = sqsEndpoint;
+            return this;
+        }
+
+        /**
+         * @param sqsEndpoint The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sqsEndpoint(String sqsEndpoint) {
+            return sqsEndpoint(Output.of(sqsEndpoint));
         }
 
         /**

@@ -145,7 +145,7 @@ import javax.annotation.Nullable;
  *                     .id(&#34;id4&#34;)
  *                     .tags(Map.of(&#34;tag1&#34;, &#34;value1&#34;))
  *                     .transitions(ObjectBucketLifecycleRuleTransitionArgs.builder()
- *                         .days(0)
+ *                         .days(1)
  *                         .storageClass(&#34;GLACIER&#34;)
  *                         .build())
  *                     .build(),
@@ -194,6 +194,20 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> acl() {
         return Codegen.optional(this.acl);
+    }
+    /**
+     * API URL of the bucket
+     * 
+     */
+    @Export(name="apiEndpoint", refs={String.class}, tree="[0]")
+    private Output<String> apiEndpoint;
+
+    /**
+     * @return API URL of the bucket
+     * 
+     */
+    public Output<String> apiEndpoint() {
+        return this.apiEndpoint;
     }
     /**
      * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
@@ -316,12 +330,18 @@ public class ObjectBucket extends com.pulumi.resources.CustomResource {
     /**
      * A list of tags (key / value) for the bucket.
      * 
+     * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+     * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
+     * 
      */
     @Export(name="tags", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> tags;
 
     /**
      * @return A list of tags (key / value) for the bucket.
+     * 
+     * * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags&#39; values will be displayed.
+     * Keep in mind that if you make any change to your bucket&#39;s tags using the console, it will overwrite them with the format `value/value`.
      * 
      */
     public Output<Optional<Map<String,String>>> tags() {

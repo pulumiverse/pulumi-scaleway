@@ -6,6 +6,7 @@ package com.pulumi.scaleway;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -31,14 +32,14 @@ public final class IamApplicationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * .The name of the iam application.
+     * The name of the iam application.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return .The name of the iam application.
+     * @return The name of the iam application.
      * 
      */
     public Optional<Output<String>> name() {
@@ -60,12 +61,28 @@ public final class IamApplicationArgs extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.organizationId);
     }
 
+    /**
+     * The tags associated with the application.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<String>> tags;
+
+    /**
+     * @return The tags associated with the application.
+     * 
+     */
+    public Optional<Output<List<String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
     private IamApplicationArgs() {}
 
     private IamApplicationArgs(IamApplicationArgs $) {
         this.description = $.description;
         this.name = $.name;
         this.organizationId = $.organizationId;
+        this.tags = $.tags;
     }
 
     public static Builder builder() {
@@ -108,7 +125,7 @@ public final class IamApplicationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name .The name of the iam application.
+         * @param name The name of the iam application.
          * 
          * @return builder
          * 
@@ -119,7 +136,7 @@ public final class IamApplicationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name .The name of the iam application.
+         * @param name The name of the iam application.
          * 
          * @return builder
          * 
@@ -147,6 +164,37 @@ public final class IamApplicationArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder organizationId(String organizationId) {
             return organizationId(Output.of(organizationId));
+        }
+
+        /**
+         * @param tags The tags associated with the application.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags The tags associated with the application.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<String> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags The tags associated with the application.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
         }
 
         public IamApplicationArgs build() {

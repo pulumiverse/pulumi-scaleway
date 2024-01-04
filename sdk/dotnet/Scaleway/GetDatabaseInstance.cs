@@ -43,6 +43,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the RDB instance exists.
         /// </summary>
         [Input("region")]
@@ -69,6 +75,12 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the RDB instance exists.

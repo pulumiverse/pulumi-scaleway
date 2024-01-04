@@ -45,7 +45,7 @@ export class ObjectItem extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
@@ -149,7 +149,7 @@ export class ObjectItem extends pulumi.CustomResource {
  */
 export interface ObjectItemState {
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket?: pulumi.Input<string>;
     /**
@@ -203,7 +203,7 @@ export interface ObjectItemState {
  */
 export interface ObjectItemArgs {
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
     /**

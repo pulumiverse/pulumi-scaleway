@@ -6,6 +6,7 @@ package com.pulumi.scaleway.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -16,14 +17,29 @@ public final class VpcGatewayNetworkIpamConfigArgs extends com.pulumi.resources.
     public static final VpcGatewayNetworkIpamConfigArgs Empty = new VpcGatewayNetworkIpamConfigArgs();
 
     /**
-     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+     * Use this IPAM-booked IP ID as the Gateway&#39;s IP in this Private Network.
+     * 
+     */
+    @Import(name="ipamIpId")
+    private @Nullable Output<String> ipamIpId;
+
+    /**
+     * @return Use this IPAM-booked IP ID as the Gateway&#39;s IP in this Private Network.
+     * 
+     */
+    public Optional<Output<String>> ipamIpId() {
+        return Optional.ofNullable(this.ipamIpId);
+    }
+
+    /**
+     * Defines whether the default route is enabled on that Gateway Network.
      * 
      */
     @Import(name="pushDefaultRoute")
     private @Nullable Output<Boolean> pushDefaultRoute;
 
     /**
-     * @return Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+     * @return Defines whether the default route is enabled on that Gateway Network.
      * 
      */
     public Optional<Output<Boolean>> pushDefaultRoute() {
@@ -33,6 +49,7 @@ public final class VpcGatewayNetworkIpamConfigArgs extends com.pulumi.resources.
     private VpcGatewayNetworkIpamConfigArgs() {}
 
     private VpcGatewayNetworkIpamConfigArgs(VpcGatewayNetworkIpamConfigArgs $) {
+        this.ipamIpId = $.ipamIpId;
         this.pushDefaultRoute = $.pushDefaultRoute;
     }
 
@@ -55,7 +72,28 @@ public final class VpcGatewayNetworkIpamConfigArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param pushDefaultRoute Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+         * @param ipamIpId Use this IPAM-booked IP ID as the Gateway&#39;s IP in this Private Network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipamIpId(@Nullable Output<String> ipamIpId) {
+            $.ipamIpId = ipamIpId;
+            return this;
+        }
+
+        /**
+         * @param ipamIpId Use this IPAM-booked IP ID as the Gateway&#39;s IP in this Private Network.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipamIpId(String ipamIpId) {
+            return ipamIpId(Output.of(ipamIpId));
+        }
+
+        /**
+         * @param pushDefaultRoute Defines whether the default route is enabled on that Gateway Network.
          * 
          * @return builder
          * 
@@ -66,7 +104,7 @@ public final class VpcGatewayNetworkIpamConfigArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param pushDefaultRoute Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+         * @param pushDefaultRoute Defines whether the default route is enabled on that Gateway Network.
          * 
          * @return builder
          * 

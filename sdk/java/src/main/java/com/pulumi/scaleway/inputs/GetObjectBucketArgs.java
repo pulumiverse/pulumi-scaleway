@@ -15,17 +15,9 @@ public final class GetObjectBucketArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetObjectBucketArgs Empty = new GetObjectBucketArgs();
 
-    /**
-     * The bucket name.
-     * 
-     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
-    /**
-     * @return The bucket name.
-     * 
-     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -46,14 +38,14 @@ public final class GetObjectBucketArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * `region`) The region in which the Object Storage exists.
+     * `region`) The region in which the bucket exists.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return `region`) The region in which the Object Storage exists.
+     * @return `region`) The region in which the bucket exists.
      * 
      */
     public Optional<Output<String>> region() {
@@ -86,23 +78,11 @@ public final class GetObjectBucketArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetObjectBucketArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The bucket name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name The bucket name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
@@ -129,7 +109,7 @@ public final class GetObjectBucketArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param region `region`) The region in which the Object Storage exists.
+         * @param region `region`) The region in which the bucket exists.
          * 
          * @return builder
          * 
@@ -140,7 +120,7 @@ public final class GetObjectBucketArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param region `region`) The region in which the Object Storage exists.
+         * @param region `region`) The region in which the bucket exists.
          * 
          * @return builder
          * 

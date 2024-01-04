@@ -17,14 +17,14 @@ public final class ObjectBucketLockConfigurationState extends com.pulumi.resourc
     public static final ObjectBucketLockConfigurationState Empty = new ObjectBucketLockConfigurationState();
 
     /**
-     * The bucket name.
+     * The bucket&#39;s name or regional ID.
      * 
      */
     @Import(name="bucket")
     private @Nullable Output<String> bucket;
 
     /**
-     * @return The bucket name.
+     * @return The bucket&#39;s name or regional ID.
      * 
      */
     public Optional<Output<String>> bucket() {
@@ -104,7 +104,7 @@ public final class ObjectBucketLockConfigurationState extends com.pulumi.resourc
         }
 
         /**
-         * @param bucket The bucket name.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class ObjectBucketLockConfigurationState extends com.pulumi.resourc
         }
 
         /**
-         * @param bucket The bucket name.
+         * @param bucket The bucket&#39;s name or regional ID.
          * 
          * @return builder
          * 

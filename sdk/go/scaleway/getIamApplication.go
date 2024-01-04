@@ -9,7 +9,6 @@ import (
 
 	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing IAM application.
@@ -75,10 +74,11 @@ type LookupIamApplicationResult struct {
 	Description   string  `pulumi:"description"`
 	Editable      bool    `pulumi:"editable"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	Name           *string `pulumi:"name"`
-	OrganizationId *string `pulumi:"organizationId"`
-	UpdatedAt      string  `pulumi:"updatedAt"`
+	Id             string   `pulumi:"id"`
+	Name           *string  `pulumi:"name"`
+	OrganizationId *string  `pulumi:"organizationId"`
+	Tags           []string `pulumi:"tags"`
+	UpdatedAt      string   `pulumi:"updatedAt"`
 }
 
 func LookupIamApplicationOutput(ctx *pulumi.Context, args LookupIamApplicationOutputArgs, opts ...pulumi.InvokeOption) LookupIamApplicationResultOutput {
@@ -126,12 +126,6 @@ func (o LookupIamApplicationResultOutput) ToLookupIamApplicationResultOutputWith
 	return o
 }
 
-func (o LookupIamApplicationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamApplicationResult] {
-	return pulumix.Output[LookupIamApplicationResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LookupIamApplicationResultOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamApplicationResult) *string { return v.ApplicationId }).(pulumi.StringPtrOutput)
 }
@@ -159,6 +153,10 @@ func (o LookupIamApplicationResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupIamApplicationResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamApplicationResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamApplicationResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIamApplicationResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupIamApplicationResultOutput) UpdatedAt() pulumi.StringOutput {

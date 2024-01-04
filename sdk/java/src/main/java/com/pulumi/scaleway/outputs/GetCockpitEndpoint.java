@@ -29,6 +29,7 @@ public final class GetCockpitEndpoint {
      * 
      */
     private String metricsUrl;
+    private String tracesUrl;
 
     private GetCockpitEndpoint() {}
     /**
@@ -59,6 +60,9 @@ public final class GetCockpitEndpoint {
     public String metricsUrl() {
         return this.metricsUrl;
     }
+    public String tracesUrl() {
+        return this.tracesUrl;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -73,6 +77,7 @@ public final class GetCockpitEndpoint {
         private String grafanaUrl;
         private String logsUrl;
         private String metricsUrl;
+        private String tracesUrl;
         public Builder() {}
         public Builder(GetCockpitEndpoint defaults) {
     	      Objects.requireNonNull(defaults);
@@ -80,6 +85,7 @@ public final class GetCockpitEndpoint {
     	      this.grafanaUrl = defaults.grafanaUrl;
     	      this.logsUrl = defaults.logsUrl;
     	      this.metricsUrl = defaults.metricsUrl;
+    	      this.tracesUrl = defaults.tracesUrl;
         }
 
         @CustomType.Setter
@@ -102,12 +108,18 @@ public final class GetCockpitEndpoint {
             this.metricsUrl = Objects.requireNonNull(metricsUrl);
             return this;
         }
+        @CustomType.Setter
+        public Builder tracesUrl(String tracesUrl) {
+            this.tracesUrl = Objects.requireNonNull(tracesUrl);
+            return this;
+        }
         public GetCockpitEndpoint build() {
             final var o = new GetCockpitEndpoint();
             o.alertmanagerUrl = alertmanagerUrl;
             o.grafanaUrl = grafanaUrl;
             o.logsUrl = logsUrl;
             o.metricsUrl = metricsUrl;
+            o.tracesUrl = tracesUrl;
             return o;
         }
     }

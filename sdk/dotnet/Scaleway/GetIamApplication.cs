@@ -152,6 +152,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
         public readonly string Id;
         public readonly string? Name;
         public readonly string? OrganizationId;
+        public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
@@ -170,6 +171,8 @@ namespace Lbrlabs.PulumiPackage.Scaleway
 
             string? organizationId,
 
+            ImmutableArray<string> tags,
+
             string updatedAt)
         {
             ApplicationId = applicationId;
@@ -179,6 +182,7 @@ namespace Lbrlabs.PulumiPackage.Scaleway
             Id = id;
             Name = name;
             OrganizationId = organizationId;
+            Tags = tags;
             UpdatedAt = updatedAt;
         }
     }
