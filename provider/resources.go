@@ -182,8 +182,6 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_lb_frontend":                         {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontend")},
 			"scaleway_lb_ip":                               {Tok: scalewayResource(scalewayMod, "LoadbalancerIp")},
 			"scaleway_lb_route":                            {Tok: scalewayResource(scalewayMod, "LoadbalancerRoute")},
-			"scaleway_mnq_credential":                      {Tok: scalewayResource(scalewayMod, "MnqCredential")},
-			"scaleway_mnq_namespace":                       {Tok: scalewayResource(scalewayMod, "MnqNamespace")},
 			"scaleway_mnq_nats_account":                    {Tok: scalewayResource(scalewayMod, "MnqNatsAccount")},
 			"scaleway_mnq_nats_credentials":                {Tok: scalewayResource(scalewayMod, "MnqNatsCredentials")},
 			"scaleway_mnq_sqs":                             {Tok: scalewayResource(scalewayMod, "MnqSqs")},
@@ -194,7 +192,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_object_bucket_acl":                   {Tok: scalewayResource(scalewayMod, "ObjectBucketAcl")},
 			"scaleway_object_bucket_policy":                {Tok: scalewayResource(scalewayMod, "ObjectBucketPolicy")},
 			"scaleway_object_bucket_website_configuration": {Tok: scalewayResource(scalewayMod, "ObjectBucketWebsiteConfiguration")}, //nolint:golint,lll
-			"scaleway_object_bucket_lock_configuration":    {Tok: scalewayResource(scalewayMod, "ObjectBucketLockConfiguration")}, //nolint:golint,lll
+			"scaleway_object_bucket_lock_configuration":    {Tok: scalewayResource(scalewayMod, "ObjectBucketLockConfiguration")},    //nolint:golint,lll
 			"scaleway_rdb_acl":                             {Tok: scalewayResource(scalewayMod, "DatabaseAcl")},
 			"scaleway_redis_cluster":                       {Tok: scalewayResource(scalewayMod, "RedisCluster")},
 			"scaleway_rdb_database":                        {Tok: scalewayResource(scalewayMod, "Database")},
@@ -217,9 +215,16 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc_public_gateway_dhcp_reservation": {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcpReservation")}, //nolint:golint,lll
 			"scaleway_function_trigger":                    {Tok: scalewayResource(scalewayMod, "FunctionTrigger")},
 			"scaleway_lb_acl":                              {Tok: scalewayResource(scalewayMod, "LoadbalancerAcl")},
-			"scaleway_mnq_queue":                           {Tok: scalewayResource(scalewayMod, "MnqQueue")},
 			"scaleway_webhosting":                          {Tok: scalewayResource(scalewayMod, "Webhosting")},
 			"scaleway_vpc":                                 {Tok: scalewayResource(scalewayMod, "Vpc")},
+			"scaleway_block_snapshot":                      {Tok: scalewayResource(scalewayMod, "BlockSnapshot")},
+			"scaleway_block_volume":                        {Tok: scalewayResource(scalewayMod, "BlockVolume")},
+			"scaleway_ipam_ip":                             {Tok: scalewayResource(scalewayMod, "IpamIp")},
+			"scaleway_job_definition":                      {Tok: scalewayResource(scalewayMod, "JobDefinition")},
+			"scaleway_mnq_sns":                             {Tok: scalewayResource(scalewayMod, "MnqSns")},
+			"scaleway_mnq_sns_credentials":                 {Tok: scalewayResource(scalewayMod, "MnqSnsCredentials")},
+			"scaleway_mnq_sns_topic":                       {Tok: scalewayResource(scalewayMod, "MnqSnsTopic")},
+			"scaleway_mnq_sns_topic_subscription":          {Tok: scalewayResource(scalewayMod, "MnqSnsTopicSubscription")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
@@ -307,6 +312,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc_public_gateway_pat_rule":         {Tok: scalewayDataSource(scalewayMod, "getVpcPublicPatRule")},
 			"scaleway_webhosting_offer":                    {Tok: scalewayDataSource(scalewayMod, "getWebHostOffer")},
 			"scaleway_webhosting":                          {Tok: scalewayDataSource(scalewayMod, "getWebhosting")},
+			"scaleway_block_snapshot":                      {Tok: scalewayDataSource(scalewayMod, "getBlockSnapshot")},
+			"scaleway_block_volume":                        {Tok: scalewayDataSource(scalewayMod, "getBlockVolume")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
