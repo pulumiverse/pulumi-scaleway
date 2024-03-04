@@ -54,12 +54,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        cache: gradle
-        distribution: temurin
-        java-version: ${{matrix.javaversion}}
     - name: Download provider + tfgen binaries
       uses: actions/download-artifact@v3
       with:
@@ -92,8 +86,6 @@ jobs:
         - 6.0.x
         goversion:
         - 1.21.x
-        javaversion:
-        - "11"
         language:
         - nodejs
         - python
@@ -246,12 +238,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        cache: gradle
-        distribution: temurin
-        java-version: ${{matrix.javaversion}}
     - name: Download python SDK
       uses: actions/download-artifact@v3
       with:
@@ -283,8 +269,6 @@ jobs:
       matrix:
         dotnetversion:
         - 6.0.x
-        javaversion:
-        - "11"
         goversion:
         - 1.21.x
         nodeversion:
@@ -329,12 +313,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        cache: gradle
-        distribution: temurin
-        java-version: ${{matrix.javaversion}}
     - name: Download provider + tfgen binaries
       uses: actions/download-artifact@v3
       with:
@@ -370,8 +348,6 @@ jobs:
         - 6.0.x
         goversion:
         - 1.21.x
-        javaversion:
-        - "11"
         language:
         - nodejs
         - python
