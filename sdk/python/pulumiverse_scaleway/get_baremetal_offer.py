@@ -22,7 +22,7 @@ class GetBaremetalOfferResult:
     """
     A collection of values returned by getBaremetalOffer.
     """
-    def __init__(__self__, bandwidth=None, commercial_range=None, cpu=None, disks=None, id=None, include_disabled=None, memories=None, name=None, offer_id=None, stock=None, zone=None):
+    def __init__(__self__, bandwidth=None, commercial_range=None, cpu=None, disks=None, id=None, include_disabled=None, memories=None, name=None, offer_id=None, stock=None, subscription_period=None, zone=None):
         if bandwidth and not isinstance(bandwidth, int):
             raise TypeError("Expected argument 'bandwidth' to be a int")
         pulumi.set(__self__, "bandwidth", bandwidth)
@@ -53,6 +53,9 @@ class GetBaremetalOfferResult:
         if stock and not isinstance(stock, str):
             raise TypeError("Expected argument 'stock' to be a str")
         pulumi.set(__self__, "stock", stock)
+        if subscription_period and not isinstance(subscription_period, str):
+            raise TypeError("Expected argument 'subscription_period' to be a str")
+        pulumi.set(__self__, "subscription_period", subscription_period)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -132,6 +135,11 @@ class GetBaremetalOfferResult:
         return pulumi.get(self, "stock")
 
     @property
+    @pulumi.getter(name="subscriptionPeriod")
+    def subscription_period(self) -> Optional[str]:
+        return pulumi.get(self, "subscription_period")
+
+    @property
     @pulumi.getter
     def zone(self) -> str:
         return pulumi.get(self, "zone")
@@ -153,12 +161,14 @@ class AwaitableGetBaremetalOfferResult(GetBaremetalOfferResult):
             name=self.name,
             offer_id=self.offer_id,
             stock=self.stock,
+            subscription_period=self.subscription_period,
             zone=self.zone)
 
 
 def get_baremetal_offer(include_disabled: Optional[bool] = None,
                         name: Optional[str] = None,
                         offer_id: Optional[str] = None,
+                        subscription_period: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalOfferResult:
     """
@@ -177,34 +187,38 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
 
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
+    :param str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.
     :param str zone: `zone`) The zone in which the offer should be created.
     """
     __args__ = dict()
     __args__['includeDisabled'] = include_disabled
     __args__['name'] = name
     __args__['offerId'] = offer_id
+    __args__['subscriptionPeriod'] = subscription_period
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalOffer:getBaremetalOffer', __args__, opts=opts, typ=GetBaremetalOfferResult).value
 
     return AwaitableGetBaremetalOfferResult(
-        bandwidth=__ret__.bandwidth,
-        commercial_range=__ret__.commercial_range,
-        cpu=__ret__.cpu,
-        disks=__ret__.disks,
-        id=__ret__.id,
-        include_disabled=__ret__.include_disabled,
-        memories=__ret__.memories,
-        name=__ret__.name,
-        offer_id=__ret__.offer_id,
-        stock=__ret__.stock,
-        zone=__ret__.zone)
+        bandwidth=pulumi.get(__ret__, 'bandwidth'),
+        commercial_range=pulumi.get(__ret__, 'commercial_range'),
+        cpu=pulumi.get(__ret__, 'cpu'),
+        disks=pulumi.get(__ret__, 'disks'),
+        id=pulumi.get(__ret__, 'id'),
+        include_disabled=pulumi.get(__ret__, 'include_disabled'),
+        memories=pulumi.get(__ret__, 'memories'),
+        name=pulumi.get(__ret__, 'name'),
+        offer_id=pulumi.get(__ret__, 'offer_id'),
+        stock=pulumi.get(__ret__, 'stock'),
+        subscription_period=pulumi.get(__ret__, 'subscription_period'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_baremetal_offer)
 def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                offer_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               subscription_period: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOfferResult]:
     """
@@ -223,6 +237,7 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
 
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
+    :param str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.
     :param str zone: `zone`) The zone in which the offer should be created.
     """
     ...

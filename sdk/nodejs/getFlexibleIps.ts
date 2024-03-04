@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const fipsByTags = scaleway.getFlexibleIps({
  *     tags: ["a tag"],
@@ -116,8 +116,8 @@ export interface GetFlexibleIpsResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const fipsByTags = scaleway.getFlexibleIps({
  *     tags: ["a tag"],

@@ -22,7 +22,7 @@ class GetKubernetesNodePoolResult:
     """
     A collection of values returned by getKubernetesNodePool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -68,6 +68,9 @@ class GetKubernetesNodePoolResult:
         if pool_id and not isinstance(pool_id, str):
             raise TypeError("Expected argument 'pool_id' to be a str")
         pulumi.set(__self__, "pool_id", pool_id)
+        if public_ip_disabled and not isinstance(public_ip_disabled, bool):
+            raise TypeError("Expected argument 'public_ip_disabled' to be a bool")
+        pulumi.set(__self__, "public_ip_disabled", public_ip_disabled)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -211,6 +214,11 @@ class GetKubernetesNodePoolResult:
         return pulumi.get(self, "pool_id")
 
     @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> bool:
+        return pulumi.get(self, "public_ip_disabled")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
@@ -302,6 +310,7 @@ class AwaitableGetKubernetesNodePoolResult(GetKubernetesNodePoolResult):
             nodes=self.nodes,
             placement_group_id=self.placement_group_id,
             pool_id=self.pool_id,
+            public_ip_disabled=self.public_ip_disabled,
             region=self.region,
             root_volume_size_in_gb=self.root_volume_size_in_gb,
             root_volume_type=self.root_volume_type,
@@ -350,32 +359,33 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getKubernetesNodePool:getKubernetesNodePool', __args__, opts=opts, typ=GetKubernetesNodePoolResult).value
 
     return AwaitableGetKubernetesNodePoolResult(
-        autohealing=__ret__.autohealing,
-        autoscaling=__ret__.autoscaling,
-        cluster_id=__ret__.cluster_id,
-        container_runtime=__ret__.container_runtime,
-        created_at=__ret__.created_at,
-        current_size=__ret__.current_size,
-        id=__ret__.id,
-        kubelet_args=__ret__.kubelet_args,
-        max_size=__ret__.max_size,
-        min_size=__ret__.min_size,
-        name=__ret__.name,
-        node_type=__ret__.node_type,
-        nodes=__ret__.nodes,
-        placement_group_id=__ret__.placement_group_id,
-        pool_id=__ret__.pool_id,
-        region=__ret__.region,
-        root_volume_size_in_gb=__ret__.root_volume_size_in_gb,
-        root_volume_type=__ret__.root_volume_type,
-        size=__ret__.size,
-        status=__ret__.status,
-        tags=__ret__.tags,
-        updated_at=__ret__.updated_at,
-        upgrade_policies=__ret__.upgrade_policies,
-        version=__ret__.version,
-        wait_for_pool_ready=__ret__.wait_for_pool_ready,
-        zone=__ret__.zone)
+        autohealing=pulumi.get(__ret__, 'autohealing'),
+        autoscaling=pulumi.get(__ret__, 'autoscaling'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        container_runtime=pulumi.get(__ret__, 'container_runtime'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        current_size=pulumi.get(__ret__, 'current_size'),
+        id=pulumi.get(__ret__, 'id'),
+        kubelet_args=pulumi.get(__ret__, 'kubelet_args'),
+        max_size=pulumi.get(__ret__, 'max_size'),
+        min_size=pulumi.get(__ret__, 'min_size'),
+        name=pulumi.get(__ret__, 'name'),
+        node_type=pulumi.get(__ret__, 'node_type'),
+        nodes=pulumi.get(__ret__, 'nodes'),
+        placement_group_id=pulumi.get(__ret__, 'placement_group_id'),
+        pool_id=pulumi.get(__ret__, 'pool_id'),
+        public_ip_disabled=pulumi.get(__ret__, 'public_ip_disabled'),
+        region=pulumi.get(__ret__, 'region'),
+        root_volume_size_in_gb=pulumi.get(__ret__, 'root_volume_size_in_gb'),
+        root_volume_type=pulumi.get(__ret__, 'root_volume_type'),
+        size=pulumi.get(__ret__, 'size'),
+        status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        upgrade_policies=pulumi.get(__ret__, 'upgrade_policies'),
+        version=pulumi.get(__ret__, 'version'),
+        wait_for_pool_ready=pulumi.get(__ret__, 'wait_for_pool_ready'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_kubernetes_node_pool)

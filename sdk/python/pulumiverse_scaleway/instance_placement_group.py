@@ -270,7 +270,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         availability_group = scaleway.InstancePlacementGroup("availabilityGroup")
         ```
@@ -305,7 +305,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         availability_group = scaleway.InstancePlacementGroup("availabilityGroup")
         ```

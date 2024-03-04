@@ -8,9 +8,9 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
 // Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
@@ -26,8 +26,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -58,8 +58,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -102,8 +102,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -138,8 +138,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -197,8 +197,8 @@ import (
 //	"fmt"
 //	"os"
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -236,8 +236,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -274,8 +274,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -305,8 +305,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //

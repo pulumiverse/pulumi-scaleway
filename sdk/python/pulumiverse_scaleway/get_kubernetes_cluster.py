@@ -22,7 +22,7 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, project_id=None, region=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
+    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, private_network_id=None, project_id=None, region=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
         if admission_plugins and not isinstance(admission_plugins, list):
             raise TypeError("Expected argument 'admission_plugins' to be a list")
         pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -68,6 +68,9 @@ class GetKubernetesClusterResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if private_network_id and not isinstance(private_network_id, str):
+            raise TypeError("Expected argument 'private_network_id' to be a str")
+        pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -202,6 +205,14 @@ class GetKubernetesClusterResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> str:
+        """
+        The ID of the private network of the cluster.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
@@ -295,6 +306,7 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             name=self.name,
             open_id_connect_configs=self.open_id_connect_configs,
             organization_id=self.organization_id,
+            private_network_id=self.private_network_id,
             project_id=self.project_id,
             region=self.region,
             status=self.status,
@@ -335,30 +347,31 @@ def get_kubernetes_cluster(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult).value
 
     return AwaitableGetKubernetesClusterResult(
-        admission_plugins=__ret__.admission_plugins,
-        apiserver_cert_sans=__ret__.apiserver_cert_sans,
-        apiserver_url=__ret__.apiserver_url,
-        auto_upgrades=__ret__.auto_upgrades,
-        autoscaler_configs=__ret__.autoscaler_configs,
-        cluster_id=__ret__.cluster_id,
-        cni=__ret__.cni,
-        created_at=__ret__.created_at,
-        description=__ret__.description,
-        feature_gates=__ret__.feature_gates,
-        id=__ret__.id,
-        kubeconfigs=__ret__.kubeconfigs,
-        name=__ret__.name,
-        open_id_connect_configs=__ret__.open_id_connect_configs,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        status=__ret__.status,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        updated_at=__ret__.updated_at,
-        upgrade_available=__ret__.upgrade_available,
-        version=__ret__.version,
-        wildcard_dns=__ret__.wildcard_dns)
+        admission_plugins=pulumi.get(__ret__, 'admission_plugins'),
+        apiserver_cert_sans=pulumi.get(__ret__, 'apiserver_cert_sans'),
+        apiserver_url=pulumi.get(__ret__, 'apiserver_url'),
+        auto_upgrades=pulumi.get(__ret__, 'auto_upgrades'),
+        autoscaler_configs=pulumi.get(__ret__, 'autoscaler_configs'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        cni=pulumi.get(__ret__, 'cni'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        description=pulumi.get(__ret__, 'description'),
+        feature_gates=pulumi.get(__ret__, 'feature_gates'),
+        id=pulumi.get(__ret__, 'id'),
+        kubeconfigs=pulumi.get(__ret__, 'kubeconfigs'),
+        name=pulumi.get(__ret__, 'name'),
+        open_id_connect_configs=pulumi.get(__ret__, 'open_id_connect_configs'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        upgrade_available=pulumi.get(__ret__, 'upgrade_available'),
+        version=pulumi.get(__ret__, 'version'),
+        wildcard_dns=pulumi.get(__ret__, 'wildcard_dns'))
 
 
 @_utilities.lift_output_func(get_kubernetes_cluster)

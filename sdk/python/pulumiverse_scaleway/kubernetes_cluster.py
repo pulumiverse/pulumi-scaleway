@@ -17,16 +17,17 @@ __all__ = ['KubernetesClusterArgs', 'KubernetesCluster']
 class KubernetesClusterArgs:
     def __init__(__self__, *,
                  cni: pulumi.Input[str],
+                 delete_additional_resources: pulumi.Input[bool],
                  version: pulumi.Input[str],
                  admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  auto_upgrade: Optional[pulumi.Input['KubernetesClusterAutoUpgradeArgs']] = None,
                  autoscaler_config: Optional[pulumi.Input['KubernetesClusterAutoscalerConfigArgs']] = None,
-                 delete_additional_resources: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs']] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -35,22 +36,37 @@ class KubernetesClusterArgs:
         The set of arguments for constructing a KubernetesCluster resource.
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
         :param pulumi.Input['KubernetesClusterAutoUpgradeArgs'] auto_upgrade: The auto upgrade configuration.
         :param pulumi.Input['KubernetesClusterAutoscalerConfigArgs'] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are:
+               
+               - for mutualized clusters: `kapsule` or `multicloud`
+               
+               - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+               
+               - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         """
         pulumi.set(__self__, "cni", cni)
+        pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
         pulumi.set(__self__, "version", version)
         if admission_plugins is not None:
             pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -60,8 +76,6 @@ class KubernetesClusterArgs:
             pulumi.set(__self__, "auto_upgrade", auto_upgrade)
         if autoscaler_config is not None:
             pulumi.set(__self__, "autoscaler_config", autoscaler_config)
-        if delete_additional_resources is not None:
-            pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if feature_gates is not None:
@@ -70,6 +84,8 @@ class KubernetesClusterArgs:
             pulumi.set(__self__, "name", name)
         if open_id_connect_config is not None:
             pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -91,6 +107,20 @@ class KubernetesClusterArgs:
     @cni.setter
     def cni(self, value: pulumi.Input[str]):
         pulumi.set(self, "cni", value)
+
+    @property
+    @pulumi.getter(name="deleteAdditionalResources")
+    def delete_additional_resources(self) -> pulumi.Input[bool]:
+        """
+        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        If you prefer keeping it, you should instead set it as `false`.
+        """
+        return pulumi.get(self, "delete_additional_resources")
+
+    @delete_additional_resources.setter
+    def delete_additional_resources(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "delete_additional_resources", value)
 
     @property
     @pulumi.getter
@@ -153,18 +183,6 @@ class KubernetesClusterArgs:
         pulumi.set(self, "autoscaler_config", value)
 
     @property
-    @pulumi.getter(name="deleteAdditionalResources")
-    def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
-        """
-        return pulumi.get(self, "delete_additional_resources")
-
-    @delete_additional_resources.setter
-    def delete_additional_resources(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "delete_additional_resources", value)
-
-    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -213,6 +231,23 @@ class KubernetesClusterArgs:
         pulumi.set(self, "open_id_connect_config", value)
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the private network of the cluster.
+
+        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        Any subsequent change after this field got set will prompt for cluster recreation.
+
+        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -252,7 +287,13 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        The type of Kubernetes cluster. Possible values are:
+
+        - for mutualized clusters: `kapsule` or `multicloud`
+
+        - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+
+        - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         """
         return pulumi.get(self, "type")
 
@@ -278,6 +319,7 @@ class _KubernetesClusterState:
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs']] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -297,23 +339,36 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterKubeconfigArgs']]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are:
+               
+               - for mutualized clusters: `kapsule` or `multicloud`
+               
+               - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+               
+               - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         :param pulumi.Input[str] updated_at: The last update date of the cluster.
         :param pulumi.Input[bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
-               - `kubeconfig`
         """
         if admission_plugins is not None:
             pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -343,6 +398,8 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -451,7 +508,9 @@ class _KubernetesClusterState:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        If you prefer keeping it, you should instead set it as `false`.
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -532,6 +591,23 @@ class _KubernetesClusterState:
         pulumi.set(self, "organization_id", value)
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the private network of the cluster.
+
+        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        Any subsequent change after this field got set will prompt for cluster recreation.
+
+        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -583,7 +659,13 @@ class _KubernetesClusterState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        The type of Kubernetes cluster. Possible values are:
+
+        - for mutualized clusters: `kapsule` or `multicloud`
+
+        - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+
+        - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         """
         return pulumi.get(self, "type")
 
@@ -632,7 +714,6 @@ class _KubernetesClusterState:
     def wildcard_dns(self) -> Optional[pulumi.Input[str]]:
         """
         The DNS wildcard that points to all ready nodes.
-        - `kubeconfig`
         """
         return pulumi.get(self, "wildcard_dns")
 
@@ -656,6 +737,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -663,6 +745,80 @@ class KubernetesCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        jack = scaleway.KubernetesCluster("jack",
+            version="1.24.3",
+            cni="cilium",
+            delete_additional_resources=False)
+        john = scaleway.KubernetesNodePool("john",
+            cluster_id=jack.id,
+            node_type="DEV1-M",
+            size=1)
+        ```
+
+        ### Multicloud
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        henry = scaleway.KubernetesCluster("henry",
+            type="multicloud",
+            version="1.24.3",
+            cni="kilo",
+            delete_additional_resources=False)
+        friend_from_outer_space = scaleway.KubernetesNodePool("friendFromOuterSpace",
+            cluster_id=henry.id,
+            node_type="external",
+            size=0,
+            min_size=0)
+        ```
+
+        For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+
+        ### With additional configuration
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
+            description="my awesome cluster",
+            version="1.24.3",
+            cni="calico",
+            tags=[
+                "i'm an awesome tag",
+                "yay",
+            ],
+            delete_additional_resources=False,
+            autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
+                disable_scale_down=False,
+                scale_down_delay_after_add="5m",
+                estimator="binpacking",
+                expander="random",
+                ignore_daemonsets_utilization=True,
+                balance_similar_node_groups=True,
+                expendable_pods_priority_cutoff=-5,
+            ))
+        john_kubernetes_node_pool = scaleway.KubernetesNodePool("johnKubernetesNodePool",
+            cluster_id=john_kubernetes_cluster.id,
+            node_type="DEV1-M",
+            size=3,
+            autoscaling=True,
+            autohealing=True,
+            min_size=1,
+            max_size=5)
+        ```
+
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -679,15 +835,29 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are:
+               
+               - for mutualized clusters: `kapsule` or `multicloud`
+               
+               - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+               
+               - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         """
         ...
@@ -697,6 +867,80 @@ class KubernetesCluster(pulumi.CustomResource):
                  args: KubernetesClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        jack = scaleway.KubernetesCluster("jack",
+            version="1.24.3",
+            cni="cilium",
+            delete_additional_resources=False)
+        john = scaleway.KubernetesNodePool("john",
+            cluster_id=jack.id,
+            node_type="DEV1-M",
+            size=1)
+        ```
+
+        ### Multicloud
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        henry = scaleway.KubernetesCluster("henry",
+            type="multicloud",
+            version="1.24.3",
+            cni="kilo",
+            delete_additional_resources=False)
+        friend_from_outer_space = scaleway.KubernetesNodePool("friendFromOuterSpace",
+            cluster_id=henry.id,
+            node_type="external",
+            size=0,
+            min_size=0)
+        ```
+
+        For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+
+        ### With additional configuration
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
+            description="my awesome cluster",
+            version="1.24.3",
+            cni="calico",
+            tags=[
+                "i'm an awesome tag",
+                "yay",
+            ],
+            delete_additional_resources=False,
+            autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
+                disable_scale_down=False,
+                scale_down_delay_after_add="5m",
+                estimator="binpacking",
+                expander="random",
+                ignore_daemonsets_utilization=True,
+                balance_similar_node_groups=True,
+                expendable_pods_priority_cutoff=-5,
+            ))
+        john_kubernetes_node_pool = scaleway.KubernetesNodePool("johnKubernetesNodePool",
+            cluster_id=john_kubernetes_cluster.id,
+            node_type="DEV1-M",
+            size=3,
+            autoscaling=True,
+            autohealing=True,
+            min_size=1,
+            max_size=5)
+        ```
+
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -730,6 +974,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -751,11 +996,14 @@ class KubernetesCluster(pulumi.CustomResource):
             if cni is None and not opts.urn:
                 raise TypeError("Missing required property 'cni'")
             __props__.__dict__["cni"] = cni
+            if delete_additional_resources is None and not opts.urn:
+                raise TypeError("Missing required property 'delete_additional_resources'")
             __props__.__dict__["delete_additional_resources"] = delete_additional_resources
             __props__.__dict__["description"] = description
             __props__.__dict__["feature_gates"] = feature_gates
             __props__.__dict__["name"] = name
             __props__.__dict__["open_id_connect_config"] = open_id_connect_config
+            __props__.__dict__["private_network_id"] = private_network_id
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
@@ -771,6 +1019,8 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["upgrade_available"] = None
             __props__.__dict__["wildcard_dns"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["kubeconfigs"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(KubernetesCluster, __self__).__init__(
             'scaleway:index/kubernetesCluster:KubernetesCluster',
             resource_name,
@@ -795,6 +1045,7 @@ class KubernetesCluster(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            private_network_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -819,23 +1070,36 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+               > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+               If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterKubeconfigArgs']]]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
+        :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+               Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
-        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        :param pulumi.Input[str] type: The type of Kubernetes cluster. Possible values are:
+               
+               - for mutualized clusters: `kapsule` or `multicloud`
+               
+               - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+               
+               - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         :param pulumi.Input[str] updated_at: The last update date of the cluster.
         :param pulumi.Input[bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
-               - `kubeconfig`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -855,6 +1119,7 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["open_id_connect_config"] = open_id_connect_config
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
@@ -925,9 +1190,11 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deleteAdditionalResources")
-    def delete_additional_resources(self) -> pulumi.Output[Optional[bool]]:
+    def delete_additional_resources(self) -> pulumi.Output[bool]:
         """
-        Delete additional resources like block volumes and loadbalancers that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        If you prefer keeping it, you should instead set it as `false`.
         """
         return pulumi.get(self, "delete_additional_resources")
 
@@ -980,6 +1247,19 @@ class KubernetesCluster(pulumi.CustomResource):
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the private network of the cluster.
+
+        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+        Any subsequent change after this field got set will prompt for cluster recreation.
+
+        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
@@ -1015,7 +1295,13 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        The type of Kubernetes cluster. Possible values are:
+
+        - for mutualized clusters: `kapsule` or `multicloud`
+
+        - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+
+        - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         """
         return pulumi.get(self, "type")
 
@@ -1048,7 +1334,6 @@ class KubernetesCluster(pulumi.CustomResource):
     def wildcard_dns(self) -> pulumi.Output[str]:
         """
         The DNS wildcard that points to all ready nodes.
-        - `kubeconfig`
         """
         return pulumi.get(self, "wildcard_dns")
 

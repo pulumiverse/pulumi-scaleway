@@ -8,9 +8,9 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
 // Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
@@ -24,8 +24,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //

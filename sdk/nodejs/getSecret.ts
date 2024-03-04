@@ -14,8 +14,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.Secret("main", {description: "barr"});
  * const mySecret = scaleway.getSecret({
@@ -99,8 +99,8 @@ export interface GetSecretResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.Secret("main", {description: "barr"});
  * const mySecret = scaleway.getSecret({

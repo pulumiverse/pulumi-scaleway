@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const mainMnqSqs = new scaleway.MnqSqs("mainMnqSqs", {});
  * const mainMnqSqsCredentials = new scaleway.MnqSqsCredentials("mainMnqSqsCredentials", {

@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const publicIp = new scaleway.InstanceIp("publicIp", {});
  * const web = new scaleway.InstanceServer("web", {
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const data = new scaleway.InstanceVolume("data", {
  *     sizeInGb: 100,
@@ -55,7 +55,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const ip = new scaleway.InstanceIp("ip", {});
  * const web = new scaleway.InstanceServer("web", {
@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const www = new scaleway.InstanceSecurityGroup("www", {
  *     inboundDefaultPolicy: "drop",
@@ -110,7 +110,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
@@ -126,7 +126,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const base = new scaleway.InstanceServer("base", {
@@ -144,7 +144,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const image = new scaleway.InstanceServer("image", {
  *     image: "ubuntu_jammy",
@@ -160,8 +160,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const snapshot = scaleway.getInstanceSnapshot({
  *     name: "my_snapshot",

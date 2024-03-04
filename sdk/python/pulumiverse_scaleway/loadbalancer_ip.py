@@ -198,7 +198,7 @@ class LoadbalancerIp(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Load-Balancers IPs.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
 
         ## Examples
 
@@ -206,7 +206,7 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         ip = scaleway.LoadbalancerIp("ip", reverse="my-reverse.com")
         ```
@@ -233,7 +233,7 @@ class LoadbalancerIp(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Load-Balancers IPs.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
 
         ## Examples
 
@@ -241,7 +241,7 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         ip = scaleway.LoadbalancerIp("ip", reverse="my-reverse.com")
         ```

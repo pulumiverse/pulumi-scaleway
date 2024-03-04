@@ -22,7 +22,7 @@ class GetObjectBucketResult:
     """
     A collection of values returned by getObjectBucket.
     """
-    def __init__(__self__, acl=None, cors_rules=None, endpoint=None, force_destroy=None, id=None, lifecycle_rules=None, name=None, region=None, tags=None, versionings=None):
+    def __init__(__self__, acl=None, cors_rules=None, endpoint=None, force_destroy=None, id=None, lifecycle_rules=None, name=None, object_lock_enabled=None, project_id=None, region=None, tags=None, versionings=None):
         if acl and not isinstance(acl, str):
             raise TypeError("Expected argument 'acl' to be a str")
         pulumi.set(__self__, "acl", acl)
@@ -44,6 +44,12 @@ class GetObjectBucketResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if object_lock_enabled and not isinstance(object_lock_enabled, bool):
+            raise TypeError("Expected argument 'object_lock_enabled' to be a bool")
+        pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -96,6 +102,16 @@ class GetObjectBucketResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="objectLockEnabled")
+    def object_lock_enabled(self) -> bool:
+        return pulumi.get(self, "object_lock_enabled")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        return pulumi.get(self, "project_id")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
@@ -124,12 +140,15 @@ class AwaitableGetObjectBucketResult(GetObjectBucketResult):
             id=self.id,
             lifecycle_rules=self.lifecycle_rules,
             name=self.name,
+            object_lock_enabled=self.object_lock_enabled,
+            project_id=self.project_id,
             region=self.region,
             tags=self.tags,
             versionings=self.versionings)
 
 
 def get_object_bucket(name: Optional[str] = None,
+                      project_id: Optional[str] = None,
                       region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketResult:
     """
@@ -141,39 +160,53 @@ def get_object_bucket(name: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main = scaleway.ObjectBucket("main", tags={
         "foo": "bar",
     })
     selected = scaleway.get_object_bucket(name="bucket.test.com")
     ```
+    ### Fetching the bucket from a specific project
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    selected = scaleway.get_object_bucket(name="bucket.test.com",
+        project_id="11111111-1111-1111-1111-111111111111")
+    ```
 
 
     :param str name: The bucket name.
+    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getObjectBucket:getObjectBucket', __args__, opts=opts, typ=GetObjectBucketResult).value
 
     return AwaitableGetObjectBucketResult(
-        acl=__ret__.acl,
-        cors_rules=__ret__.cors_rules,
-        endpoint=__ret__.endpoint,
-        force_destroy=__ret__.force_destroy,
-        id=__ret__.id,
-        lifecycle_rules=__ret__.lifecycle_rules,
-        name=__ret__.name,
-        region=__ret__.region,
-        tags=__ret__.tags,
-        versionings=__ret__.versionings)
+        acl=pulumi.get(__ret__, 'acl'),
+        cors_rules=pulumi.get(__ret__, 'cors_rules'),
+        endpoint=pulumi.get(__ret__, 'endpoint'),
+        force_destroy=pulumi.get(__ret__, 'force_destroy'),
+        id=pulumi.get(__ret__, 'id'),
+        lifecycle_rules=pulumi.get(__ret__, 'lifecycle_rules'),
+        name=pulumi.get(__ret__, 'name'),
+        object_lock_enabled=pulumi.get(__ret__, 'object_lock_enabled'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        tags=pulumi.get(__ret__, 'tags'),
+        versionings=pulumi.get(__ret__, 'versionings'))
 
 
 @_utilities.lift_output_func(get_object_bucket)
 def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                             project_id: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketResult]:
     """
@@ -185,16 +218,26 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main = scaleway.ObjectBucket("main", tags={
         "foo": "bar",
     })
     selected = scaleway.get_object_bucket(name="bucket.test.com")
     ```
+    ### Fetching the bucket from a specific project
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    selected = scaleway.get_object_bucket(name="bucket.test.com",
+        project_id="11111111-1111-1111-1111-111111111111")
+    ```
 
 
     :param str name: The bucket name.
+    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     ...

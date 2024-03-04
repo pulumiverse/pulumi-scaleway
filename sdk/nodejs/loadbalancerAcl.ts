@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const acl01 = new scaleway.LoadbalancerAcl("acl01", {
  *     frontendId: scaleway_lb_frontend.frt01.id,

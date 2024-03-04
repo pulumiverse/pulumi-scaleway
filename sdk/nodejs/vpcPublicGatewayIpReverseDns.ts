@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
  * const tfA = new scaleway.DomainRecord("tfA", {

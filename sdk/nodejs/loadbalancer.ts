@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.LoadbalancerIp("main", {zone: "fr-par-1"});
  * const base = new scaleway.Loadbalancer("base", {
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const base = new scaleway.Loadbalancer("base", {
  *     ipId: scaleway_lb_ip.main.id,
@@ -107,7 +107,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.Loadbalancer("main", {
  *     type: "LB-S",
@@ -119,7 +119,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
  * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {

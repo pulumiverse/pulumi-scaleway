@@ -583,7 +583,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
         ```
@@ -628,7 +628,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
         ```

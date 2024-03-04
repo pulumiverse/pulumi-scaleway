@@ -22,7 +22,7 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -50,6 +50,9 @@ class GetDatabaseInstanceResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if init_settings and not isinstance(init_settings, dict):
+            raise TypeError("Expected argument 'init_settings' to be a dict")
+        pulumi.set(__self__, "init_settings", init_settings)
         if instance_id and not isinstance(instance_id, str):
             raise TypeError("Expected argument 'instance_id' to be a str")
         pulumi.set(__self__, "instance_id", instance_id)
@@ -148,6 +151,11 @@ class GetDatabaseInstanceResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="initSettings")
+    def init_settings(self) -> Mapping[str, str]:
+        return pulumi.get(self, "init_settings")
+
+    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[str]:
         return pulumi.get(self, "instance_id")
@@ -199,7 +207,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
     @property
@@ -243,6 +251,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             endpoint_port=self.endpoint_port,
             engine=self.engine,
             id=self.id,
+            init_settings=self.init_settings,
             instance_id=self.instance_id,
             is_ha_cluster=self.is_ha_cluster,
             load_balancers=self.load_balancers,
@@ -263,79 +272,67 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
 
 def get_database_instance(instance_id: Optional[str] = None,
                           name: Optional[str] = None,
+                          region: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
-    Gets information about a RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
+    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the RDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str region: `region`) The region in which the RDB instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult).value
 
     return AwaitableGetDatabaseInstanceResult(
-        backup_same_region=__ret__.backup_same_region,
-        backup_schedule_frequency=__ret__.backup_schedule_frequency,
-        backup_schedule_retention=__ret__.backup_schedule_retention,
-        certificate=__ret__.certificate,
-        disable_backup=__ret__.disable_backup,
-        endpoint_ip=__ret__.endpoint_ip,
-        endpoint_port=__ret__.endpoint_port,
-        engine=__ret__.engine,
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        is_ha_cluster=__ret__.is_ha_cluster,
-        load_balancers=__ret__.load_balancers,
-        name=__ret__.name,
-        node_type=__ret__.node_type,
-        organization_id=__ret__.organization_id,
-        password=__ret__.password,
-        private_networks=__ret__.private_networks,
-        project_id=__ret__.project_id,
-        read_replicas=__ret__.read_replicas,
-        region=__ret__.region,
-        settings=__ret__.settings,
-        tags=__ret__.tags,
-        user_name=__ret__.user_name,
-        volume_size_in_gb=__ret__.volume_size_in_gb,
-        volume_type=__ret__.volume_type)
+        backup_same_region=pulumi.get(__ret__, 'backup_same_region'),
+        backup_schedule_frequency=pulumi.get(__ret__, 'backup_schedule_frequency'),
+        backup_schedule_retention=pulumi.get(__ret__, 'backup_schedule_retention'),
+        certificate=pulumi.get(__ret__, 'certificate'),
+        disable_backup=pulumi.get(__ret__, 'disable_backup'),
+        endpoint_ip=pulumi.get(__ret__, 'endpoint_ip'),
+        endpoint_port=pulumi.get(__ret__, 'endpoint_port'),
+        engine=pulumi.get(__ret__, 'engine'),
+        id=pulumi.get(__ret__, 'id'),
+        init_settings=pulumi.get(__ret__, 'init_settings'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        is_ha_cluster=pulumi.get(__ret__, 'is_ha_cluster'),
+        load_balancers=pulumi.get(__ret__, 'load_balancers'),
+        name=pulumi.get(__ret__, 'name'),
+        node_type=pulumi.get(__ret__, 'node_type'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        password=pulumi.get(__ret__, 'password'),
+        private_networks=pulumi.get(__ret__, 'private_networks'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        read_replicas=pulumi.get(__ret__, 'read_replicas'),
+        region=pulumi.get(__ret__, 'region'),
+        settings=pulumi.get(__ret__, 'settings'),
+        tags=pulumi.get(__ret__, 'tags'),
+        user_name=pulumi.get(__ret__, 'user_name'),
+        volume_size_in_gb=pulumi.get(__ret__, 'volume_size_in_gb'),
+        volume_type=pulumi.get(__ret__, 'volume_type'))
 
 
 @_utilities.lift_output_func(get_database_instance)
 def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
+                                 region: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
-    Gets information about a RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_database_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
+    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the RDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str region: `region`) The region in which the RDB instance exists.
     """
     ...

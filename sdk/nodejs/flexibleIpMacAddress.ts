@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const mainFlexibleIp = new scaleway.FlexibleIp("mainFlexibleIp", {});
  * const mainFlexibleIpMacAddress = new scaleway.FlexibleIpMacAddress("mainFlexibleIpMacAddress", {
@@ -27,8 +27,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const myOffer = scaleway.getBaremetalOffer({
  *     name: "EM-B112X-SSD",

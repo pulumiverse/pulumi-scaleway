@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const gw01 = new scaleway.VpcPublicGatewayIp("gw01", {});
@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
  * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
@@ -59,7 +59,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const vpc01 = new scaleway.Vpc("vpc01", {});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {

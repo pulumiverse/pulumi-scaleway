@@ -8,7 +8,7 @@ env:
   PULUMI_API: https://api.pulumi.com
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
-  PULUMI_TEST_OWNER: "lbrlabs"
+  PULUMI_TEST_OWNER: "pulumiverse"
   PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   PYPI_USERNAME: "__token__"
   SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}

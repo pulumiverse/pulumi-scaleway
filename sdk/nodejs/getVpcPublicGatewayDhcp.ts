@@ -11,8 +11,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
  * const dhcpById = scaleway.getVpcPublicGatewayDhcpOutput({
@@ -70,8 +70,8 @@ export interface GetVpcPublicGatewayDhcpResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
  * const dhcpById = scaleway.getVpcPublicGatewayDhcpOutput({

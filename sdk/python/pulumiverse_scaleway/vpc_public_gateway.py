@@ -418,7 +418,7 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGateway("main",
             tags=[
@@ -463,7 +463,7 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGateway("main",
             tags=[

@@ -160,6 +160,7 @@ def get_database_backup(backup_id: Optional[str] = None,
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
            Only one of the `name` and `backup_id` should be specified.
+    :param str region: `region`) The region in which the Database Instance should be created.
     """
     __args__ = dict()
     __args__['backupId'] = backup_id
@@ -170,17 +171,17 @@ def get_database_backup(backup_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseBackup:getDatabaseBackup', __args__, opts=opts, typ=GetDatabaseBackupResult).value
 
     return AwaitableGetDatabaseBackupResult(
-        backup_id=__ret__.backup_id,
-        created_at=__ret__.created_at,
-        database_name=__ret__.database_name,
-        expires_at=__ret__.expires_at,
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        instance_name=__ret__.instance_name,
-        name=__ret__.name,
-        region=__ret__.region,
-        size=__ret__.size,
-        updated_at=__ret__.updated_at)
+        backup_id=pulumi.get(__ret__, 'backup_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        database_name=pulumi.get(__ret__, 'database_name'),
+        expires_at=pulumi.get(__ret__, 'expires_at'),
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        instance_name=pulumi.get(__ret__, 'instance_name'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'),
+        size=pulumi.get(__ret__, 'size'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_database_backup)
@@ -210,5 +211,6 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
            Only one of the `name` and `backup_id` should be specified.
+    :param str region: `region`) The region in which the Database Instance should be created.
     """
     ...

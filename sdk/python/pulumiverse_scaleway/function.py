@@ -21,13 +21,15 @@ class FunctionArgs:
                  deploy: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None):
         """
@@ -39,13 +41,17 @@ class FunctionArgs:
         :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -59,6 +65,8 @@ class FunctionArgs:
             pulumi.set(__self__, "description", description)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
+        if http_option is not None:
+            pulumi.set(__self__, "http_option", http_option)
         if max_scale is not None:
             pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit is not None:
@@ -71,6 +79,8 @@ class FunctionArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if secret_environment_variables is not None:
+            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if zip_file is not None:
@@ -163,6 +173,18 @@ class FunctionArgs:
         pulumi.set(self, "environment_variables", value)
 
     @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @http_option.setter
+    def http_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_option", value)
+
+    @property
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> Optional[pulumi.Input[int]]:
         """
@@ -203,6 +225,8 @@ class FunctionArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the function.
+
+        > **Important** Updates to `name` will recreate the function.
         """
         return pulumi.get(self, "name")
 
@@ -235,15 +259,27 @@ class FunctionArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        """
+        return pulumi.get(self, "secret_environment_variables")
+
+    @secret_environment_variables.setter
+    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "secret_environment_variables", value)
+
+    @property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[str]]:
+    def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Holds the max duration (in seconds) the function is allowed for responding to a request
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[str]]):
+    def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
 
     @property
@@ -280,6 +316,7 @@ class _FunctionState:
                  domain_name: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  handler: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -290,7 +327,8 @@ class _FunctionState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None):
         """
@@ -301,17 +339,21 @@ class _FunctionState:
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -327,6 +369,8 @@ class _FunctionState:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if handler is not None:
             pulumi.set(__self__, "handler", handler)
+        if http_option is not None:
+            pulumi.set(__self__, "http_option", http_option)
         if max_scale is not None:
             pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit is not None:
@@ -347,6 +391,8 @@ class _FunctionState:
             pulumi.set(__self__, "region", region)
         if runtime is not None:
             pulumi.set(__self__, "runtime", runtime)
+        if secret_environment_variables is not None:
+            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if zip_file is not None:
@@ -427,6 +473,18 @@ class _FunctionState:
         pulumi.set(self, "handler", value)
 
     @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @http_option.setter
+    def http_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_option", value)
+
+    @property
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> Optional[pulumi.Input[int]]:
         """
@@ -467,6 +525,8 @@ class _FunctionState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The unique name of the function.
+
+        > **Important** Updates to `name` will recreate the function.
         """
         return pulumi.get(self, "name")
 
@@ -547,15 +607,27 @@ class _FunctionState:
         pulumi.set(self, "runtime", value)
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        """
+        return pulumi.get(self, "secret_environment_variables")
+
+    @secret_environment_variables.setter
+    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "secret_environment_variables", value)
+
+    @property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[str]]:
+    def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Holds the max duration (in seconds) the function is allowed for responding to a request
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[str]]):
+    def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
 
     @property
@@ -592,6 +664,7 @@ class Function(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  handler: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -601,7 +674,8 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -615,7 +689,7 @@ class Function(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace", description="Main function namespace")
         main_function = scaleway.Function("mainFunction",
@@ -639,16 +713,20 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -668,7 +746,7 @@ class Function(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace", description="Main function namespace")
         main_function = scaleway.Function("mainFunction",
@@ -705,6 +783,7 @@ class Function(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  handler: Optional[pulumi.Input[str]] = None,
+                 http_option: Optional[pulumi.Input[str]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
                  min_scale: Optional[pulumi.Input[int]] = None,
@@ -714,7 +793,8 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
-                 timeout: Optional[pulumi.Input[str]] = None,
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -732,6 +812,7 @@ class Function(pulumi.CustomResource):
             if handler is None and not opts.urn:
                 raise TypeError("Missing required property 'handler'")
             __props__.__dict__["handler"] = handler
+            __props__.__dict__["http_option"] = http_option
             __props__.__dict__["max_scale"] = max_scale
             __props__.__dict__["memory_limit"] = memory_limit
             __props__.__dict__["min_scale"] = min_scale
@@ -747,12 +828,15 @@ class Function(pulumi.CustomResource):
             if runtime is None and not opts.urn:
                 raise TypeError("Missing required property 'runtime'")
             __props__.__dict__["runtime"] = runtime
+            __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
             __props__.__dict__["timeout"] = timeout
             __props__.__dict__["zip_file"] = zip_file
             __props__.__dict__["zip_hash"] = zip_hash
             __props__.__dict__["cpu_limit"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["organization_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Function, __self__).__init__(
             'scaleway:index/function:Function',
             resource_name,
@@ -769,6 +853,7 @@ class Function(pulumi.CustomResource):
             domain_name: Optional[pulumi.Input[str]] = None,
             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             handler: Optional[pulumi.Input[str]] = None,
+            http_option: Optional[pulumi.Input[str]] = None,
             max_scale: Optional[pulumi.Input[int]] = None,
             memory_limit: Optional[pulumi.Input[int]] = None,
             min_scale: Optional[pulumi.Input[int]] = None,
@@ -779,7 +864,8 @@ class Function(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             runtime: Optional[pulumi.Input[str]] = None,
-            timeout: Optional[pulumi.Input[str]] = None,
+            secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
             zip_file: Optional[pulumi.Input[str]] = None,
             zip_hash: Optional[pulumi.Input[str]] = None) -> 'Function':
         """
@@ -795,17 +881,21 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
         :param pulumi.Input[int] min_scale: Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
         :param pulumi.Input[str] name: The unique name of the function.
+               
+               > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[str] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
@@ -819,6 +909,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["domain_name"] = domain_name
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["handler"] = handler
+        __props__.__dict__["http_option"] = http_option
         __props__.__dict__["max_scale"] = max_scale
         __props__.__dict__["memory_limit"] = memory_limit
         __props__.__dict__["min_scale"] = min_scale
@@ -829,6 +920,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["runtime"] = runtime
+        __props__.__dict__["secret_environment_variables"] = secret_environment_variables
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["zip_file"] = zip_file
         __props__.__dict__["zip_hash"] = zip_hash
@@ -883,6 +975,14 @@ class Function(pulumi.CustomResource):
         return pulumi.get(self, "handler")
 
     @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> pulumi.Output[Optional[str]]:
+        """
+        HTTP traffic configuration
+        """
+        return pulumi.get(self, "http_option")
+
+    @property
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> pulumi.Output[Optional[int]]:
         """
@@ -911,6 +1011,8 @@ class Function(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The unique name of the function.
+
+        > **Important** Updates to `name` will recreate the function.
         """
         return pulumi.get(self, "name")
 
@@ -963,8 +1065,16 @@ class Function(pulumi.CustomResource):
         return pulumi.get(self, "runtime")
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        """
+        return pulumi.get(self, "secret_environment_variables")
+
+    @property
     @pulumi.getter
-    def timeout(self) -> pulumi.Output[str]:
+    def timeout(self) -> pulumi.Output[int]:
         """
         Holds the max duration (in seconds) the function is allowed for responding to a request
         """

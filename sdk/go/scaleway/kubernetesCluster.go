@@ -8,9 +8,9 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
 // Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
@@ -24,8 +24,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -60,8 +60,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //
@@ -100,8 +100,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //

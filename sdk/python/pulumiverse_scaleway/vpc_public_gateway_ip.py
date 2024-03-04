@@ -237,7 +237,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
         tf_a = scaleway.DomainRecord("tfA",
@@ -277,7 +277,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
         tf_a = scaleway.DomainRecord("tfA",

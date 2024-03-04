@@ -218,21 +218,21 @@ def get_instance_security_group(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup', __args__, opts=opts, typ=GetInstanceSecurityGroupResult).value
 
     return AwaitableGetInstanceSecurityGroupResult(
-        description=__ret__.description,
-        enable_default_security=__ret__.enable_default_security,
-        external_rules=__ret__.external_rules,
-        id=__ret__.id,
-        inbound_default_policy=__ret__.inbound_default_policy,
-        inbound_rules=__ret__.inbound_rules,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        outbound_default_policy=__ret__.outbound_default_policy,
-        outbound_rules=__ret__.outbound_rules,
-        project_id=__ret__.project_id,
-        security_group_id=__ret__.security_group_id,
-        stateful=__ret__.stateful,
-        tags=__ret__.tags,
-        zone=__ret__.zone)
+        description=pulumi.get(__ret__, 'description'),
+        enable_default_security=pulumi.get(__ret__, 'enable_default_security'),
+        external_rules=pulumi.get(__ret__, 'external_rules'),
+        id=pulumi.get(__ret__, 'id'),
+        inbound_default_policy=pulumi.get(__ret__, 'inbound_default_policy'),
+        inbound_rules=pulumi.get(__ret__, 'inbound_rules'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        outbound_default_policy=pulumi.get(__ret__, 'outbound_default_policy'),
+        outbound_rules=pulumi.get(__ret__, 'outbound_rules'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        security_group_id=pulumi.get(__ret__, 'security_group_id'),
+        stateful=pulumi.get(__ret__, 'stateful'),
+        tags=pulumi.get(__ret__, 'tags'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_instance_security_group)

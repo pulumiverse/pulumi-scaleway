@@ -225,7 +225,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
     dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
@@ -237,26 +237,26 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpResult).value
 
     return AwaitableGetVpcPublicGatewayDhcpResult(
-        address=__ret__.address,
-        created_at=__ret__.created_at,
-        dhcp_id=__ret__.dhcp_id,
-        dns_local_name=__ret__.dns_local_name,
-        dns_searches=__ret__.dns_searches,
-        dns_servers_overrides=__ret__.dns_servers_overrides,
-        enable_dynamic=__ret__.enable_dynamic,
-        id=__ret__.id,
-        organization_id=__ret__.organization_id,
-        pool_high=__ret__.pool_high,
-        pool_low=__ret__.pool_low,
-        project_id=__ret__.project_id,
-        push_default_route=__ret__.push_default_route,
-        push_dns_server=__ret__.push_dns_server,
-        rebind_timer=__ret__.rebind_timer,
-        renew_timer=__ret__.renew_timer,
-        subnet=__ret__.subnet,
-        updated_at=__ret__.updated_at,
-        valid_lifetime=__ret__.valid_lifetime,
-        zone=__ret__.zone)
+        address=pulumi.get(__ret__, 'address'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        dhcp_id=pulumi.get(__ret__, 'dhcp_id'),
+        dns_local_name=pulumi.get(__ret__, 'dns_local_name'),
+        dns_searches=pulumi.get(__ret__, 'dns_searches'),
+        dns_servers_overrides=pulumi.get(__ret__, 'dns_servers_overrides'),
+        enable_dynamic=pulumi.get(__ret__, 'enable_dynamic'),
+        id=pulumi.get(__ret__, 'id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        pool_high=pulumi.get(__ret__, 'pool_high'),
+        pool_low=pulumi.get(__ret__, 'pool_low'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        push_default_route=pulumi.get(__ret__, 'push_default_route'),
+        push_dns_server=pulumi.get(__ret__, 'push_dns_server'),
+        rebind_timer=pulumi.get(__ret__, 'rebind_timer'),
+        renew_timer=pulumi.get(__ret__, 'renew_timer'),
+        subnet=pulumi.get(__ret__, 'subnet'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        valid_lifetime=pulumi.get(__ret__, 'valid_lifetime'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_gateway_dhcp)
@@ -270,7 +270,7 @@ def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = No
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
     dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)

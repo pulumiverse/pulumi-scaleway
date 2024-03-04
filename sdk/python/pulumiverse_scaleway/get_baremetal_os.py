@@ -117,11 +117,11 @@ def get_baremetal_os(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalOs:getBaremetalOs', __args__, opts=opts, typ=GetBaremetalOsResult).value
 
     return AwaitableGetBaremetalOsResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        os_id=__ret__.os_id,
-        version=__ret__.version,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        os_id=pulumi.get(__ret__, 'os_id'),
+        version=pulumi.get(__ret__, 'version'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_baremetal_os)

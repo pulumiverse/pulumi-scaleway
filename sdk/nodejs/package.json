@@ -1,14 +1,14 @@
 {
-    "name": "@lbrlabs/pulumi-scaleway",
+    "name": "@pulumiverse/scaleway",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing scaleway cloud resources.",
+    "description": "A Pulumi package for creating and managing Scaleway cloud resources.",
     "keywords": [
         "pulumi",
         "scaleway",
-        "lbrlabs"
+        "pulumiverse"
     ],
-    "homepage": "https://leebriggs.co.uk/projects#pulumi-scaleway",
-    "repository": "https://github.com/lbrlabs/pulumi-scaleway",
+    "homepage": "https://www.scaleway.com",
+    "repository": "https://github.com/pulumiverse/pulumi-scaleway",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc"
@@ -24,6 +24,6 @@
     "pulumi": {
         "resource": true,
         "name": "scaleway",
-        "server": "github://api.github.com/lbrlabs"
+        "server": "github://api.github.com/pulumiverse"
     }
 }

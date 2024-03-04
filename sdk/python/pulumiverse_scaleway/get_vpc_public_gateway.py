@@ -143,7 +143,7 @@ class GetVpcPublicGatewayResult:
 
     @property
     @pulumi.getter
-    def zone(self) -> str:
+    def zone(self) -> Optional[str]:
         return pulumi.get(self, "zone")
 
 
@@ -172,6 +172,7 @@ class AwaitableGetVpcPublicGatewayResult(GetVpcPublicGatewayResult):
 
 def get_vpc_public_gateway(name: Optional[str] = None,
                            public_gateway_id: Optional[str] = None,
+                           zone: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayResult:
     """
     Gets information about a public gateway.
@@ -181,43 +182,50 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
+    main = scaleway.VpcPublicGateway("main",
+        type="VPC-GW-S",
+        zone="nl-ams-1")
+    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
+        zone="nl-ams-1")
     pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
     ```
 
 
     :param str name: Exact name of the public gateway.
+    :param str zone: `zone`) The zone in which
+           the public gateway should be created.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['publicGatewayId'] = public_gateway_id
+    __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGateway:getVpcPublicGateway', __args__, opts=opts, typ=GetVpcPublicGatewayResult).value
 
     return AwaitableGetVpcPublicGatewayResult(
-        bastion_enabled=__ret__.bastion_enabled,
-        bastion_port=__ret__.bastion_port,
-        created_at=__ret__.created_at,
-        enable_smtp=__ret__.enable_smtp,
-        id=__ret__.id,
-        ip_id=__ret__.ip_id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id,
-        public_gateway_id=__ret__.public_gateway_id,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        updated_at=__ret__.updated_at,
-        upstream_dns_servers=__ret__.upstream_dns_servers,
-        zone=__ret__.zone)
+        bastion_enabled=pulumi.get(__ret__, 'bastion_enabled'),
+        bastion_port=pulumi.get(__ret__, 'bastion_port'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        enable_smtp=pulumi.get(__ret__, 'enable_smtp'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_id=pulumi.get(__ret__, 'ip_id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        public_gateway_id=pulumi.get(__ret__, 'public_gateway_id'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        upstream_dns_servers=pulumi.get(__ret__, 'upstream_dns_servers'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_gateway)
 def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
     Gets information about a public gateway.
@@ -227,14 +235,19 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGateway("main", type="VPC-GW-S")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name)
+    main = scaleway.VpcPublicGateway("main",
+        type="VPC-GW-S",
+        zone="nl-ams-1")
+    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
+        zone="nl-ams-1")
     pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
     ```
 
 
     :param str name: Exact name of the public gateway.
+    :param str zone: `zone`) The zone in which
+           the public gateway should be created.
     """
     ...

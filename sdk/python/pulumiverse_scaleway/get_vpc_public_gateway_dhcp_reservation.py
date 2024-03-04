@@ -21,7 +21,7 @@ class GetVpcPublicGatewayDhcpReservationResult:
     """
     A collection of values returned by getVpcPublicGatewayDhcpReservation.
     """
-    def __init__(__self__, created_at=None, gateway_network_id=None, hostname=None, id=None, ip_address=None, mac_address=None, reservation_id=None, type=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, gateway_network_id=None, hostname=None, id=None, ip_address=None, mac_address=None, reservation_id=None, type=None, updated_at=None, wait_for_dhcp=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -49,6 +49,9 @@ class GetVpcPublicGatewayDhcpReservationResult:
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
+        if wait_for_dhcp and not isinstance(wait_for_dhcp, bool):
+            raise TypeError("Expected argument 'wait_for_dhcp' to be a bool")
+        pulumi.set(__self__, "wait_for_dhcp", wait_for_dhcp)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -63,7 +66,7 @@ class GetVpcPublicGatewayDhcpReservationResult:
 
     @property
     @pulumi.getter(name="gatewayNetworkId")
-    def gateway_network_id(self) -> str:
+    def gateway_network_id(self) -> Optional[str]:
         """
         The ID of the owning GatewayNetwork.
         """
@@ -120,6 +123,11 @@ class GetVpcPublicGatewayDhcpReservationResult:
         return pulumi.get(self, "updated_at")
 
     @property
+    @pulumi.getter(name="waitForDhcp")
+    def wait_for_dhcp(self) -> Optional[bool]:
+        return pulumi.get(self, "wait_for_dhcp")
+
+    @property
     @pulumi.getter
     def zone(self) -> Optional[str]:
         return pulumi.get(self, "zone")
@@ -140,11 +148,14 @@ class AwaitableGetVpcPublicGatewayDhcpReservationResult(GetVpcPublicGatewayDhcpR
             reservation_id=self.reservation_id,
             type=self.type,
             updated_at=self.updated_at,
+            wait_for_dhcp=self.wait_for_dhcp,
             zone=self.zone)
 
 
-def get_vpc_public_gateway_dhcp_reservation(mac_address: Optional[str] = None,
+def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = None,
+                                            mac_address: Optional[str] = None,
                                             reservation_id: Optional[str] = None,
+                                            wait_for_dhcp: Optional[bool] = None,
                                             zone: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpReservationResult:
     """
@@ -152,34 +163,41 @@ def get_vpc_public_gateway_dhcp_reservation(mac_address: Optional[str] = None,
     API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
 
 
+    :param str gateway_network_id: The ID of the owning GatewayNetwork
     :param str mac_address: The MAC address of the reservation to retrieve
     :param str reservation_id: The ID of the Reservation to retrieve
+    :param bool wait_for_dhcp: Boolean to wait for mac_address to exist in dhcp
     :param str zone: `zone`) The zone in which
            the image exists.
     """
     __args__ = dict()
+    __args__['gatewayNetworkId'] = gateway_network_id
     __args__['macAddress'] = mac_address
     __args__['reservationId'] = reservation_id
+    __args__['waitForDhcp'] = wait_for_dhcp
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpReservationResult).value
 
     return AwaitableGetVpcPublicGatewayDhcpReservationResult(
-        created_at=__ret__.created_at,
-        gateway_network_id=__ret__.gateway_network_id,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        mac_address=__ret__.mac_address,
-        reservation_id=__ret__.reservation_id,
-        type=__ret__.type,
-        updated_at=__ret__.updated_at,
-        zone=__ret__.zone)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        gateway_network_id=pulumi.get(__ret__, 'gateway_network_id'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        mac_address=pulumi.get(__ret__, 'mac_address'),
+        reservation_id=pulumi.get(__ret__, 'reservation_id'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        wait_for_dhcp=pulumi.get(__ret__, 'wait_for_dhcp'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_public_gateway_dhcp_reservation)
-def get_vpc_public_gateway_dhcp_reservation_output(mac_address: Optional[pulumi.Input[Optional[str]]] = None,
+def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                                   mac_address: Optional[pulumi.Input[Optional[str]]] = None,
                                                    reservation_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                                   wait_for_dhcp: Optional[pulumi.Input[Optional[bool]]] = None,
                                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
@@ -187,8 +205,10 @@ def get_vpc_public_gateway_dhcp_reservation_output(mac_address: Optional[pulumi.
     API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
 
 
+    :param str gateway_network_id: The ID of the owning GatewayNetwork
     :param str mac_address: The MAC address of the reservation to retrieve
     :param str reservation_id: The ID of the Reservation to retrieve
+    :param bool wait_for_dhcp: Boolean to wait for mac_address to exist in dhcp
     :param str zone: `zone`) The zone in which
            the image exists.
     """

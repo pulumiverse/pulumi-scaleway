@@ -21,7 +21,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, protocol=None, region=None, registry_image=None, registry_sha256=None, status=None, timeout=None):
+    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, protocol=None, region=None, registry_image=None, registry_sha256=None, secret_environment_variables=None, status=None, timeout=None):
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -46,6 +46,9 @@ class GetContainerResult:
         if error_message and not isinstance(error_message, str):
             raise TypeError("Expected argument 'error_message' to be a str")
         pulumi.set(__self__, "error_message", error_message)
+        if http_option and not isinstance(http_option, str):
+            raise TypeError("Expected argument 'http_option' to be a str")
+        pulumi.set(__self__, "http_option", http_option)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -85,6 +88,9 @@ class GetContainerResult:
         if registry_sha256 and not isinstance(registry_sha256, str):
             raise TypeError("Expected argument 'registry_sha256' to be a str")
         pulumi.set(__self__, "registry_sha256", registry_sha256)
+        if secret_environment_variables and not isinstance(secret_environment_variables, dict):
+            raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
+        pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -124,6 +130,9 @@ class GetContainerResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the container.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -149,6 +158,11 @@ class GetContainerResult:
         The error message of the container.
         """
         return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> str:
+        return pulumi.get(self, "http_option")
 
     @property
     @pulumi.getter
@@ -249,6 +263,11 @@ class GetContainerResult:
         return pulumi.get(self, "registry_sha256")
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Mapping[str, str]:
+        return pulumi.get(self, "secret_environment_variables")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -279,6 +298,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             domain_name=self.domain_name,
             environment_variables=self.environment_variables,
             error_message=self.error_message,
+            http_option=self.http_option,
             id=self.id,
             max_concurrency=self.max_concurrency,
             max_scale=self.max_scale,
@@ -292,6 +312,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             region=self.region,
             registry_image=self.registry_image,
             registry_sha256=self.registry_sha256,
+            secret_environment_variables=self.secret_environment_variables,
             status=self.status,
             timeout=self.timeout)
 
@@ -315,7 +336,7 @@ def get_container(container_id: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
     main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
@@ -328,6 +349,8 @@ def get_container(container_id: Optional[str] = None,
 
     :param str name: The unique name of the container name.
     :param str namespace_id: The container namespace ID of the container.
+           
+           > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
     __args__ = dict()
@@ -339,29 +362,31 @@ def get_container(container_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getContainer:getContainer', __args__, opts=opts, typ=GetContainerResult).value
 
     return AwaitableGetContainerResult(
-        container_id=__ret__.container_id,
-        cpu_limit=__ret__.cpu_limit,
-        cron_status=__ret__.cron_status,
-        deploy=__ret__.deploy,
-        description=__ret__.description,
-        domain_name=__ret__.domain_name,
-        environment_variables=__ret__.environment_variables,
-        error_message=__ret__.error_message,
-        id=__ret__.id,
-        max_concurrency=__ret__.max_concurrency,
-        max_scale=__ret__.max_scale,
-        memory_limit=__ret__.memory_limit,
-        min_scale=__ret__.min_scale,
-        name=__ret__.name,
-        namespace_id=__ret__.namespace_id,
-        port=__ret__.port,
-        privacy=__ret__.privacy,
-        protocol=__ret__.protocol,
-        region=__ret__.region,
-        registry_image=__ret__.registry_image,
-        registry_sha256=__ret__.registry_sha256,
-        status=__ret__.status,
-        timeout=__ret__.timeout)
+        container_id=pulumi.get(__ret__, 'container_id'),
+        cpu_limit=pulumi.get(__ret__, 'cpu_limit'),
+        cron_status=pulumi.get(__ret__, 'cron_status'),
+        deploy=pulumi.get(__ret__, 'deploy'),
+        description=pulumi.get(__ret__, 'description'),
+        domain_name=pulumi.get(__ret__, 'domain_name'),
+        environment_variables=pulumi.get(__ret__, 'environment_variables'),
+        error_message=pulumi.get(__ret__, 'error_message'),
+        http_option=pulumi.get(__ret__, 'http_option'),
+        id=pulumi.get(__ret__, 'id'),
+        max_concurrency=pulumi.get(__ret__, 'max_concurrency'),
+        max_scale=pulumi.get(__ret__, 'max_scale'),
+        memory_limit=pulumi.get(__ret__, 'memory_limit'),
+        min_scale=pulumi.get(__ret__, 'min_scale'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace_id=pulumi.get(__ret__, 'namespace_id'),
+        port=pulumi.get(__ret__, 'port'),
+        privacy=pulumi.get(__ret__, 'privacy'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        region=pulumi.get(__ret__, 'region'),
+        registry_image=pulumi.get(__ret__, 'registry_image'),
+        registry_sha256=pulumi.get(__ret__, 'registry_sha256'),
+        secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        status=pulumi.get(__ret__, 'status'),
+        timeout=pulumi.get(__ret__, 'timeout'))
 
 
 @_utilities.lift_output_func(get_container)
@@ -384,7 +409,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
     main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
@@ -397,6 +422,8 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
 
     :param str name: The unique name of the container name.
     :param str namespace_id: The container namespace ID of the container.
+           
+           > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
     ...

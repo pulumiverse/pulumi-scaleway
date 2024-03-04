@@ -22,7 +22,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, ips=None, name=None, offer=None, offer_id=None, organization_id=None, os=None, os_id=None, project_id=None, server_id=None, ssh_key_ids=None, tags=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -35,9 +35,18 @@ class GetBaremetalServerResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if install_config_afterward and not isinstance(install_config_afterward, bool):
+            raise TypeError("Expected argument 'install_config_afterward' to be a bool")
+        pulumi.set(__self__, "install_config_afterward", install_config_afterward)
         if ips and not isinstance(ips, list):
             raise TypeError("Expected argument 'ips' to be a list")
         pulumi.set(__self__, "ips", ips)
+        if ipv4s and not isinstance(ipv4s, list):
+            raise TypeError("Expected argument 'ipv4s' to be a list")
+        pulumi.set(__self__, "ipv4s", ipv4s)
+        if ipv6s and not isinstance(ipv6s, list):
+            raise TypeError("Expected argument 'ipv6s' to be a list")
+        pulumi.set(__self__, "ipv6s", ipv6s)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -47,27 +56,51 @@ class GetBaremetalServerResult:
         if offer_id and not isinstance(offer_id, str):
             raise TypeError("Expected argument 'offer_id' to be a str")
         pulumi.set(__self__, "offer_id", offer_id)
+        if offer_name and not isinstance(offer_name, str):
+            raise TypeError("Expected argument 'offer_name' to be a str")
+        pulumi.set(__self__, "offer_name", offer_name)
+        if options and not isinstance(options, list):
+            raise TypeError("Expected argument 'options' to be a list")
+        pulumi.set(__self__, "options", options)
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
         if os and not isinstance(os, str):
             raise TypeError("Expected argument 'os' to be a str")
         pulumi.set(__self__, "os", os)
-        if os_id and not isinstance(os_id, str):
-            raise TypeError("Expected argument 'os_id' to be a str")
-        pulumi.set(__self__, "os_id", os_id)
+        if os_name and not isinstance(os_name, str):
+            raise TypeError("Expected argument 'os_name' to be a str")
+        pulumi.set(__self__, "os_name", os_name)
+        if password and not isinstance(password, str):
+            raise TypeError("Expected argument 'password' to be a str")
+        pulumi.set(__self__, "password", password)
+        if private_networks and not isinstance(private_networks, list):
+            raise TypeError("Expected argument 'private_networks' to be a list")
+        pulumi.set(__self__, "private_networks", private_networks)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if reinstall_on_config_changes and not isinstance(reinstall_on_config_changes, bool):
+            raise TypeError("Expected argument 'reinstall_on_config_changes' to be a bool")
+        pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
+        if service_password and not isinstance(service_password, str):
+            raise TypeError("Expected argument 'service_password' to be a str")
+        pulumi.set(__self__, "service_password", service_password)
+        if service_user and not isinstance(service_user, str):
+            raise TypeError("Expected argument 'service_user' to be a str")
+        pulumi.set(__self__, "service_user", service_user)
         if ssh_key_ids and not isinstance(ssh_key_ids, list):
             raise TypeError("Expected argument 'ssh_key_ids' to be a list")
         pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if user and not isinstance(user, str):
+            raise TypeError("Expected argument 'user' to be a str")
+        pulumi.set(__self__, "user", user)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -96,9 +129,24 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="installConfigAfterward")
+    def install_config_afterward(self) -> bool:
+        return pulumi.get(self, "install_config_afterward")
+
+    @property
     @pulumi.getter
     def ips(self) -> Sequence['outputs.GetBaremetalServerIpResult']:
         return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter
+    def ipv4s(self) -> Sequence['outputs.GetBaremetalServerIpv4Result']:
+        return pulumi.get(self, "ipv4s")
+
+    @property
+    @pulumi.getter
+    def ipv6s(self) -> Sequence['outputs.GetBaremetalServerIpv6Result']:
+        return pulumi.get(self, "ipv6s")
 
     @property
     @pulumi.getter
@@ -116,6 +164,16 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "offer_id")
 
     @property
+    @pulumi.getter(name="offerName")
+    def offer_name(self) -> str:
+        return pulumi.get(self, "offer_name")
+
+    @property
+    @pulumi.getter
+    def options(self) -> Sequence['outputs.GetBaremetalServerOptionResult']:
+        return pulumi.get(self, "options")
+
+    @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         return pulumi.get(self, "organization_id")
@@ -126,9 +184,19 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "os")
 
     @property
-    @pulumi.getter(name="osId")
-    def os_id(self) -> str:
-        return pulumi.get(self, "os_id")
+    @pulumi.getter(name="osName")
+    def os_name(self) -> str:
+        return pulumi.get(self, "os_name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Sequence['outputs.GetBaremetalServerPrivateNetworkResult']:
+        return pulumi.get(self, "private_networks")
 
     @property
     @pulumi.getter(name="projectId")
@@ -136,9 +204,24 @@ class GetBaremetalServerResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="reinstallOnConfigChanges")
+    def reinstall_on_config_changes(self) -> bool:
+        return pulumi.get(self, "reinstall_on_config_changes")
+
+    @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[str]:
         return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter(name="servicePassword")
+    def service_password(self) -> str:
+        return pulumi.get(self, "service_password")
+
+    @property
+    @pulumi.getter(name="serviceUser")
+    def service_user(self) -> str:
+        return pulumi.get(self, "service_user")
 
     @property
     @pulumi.getter(name="sshKeyIds")
@@ -149,6 +232,11 @@ class GetBaremetalServerResult:
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        return pulumi.get(self, "user")
 
     @property
     @pulumi.getter
@@ -166,17 +254,28 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             domain=self.domain,
             hostname=self.hostname,
             id=self.id,
+            install_config_afterward=self.install_config_afterward,
             ips=self.ips,
+            ipv4s=self.ipv4s,
+            ipv6s=self.ipv6s,
             name=self.name,
             offer=self.offer,
             offer_id=self.offer_id,
+            offer_name=self.offer_name,
+            options=self.options,
             organization_id=self.organization_id,
             os=self.os,
-            os_id=self.os_id,
+            os_name=self.os_name,
+            password=self.password,
+            private_networks=self.private_networks,
             project_id=self.project_id,
+            reinstall_on_config_changes=self.reinstall_on_config_changes,
             server_id=self.server_id,
+            service_password=self.service_password,
+            service_user=self.service_user,
             ssh_key_ids=self.ssh_key_ids,
             tags=self.tags,
+            user=self.user,
             zone=self.zone)
 
 
@@ -211,22 +310,33 @@ def get_baremetal_server(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalServer:getBaremetalServer', __args__, opts=opts, typ=GetBaremetalServerResult).value
 
     return AwaitableGetBaremetalServerResult(
-        description=__ret__.description,
-        domain=__ret__.domain,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        ips=__ret__.ips,
-        name=__ret__.name,
-        offer=__ret__.offer,
-        offer_id=__ret__.offer_id,
-        organization_id=__ret__.organization_id,
-        os=__ret__.os,
-        os_id=__ret__.os_id,
-        project_id=__ret__.project_id,
-        server_id=__ret__.server_id,
-        ssh_key_ids=__ret__.ssh_key_ids,
-        tags=__ret__.tags,
-        zone=__ret__.zone)
+        description=pulumi.get(__ret__, 'description'),
+        domain=pulumi.get(__ret__, 'domain'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        install_config_afterward=pulumi.get(__ret__, 'install_config_afterward'),
+        ips=pulumi.get(__ret__, 'ips'),
+        ipv4s=pulumi.get(__ret__, 'ipv4s'),
+        ipv6s=pulumi.get(__ret__, 'ipv6s'),
+        name=pulumi.get(__ret__, 'name'),
+        offer=pulumi.get(__ret__, 'offer'),
+        offer_id=pulumi.get(__ret__, 'offer_id'),
+        offer_name=pulumi.get(__ret__, 'offer_name'),
+        options=pulumi.get(__ret__, 'options'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        os=pulumi.get(__ret__, 'os'),
+        os_name=pulumi.get(__ret__, 'os_name'),
+        password=pulumi.get(__ret__, 'password'),
+        private_networks=pulumi.get(__ret__, 'private_networks'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        reinstall_on_config_changes=pulumi.get(__ret__, 'reinstall_on_config_changes'),
+        server_id=pulumi.get(__ret__, 'server_id'),
+        service_password=pulumi.get(__ret__, 'service_password'),
+        service_user=pulumi.get(__ret__, 'service_user'),
+        ssh_key_ids=pulumi.get(__ret__, 'ssh_key_ids'),
+        tags=pulumi.get(__ret__, 'tags'),
+        user=pulumi.get(__ret__, 'user'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_baremetal_server)

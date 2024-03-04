@@ -304,7 +304,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         server = scaleway.AppleSliconValleyServer("server", type="M1-M")
         ```
@@ -344,7 +344,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         server = scaleway.AppleSliconValleyServer("server", type="M1-M")
         ```

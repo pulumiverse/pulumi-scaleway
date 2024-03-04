@@ -84,7 +84,7 @@ def get_marketplace_image(instance_type: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    my_image = scaleway.get_marketplace_image(label="ubuntu_focal")
+    my_image = scaleway.get_marketplace_image(label="ubuntu_jammy")
     ```
 
 
@@ -102,10 +102,10 @@ def get_marketplace_image(instance_type: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getMarketplaceImage:getMarketplaceImage', __args__, opts=opts, typ=GetMarketplaceImageResult).value
 
     return AwaitableGetMarketplaceImageResult(
-        id=__ret__.id,
-        instance_type=__ret__.instance_type,
-        label=__ret__.label,
-        zone=__ret__.zone)
+        id=pulumi.get(__ret__, 'id'),
+        instance_type=pulumi.get(__ret__, 'instance_type'),
+        label=pulumi.get(__ret__, 'label'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_marketplace_image)
@@ -122,7 +122,7 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
     import pulumi
     import pulumi_scaleway as scaleway
 
-    my_image = scaleway.get_marketplace_image(label="ubuntu_focal")
+    my_image = scaleway.get_marketplace_image(label="ubuntu_jammy")
     ```
 
 

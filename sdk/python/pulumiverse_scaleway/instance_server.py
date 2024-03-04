@@ -25,11 +25,15 @@ class InstanceServerArgs:
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  image: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
+                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
+                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -39,9 +43,16 @@ class InstanceServerArgs:
         The set of arguments for constructing a InstanceServer resource.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
                attached to the server. Updates to this field will trigger a stop/start of the server.
+               
+               > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+               
+               > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
@@ -49,17 +60,35 @@ class InstanceServerArgs:
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
-        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+               
+               You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+               
+               To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+        :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+               
+               
+               > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+               
+               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
+               Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
+               - Binary files using filebase64.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "type", type)
@@ -79,6 +108,8 @@ class InstanceServerArgs:
             pulumi.set(__self__, "image", image)
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
+        if ip_ids is not None:
+            pulumi.set(__self__, "ip_ids", ip_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if placement_group_id is not None:
@@ -87,8 +118,14 @@ class InstanceServerArgs:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_ips is not None:
+            pulumi.set(__self__, "public_ips", public_ips)
+        if replace_on_type_change is not None:
+            pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
+        if routed_ip_enabled is not None:
+            pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
         if state is not None:
@@ -106,7 +143,10 @@ class InstanceServerArgs:
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        Updates to this field will recreate a new resource.
+        Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        Use `replace_on_type_change` to trigger replacement instead of migration.
+
+        > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         """
         return pulumi.get(self, "type")
 
@@ -120,6 +160,10 @@ class InstanceServerArgs:
         """
         The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
         attached to the server. Updates to this field will trigger a stop/start of the server.
+
+        > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+
+        > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -193,6 +237,10 @@ class InstanceServerArgs:
         """
         The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+
+        You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+
+        To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         """
         return pulumi.get(self, "image")
 
@@ -204,13 +252,25 @@ class InstanceServerArgs:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        = (Optional) The ID of the reserved IP that is attached to the server.
+        The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
     def ip_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_id", value)
+
+    @property
+    @pulumi.getter(name="ipIds")
+    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        """
+        return pulumi.get(self, "ip_ids")
+
+    @ip_ids.setter
+    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_ids", value)
 
     @property
     @pulumi.getter
@@ -229,6 +289,9 @@ class InstanceServerArgs:
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
         The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+
+
+        > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -262,6 +325,30 @@ class InstanceServerArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]]:
+        """
+        The list of public IPs of the server.
+        """
+        return pulumi.get(self, "public_ips")
+
+    @public_ips.setter
+    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]]):
+        pulumi.set(self, "public_ips", value)
+
+    @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        """
+        return pulumi.get(self, "replace_on_type_change")
+
+    @replace_on_type_change.setter
+    def replace_on_type_change(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "replace_on_type_change", value)
+
+    @property
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> Optional[pulumi.Input['InstanceServerRootVolumeArgs']]:
         """
@@ -272,6 +359,20 @@ class InstanceServerArgs:
     @root_volume.setter
     def root_volume(self, value: Optional[pulumi.Input['InstanceServerRootVolumeArgs']]):
         pulumi.set(self, "root_volume", value)
+
+    @property
+    @pulumi.getter(name="routedIpEnabled")
+    def routed_ip_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+
+        > **Important:** Enabling routed ip will restart the server
+        """
+        return pulumi.get(self, "routed_ip_enabled")
+
+    @routed_ip_enabled.setter
+    def routed_ip_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "routed_ip_enabled", value)
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -313,7 +414,12 @@ class InstanceServerArgs:
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The user data associated with the server
+        The user data associated with the server.
+        Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        You can define values using:
+        - string
+        - UTF-8 encoded file content using file
+        - Binary files using filebase64.
         """
         return pulumi.get(self, "user_data")
 
@@ -345,6 +451,7 @@ class _InstanceServerState:
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  image: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
+                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipv6_address: Optional[pulumi.Input[str]] = None,
                  ipv6_gateway: Optional[pulumi.Input[str]] = None,
                  ipv6_prefix_length: Optional[pulumi.Input[int]] = None,
@@ -356,7 +463,10 @@ class _InstanceServerState:
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_ip: Optional[pulumi.Input[str]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
+                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -367,6 +477,10 @@ class _InstanceServerState:
         Input properties used for looking up and filtering InstanceServer resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
                attached to the server. Updates to this field will trigger a stop/start of the server.
+               
+               > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+               
+               > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
@@ -374,28 +488,48 @@ class _InstanceServerState:
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
-        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+               
+               You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+               
+               To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+        :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+               
+               
+               > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
-               - `root_volume`
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[str] public_ip: The public IPv4 address of the server.
+        :param pulumi.Input[str] public_ip: The public IP address of the server.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+               
+               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
+               Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
+               - Binary files using filebase64.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         if additional_volume_ids is not None:
@@ -414,6 +548,8 @@ class _InstanceServerState:
             pulumi.set(__self__, "image", image)
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
+        if ip_ids is not None:
+            pulumi.set(__self__, "ip_ids", ip_ids)
         if ipv6_address is not None:
             pulumi.set(__self__, "ipv6_address", ipv6_address)
         if ipv6_gateway is not None:
@@ -436,8 +572,14 @@ class _InstanceServerState:
             pulumi.set(__self__, "project_id", project_id)
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
+        if public_ips is not None:
+            pulumi.set(__self__, "public_ips", public_ips)
+        if replace_on_type_change is not None:
+            pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
+        if routed_ip_enabled is not None:
+            pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
         if state is not None:
@@ -457,6 +599,10 @@ class _InstanceServerState:
         """
         The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
         attached to the server. Updates to this field will trigger a stop/start of the server.
+
+        > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+
+        > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -530,6 +676,10 @@ class _InstanceServerState:
         """
         The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+
+        You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+
+        To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         """
         return pulumi.get(self, "image")
 
@@ -541,13 +691,25 @@ class _InstanceServerState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        = (Optional) The ID of the reserved IP that is attached to the server.
+        The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
     def ip_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_id", value)
+
+    @property
+    @pulumi.getter(name="ipIds")
+    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        """
+        return pulumi.get(self, "ip_ids")
+
+    @ip_ids.setter
+    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_ids", value)
 
     @property
     @pulumi.getter(name="ipv6Address")
@@ -614,6 +776,9 @@ class _InstanceServerState:
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
         The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+
+
+        > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -626,7 +791,6 @@ class _InstanceServerState:
     def placement_group_policy_respected(self) -> Optional[pulumi.Input[bool]]:
         """
         True when the placement group policy is respected.
-        - `root_volume`
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -675,13 +839,37 @@ class _InstanceServerState:
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The public IPv4 address of the server.
+        The public IP address of the server.
         """
         return pulumi.get(self, "public_ip")
 
     @public_ip.setter
     def public_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_ip", value)
+
+    @property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]]:
+        """
+        The list of public IPs of the server.
+        """
+        return pulumi.get(self, "public_ips")
+
+    @public_ips.setter
+    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]]):
+        pulumi.set(self, "public_ips", value)
+
+    @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        """
+        return pulumi.get(self, "replace_on_type_change")
+
+    @replace_on_type_change.setter
+    def replace_on_type_change(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "replace_on_type_change", value)
 
     @property
     @pulumi.getter(name="rootVolume")
@@ -694,6 +882,20 @@ class _InstanceServerState:
     @root_volume.setter
     def root_volume(self, value: Optional[pulumi.Input['InstanceServerRootVolumeArgs']]):
         pulumi.set(self, "root_volume", value)
+
+    @property
+    @pulumi.getter(name="routedIpEnabled")
+    def routed_ip_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+
+        > **Important:** Enabling routed ip will restart the server
+        """
+        return pulumi.get(self, "routed_ip_enabled")
+
+    @routed_ip_enabled.setter
+    def routed_ip_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "routed_ip_enabled", value)
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -737,7 +939,10 @@ class _InstanceServerState:
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        Updates to this field will recreate a new resource.
+        Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        Use `replace_on_type_change` to trigger replacement instead of migration.
+
+        > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         """
         return pulumi.get(self, "type")
 
@@ -749,7 +954,12 @@ class _InstanceServerState:
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The user data associated with the server
+        The user data associated with the server.
+        Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        You can define values using:
+        - string
+        - UTF-8 encoded file content using file
+        - Binary files using filebase64.
         """
         return pulumi.get(self, "user_data")
 
@@ -783,11 +993,15 @@ class InstanceServer(pulumi.CustomResource):
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  image: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
+                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
+                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -806,12 +1020,12 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         public_ip = scaleway.InstanceIp("publicIp")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             ip_id=public_ip.id)
         ```
 
@@ -819,14 +1033,14 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         data = scaleway.InstanceVolume("data",
             size_in_gb=100,
             type="b_ssd")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             tags=[
                 "hello",
                 "public",
@@ -841,7 +1055,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         ip = scaleway.InstanceIp("ip")
         web = scaleway.InstanceServer("web",
@@ -858,7 +1072,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         www = scaleway.InstanceSecurityGroup("www",
             inbound_default_policy="drop",
@@ -884,7 +1098,7 @@ class InstanceServer(pulumi.CustomResource):
             )])
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             security_group_id=www.id)
         ```
 
@@ -892,11 +1106,11 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             user_data={
                 "foo": "bar",
                 "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
@@ -907,15 +1121,50 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         pn01 = scaleway.VpcPrivateNetwork("pn01")
         base = scaleway.InstanceServer("base",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
                 pn_id=pn01.id,
             )])
+        ```
+
+        ### Root volume configuration
+
+        #### Resized block volume with installed image
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        image = scaleway.InstanceServer("image",
+            image="ubuntu_jammy",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                size_in_gb=100,
+                volume_type="b_ssd",
+            ),
+            type="PRO2-XXS")
+        ```
+
+        #### From snapshot
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
+        from_snapshot_instance_volume = scaleway.InstanceVolume("fromSnapshotInstanceVolume",
+            from_snapshot_id=snapshot.id,
+            type="b_ssd")
+        from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
+            type="PRO2-XXS",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                volume_id=from_snapshot_instance_volume.id,
+            ))
         ```
 
         ## Private Network
@@ -944,6 +1193,10 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
                attached to the server. Updates to this field will trigger a stop/start of the server.
+               
+               > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+               
+               > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
@@ -951,20 +1204,41 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
-        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+               
+               You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+               
+               To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+        :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+               
+               
+               > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]] public_ips: The list of public IPs of the server.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+               
+               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
+               Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
+               - Binary files using filebase64.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         ...
@@ -984,12 +1258,12 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         public_ip = scaleway.InstanceIp("publicIp")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             ip_id=public_ip.id)
         ```
 
@@ -997,14 +1271,14 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         data = scaleway.InstanceVolume("data",
             size_in_gb=100,
             type="b_ssd")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             tags=[
                 "hello",
                 "public",
@@ -1019,7 +1293,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         ip = scaleway.InstanceIp("ip")
         web = scaleway.InstanceServer("web",
@@ -1036,7 +1310,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         www = scaleway.InstanceSecurityGroup("www",
             inbound_default_policy="drop",
@@ -1062,7 +1336,7 @@ class InstanceServer(pulumi.CustomResource):
             )])
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             security_group_id=www.id)
         ```
 
@@ -1070,11 +1344,11 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             user_data={
                 "foo": "bar",
                 "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
@@ -1085,15 +1359,50 @@ class InstanceServer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         pn01 = scaleway.VpcPrivateNetwork("pn01")
         base = scaleway.InstanceServer("base",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S",
             private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
                 pn_id=pn01.id,
             )])
+        ```
+
+        ### Root volume configuration
+
+        #### Resized block volume with installed image
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        image = scaleway.InstanceServer("image",
+            image="ubuntu_jammy",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                size_in_gb=100,
+                volume_type="b_ssd",
+            ),
+            type="PRO2-XXS")
+        ```
+
+        #### From snapshot
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
+        from_snapshot_instance_volume = scaleway.InstanceVolume("fromSnapshotInstanceVolume",
+            from_snapshot_id=snapshot.id,
+            type="b_ssd")
+        from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
+            type="PRO2-XXS",
+            root_volume=scaleway.InstanceServerRootVolumeArgs(
+                volume_id=from_snapshot_instance_volume.id,
+            ))
         ```
 
         ## Private Network
@@ -1141,11 +1450,15 @@ class InstanceServer(pulumi.CustomResource):
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  image: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
+                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
+                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1169,11 +1482,15 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["enable_ipv6"] = enable_ipv6
             __props__.__dict__["image"] = image
             __props__.__dict__["ip_id"] = ip_id
+            __props__.__dict__["ip_ids"] = ip_ids
             __props__.__dict__["name"] = name
             __props__.__dict__["placement_group_id"] = placement_group_id
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["public_ips"] = public_ips
+            __props__.__dict__["replace_on_type_change"] = replace_on_type_change
             __props__.__dict__["root_volume"] = root_volume
+            __props__.__dict__["routed_ip_enabled"] = routed_ip_enabled
             __props__.__dict__["security_group_id"] = security_group_id
             __props__.__dict__["state"] = state
             __props__.__dict__["tags"] = tags
@@ -1207,6 +1524,7 @@ class InstanceServer(pulumi.CustomResource):
             enable_ipv6: Optional[pulumi.Input[bool]] = None,
             image: Optional[pulumi.Input[str]] = None,
             ip_id: Optional[pulumi.Input[str]] = None,
+            ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ipv6_address: Optional[pulumi.Input[str]] = None,
             ipv6_gateway: Optional[pulumi.Input[str]] = None,
             ipv6_prefix_length: Optional[pulumi.Input[int]] = None,
@@ -1218,7 +1536,10 @@ class InstanceServer(pulumi.CustomResource):
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_ip: Optional[pulumi.Input[str]] = None,
+            public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]]] = None,
+            replace_on_type_change: Optional[pulumi.Input[bool]] = None,
             root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
+            routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
             security_group_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1234,6 +1555,10 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
                attached to the server. Updates to this field will trigger a stop/start of the server.
+               
+               > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+               
+               > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
@@ -1241,28 +1566,48 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
-        :param pulumi.Input[str] ip_id: = (Optional) The ID of the reserved IP that is attached to the server.
+               
+               You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+               
+               To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+        :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+               
+               
+               > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
-               - `root_volume`
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[str] public_ip: The public IPv4 address of the server.
+        :param pulumi.Input[str] public_ip: The public IP address of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]] public_ips: The list of public IPs of the server.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+               
+               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
+               Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               You can define values using:
+               - string
+               - UTF-8 encoded file content using file
+               - Binary files using filebase64.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1277,6 +1622,7 @@ class InstanceServer(pulumi.CustomResource):
         __props__.__dict__["enable_ipv6"] = enable_ipv6
         __props__.__dict__["image"] = image
         __props__.__dict__["ip_id"] = ip_id
+        __props__.__dict__["ip_ids"] = ip_ids
         __props__.__dict__["ipv6_address"] = ipv6_address
         __props__.__dict__["ipv6_gateway"] = ipv6_gateway
         __props__.__dict__["ipv6_prefix_length"] = ipv6_prefix_length
@@ -1288,7 +1634,10 @@ class InstanceServer(pulumi.CustomResource):
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_ip"] = public_ip
+        __props__.__dict__["public_ips"] = public_ips
+        __props__.__dict__["replace_on_type_change"] = replace_on_type_change
         __props__.__dict__["root_volume"] = root_volume
+        __props__.__dict__["routed_ip_enabled"] = routed_ip_enabled
         __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["state"] = state
         __props__.__dict__["tags"] = tags
@@ -1303,6 +1652,10 @@ class InstanceServer(pulumi.CustomResource):
         """
         The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
         attached to the server. Updates to this field will trigger a stop/start of the server.
+
+        > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+
+        > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -1324,7 +1677,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> pulumi.Output[Optional[str]]:
+    def cloud_init(self) -> pulumi.Output[str]:
         """
         The cloud init script associated with this server
         """
@@ -1352,6 +1705,10 @@ class InstanceServer(pulumi.CustomResource):
         """
         The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+
+        You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
+
+        To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         """
         return pulumi.get(self, "image")
 
@@ -1359,9 +1716,17 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[Optional[str]]:
         """
-        = (Optional) The ID of the reserved IP that is attached to the server.
+        The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
+
+    @property
+    @pulumi.getter(name="ipIds")
+    def ip_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        """
+        return pulumi.get(self, "ip_ids")
 
     @property
     @pulumi.getter(name="ipv6Address")
@@ -1408,6 +1773,9 @@ class InstanceServer(pulumi.CustomResource):
     def placement_group_id(self) -> pulumi.Output[Optional[str]]:
         """
         The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+
+
+        > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         """
         return pulumi.get(self, "placement_group_id")
 
@@ -1416,7 +1784,6 @@ class InstanceServer(pulumi.CustomResource):
     def placement_group_policy_respected(self) -> pulumi.Output[bool]:
         """
         True when the placement group policy is respected.
-        - `root_volume`
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -1449,9 +1816,25 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> pulumi.Output[str]:
         """
-        The public IPv4 address of the server.
+        The public IP address of the server.
         """
         return pulumi.get(self, "public_ip")
+
+    @property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> pulumi.Output[Sequence['outputs.InstanceServerPublicIp']]:
+        """
+        The list of public IPs of the server.
+        """
+        return pulumi.get(self, "public_ips")
+
+    @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        """
+        return pulumi.get(self, "replace_on_type_change")
 
     @property
     @pulumi.getter(name="rootVolume")
@@ -1460,6 +1843,16 @@ class InstanceServer(pulumi.CustomResource):
         Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
+
+    @property
+    @pulumi.getter(name="routedIpEnabled")
+    def routed_ip_enabled(self) -> pulumi.Output[bool]:
+        """
+        If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+
+        > **Important:** Enabling routed ip will restart the server
+        """
+        return pulumi.get(self, "routed_ip_enabled")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -1491,15 +1884,23 @@ class InstanceServer(pulumi.CustomResource):
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        Updates to this field will recreate a new resource.
+        Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        Use `replace_on_type_change` to trigger replacement instead of migration.
+
+        > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="userData")
-    def user_data(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def user_data(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        The user data associated with the server
+        The user data associated with the server.
+        Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        You can define values using:
+        - string
+        - UTF-8 encoded file content using file
+        - Binary files using filebase64.
         """
         return pulumi.get(self, "user_data")
 

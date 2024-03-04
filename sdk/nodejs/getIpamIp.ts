@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Get Instance IP in a private network
  * const nic = new scaleway.InstancePrivateNic("nic", {
@@ -101,8 +101,8 @@ export interface GetIpamIpResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Get Instance IP in a private network
  * const nic = new scaleway.InstancePrivateNic("nic", {

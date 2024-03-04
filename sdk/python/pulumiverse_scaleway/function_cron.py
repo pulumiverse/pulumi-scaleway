@@ -193,12 +193,6 @@ class FunctionCron(pulumi.CustomResource):
         """
         Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
 
-        For more information consult
-        the [documentation](https://www.scaleway.com/en/docs/compute/functions/api-cli/fun-uploading-with-serverless-framework/#configuring-events)
-        .
-
-        If you want to restrict the access to your function please check [this](https://www.scaleway.com/en/docs/compute/functions/api-cli/restricting-access-to-a-function/).
-
         For more details about the limitation
         check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
 
@@ -210,7 +204,7 @@ class FunctionCron(pulumi.CustomResource):
         ```python
         import pulumi
         import json
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
         main_function = scaleway.Function("mainFunction",
@@ -259,12 +253,6 @@ class FunctionCron(pulumi.CustomResource):
         """
         Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
 
-        For more information consult
-        the [documentation](https://www.scaleway.com/en/docs/compute/functions/api-cli/fun-uploading-with-serverless-framework/#configuring-events)
-        .
-
-        If you want to restrict the access to your function please check [this](https://www.scaleway.com/en/docs/compute/functions/api-cli/restricting-access-to-a-function/).
-
         For more details about the limitation
         check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
 
@@ -276,7 +264,7 @@ class FunctionCron(pulumi.CustomResource):
         ```python
         import pulumi
         import json
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
         main_function = scaleway.Function("mainFunction",

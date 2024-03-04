@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcGatewayNetwork("main", {
  *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
@@ -103,8 +103,8 @@ export interface GetVpcGatewayNetworkResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
  * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcGatewayNetwork("main", {
  *     gatewayId: scaleway_vpc_public_gateway.pg01.id,

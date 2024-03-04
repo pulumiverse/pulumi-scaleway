@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.InstanceSnapshot("main", {volumeId: "11111111-1111-1111-1111-111111111111"});
  * ```
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const mainInstanceVolume = new scaleway.InstanceVolume("mainInstanceVolume", {
  *     type: "l_ssd",
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const bucket = new scaleway.ObjectBucket("bucket", {});
  * const qcow = new scaleway.ObjectItem("qcow", {

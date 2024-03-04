@@ -281,6 +281,8 @@ class IotNetwork(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["endpoint"] = None
             __props__.__dict__["secret"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IotNetwork, __self__).__init__(
             'scaleway:index/iotNetwork:IotNetwork',
             resource_name,

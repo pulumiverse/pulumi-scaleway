@@ -7,9 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
 // Use this data source to get information on an existing IAM user based on its ID or email address.
@@ -23,8 +23,8 @@ import (
 //
 // import (
 //
-//	"github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
 //
 // )
 //

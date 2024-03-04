@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {externalRules: true});
  * const sgrs01 = new scaleway.InstanceSecurityGroupRules("sgrs01", {

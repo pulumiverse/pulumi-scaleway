@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const replica = new scaleway.DocumentdbReadReplica("replica", {
  *     directAccess: {},
@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const replica = new scaleway.DocumentdbReadReplica("replica", {

@@ -22,7 +22,13 @@ class GetLoadbalancerResult:
     """
     A collection of values returned by getLoadbalancer.
     """
-    def __init__(__self__, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, tags=None, type=None, zone=None):
+    def __init__(__self__, assign_flexible_ip=None, description=None, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+        if assign_flexible_ip and not isinstance(assign_flexible_ip, bool):
+            raise TypeError("Expected argument 'assign_flexible_ip' to be a bool")
+        pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -53,6 +59,9 @@ class GetLoadbalancerResult:
         if release_ip and not isinstance(release_ip, bool):
             raise TypeError("Expected argument 'release_ip' to be a bool")
         pulumi.set(__self__, "release_ip", release_ip)
+        if ssl_compatibility_level and not isinstance(ssl_compatibility_level, str):
+            raise TypeError("Expected argument 'ssl_compatibility_level' to be a str")
+        pulumi.set(__self__, "ssl_compatibility_level", ssl_compatibility_level)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -62,6 +71,16 @@ class GetLoadbalancerResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="assignFlexibleIp")
+    def assign_flexible_ip(self) -> bool:
+        return pulumi.get(self, "assign_flexible_ip")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -123,10 +142,15 @@ class GetLoadbalancerResult:
         return pulumi.get(self, "release_ip")
 
     @property
+    @pulumi.getter(name="sslCompatibilityLevel")
+    def ssl_compatibility_level(self) -> str:
+        return pulumi.get(self, "ssl_compatibility_level")
+
+    @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        The tags associated with the load-balancers.
+        The tags associated with the load-balancer.
         """
         return pulumi.get(self, "tags")
 
@@ -142,7 +166,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def zone(self) -> Optional[str]:
         """
-        (Defaults to provider `region`) The region in which the LB exists.
+        (Defaults to provider `zone`) The zone in which the LB exists.
         """
         return pulumi.get(self, "zone")
 
@@ -153,6 +177,8 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
         if False:
             yield self
         return GetLoadbalancerResult(
+            assign_flexible_ip=self.assign_flexible_ip,
+            description=self.description,
             id=self.id,
             ip_address=self.ip_address,
             ip_id=self.ip_id,
@@ -163,6 +189,7 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
             project_id=self.project_id,
             region=self.region,
             release_ip=self.release_ip,
+            ssl_compatibility_level=self.ssl_compatibility_level,
             tags=self.tags,
             type=self.type,
             zone=self.zone)
@@ -187,8 +214,8 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     ```
 
 
-    :param str name: The IP address.
-    :param str zone: (Defaults to provider `region`) The region in which the LB exists.
+    :param str name: The load balancer name.
+    :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
@@ -199,19 +226,22 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancer:getLoadbalancer', __args__, opts=opts, typ=GetLoadbalancerResult).value
 
     return AwaitableGetLoadbalancerResult(
-        id=__ret__.id,
-        ip_address=__ret__.ip_address,
-        ip_id=__ret__.ip_id,
-        lb_id=__ret__.lb_id,
-        name=__ret__.name,
-        organization_id=__ret__.organization_id,
-        private_networks=__ret__.private_networks,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        release_ip=__ret__.release_ip,
-        tags=__ret__.tags,
-        type=__ret__.type,
-        zone=__ret__.zone)
+        assign_flexible_ip=pulumi.get(__ret__, 'assign_flexible_ip'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_address=pulumi.get(__ret__, 'ip_address'),
+        ip_id=pulumi.get(__ret__, 'ip_id'),
+        lb_id=pulumi.get(__ret__, 'lb_id'),
+        name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        private_networks=pulumi.get(__ret__, 'private_networks'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        release_ip=pulumi.get(__ret__, 'release_ip'),
+        ssl_compatibility_level=pulumi.get(__ret__, 'ssl_compatibility_level'),
+        tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_loadbalancer)
@@ -234,7 +264,7 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The IP address.
-    :param str zone: (Defaults to provider `region`) The region in which the LB exists.
+    :param str name: The load balancer name.
+    :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
     """
     ...

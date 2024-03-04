@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetVpcGatewayNetworkResult',
@@ -21,7 +22,7 @@ class GetVpcGatewayNetworkResult:
     """
     A collection of values returned by getVpcGatewayNetwork.
     """
-    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, mac_address=None, private_network_id=None, static_address=None, updated_at=None, zone=None):
+    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, ipam_configs=None, mac_address=None, private_network_id=None, static_address=None, status=None, updated_at=None, zone=None):
         if cleanup_dhcp and not isinstance(cleanup_dhcp, bool):
             raise TypeError("Expected argument 'cleanup_dhcp' to be a bool")
         pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
@@ -46,6 +47,9 @@ class GetVpcGatewayNetworkResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ipam_configs and not isinstance(ipam_configs, list):
+            raise TypeError("Expected argument 'ipam_configs' to be a list")
+        pulumi.set(__self__, "ipam_configs", ipam_configs)
         if mac_address and not isinstance(mac_address, str):
             raise TypeError("Expected argument 'mac_address' to be a str")
         pulumi.set(__self__, "mac_address", mac_address)
@@ -55,6 +59,9 @@ class GetVpcGatewayNetworkResult:
         if static_address and not isinstance(static_address, str):
             raise TypeError("Expected argument 'static_address' to be a str")
         pulumi.set(__self__, "static_address", static_address)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -106,6 +113,11 @@ class GetVpcGatewayNetworkResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="ipamConfigs")
+    def ipam_configs(self) -> Sequence['outputs.GetVpcGatewayNetworkIpamConfigResult']:
+        return pulumi.get(self, "ipam_configs")
+
+    @property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> str:
         return pulumi.get(self, "mac_address")
@@ -119,6 +131,11 @@ class GetVpcGatewayNetworkResult:
     @pulumi.getter(name="staticAddress")
     def static_address(self) -> str:
         return pulumi.get(self, "static_address")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -145,9 +162,11 @@ class AwaitableGetVpcGatewayNetworkResult(GetVpcGatewayNetworkResult):
             gateway_id=self.gateway_id,
             gateway_network_id=self.gateway_network_id,
             id=self.id,
+            ipam_configs=self.ipam_configs,
             mac_address=self.mac_address,
             private_network_id=self.private_network_id,
             static_address=self.static_address,
+            status=self.status,
             updated_at=self.updated_at,
             zone=self.zone)
 
@@ -166,7 +185,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcGatewayNetwork("main",
         gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
@@ -184,6 +203,8 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     :param bool enable_masquerade: If masquerade is enabled on requested network
     :param str gateway_id: ID of the public gateway the gateway network is linked to
     :param str gateway_network_id: ID of the gateway network.
+           
+           > Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
     :param str private_network_id: ID of the private network the gateway network is linked to
     """
     __args__ = dict()
@@ -196,19 +217,21 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork', __args__, opts=opts, typ=GetVpcGatewayNetworkResult).value
 
     return AwaitableGetVpcGatewayNetworkResult(
-        cleanup_dhcp=__ret__.cleanup_dhcp,
-        created_at=__ret__.created_at,
-        dhcp_id=__ret__.dhcp_id,
-        enable_dhcp=__ret__.enable_dhcp,
-        enable_masquerade=__ret__.enable_masquerade,
-        gateway_id=__ret__.gateway_id,
-        gateway_network_id=__ret__.gateway_network_id,
-        id=__ret__.id,
-        mac_address=__ret__.mac_address,
-        private_network_id=__ret__.private_network_id,
-        static_address=__ret__.static_address,
-        updated_at=__ret__.updated_at,
-        zone=__ret__.zone)
+        cleanup_dhcp=pulumi.get(__ret__, 'cleanup_dhcp'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        dhcp_id=pulumi.get(__ret__, 'dhcp_id'),
+        enable_dhcp=pulumi.get(__ret__, 'enable_dhcp'),
+        enable_masquerade=pulumi.get(__ret__, 'enable_masquerade'),
+        gateway_id=pulumi.get(__ret__, 'gateway_id'),
+        gateway_network_id=pulumi.get(__ret__, 'gateway_network_id'),
+        id=pulumi.get(__ret__, 'id'),
+        ipam_configs=pulumi.get(__ret__, 'ipam_configs'),
+        mac_address=pulumi.get(__ret__, 'mac_address'),
+        private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        static_address=pulumi.get(__ret__, 'static_address'),
+        status=pulumi.get(__ret__, 'status'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_vpc_gateway_network)
@@ -226,7 +249,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
-    import lbrlabs_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcGatewayNetwork("main",
         gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
@@ -244,6 +267,8 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     :param bool enable_masquerade: If masquerade is enabled on requested network
     :param str gateway_id: ID of the public gateway the gateway network is linked to
     :param str gateway_network_id: ID of the gateway network.
+           
+           > Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
     :param str private_network_id: ID of the private network the gateway network is linked to
     """
     ...

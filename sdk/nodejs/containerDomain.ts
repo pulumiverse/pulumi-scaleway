@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const appContainer = new scaleway.Container("appContainer", {});
  * const appContainerDomain = new scaleway.ContainerDomain("appContainerDomain", {
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@lbrlabs/pulumi-scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.ContainerNamespace("main", {description: "test container"});
  * const appContainer = new scaleway.Container("appContainer", {

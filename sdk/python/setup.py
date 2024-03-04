@@ -17,21 +17,21 @@ def readme():
         return "scaleway Pulumi Package - Development Version"
 
 
-setup(name='lbrlabs_pulumi_scaleway',
+setup(name='pulumiverse_scaleway',
       python_requires='>=3.7',
       version=VERSION,
-      description="A Pulumi package for creating and managing scaleway cloud resources.",
+      description="A Pulumi package for creating and managing Scaleway cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
-      keywords='pulumi scaleway lbrlabs',
-      url='https://leebriggs.co.uk/projects#pulumi-scaleway',
+      keywords='pulumi scaleway pulumiverse',
+      url='https://www.scaleway.com',
       project_urls={
-          'Repository': 'https://github.com/lbrlabs/pulumi-scaleway'
+          'Repository': 'https://github.com/pulumiverse/pulumi-scaleway'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'lbrlabs_pulumi_scaleway': [
+          'pulumiverse_scaleway': [
               'py.typed',
               'pulumi-plugin.json',
           ]

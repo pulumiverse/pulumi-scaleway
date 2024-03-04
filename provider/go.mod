@@ -1,4 +1,4 @@
-module github.com/lbrlabs/pulumi-scaleway/provider
+module github.com/pulumiverse/pulumi-scaleway/provider
 
 go 1.21
 

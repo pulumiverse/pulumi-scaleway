@@ -134,6 +134,30 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+
+        This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+
+        > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        sg01 = scaleway.InstanceSecurityGroup("sg01", external_rules=True)
+        sgrs01 = scaleway.InstanceSecurityGroupRules("sgrs01",
+            security_group_id=sg01.id,
+            inbound_rules=[scaleway.InstanceSecurityGroupRulesInboundRuleArgs(
+                action="accept",
+                port=80,
+                ip_range="0.0.0.0/0",
+            )])
+        ```
+
         ## Import
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
@@ -155,6 +179,30 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                  args: InstanceSecurityGroupRulesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Compute Instance security group rules. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89).
+
+        This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+
+        > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        sg01 = scaleway.InstanceSecurityGroup("sg01", external_rules=True)
+        sgrs01 = scaleway.InstanceSecurityGroupRules("sgrs01",
+            security_group_id=sg01.id,
+            inbound_rules=[scaleway.InstanceSecurityGroupRulesInboundRuleArgs(
+                action="accept",
+                port=80,
+                ip_range="0.0.0.0/0",
+            )])
+        ```
+
         ## Import
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash

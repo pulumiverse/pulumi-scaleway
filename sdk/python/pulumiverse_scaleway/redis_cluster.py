@@ -33,19 +33,52 @@ class RedisClusterArgs:
         """
         The set of arguments for constructing a RedisCluster resource.
         :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+               
+               > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+               you cannot downgrade a Redis Cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
         :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
-        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs.
+               
+               > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+               cannot downgrade a Redis Cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+               
+               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+               which is minimum 3 (1 main node + 2 secondary nodes)
+               
+               > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+               keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         :param pulumi.Input[str] name: The name of the Redis Cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
-        :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: Public network specs details
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public
+               network will be provided. More details on the Private Network section
+               
+               > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+               
+               - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+               block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+               public network. You can modify your private_network and its specs, you can have both a private and public network side
+               by side.
+               
+               - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+               able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+               
+               ```python
+               import pulumi
+               ```
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
+               associated with.
+        :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+               > The `public_network` block exports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions
+               with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
         :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
+               
+               > The changes on `tls_enabled` will force the resource creation.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the
+               Redis Cluster should be created.
         """
         pulumi.set(__self__, "node_type", node_type)
         pulumi.set(__self__, "password", password)
@@ -77,6 +110,9 @@ class RedisClusterArgs:
     def node_type(self) -> pulumi.Input[str]:
         """
         The type of Redis Cluster you want to create (e.g. `RED1-M`).
+
+        > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+        you cannot downgrade a Redis Cluster.
         """
         return pulumi.get(self, "node_type")
 
@@ -113,6 +149,9 @@ class RedisClusterArgs:
     def version(self) -> pulumi.Input[str]:
         """
         Redis's Cluster version (e.g. `6.2.6`).
+
+        > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+        cannot downgrade a Redis Cluster.
         """
         return pulumi.get(self, "version")
 
@@ -124,7 +163,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]]:
         """
-        List of acl rules, this is cluster's authorized IPs.
+        List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         """
         return pulumi.get(self, "acls")
 
@@ -137,6 +176,12 @@ class RedisClusterArgs:
     def cluster_size(self) -> Optional[pulumi.Input[int]]:
         """
         The number of nodes in the Redis Cluster.
+
+        > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        which is minimum 3 (1 main node + 2 secondary nodes)
+
+        > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+        keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         """
         return pulumi.get(self, "cluster_size")
 
@@ -160,7 +205,22 @@ class RedisClusterArgs:
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]]:
         """
-        Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        Describes the private network you want to connect to your cluster. If not set, a public
+        network will be provided. More details on the Private Network section
+
+        > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+
+        - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+        block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+        public network. You can modify your private_network and its specs, you can have both a private and public network side
+        by side.
+
+        - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+        able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "private_networks")
 
@@ -172,7 +232,8 @@ class RedisClusterArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the Redis Cluster is associated with.
+        `project_id`) The ID of the project the Redis Cluster is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -184,7 +245,8 @@ class RedisClusterArgs:
     @pulumi.getter(name="publicNetwork")
     def public_network(self) -> Optional[pulumi.Input['RedisClusterPublicNetworkArgs']]:
         """
-        Public network specs details
+        (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        > The `public_network` block exports:
         """
         return pulumi.get(self, "public_network")
 
@@ -196,7 +258,8 @@ class RedisClusterArgs:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        Map of settings for redis cluster. Available settings can be found by listing redis versions
+        with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
 
@@ -221,6 +284,8 @@ class RedisClusterArgs:
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether TLS is enabled or not.
+
+        > The changes on `tls_enabled` will force the resource creation.
         """
         return pulumi.get(self, "tls_enabled")
 
@@ -232,7 +297,8 @@ class RedisClusterArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the Redis Cluster should be created.
+        `zone`) The zone in which the
+        Redis Cluster should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -263,23 +329,56 @@ class _RedisClusterState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RedisCluster resources.
-        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+               
+               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+               which is minimum 3 (1 main node + 2 secondary nodes)
+               
+               > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+               keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         :param pulumi.Input[str] created_at: The date and time of creation of the Redis Cluster.
         :param pulumi.Input[str] name: The name of the Redis Cluster.
         :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+               
+               > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+               you cannot downgrade a Redis Cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
-        :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: Public network specs details
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public
+               network will be provided. More details on the Private Network section
+               
+               > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+               
+               - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+               block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+               public network. You can modify your private_network and its specs, you can have both a private and public network side
+               by side.
+               
+               - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+               able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+               
+               ```python
+               import pulumi
+               ```
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
+               associated with.
+        :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+               > The `public_network` block exports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions
+               with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
         :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+               
+               > The changes on `tls_enabled` will force the resource creation.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis Cluster.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
         :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
+               
+               > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+               cannot downgrade a Redis Cluster.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the
+               Redis Cluster should be created.
         """
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
@@ -320,7 +419,7 @@ class _RedisClusterState:
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]]:
         """
-        List of acl rules, this is cluster's authorized IPs.
+        List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         """
         return pulumi.get(self, "acls")
 
@@ -345,6 +444,12 @@ class _RedisClusterState:
     def cluster_size(self) -> Optional[pulumi.Input[int]]:
         """
         The number of nodes in the Redis Cluster.
+
+        > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        which is minimum 3 (1 main node + 2 secondary nodes)
+
+        > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+        keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         """
         return pulumi.get(self, "cluster_size")
 
@@ -381,6 +486,9 @@ class _RedisClusterState:
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of Redis Cluster you want to create (e.g. `RED1-M`).
+
+        > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+        you cannot downgrade a Redis Cluster.
         """
         return pulumi.get(self, "node_type")
 
@@ -404,7 +512,22 @@ class _RedisClusterState:
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]]:
         """
-        Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        Describes the private network you want to connect to your cluster. If not set, a public
+        network will be provided. More details on the Private Network section
+
+        > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+
+        - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+        block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+        public network. You can modify your private_network and its specs, you can have both a private and public network side
+        by side.
+
+        - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+        able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "private_networks")
 
@@ -416,7 +539,8 @@ class _RedisClusterState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the Redis Cluster is associated with.
+        `project_id`) The ID of the project the Redis Cluster is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -428,7 +552,8 @@ class _RedisClusterState:
     @pulumi.getter(name="publicNetwork")
     def public_network(self) -> Optional[pulumi.Input['RedisClusterPublicNetworkArgs']]:
         """
-        Public network specs details
+        (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        > The `public_network` block exports:
         """
         return pulumi.get(self, "public_network")
 
@@ -440,7 +565,8 @@ class _RedisClusterState:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        Map of settings for redis cluster. Available settings can be found by listing redis versions
+        with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
 
@@ -465,6 +591,8 @@ class _RedisClusterState:
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether TLS is enabled or not.
+
+        > The changes on `tls_enabled` will force the resource creation.
         """
         return pulumi.get(self, "tls_enabled")
 
@@ -501,6 +629,9 @@ class _RedisClusterState:
     def version(self) -> Optional[pulumi.Input[str]]:
         """
         Redis's Cluster version (e.g. `6.2.6`).
+
+        > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+        cannot downgrade a Redis Cluster.
         """
         return pulumi.get(self, "version")
 
@@ -512,7 +643,8 @@ class _RedisClusterState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the Redis Cluster should be created.
+        `zone`) The zone in which the
+        Redis Cluster should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -551,7 +683,7 @@ class RedisCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
             acls=[scaleway.RedisClusterAclArgs(
@@ -574,7 +706,7 @@ class RedisCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
             node_type="RED1-MICRO",
@@ -591,7 +723,7 @@ class RedisCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.RedisCluster("main",
@@ -612,25 +744,58 @@ class RedisCluster(pulumi.CustomResource):
         Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+               
+               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+               which is minimum 3 (1 main node + 2 secondary nodes)
+               
+               > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+               keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         :param pulumi.Input[str] name: The name of the Redis Cluster.
         :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+               
+               > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+               you cannot downgrade a Redis Cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
-        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: Public network specs details
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public
+               network will be provided. More details on the Private Network section
+               
+               > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+               
+               - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+               block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+               public network. You can modify your private_network and its specs, you can have both a private and public network side
+               by side.
+               
+               - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+               able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+               
+               ```python
+               import pulumi
+               ```
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
+               associated with.
+        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+               > The `public_network` block exports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions
+               with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
         :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+               
+               > The changes on `tls_enabled` will force the resource creation.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
         :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
+               
+               > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+               cannot downgrade a Redis Cluster.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the
+               Redis Cluster should be created.
         """
         ...
     @overload
@@ -648,7 +813,7 @@ class RedisCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
             acls=[scaleway.RedisClusterAclArgs(
@@ -671,7 +836,7 @@ class RedisCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
             node_type="RED1-MICRO",
@@ -688,7 +853,7 @@ class RedisCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.RedisCluster("main",
@@ -709,7 +874,7 @@ class RedisCluster(pulumi.CustomResource):
         Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
 
         ```sh
-         $ pulumi import scaleway:index/redisCluster:RedisCluster redis01 fr-par/11111111-1111-1111-1111-111111111111
+         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -758,7 +923,7 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["node_type"] = node_type
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_network"] = public_network
@@ -775,6 +940,8 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RedisCluster, __self__).__init__(
             'scaleway:index/redisCluster:RedisCluster',
             resource_name,
@@ -809,23 +976,56 @@ class RedisCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis Cluster.
+               
+               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+               which is minimum 3 (1 main node + 2 secondary nodes)
+               
+               > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+               keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         :param pulumi.Input[str] created_at: The date and time of creation of the Redis Cluster.
         :param pulumi.Input[str] name: The name of the Redis Cluster.
         :param pulumi.Input[str] node_type: The type of Redis Cluster you want to create (e.g. `RED1-M`).
+               
+               > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+               you cannot downgrade a Redis Cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is associated with.
-        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: Public network specs details
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the private network you want to connect to your cluster. If not set, a public
+               network will be provided. More details on the Private Network section
+               
+               > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+               
+               - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+               block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+               public network. You can modify your private_network and its specs, you can have both a private and public network side
+               by side.
+               
+               - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+               able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+               
+               ```python
+               import pulumi
+               ```
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
+               associated with.
+        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+               > The `public_network` block exports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for redis cluster. Available settings can be found by listing redis versions
+               with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Redis Cluster.
         :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled or not.
+               
+               > The changes on `tls_enabled` will force the resource creation.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis Cluster.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
         :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
-        :param pulumi.Input[str] zone: `zone`) The zone in which the Redis Cluster should be created.
+               
+               > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+               cannot downgrade a Redis Cluster.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the
+               Redis Cluster should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -854,7 +1054,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def acls(self) -> pulumi.Output[Optional[Sequence['outputs.RedisClusterAcl']]]:
         """
-        List of acl rules, this is cluster's authorized IPs.
+        List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         """
         return pulumi.get(self, "acls")
 
@@ -871,6 +1071,12 @@ class RedisCluster(pulumi.CustomResource):
     def cluster_size(self) -> pulumi.Output[int]:
         """
         The number of nodes in the Redis Cluster.
+
+        > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        which is minimum 3 (1 main node + 2 secondary nodes)
+
+        > **Important:** You can set a bigger `cluster_size` than you initially did, it will migrate the Redis Cluster, but
+        keep in mind that you cannot downgrade a Redis Cluster so setting a smaller `cluster_size` will not have any effect.
         """
         return pulumi.get(self, "cluster_size")
 
@@ -895,6 +1101,9 @@ class RedisCluster(pulumi.CustomResource):
     def node_type(self) -> pulumi.Output[str]:
         """
         The type of Redis Cluster you want to create (e.g. `RED1-M`).
+
+        > **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
+        you cannot downgrade a Redis Cluster.
         """
         return pulumi.get(self, "node_type")
 
@@ -910,7 +1119,22 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.RedisClusterPrivateNetwork']]]:
         """
-        Describes the private network you want to connect to your cluster. If not set, a public network will be provided.
+        Describes the private network you want to connect to your cluster. If not set, a public
+        network will be provided. More details on the Private Network section
+
+        > **Important:** The way to use private networks differs whether you are using redis in standalone or cluster mode.
+
+        - Standalone mode (`cluster_size` = 1) : you can attach as many private networks as you want (each must be a separate
+        block). If you detach your only private network, your cluster won't be reachable until you define a new private or
+        public network. You can modify your private_network and its specs, you can have both a private and public network side
+        by side.
+
+        - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
+        able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "private_networks")
 
@@ -918,7 +1142,8 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the Redis Cluster is associated with.
+        `project_id`) The ID of the project the Redis Cluster is
+        associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -926,7 +1151,8 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter(name="publicNetwork")
     def public_network(self) -> pulumi.Output['outputs.RedisClusterPublicNetwork']:
         """
-        Public network specs details
+        (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        > The `public_network` block exports:
         """
         return pulumi.get(self, "public_network")
 
@@ -934,7 +1160,8 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def settings(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Map of settings for redis cluster. Available settings can be found by listing redis versions with scaleway API or CLI
+        Map of settings for redis cluster. Available settings can be found by listing redis versions
+        with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
 
@@ -951,6 +1178,8 @@ class RedisCluster(pulumi.CustomResource):
     def tls_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Whether TLS is enabled or not.
+
+        > The changes on `tls_enabled` will force the resource creation.
         """
         return pulumi.get(self, "tls_enabled")
 
@@ -975,6 +1204,9 @@ class RedisCluster(pulumi.CustomResource):
     def version(self) -> pulumi.Output[str]:
         """
         Redis's Cluster version (e.g. `6.2.6`).
+
+        > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
+        cannot downgrade a Redis Cluster.
         """
         return pulumi.get(self, "version")
 
@@ -982,7 +1214,8 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the Redis Cluster should be created.
+        `zone`) The zone in which the
+        Redis Cluster should be created.
         """
         return pulumi.get(self, "zone")
 

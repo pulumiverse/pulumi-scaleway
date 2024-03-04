@@ -28,6 +28,8 @@ class InstanceImageArgs:
         The set of arguments for constructing a InstanceImage resource.
         :param pulumi.Input[str] root_volume_id: The ID of the snapshot of the volume to be used as root in the image.
         :param pulumi.Input[str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+               
+               > **Important:** For now it is only possible to have 1 additional_volume.
         :param pulumi.Input[str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[str] name: The name of the image. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: The ID of the project the image is associated with.
@@ -68,6 +70,8 @@ class InstanceImageArgs:
     def additional_volume_ids(self) -> Optional[pulumi.Input[str]]:
         """
         List of IDs of the snapshots of the additional volumes to be attached to the image.
+
+        > **Important:** For now it is only possible to have 1 additional_volume.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -168,6 +172,8 @@ class _InstanceImageState:
         """
         Input properties used for looking up and filtering InstanceImage resources.
         :param pulumi.Input[str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+               
+               > **Important:** For now it is only possible to have 1 additional_volume.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceImageAdditionalVolumeArgs']]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[str] creation_date: Date of the volume creation.
@@ -216,6 +222,8 @@ class _InstanceImageState:
     def additional_volume_ids(self) -> Optional[pulumi.Input[str]]:
         """
         List of IDs of the snapshots of the additional volumes to be attached to the image.
+
+        > **Important:** For now it is only possible to have 1 additional_volume.
         """
         return pulumi.get(self, "additional_volume_ids")
 
@@ -404,7 +412,7 @@ class InstanceImage(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         volume = scaleway.InstanceVolume("volume",
             type="b_ssd",
@@ -417,10 +425,10 @@ class InstanceImage(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         server = scaleway.InstanceServer("server",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S")
         server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
         server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
@@ -437,6 +445,8 @@ class InstanceImage(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+               
+               > **Important:** For now it is only possible to have 1 additional_volume.
         :param pulumi.Input[str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[str] name: The name of the image. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: The ID of the project the image is associated with.
@@ -461,7 +471,7 @@ class InstanceImage(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         volume = scaleway.InstanceVolume("volume",
             type="b_ssd",
@@ -474,10 +484,10 @@ class InstanceImage(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         server = scaleway.InstanceServer("server",
-            image="ubuntu_focal",
+            image="ubuntu_jammy",
             type="DEV1-S")
         server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
         server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
@@ -571,6 +581,8 @@ class InstanceImage(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+               
+               > **Important:** For now it is only possible to have 1 additional_volume.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceImageAdditionalVolumeArgs']]]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[str] creation_date: Date of the volume creation.
@@ -610,6 +622,8 @@ class InstanceImage(pulumi.CustomResource):
     def additional_volume_ids(self) -> pulumi.Output[Optional[str]]:
         """
         List of IDs of the snapshots of the additional volumes to be attached to the image.
+
+        > **Important:** For now it is only possible to have 1 additional_volume.
         """
         return pulumi.get(self, "additional_volume_ids")
 

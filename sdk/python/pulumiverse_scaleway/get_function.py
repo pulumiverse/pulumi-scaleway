@@ -21,7 +21,7 @@ class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, project_id=None, region=None, runtime=None, timeout=None, zip_file=None, zip_hash=None):
+    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, http_option=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, project_id=None, region=None, runtime=None, secret_environment_variables=None, timeout=None, zip_file=None, zip_hash=None):
         if cpu_limit and not isinstance(cpu_limit, int):
             raise TypeError("Expected argument 'cpu_limit' to be a int")
         pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -43,6 +43,9 @@ class GetFunctionResult:
         if handler and not isinstance(handler, str):
             raise TypeError("Expected argument 'handler' to be a str")
         pulumi.set(__self__, "handler", handler)
+        if http_option and not isinstance(http_option, str):
+            raise TypeError("Expected argument 'http_option' to be a str")
+        pulumi.set(__self__, "http_option", http_option)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -76,8 +79,11 @@ class GetFunctionResult:
         if runtime and not isinstance(runtime, str):
             raise TypeError("Expected argument 'runtime' to be a str")
         pulumi.set(__self__, "runtime", runtime)
-        if timeout and not isinstance(timeout, str):
-            raise TypeError("Expected argument 'timeout' to be a str")
+        if secret_environment_variables and not isinstance(secret_environment_variables, dict):
+            raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
+        pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if timeout and not isinstance(timeout, int):
+            raise TypeError("Expected argument 'timeout' to be a int")
         pulumi.set(__self__, "timeout", timeout)
         if zip_file and not isinstance(zip_file, str):
             raise TypeError("Expected argument 'zip_file' to be a str")
@@ -120,6 +126,11 @@ class GetFunctionResult:
     @pulumi.getter
     def handler(self) -> str:
         return pulumi.get(self, "handler")
+
+    @property
+    @pulumi.getter(name="httpOption")
+    def http_option(self) -> str:
+        return pulumi.get(self, "http_option")
 
     @property
     @pulumi.getter
@@ -180,8 +191,13 @@ class GetFunctionResult:
         return pulumi.get(self, "runtime")
 
     @property
+    @pulumi.getter(name="secretEnvironmentVariables")
+    def secret_environment_variables(self) -> Mapping[str, str]:
+        return pulumi.get(self, "secret_environment_variables")
+
+    @property
     @pulumi.getter
-    def timeout(self) -> str:
+    def timeout(self) -> int:
         return pulumi.get(self, "timeout")
 
     @property
@@ -208,6 +224,7 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             environment_variables=self.environment_variables,
             function_id=self.function_id,
             handler=self.handler,
+            http_option=self.http_option,
             id=self.id,
             max_scale=self.max_scale,
             memory_limit=self.memory_limit,
@@ -219,6 +236,7 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             project_id=self.project_id,
             region=self.region,
             runtime=self.runtime,
+            secret_environment_variables=self.secret_environment_variables,
             timeout=self.timeout,
             zip_file=self.zip_file,
             zip_hash=self.zip_hash)
@@ -239,27 +257,29 @@ def get_function(function_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getFunction:getFunction', __args__, opts=opts, typ=GetFunctionResult).value
 
     return AwaitableGetFunctionResult(
-        cpu_limit=__ret__.cpu_limit,
-        deploy=__ret__.deploy,
-        description=__ret__.description,
-        domain_name=__ret__.domain_name,
-        environment_variables=__ret__.environment_variables,
-        function_id=__ret__.function_id,
-        handler=__ret__.handler,
-        id=__ret__.id,
-        max_scale=__ret__.max_scale,
-        memory_limit=__ret__.memory_limit,
-        min_scale=__ret__.min_scale,
-        name=__ret__.name,
-        namespace_id=__ret__.namespace_id,
-        organization_id=__ret__.organization_id,
-        privacy=__ret__.privacy,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        runtime=__ret__.runtime,
-        timeout=__ret__.timeout,
-        zip_file=__ret__.zip_file,
-        zip_hash=__ret__.zip_hash)
+        cpu_limit=pulumi.get(__ret__, 'cpu_limit'),
+        deploy=pulumi.get(__ret__, 'deploy'),
+        description=pulumi.get(__ret__, 'description'),
+        domain_name=pulumi.get(__ret__, 'domain_name'),
+        environment_variables=pulumi.get(__ret__, 'environment_variables'),
+        function_id=pulumi.get(__ret__, 'function_id'),
+        handler=pulumi.get(__ret__, 'handler'),
+        http_option=pulumi.get(__ret__, 'http_option'),
+        id=pulumi.get(__ret__, 'id'),
+        max_scale=pulumi.get(__ret__, 'max_scale'),
+        memory_limit=pulumi.get(__ret__, 'memory_limit'),
+        min_scale=pulumi.get(__ret__, 'min_scale'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace_id=pulumi.get(__ret__, 'namespace_id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        privacy=pulumi.get(__ret__, 'privacy'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        runtime=pulumi.get(__ret__, 'runtime'),
+        secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        timeout=pulumi.get(__ret__, 'timeout'),
+        zip_file=pulumi.get(__ret__, 'zip_file'),
+        zip_hash=pulumi.get(__ret__, 'zip_hash'))
 
 
 @_utilities.lift_output_func(get_function)

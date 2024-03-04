@@ -19,13 +19,18 @@ class DatabaseReadReplicaArgs:
                  instance_id: pulumi.Input[str],
                  direct_access: Optional[pulumi.Input['DatabaseReadReplicaDirectAccessArgs']] = None,
                  private_network: Optional[pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a DatabaseReadReplica resource.
-        :param pulumi.Input[str] instance_id: Id of the rdb instance to replicate.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         :param pulumi.Input['DatabaseReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if direct_access is not None:
@@ -34,12 +39,16 @@ class DatabaseReadReplicaArgs:
             pulumi.set(__self__, "private_network", private_network)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if same_zone is not None:
+            pulumi.set(__self__, "same_zone", same_zone)
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Id of the rdb instance to replicate.
+        UUID of the rdb instance.
+
+        > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         """
         return pulumi.get(self, "instance_id")
 
@@ -75,13 +84,26 @@ class DatabaseReadReplicaArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database read replica should be created.
+        `region`) The region
+        in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="sameZone")
+    def same_zone(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        """
+        return pulumi.get(self, "same_zone")
+
+    @same_zone.setter
+    def same_zone(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "same_zone", value)
 
 
 @pulumi.input_type
@@ -90,13 +112,18 @@ class _DatabaseReadReplicaState:
                  direct_access: Optional[pulumi.Input['DatabaseReadReplicaDirectAccessArgs']] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering DatabaseReadReplica resources.
         :param pulumi.Input['DatabaseReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
-        :param pulumi.Input[str] instance_id: Id of the rdb instance to replicate.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         if direct_access is not None:
             pulumi.set(__self__, "direct_access", direct_access)
@@ -106,6 +133,8 @@ class _DatabaseReadReplicaState:
             pulumi.set(__self__, "private_network", private_network)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if same_zone is not None:
+            pulumi.set(__self__, "same_zone", same_zone)
 
     @property
     @pulumi.getter(name="directAccess")
@@ -123,7 +152,9 @@ class _DatabaseReadReplicaState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Id of the rdb instance to replicate.
+        UUID of the rdb instance.
+
+        > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         """
         return pulumi.get(self, "instance_id")
 
@@ -147,13 +178,26 @@ class _DatabaseReadReplicaState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database read replica should be created.
+        `region`) The region
+        in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="sameZone")
+    def same_zone(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        """
+        return pulumi.get(self, "same_zone")
+
+    @same_zone.setter
+    def same_zone(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "same_zone", value)
 
 
 class DatabaseReadReplica(pulumi.CustomResource):
@@ -165,6 +209,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Database read replicas.
@@ -176,7 +221,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
             node_type="db-dev-s",
@@ -199,7 +244,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
             node_type="db-dev-s",
@@ -219,7 +264,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
          $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
@@ -228,9 +273,13 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
-        :param pulumi.Input[str] instance_id: Id of the rdb instance to replicate.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         ...
     @overload
@@ -248,7 +297,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
             node_type="db-dev-s",
@@ -271,7 +320,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
             node_type="db-dev-s",
@@ -291,7 +340,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
 
         ```sh
          $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
@@ -316,6 +365,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -331,6 +381,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["region"] = region
+            __props__.__dict__["same_zone"] = same_zone
         super(DatabaseReadReplica, __self__).__init__(
             'scaleway:index/databaseReadReplica:DatabaseReadReplica',
             resource_name,
@@ -344,7 +395,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
             direct_access: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
-            region: Optional[pulumi.Input[str]] = None) -> 'DatabaseReadReplica':
+            region: Optional[pulumi.Input[str]] = None,
+            same_zone: Optional[pulumi.Input[bool]] = None) -> 'DatabaseReadReplica':
         """
         Get an existing DatabaseReadReplica resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -353,9 +405,13 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
-        :param pulumi.Input[str] instance_id: Id of the rdb instance to replicate.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
+        :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -365,6 +421,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["region"] = region
+        __props__.__dict__["same_zone"] = same_zone
         return DatabaseReadReplica(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -379,7 +436,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Id of the rdb instance to replicate.
+        UUID of the rdb instance.
+
+        > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         """
         return pulumi.get(self, "instance_id")
 
@@ -395,7 +454,16 @@ class DatabaseReadReplica(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the Database read replica should be created.
+        `region`) The region
+        in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="sameZone")
+    def same_zone(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+        """
+        return pulumi.get(self, "same_zone")
 

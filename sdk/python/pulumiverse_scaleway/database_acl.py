@@ -22,8 +22,10 @@ class DatabaseAclArgs:
         """
         The set of arguments for constructing a DatabaseAcl resource.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database ACL.
+        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
         pulumi.set(__self__, "acl_rules", acl_rules)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -46,7 +48,9 @@ class DatabaseAclArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        The instance on which to create the ACL.
+        UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database ACL.
         """
         return pulumi.get(self, "instance_id")
 
@@ -58,7 +62,7 @@ class DatabaseAclArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -76,8 +80,10 @@ class _DatabaseAclState:
         """
         Input properties used for looking up and filtering DatabaseAcl resources.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database ACL.
+        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
         if acl_rules is not None:
             pulumi.set(__self__, "acl_rules", acl_rules)
@@ -102,7 +108,9 @@ class _DatabaseAclState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The instance on which to create the ACL.
+        UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database ACL.
         """
         return pulumi.get(self, "instance_id")
 
@@ -114,7 +122,7 @@ class _DatabaseAclState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -142,7 +150,7 @@ class DatabaseAcl(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseAcl("main",
             instance_id=scaleway_rdb_instance["main"]["id"],
@@ -163,8 +171,10 @@ class DatabaseAcl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database ACL.
+        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
         ...
     @overload
@@ -182,7 +192,7 @@ class DatabaseAcl(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseAcl("main",
             instance_id=scaleway_rdb_instance["main"]["id"],
@@ -255,8 +265,10 @@ class DatabaseAcl(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: The instance on which to create the ACL.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database ACL.
+        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -279,7 +291,9 @@ class DatabaseAcl(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The instance on which to create the ACL.
+        UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database ACL.
         """
         return pulumi.get(self, "instance_id")
 
@@ -287,7 +301,7 @@ class DatabaseAcl(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 

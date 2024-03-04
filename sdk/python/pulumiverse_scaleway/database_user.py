@@ -21,11 +21,15 @@ class DatabaseUserArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DatabaseUser resource.
-        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
         :param pulumi.Input[str] password: Database User password.
         :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
         :param pulumi.Input[str] name: Database User name.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+               
+               > **Important:** Updates to `name` will recreate the Database User.
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "password", password)
@@ -40,7 +44,9 @@ class DatabaseUserArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        The instance on which to create the user.
+        UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database User.
         """
         return pulumi.get(self, "instance_id")
 
@@ -77,6 +83,8 @@ class DatabaseUserArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Database User name.
+
+        > **Important:** Updates to `name` will recreate the Database User.
         """
         return pulumi.get(self, "name")
 
@@ -88,7 +96,7 @@ class DatabaseUserArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The Scaleway region this resource resides in.
         """
         return pulumi.get(self, "region")
 
@@ -107,11 +115,15 @@ class _DatabaseUserState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DatabaseUser resources.
-        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
         :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
         :param pulumi.Input[str] name: Database User name.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
         :param pulumi.Input[str] password: Database User password.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
@@ -128,7 +140,9 @@ class _DatabaseUserState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The instance on which to create the user.
+        UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database User.
         """
         return pulumi.get(self, "instance_id")
 
@@ -153,6 +167,8 @@ class _DatabaseUserState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Database User name.
+
+        > **Important:** Updates to `name` will recreate the Database User.
         """
         return pulumi.get(self, "name")
 
@@ -176,7 +192,7 @@ class _DatabaseUserState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The Scaleway region this resource resides in.
         """
         return pulumi.get(self, "region")
 
@@ -207,7 +223,7 @@ class DatabaseUser(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_random as random
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         db_password = random.RandomPassword("dbPassword",
             length=16,
@@ -220,7 +236,7 @@ class DatabaseUser(pulumi.CustomResource):
 
         ## Import
 
-        Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
 
         ```sh
          $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
@@ -228,11 +244,15 @@ class DatabaseUser(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
         :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
         :param pulumi.Input[str] name: Database User name.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
         :param pulumi.Input[str] password: Database User password.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         ...
     @overload
@@ -251,7 +271,7 @@ class DatabaseUser(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_random as random
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         db_password = random.RandomPassword("dbPassword",
             length=16,
@@ -264,7 +284,7 @@ class DatabaseUser(pulumi.CustomResource):
 
         ## Import
 
-        Database User can be imported using `{region}/{instance_id}/{name}`, e.g. bash
+        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
 
         ```sh
          $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
@@ -306,8 +326,10 @@ class DatabaseUser(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["region"] = region
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DatabaseUser, __self__).__init__(
             'scaleway:index/databaseUser:DatabaseUser',
             resource_name,
@@ -330,11 +352,15 @@ class DatabaseUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: The instance on which to create the user.
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
         :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
         :param pulumi.Input[str] name: Database User name.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
         :param pulumi.Input[str] password: Database User password.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -351,7 +377,9 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The instance on which to create the user.
+        UUID of the rdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database User.
         """
         return pulumi.get(self, "instance_id")
 
@@ -368,6 +396,8 @@ class DatabaseUser(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         Database User name.
+
+        > **Important:** Updates to `name` will recreate the Database User.
         """
         return pulumi.get(self, "name")
 
@@ -383,7 +413,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        The Scaleway region this resource resides in.
         """
         return pulumi.get(self, "region")
 

@@ -283,7 +283,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
         dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
@@ -336,7 +336,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import lbrlabs_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
         dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.1.0/24")
