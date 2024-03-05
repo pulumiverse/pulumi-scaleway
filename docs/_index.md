@@ -103,3 +103,9 @@ class ScalewayServer : Stack
 {{% /choosable %}}
 
 {{< /chooser >}}
+
+## Issues
+
+This is a community maintained provider. Please file issues and feature requests here:
+
+[pulumiverse/pulumi-scaleway](https://github.com/pulumiverse/pulumi-scaleway/issues)

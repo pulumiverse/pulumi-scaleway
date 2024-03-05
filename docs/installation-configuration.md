@@ -23,6 +23,22 @@ pulumi plugin install resource scaleway <version> --server github://api.github.c
 
 Replace the version string with your desired version.
 
+### Migrating from the LbrLabs package
+
+The maintenance of this provider has been transferred from LbrLabs to Pulumiverse.
+LbrLabs published up to v1.11.0, where Pulumiverse picks up with an initial v1.11.1
+containing the renamed packages.
+
+If you were using the LbrLabs edition, please update your dependencies to the
+Pulumiverse edition:
+
+| Programming Language | LbrLabs name | Pulumiverse name |
+| -- | -- | -- |
+| JavaScript/TypeScript | `@lbrlabs/pulumi-scaleway` | `@pulumiverse/scaleway` |
+| Python | `lbrlabs_pulumi_scaleway` | `pulumiverse_scaleway` |
+| Go | `github.com/lbrlabs/pulumi-scaleway/sdk/go/scaleway` | `github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway` |
+| .NET | `Lbrlabs.PulumiPackage.Scaleway` | `Pulumiverse.Scaleway` |
+
 ## Setup
 
 To provision resources with the Pulumi Scaleway provider, you need to have Scaleway credentials. Scaleway maintains documentation on how to create API keys [here](https://www.scaleway.com/en/docs/console/my-project/how-to/generate-api-key/)
