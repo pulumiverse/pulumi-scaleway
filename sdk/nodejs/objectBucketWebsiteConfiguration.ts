@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## Example with `policy`
+ * ### With `Policy`
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketPolicy = new scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     policy: JSON.stringify({
  *         Version: "2012-10-17",
  *         Id: "MyPolicy",
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },
@@ -58,36 +58,24 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## indexDocument
- *
- * The `indexDocument` configuration block supports the following arguments:
- *
- * * `suffix` - (Required) A suffix that is appended to a request that is for a directory on the website endpoint.
- *
- * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
- *
- * In addition to all above arguments, the following attribute is exported:
- *
- * * `id` - The region and bucket separated by a slash (/)
- * * `websiteDomain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
- * * `websiteEndpoint` - The website endpoint.
- *
- * > **Important:** Please check our concepts section to know more about the [endpoint](https://www.scaleway.com/en/docs/storage/object/concepts/#endpoint).
- *
- * ## errorDocument
- *
- * The errorDocument configuration block supports the following arguments:
- *
- * * `key` - (Required) The object key name to use when a 4XX class error occurs.
- *
  * ## Import
  *
- * Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g.
+ * Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
  *
  * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
+ * ```
+ *
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
  */
 export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
@@ -119,19 +107,19 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
     }
 
     /**
-     * (Required, Forces new resource) The name of the bucket.
+     * The name of the bucket.
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
-     * (Optional) The name of the error document for the website detailed below.
+     * The name of the error document for the website detailed below.
      */
     public readonly errorDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
     /**
-     * (Required) The name of the index document for the website detailed below.
+     * The name of the index document for the website detailed below.
      */
     public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
-     * (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -139,11 +127,11 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The website endpoint.
+     * The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
      */
     public /*out*/ readonly websiteDomain!: pulumi.Output<string>;
     /**
-     * The domain of the website endpoint.
+     * The website endpoint.
      */
     public /*out*/ readonly websiteEndpoint!: pulumi.Output<string>;
 
@@ -193,19 +181,19 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
  */
 export interface ObjectBucketWebsiteConfigurationState {
     /**
-     * (Required, Forces new resource) The name of the bucket.
+     * The name of the bucket.
      */
     bucket?: pulumi.Input<string>;
     /**
-     * (Optional) The name of the error document for the website detailed below.
+     * The name of the error document for the website detailed below.
      */
     errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
     /**
-     * (Required) The name of the index document for the website detailed below.
+     * The name of the index document for the website detailed below.
      */
     indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
-     * (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -213,11 +201,11 @@ export interface ObjectBucketWebsiteConfigurationState {
      */
     region?: pulumi.Input<string>;
     /**
-     * The website endpoint.
+     * The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
      */
     websiteDomain?: pulumi.Input<string>;
     /**
-     * The domain of the website endpoint.
+     * The website endpoint.
      */
     websiteEndpoint?: pulumi.Input<string>;
 }
@@ -227,19 +215,19 @@ export interface ObjectBucketWebsiteConfigurationState {
  */
 export interface ObjectBucketWebsiteConfigurationArgs {
     /**
-     * (Required, Forces new resource) The name of the bucket.
+     * The name of the bucket.
      */
     bucket: pulumi.Input<string>;
     /**
-     * (Optional) The name of the error document for the website detailed below.
+     * The name of the error document for the website detailed below.
      */
     errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
     /**
-     * (Required) The name of the index document for the website detailed below.
+     * The name of the index document for the website detailed below.
      */
     indexDocument: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
-     * (Defaults to provider `projectId`) The ID of the project the bucket is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

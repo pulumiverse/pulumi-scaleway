@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -22,29 +22,19 @@ import * as utilities from "./utilities";
  * const mainMnqSqsCredentials = new scaleway.MnqSqsCredentials("mainMnqSqsCredentials", {
  *     projectId: mainMnqSqs.projectId,
  *     permissions: {
- *         canManage: false,
- *         canReceive: true,
+ *         canManage: true,
+ *         canReceive: false,
  *         canPublish: false,
  *     },
  * });
  * const mainMnqSqsQueue = new scaleway.MnqSqsQueue("mainMnqSqsQueue", {
  *     projectId: mainMnqSqs.projectId,
- *     endpoint: mainMnqSqs.endpoint,
+ *     sqsEndpoint: mainMnqSqs.endpoint,
  *     accessKey: mainMnqSqsCredentials.accessKey,
  *     secretKey: mainMnqSqsCredentials.secretKey,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g.
- *
- * bash
- *
- * ```sh
- * $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
- * ```
  */
 export class MnqSqsQueue extends pulumi.CustomResource {
     /**
@@ -83,10 +73,6 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      */
     public readonly contentBasedDeduplication!: pulumi.Output<boolean>;
     /**
-     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     */
-    public readonly endpoint!: pulumi.Output<string | undefined>;
-    /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
     public readonly fifoQueue!: pulumi.Output<boolean>;
@@ -123,6 +109,10 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      */
     public readonly secretKey!: pulumi.Output<string>;
     /**
+     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     */
+    public readonly sqsEndpoint!: pulumi.Output<string | undefined>;
+    /**
      * The URL of the queue.
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
@@ -146,7 +136,6 @@ export class MnqSqsQueue extends pulumi.CustomResource {
             const state = argsOrState as MnqSqsQueueState | undefined;
             resourceInputs["accessKey"] = state ? state.accessKey : undefined;
             resourceInputs["contentBasedDeduplication"] = state ? state.contentBasedDeduplication : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["fifoQueue"] = state ? state.fifoQueue : undefined;
             resourceInputs["messageMaxAge"] = state ? state.messageMaxAge : undefined;
             resourceInputs["messageMaxSize"] = state ? state.messageMaxSize : undefined;
@@ -156,6 +145,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
             resourceInputs["receiveWaitTimeSeconds"] = state ? state.receiveWaitTimeSeconds : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["sqsEndpoint"] = state ? state.sqsEndpoint : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
             resourceInputs["visibilityTimeoutSeconds"] = state ? state.visibilityTimeoutSeconds : undefined;
         } else {
@@ -168,7 +158,6 @@ export class MnqSqsQueue extends pulumi.CustomResource {
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
             resourceInputs["contentBasedDeduplication"] = args ? args.contentBasedDeduplication : undefined;
-            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
             resourceInputs["fifoQueue"] = args ? args.fifoQueue : undefined;
             resourceInputs["messageMaxAge"] = args ? args.messageMaxAge : undefined;
             resourceInputs["messageMaxSize"] = args ? args.messageMaxSize : undefined;
@@ -178,6 +167,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
             resourceInputs["receiveWaitTimeSeconds"] = args ? args.receiveWaitTimeSeconds : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
+            resourceInputs["sqsEndpoint"] = args ? args.sqsEndpoint : undefined;
             resourceInputs["visibilityTimeoutSeconds"] = args ? args.visibilityTimeoutSeconds : undefined;
             resourceInputs["url"] = undefined /*out*/;
         }
@@ -200,10 +190,6 @@ export interface MnqSqsQueueState {
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
     contentBasedDeduplication?: pulumi.Input<boolean>;
-    /**
-     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     */
-    endpoint?: pulumi.Input<string>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
@@ -241,6 +227,10 @@ export interface MnqSqsQueueState {
      */
     secretKey?: pulumi.Input<string>;
     /**
+     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     */
+    sqsEndpoint?: pulumi.Input<string>;
+    /**
      * The URL of the queue.
      */
     url?: pulumi.Input<string>;
@@ -262,10 +252,6 @@ export interface MnqSqsQueueArgs {
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
     contentBasedDeduplication?: pulumi.Input<boolean>;
-    /**
-     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-     */
-    endpoint?: pulumi.Input<string>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
@@ -302,6 +288,10 @@ export interface MnqSqsQueueArgs {
      * The secret key of the SQS queue.
      */
     secretKey: pulumi.Input<string>;
+    /**
+     * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+     */
+    sqsEndpoint?: pulumi.Input<string>;
     /**
      * The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
      */

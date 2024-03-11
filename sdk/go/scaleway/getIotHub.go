@@ -58,6 +58,8 @@ type LookupIotHubArgs struct {
 	// The name of the Hub.
 	// Only one of the `name` and `hubId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the hub is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the hub exists.
 	Region *string `pulumi:"region"`
 }
@@ -77,10 +79,12 @@ type LookupIotHubResult struct {
 	HubId                  *string `pulumi:"hubId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
+	MqttCa         string  `pulumi:"mqttCa"`
+	MqttCaUrl      string  `pulumi:"mqttCaUrl"`
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProductPlan    string  `pulumi:"productPlan"`
-	ProjectId      string  `pulumi:"projectId"`
+	ProjectId      *string `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
 	Status         string  `pulumi:"status"`
 	UpdatedAt      string  `pulumi:"updatedAt"`
@@ -107,6 +111,8 @@ type LookupIotHubOutputArgs struct {
 	// The name of the Hub.
 	// Only one of the `name` and `hubId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the hub is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the hub exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -179,6 +185,14 @@ func (o LookupIotHubResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotHubResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupIotHubResultOutput) MqttCa() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIotHubResult) string { return v.MqttCa }).(pulumi.StringOutput)
+}
+
+func (o LookupIotHubResultOutput) MqttCaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIotHubResult) string { return v.MqttCaUrl }).(pulumi.StringOutput)
+}
+
 func (o LookupIotHubResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIotHubResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -191,8 +205,8 @@ func (o LookupIotHubResultOutput) ProductPlan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotHubResult) string { return v.ProductPlan }).(pulumi.StringOutput)
 }
 
-func (o LookupIotHubResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIotHubResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupIotHubResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIotHubResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupIotHubResultOutput) Region() pulumi.StringPtrOutput {

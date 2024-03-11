@@ -113,8 +113,7 @@ class _AppleSliconValleyServerState:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
-        :param pulumi.Input[str] state: The state of the server. Check the possible values on
-               our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+        :param pulumi.Input[str] state: The state of the server.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
                resource.
@@ -223,8 +222,7 @@ class _AppleSliconValleyServerState:
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[str]]:
         """
-        The state of the server. Check the possible values on
-        our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+        The state of the server.
         """
         return pulumi.get(self, "state")
 
@@ -298,7 +296,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         Creates and manages Scaleway Apple silicon M1. For more information,
         see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -318,7 +316,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -342,7 +340,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         Creates and manages Scaleway Apple silicon M1. For more information,
         see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -362,7 +360,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -441,8 +439,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
-        :param pulumi.Input[str] state: The state of the server. Check the possible values on
-               our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+        :param pulumi.Input[str] state: The state of the server.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
                resource.
@@ -521,8 +518,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[str]:
         """
-        The state of the server. Check the possible values on
-        our [sdk](https://github.com/scaleway/scaleway-sdk-go/blob/master/api/applesilicon/v1alpha1/applesilicon_sdk.go#L103).
+        The state of the server.
         """
         return pulumi.get(self, "state")
 

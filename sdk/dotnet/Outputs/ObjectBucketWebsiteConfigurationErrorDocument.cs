@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketWebsiteConfigurationErrorDocument
     {
+        /// <summary>
+        /// The object key name to use when a 4XX class error occurs.
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

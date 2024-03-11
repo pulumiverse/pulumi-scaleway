@@ -84,6 +84,8 @@ type GetRegistryImageResult struct {
 	Size int `pulumi:"size"`
 	// The tags associated with the registry image
 	Tags []string `pulumi:"tags"`
+	// The date the image of the last update
+	UpdatedAt string `pulumi:"updatedAt"`
 	// The privacy policy of the registry image.
 	Visibility string `pulumi:"visibility"`
 }
@@ -176,6 +178,11 @@ func (o GetRegistryImageResultOutput) Size() pulumi.IntOutput {
 // The tags associated with the registry image
 func (o GetRegistryImageResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The date the image of the last update
+func (o GetRegistryImageResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // The privacy policy of the registry image.

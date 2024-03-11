@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Virtual Private Clouds.
     /// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp

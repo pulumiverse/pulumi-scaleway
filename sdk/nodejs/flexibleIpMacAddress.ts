@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Flexible IP Mac Addresses.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *

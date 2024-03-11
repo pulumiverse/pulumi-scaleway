@@ -104,7 +104,9 @@ type FunctionCron struct {
 	Args pulumi.StringOutput `pulumi:"args"`
 	// The function ID to link with your cron.
 	FunctionId pulumi.StringOutput `pulumi:"functionId"`
-	// (Defaults to provider `region`) The region
+	// The name of the cron. If not provided, the name is generated.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// `region`) The region
 	// in where the job was created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
@@ -158,7 +160,9 @@ type functionCronState struct {
 	Args *string `pulumi:"args"`
 	// The function ID to link with your cron.
 	FunctionId *string `pulumi:"functionId"`
-	// (Defaults to provider `region`) The region
+	// The name of the cron. If not provided, the name is generated.
+	Name *string `pulumi:"name"`
+	// `region`) The region
 	// in where the job was created.
 	Region *string `pulumi:"region"`
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
@@ -174,7 +178,9 @@ type FunctionCronState struct {
 	Args pulumi.StringPtrInput
 	// The function ID to link with your cron.
 	FunctionId pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region
+	// The name of the cron. If not provided, the name is generated.
+	Name pulumi.StringPtrInput
+	// `region`) The region
 	// in where the job was created.
 	Region pulumi.StringPtrInput
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
@@ -194,7 +200,9 @@ type functionCronArgs struct {
 	Args string `pulumi:"args"`
 	// The function ID to link with your cron.
 	FunctionId string `pulumi:"functionId"`
-	// (Defaults to provider `region`) The region
+	// The name of the cron. If not provided, the name is generated.
+	Name *string `pulumi:"name"`
+	// `region`) The region
 	// in where the job was created.
 	Region *string `pulumi:"region"`
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
@@ -209,7 +217,9 @@ type FunctionCronArgs struct {
 	Args pulumi.StringInput
 	// The function ID to link with your cron.
 	FunctionId pulumi.StringInput
-	// (Defaults to provider `region`) The region
+	// The name of the cron. If not provided, the name is generated.
+	Name pulumi.StringPtrInput
+	// `region`) The region
 	// in where the job was created.
 	Region pulumi.StringPtrInput
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
@@ -315,7 +325,12 @@ func (o FunctionCronOutput) FunctionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionCron) pulumi.StringOutput { return v.FunctionId }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region
+// The name of the cron. If not provided, the name is generated.
+func (o FunctionCronOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FunctionCron) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `region`) The region
 // in where the job was created.
 func (o FunctionCronOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionCron) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)

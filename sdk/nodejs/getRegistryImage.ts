@@ -93,6 +93,10 @@ export interface GetRegistryImageResult {
      */
     readonly tags: string[];
     /**
+     * The date the image of the last update
+     */
+    readonly updatedAt: string;
+    /**
      * The privacy policy of the registry image.
      */
     readonly visibility: string;

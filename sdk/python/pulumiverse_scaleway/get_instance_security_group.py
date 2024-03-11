@@ -139,10 +139,7 @@ class GetInstanceSecurityGroupResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of the project the security group is associated with.
-        """
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -190,6 +187,7 @@ class AwaitableGetInstanceSecurityGroupResult(GetInstanceSecurityGroupResult):
 
 
 def get_instance_security_group(name: Optional[str] = None,
+                                project_id: Optional[str] = None,
                                 security_group_id: Optional[str] = None,
                                 zone: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceSecurityGroupResult:
@@ -209,11 +207,13 @@ def get_instance_security_group(name: Optional[str] = None,
 
 
     :param str name: The security group name. Only one of `name` and `security_group_id` should be specified.
+    :param str project_id: The ID of the project the security group is associated with.
     :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
     :param str zone: `zone`) The zone in which the security group exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['securityGroupId'] = security_group_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -239,6 +239,7 @@ def get_instance_security_group(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_instance_security_group)
 def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        security_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        zone: Optional[pulumi.Input[Optional[str]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceSecurityGroupResult]:
@@ -258,6 +259,7 @@ def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]
 
 
     :param str name: The security group name. Only one of `name` and `security_group_id` should be specified.
+    :param str project_id: The ID of the project the security group is associated with.
     :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
     :param str zone: `zone`) The zone in which the security group exists.
     """

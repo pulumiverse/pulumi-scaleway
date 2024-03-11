@@ -235,7 +235,7 @@ class SecretVersion(pulumi.CustomResource):
         Creates and manages Scaleway Secret Versions.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -256,16 +256,6 @@ class SecretVersion(pulumi.CustomResource):
             data="my_new_secret")
         ```
         <!--End PulumiCodeChooser -->
-
-        ## Data
-
-        Note: The `data` should be a base64 encoded string when sent from the API. **It is already handled by the provider so you don't need to encode it yourself.**
-
-        Updating `data` will force creating a new the secret version.
-
-        Be aware that this is a sensitive attribute. For more information, see Sensitive Data in State.
-
-        > **Important:**  This property is sensitive and will not be displayed in the plan.
 
         ## Import
 
@@ -297,7 +287,7 @@ class SecretVersion(pulumi.CustomResource):
         Creates and manages Scaleway Secret Versions.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -318,16 +308,6 @@ class SecretVersion(pulumi.CustomResource):
             data="my_new_secret")
         ```
         <!--End PulumiCodeChooser -->
-
-        ## Data
-
-        Note: The `data` should be a base64 encoded string when sent from the API. **It is already handled by the provider so you don't need to encode it yourself.**
-
-        Updating `data` will force creating a new the secret version.
-
-        Be aware that this is a sensitive attribute. For more information, see Sensitive Data in State.
-
-        > **Important:**  This property is sensitive and will not be displayed in the plan.
 
         ## Import
 

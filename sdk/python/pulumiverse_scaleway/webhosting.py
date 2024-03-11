@@ -443,7 +443,7 @@ class Webhosting(pulumi.CustomResource):
         Creates and manages Scaleway Web Hostings.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 
-        ## Example
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -494,7 +494,7 @@ class Webhosting(pulumi.CustomResource):
         Creates and manages Scaleway Web Hostings.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 
-        ## Example
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python

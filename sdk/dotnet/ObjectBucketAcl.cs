@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var main = new Scaleway.ObjectBucketAcl("main", new()
     ///     {
-    ///         Bucket = scaleway_object_bucket.Main.Name,
+    ///         Bucket = scaleway_object_bucket.Main.Id,
     ///         Acl = "private",
     ///     });
     /// 
@@ -34,7 +34,7 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Example with Grants
+    /// ### With Grants
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var mainObjectBucketAcl = new Scaleway.ObjectBucketAcl("mainObjectBucketAcl", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         AccessControlPolicy = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyArgs
     ///         {
     ///             Grants = new[]
@@ -126,15 +126,23 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+    /// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
     /// 
     /// bash
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+    /// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
     /// ```
     /// 
-    /// /private
+    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+    /// 
+    /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+    /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketAcl:ObjectBucketAcl")]
     public partial class ObjectBucketAcl : global::Pulumi.CustomResource
@@ -152,7 +160,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Acl { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -164,7 +172,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> ExpectedBucketOwner { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -235,7 +243,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Acl { get; set; }
 
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -247,7 +255,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ExpectedBucketOwner { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -279,7 +287,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Acl { get; set; }
 
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
@@ -291,7 +299,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ExpectedBucketOwner { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

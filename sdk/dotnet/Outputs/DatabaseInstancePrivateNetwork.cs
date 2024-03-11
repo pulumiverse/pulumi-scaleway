@@ -15,6 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class DatabaseInstancePrivateNetwork
     {
         /// <summary>
+        /// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        /// 
+        /// &gt; **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
+        /// handle the host IP on the network.
+        /// 
+        /// &gt; **Important:** Updates to `private_network` will recreate the Instance's endpoint
+        /// </summary>
+        public readonly bool? EnableIpam;
+        /// <summary>
         /// The ID of the endpoint.
         /// </summary>
         public readonly string? EndpointId;
@@ -27,7 +36,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Ip;
         /// <summary>
-        /// The IP with the given mask within the private subnet
+        /// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         /// </summary>
         public readonly string? IpNet;
         /// <summary>
@@ -35,7 +44,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network.
         /// </summary>
         public readonly string PnId;
         /// <summary>
@@ -49,6 +58,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
         [OutputConstructor]
         private DatabaseInstancePrivateNetwork(
+            bool? enableIpam,
+
             string? endpointId,
 
             string? hostname,
@@ -65,6 +76,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string? zone)
         {
+            EnableIpam = enableIpam;
             EndpointId = endpointId;
             Hostname = hostname;
             Ip = ip;

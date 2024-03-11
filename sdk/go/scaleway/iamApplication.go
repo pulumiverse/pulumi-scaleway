@@ -59,10 +59,12 @@ type IamApplication struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Whether the application is editable.
 	Editable pulumi.BoolOutput `pulumi:"editable"`
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The tags associated with the application.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the application.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -103,10 +105,12 @@ type iamApplicationState struct {
 	Description *string `pulumi:"description"`
 	// Whether the application is editable.
 	Editable *bool `pulumi:"editable"`
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the application.
+	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the application.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -118,10 +122,12 @@ type IamApplicationState struct {
 	Description pulumi.StringPtrInput
 	// Whether the application is editable.
 	Editable pulumi.BoolPtrInput
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the application.
+	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the application.
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -133,20 +139,24 @@ func (IamApplicationState) ElementType() reflect.Type {
 type iamApplicationArgs struct {
 	// The description of the iam application.
 	Description *string `pulumi:"description"`
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the application.
+	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a IamApplication resource.
 type IamApplicationArgs struct {
 	// The description of the iam application.
 	Description pulumi.StringPtrInput
-	// .The name of the iam application.
+	// The name of the iam application.
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the application.
+	Tags pulumi.StringArrayInput
 }
 
 func (IamApplicationArgs) ElementType() reflect.Type {
@@ -251,7 +261,7 @@ func (o IamApplicationOutput) Editable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.BoolOutput { return v.Editable }).(pulumi.BoolOutput)
 }
 
-// .The name of the iam application.
+// The name of the iam application.
 func (o IamApplicationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -259,6 +269,11 @@ func (o IamApplicationOutput) Name() pulumi.StringOutput {
 // `organizationId`) The ID of the organization the application is associated with.
 func (o IamApplicationOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The tags associated with the application.
+func (o IamApplicationOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IamApplication) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The date and time of the last update of the application.

@@ -83,6 +83,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the hub is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the hub exists.
         /// </summary>
         [Input("region")]
@@ -109,6 +115,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the hub is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the hub exists.
@@ -141,10 +153,12 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string MqttCa;
+        public readonly string MqttCaUrl;
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string ProductPlan;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string Status;
         public readonly string UpdatedAt;
@@ -175,13 +189,17 @@ namespace Pulumiverse.Scaleway
 
             string id,
 
+            string mqttCa,
+
+            string mqttCaUrl,
+
             string? name,
 
             string organizationId,
 
             string productPlan,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 
@@ -201,6 +219,8 @@ namespace Pulumiverse.Scaleway
             HubCaChallenge = hubCaChallenge;
             HubId = hubId;
             Id = id;
+            MqttCa = mqttCa;
+            MqttCaUrl = mqttCaUrl;
             Name = name;
             OrganizationId = organizationId;
             ProductPlan = productPlan;

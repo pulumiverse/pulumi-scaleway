@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Database read replicas.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ### Private network
+    /// ### Private network with static endpoint
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -83,6 +83,43 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             PrivateNetworkId = pn.Id,
     ///             ServiceIp = "192.168.1.254/24",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Private network with IPAM
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new Scaleway.DatabaseInstance("instance", new()
+    ///     {
+    ///         NodeType = "db-dev-s",
+    ///         Engine = "PostgreSQL-14",
+    ///         IsHaCluster = false,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var replica = new Scaleway.DatabaseReadReplica("replica", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseReadReplicaPrivateNetworkArgs
+    ///         {
+    ///             PrivateNetworkId = pn.Id,
+    ///             EnableIpam = true,
     ///         },
     ///     });
     /// 

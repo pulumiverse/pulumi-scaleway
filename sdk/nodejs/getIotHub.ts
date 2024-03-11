@@ -27,6 +27,7 @@ export function getIotHub(args?: GetIotHubArgs, opts?: pulumi.InvokeOptions): Pr
     return pulumi.runtime.invoke("scaleway:index/getIotHub:getIotHub", {
         "hubId": args.hubId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -45,6 +46,10 @@ export interface GetIotHubArgs {
      * Only one of the `name` and `hubId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the hub is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the hub exists.
      */
@@ -70,10 +75,12 @@ export interface GetIotHubResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly mqttCa: string;
+    readonly mqttCaUrl: string;
     readonly name?: string;
     readonly organizationId: string;
     readonly productPlan: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly status: string;
     readonly updatedAt: string;
@@ -112,6 +119,10 @@ export interface GetIotHubOutputArgs {
      * Only one of the `name` and `hubId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the hub is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the hub exists.
      */

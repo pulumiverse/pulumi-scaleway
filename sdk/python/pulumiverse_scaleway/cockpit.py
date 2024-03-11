@@ -59,13 +59,15 @@ class _CockpitState:
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  plan_id: Optional[pulumi.Input[str]] = None,
-                 project_id: Optional[pulumi.Input[str]] = None):
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 push_urls: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]] = None):
         """
         Input properties used for looking up and filtering Cockpit resources.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan
+        :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]] push_urls: Push_url
         """
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
@@ -75,12 +77,14 @@ class _CockpitState:
             pulumi.set(__self__, "plan_id", plan_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if push_urls is not None:
+            pulumi.set(__self__, "push_urls", push_urls)
 
     @property
     @pulumi.getter
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
         """
-        Endpoints
+        Endpoints.
         """
         return pulumi.get(self, "endpoints")
 
@@ -104,7 +108,7 @@ class _CockpitState:
     @pulumi.getter(name="planId")
     def plan_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the current plan
+        The ID of the current plan.
         """
         return pulumi.get(self, "plan_id")
 
@@ -123,6 +127,18 @@ class _CockpitState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="pushUrls")
+    def push_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]:
+        """
+        Push_url
+        """
+        return pulumi.get(self, "push_urls")
+
+    @push_urls.setter
+    def push_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]):
+        pulumi.set(self, "push_urls", value)
 
 
 class Cockpit(pulumi.CustomResource):
@@ -196,6 +212,7 @@ class Cockpit(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["endpoints"] = None
             __props__.__dict__["plan_id"] = None
+            __props__.__dict__["push_urls"] = None
         super(Cockpit, __self__).__init__(
             'scaleway:index/cockpit:Cockpit',
             resource_name,
@@ -209,7 +226,8 @@ class Cockpit(pulumi.CustomResource):
             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             plan_id: Optional[pulumi.Input[str]] = None,
-            project_id: Optional[pulumi.Input[str]] = None) -> 'Cockpit':
+            project_id: Optional[pulumi.Input[str]] = None,
+            push_urls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitPushUrlArgs']]]]] = None) -> 'Cockpit':
         """
         Get an existing Cockpit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -217,10 +235,11 @@ class Cockpit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan
+        :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitPushUrlArgs']]]] push_urls: Push_url
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -230,13 +249,14 @@ class Cockpit(pulumi.CustomResource):
         __props__.__dict__["plan"] = plan
         __props__.__dict__["plan_id"] = plan_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["push_urls"] = push_urls
         return Cockpit(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def endpoints(self) -> pulumi.Output[Sequence['outputs.CockpitEndpoint']]:
         """
-        Endpoints
+        Endpoints.
         """
         return pulumi.get(self, "endpoints")
 
@@ -252,7 +272,7 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter(name="planId")
     def plan_id(self) -> pulumi.Output[str]:
         """
-        The ID of the current plan
+        The ID of the current plan.
         """
         return pulumi.get(self, "plan_id")
 
@@ -263,4 +283,12 @@ class Cockpit(pulumi.CustomResource):
         `project_id`) The ID of the project the cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="pushUrls")
+    def push_urls(self) -> pulumi.Output[Sequence['outputs.CockpitPushUrl']]:
+        """
+        Push_url
+        """
+        return pulumi.get(self, "push_urls")
 

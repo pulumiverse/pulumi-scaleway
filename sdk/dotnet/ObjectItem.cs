@@ -23,12 +23,22 @@ namespace Pulumiverse.Scaleway
     /// ```sh
     /// $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
     /// ```
+    /// 
+    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+    /// 
+    /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+    /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectItem:ObjectItem")]
     public partial class ObjectItem : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -70,7 +80,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -147,7 +157,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectItemArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -195,7 +205,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -239,7 +249,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectItemState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
@@ -287,7 +297,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

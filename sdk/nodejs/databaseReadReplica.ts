@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Database read replicas.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ### Private network
+ * ### Private network with static endpoint
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
@@ -60,6 +60,32 @@ import * as utilities from "./utilities";
  *     privateNetwork: {
  *         privateNetworkId: pn.id,
  *         serviceIp: "192.168.1.254/24",
+ *     },
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Private network with IPAM
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const instance = new scaleway.DatabaseInstance("instance", {
+ *     nodeType: "db-dev-s",
+ *     engine: "PostgreSQL-14",
+ *     isHaCluster: false,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const replica = new scaleway.DatabaseReadReplica("replica", {
+ *     instanceId: instance.id,
+ *     privateNetwork: {
+ *         privateNetworkId: pn.id,
+ *         enableIpam: true,
  *     },
  * });
  * ```

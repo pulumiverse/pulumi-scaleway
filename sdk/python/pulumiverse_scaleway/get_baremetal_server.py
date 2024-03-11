@@ -200,7 +200,7 @@ class GetBaremetalServerResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -280,6 +280,7 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
 
 
 def get_baremetal_server(name: Optional[str] = None,
+                         project_id: Optional[str] = None,
                          server_id: Optional[str] = None,
                          zone: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalServerResult:
@@ -302,10 +303,12 @@ def get_baremetal_server(name: Optional[str] = None,
 
 
     :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str project_id: The ID of the project the baremetal server is associated with.
     :param str zone: `zone`) The zone in which the server exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['serverId'] = server_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -343,6 +346,7 @@ def get_baremetal_server(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_baremetal_server)
 def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 server_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 zone: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalServerResult]:
@@ -365,6 +369,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
 
 
     :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str project_id: The ID of the project the baremetal server is associated with.
     :param str zone: `zone`) The zone in which the server exists.
     """
     ...

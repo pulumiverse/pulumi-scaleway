@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Secrets.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -71,6 +71,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Path of the secret, defaults to `/`.
+        /// </summary>
+        [Output("path")]
+        public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
         /// The project ID containing is the secret.
@@ -169,6 +175,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Path of the secret, defaults to `/`.
+        /// </summary>
+        [Input("path")]
+        public Input<string>? Path { get; set; }
+
+        /// <summary>
         /// The project ID containing is the secret.
         /// </summary>
         [Input("projectId")]
@@ -218,6 +230,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Path of the secret, defaults to `/`.
+        /// </summary>
+        [Input("path")]
+        public Input<string>? Path { get; set; }
 
         /// <summary>
         /// The project ID containing is the secret.

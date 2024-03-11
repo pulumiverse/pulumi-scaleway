@@ -5,19 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages organization's projects on Scaleway.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const project = new scaleway.AccountProject("project", {});
- * ```
- * <!--End PulumiCodeChooser -->
- *
  * ## Import
  *
  * Projects can be imported using the `id`, e.g.

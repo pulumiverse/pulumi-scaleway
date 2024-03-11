@@ -36,7 +36,7 @@ class KubernetesClusterArgs:
         The set of arguments for constructing a KubernetesCluster resource.
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
@@ -50,10 +50,10 @@ class KubernetesClusterArgs:
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -112,7 +112,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> pulumi.Input[bool]:
         """
-        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         If you prefer keeping it, you should instead set it as `false`.
         """
@@ -236,10 +236,10 @@ class KubernetesClusterArgs:
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        Any subsequent change after this field got set will prompt for cluster recreation.
+        > **Important:** Changes to this field will recreate a new resource.
 
-        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -339,7 +339,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
@@ -350,10 +350,10 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -508,7 +508,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         If you prefer keeping it, you should instead set it as `false`.
         """
@@ -596,10 +596,10 @@ class _KubernetesClusterState:
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        Any subsequent change after this field got set will prompt for cluster recreation.
+        > **Important:** Changes to this field will recreate a new resource.
 
-        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -747,7 +747,7 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -756,9 +756,11 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         jack = scaleway.KubernetesCluster("jack",
             version="1.24.3",
             cni="cilium",
+            private_network_id=hedy.id,
             delete_additional_resources=False)
         john = scaleway.KubernetesNodePool("john",
             cluster_id=jack.id,
@@ -796,6 +798,7 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
             description="my awesome cluster",
             version="1.24.3",
@@ -804,6 +807,7 @@ class KubernetesCluster(pulumi.CustomResource):
                 "i'm an awesome tag",
                 "yay",
             ],
+            private_network_id=hedy.id,
             delete_additional_resources=False,
             autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
                 disable_scale_down=False,
@@ -843,7 +847,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
@@ -852,10 +856,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -877,7 +881,7 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -886,9 +890,11 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         jack = scaleway.KubernetesCluster("jack",
             version="1.24.3",
             cni="cilium",
+            private_network_id=hedy.id,
             delete_additional_resources=False)
         john = scaleway.KubernetesNodePool("john",
             cluster_id=jack.id,
@@ -926,6 +932,7 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        hedy = scaleway.VpcPrivateNetwork("hedy")
         john_kubernetes_cluster = scaleway.KubernetesCluster("johnKubernetesCluster",
             description="my awesome cluster",
             version="1.24.3",
@@ -934,6 +941,7 @@ class KubernetesCluster(pulumi.CustomResource):
                 "i'm an awesome tag",
                 "yay",
             ],
+            private_network_id=hedy.id,
             delete_additional_resources=False,
             autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
                 disable_scale_down=False,
@@ -1086,7 +1094,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
@@ -1097,10 +1105,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
-               > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-               Any subsequent change after this field got set will prompt for cluster recreation.
+               > **Important:** Changes to this field will recreate a new resource.
                
-               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+               > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+               you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -1208,7 +1216,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> pulumi.Output[bool]:
         """
-        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         If you prefer keeping it, you should instead set it as `false`.
         """
@@ -1268,10 +1276,10 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         The ID of the private network of the cluster.
 
-        > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        Any subsequent change after this field got set will prompt for cluster recreation.
+        > **Important:** Changes to this field will recreate a new resource.
 
-        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 

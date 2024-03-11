@@ -50,16 +50,9 @@ namespace Pulumiverse.Scaleway
     ///     var mainDatabasePrivilege = new Scaleway.DatabasePrivilege("mainDatabasePrivilege", new()
     ///     {
     ///         InstanceId = mainDatabaseInstance.Id,
-    ///         UserName = "my-db-user",
-    ///         DatabaseName = "my-db-name",
+    ///         UserName = mainDatabaseUser.Name,
+    ///         DatabaseName = mainDatabase.Name,
     ///         Permission = "all",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             mainDatabaseUser,
-    ///             mainDatabase,
-    ///         },
     ///     });
     /// 
     /// });

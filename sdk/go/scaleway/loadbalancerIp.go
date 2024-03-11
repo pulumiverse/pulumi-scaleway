@@ -14,7 +14,7 @@ import (
 // Creates and manages Scaleway Load-Balancers IPs.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //

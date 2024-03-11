@@ -230,7 +230,7 @@ class DomainZone(pulumi.CustomResource):
         Creates and manages Scaleway Domain zone.\\
         For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 
-        ## Examples
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -269,7 +269,7 @@ class DomainZone(pulumi.CustomResource):
         Creates and manages Scaleway Domain zone.\\
         For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 
-        ## Examples
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python

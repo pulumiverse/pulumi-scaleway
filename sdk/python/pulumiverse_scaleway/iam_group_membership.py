@@ -143,7 +143,7 @@ class IamGroupMembership(pulumi.CustomResource):
         Add members to an IAM group.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
 
-        ## Examples
+        ## Example Usage
 
         ### Application Membership
 
@@ -192,7 +192,7 @@ class IamGroupMembership(pulumi.CustomResource):
         Add members to an IAM group.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
 
-        ## Examples
+        ## Example Usage
 
         ### Application Membership
 

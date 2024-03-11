@@ -22,7 +22,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The UUID of the private network resource.
+        /// The UUID of the Private Network resource.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

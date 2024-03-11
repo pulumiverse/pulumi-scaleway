@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.IotHub("main", {productPlan: "plan_shared"});
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * IoT Hubs can be imported using the `{region}/{id}`, e.g.
@@ -86,6 +99,14 @@ export class IotHub extends pulumi.CustomResource {
      */
     public readonly hubCaChallenge!: pulumi.Output<string | undefined>;
     /**
+     * The MQTT certificat content
+     */
+    public /*out*/ readonly mqttCa!: pulumi.Output<string>;
+    /**
+     * The MQTT ca url
+     */
+    public /*out*/ readonly mqttCaUrl!: pulumi.Output<string>;
+    /**
      * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
      */
     public readonly name!: pulumi.Output<string>;
@@ -139,6 +160,8 @@ export class IotHub extends pulumi.CustomResource {
             resourceInputs["eventsTopicPrefix"] = state ? state.eventsTopicPrefix : undefined;
             resourceInputs["hubCa"] = state ? state.hubCa : undefined;
             resourceInputs["hubCaChallenge"] = state ? state.hubCaChallenge : undefined;
+            resourceInputs["mqttCa"] = state ? state.mqttCa : undefined;
+            resourceInputs["mqttCaUrl"] = state ? state.mqttCaUrl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["productPlan"] = state ? state.productPlan : undefined;
@@ -165,6 +188,8 @@ export class IotHub extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deviceCount"] = undefined /*out*/;
             resourceInputs["endpoint"] = undefined /*out*/;
+            resourceInputs["mqttCa"] = undefined /*out*/;
+            resourceInputs["mqttCaUrl"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -220,6 +245,14 @@ export interface IotHubState {
      * Challenge certificate for the user provided hub CA
      */
     hubCaChallenge?: pulumi.Input<string>;
+    /**
+     * The MQTT certificat content
+     */
+    mqttCa?: pulumi.Input<string>;
+    /**
+     * The MQTT ca url
+     */
+    mqttCaUrl?: pulumi.Input<string>;
     /**
      * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
      */

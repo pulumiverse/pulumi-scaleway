@@ -92,6 +92,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> ContainerId { get; private set; } = null!;
 
         /// <summary>
+        /// The name of the container cron. If not provided, the name is generated.
+        /// during
+        /// </summary>
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
         /// (Defaults to provider `region`) The region
         /// in where the job was created.
         /// </summary>
@@ -172,6 +179,13 @@ namespace Pulumiverse.Scaleway
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
+        /// The name of the container cron. If not provided, the name is generated.
+        /// during
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
         /// (Defaults to provider `region`) The region
         /// in where the job was created.
         /// </summary>
@@ -205,6 +219,13 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
+
+        /// <summary>
+        /// The name of the container cron. If not provided, the name is generated.
+        /// during
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// (Defaults to provider `region`) The region

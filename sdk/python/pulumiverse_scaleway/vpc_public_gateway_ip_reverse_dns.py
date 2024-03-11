@@ -134,7 +134,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         Manages Scaleway VPC Public Gateways IPs reverse DNS.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
 
-        ## Example
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -161,7 +161,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -180,7 +180,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         Manages Scaleway VPC Public Gateways IPs reverse DNS.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
 
-        ## Example
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -207,7 +207,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

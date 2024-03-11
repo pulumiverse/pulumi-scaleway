@@ -143,6 +143,12 @@ namespace Pulumiverse.Scaleway
     public sealed class GetSecretVersionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The ID of the project the Secret version is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region
         /// in which the resource exists.
         /// </summary>
@@ -177,6 +183,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetSecretVersionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the project the Secret version is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
         /// <summary>
         /// `region`) The region
         /// in which the resource exists.
@@ -230,6 +242,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string? Revision;
         public readonly string? SecretId;
@@ -253,6 +266,8 @@ namespace Pulumiverse.Scaleway
 
             string id,
 
+            string? projectId,
+
             string? region,
 
             string? revision,
@@ -269,6 +284,7 @@ namespace Pulumiverse.Scaleway
             Data = data;
             Description = description;
             Id = id;
+            ProjectId = projectId;
             Region = region;
             Revision = revision;
             SecretId = secretId;

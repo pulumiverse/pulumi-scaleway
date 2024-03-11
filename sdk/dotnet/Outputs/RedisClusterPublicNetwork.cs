@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class RedisClusterPublicNetwork
     {
         /// <summary>
-        /// The UUID of the private network resource.
+        /// The UUID of the Private Network resource.
         /// </summary>
         public readonly string? Id;
         /// <summary>

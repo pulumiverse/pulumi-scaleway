@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Database read replicas.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -62,7 +62,7 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
-// ### Private network
+// ### Private network with static endpoint
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -97,6 +97,53 @@ import (
 //				PrivateNetwork: &scaleway.DatabaseReadReplicaPrivateNetworkArgs{
 //					PrivateNetworkId: pn.ID(),
 //					ServiceIp:        pulumi.String("192.168.1.254/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Private network with IPAM
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//				NodeType:      pulumi.String("db-dev-s"),
+//				Engine:        pulumi.String("PostgreSQL-14"),
+//				IsHaCluster:   pulumi.Bool(false),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDatabaseReadReplica(ctx, "replica", &scaleway.DatabaseReadReplicaArgs{
+//				InstanceId: instance.ID(),
+//				PrivateNetwork: &scaleway.DatabaseReadReplicaPrivateNetworkArgs{
+//					PrivateNetworkId: pn.ID(),
+//					EnableIpam:       pulumi.Bool(true),
 //				},
 //			})
 //			if err != nil {

@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Compute Instance Volumes.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -49,16 +49,10 @@ namespace Pulumiverse.Scaleway
     public partial class InstanceVolume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         /// </summary>
         [Output("fromSnapshotId")]
         public Output<string?> FromSnapshotId { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-        /// </summary>
-        [Output("fromVolumeId")]
-        public Output<string?> FromVolumeId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the volume. If not provided it will be randomly generated.
@@ -85,7 +79,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+        /// The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int?> SizeInGb { get; private set; } = null!;
@@ -156,16 +150,10 @@ namespace Pulumiverse.Scaleway
     public sealed class InstanceVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
-
-        /// <summary>
-        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-        /// </summary>
-        [Input("fromVolumeId")]
-        public Input<string>? FromVolumeId { get; set; }
 
         /// <summary>
         /// The name of the volume. If not provided it will be randomly generated.
@@ -180,7 +168,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+        /// The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -218,16 +206,10 @@ namespace Pulumiverse.Scaleway
     public sealed class InstanceVolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
-
-        /// <summary>
-        /// If set, the new volume will be copied from this volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
-        /// </summary>
-        [Input("fromVolumeId")]
-        public Input<string>? FromVolumeId { get; set; }
 
         /// <summary>
         /// The name of the volume. If not provided it will be randomly generated.
@@ -254,7 +236,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, `from_volume_id` and `from_snapshot_id` should be specified.
+        /// The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }

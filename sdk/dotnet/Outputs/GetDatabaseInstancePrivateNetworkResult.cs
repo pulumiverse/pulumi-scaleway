@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetDatabaseInstancePrivateNetworkResult
     {
         /// <summary>
+        /// Whether or not the private network endpoint should be configured with IPAM
+        /// </summary>
+        public readonly bool EnableIpam;
+        /// <summary>
         /// The endpoint ID
         /// </summary>
         public readonly string EndpointId;
@@ -50,6 +54,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
         [OutputConstructor]
         private GetDatabaseInstancePrivateNetworkResult(
+            bool enableIpam,
+
             string endpointId,
 
             string hostname,
@@ -66,6 +72,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string zone)
         {
+            EnableIpam = enableIpam;
             EndpointId = endpointId;
             Hostname = hostname;
             Ip = ip;

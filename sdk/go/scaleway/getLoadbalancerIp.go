@@ -58,6 +58,8 @@ type LookupLoadbalancerIpArgs struct {
 	// The IP ID.
 	// Only one of `ipAddress` and `ipId` should be specified.
 	IpId *string `pulumi:"ipId"`
+	// The ID of the project the LB IP associated with.
+	ProjectId *string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getLoadbalancerIp.
@@ -98,6 +100,8 @@ type LookupLoadbalancerIpOutputArgs struct {
 	// The IP ID.
 	// Only one of `ipAddress` and `ipId` should be specified.
 	IpId pulumi.StringPtrInput `pulumi:"ipId"`
+	// The ID of the project the LB IP associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }
 
 func (LookupLoadbalancerIpOutputArgs) ElementType() reflect.Type {

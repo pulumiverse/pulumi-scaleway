@@ -82,6 +82,12 @@ namespace Pulumiverse.Scaleway
         [Input("ipId")]
         public string? IpId { get; set; }
 
+        /// <summary>
+        /// The ID of the project the LB IP associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         public GetLoadbalancerIpArgs()
         {
         }
@@ -103,6 +109,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB IP associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         public GetLoadbalancerIpInvokeArgs()
         {

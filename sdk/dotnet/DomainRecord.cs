@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Domain record.\
     /// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -273,6 +273,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> DnsZone { get; private set; } = null!;
 
         /// <summary>
+        /// The FQDN of the record.
+        /// </summary>
+        [Output("fqdn")]
+        public Output<string> Fqdn { get; private set; } = null!;
+
+        /// <summary>
         /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
         /// </summary>
         [Output("geoIp")]
@@ -488,6 +494,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("dnsZone")]
         public Input<string>? DnsZone { get; set; }
+
+        /// <summary>
+        /// The FQDN of the record.
+        /// </summary>
+        [Input("fqdn")]
+        public Input<string>? Fqdn { get; set; }
 
         /// <summary>
         /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)

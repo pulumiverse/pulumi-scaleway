@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketLockConfigurationRule
     {
+        /// <summary>
+        /// The default retention for the lock.
+        /// </summary>
         public readonly Outputs.ObjectBucketLockConfigurationRuleDefaultRetention DefaultRetention;
 
         [OutputConstructor]

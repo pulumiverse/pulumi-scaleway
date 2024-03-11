@@ -19,17 +19,24 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        /// The name of the resource to get the IP from.
         /// </summary>
-        public readonly string? Type;
+        public readonly string? Name;
+        /// <summary>
+        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        /// </summary>
+        public readonly string Type;
 
         [OutputConstructor]
         private GetIpamIpResourceResult(
             string? id,
 
-            string? type)
+            string? name,
+
+            string type)
         {
             Id = id;
+            Name = name;
             Type = type;
         }
     }

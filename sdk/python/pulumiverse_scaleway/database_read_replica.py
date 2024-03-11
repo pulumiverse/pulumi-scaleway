@@ -215,7 +215,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         Creates and manages Scaleway Database read replicas.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -242,7 +242,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ### Private network
+        ### Private network with static endpoint
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -262,6 +262,30 @@ class DatabaseReadReplica(pulumi.CustomResource):
             private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
                 private_network_id=pn.id,
                 service_ip="192.168.1.254/24",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Private network with IPAM
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        instance = scaleway.DatabaseInstance("instance",
+            node_type="db-dev-s",
+            engine="PostgreSQL-14",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        pn = scaleway.VpcPrivateNetwork("pn")
+        replica = scaleway.DatabaseReadReplica("replica",
+            instance_id=instance.id,
+            private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
+                private_network_id=pn.id,
+                enable_ipam=True,
             ))
         ```
         <!--End PulumiCodeChooser -->
@@ -297,7 +321,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         Creates and manages Scaleway Database read replicas.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -324,7 +348,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ### Private network
+        ### Private network with static endpoint
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -344,6 +368,30 @@ class DatabaseReadReplica(pulumi.CustomResource):
             private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
                 private_network_id=pn.id,
                 service_ip="192.168.1.254/24",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Private network with IPAM
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        instance = scaleway.DatabaseInstance("instance",
+            node_type="db-dev-s",
+            engine="PostgreSQL-14",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        pn = scaleway.VpcPrivateNetwork("pn")
+        replica = scaleway.DatabaseReadReplica("replica",
+            instance_id=instance.id,
+            private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
+                private_network_id=pn.id,
+                enable_ipam=True,
             ))
         ```
         <!--End PulumiCodeChooser -->

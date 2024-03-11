@@ -54,6 +54,8 @@ func LookupAccountSshKey(ctx *pulumi.Context, args *LookupAccountSshKeyArgs, opt
 type LookupAccountSshKeyArgs struct {
 	// The SSH key name. Only one of `name` and `sshKeyId` should be specified.
 	Name *string `pulumi:"name"`
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The SSH key id. Only one of `name` and `sshKeyId` should be specified.
 	SshKeyId *string `pulumi:"sshKeyId"`
 }
@@ -67,8 +69,8 @@ type LookupAccountSshKeyResult struct {
 	Id   string  `pulumi:"id"`
 	Name *string `pulumi:"name"`
 	// The ID of the organization the SSH key is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      *string `pulumi:"projectId"`
 	// The SSH public key string
 	PublicKey string  `pulumi:"publicKey"`
 	SshKeyId  *string `pulumi:"sshKeyId"`
@@ -92,6 +94,8 @@ func LookupAccountSshKeyOutput(ctx *pulumi.Context, args LookupAccountSshKeyOutp
 type LookupAccountSshKeyOutputArgs struct {
 	// The SSH key name. Only one of `name` and `sshKeyId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `projectId`) The ID of the project the SSH key is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The SSH key id. Only one of `name` and `sshKeyId` should be specified.
 	SshKeyId pulumi.StringPtrInput `pulumi:"sshKeyId"`
 }
@@ -141,8 +145,8 @@ func (o LookupAccountSshKeyResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupAccountSshKeyResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAccountSshKeyResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupAccountSshKeyResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAccountSshKeyResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The SSH public key string

@@ -70,6 +70,8 @@ type LookupDomainRecordArgs struct {
 	// The name of the record (can be an empty string for a root record).
 	// Cannot be used with `recordId`.
 	Name *string `pulumi:"name"`
+	// `projectId`) The ID of the project the domain is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The record ID.
 	// Cannot be used with `name`, `type` and `data`.
 	RecordId *string `pulumi:"recordId"`
@@ -82,6 +84,7 @@ type LookupDomainRecordArgs struct {
 type LookupDomainRecordResult struct {
 	Data    *string `pulumi:"data"`
 	DnsZone *string `pulumi:"dnsZone"`
+	Fqdn    string  `pulumi:"fqdn"`
 	// Dynamic record base on user geolocalisation (More information about dynamic records)
 	GeoIps []GetDomainRecordGeoIp `pulumi:"geoIps"`
 	// Dynamic record base on URL resolve (More information about dynamic records)
@@ -92,7 +95,7 @@ type LookupDomainRecordResult struct {
 	Name          *string `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record)
 	Priority  int     `pulumi:"priority"`
-	ProjectId string  `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	RecordId  *string `pulumi:"recordId"`
 	RootZone  bool    `pulumi:"rootZone"`
 	// Time To Live of the record in seconds.
@@ -127,6 +130,8 @@ type LookupDomainRecordOutputArgs struct {
 	// The name of the record (can be an empty string for a root record).
 	// Cannot be used with `recordId`.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `projectId`) The ID of the project the domain is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The record ID.
 	// Cannot be used with `name`, `type` and `data`.
 	RecordId pulumi.StringPtrInput `pulumi:"recordId"`
@@ -162,6 +167,10 @@ func (o LookupDomainRecordResultOutput) DnsZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) *string { return v.DnsZone }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupDomainRecordResultOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDomainRecordResult) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
 // Dynamic record base on user geolocalisation (More information about dynamic records)
 func (o LookupDomainRecordResultOutput) GeoIps() GetDomainRecordGeoIpArrayOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) []GetDomainRecordGeoIp { return v.GeoIps }).(GetDomainRecordGeoIpArrayOutput)
@@ -190,8 +199,8 @@ func (o LookupDomainRecordResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) int { return v.Priority }).(pulumi.IntOutput)
 }
 
-func (o LookupDomainRecordResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDomainRecordResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupDomainRecordResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDomainRecordResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupDomainRecordResultOutput) RecordId() pulumi.StringPtrOutput {

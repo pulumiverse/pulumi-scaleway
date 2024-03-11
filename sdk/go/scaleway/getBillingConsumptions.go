@@ -11,14 +11,19 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-func GetBillingConsumptions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetBillingConsumptionsResult, error) {
+func GetBillingConsumptions(ctx *pulumi.Context, args *GetBillingConsumptionsArgs, opts ...pulumi.InvokeOption) (*GetBillingConsumptionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBillingConsumptionsResult
-	err := ctx.Invoke("scaleway:index/getBillingConsumptions:getBillingConsumptions", nil, &rv, opts...)
+	err := ctx.Invoke("scaleway:index/getBillingConsumptions:getBillingConsumptions", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
+}
+
+// A collection of arguments for invoking getBillingConsumptions.
+type GetBillingConsumptionsArgs struct {
+	ProjectId *string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getBillingConsumptions.
@@ -27,18 +32,30 @@ type GetBillingConsumptionsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id             string `pulumi:"id"`
 	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
 	UpdatedAt      string `pulumi:"updatedAt"`
 }
 
-func GetBillingConsumptionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetBillingConsumptionsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetBillingConsumptionsResult, error) {
-		r, err := GetBillingConsumptions(ctx, opts...)
-		var s GetBillingConsumptionsResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetBillingConsumptionsResultOutput)
+func GetBillingConsumptionsOutput(ctx *pulumi.Context, args GetBillingConsumptionsOutputArgs, opts ...pulumi.InvokeOption) GetBillingConsumptionsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetBillingConsumptionsResult, error) {
+			args := v.(GetBillingConsumptionsArgs)
+			r, err := GetBillingConsumptions(ctx, &args, opts...)
+			var s GetBillingConsumptionsResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetBillingConsumptionsResultOutput)
+}
+
+// A collection of arguments for invoking getBillingConsumptions.
+type GetBillingConsumptionsOutputArgs struct {
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+}
+
+func (GetBillingConsumptionsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingConsumptionsArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getBillingConsumptions.
@@ -67,6 +84,10 @@ func (o GetBillingConsumptionsResultOutput) Id() pulumi.StringOutput {
 
 func (o GetBillingConsumptionsResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingConsumptionsResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+func (o GetBillingConsumptionsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o GetBillingConsumptionsResultOutput) UpdatedAt() pulumi.StringOutput {

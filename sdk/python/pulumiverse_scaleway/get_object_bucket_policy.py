@@ -104,7 +104,6 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
 
 
     :param str bucket: The bucket name.
-    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     __args__ = dict()
@@ -144,7 +143,6 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
 
 
     :param str bucket: The bucket name.
-    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     ...

@@ -25,13 +25,13 @@ class IotRouteArgs:
                  s3: Optional[pulumi.Input['IotRouteS3Args']] = None):
         """
         The set of arguments for constructing a IotRoute resource.
-        :param pulumi.Input[str] hub_id: The ID of the route's hub
-        :param pulumi.Input[str] topic: The Topic the route subscribes to (wildcards allowed)
-        :param pulumi.Input['IotRouteDatabaseArgs'] database: Database Route parameters
-        :param pulumi.Input[str] name: The name of the route
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input['IotRouteRestArgs'] rest: Rest Route parameters
-        :param pulumi.Input['IotRouteS3Args'] s3: S3 Route parameters
+        :param pulumi.Input[str] hub_id: The hub ID to which the Route will be attached to.
+        :param pulumi.Input[str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
+        :param pulumi.Input['IotRouteDatabaseArgs'] database: Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] name: The name of the IoT Route you want to create (e.g. `my-route`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input['IotRouteRestArgs'] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        :param pulumi.Input['IotRouteS3Args'] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         """
         pulumi.set(__self__, "hub_id", hub_id)
         pulumi.set(__self__, "topic", topic)
@@ -50,7 +50,7 @@ class IotRouteArgs:
     @pulumi.getter(name="hubId")
     def hub_id(self) -> pulumi.Input[str]:
         """
-        The ID of the route's hub
+        The hub ID to which the Route will be attached to.
         """
         return pulumi.get(self, "hub_id")
 
@@ -62,7 +62,7 @@ class IotRouteArgs:
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
         """
-        The Topic the route subscribes to (wildcards allowed)
+        The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         return pulumi.get(self, "topic")
 
@@ -74,7 +74,7 @@ class IotRouteArgs:
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input['IotRouteDatabaseArgs']]:
         """
-        Database Route parameters
+        Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "database")
 
@@ -86,7 +86,7 @@ class IotRouteArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the route
+        The name of the IoT Route you want to create (e.g. `my-route`).
         """
         return pulumi.get(self, "name")
 
@@ -98,7 +98,7 @@ class IotRouteArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        (Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -110,7 +110,7 @@ class IotRouteArgs:
     @pulumi.getter
     def rest(self) -> Optional[pulumi.Input['IotRouteRestArgs']]:
         """
-        Rest Route parameters
+        Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "rest")
 
@@ -122,7 +122,7 @@ class IotRouteArgs:
     @pulumi.getter
     def s3(self) -> Optional[pulumi.Input['IotRouteS3Args']]:
         """
-        S3 Route parameters
+        Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "s3")
 
@@ -144,14 +144,14 @@ class _IotRouteState:
                  topic: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IotRoute resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the IoT Route
-        :param pulumi.Input['IotRouteDatabaseArgs'] database: Database Route parameters
-        :param pulumi.Input[str] hub_id: The ID of the route's hub
-        :param pulumi.Input[str] name: The name of the route
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input['IotRouteRestArgs'] rest: Rest Route parameters
-        :param pulumi.Input['IotRouteS3Args'] s3: S3 Route parameters
-        :param pulumi.Input[str] topic: The Topic the route subscribes to (wildcards allowed)
+        :param pulumi.Input[str] created_at: The date and time the Route was created.
+        :param pulumi.Input['IotRouteDatabaseArgs'] database: Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] hub_id: The hub ID to which the Route will be attached to.
+        :param pulumi.Input[str] name: The name of the IoT Route you want to create (e.g. `my-route`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input['IotRouteRestArgs'] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        :param pulumi.Input['IotRouteS3Args'] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -174,7 +174,7 @@ class _IotRouteState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the IoT Route
+        The date and time the Route was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -186,7 +186,7 @@ class _IotRouteState:
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input['IotRouteDatabaseArgs']]:
         """
-        Database Route parameters
+        Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "database")
 
@@ -198,7 +198,7 @@ class _IotRouteState:
     @pulumi.getter(name="hubId")
     def hub_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the route's hub
+        The hub ID to which the Route will be attached to.
         """
         return pulumi.get(self, "hub_id")
 
@@ -210,7 +210,7 @@ class _IotRouteState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the route
+        The name of the IoT Route you want to create (e.g. `my-route`).
         """
         return pulumi.get(self, "name")
 
@@ -222,7 +222,7 @@ class _IotRouteState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        (Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -234,7 +234,7 @@ class _IotRouteState:
     @pulumi.getter
     def rest(self) -> Optional[pulumi.Input['IotRouteRestArgs']]:
         """
-        Rest Route parameters
+        Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "rest")
 
@@ -246,7 +246,7 @@ class _IotRouteState:
     @pulumi.getter
     def s3(self) -> Optional[pulumi.Input['IotRouteS3Args']]:
         """
-        S3 Route parameters
+        Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "s3")
 
@@ -258,7 +258,7 @@ class _IotRouteState:
     @pulumi.getter
     def topic(self) -> Optional[pulumi.Input[str]]:
         """
-        The Topic the route subscribes to (wildcards allowed)
+        The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         return pulumi.get(self, "topic")
 
@@ -281,16 +281,69 @@ class IotRoute(pulumi.CustomResource):
                  topic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IotRoute resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ### S3 Route
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", region="fr-par")
+        main_iot_route = scaleway.IotRoute("mainIotRoute",
+            hub_id=main_iot_hub.id,
+            topic="#",
+            s3=scaleway.IotRouteS3Args(
+                bucket_region=main_object_bucket.region,
+                bucket_name=main_object_bucket.name,
+                object_prefix="foo",
+                strategy="per_topic",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Rest Route
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_route = scaleway.IotRoute("mainIotRoute",
+            hub_id=main_iot_hub.id,
+            topic="#",
+            rest=scaleway.IotRouteRestArgs(
+                verb="get",
+                uri="http://scaleway.com",
+                headers={
+                    "X-awesome-header": "my-awesome-value",
+                },
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        IoT Routes can be imported using the `{region}/{id}`, e.g.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/iotRoute:IotRoute route01 fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['IotRouteDatabaseArgs']] database: Database Route parameters
-        :param pulumi.Input[str] hub_id: The ID of the route's hub
-        :param pulumi.Input[str] name: The name of the route
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['IotRouteRestArgs']] rest: Rest Route parameters
-        :param pulumi.Input[pulumi.InputType['IotRouteS3Args']] s3: S3 Route parameters
-        :param pulumi.Input[str] topic: The Topic the route subscribes to (wildcards allowed)
+        :param pulumi.Input[pulumi.InputType['IotRouteDatabaseArgs']] database: Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] hub_id: The hub ID to which the Route will be attached to.
+        :param pulumi.Input[str] name: The name of the IoT Route you want to create (e.g. `my-route`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input[pulumi.InputType['IotRouteRestArgs']] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        :param pulumi.Input[pulumi.InputType['IotRouteS3Args']] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         ...
     @overload
@@ -299,7 +352,60 @@ class IotRoute(pulumi.CustomResource):
                  args: IotRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IotRoute resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ### S3 Route
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", region="fr-par")
+        main_iot_route = scaleway.IotRoute("mainIotRoute",
+            hub_id=main_iot_hub.id,
+            topic="#",
+            s3=scaleway.IotRouteS3Args(
+                bucket_region=main_object_bucket.region,
+                bucket_name=main_object_bucket.name,
+                object_prefix="foo",
+                strategy="per_topic",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Rest Route
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_route = scaleway.IotRoute("mainIotRoute",
+            hub_id=main_iot_hub.id,
+            topic="#",
+            rest=scaleway.IotRouteRestArgs(
+                verb="get",
+                uri="http://scaleway.com",
+                headers={
+                    "X-awesome-header": "my-awesome-value",
+                },
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        IoT Routes can be imported using the `{region}/{id}`, e.g.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/iotRoute:IotRoute route01 fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param IotRouteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -368,14 +474,14 @@ class IotRoute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the IoT Route
-        :param pulumi.Input[pulumi.InputType['IotRouteDatabaseArgs']] database: Database Route parameters
-        :param pulumi.Input[str] hub_id: The ID of the route's hub
-        :param pulumi.Input[str] name: The name of the route
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['IotRouteRestArgs']] rest: Rest Route parameters
-        :param pulumi.Input[pulumi.InputType['IotRouteS3Args']] s3: S3 Route parameters
-        :param pulumi.Input[str] topic: The Topic the route subscribes to (wildcards allowed)
+        :param pulumi.Input[str] created_at: The date and time the Route was created.
+        :param pulumi.Input[pulumi.InputType['IotRouteDatabaseArgs']] database: Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] hub_id: The hub ID to which the Route will be attached to.
+        :param pulumi.Input[str] name: The name of the IoT Route you want to create (e.g. `my-route`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input[pulumi.InputType['IotRouteRestArgs']] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        :param pulumi.Input[pulumi.InputType['IotRouteS3Args']] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+        :param pulumi.Input[str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -395,7 +501,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the IoT Route
+        The date and time the Route was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -403,7 +509,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter
     def database(self) -> pulumi.Output[Optional['outputs.IotRouteDatabase']]:
         """
-        Database Route parameters
+        Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "database")
 
@@ -411,7 +517,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter(name="hubId")
     def hub_id(self) -> pulumi.Output[str]:
         """
-        The ID of the route's hub
+        The hub ID to which the Route will be attached to.
         """
         return pulumi.get(self, "hub_id")
 
@@ -419,7 +525,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the route
+        The name of the IoT Route you want to create (e.g. `my-route`).
         """
         return pulumi.get(self, "name")
 
@@ -427,7 +533,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        (Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -435,7 +541,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter
     def rest(self) -> pulumi.Output[Optional['outputs.IotRouteRest']]:
         """
-        Rest Route parameters
+        Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "rest")
 
@@ -443,7 +549,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter
     def s3(self) -> pulumi.Output[Optional['outputs.IotRouteS3']]:
         """
-        S3 Route parameters
+        Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         """
         return pulumi.get(self, "s3")
 
@@ -451,7 +557,7 @@ class IotRoute(pulumi.CustomResource):
     @pulumi.getter
     def topic(self) -> pulumi.Output[str]:
         """
-        The Topic the route subscribes to (wildcards allowed)
+        The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         return pulumi.get(self, "topic")
 

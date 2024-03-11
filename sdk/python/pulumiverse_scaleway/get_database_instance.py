@@ -197,7 +197,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -272,6 +272,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
 
 def get_database_instance(instance_id: Optional[str] = None,
                           name: Optional[str] = None,
+                          project_id: Optional[str] = None,
                           region: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
@@ -282,11 +283,13 @@ def get_database_instance(instance_id: Optional[str] = None,
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the RDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
     :param str region: `region`) The region in which the RDB instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult).value
@@ -323,6 +326,7 @@ def get_database_instance(instance_id: Optional[str] = None,
 @_utilities.lift_output_func(get_database_instance)
 def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
+                                 project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  region: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
@@ -333,6 +337,7 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the RDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
     :param str region: `region`) The region in which the RDB instance exists.
     """
     ...

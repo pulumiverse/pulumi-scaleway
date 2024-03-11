@@ -111,7 +111,13 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The ID of the project the Database Backup is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the Database Backup is associated with.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -145,7 +151,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The ID of the project the Database Backup is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the Database Backup is associated with.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -171,6 +183,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? InstanceId;
         public readonly string InstanceName;
         public readonly string? Name;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly int Size;
         public readonly string UpdatedAt;
@@ -193,6 +206,8 @@ namespace Pulumiverse.Scaleway
 
             string? name,
 
+            string? projectId,
+
             string? region,
 
             int size,
@@ -207,6 +222,7 @@ namespace Pulumiverse.Scaleway
             InstanceId = instanceId;
             InstanceName = instanceName;
             Name = name;
+            ProjectId = projectId;
             Region = region;
             Size = size;
             UpdatedAt = updatedAt;

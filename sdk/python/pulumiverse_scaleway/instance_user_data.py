@@ -193,7 +193,7 @@ class InstanceUserData(pulumi.CustomResource):
 
         About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -269,7 +269,7 @@ class InstanceUserData(pulumi.CustomResource):
 
         About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

@@ -12,11 +12,34 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetBillingConsumptions
     {
-        public static Task<GetBillingConsumptionsResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetBillingConsumptionsResult> InvokeAsync(GetBillingConsumptionsArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsArgs(), options.WithDefaults());
 
-        public static Output<GetBillingConsumptionsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetBillingConsumptionsResult> Invoke(GetBillingConsumptionsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetBillingConsumptionsArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        public GetBillingConsumptionsArgs()
+        {
+        }
+        public static new GetBillingConsumptionsArgs Empty => new GetBillingConsumptionsArgs();
+    }
+
+    public sealed class GetBillingConsumptionsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        public GetBillingConsumptionsInvokeArgs()
+        {
+        }
+        public static new GetBillingConsumptionsInvokeArgs Empty => new GetBillingConsumptionsInvokeArgs();
     }
 
 
@@ -29,6 +52,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string OrganizationId;
+        public readonly string ProjectId;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
@@ -39,11 +63,14 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
+            string projectId,
+
             string updatedAt)
         {
             Consumptions = consumptions;
             Id = id;
             OrganizationId = organizationId;
+            ProjectId = projectId;
             UpdatedAt = updatedAt;
         }
     }

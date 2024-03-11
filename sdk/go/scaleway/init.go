@@ -29,6 +29,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AppleSliconValleyServer{}
 	case "scaleway:index/baremetalServer:BaremetalServer":
 		r = &BaremetalServer{}
+	case "scaleway:index/blockSnapshot:BlockSnapshot":
+		r = &BlockSnapshot{}
+	case "scaleway:index/blockVolume:BlockVolume":
+		r = &BlockVolume{}
 	case "scaleway:index/cockpit:Cockpit":
 		r = &Cockpit{}
 	case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
@@ -137,6 +141,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IotNetwork{}
 	case "scaleway:index/iotRoute:IotRoute":
 		r = &IotRoute{}
+	case "scaleway:index/ipamIp:IpamIp":
+		r = &IpamIp{}
+	case "scaleway:index/ipamIpReverseDns:IpamIpReverseDns":
+		r = &IpamIpReverseDns{}
+	case "scaleway:index/jobDefinition:JobDefinition":
+		r = &JobDefinition{}
 	case "scaleway:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
 	case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -155,16 +165,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerIp{}
 	case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
 		r = &LoadbalancerRoute{}
-	case "scaleway:index/mnqCredential:MnqCredential":
-		r = &MnqCredential{}
-	case "scaleway:index/mnqNamespace:MnqNamespace":
-		r = &MnqNamespace{}
 	case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
 		r = &MnqNatsAccount{}
 	case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
 		r = &MnqNatsCredentials{}
-	case "scaleway:index/mnqQueue:MnqQueue":
-		r = &MnqQueue{}
+	case "scaleway:index/mnqSns:MnqSns":
+		r = &MnqSns{}
+	case "scaleway:index/mnqSnsCredentials:MnqSnsCredentials":
+		r = &MnqSnsCredentials{}
+	case "scaleway:index/mnqSnsTopic:MnqSnsTopic":
+		r = &MnqSnsTopic{}
+	case "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription":
+		r = &MnqSnsTopicSubscription{}
 	case "scaleway:index/mnqSqs:MnqSqs":
 		r = &MnqSqs{}
 	case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
@@ -187,6 +199,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
+	case "scaleway:index/sdbDatabase:SdbDatabase":
+		r = &SdbDatabase{}
 	case "scaleway:index/secret:Secret":
 		r = &Secret{}
 	case "scaleway:index/secretVersion:SecretVersion":
@@ -262,6 +276,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/baremetalServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/blockSnapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/blockVolume",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -536,6 +560,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/ipamIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/ipamIpReverseDns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/jobDefinition",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/kubernetesCluster",
 		&module{version},
 	)
@@ -581,16 +620,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/mnqCredential",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/mnqNamespace",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
 		"index/mnqNatsAccount",
 		&module{version},
 	)
@@ -601,7 +630,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/mnqQueue",
+		"index/mnqSns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSnsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSnsTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSnsTopicSubscription",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -657,6 +701,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/registryNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/sdbDatabase",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

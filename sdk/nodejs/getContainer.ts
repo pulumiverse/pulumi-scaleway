@@ -41,6 +41,7 @@ export function getContainer(args: GetContainerArgs, opts?: pulumi.InvokeOptions
         "containerId": args.containerId,
         "name": args.name,
         "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -56,10 +57,14 @@ export interface GetContainerArgs {
     name?: string;
     /**
      * The container namespace ID of the container.
+     */
+    namespaceId: string;
+    /**
+     * The ID of the project the container is associated with.
      *
      * > **Important** Updates to `name` will recreate the container.
      */
-    namespaceId: string;
+    projectId?: string;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
@@ -130,6 +135,7 @@ export interface GetContainerResult {
      * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
      */
     readonly privacy: string;
+    readonly projectId?: string;
     /**
      * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
      */
@@ -201,10 +207,14 @@ export interface GetContainerOutputArgs {
     name?: pulumi.Input<string>;
     /**
      * The container namespace ID of the container.
+     */
+    namespaceId: pulumi.Input<string>;
+    /**
+     * The ID of the project the container is associated with.
      *
      * > **Important** Updates to `name` will recreate the container.
      */
-    namespaceId: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */

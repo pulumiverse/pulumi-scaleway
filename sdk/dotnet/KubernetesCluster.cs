@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -26,10 +26,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var hedy = new Scaleway.VpcPrivateNetwork("hedy");
+    /// 
     ///     var jack = new Scaleway.KubernetesCluster("jack", new()
     ///     {
     ///         Version = "1.24.3",
     ///         Cni = "cilium",
+    ///         PrivateNetworkId = hedy.Id,
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
@@ -88,6 +91,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var hedy = new Scaleway.VpcPrivateNetwork("hedy");
+    /// 
     ///     var johnKubernetesCluster = new Scaleway.KubernetesCluster("johnKubernetesCluster", new()
     ///     {
     ///         Description = "my awesome cluster",
@@ -98,6 +103,7 @@ namespace Pulumiverse.Scaleway
     ///             "i'm an awesome tag",
     ///             "yay",
     ///         },
+    ///         PrivateNetworkId = hedy.Id,
     ///         DeleteAdditionalResources = false,
     ///         AutoscalerConfig = new Scaleway.Inputs.KubernetesClusterAutoscalerConfigArgs
     ///         {
@@ -183,7 +189,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -229,10 +235,10 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -392,7 +398,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Cni { get; set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -432,10 +438,10 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -546,7 +552,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -608,10 +614,10 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the private network of the cluster.
         /// 
-        /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-        /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

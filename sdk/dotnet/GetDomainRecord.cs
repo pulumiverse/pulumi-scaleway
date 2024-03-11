@@ -107,6 +107,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the domain is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The record ID.
         /// Cannot be used with `name`, `type` and `data`.
         /// </summary>
@@ -149,6 +155,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the domain is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The record ID.
         /// Cannot be used with `name`, `type` and `data`.
         /// </summary>
@@ -174,6 +186,7 @@ namespace Pulumiverse.Scaleway
     {
         public readonly string? Data;
         public readonly string? DnsZone;
+        public readonly string Fqdn;
         /// <summary>
         /// Dynamic record base on user geolocalisation (More information about dynamic records)
         /// </summary>
@@ -192,7 +205,7 @@ namespace Pulumiverse.Scaleway
         /// The priority of the record (mostly used with an `MX` record)
         /// </summary>
         public readonly int Priority;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? RecordId;
         public readonly bool RootZone;
         /// <summary>
@@ -215,6 +228,8 @@ namespace Pulumiverse.Scaleway
 
             string? dnsZone,
 
+            string fqdn,
+
             ImmutableArray<Outputs.GetDomainRecordGeoIpResult> geoIps,
 
             ImmutableArray<Outputs.GetDomainRecordHttpServiceResult> httpServices,
@@ -227,7 +242,7 @@ namespace Pulumiverse.Scaleway
 
             int priority,
 
-            string projectId,
+            string? projectId,
 
             string? recordId,
 
@@ -243,6 +258,7 @@ namespace Pulumiverse.Scaleway
         {
             Data = data;
             DnsZone = dnsZone;
+            Fqdn = fqdn;
             GeoIps = geoIps;
             HttpServices = httpServices;
             Id = id;

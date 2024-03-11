@@ -105,7 +105,7 @@ class GetDocumentdbInstanceResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -163,6 +163,7 @@ class AwaitableGetDocumentdbInstanceResult(GetDocumentdbInstanceResult):
 
 def get_documentdb_instance(instance_id: Optional[str] = None,
                             name: Optional[str] = None,
+                            project_id: Optional[str] = None,
                             region: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentdbInstanceResult:
     """
@@ -184,11 +185,13 @@ def get_documentdb_instance(instance_id: Optional[str] = None,
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the DocumentDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the DocumentDB instance is associated with.
     :param str region: `region`) The region in which the DocumentDB instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDocumentdbInstance:getDocumentdbInstance', __args__, opts=opts, typ=GetDocumentdbInstanceResult).value
@@ -213,6 +216,7 @@ def get_documentdb_instance(instance_id: Optional[str] = None,
 @_utilities.lift_output_func(get_documentdb_instance)
 def get_documentdb_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    name: Optional[pulumi.Input[Optional[str]]] = None,
+                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentdbInstanceResult]:
     """
@@ -234,6 +238,7 @@ def get_documentdb_instance_output(instance_id: Optional[pulumi.Input[Optional[s
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the DocumentDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the DocumentDB instance is associated with.
     :param str region: `region`) The region in which the DocumentDB instance exists.
     """
     ...

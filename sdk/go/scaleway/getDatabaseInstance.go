@@ -30,6 +30,8 @@ type LookupDatabaseInstanceArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the RDB instance exists.
 	Region *string `pulumi:"region"`
 }
@@ -55,7 +57,7 @@ type LookupDatabaseInstanceResult struct {
 	OrganizationId  string                              `pulumi:"organizationId"`
 	Password        string                              `pulumi:"password"`
 	PrivateNetworks []GetDatabaseInstancePrivateNetwork `pulumi:"privateNetworks"`
-	ProjectId       string                              `pulumi:"projectId"`
+	ProjectId       *string                             `pulumi:"projectId"`
 	ReadReplicas    []GetDatabaseInstanceReadReplica    `pulumi:"readReplicas"`
 	Region          *string                             `pulumi:"region"`
 	Settings        map[string]string                   `pulumi:"settings"`
@@ -86,6 +88,8 @@ type LookupDatabaseInstanceOutputArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the RDB instance exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -182,8 +186,8 @@ func (o LookupDatabaseInstanceResultOutput) PrivateNetworks() GetDatabaseInstanc
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstancePrivateNetwork { return v.PrivateNetworks }).(GetDatabaseInstancePrivateNetworkArrayOutput)
 }
 
-func (o LookupDatabaseInstanceResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupDatabaseInstanceResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) ReadReplicas() GetDatabaseInstanceReadReplicaArrayOutput {

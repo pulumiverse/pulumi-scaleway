@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Database Instances.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Example Basic
  *
@@ -26,28 +26,6 @@ import * as utilities from "./utilities";
  *     nodeType: "DB-DEV-S",
  *     password: "thiZ_is_v&ry_s3cret",
  *     userName: "my_initial_user",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Example With IPAM
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const main = new scaleway.DatabaseInstance("main", {
- *     nodeType: "DB-DEV-S",
- *     engine: "PostgreSQL-11",
- *     isHaCluster: true,
- *     disableBackup: true,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     privateNetwork: {
- *         pnId: pn.id,
- *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -95,60 +73,66 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ### Example with custom private network
+ * ### Examples of endpoints configuration
+ *
+ * RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+ *
+ * ### 1 static private network endpoint
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // VPC PRIVATE NETWORK
  * const pn = new scaleway.VpcPrivateNetwork("pn", {ipv4Subnet: {
  *     subnet: "172.16.20.0/22",
  * }});
- * // RDB INSTANCE CONNECTED ON A CUSTOM PRIVATE NETWORK
  * const main = new scaleway.DatabaseInstance("main", {
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-11",
- *     isHaCluster: false,
- *     disableBackup: true,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     region: "fr-par",
- *     tags: [
- *         "terraform-test",
- *         "scaleway_rdb_instance",
- *         "volume",
- *         "rdb_pn",
- *     ],
- *     volumeType: "bssd",
- *     volumeSizeInGb: 10,
  *     privateNetwork: {
- *         ipNet: "172.16.20.4/22",
  *         pnId: pn.id,
+ *         ipNet: "172.16.20.4/22",
  *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## Settings
+ * ### 1 IPAM private network endpoint + 1 public endpoint
  *
- * Please consult
- * the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
- * available `settings` and `initSettings` on your `nodeType` of your convenient.
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
- * ## Private Network
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-11",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *         enableIpam: true,
+ *     },
+ *     loadBalancers: [{}],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  *
- * > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
+ * ### Default: 1 public endpoint
  *
- * > **NOTE:** Please calculate your host IP.
- * using cirhost. Otherwise, lets IPAM service
- * handle the host IP on the network.
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
- * - `ipNet` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
- *   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
- *   service if not set.
- * - `pnId` - (Required) The ID of the private network.
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     engine: "PostgreSQL-11",
+ *     nodeType: "db-dev-s",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * > If nothing is defined, your instance will have a default public load-balancer endpoint
  *
  * ## Limitations
  *
@@ -234,6 +218,8 @@ export class DatabaseInstance extends pulumi.CustomResource {
      * Map of engine settings to be set at database initialisation.
      *
      * > **Important:** Updates to `initSettings` will recreate the Database Instance.
+     *
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
      */
     public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -243,9 +229,10 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
-     * List of load balancer endpoints of the database instance.
+     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
      */
-    public /*out*/ readonly loadBalancers!: pulumi.Output<outputs.DatabaseInstanceLoadBalancer[]>;
+    public readonly loadBalancers!: pulumi.Output<outputs.DatabaseInstanceLoadBalancer[]>;
     /**
      * The name of the Database Instance.
      */
@@ -255,6 +242,9 @@ export class DatabaseInstance extends pulumi.CustomResource {
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
@@ -296,13 +286,15 @@ export class DatabaseInstance extends pulumi.CustomResource {
      *
      * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
-    public readonly userName!: pulumi.Output<string | undefined>;
+    public readonly userName!: pulumi.Output<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`.
+     * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
-     * Type of volume where data are stored (`bssd` or `lssd`).
+     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
      */
     public readonly volumeType!: pulumi.Output<string | undefined>;
 
@@ -358,6 +350,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["engine"] = args ? args.engine : undefined;
             resourceInputs["initSettings"] = args ? args.initSettings : undefined;
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
+            resourceInputs["loadBalancers"] = args ? args.loadBalancers : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -372,7 +365,6 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["endpointIp"] = undefined /*out*/;
             resourceInputs["endpointPort"] = undefined /*out*/;
-            resourceInputs["loadBalancers"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
         }
@@ -427,6 +419,8 @@ export interface DatabaseInstanceState {
      * Map of engine settings to be set at database initialisation.
      *
      * > **Important:** Updates to `initSettings` will recreate the Database Instance.
+     *
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -436,7 +430,8 @@ export interface DatabaseInstanceState {
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * List of load balancer endpoints of the database instance.
+     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceLoadBalancer>[]>;
     /**
@@ -448,6 +443,9 @@ export interface DatabaseInstanceState {
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -491,11 +489,13 @@ export interface DatabaseInstanceState {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`.
+     * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd` or `lssd`).
+     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
      */
     volumeType?: pulumi.Input<string>;
 }
@@ -530,6 +530,8 @@ export interface DatabaseInstanceArgs {
      * Map of engine settings to be set at database initialisation.
      *
      * > **Important:** Updates to `initSettings` will recreate the Database Instance.
+     *
+     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -539,6 +541,11 @@ export interface DatabaseInstanceArgs {
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
+     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+     * This block must be defined if you want a public endpoint in addition to your private endpoint.
+     */
+    loadBalancers?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceLoadBalancer>[]>;
+    /**
      * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
@@ -547,6 +554,9 @@ export interface DatabaseInstanceArgs {
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      */
     nodeType: pulumi.Input<string>;
     /**
@@ -582,11 +592,13 @@ export interface DatabaseInstanceArgs {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`.
+     * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd` or `lssd`).
+     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
      */
     volumeType?: pulumi.Input<string>;
 }

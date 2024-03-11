@@ -14,12 +14,52 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a transactional email domain.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDomain = Scaleway.GetTemDomain.Invoke(new()
+        ///     {
+        ///         DomainId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTemDomainResult> InvokeAsync(GetTemDomainArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a transactional email domain.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDomain = Scaleway.GetTemDomain.Invoke(new()
+        ///     {
+        ///         DomainId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTemDomainResult> Invoke(GetTemDomainInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainInvokeArgs(), options.WithDefaults());
@@ -28,15 +68,25 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetTemDomainArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The domain id.
+        /// Only one of `name` and `domain_id` should be specified.
+        /// </summary>
         [Input("domainId")]
         public string? DomainId { get; set; }
 
         /// <summary>
         /// The domain name.
-        /// Only one of `name` and `id` should be specified.
+        /// Only one of `name` and `domain_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the domain is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the domain exists.
@@ -52,15 +102,25 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetTemDomainInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The domain id.
+        /// Only one of `name` and `domain_id` should be specified.
+        /// </summary>
         [Input("domainId")]
         public Input<string>? DomainId { get; set; }
 
         /// <summary>
         /// The domain name.
-        /// Only one of `name` and `id` should be specified.
+        /// Only one of `name` and `domain_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the domain is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the domain exists.
@@ -79,69 +139,30 @@ namespace Pulumiverse.Scaleway
     public sealed class GetTemDomainResult
     {
         public readonly bool AcceptTos;
-        /// <summary>
-        /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
-        /// </summary>
         public readonly string CreatedAt;
-        /// <summary>
-        /// The DKIM public key, as should be recorded in the DNS zone.
-        /// </summary>
         public readonly string DkimConfig;
         public readonly string? DomainId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The error message if the last check failed.
-        /// </summary>
         public readonly string LastError;
-        /// <summary>
-        /// The date and time the domain was last found to be valid (RFC 3339 format).
-        /// </summary>
         public readonly string LastValidAt;
+        public readonly string MxBlackhole;
         public readonly string? Name;
-        /// <summary>
-        /// The date and time of the next scheduled check (RFC 3339 format).
-        /// </summary>
         public readonly string NextCheckAt;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
-        /// <summary>
-        /// The date and time of the revocation of the domain (RFC 3339 format).
-        /// </summary>
+        public readonly ImmutableArray<Outputs.GetTemDomainReputationResult> Reputations;
         public readonly string RevokedAt;
-        /// <summary>
-        /// The SMTP host to use to send emails.
-        /// </summary>
         public readonly string SmtpHost;
-        /// <summary>
-        /// The SMTP port to use to send emails over TLS.
-        /// </summary>
         public readonly int SmtpPort;
-        /// <summary>
-        /// The SMTP port to use to send emails over TLS.
-        /// </summary>
         public readonly int SmtpPortAlternative;
-        /// <summary>
-        /// The SMTP port to use to send emails.
-        /// </summary>
         public readonly int SmtpPortUnsecure;
-        /// <summary>
-        /// The SMTPS port to use to send emails over TLS Wrapper.
-        /// </summary>
+        public readonly string SmtpsAuthUser;
         public readonly int SmtpsPort;
-        /// <summary>
-        /// The SMTPS port to use to send emails over TLS Wrapper.
-        /// </summary>
         public readonly int SmtpsPortAlternative;
-        /// <summary>
-        /// The snippet of the SPF record that should be registered in the DNS zone.
-        /// </summary>
         public readonly string SpfConfig;
-        /// <summary>
-        /// The status of the Transaction Email Domain.
-        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]
@@ -160,13 +181,17 @@ namespace Pulumiverse.Scaleway
 
             string lastValidAt,
 
+            string mxBlackhole,
+
             string? name,
 
             string nextCheckAt,
 
-            string projectId,
+            string? projectId,
 
             string? region,
+
+            ImmutableArray<Outputs.GetTemDomainReputationResult> reputations,
 
             string revokedAt,
 
@@ -177,6 +202,8 @@ namespace Pulumiverse.Scaleway
             int smtpPortAlternative,
 
             int smtpPortUnsecure,
+
+            string smtpsAuthUser,
 
             int smtpsPort,
 
@@ -193,15 +220,18 @@ namespace Pulumiverse.Scaleway
             Id = id;
             LastError = lastError;
             LastValidAt = lastValidAt;
+            MxBlackhole = mxBlackhole;
             Name = name;
             NextCheckAt = nextCheckAt;
             ProjectId = projectId;
             Region = region;
+            Reputations = reputations;
             RevokedAt = revokedAt;
             SmtpHost = smtpHost;
             SmtpPort = smtpPort;
             SmtpPortAlternative = smtpPortAlternative;
             SmtpPortUnsecure = smtpPortUnsecure;
+            SmtpsAuthUser = smtpsAuthUser;
             SmtpsPort = smtpsPort;
             SmtpsPortAlternative = smtpsPortAlternative;
             SpfConfig = spfConfig;

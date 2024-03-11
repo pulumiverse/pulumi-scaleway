@@ -199,6 +199,8 @@ class _IotHubState:
                  events_topic_prefix: Optional[pulumi.Input[str]] = None,
                  hub_ca: Optional[pulumi.Input[str]] = None,
                  hub_ca_challenge: Optional[pulumi.Input[str]] = None,
+                 mqtt_ca: Optional[pulumi.Input[str]] = None,
+                 mqtt_ca_url: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  product_plan: Optional[pulumi.Input[str]] = None,
@@ -220,6 +222,8 @@ class _IotHubState:
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
+        :param pulumi.Input[str] mqtt_ca: The MQTT certificat content
+        :param pulumi.Input[str] mqtt_ca_url: The MQTT ca url
         :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
@@ -250,6 +254,10 @@ class _IotHubState:
             pulumi.set(__self__, "hub_ca", hub_ca)
         if hub_ca_challenge is not None:
             pulumi.set(__self__, "hub_ca_challenge", hub_ca_challenge)
+        if mqtt_ca is not None:
+            pulumi.set(__self__, "mqtt_ca", mqtt_ca)
+        if mqtt_ca_url is not None:
+            pulumi.set(__self__, "mqtt_ca_url", mqtt_ca_url)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
@@ -388,6 +396,30 @@ class _IotHubState:
         pulumi.set(self, "hub_ca_challenge", value)
 
     @property
+    @pulumi.getter(name="mqttCa")
+    def mqtt_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        The MQTT certificat content
+        """
+        return pulumi.get(self, "mqtt_ca")
+
+    @mqtt_ca.setter
+    def mqtt_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mqtt_ca", value)
+
+    @property
+    @pulumi.getter(name="mqttCaUrl")
+    def mqtt_ca_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The MQTT ca url
+        """
+        return pulumi.get(self, "mqtt_ca_url")
+
+    @mqtt_ca_url.setter
+    def mqtt_ca_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mqtt_ca_url", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -491,6 +523,19 @@ class IotHub(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ### Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.IotHub("main", product_plan="plan_shared")
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         IoT Hubs can be imported using the `{region}/{id}`, e.g.
@@ -525,6 +570,19 @@ class IotHub(pulumi.CustomResource):
                  args: IotHubArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ### Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.IotHub("main", product_plan="plan_shared")
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         IoT Hubs can be imported using the `{region}/{id}`, e.g.
@@ -585,6 +643,8 @@ class IotHub(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["device_count"] = None
             __props__.__dict__["endpoint"] = None
+            __props__.__dict__["mqtt_ca"] = None
+            __props__.__dict__["mqtt_ca_url"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
@@ -608,6 +668,8 @@ class IotHub(pulumi.CustomResource):
             events_topic_prefix: Optional[pulumi.Input[str]] = None,
             hub_ca: Optional[pulumi.Input[str]] = None,
             hub_ca_challenge: Optional[pulumi.Input[str]] = None,
+            mqtt_ca: Optional[pulumi.Input[str]] = None,
+            mqtt_ca_url: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             product_plan: Optional[pulumi.Input[str]] = None,
@@ -634,6 +696,8 @@ class IotHub(pulumi.CustomResource):
         :param pulumi.Input[str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[str] hub_ca_challenge: Challenge certificate for the user provided hub CA
+        :param pulumi.Input[str] mqtt_ca: The MQTT certificat content
+        :param pulumi.Input[str] mqtt_ca_url: The MQTT ca url
         :param pulumi.Input[str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
@@ -658,6 +722,8 @@ class IotHub(pulumi.CustomResource):
         __props__.__dict__["events_topic_prefix"] = events_topic_prefix
         __props__.__dict__["hub_ca"] = hub_ca
         __props__.__dict__["hub_ca_challenge"] = hub_ca_challenge
+        __props__.__dict__["mqtt_ca"] = mqtt_ca
+        __props__.__dict__["mqtt_ca_url"] = mqtt_ca_url
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["product_plan"] = product_plan
@@ -748,6 +814,22 @@ class IotHub(pulumi.CustomResource):
         Challenge certificate for the user provided hub CA
         """
         return pulumi.get(self, "hub_ca_challenge")
+
+    @property
+    @pulumi.getter(name="mqttCa")
+    def mqtt_ca(self) -> pulumi.Output[str]:
+        """
+        The MQTT certificat content
+        """
+        return pulumi.get(self, "mqtt_ca")
+
+    @property
+    @pulumi.getter(name="mqttCaUrl")
+    def mqtt_ca_url(self) -> pulumi.Output[str]:
+        """
+        The MQTT ca url
+        """
+        return pulumi.get(self, "mqtt_ca_url")
 
     @property
     @pulumi.getter

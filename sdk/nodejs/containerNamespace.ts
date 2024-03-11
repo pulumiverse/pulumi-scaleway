@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Serverless Container Namespace.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *

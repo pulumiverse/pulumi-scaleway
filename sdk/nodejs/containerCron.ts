@@ -92,6 +92,11 @@ export class ContainerCron extends pulumi.CustomResource {
      */
     public readonly containerId!: pulumi.Output<string>;
     /**
+     * The name of the container cron. If not provided, the name is generated.
+     * during
+     */
+    public readonly name!: pulumi.Output<string>;
+    /**
      * (Defaults to provider `region`) The region
      * in where the job was created.
      */
@@ -121,6 +126,7 @@ export class ContainerCron extends pulumi.CustomResource {
             const state = argsOrState as ContainerCronState | undefined;
             resourceInputs["args"] = state ? state.args : undefined;
             resourceInputs["containerId"] = state ? state.containerId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -137,6 +143,7 @@ export class ContainerCron extends pulumi.CustomResource {
             }
             resourceInputs["args"] = args ? args.args : undefined;
             resourceInputs["containerId"] = args ? args.containerId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["status"] = undefined /*out*/;
@@ -159,6 +166,11 @@ export interface ContainerCronState {
      * The container ID to link with your cron.
      */
     containerId?: pulumi.Input<string>;
+    /**
+     * The name of the container cron. If not provided, the name is generated.
+     * during
+     */
+    name?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region
      * in where the job was created.
@@ -188,6 +200,11 @@ export interface ContainerCronArgs {
      * The container ID to link with your cron.
      */
     containerId: pulumi.Input<string>;
+    /**
+     * The name of the container cron. If not provided, the name is generated.
+     * during
+     */
+    name?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region
      * in where the job was created.

@@ -100,6 +100,12 @@ namespace Pulumiverse.Scaleway
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the public gateway is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         [Input("publicGatewayId")]
         public string? PublicGatewayId { get; set; }
 
@@ -123,6 +129,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the public gateway is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("publicGatewayId")]
         public Input<string>? PublicGatewayId { get; set; }
@@ -155,8 +167,9 @@ namespace Pulumiverse.Scaleway
         public readonly string IpId;
         public readonly string? Name;
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? PublicGatewayId;
+        public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string Type;
         public readonly string UpdatedAt;
@@ -181,9 +194,11 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string? publicGatewayId,
+
+            string status,
 
             ImmutableArray<string> tags,
 
@@ -205,6 +220,7 @@ namespace Pulumiverse.Scaleway
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicGatewayId = publicGatewayId;
+            Status = status;
             Tags = tags;
             Type = type;
             UpdatedAt = updatedAt;

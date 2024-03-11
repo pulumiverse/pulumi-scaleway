@@ -475,7 +475,7 @@ class DocumentdbInstance(pulumi.CustomResource):
         Creates and manages Scaleway Database Instances.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
-        ## Examples
+        ## Example Usage
 
         ### Example Basic
 
@@ -544,7 +544,7 @@ class DocumentdbInstance(pulumi.CustomResource):
         Creates and manages Scaleway Database Instances.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
-        ## Examples
+        ## Example Usage
 
         ### Example Basic
 

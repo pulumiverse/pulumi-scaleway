@@ -29,6 +29,7 @@ export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pul
     return pulumi.runtime.invoke("scaleway:index/getKubernetesCluster:getKubernetesCluster", {
         "clusterId": args.clusterId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -45,6 +46,10 @@ export interface GetKubernetesClusterArgs {
      * The cluster name. Only one of `name` and `clusterId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the cluster is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the cluster exists.
      */
@@ -104,10 +109,7 @@ export interface GetKubernetesClusterResult {
      * The ID of the private network of the cluster.
      */
     readonly privateNetworkId: string;
-    /**
-     * The ID of the project the cluster is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The region in which the cluster is.
      */
@@ -173,6 +175,10 @@ export interface GetKubernetesClusterOutputArgs {
      * The cluster name. Only one of `name` and `clusterId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the cluster is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the cluster exists.
      */

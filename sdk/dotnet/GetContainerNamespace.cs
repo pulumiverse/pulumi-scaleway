@@ -93,6 +93,12 @@ namespace Pulumiverse.Scaleway
         public string? NamespaceId { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the namespace is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the namespace exists.
         /// </summary>
         [Input("region")]
@@ -119,6 +125,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the namespace is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the namespace exists.
@@ -155,7 +167,7 @@ namespace Pulumiverse.Scaleway
         /// The organization ID the namespace is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         /// <summary>
         /// The registry endpoint of the namespace.
@@ -183,7 +195,7 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

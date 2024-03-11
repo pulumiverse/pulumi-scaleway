@@ -14,7 +14,7 @@ import (
 // Creates and manages Scaleway Function Namespace.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //

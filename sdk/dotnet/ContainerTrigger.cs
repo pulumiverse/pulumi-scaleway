@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Container Triggers.
     /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### SQS
     /// 

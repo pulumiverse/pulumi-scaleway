@@ -12,10 +12,81 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Provides an Object bucket lock configuration resource.
+// For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+//
+// ## Example Usage
+//
+// ### Configure an Object Lock for a new bucket
+//
+// Please note that `objectLockEnabled` must be set to `true` before configuring the lock.
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "mainObjectBucket", &scaleway.ObjectBucketArgs{
+//				Acl:               pulumi.String("public-read"),
+//				ObjectLockEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewObjectBucketLockConfiguration(ctx, "mainObjectBucketLockConfiguration", &scaleway.ObjectBucketLockConfigurationArgs{
+//				Bucket: mainObjectBucket.Name,
+//				Rule: &scaleway.ObjectBucketLockConfigurationRuleArgs{
+//					DefaultRetention: &scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs{
+//						Mode: pulumi.String("GOVERNANCE"),
+//						Days: pulumi.Int(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Configure an Object Lock for an existing bucket
+//
+// You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+//
+// ## Import
+//
+// Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+//
+// bash
+//
+// ```sh
+// $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket
+// ```
+//
+// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+//
+// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+//
+// bash
+//
+// ```sh
+// $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+// ```
 type ObjectBucketLockConfiguration struct {
 	pulumi.CustomResourceState
 
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -61,7 +132,7 @@ func GetObjectBucketLockConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectBucketLockConfiguration resources.
 type objectBucketLockConfigurationState struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -72,7 +143,7 @@ type objectBucketLockConfigurationState struct {
 }
 
 type ObjectBucketLockConfigurationState struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -87,7 +158,7 @@ func (ObjectBucketLockConfigurationState) ElementType() reflect.Type {
 }
 
 type objectBucketLockConfigurationArgs struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -99,7 +170,7 @@ type objectBucketLockConfigurationArgs struct {
 
 // The set of arguments for constructing a ObjectBucketLockConfiguration resource.
 type ObjectBucketLockConfigurationArgs struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -196,7 +267,7 @@ func (o ObjectBucketLockConfigurationOutput) ToObjectBucketLockConfigurationOutp
 	return o
 }
 
-// The bucket name.
+// The bucket's name or regional ID.
 func (o ObjectBucketLockConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }

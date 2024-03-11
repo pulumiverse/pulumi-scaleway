@@ -62,9 +62,9 @@ type KubernetesNodePool struct {
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
-	RootVolumeSizeInGb pulumi.IntPtrOutput `pulumi:"rootVolumeSizeInGb"`
+	RootVolumeSizeInGb pulumi.IntOutput `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
-	RootVolumeType pulumi.StringPtrOutput `pulumi:"rootVolumeType"`
+	RootVolumeType pulumi.StringOutput `pulumi:"rootVolumeType"`
 	// The size of the pool.
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntOutput `pulumi:"size"`
@@ -527,13 +527,13 @@ func (o KubernetesNodePoolOutput) Region() pulumi.StringOutput {
 }
 
 // The size of the system volume of the nodes in gigabyte
-func (o KubernetesNodePoolOutput) RootVolumeSizeInGb() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.RootVolumeSizeInGb }).(pulumi.IntPtrOutput)
+func (o KubernetesNodePoolOutput) RootVolumeSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.RootVolumeSizeInGb }).(pulumi.IntOutput)
 }
 
 // System volume type of the nodes composing the pool
-func (o KubernetesNodePoolOutput) RootVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.RootVolumeType }).(pulumi.StringPtrOutput)
+func (o KubernetesNodePoolOutput) RootVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.RootVolumeType }).(pulumi.StringOutput)
 }
 
 // The size of the pool.

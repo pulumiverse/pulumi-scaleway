@@ -76,9 +76,6 @@ namespace Pulumiverse.Scaleway
         [Input("bucket", required: true)]
         public string Bucket { get; set; } = null!;
 
-        /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
-        /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
@@ -102,9 +99,6 @@ namespace Pulumiverse.Scaleway
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
-        /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
-        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 

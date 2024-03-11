@@ -26,6 +26,7 @@ export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.Invo
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAccountSshKey:getAccountSshKey", {
         "name": args.name,
+        "projectId": args.projectId,
         "sshKeyId": args.sshKeyId,
     }, opts);
 }
@@ -38,6 +39,10 @@ export interface GetAccountSshKeyArgs {
      * The SSH key name. Only one of `name` and `sshKeyId` should be specified.
      */
     name?: string;
+    /**
+     * `projectId`) The ID of the project the SSH key is associated with.
+     */
+    projectId?: string;
     /**
      * The SSH key id. Only one of `name` and `sshKeyId` should be specified.
      */
@@ -60,7 +65,7 @@ export interface GetAccountSshKeyResult {
      * The ID of the organization the SSH key is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The SSH public key string
      */
@@ -96,6 +101,10 @@ export interface GetAccountSshKeyOutputArgs {
      * The SSH key name. Only one of `name` and `sshKeyId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the SSH key is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The SSH key id. Only one of `name` and `sshKeyId` should be specified.
      */

@@ -16,13 +16,13 @@ import * as utilities from "./utilities";
  *
  * const someBucket = new scaleway.ObjectBucket("someBucket", {});
  * const main = new scaleway.ObjectBucketAcl("main", {
- *     bucket: scaleway_object_bucket.main.name,
+ *     bucket: scaleway_object_bucket.main.id,
  *     acl: "private",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## Example with Grants
+ * ### With Grants
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {});
  * const mainObjectBucketAcl = new scaleway.ObjectBucketAcl("mainObjectBucketAcl", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     accessControlPolicy: {
  *         grants: [
  *             {
@@ -99,15 +99,23 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+ * Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
  *
  * bash
  *
  * ```sh
- * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
  * ```
  *
- * /private
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+ * ```
  */
 export class ObjectBucketAcl extends pulumi.CustomResource {
     /**
@@ -146,7 +154,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
@@ -154,7 +162,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly expectedBucketOwner!: pulumi.Output<string | undefined>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -211,7 +219,7 @@ export interface ObjectBucketAclState {
      */
     acl?: pulumi.Input<string>;
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket?: pulumi.Input<string>;
     /**
@@ -219,7 +227,7 @@ export interface ObjectBucketAclState {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -241,7 +249,7 @@ export interface ObjectBucketAclArgs {
      */
     acl?: pulumi.Input<string>;
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
     /**
@@ -249,7 +257,7 @@ export interface ObjectBucketAclArgs {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

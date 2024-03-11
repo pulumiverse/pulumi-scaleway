@@ -83,6 +83,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the DocumentDB instance is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the DocumentDB instance exists.
         /// </summary>
         [Input("region")]
@@ -111,6 +117,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the DocumentDB instance is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the DocumentDB instance exists.
         /// </summary>
         [Input("region")]
@@ -136,7 +148,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? Name;
         public readonly string NodeType;
         public readonly string Password;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly ImmutableArray<string> Tags;
         public readonly bool TelemetryEnabled;
@@ -160,7 +172,7 @@ namespace Pulumiverse.Scaleway
 
             string password,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

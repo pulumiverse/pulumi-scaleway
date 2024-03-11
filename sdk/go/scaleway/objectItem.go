@@ -24,10 +24,20 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
 // ```
+//
+// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+//
+// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+//
+// bash
+//
+// ```sh
+// $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+// ```
 type ObjectItem struct {
 	pulumi.CustomResourceState
 
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrOutput `pulumi:"content"`
@@ -41,7 +51,7 @@ type ObjectItem struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -89,7 +99,7 @@ func GetObjectItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectItem resources.
 type objectItemState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -103,7 +113,7 @@ type objectItemState struct {
 	Key *string `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata map[string]string `pulumi:"metadata"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -116,7 +126,7 @@ type objectItemState struct {
 }
 
 type ObjectItemState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -130,7 +140,7 @@ type ObjectItemState struct {
 	Key pulumi.StringPtrInput
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapInput
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -147,7 +157,7 @@ func (ObjectItemState) ElementType() reflect.Type {
 }
 
 type objectItemArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -161,7 +171,7 @@ type objectItemArgs struct {
 	Key string `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata map[string]string `pulumi:"metadata"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -175,7 +185,7 @@ type objectItemArgs struct {
 
 // The set of arguments for constructing a ObjectItem resource.
 type ObjectItemArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -189,7 +199,7 @@ type ObjectItemArgs struct {
 	Key pulumi.StringInput
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapInput
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -288,7 +298,7 @@ func (o ObjectItemOutput) ToObjectItemOutputWithContext(ctx context.Context) Obj
 	return o
 }
 
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectItemOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -323,7 +333,7 @@ func (o ObjectItemOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
-// `projectId`) The ID of the project the bucket is associated with.
+// The project_id you want to attach the resource to
 func (o ObjectItemOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

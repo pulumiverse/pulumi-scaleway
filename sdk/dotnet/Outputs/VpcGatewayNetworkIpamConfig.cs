@@ -15,13 +15,21 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class VpcGatewayNetworkIpamConfig
     {
         /// <summary>
-        /// Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        /// </summary>
+        public readonly string? IpamIpId;
+        /// <summary>
+        /// Defines whether the default route is enabled on that Gateway Network.
         /// </summary>
         public readonly bool? PushDefaultRoute;
 
         [OutputConstructor]
-        private VpcGatewayNetworkIpamConfig(bool? pushDefaultRoute)
+        private VpcGatewayNetworkIpamConfig(
+            string? ipamIpId,
+
+            bool? pushDefaultRoute)
         {
+            IpamIpId = ipamIpId;
             PushDefaultRoute = pushDefaultRoute;
         }
     }

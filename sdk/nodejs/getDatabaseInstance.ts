@@ -16,6 +16,7 @@ export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulum
     return pulumi.runtime.invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -34,6 +35,10 @@ export interface GetDatabaseInstanceArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the RDB instance exists.
      */
@@ -65,7 +70,7 @@ export interface GetDatabaseInstanceResult {
     readonly organizationId: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetDatabaseInstancePrivateNetwork[];
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly readReplicas: outputs.GetDatabaseInstanceReadReplica[];
     readonly region?: string;
     readonly settings: {[key: string]: string};
@@ -95,6 +100,10 @@ export interface GetDatabaseInstanceOutputArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the RDB instance exists.
      */

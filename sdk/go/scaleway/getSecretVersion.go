@@ -86,6 +86,8 @@ func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opt
 
 // A collection of arguments for invoking getSecretVersion.
 type LookupSecretVersionArgs struct {
+	// The ID of the project the Secret version is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region
 	// in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -109,6 +111,7 @@ type LookupSecretVersionResult struct {
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
+	ProjectId  *string `pulumi:"projectId"`
 	Region     *string `pulumi:"region"`
 	Revision   *string `pulumi:"revision"`
 	SecretId   *string `pulumi:"secretId"`
@@ -134,6 +137,8 @@ func LookupSecretVersionOutput(ctx *pulumi.Context, args LookupSecretVersionOutp
 
 // A collection of arguments for invoking getSecretVersion.
 type LookupSecretVersionOutputArgs struct {
+	// The ID of the project the Secret version is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -184,6 +189,10 @@ func (o LookupSecretVersionResultOutput) Description() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSecretVersionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretVersionResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSecretVersionResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupSecretVersionResultOutput) Region() pulumi.StringPtrOutput {

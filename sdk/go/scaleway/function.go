@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Functions.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -90,7 +90,7 @@ type Function struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The organization ID the function is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -185,7 +185,7 @@ type functionState struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name *string `pulumi:"name"`
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The organization ID the function is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -232,7 +232,7 @@ type FunctionState struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringPtrInput
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringPtrInput
 	// The organization ID the function is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -279,7 +279,7 @@ type functionArgs struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name *string `pulumi:"name"`
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId string `pulumi:"namespaceId"`
 	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
 	Privacy string `pulumi:"privacy"`
@@ -321,7 +321,7 @@ type FunctionArgs struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringPtrInput
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringInput
 	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
 	Privacy pulumi.StringInput
@@ -485,7 +485,7 @@ func (o FunctionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The namespace ID associated with this function
+// The namespace ID the function is associated with.
 func (o FunctionOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }

@@ -212,6 +212,20 @@ class IotNetwork(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_network = scaleway.IotNetwork("mainIotNetwork",
+            hub_id=main_iot_hub.id,
+            type="sigfox")
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         IoT Networks can be imported using the `{region}/{id}`, e.g.
@@ -236,6 +250,20 @@ class IotNetwork(pulumi.CustomResource):
                  args: IotNetworkArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_network = scaleway.IotNetwork("mainIotNetwork",
+            hub_id=main_iot_hub.id,
+            type="sigfox")
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         IoT Networks can be imported using the `{region}/{id}`, e.g.

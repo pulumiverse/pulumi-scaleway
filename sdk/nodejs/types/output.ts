@@ -102,52 +102,75 @@ export interface BaremetalServerPrivateNetwork {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL
+     * The alertmanager URL.
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL
+     * The grafana URL.
      */
     grafanaUrl: string;
     /**
-     * The logs URL
+     * The logs URL.
      */
     logsUrl: string;
     /**
-     * The metrics URL
+     * The metrics URL.
      */
     metricsUrl: string;
+    /**
+     * The traces URL.
+     */
+    tracesUrl: string;
+}
+
+export interface CockpitPushUrl {
+    /**
+     * Push URL for logs (Grafana Loki)
+     */
+    pushLogsUrl: string;
+    /**
+     * Push URL for metrics (Grafana Mimir)
+     */
+    pushMetricsUrl: string;
 }
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs
+     * Query logs.
      */
     queryLogs?: boolean;
     /**
-     * Query metrics
+     * Query metrics.
      */
     queryMetrics?: boolean;
     /**
-     * Setup alerts
+     * Query traces.
+     */
+    queryTraces?: boolean;
+    /**
+     * Setup alerts.
      */
     setupAlerts?: boolean;
     /**
-     * Setup logs rules
+     * Setup logs rules.
      */
     setupLogsRules?: boolean;
     /**
-     * Setup metrics rules
+     * Setup metrics rules.
      */
     setupMetricsRules?: boolean;
     /**
-     * Write logs
+     * Write logs.
      */
     writeLogs?: boolean;
     /**
-     * Write metrics
+     * Write metrics.
      */
     writeMetrics?: boolean;
+    /**
+     * Write traces.
+     */
+    writeTraces?: boolean;
 }
 
 export interface ContainerTriggerNats {
@@ -224,6 +247,15 @@ export interface DatabaseInstanceLoadBalancer {
 
 export interface DatabaseInstancePrivateNetwork {
     /**
+     * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     *
+     * > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
+     * handle the host IP on the network.
+     *
+     * > **Important:** Updates to `privateNetwork` will recreate the Instance's endpoint
+     */
+    enableIpam: boolean;
+    /**
      * The ID of the endpoint.
      */
     endpointId: string;
@@ -236,7 +268,7 @@ export interface DatabaseInstancePrivateNetwork {
      */
     ip: string;
     /**
-     * The IP with the given mask within the private subnet
+     * The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      */
     ipNet: string;
     /**
@@ -244,7 +276,7 @@ export interface DatabaseInstancePrivateNetwork {
      */
     name: string;
     /**
-     * The private network ID
+     * The ID of the private network.
      */
     pnId: string;
     /**
@@ -297,6 +329,10 @@ export interface DatabaseReadReplicaDirectAccess {
 
 export interface DatabaseReadReplicaPrivateNetwork {
     /**
+     * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     */
+    enableIpam: boolean;
+    /**
      * The ID of the endpoint of the read replica.
      */
     endpointId: string;
@@ -321,9 +357,7 @@ export interface DatabaseReadReplicaPrivateNetwork {
      */
     privateNetworkId: string;
     /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
+     * The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      */
     serviceIp: string;
     /**
@@ -642,14 +676,41 @@ export interface GetBaremetalServerPrivateNetwork {
 }
 
 export interface GetBillingConsumptionsConsumption {
-    category: string;
-    description: string;
-    operationPath: string;
+    /**
+     * Consumed quantity
+     */
+    billedQuantity: string;
+    /**
+     * Name of consumption category
+     */
+    categoryName: string;
+    /**
+     * The product name
+     */
+    productName: string;
+    /**
+     * Project ID of the consumption
+     */
     projectId: string;
+    /**
+     * Unique identifier of the product
+     */
+    sku: string;
+    /**
+     * Unit of consumed quantity
+     */
+    unit: string;
+    /**
+     * Monetary value of the consumption
+     */
     value: string;
 }
 
 export interface GetBillingInvoicesInvoice {
+    /**
+     * The billing period of the invoice in the YYYY-MM format.
+     */
+    billingPeriod: string;
     /**
      * The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
      */
@@ -671,13 +732,41 @@ export interface GetBillingInvoicesInvoice {
      */
     number: number;
     /**
+     * The organization name.
+     */
+    organizationName: string;
+    /**
+     * The name of the seller (Scaleway).
+     */
+    sellerName: string;
+    /**
      * The start date of the billing period (RFC 3339 format).
      */
     startDate: string;
     /**
+     * The state of the invoice.
+     */
+    state: string;
+    /**
+     * The end date of the billing period (RFC 3339 format).
+     */
+    stopDate: string;
+    /**
+     * The total discount amount of the invoice.
+     */
+    totalDiscount: string;
+    /**
+     * The total tax amount of the invoice.
+     */
+    totalTax: string;
+    /**
      * The total amount, taxed.
      */
     totalTaxed: string;
+    /**
+     * The total amount of the invoice before applying the discount.
+     */
+    totalUndiscount: string;
     /**
      * The total amount, untaxed.
      */
@@ -701,6 +790,21 @@ export interface GetCockpitEndpoint {
      * The metrics URL
      */
     metricsUrl: string;
+    /**
+     * The traces URL
+     */
+    tracesUrl: string;
+}
+
+export interface GetCockpitPushUrl {
+    /**
+     * Push URL for logs (Grafana Loki)
+     */
+    pushLogsUrl: string;
+    /**
+     * Push URL for metrics (Grafana Mimir)
+     */
+    pushMetricsUrl: string;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -739,6 +843,10 @@ export interface GetDatabaseInstanceLoadBalancer {
 }
 
 export interface GetDatabaseInstancePrivateNetwork {
+    /**
+     * Whether or not the private network endpoint should be configured with IPAM
+     */
+    enableIpam: boolean;
     /**
      * The endpoint ID
      */
@@ -1213,9 +1321,86 @@ export interface GetIpamIpResource {
      */
     id?: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The name of the resource to get the IP from.
      */
-    type?: string;
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
+}
+
+export interface GetIpamIpsIp {
+    /**
+     * The Scaleway internal IP address of the server.
+     */
+    address: string;
+    /**
+     * The date and time of the creation of the IP.
+     */
+    createdAt: string;
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The ID of the project used as filter.
+     */
+    projectId: string;
+    /**
+     * The region used as filter.
+     */
+    region: string;
+    /**
+     * Filter by resource ID, type or name.
+     */
+    resources: outputs.GetIpamIpsIpResource[];
+    /**
+     * The tags used as filter.
+     */
+    tags: string[];
+    /**
+     * The date and time of the last update of the IP.
+     */
+    updatedAt: string;
+    /**
+     * The zone in which the IP is.
+     */
+    zone: string;
+}
+
+export interface GetIpamIpsIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The Mac Address used as filter.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource to get the IP from.
+     */
+    name: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
+}
+
+export interface GetIpamIpsResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The name of the resource to get the IP from.
+     */
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
 }
 
 export interface GetKubernetesClusterAutoUpgrade {
@@ -1428,6 +1613,9 @@ export interface GetLbAclsAclMatch {
      * The matched HTTP filter.
      */
     httpFilter: string;
+    /**
+     * A list of possible values for the HTTP filter based on the HTTP header.
+     */
     httpFilterOption: string;
     /**
      * The possible values matched for a given HTTP filter.
@@ -2062,7 +2250,34 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetTemDomainReputation {
+    /**
+     * The previously-calculated domain's reputation score
+     */
+    previousScore: number;
+    /**
+     * Time and date the previous reputation score was calculated
+     */
+    previousScoredAt: string;
+    /**
+     * A range from 0 to 100 that determines your domain's reputation score
+     */
+    score: number;
+    /**
+     * Time and date the score was calculated
+     */
+    scoredAt: string;
+    /**
+     * Status of the domain's reputation
+     */
+    status: string;
+}
+
 export interface GetVpcGatewayNetworkIpamConfig {
+    /**
+     * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network
+     */
+    ipamIpId: string;
     /**
      * Defines whether the default route is enabled on that Gateway Network
      */
@@ -2219,7 +2434,7 @@ export interface GetWebhostingOption {
 
 export interface IamPolicyRule {
     /**
-     * ID of organization scoped to the rule.
+     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: string;
     /**
@@ -2540,63 +2755,113 @@ export interface IotDeviceMessageFiltersSubscribe {
 
 export interface IotRouteDatabase {
     /**
-     * The database name
+     * The database name (e.g. `measurements`).
      */
     dbname: string;
     /**
-     * The database hostname
+     * The database hostname. Can be an IP or a FQDN.
      */
     host: string;
     /**
-     * The database password
+     * The database password.
      */
     password: string;
     /**
-     * The database port
+     * The database port (e.g. `5432`)
      */
     port: number;
     /**
-     * SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
+     * The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
      */
     query: string;
     /**
-     * The database username
+     * The database username.
      */
     username: string;
 }
 
 export interface IotRouteRest {
     /**
-     * The HTTP call extra headers
+     * a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
      */
     headers: {[key: string]: string};
     /**
-     * The URI of the REST endpoint
+     * The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
      */
     uri: string;
     /**
-     * The HTTP Verb used to call REST URI
+     * The HTTP Verb used to call Rest URI (e.g. `post`).
      */
     verb: string;
 }
 
 export interface IotRouteS3 {
     /**
-     * The name of the S3 route's destination bucket
+     * The name of the S3 route's destination bucket (e.g. `my-object-storage`).
      */
     bucketName: string;
     /**
-     * The region of the S3 route's destination bucket
+     * The region of the S3 route's destination bucket (e.g. `fr-par`).
      */
     bucketRegion: string;
     /**
-     * The string to prefix object names with
+     * The string to prefix object names with (e.g. `mykeyprefix-`).
      */
     objectPrefix?: string;
     /**
-     * How the S3 route's objects will be created: one per topic or one per message
+     * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
      */
     strategy: string;
+}
+
+export interface IpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The MAC Address of the resource the IP is attached to.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name: string;
+    /**
+     * The type of resource the IP is attached to.
+     */
+    type: string;
+}
+
+export interface IpamIpReverse {
+    /**
+     * Request a specific IP in the requested source pool.
+     */
+    address: string;
+    /**
+     * The reverse domain name.
+     */
+    hostname: string;
+}
+
+export interface IpamIpSource {
+    /**
+     * The private network the IP lives in if the IP is a private IP.
+     */
+    privateNetworkId: string;
+    /**
+     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     */
+    subnetId: string;
+    /**
+     * The zone the IP lives in if the IP is a public zoned one
+     */
+    zonal: string;
+}
+
+export interface JobDefinitionCron {
+    schedule: string;
+    timezone: string;
 }
 
 export interface KubernetesClusterAutoUpgrade {
@@ -2773,7 +3038,7 @@ export interface LoadbalancerAclMatch {
      */
     httpFilter?: string;
     /**
-     * You can use this field with httpHeaderMatch acl type to set the header name to filter
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
      */
     httpFilterOption?: string;
     /**
@@ -2919,7 +3184,7 @@ export interface LoadbalancerFrontendAclMatch {
      */
     httpFilter?: string;
     /**
-     * You can use this field with httpHeaderMatch acl type to set the header name to filter
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
      */
     httpFilterOption?: string;
     /**
@@ -2960,82 +3225,19 @@ export interface LoadbalancerPrivateNetwork {
     zone: string;
 }
 
-export interface MnqCredentialNatsCredentials {
-    /**
-     * Raw content of the NATS credentials file.
-     */
-    content: string;
-}
-
-export interface MnqCredentialSqsSnsCredentials {
-    /**
-     * The ID of the key.
-     */
-    accessKey: string;
-    /**
-     * List of permissions associated to this Credential. Only one of permissions may be set.
-     */
-    permissions?: outputs.MnqCredentialSqsSnsCredentialsPermissions;
-    /**
-     * The Secret value of the key.
-     */
-    secretKey: string;
-}
-
-export interface MnqCredentialSqsSnsCredentialsPermissions {
+export interface MnqSnsCredentialsPermissions {
     /**
      * . Defines if user can manage the associated resource(s).
      */
-    canManage?: boolean;
+    canManage: boolean;
     /**
      * . Defines if user can publish messages to the service.
      */
-    canPublish?: boolean;
+    canPublish: boolean;
     /**
      * . Defines if user can receive messages from the service.
      */
-    canReceive?: boolean;
-}
-
-export interface MnqQueueNats {
-    /**
-     * Line jump separated key and seed
-     */
-    credentials: string;
-    /**
-     * The endpoint of the NATS queue. Can contain a {region} placeholder.
-     */
-    endpoint?: string;
-    /**
-     * The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
-     */
-    retentionPolicy?: string;
-}
-
-export interface MnqQueueSqs {
-    /**
-     * The access key of the SQS queue
-     */
-    accessKey: string;
-    contentBasedDeduplication?: boolean;
-    /**
-     * The endpoint of the SQS queue. Can contain a {region} placeholder.
-     */
-    endpoint?: string;
-    /**
-     * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
-     */
-    fifoQueue?: boolean;
-    receiveWaitTimeSeconds?: number;
-    /**
-     * The secret key of the SQS queue
-     */
-    secretKey: string;
-    /**
-     * The URL of the queue
-     */
-    url: string;
-    visibilityTimeoutSeconds?: number;
+    canReceive: boolean;
 }
 
 export interface MnqSqsCredentialsPermissions {
@@ -3176,6 +3378,9 @@ export interface ObjectBucketLifecycleRuleTransition {
 }
 
 export interface ObjectBucketLockConfigurationRule {
+    /**
+     * The default retention for the lock.
+     */
     defaultRetention: outputs.ObjectBucketLockConfigurationRuleDefaultRetention;
 }
 
@@ -3185,7 +3390,7 @@ export interface ObjectBucketLockConfigurationRuleDefaultRetention {
      */
     days?: number;
     /**
-     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
      */
     mode: string;
     /**
@@ -3202,10 +3407,18 @@ export interface ObjectBucketVersioning {
 }
 
 export interface ObjectBucketWebsiteConfigurationErrorDocument {
+    /**
+     * The object key name to use when a 4XX class error occurs.
+     */
     key: string;
 }
 
 export interface ObjectBucketWebsiteConfigurationIndexDocument {
+    /**
+     * A suffix that is appended to a request that is for a directory on the website endpoint.
+     *
+     * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+     */
     suffix: string;
 }
 
@@ -3217,7 +3430,7 @@ export interface RedisClusterAcl {
      */
     description: string;
     /**
-     * The UUID of the private network resource.
+     * The UUID of the Private Network resource.
      */
     id: string;
     /**
@@ -3233,16 +3446,35 @@ export interface RedisClusterPrivateNetwork {
      */
     endpointId: string;
     /**
-     * The UUID of the private network resource.
+     * The UUID of the Private Network resource.
      */
     id: string;
     /**
-     * Endpoint IPv4 addresses
-     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-     * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
+     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+     * scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+     * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      *
-     * > The `privateNetwork` conflict with `acl`. Only one should be specified.
+     * > The `privateNetwork` conflicts with `acl`. Only one should be specified.
+     *
+     * > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+     *
+     * - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
+     * block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+     * Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
+     * by side.
+     *
+     * - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+     * able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+     * configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+     * require updating the private network to add IPs.
+     * Your `serviceIps` must be listed as follows:
+     *
+     * <!--Start PulumiCodeChooser -->
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
+     * <!--End PulumiCodeChooser -->
      */
     serviceIps: string[];
     /**
@@ -3254,7 +3486,7 @@ export interface RedisClusterPrivateNetwork {
 
 export interface RedisClusterPublicNetwork {
     /**
-     * The UUID of the private network resource.
+     * The UUID of the Private Network resource.
      */
     id: string;
     /**
@@ -3267,9 +3499,36 @@ export interface RedisClusterPublicNetwork {
     port: number;
 }
 
+export interface TemDomainReputation {
+    /**
+     * The previously-calculated domain's reputation score.
+     */
+    previousScore: number;
+    /**
+     * The time and date the previous reputation score was calculated.
+     */
+    previousScoredAt: string;
+    /**
+     * A range from 0 to 100 that determines your domain's reputation score.
+     */
+    score: number;
+    /**
+     * The time and date the score was calculated.
+     */
+    scoredAt: string;
+    /**
+     * The status of the domain's reputation.
+     */
+    status: string;
+}
+
 export interface VpcGatewayNetworkIpamConfig {
     /**
-     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+     */
+    ipamIpId: string;
+    /**
+     * Defines whether the default route is enabled on that Gateway Network.
      */
     pushDefaultRoute?: boolean;
 }

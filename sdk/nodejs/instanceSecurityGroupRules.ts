@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * > **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *

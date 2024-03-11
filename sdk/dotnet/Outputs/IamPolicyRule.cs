@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IamPolicyRule
     {
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         public readonly string? OrganizationId;
         /// <summary>

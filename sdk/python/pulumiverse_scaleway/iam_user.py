@@ -230,7 +230,7 @@ class IamUser(pulumi.CustomResource):
         Creates and manages Scaleway IAM Users.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -268,7 +268,7 @@ class IamUser(pulumi.CustomResource):
         Creates and manages Scaleway IAM Users.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

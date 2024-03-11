@@ -14,7 +14,7 @@ import (
 
 // Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -31,9 +31,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			if err != nil {
+//				return err
+//			}
 //			jack, err := scaleway.NewKubernetesCluster(ctx, "jack", &scaleway.KubernetesClusterArgs{
 //				Version:                   pulumi.String("1.24.3"),
 //				Cni:                       pulumi.String("cilium"),
+//				PrivateNetworkId:          hedy.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -111,6 +116,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			if err != nil {
+//				return err
+//			}
 //			johnKubernetesCluster, err := scaleway.NewKubernetesCluster(ctx, "johnKubernetesCluster", &scaleway.KubernetesClusterArgs{
 //				Description: pulumi.String("my awesome cluster"),
 //				Version:     pulumi.String("1.24.3"),
@@ -119,6 +128,7 @@ import (
 //					pulumi.String("i'm an awesome tag"),
 //					pulumi.String("yay"),
 //				},
+//				PrivateNetworkId:          hedy.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				AutoscalerConfig: &scaleway.KubernetesClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
@@ -179,7 +189,7 @@ type KubernetesCluster struct {
 	Cni pulumi.StringOutput `pulumi:"cni"`
 	// The creation date of the cluster.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolOutput `pulumi:"deleteAdditionalResources"`
@@ -197,10 +207,10 @@ type KubernetesCluster struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -286,7 +296,7 @@ type kubernetesClusterState struct {
 	Cni *string `pulumi:"cni"`
 	// The creation date of the cluster.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources *bool `pulumi:"deleteAdditionalResources"`
@@ -304,10 +314,10 @@ type kubernetesClusterState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -351,7 +361,7 @@ type KubernetesClusterState struct {
 	Cni pulumi.StringPtrInput
 	// The creation date of the cluster.
 	CreatedAt pulumi.StringPtrInput
-	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolPtrInput
@@ -369,10 +379,10 @@ type KubernetesClusterState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -416,7 +426,7 @@ type kubernetesClusterArgs struct {
 	// The Container Network Interface (CNI) for the Kubernetes cluster.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Cni string `pulumi:"cni"`
-	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources bool `pulumi:"deleteAdditionalResources"`
@@ -430,10 +440,10 @@ type kubernetesClusterArgs struct {
 	OpenIdConnectConfig *KubernetesClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -466,7 +476,7 @@ type KubernetesClusterArgs struct {
 	// The Container Network Interface (CNI) for the Kubernetes cluster.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Cni pulumi.StringInput
-	// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+	// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
 	// > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 	// If you prefer keeping it, you should instead set it as `false`.
 	DeleteAdditionalResources pulumi.BoolInput
@@ -480,10 +490,10 @@ type KubernetesClusterArgs struct {
 	OpenIdConnectConfig KubernetesClusterOpenIdConnectConfigPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -626,7 +636,7 @@ func (o KubernetesClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
 // > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
 // If you prefer keeping it, you should instead set it as `false`.
 func (o KubernetesClusterOutput) DeleteAdditionalResources() pulumi.BoolOutput {
@@ -665,10 +675,10 @@ func (o KubernetesClusterOutput) OrganizationId() pulumi.StringOutput {
 
 // The ID of the private network of the cluster.
 //
-// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-// Any subsequent change after this field got set will prompt for cluster recreation.
+// > **Important:** Changes to this field will recreate a new resource.
 //
-// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 func (o KubernetesClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
