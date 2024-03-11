@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -26,6 +27,7 @@ import * as utilities from "./utilities";
  *     recordId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainRecordResult> {
     args = args || {};
@@ -35,6 +37,7 @@ export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.Invoke
         "data": args.data,
         "dnsZone": args.dnsZone,
         "name": args.name,
+        "projectId": args.projectId,
         "recordId": args.recordId,
         "type": args.type,
     }, opts);
@@ -59,6 +62,10 @@ export interface GetDomainRecordArgs {
      */
     name?: string;
     /**
+     * `projectId`) The ID of the project the domain is associated with.
+     */
+    projectId?: string;
+    /**
      * The record ID.
      * Cannot be used with `name`, `type` and `data`.
      */
@@ -76,6 +83,7 @@ export interface GetDomainRecordArgs {
 export interface GetDomainRecordResult {
     readonly data?: string;
     readonly dnsZone?: string;
+    readonly fqdn: string;
     /**
      * Dynamic record base on user geolocalisation (More information about dynamic records)
      */
@@ -94,7 +102,7 @@ export interface GetDomainRecordResult {
      * The priority of the record (mostly used with an `MX` record)
      */
     readonly priority: number;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly recordId?: string;
     readonly rootZone: boolean;
     /**
@@ -116,6 +124,7 @@ export interface GetDomainRecordResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -131,6 +140,7 @@ export interface GetDomainRecordResult {
  *     recordId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainRecordResult> {
     return pulumi.output(args).apply((a: any) => getDomainRecord(a, opts))
@@ -154,6 +164,10 @@ export interface GetDomainRecordOutputArgs {
      * Cannot be used with `recordId`.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the domain is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The record ID.
      * Cannot be used with `name`, `type` and `data`.

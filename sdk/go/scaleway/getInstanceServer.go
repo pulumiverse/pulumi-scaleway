@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, opts ...pulumi.InvokeOption) (*LookupInstanceServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceServerResult
@@ -52,6 +54,8 @@ func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, o
 type LookupInstanceServerArgs struct {
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the instance server is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The server id. Only one of `name` and `serverId` should be specified.
 	ServerId *string `pulumi:"serverId"`
 	// `zone`) The zone in which the server exists.
@@ -93,8 +97,7 @@ type LookupInstanceServerResult struct {
 	// The Scaleway internal IP address of the server.
 	PrivateIp       string                            `pulumi:"privateIp"`
 	PrivateNetworks []GetInstanceServerPrivateNetwork `pulumi:"privateNetworks"`
-	// The ID of the project the server is associated with.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId       *string                           `pulumi:"projectId"`
 	// The public IP address of the server.
 	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
@@ -135,6 +138,8 @@ func LookupInstanceServerOutput(ctx *pulumi.Context, args LookupInstanceServerOu
 type LookupInstanceServerOutputArgs struct {
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the instance server is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The server id. Only one of `name` and `serverId` should be specified.
 	ServerId pulumi.StringPtrInput `pulumi:"serverId"`
 	// `zone`) The zone in which the server exists.
@@ -250,9 +255,8 @@ func (o LookupInstanceServerResultOutput) PrivateNetworks() GetInstanceServerPri
 	return o.ApplyT(func(v LookupInstanceServerResult) []GetInstanceServerPrivateNetwork { return v.PrivateNetworks }).(GetInstanceServerPrivateNetworkArrayOutput)
 }
 
-// The ID of the project the server is associated with.
-func (o LookupInstanceServerResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupInstanceServerResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The public IP address of the server.

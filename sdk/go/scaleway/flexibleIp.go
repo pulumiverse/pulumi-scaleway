@@ -14,10 +14,11 @@ import (
 // Creates and manages Scaleway flexible IPs.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,9 +42,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With zone
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -67,9 +70,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With IPv6
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -93,9 +98,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With baremetal server
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -150,15 +157,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Flexible IPs can be imported using the `{zone}/{id}`, e.g. bash
+// Flexible IPs can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type FlexibleIp struct {
 	pulumi.CustomResourceState

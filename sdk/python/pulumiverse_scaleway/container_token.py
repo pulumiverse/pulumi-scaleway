@@ -234,10 +234,11 @@ class ContainerToken(pulumi.CustomResource):
         Creates and manages Scaleway Container Token.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#tokens-26b085).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -251,13 +252,16 @@ class ContainerToken(pulumi.CustomResource):
         # Container Token
         container = scaleway.ContainerToken("container", container_id=main_container.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Tokens can be imported using the `{region}/{id}`, e.g. bash
+        Tokens can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -282,10 +286,11 @@ class ContainerToken(pulumi.CustomResource):
         Creates and manages Scaleway Container Token.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#tokens-26b085).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -299,13 +304,16 @@ class ContainerToken(pulumi.CustomResource):
         # Container Token
         container = scaleway.ContainerToken("container", container_id=main_container.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Tokens can be imported using the `{region}/{id}`, e.g. bash
+        Tokens can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

@@ -5,12 +5,29 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const mainIotNetwork = new scaleway.IotNetwork("mainIotNetwork", {
+ *     hubId: mainIotHub.id,
+ *     type: "sigfox",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
- * IoT Networks can be imported using the `{region}/{id}`, e.g. bash
+ * IoT Networks can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IotNetwork extends pulumi.CustomResource {

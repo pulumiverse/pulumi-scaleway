@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,6 +46,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupIamGroup(ctx *pulumi.Context, args *LookupIamGroupArgs, opts ...pulumi.InvokeOption) (*LookupIamGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamGroupResult
@@ -79,6 +81,7 @@ type LookupIamGroupResult struct {
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
 	OrganizationId *string  `pulumi:"organizationId"`
+	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 	UserIds        []string `pulumi:"userIds"`
 }
@@ -159,6 +162,10 @@ func (o LookupIamGroupResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupIamGroupResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamGroupResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIamGroupResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupIamGroupResultOutput) UpdatedAt() pulumi.StringOutput {

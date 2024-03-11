@@ -9,26 +9,44 @@ import * as utilities from "./utilities";
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * Activate SQS for default project
+ *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // For default project in default region
  * const main = new scaleway.MnqSqs("main", {});
- * // For specific project in default region
- * const forProject = new scaleway.MnqSqs("forProject", {projectId: scaleway_account_project.main.id});
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Activate SQS for a specific project
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * const forProject = new scaleway.MnqSqs("forProject", {projectId: project.then(project => project.id)});
+ * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+ * SQS status can be imported using the `{region}/{project_id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+ * $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
  * ```
  */
 export class MnqSqs extends pulumi.CustomResource {

@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetBillingInvoicesInvoiceResult
     {
         /// <summary>
+        /// The billing period of the invoice in the YYYY-MM format.
+        /// </summary>
+        public readonly string BillingPeriod;
+        /// <summary>
         /// The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
         /// </summary>
         public readonly string DueDate;
@@ -35,13 +39,41 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int Number;
         /// <summary>
+        /// The organization name.
+        /// </summary>
+        public readonly string OrganizationName;
+        /// <summary>
+        /// The name of the seller (Scaleway).
+        /// </summary>
+        public readonly string SellerName;
+        /// <summary>
         /// The start date of the billing period (RFC 3339 format).
         /// </summary>
         public readonly string StartDate;
         /// <summary>
+        /// The state of the invoice.
+        /// </summary>
+        public readonly string State;
+        /// <summary>
+        /// The end date of the billing period (RFC 3339 format).
+        /// </summary>
+        public readonly string StopDate;
+        /// <summary>
+        /// The total discount amount of the invoice.
+        /// </summary>
+        public readonly string TotalDiscount;
+        /// <summary>
+        /// The total tax amount of the invoice.
+        /// </summary>
+        public readonly string TotalTax;
+        /// <summary>
         /// The total amount, taxed.
         /// </summary>
         public readonly string TotalTaxed;
+        /// <summary>
+        /// The total amount of the invoice before applying the discount.
+        /// </summary>
+        public readonly string TotalUndiscount;
         /// <summary>
         /// The total amount, untaxed.
         /// </summary>
@@ -49,6 +81,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
         [OutputConstructor]
         private GetBillingInvoicesInvoiceResult(
+            string billingPeriod,
+
             string dueDate,
 
             string id,
@@ -59,19 +93,41 @@ namespace Pulumiverse.Scaleway.Outputs
 
             int number,
 
+            string organizationName,
+
+            string sellerName,
+
             string startDate,
+
+            string state,
+
+            string stopDate,
+
+            string totalDiscount,
+
+            string totalTax,
 
             string totalTaxed,
 
+            string totalUndiscount,
+
             string totalUntaxed)
         {
+            BillingPeriod = billingPeriod;
             DueDate = dueDate;
             Id = id;
             InvoiceType = invoiceType;
             IssuedDate = issuedDate;
             Number = number;
+            OrganizationName = organizationName;
+            SellerName = sellerName;
             StartDate = startDate;
+            State = state;
+            StopDate = stopDate;
+            TotalDiscount = totalDiscount;
+            TotalTax = totalTax;
             TotalTaxed = totalTaxed;
+            TotalUndiscount = totalUndiscount;
             TotalUntaxed = totalUntaxed;
         }
     }

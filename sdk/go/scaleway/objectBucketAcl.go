@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,7 +32,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
-//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Name),
+//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Id),
 //				Acl:    pulumi.String("private"),
 //			})
 //			if err != nil {
@@ -42,8 +43,11 @@ import (
 //	}
 //
 // ```
-// ## Example with Grants
+// <!--End PulumiCodeChooser -->
 //
+// ### With Grants
+//
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -61,7 +65,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "mainObjectBucketAcl", &scaleway.ObjectBucketAclArgs{
-//				Bucket: mainObjectBucket.Name,
+//				Bucket: mainObjectBucket.ID(),
 //				AccessControlPolicy: &scaleway.ObjectBucketAclAccessControlPolicyArgs{
 //					Grants: scaleway.ObjectBucketAclAccessControlPolicyGrantArray{
 //						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
@@ -92,6 +96,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## The ACL
 //
@@ -135,15 +140,23 @@ import (
 //
 // ## Import
 //
-// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
-//
+// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
 // ```
 //
-//	/private
+// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+//
+// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+//
+// bash
+//
+// ```sh
+// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+// ```
 type ObjectBucketAcl struct {
 	pulumi.CustomResourceState
 
@@ -151,11 +164,11 @@ type ObjectBucketAcl struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyOutput `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrOutput `pulumi:"expectedBucketOwner"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -198,11 +211,11 @@ type objectBucketAclState struct {
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
@@ -213,11 +226,11 @@ type ObjectBucketAclState struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
@@ -232,11 +245,11 @@ type objectBucketAclArgs struct {
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
@@ -248,11 +261,11 @@ type ObjectBucketAclArgs struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
@@ -355,7 +368,7 @@ func (o ObjectBucketAclOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }
 
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectBucketAclOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -365,7 +378,7 @@ func (o ObjectBucketAclOutput) ExpectedBucketOwner() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.ExpectedBucketOwner }).(pulumi.StringPtrOutput)
 }
 
-// `projectId`) The ID of the project the bucket is associated with.
+// The project_id you want to attach the resource to
 func (o ObjectBucketAclOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

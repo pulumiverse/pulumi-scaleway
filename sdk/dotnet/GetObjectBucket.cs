@@ -16,10 +16,9 @@ namespace Pulumiverse.Scaleway
         /// Gets information about the Bucket.
         /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -39,16 +38,17 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
         ///     {
-        ///         Name = "bucket.test.com",
+        ///         Name = main.Id,
         ///     });
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// 
         /// ### Fetching the bucket from a specific project
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,8 +65,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetObjectBucketResult> InvokeAsync(GetObjectBucketArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketArgs(), options.WithDefaults());
@@ -75,10 +74,9 @@ namespace Pulumiverse.Scaleway
         /// Gets information about the Bucket.
         /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -98,16 +96,17 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
         ///     {
-        ///         Name = "bucket.test.com",
+        ///         Name = main.Id,
         ///     });
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// 
         /// ### Fetching the bucket from a specific project
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -124,8 +123,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetObjectBucketResult> Invoke(GetObjectBucketInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());
@@ -134,9 +132,6 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetObjectBucketArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The bucket name.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -147,7 +142,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Object Storage exists.
+        /// `region`) The region in which the bucket exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -160,9 +155,6 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetObjectBucketInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The bucket name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -173,7 +165,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Object Storage exists.
+        /// `region`) The region in which the bucket exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -189,6 +181,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetObjectBucketResult
     {
         public readonly string Acl;
+        public readonly string ApiEndpoint;
         public readonly ImmutableArray<Outputs.GetObjectBucketCorsRuleResult> CorsRules;
         /// <summary>
         /// The endpoint URL of the bucket
@@ -210,6 +203,8 @@ namespace Pulumiverse.Scaleway
         [OutputConstructor]
         private GetObjectBucketResult(
             string acl,
+
+            string apiEndpoint,
 
             ImmutableArray<Outputs.GetObjectBucketCorsRuleResult> corsRules,
 
@@ -234,6 +229,7 @@ namespace Pulumiverse.Scaleway
             ImmutableArray<Outputs.GetObjectBucketVersioningResult> versionings)
         {
             Acl = acl;
+            ApiEndpoint = apiEndpoint;
             CorsRules = corsRules;
             Endpoint = endpoint;
             ForceDestroy = forceDestroy;

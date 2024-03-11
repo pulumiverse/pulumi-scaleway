@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,6 +45,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupIamApplication(ctx *pulumi.Context, args *LookupIamApplicationArgs, opts ...pulumi.InvokeOption) (*LookupIamApplicationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamApplicationResult
@@ -74,10 +76,11 @@ type LookupIamApplicationResult struct {
 	Description   string  `pulumi:"description"`
 	Editable      bool    `pulumi:"editable"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	Name           *string `pulumi:"name"`
-	OrganizationId *string `pulumi:"organizationId"`
-	UpdatedAt      string  `pulumi:"updatedAt"`
+	Id             string   `pulumi:"id"`
+	Name           *string  `pulumi:"name"`
+	OrganizationId *string  `pulumi:"organizationId"`
+	Tags           []string `pulumi:"tags"`
+	UpdatedAt      string   `pulumi:"updatedAt"`
 }
 
 func LookupIamApplicationOutput(ctx *pulumi.Context, args LookupIamApplicationOutputArgs, opts ...pulumi.InvokeOption) LookupIamApplicationResultOutput {
@@ -152,6 +155,10 @@ func (o LookupIamApplicationResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupIamApplicationResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamApplicationResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamApplicationResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIamApplicationResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupIamApplicationResultOutput) UpdatedAt() pulumi.StringOutput {

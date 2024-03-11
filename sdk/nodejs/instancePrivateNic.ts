@@ -8,10 +8,11 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Instance Private NICs. For more information, see
  * [the documentation](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -21,9 +22,11 @@ import * as utilities from "./utilities";
  *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With zone
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -40,13 +43,16 @@ import * as utilities from "./utilities";
  *     zone: pn01.zone,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g. bash
+ * Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
+ * $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
  * ```
  */
 export class InstancePrivateNic extends pulumi.CustomResource {

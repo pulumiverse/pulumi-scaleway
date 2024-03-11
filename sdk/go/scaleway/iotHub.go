@@ -12,14 +12,44 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// ## Example Usage
+//
+// ### Basic
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				ProductPlan: pulumi.String("plan_shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
-// IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
+// IoT Hubs can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type IotHub struct {
 	pulumi.CustomResourceState

@@ -8,10 +8,11 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Functions.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -24,13 +25,16 @@ import * as utilities from "./utilities";
  *     privacy: "private",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Functions can be imported using the `{region}/{id}`, e.g. bash
+ * Functions can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class Function extends pulumi.CustomResource {
@@ -108,7 +112,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
@@ -276,7 +280,7 @@ export interface FunctionState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -360,7 +364,7 @@ export interface FunctionArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     namespaceId: pulumi.Input<string>;
     /**

@@ -13,6 +13,9 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class ObjectBucketAclAccessControlPolicyOwnerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The project ID of the grantee.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 

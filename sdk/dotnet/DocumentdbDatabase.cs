@@ -12,12 +12,13 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway DocumentDB database.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,13 +34,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+    /// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+    /// $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/documentdbDatabase:DocumentdbDatabase")]

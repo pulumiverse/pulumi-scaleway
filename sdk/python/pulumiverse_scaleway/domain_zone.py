@@ -230,8 +230,9 @@ class DomainZone(pulumi.CustomResource):
         Creates and manages Scaleway Domain zone.\\
         For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 
-        ## Examples
+        ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -240,13 +241,16 @@ class DomainZone(pulumi.CustomResource):
             domain="scaleway-terraform.com",
             subdomain="test")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+        Zone can be imported using the `{subdomain}.{domain}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
+        $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
         ```
 
         :param str resource_name: The name of the resource.
@@ -265,8 +269,9 @@ class DomainZone(pulumi.CustomResource):
         Creates and manages Scaleway Domain zone.\\
         For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 
-        ## Examples
+        ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -275,13 +280,16 @@ class DomainZone(pulumi.CustomResource):
             domain="scaleway-terraform.com",
             subdomain="test")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+        Zone can be imported using the `{subdomain}.{domain}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
+        $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
         ```
 
         :param str resource_name: The name of the resource.

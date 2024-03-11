@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetRedisClusterResult> InvokeAsync(GetRedisClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetRedisClusterResult> Invoke(GetRedisClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterInvokeArgs(), options.WithDefaults());
@@ -85,6 +81,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the Redis cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The zone in which the server exists.
@@ -115,6 +117,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the Redis cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
@@ -143,7 +151,7 @@ namespace Pulumiverse.Scaleway
         public readonly string NodeType;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetRedisClusterPrivateNetworkResult> PrivateNetworks;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly ImmutableArray<Outputs.GetRedisClusterPublicNetworkResult> PublicNetworks;
         public readonly ImmutableDictionary<string, string> Settings;
         public readonly ImmutableArray<string> Tags;
@@ -175,7 +183,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetRedisClusterPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             ImmutableArray<Outputs.GetRedisClusterPublicNetworkResult> publicNetworks,
 

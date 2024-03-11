@@ -16,10 +16,9 @@ namespace Pulumiverse.Scaleway
         /// Gets information about a baremetal server.
         /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -41,8 +40,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBaremetalServerResult> InvokeAsync(GetBaremetalServerArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerArgs(), options.WithDefaults());
@@ -51,10 +49,9 @@ namespace Pulumiverse.Scaleway
         /// Gets information about a baremetal server.
         /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -76,8 +73,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBaremetalServerResult> Invoke(GetBaremetalServerInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerInvokeArgs(), options.WithDefaults());
@@ -91,6 +87,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the baremetal server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         [Input("serverId")]
         public string? ServerId { get; set; }
@@ -114,6 +116,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the baremetal server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
@@ -155,7 +163,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OsName;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
         public readonly string ServicePassword;
@@ -203,7 +211,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             bool reinstallOnConfigChanges,
 

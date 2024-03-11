@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  *     projectId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAccountProject(args?: GetAccountProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountProjectResult> {
     args = args || {};
@@ -73,6 +75,7 @@ export interface GetAccountProjectResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -84,6 +87,7 @@ export interface GetAccountProjectResult {
  *     projectId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountProjectResult> {
     return pulumi.output(args).apply((a: any) => getAccountProject(a, opts))

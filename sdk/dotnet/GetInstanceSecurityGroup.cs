@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Security Group.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInstanceSecurityGroupResult> InvokeAsync(GetInstanceSecurityGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceSecurityGroupResult>("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args ?? new GetInstanceSecurityGroupArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Security Group.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInstanceSecurityGroupResult> Invoke(GetInstanceSecurityGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceSecurityGroupResult>("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args ?? new GetInstanceSecurityGroupInvokeArgs(), options.WithDefaults());
@@ -77,6 +73,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the security group is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The security group id. Only one of `name` and `security_group_id` should be specified.
@@ -103,6 +105,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the security group is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The security group id. Only one of `name` and `security_group_id` should be specified.
@@ -154,10 +162,7 @@ namespace Pulumiverse.Scaleway
         /// A list of outbound rule to add to the security group. (Structure is documented below.)
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInstanceSecurityGroupOutboundRuleResult> OutboundRules;
-        /// <summary>
-        /// The ID of the project the security group is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? SecurityGroupId;
         public readonly bool Stateful;
         public readonly ImmutableArray<string> Tags;
@@ -185,7 +190,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetInstanceSecurityGroupOutboundRuleResult> outboundRules,
 
-            string projectId,
+            string? projectId,
 
             string? securityGroupId,
 

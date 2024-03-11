@@ -16,6 +16,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +32,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
@@ -40,8 +41,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// ## Example with `policy`
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// ### With `Policy`
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,7 +62,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var mainObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["Version"] = "2012-10-17",
@@ -85,7 +89,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
@@ -94,60 +98,51 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// 
-    /// ## index_document
-    /// 
-    /// The `index_document` configuration block supports the following arguments:
-    /// 
-    /// * `suffix` - (Required) A suffix that is appended to a request that is for a directory on the website endpoint.
-    /// 
-    /// &gt; **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
-    /// 
-    /// In addition to all above arguments, the following attribute is exported:
-    /// 
-    /// * `id` - The region and bucket separated by a slash (/)
-    /// * `website_domain` - The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
-    /// * `website_endpoint` - The website endpoint.
-    /// 
-    /// &gt; **Important:** Please check our concepts section to know more about the [endpoint](https://www.scaleway.com/en/docs/storage/object/concepts/#endpoint).
-    /// 
-    /// ## error_document
-    /// 
-    /// The error_document configuration block supports the following arguments:
-    /// 
-    /// * `key` - (Required) The object key name to use when a 4XX class error occurs.
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+    /// Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
+    /// $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
+    /// ```
+    /// 
+    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+    /// 
+    /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration")]
     public partial class ObjectBucketWebsiteConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// (Required, Forces new resource) The name of the bucket.
+        /// The name of the bucket.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional) The name of the error document for the website detailed below.
+        /// The name of the error document for the website detailed below.
         /// </summary>
         [Output("errorDocument")]
         public Output<Outputs.ObjectBucketWebsiteConfigurationErrorDocument?> ErrorDocument { get; private set; } = null!;
 
         /// <summary>
-        /// (Required) The name of the index document for the website detailed below.
+        /// The name of the index document for the website detailed below.
         /// </summary>
         [Output("indexDocument")]
         public Output<Outputs.ObjectBucketWebsiteConfigurationIndexDocument> IndexDocument { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -159,13 +154,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The website endpoint.
+        /// The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
         /// </summary>
         [Output("websiteDomain")]
         public Output<string> WebsiteDomain { get; private set; } = null!;
 
         /// <summary>
-        /// The domain of the website endpoint.
+        /// The website endpoint.
         /// </summary>
         [Output("websiteEndpoint")]
         public Output<string> WebsiteEndpoint { get; private set; } = null!;
@@ -218,25 +213,25 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectBucketWebsiteConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Required, Forces new resource) The name of the bucket.
+        /// The name of the bucket.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// (Optional) The name of the error document for the website detailed below.
+        /// The name of the error document for the website detailed below.
         /// </summary>
         [Input("errorDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationErrorDocumentArgs>? ErrorDocument { get; set; }
 
         /// <summary>
-        /// (Required) The name of the index document for the website detailed below.
+        /// The name of the index document for the website detailed below.
         /// </summary>
         [Input("indexDocument", required: true)]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs> IndexDocument { get; set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -256,25 +251,25 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectBucketWebsiteConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Required, Forces new resource) The name of the bucket.
+        /// The name of the bucket.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
 
         /// <summary>
-        /// (Optional) The name of the error document for the website detailed below.
+        /// The name of the error document for the website detailed below.
         /// </summary>
         [Input("errorDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationErrorDocumentGetArgs>? ErrorDocument { get; set; }
 
         /// <summary>
-        /// (Required) The name of the index document for the website detailed below.
+        /// The name of the index document for the website detailed below.
         /// </summary>
         [Input("indexDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentGetArgs>? IndexDocument { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -286,13 +281,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The website endpoint.
+        /// The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
         /// </summary>
         [Input("websiteDomain")]
         public Input<string>? WebsiteDomain { get; set; }
 
         /// <summary>
-        /// The domain of the website endpoint.
+        /// The website endpoint.
         /// </summary>
         [Input("websiteEndpoint")]
         public Input<string>? WebsiteEndpoint { get; set; }

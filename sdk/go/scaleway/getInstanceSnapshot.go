@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,6 +45,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupInstanceSnapshot(ctx *pulumi.Context, args *LookupInstanceSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceSnapshotResult
@@ -59,6 +61,8 @@ type LookupInstanceSnapshotArgs struct {
 	// The snapshot name.
 	// Only one of `name` and `snapshotId` should be specified.
 	Name *string `pulumi:"name"`
+	// `projectId`) The ID of the project the snapshot is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The snapshot id.
 	// Only one of `name` and `snapshotId` should be specified.
 	SnapshotId *string `pulumi:"snapshotId"`
@@ -74,7 +78,7 @@ type LookupInstanceSnapshotResult struct {
 	Imports        []GetInstanceSnapshotImport `pulumi:"imports"`
 	Name           *string                     `pulumi:"name"`
 	OrganizationId string                      `pulumi:"organizationId"`
-	ProjectId      string                      `pulumi:"projectId"`
+	ProjectId      *string                     `pulumi:"projectId"`
 	SizeInGb       int                         `pulumi:"sizeInGb"`
 	SnapshotId     *string                     `pulumi:"snapshotId"`
 	Tags           []string                    `pulumi:"tags"`
@@ -101,6 +105,8 @@ type LookupInstanceSnapshotOutputArgs struct {
 	// The snapshot name.
 	// Only one of `name` and `snapshotId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `projectId`) The ID of the project the snapshot is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The snapshot id.
 	// Only one of `name` and `snapshotId` should be specified.
 	SnapshotId pulumi.StringPtrInput `pulumi:"snapshotId"`
@@ -148,8 +154,8 @@ func (o LookupInstanceSnapshotResultOutput) OrganizationId() pulumi.StringOutput
 	return o.ApplyT(func(v LookupInstanceSnapshotResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupInstanceSnapshotResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceSnapshotResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupInstanceSnapshotResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceSnapshotResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupInstanceSnapshotResultOutput) SizeInGb() pulumi.IntOutput {

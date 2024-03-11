@@ -8,10 +8,11 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway IAM Groups.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -22,9 +23,11 @@ import * as utilities from "./utilities";
  *     userIds: [],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With applications
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -35,13 +38,16 @@ import * as utilities from "./utilities";
  *     userIds: [],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * IAM groups can be imported using the `{id}`, e.g. bash
+ * IAM groups can be imported using the `{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IamGroup extends pulumi.CustomResource {
@@ -97,6 +103,10 @@ export class IamGroup extends pulumi.CustomResource {
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
+     * The tags associated with the group.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
      * The date and time of the last update of the group
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
@@ -124,6 +134,7 @@ export class IamGroup extends pulumi.CustomResource {
             resourceInputs["externalMembership"] = state ? state.externalMembership : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userIds"] = state ? state.userIds : undefined;
         } else {
@@ -133,6 +144,7 @@ export class IamGroup extends pulumi.CustomResource {
             resourceInputs["externalMembership"] = args ? args.externalMembership : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userIds"] = args ? args.userIds : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -171,6 +183,10 @@ export interface IamGroupState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The tags associated with the group.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The date and time of the last update of the group
      */
     updatedAt?: pulumi.Input<string>;
@@ -204,6 +220,10 @@ export interface IamGroupArgs {
      * `organizationId`) The ID of the organization the group is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The tags associated with the group.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The list of IDs of the users attached to the group.
      */

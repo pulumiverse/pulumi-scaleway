@@ -16,102 +16,11 @@ import (
 // It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 //
-// ## Example
-//
-// ### Create a gateway network with DHCP
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
-//			if err != nil {
-//				return err
-//			}
-//			gw01, err := scaleway.NewVpcPublicGatewayIp(ctx, "gw01", nil)
-//			if err != nil {
-//				return err
-//			}
-//			dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
-//				Subnet:           pulumi.String("192.168.1.0/24"),
-//				PushDefaultRoute: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
-//				Type: pulumi.String("VPC-GW-S"),
-//				IpId: gw01.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
-//				GatewayId:        pg01.ID(),
-//				PrivateNetworkId: pn01.ID(),
-//				DhcpId:           dhcp01.ID(),
-//				CleanupDhcp:      pulumi.Bool(true),
-//				EnableMasquerade: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Create a gateway network with a static IP address
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
-//			if err != nil {
-//				return err
-//			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
-//				Type: pulumi.String("VPC-GW-S"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
-//				GatewayId:        pg01.ID(),
-//				PrivateNetworkId: pn01.ID(),
-//				EnableDhcp:       pulumi.Bool(false),
-//				EnableMasquerade: pulumi.Bool(true),
-//				StaticAddress:    pulumi.String("192.168.1.42/24"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// ## Example Usage
 //
 // ### Create a gateway network with IPAM config
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -161,15 +70,178 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Create a gateway network with a booked IPAM IP
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.64.0/22"),
+//				},
+//				VpcId: vpc01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//				Address: pulumi.String("172.16.64.7/22"),
+//				Sources: scaleway.IpamIpSourceArray{
+//					&scaleway.IpamIpSourceArgs{
+//						PrivateNetworkId: pn01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				EnableMasquerade: pulumi.Bool(true),
+//				IpamConfigs: scaleway.VpcGatewayNetworkIpamConfigArray{
+//					&scaleway.VpcGatewayNetworkIpamConfigArgs{
+//						PushDefaultRoute: pulumi.Bool(true),
+//						IpamIpId:         ip01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Create a gateway network with DHCP
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			gw01, err := scaleway.NewVpcPublicGatewayIp(ctx, "gw01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet:           pulumi.String("192.168.1.0/24"),
+//				PushDefaultRoute: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//				IpId: gw01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				DhcpId:           dhcp01.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Create a gateway network with a static IP address
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				EnableDhcp:       pulumi.Bool(false),
+//				EnableMasquerade: pulumi.Bool(true),
+//				StaticAddress:    pulumi.String("192.168.1.42/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+// Gateway network can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type VpcGatewayNetwork struct {
 	pulumi.CustomResourceState
@@ -186,7 +258,7 @@ type VpcGatewayNetwork struct {
 	EnableMasquerade pulumi.BoolPtrOutput `pulumi:"enableMasquerade"`
 	// The ID of the public gateway.
 	GatewayId pulumi.StringOutput `pulumi:"gatewayId"`
-	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs VpcGatewayNetworkIpamConfigArrayOutput `pulumi:"ipamConfigs"`
 	// The mac address of the creation of the gateway network.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
@@ -250,7 +322,7 @@ type vpcGatewayNetworkState struct {
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
 	// The ID of the public gateway.
 	GatewayId *string `pulumi:"gatewayId"`
-	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs []VpcGatewayNetworkIpamConfig `pulumi:"ipamConfigs"`
 	// The mac address of the creation of the gateway network.
 	MacAddress *string `pulumi:"macAddress"`
@@ -279,7 +351,7 @@ type VpcGatewayNetworkState struct {
 	EnableMasquerade pulumi.BoolPtrInput
 	// The ID of the public gateway.
 	GatewayId pulumi.StringPtrInput
-	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs VpcGatewayNetworkIpamConfigArrayInput
 	// The mac address of the creation of the gateway network.
 	MacAddress pulumi.StringPtrInput
@@ -310,7 +382,7 @@ type vpcGatewayNetworkArgs struct {
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
 	// The ID of the public gateway.
 	GatewayId string `pulumi:"gatewayId"`
-	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs []VpcGatewayNetworkIpamConfig `pulumi:"ipamConfigs"`
 	// The ID of the private network.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
@@ -332,7 +404,7 @@ type VpcGatewayNetworkArgs struct {
 	EnableMasquerade pulumi.BoolPtrInput
 	// The ID of the public gateway.
 	GatewayId pulumi.StringInput
-	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+	// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs VpcGatewayNetworkIpamConfigArrayInput
 	// The ID of the private network.
 	PrivateNetworkId pulumi.StringInput
@@ -459,7 +531,7 @@ func (o VpcGatewayNetworkOutput) GatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.GatewayId }).(pulumi.StringOutput)
 }
 
-// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 func (o VpcGatewayNetworkOutput) IpamConfigs() VpcGatewayNetworkIpamConfigArrayOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) VpcGatewayNetworkIpamConfigArrayOutput { return v.IpamConfigs }).(VpcGatewayNetworkIpamConfigArrayOutput)
 }

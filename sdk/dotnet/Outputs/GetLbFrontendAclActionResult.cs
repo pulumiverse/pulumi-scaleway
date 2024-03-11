@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbFrontendAclActionResult
     {
+        /// <summary>
+        /// Redirect parameters when using an ACL with `redirect` action
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetLbFrontendAclActionRedirectResult> Redirects;
+        /// <summary>
+        /// The action type
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

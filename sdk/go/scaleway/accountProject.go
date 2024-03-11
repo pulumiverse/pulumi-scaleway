@@ -11,40 +11,14 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manages organization's projects on Scaleway.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewAccountProject(ctx, "project", nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
-// Projects can be imported using the `id`, e.g. bash
+// Projects can be imported using the `id`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
 // ```
 type AccountProject struct {
 	pulumi.CustomResourceState

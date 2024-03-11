@@ -12,14 +12,94 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// ## Example Usage
+//
+// ### Basic
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//				ProductPlan: pulumi.String("plan_shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIotDevice(ctx, "mainIotDevice", &scaleway.IotDeviceArgs{
+//				HubId: mainIotHub.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### With custom certificate
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-local/sdk/go/local"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//				ProductPlan: pulumi.String("plan_shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			deviceCert, err := local.LookupFile(ctx, &local.LookupFileArgs{
+//				Filename: "device-certificate.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIotDevice(ctx, "mainIotDevice", &scaleway.IotDeviceArgs{
+//				HubId: mainIotHub.ID(),
+//				Certificate: &scaleway.IotDeviceCertificateArgs{
+//					Crt: *pulumi.String(deviceCert.Content),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
-// IoT devices can be imported using the `{region}/{id}`, e.g. bash
+// IoT devices can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type IotDevice struct {
 	pulumi.CustomResourceState

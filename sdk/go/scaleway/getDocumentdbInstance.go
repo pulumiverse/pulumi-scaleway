@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupDocumentdbInstance(ctx *pulumi.Context, args *LookupDocumentdbInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDocumentdbInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDocumentdbInstanceResult
@@ -56,6 +58,8 @@ type LookupDocumentdbInstanceArgs struct {
 	// The name of the DocumentDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the DocumentDB instance is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the DocumentDB instance exists.
 	Region *string `pulumi:"region"`
 }
@@ -70,7 +74,7 @@ type LookupDocumentdbInstanceResult struct {
 	Name             *string  `pulumi:"name"`
 	NodeType         string   `pulumi:"nodeType"`
 	Password         string   `pulumi:"password"`
-	ProjectId        string   `pulumi:"projectId"`
+	ProjectId        *string  `pulumi:"projectId"`
 	Region           *string  `pulumi:"region"`
 	Tags             []string `pulumi:"tags"`
 	TelemetryEnabled bool     `pulumi:"telemetryEnabled"`
@@ -100,6 +104,8 @@ type LookupDocumentdbInstanceOutputArgs struct {
 	// The name of the DocumentDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the DocumentDB instance is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the DocumentDB instance exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -152,8 +158,8 @@ func (o LookupDocumentdbInstanceResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-func (o LookupDocumentdbInstanceResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupDocumentdbInstanceResultOutput) Region() pulumi.StringPtrOutput {

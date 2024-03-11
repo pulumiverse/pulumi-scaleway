@@ -15,10 +15,11 @@ import (
 // Creates and manages Scaleway Redis Clusters.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,9 +58,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With settings
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -90,9 +93,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With a private network
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -134,15 +139,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+// Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type RedisCluster struct {
 	pulumi.CustomResourceState
@@ -183,6 +189,7 @@ type RedisCluster struct {
 	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
 	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -196,6 +203,7 @@ type RedisCluster struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	PrivateNetworks RedisClusterPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -311,6 +319,7 @@ type redisClusterState struct {
 	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
 	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -324,6 +333,7 @@ type redisClusterState struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -391,6 +401,7 @@ type RedisClusterState struct {
 	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
 	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -404,6 +415,7 @@ type RedisClusterState struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -471,6 +483,7 @@ type redisClusterArgs struct {
 	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
 	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -484,6 +497,7 @@ type redisClusterArgs struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -546,6 +560,7 @@ type RedisClusterArgs struct {
 	// - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
 	// able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -559,6 +574,7 @@ type RedisClusterArgs struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the Redis Cluster is
 	// associated with.
@@ -731,6 +747,7 @@ func (o RedisClusterOutput) Password() pulumi.StringOutput {
 // - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
 // able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -747,6 +764,7 @@ func (o RedisClusterOutput) Password() pulumi.StringOutput {
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func (o RedisClusterOutput) PrivateNetworks() RedisClusterPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *RedisCluster) RedisClusterPrivateNetworkArrayOutput { return v.PrivateNetworks }).(RedisClusterPrivateNetworkArrayOutput)
 }

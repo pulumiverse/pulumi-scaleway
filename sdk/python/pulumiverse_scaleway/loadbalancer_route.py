@@ -223,10 +223,11 @@ class LoadbalancerRoute(pulumi.CustomResource):
         Creates and manages Scaleway Load-Balancer Routes.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
-        ## Examples
+        ## Example Usage
 
         ### With SNI for direction to TCP backends
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -249,9 +250,11 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_sni="sni.scaleway.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With host-header for direction to HTTP backends
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -274,13 +277,16 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_host_header="host.scaleway.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -306,10 +312,11 @@ class LoadbalancerRoute(pulumi.CustomResource):
         Creates and manages Scaleway Load-Balancer Routes.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
-        ## Examples
+        ## Example Usage
 
         ### With SNI for direction to TCP backends
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -332,9 +339,11 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_sni="sni.scaleway.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With host-header for direction to HTTP backends
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -357,13 +366,16 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_host_header="host.scaleway.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

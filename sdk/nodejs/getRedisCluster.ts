@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     clusterId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRedisCluster(args?: GetRedisClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisClusterResult> {
     args = args || {};
@@ -27,6 +29,7 @@ export function getRedisCluster(args?: GetRedisClusterArgs, opts?: pulumi.Invoke
     return pulumi.runtime.invoke("scaleway:index/getRedisCluster:getRedisCluster", {
         "clusterId": args.clusterId,
         "name": args.name,
+        "projectId": args.projectId,
         "zone": args.zone,
     }, opts);
 }
@@ -45,6 +48,10 @@ export interface GetRedisClusterArgs {
      * Only one of the `name` and `clusterId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the Redis cluster is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The zone in which the server exists.
      */
@@ -68,7 +75,7 @@ export interface GetRedisClusterResult {
     readonly nodeType: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetRedisClusterPrivateNetwork[];
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly publicNetworks: outputs.GetRedisClusterPublicNetwork[];
     readonly settings: {[key: string]: string};
     readonly tags: string[];
@@ -83,6 +90,7 @@ export interface GetRedisClusterResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -91,6 +99,7 @@ export interface GetRedisClusterResult {
  *     clusterId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisClusterResult> {
     return pulumi.output(args).apply((a: any) => getRedisCluster(a, opts))
@@ -110,6 +119,10 @@ export interface GetRedisClusterOutputArgs {
      * Only one of the `name` and `clusterId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the Redis cluster is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The zone in which the server exists.
      */

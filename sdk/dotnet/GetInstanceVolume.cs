@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an instance volume.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInstanceVolumeResult> InvokeAsync(GetInstanceVolumeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an instance volume.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInstanceVolumeResult> Invoke(GetInstanceVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithDefaults());
@@ -78,6 +74,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The volume id.
@@ -108,6 +110,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The volume id.
         /// Only one of `name` and `volume_id` should be specified.
         /// </summary>
@@ -131,7 +139,6 @@ namespace Pulumiverse.Scaleway
     public sealed class GetInstanceVolumeResult
     {
         public readonly string FromSnapshotId;
-        public readonly string FromVolumeId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -141,7 +148,7 @@ namespace Pulumiverse.Scaleway
         /// The ID of the organization the volume is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string ServerId;
         public readonly int SizeInGb;
         public readonly ImmutableArray<string> Tags;
@@ -153,15 +160,13 @@ namespace Pulumiverse.Scaleway
         private GetInstanceVolumeResult(
             string fromSnapshotId,
 
-            string fromVolumeId,
-
             string id,
 
             string? name,
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string serverId,
 
@@ -176,7 +181,6 @@ namespace Pulumiverse.Scaleway
             string? zone)
         {
             FromSnapshotId = fromSnapshotId;
-            FromVolumeId = fromVolumeId;
             Id = id;
             Name = name;
             OrganizationId = organizationId;

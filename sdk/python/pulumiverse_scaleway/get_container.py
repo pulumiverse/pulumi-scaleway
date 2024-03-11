@@ -21,7 +21,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, protocol=None, region=None, registry_image=None, registry_sha256=None, secret_environment_variables=None, status=None, timeout=None):
+    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, secret_environment_variables=None, status=None, timeout=None):
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -76,6 +76,9 @@ class GetContainerResult:
         if privacy and not isinstance(privacy, str):
             raise TypeError("Expected argument 'privacy' to be a str")
         pulumi.set(__self__, "privacy", privacy)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if protocol and not isinstance(protocol, str):
             raise TypeError("Expected argument 'protocol' to be a str")
         pulumi.set(__self__, "protocol", protocol)
@@ -231,6 +234,11 @@ class GetContainerResult:
         return pulumi.get(self, "privacy")
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        return pulumi.get(self, "project_id")
+
+    @property
     @pulumi.getter
     def protocol(self) -> str:
         """
@@ -308,6 +316,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             namespace_id=self.namespace_id,
             port=self.port,
             privacy=self.privacy,
+            project_id=self.project_id,
             protocol=self.protocol,
             region=self.region,
             registry_image=self.registry_image,
@@ -320,6 +329,7 @@ class AwaitableGetContainerResult(GetContainerResult):
 def get_container(container_id: Optional[str] = None,
                   name: Optional[str] = None,
                   namespace_id: Optional[str] = None,
+                  project_id: Optional[str] = None,
                   region: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerResult:
     """
@@ -333,6 +343,7 @@ def get_container(container_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -345,10 +356,12 @@ def get_container(container_id: Optional[str] = None,
     by_id = scaleway.get_container_output(namespace_id=main_container_namespace.id,
         container_id=main_container.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique name of the container name.
     :param str namespace_id: The container namespace ID of the container.
+    :param str project_id: The ID of the project the container is associated with.
            
            > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.
@@ -357,6 +370,7 @@ def get_container(container_id: Optional[str] = None,
     __args__['containerId'] = container_id
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getContainer:getContainer', __args__, opts=opts, typ=GetContainerResult).value
@@ -380,6 +394,7 @@ def get_container(container_id: Optional[str] = None,
         namespace_id=pulumi.get(__ret__, 'namespace_id'),
         port=pulumi.get(__ret__, 'port'),
         privacy=pulumi.get(__ret__, 'privacy'),
+        project_id=pulumi.get(__ret__, 'project_id'),
         protocol=pulumi.get(__ret__, 'protocol'),
         region=pulumi.get(__ret__, 'region'),
         registry_image=pulumi.get(__ret__, 'registry_image'),
@@ -393,6 +408,7 @@ def get_container(container_id: Optional[str] = None,
 def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = None,
                          name: Optional[pulumi.Input[Optional[str]]] = None,
                          namespace_id: Optional[pulumi.Input[str]] = None,
+                         project_id: Optional[pulumi.Input[Optional[str]]] = None,
                          region: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerResult]:
     """
@@ -406,6 +422,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -418,10 +435,12 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
     by_id = scaleway.get_container_output(namespace_id=main_container_namespace.id,
         container_id=main_container.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique name of the container name.
     :param str namespace_id: The container namespace ID of the container.
+    :param str project_id: The ID of the project the container is associated with.
            
            > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.

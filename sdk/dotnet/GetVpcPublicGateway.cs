@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a public gateway.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -47,8 +46,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetVpcPublicGatewayResult> InvokeAsync(GetVpcPublicGatewayArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayArgs(), options.WithDefaults());
@@ -56,10 +54,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a public gateway.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -88,8 +85,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetVpcPublicGatewayResult> Invoke(GetVpcPublicGatewayInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayInvokeArgs(), options.WithDefaults());
@@ -103,6 +99,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the public gateway is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         [Input("publicGatewayId")]
         public string? PublicGatewayId { get; set; }
@@ -127,6 +129,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the public gateway is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("publicGatewayId")]
         public Input<string>? PublicGatewayId { get; set; }
@@ -159,8 +167,9 @@ namespace Pulumiverse.Scaleway
         public readonly string IpId;
         public readonly string? Name;
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? PublicGatewayId;
+        public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string Type;
         public readonly string UpdatedAt;
@@ -185,9 +194,11 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string? publicGatewayId,
+
+            string status,
 
             ImmutableArray<string> tags,
 
@@ -209,6 +220,7 @@ namespace Pulumiverse.Scaleway
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicGatewayId = publicGatewayId;
+            Status = status;
             Tags = tags;
             Type = type;
             UpdatedAt = updatedAt;

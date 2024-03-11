@@ -14,10 +14,11 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway IAM Groups.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,9 +36,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With applications
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -59,13 +62,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// IAM groups can be imported using the `{id}`, e.g. bash
+    /// IAM groups can be imported using the `{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iamGroup:IamGroup")]
@@ -106,6 +112,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags associated with the group.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the last update of the group
@@ -202,6 +214,18 @@ namespace Pulumiverse.Scaleway
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the group.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         [Input("userIds")]
         private InputList<string>? _userIds;
 
@@ -263,6 +287,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the group.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The date and time of the last update of the group

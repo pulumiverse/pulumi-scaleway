@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  *     groupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIamGroup(args?: GetIamGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetIamGroupResult> {
     args = args || {};
@@ -69,6 +71,7 @@ export interface GetIamGroupResult {
     readonly id: string;
     readonly name?: string;
     readonly organizationId?: string;
+    readonly tags: string[];
     readonly updatedAt: string;
     readonly userIds: string[];
 }
@@ -78,6 +81,7 @@ export interface GetIamGroupResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -89,6 +93,7 @@ export interface GetIamGroupResult {
  *     groupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamGroupResult> {
     return pulumi.output(args).apply((a: any) => getIamGroup(a, opts))

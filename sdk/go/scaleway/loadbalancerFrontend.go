@@ -14,10 +14,11 @@ import (
 
 // Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 //
-// ## Examples Usage
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,15 +44,131 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
+// ## With ACLs
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewLoadbalancerFrontend(ctx, "frontend01", &scaleway.LoadbalancerFrontendArgs{
+//				LbId:        pulumi.Any(scaleway_lb.Lb01.Id),
+//				BackendId:   pulumi.Any(scaleway_lb_backend.Backend01.Id),
+//				InboundPort: pulumi.Int(80),
+//				Acls: scaleway.LoadbalancerFrontendAclArray{
+//					&scaleway.LoadbalancerFrontendAclArgs{
+//						Name: pulumi.String("blacklist wellknwon IPs"),
+//						Action: &scaleway.LoadbalancerFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LoadbalancerFrontendAclMatchArgs{
+//							IpSubnets: pulumi.StringArray{
+//								pulumi.String("192.168.0.1"),
+//								pulumi.String("192.168.0.2"),
+//								pulumi.String("192.168.10.0/24"),
+//							},
+//						},
+//					},
+//					&scaleway.LoadbalancerFrontendAclArgs{
+//						Action: &scaleway.LoadbalancerFrontendAclActionArgs{
+//							Type: pulumi.String("deny"),
+//						},
+//						Match: &scaleway.LoadbalancerFrontendAclMatchArgs{
+//							IpSubnets: pulumi.StringArray{
+//								pulumi.String("51.51.51.51"),
+//							},
+//							HttpFilter: pulumi.String("regex"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("^foo*bar$"),
+//							},
+//						},
+//					},
+//					&scaleway.LoadbalancerFrontendAclArgs{
+//						Action: &scaleway.LoadbalancerFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LoadbalancerFrontendAclMatchArgs{
+//							HttpFilter: pulumi.String("path_begin"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("foo"),
+//								pulumi.String("bar"),
+//							},
+//						},
+//					},
+//					&scaleway.LoadbalancerFrontendAclArgs{
+//						Action: &scaleway.LoadbalancerFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LoadbalancerFrontendAclMatchArgs{
+//							HttpFilter: pulumi.String("path_begin"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("hi"),
+//							},
+//							Invert: pulumi.Bool(true),
+//						},
+//					},
+//					&scaleway.LoadbalancerFrontendAclArgs{
+//						Action: &scaleway.LoadbalancerFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LoadbalancerFrontendAclMatchArgs{
+//							HttpFilter:       pulumi.String("http_header_match"),
+//							HttpFilterValues: pulumi.StringArray("foo"),
+//							HttpFilterOption: pulumi.String("bar"),
+//						},
+//					},
+//					&scaleway.LoadbalancerFrontendAclArgs{
+//						Action: &scaleway.LoadbalancerFrontendAclActionArgs{
+//							Type: pulumi.String("redirect"),
+//							Redirects: scaleway.LoadbalancerFrontendAclActionRedirectArray{
+//								&scaleway.LoadbalancerFrontendAclActionRedirectArgs{
+//									Type:   pulumi.String("location"),
+//									Target: pulumi.String("https://example.com"),
+//									Code:   pulumi.Int(307),
+//								},
+//							},
+//						},
+//						Match: &scaleway.LoadbalancerFrontendAclMatchArgs{
+//							IpSubnets: pulumi.StringArray{
+//								pulumi.String("10.0.0.10"),
+//							},
+//							HttpFilter: pulumi.String("path_begin"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("foo"),
+//								pulumi.String("bar"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type LoadbalancerFrontend struct {
 	pulumi.CustomResourceState

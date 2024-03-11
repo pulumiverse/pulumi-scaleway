@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetInstanceSnapshotImportResult
     {
+        /// <summary>
+        /// Bucket containing qcow
+        /// </summary>
         public readonly string Bucket;
+        /// <summary>
+        /// Key of the qcow file in the specified bucket
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

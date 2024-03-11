@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -24,6 +25,7 @@ import * as utilities from "./utilities";
  *     backupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDatabaseBackup(args?: GetDatabaseBackupArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseBackupResult> {
     args = args || {};
@@ -33,6 +35,7 @@ export function getDatabaseBackup(args?: GetDatabaseBackupArgs, opts?: pulumi.In
         "backupId": args.backupId,
         "instanceId": args.instanceId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -56,7 +59,11 @@ export interface GetDatabaseBackupArgs {
      */
     name?: string;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The ID of the project the Database Backup is associated with.
+     */
+    projectId?: string;
+    /**
+     * `region`) The region in which the Database Backup is associated with.
      */
     region?: string;
 }
@@ -76,6 +83,7 @@ export interface GetDatabaseBackupResult {
     readonly instanceId?: string;
     readonly instanceName: string;
     readonly name?: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly size: number;
     readonly updatedAt: string;
@@ -85,6 +93,7 @@ export interface GetDatabaseBackupResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -100,6 +109,7 @@ export interface GetDatabaseBackupResult {
  *     backupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDatabaseBackupOutput(args?: GetDatabaseBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseBackupResult> {
     return pulumi.output(args).apply((a: any) => getDatabaseBackup(a, opts))
@@ -124,7 +134,11 @@ export interface GetDatabaseBackupOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The ID of the project the Database Backup is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the Database Backup is associated with.
      */
     region?: pulumi.Input<string>;
 }

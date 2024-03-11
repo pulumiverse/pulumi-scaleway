@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IamPolicyRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -26,6 +26,10 @@ namespace Pulumiverse.Scaleway.Inputs
         /// Names of permission sets bound to the rule.
         /// 
         /// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        /// 
+        /// ```shell
+        /// $ scw iam permission-set list
+        /// ```
         /// </summary>
         public InputList<string> PermissionSetNames
         {

@@ -204,10 +204,11 @@ class MnqSqsCredentials(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -221,13 +222,16 @@ class MnqSqsCredentials(pulumi.CustomResource):
                 can_publish=False,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SQS credentials can be imported using the `{region}/{id}`, e.g. bash
+        SQS credentials can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
+        $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -248,10 +252,11 @@ class MnqSqsCredentials(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -265,13 +270,16 @@ class MnqSqsCredentials(pulumi.CustomResource):
                 can_publish=False,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SQS credentials can be imported using the `{region}/{id}`, e.g. bash
+        SQS credentials can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
+        $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
         ```
 
         :param str resource_name: The name of the resource.

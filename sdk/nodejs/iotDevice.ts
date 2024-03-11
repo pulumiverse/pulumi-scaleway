@@ -7,12 +7,49 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {hubId: mainIotHub.id});
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### With custom certificate
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as local from "@pulumi/local";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const deviceCert = local.getFile({
+ *     filename: "device-certificate.pem",
+ * });
+ * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {
+ *     hubId: mainIotHub.id,
+ *     certificate: {
+ *         crt: deviceCert.then(deviceCert => deviceCert.content),
+ *     },
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
- * IoT devices can be imported using the `{region}/{id}`, e.g. bash
+ * IoT devices can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IotDevice extends pulumi.CustomResource {

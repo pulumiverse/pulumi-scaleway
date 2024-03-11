@@ -13,10 +13,12 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+    /// Kubernetes pools can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/kubernetesNodePool:KubernetesNodePool")]
@@ -123,13 +125,13 @@ namespace Pulumiverse.Scaleway
         /// The size of the system volume of the nodes in gigabyte
         /// </summary>
         [Output("rootVolumeSizeInGb")]
-        public Output<int?> RootVolumeSizeInGb { get; private set; } = null!;
+        public Output<int> RootVolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
         /// System volume type of the nodes composing the pool
         /// </summary>
         [Output("rootVolumeType")]
-        public Output<string?> RootVolumeType { get; private set; } = null!;
+        public Output<string> RootVolumeType { get; private set; } = null!;
 
         /// <summary>
         /// The size of the pool.

@@ -8,24 +8,29 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Messaging and queuing Nats Accounts.
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+ * To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.MnqNatsAccount("main", {});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g. bash
+ * Namespaces can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
+ * $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
  * ```
  */
 export class MnqNatsAccount extends pulumi.CustomResource {

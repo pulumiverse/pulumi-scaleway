@@ -5,12 +5,43 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Creates and manages Scaleway Secret Versions.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+ *
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.Secret("main", {
+ *     description: "barr",
+ *     tags: [
+ *         "foo",
+ *         "terraform",
+ *     ],
+ * });
+ * const v1 = new scaleway.SecretVersion("v1", {
+ *     description: "version1",
+ *     secretId: main.id,
+ *     data: "my_new_secret",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
- * The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g. ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before. bash
+ * The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+ *
+ * ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
+ * $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
  * ```
  */
 export class SecretVersion extends pulumi.CustomResource {

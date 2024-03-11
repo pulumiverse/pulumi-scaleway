@@ -15,8 +15,9 @@ import (
 // Creates and manages Scaleway Web Hostings.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 //
-// ## Example
+// ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,15 +54,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Hostings can be imported using the `{region}/{id}`, e.g. bash
+// Hostings can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type Webhosting struct {
 	pulumi.CustomResourceState

@@ -15,10 +15,13 @@ namespace Pulumiverse.Scaleway
     /// For further information please check
     /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
+    /// Activate SQS for default project
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,24 +30,46 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // For default project in default region
     ///     var main = new Scaleway.MnqSqs("main");
     /// 
-    ///     // For specific project in default region
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Activate SQS for a specific project
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = Scaleway.GetAccountProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
     ///     var forProject = new Scaleway.MnqSqs("forProject", new()
     ///     {
-    ///         ProjectId = scaleway_account_project.Main.Id,
+    ///         ProjectId = project.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id),
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+    /// SQS status can be imported using the `{region}/{project_id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+    /// $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/mnqSqs:MnqSqs")]

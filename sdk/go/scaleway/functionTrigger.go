@@ -15,10 +15,11 @@ import (
 // Creates and manages Scaleway Function Triggers.
 // For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### SQS
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,15 +48,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Function Triggers can be imported using the `{region}/{id}`, e.g. bash
+// Function Triggers can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type FunctionTrigger struct {
 	pulumi.CustomResourceState

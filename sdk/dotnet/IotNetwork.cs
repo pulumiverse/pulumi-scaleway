@@ -11,12 +11,40 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var mainIotNetwork = new Scaleway.IotNetwork("mainIotNetwork", new()
+    ///     {
+    ///         HubId = mainIotHub.Id,
+    ///         Type = "sigfox",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
-    /// IoT Networks can be imported using the `{region}/{id}`, e.g. bash
+    /// IoT Networks can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iotNetwork:IotNetwork")]

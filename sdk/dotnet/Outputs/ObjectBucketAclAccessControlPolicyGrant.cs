@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketAclAccessControlPolicyGrant
     {
+        /// <summary>
+        /// Configuration block for the project being granted permissions.
+        /// </summary>
         public readonly Outputs.ObjectBucketAclAccessControlPolicyGrantGrantee? Grantee;
+        /// <summary>
+        /// Logging permissions assigned to the grantee for the bucket.
+        /// </summary>
         public readonly string Permission;
 
         [OutputConstructor]

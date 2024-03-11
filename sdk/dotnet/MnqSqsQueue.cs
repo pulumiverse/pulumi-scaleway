@@ -15,10 +15,11 @@ namespace Pulumiverse.Scaleway
     /// For further information please check
     /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,8 +35,8 @@ namespace Pulumiverse.Scaleway
     ///         ProjectId = mainMnqSqs.ProjectId,
     ///         Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs
     ///         {
-    ///             CanManage = false,
-    ///             CanReceive = true,
+    ///             CanManage = true,
+    ///             CanReceive = false,
     ///             CanPublish = false,
     ///         },
     ///     });
@@ -43,21 +44,14 @@ namespace Pulumiverse.Scaleway
     ///     var mainMnqSqsQueue = new Scaleway.MnqSqsQueue("mainMnqSqsQueue", new()
     ///     {
     ///         ProjectId = mainMnqSqs.ProjectId,
-    ///         Endpoint = mainMnqSqs.Endpoint,
+    ///         SqsEndpoint = mainMnqSqs.Endpoint,
     ///         AccessKey = mainMnqSqsCredentials.AccessKey,
     ///         SecretKey = mainMnqSqsCredentials.SecretKey,
     ///     });
     /// 
     /// });
     /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
-    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [ScalewayResourceType("scaleway:index/mnqSqsQueue:MnqSqsQueue")]
     public partial class MnqSqsQueue : global::Pulumi.CustomResource
@@ -73,12 +67,6 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("contentBasedDeduplication")]
         public Output<bool> ContentBasedDeduplication { get; private set; } = null!;
-
-        /// <summary>
-        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        /// </summary>
-        [Output("endpoint")]
-        public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
@@ -133,6 +121,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        /// </summary>
+        [Output("sqsEndpoint")]
+        public Output<string?> SqsEndpoint { get; private set; } = null!;
 
         /// <summary>
         /// The URL of the queue.
@@ -221,12 +215,6 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
         /// <summary>
-        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        /// </summary>
-        [Input("endpoint")]
-        public Input<string>? Endpoint { get; set; }
-
-        /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         /// </summary>
         [Input("fifoQueue")]
@@ -291,6 +279,12 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        /// </summary>
+        [Input("sqsEndpoint")]
+        public Input<string>? SqsEndpoint { get; set; }
+
+        /// <summary>
         /// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         /// </summary>
         [Input("visibilityTimeoutSeconds")]
@@ -325,12 +319,6 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
-
-        /// <summary>
-        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        /// </summary>
-        [Input("endpoint")]
-        public Input<string>? Endpoint { get; set; }
 
         /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
@@ -395,6 +383,12 @@ namespace Pulumiverse.Scaleway
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        /// </summary>
+        [Input("sqsEndpoint")]
+        public Input<string>? SqsEndpoint { get; set; }
 
         /// <summary>
         /// The URL of the queue.

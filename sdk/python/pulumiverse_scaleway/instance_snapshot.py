@@ -331,17 +331,20 @@ class InstanceSnapshot(pulumi.CustomResource):
         For more information,
         see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
 
-        ## Example
+        ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.InstanceSnapshot("main", volume_id="11111111-1111-1111-1111-111111111111")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Example with Unified type
+        ### Example with Unified type snapshot
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -362,9 +365,11 @@ class InstanceSnapshot(pulumi.CustomResource):
             type="unified",
             opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import a local qcow2 file
+        ### Example importing a local qcow2 file
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -381,13 +386,16 @@ class InstanceSnapshot(pulumi.CustomResource):
                 key=qcow.key,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+        Snapshots can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -414,17 +422,20 @@ class InstanceSnapshot(pulumi.CustomResource):
         For more information,
         see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
 
-        ## Example
+        ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.InstanceSnapshot("main", volume_id="11111111-1111-1111-1111-111111111111")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Example with Unified type
+        ### Example with Unified type snapshot
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -445,9 +456,11 @@ class InstanceSnapshot(pulumi.CustomResource):
             type="unified",
             opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import a local qcow2 file
+        ### Example importing a local qcow2 file
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -464,13 +477,16 @@ class InstanceSnapshot(pulumi.CustomResource):
                 key=qcow.key,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+        Snapshots can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

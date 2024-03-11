@@ -270,10 +270,11 @@ class Secret(pulumi.CustomResource):
         Creates and manages Scaleway Secrets.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -285,13 +286,16 @@ class Secret(pulumi.CustomResource):
                 "terraform",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The Secret can be imported using the `{region}/{id}`, e.g. bash
+        The Secret can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -313,10 +317,11 @@ class Secret(pulumi.CustomResource):
         Creates and manages Scaleway Secrets.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -328,13 +333,16 @@ class Secret(pulumi.CustomResource):
                 "terraform",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The Secret can be imported using the `{region}/{id}`, e.g. bash
+        The Secret can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

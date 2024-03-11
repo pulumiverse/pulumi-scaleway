@@ -10,10 +10,11 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway DocumentDB Database read replicas.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -23,9 +24,11 @@ import * as utilities from "./utilities";
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Private network
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -39,13 +42,16 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+ * Database Read replica can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class DocumentdbReadReplica extends pulumi.CustomResource {

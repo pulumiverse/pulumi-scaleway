@@ -165,23 +165,14 @@ class AccountProject(pulumi.CustomResource):
                  organization_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages organization's projects on Scaleway.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        project = scaleway.AccountProject("project")
-        ```
-
         ## Import
 
-        Projects can be imported using the `id`, e.g. bash
+        Projects can be imported using the `id`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -197,23 +188,14 @@ class AccountProject(pulumi.CustomResource):
                  args: Optional[AccountProjectArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages organization's projects on Scaleway.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        project = scaleway.AccountProject("project")
-        ```
-
         ## Import
 
-        Projects can be imported using the `id`, e.g. bash
+        Projects can be imported using the `id`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

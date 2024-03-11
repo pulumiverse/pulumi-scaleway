@@ -15,10 +15,11 @@ import (
 // Creates and manages Scaleway Transactional Email Domains.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,9 +43,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### Add the required records to your DNS zone
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -99,15 +102,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Domains can be imported using the `{region}/{id}`, e.g. bash
+// Domains can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type TemDomain struct {
 	pulumi.CustomResourceState
@@ -123,6 +127,8 @@ type TemDomain struct {
 	LastError pulumi.StringOutput `pulumi:"lastError"`
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt pulumi.StringOutput `pulumi:"lastValidAt"`
+	// The Scaleway's blackhole MX server to use if you do not have one.
+	MxBlackhole pulumi.StringOutput `pulumi:"mxBlackhole"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -132,23 +138,25 @@ type TemDomain struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The domain's reputation.
+	Reputations TemDomainReputationArrayOutput `pulumi:"reputations"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt pulumi.StringOutput `pulumi:"revokedAt"`
-	// SMTP host to use to send emails
+	// The SMTP host to use to send emails.
 	SmtpHost pulumi.StringOutput `pulumi:"smtpHost"`
-	// SMTP port to use to send emails over TLS. (Port 587)
+	// The SMTP port to use to send emails over TLS.
 	SmtpPort pulumi.IntOutput `pulumi:"smtpPort"`
-	// SMTP port to use to send emails over TLS. (Port 2587)
+	// The SMTP port to use to send emails over TLS.
 	SmtpPortAlternative pulumi.IntOutput `pulumi:"smtpPortAlternative"`
-	// SMTP port to use to send emails. (Port 25)
+	// The SMTP port to use to send emails.
 	SmtpPortUnsecure pulumi.IntOutput `pulumi:"smtpPortUnsecure"`
-	// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPort pulumi.IntOutput `pulumi:"smtpsPort"`
-	// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPortAlternative pulumi.IntOutput `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig pulumi.StringOutput `pulumi:"spfConfig"`
-	// The status of the Transaction Email Domain.
+	// The status of the domain's reputation.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -196,6 +204,8 @@ type temDomainState struct {
 	LastError *string `pulumi:"lastError"`
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt *string `pulumi:"lastValidAt"`
+	// The Scaleway's blackhole MX server to use if you do not have one.
+	MxBlackhole *string `pulumi:"mxBlackhole"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
@@ -205,23 +215,25 @@ type temDomainState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
 	Region *string `pulumi:"region"`
+	// The domain's reputation.
+	Reputations []TemDomainReputation `pulumi:"reputations"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt *string `pulumi:"revokedAt"`
-	// SMTP host to use to send emails
+	// The SMTP host to use to send emails.
 	SmtpHost *string `pulumi:"smtpHost"`
-	// SMTP port to use to send emails over TLS. (Port 587)
+	// The SMTP port to use to send emails over TLS.
 	SmtpPort *int `pulumi:"smtpPort"`
-	// SMTP port to use to send emails over TLS. (Port 2587)
+	// The SMTP port to use to send emails over TLS.
 	SmtpPortAlternative *int `pulumi:"smtpPortAlternative"`
-	// SMTP port to use to send emails. (Port 25)
+	// The SMTP port to use to send emails.
 	SmtpPortUnsecure *int `pulumi:"smtpPortUnsecure"`
-	// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPort *int `pulumi:"smtpsPort"`
-	// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPortAlternative *int `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig *string `pulumi:"spfConfig"`
-	// The status of the Transaction Email Domain.
+	// The status of the domain's reputation.
 	Status *string `pulumi:"status"`
 }
 
@@ -237,6 +249,8 @@ type TemDomainState struct {
 	LastError pulumi.StringPtrInput
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt pulumi.StringPtrInput
+	// The Scaleway's blackhole MX server to use if you do not have one.
+	MxBlackhole pulumi.StringPtrInput
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
@@ -246,23 +260,25 @@ type TemDomainState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the domain should be created.
 	Region pulumi.StringPtrInput
+	// The domain's reputation.
+	Reputations TemDomainReputationArrayInput
 	// The date and time of the revocation of the domain (RFC 3339 format).
 	RevokedAt pulumi.StringPtrInput
-	// SMTP host to use to send emails
+	// The SMTP host to use to send emails.
 	SmtpHost pulumi.StringPtrInput
-	// SMTP port to use to send emails over TLS. (Port 587)
+	// The SMTP port to use to send emails over TLS.
 	SmtpPort pulumi.IntPtrInput
-	// SMTP port to use to send emails over TLS. (Port 2587)
+	// The SMTP port to use to send emails over TLS.
 	SmtpPortAlternative pulumi.IntPtrInput
-	// SMTP port to use to send emails. (Port 25)
+	// The SMTP port to use to send emails.
 	SmtpPortUnsecure pulumi.IntPtrInput
-	// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPort pulumi.IntPtrInput
-	// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPortAlternative pulumi.IntPtrInput
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig pulumi.StringPtrInput
-	// The status of the Transaction Email Domain.
+	// The status of the domain's reputation.
 	Status pulumi.StringPtrInput
 }
 
@@ -410,6 +426,11 @@ func (o TemDomainOutput) LastValidAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.LastValidAt }).(pulumi.StringOutput)
 }
 
+// The Scaleway's blackhole MX server to use if you do not have one.
+func (o TemDomainOutput) MxBlackhole() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.MxBlackhole }).(pulumi.StringOutput)
+}
+
 // The domain name, must not be used in another Transactional Email Domain.
 // > **Important:** Updates to `name` will recreate the domain.
 func (o TemDomainOutput) Name() pulumi.StringOutput {
@@ -431,37 +452,42 @@ func (o TemDomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
+// The domain's reputation.
+func (o TemDomainOutput) Reputations() TemDomainReputationArrayOutput {
+	return o.ApplyT(func(v *TemDomain) TemDomainReputationArrayOutput { return v.Reputations }).(TemDomainReputationArrayOutput)
+}
+
 // The date and time of the revocation of the domain (RFC 3339 format).
 func (o TemDomainOutput) RevokedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.RevokedAt }).(pulumi.StringOutput)
 }
 
-// SMTP host to use to send emails
+// The SMTP host to use to send emails.
 func (o TemDomainOutput) SmtpHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.SmtpHost }).(pulumi.StringOutput)
 }
 
-// SMTP port to use to send emails over TLS. (Port 587)
+// The SMTP port to use to send emails over TLS.
 func (o TemDomainOutput) SmtpPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPort }).(pulumi.IntOutput)
 }
 
-// SMTP port to use to send emails over TLS. (Port 2587)
+// The SMTP port to use to send emails over TLS.
 func (o TemDomainOutput) SmtpPortAlternative() pulumi.IntOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPortAlternative }).(pulumi.IntOutput)
 }
 
-// SMTP port to use to send emails. (Port 25)
+// The SMTP port to use to send emails.
 func (o TemDomainOutput) SmtpPortUnsecure() pulumi.IntOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPortUnsecure }).(pulumi.IntOutput)
 }
 
-// SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+// The SMTPS port to use to send emails over TLS Wrapper.
 func (o TemDomainOutput) SmtpsPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpsPort }).(pulumi.IntOutput)
 }
 
-// SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+// The SMTPS port to use to send emails over TLS Wrapper.
 func (o TemDomainOutput) SmtpsPortAlternative() pulumi.IntOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpsPortAlternative }).(pulumi.IntOutput)
 }
@@ -471,7 +497,7 @@ func (o TemDomainOutput) SpfConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.SpfConfig }).(pulumi.StringOutput)
 }
 
-// The status of the Transaction Email Domain.
+// The status of the domain's reputation.
 func (o TemDomainOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

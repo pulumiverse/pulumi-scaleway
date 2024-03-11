@@ -491,12 +491,27 @@ class IotHub(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ### Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.IotHub("main", product_plan="plan_shared")
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
-        IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
+        IoT Hubs can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -523,12 +538,27 @@ class IotHub(pulumi.CustomResource):
                  args: IotHubArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ### Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.IotHub("main", product_plan="plan_shared")
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
-        IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
+        IoT Hubs can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

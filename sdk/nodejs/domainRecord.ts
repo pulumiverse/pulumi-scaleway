@@ -10,10 +10,11 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Domain record.\
  * For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -45,9 +46,11 @@ import * as utilities from "./utilities";
  *     type: "MX",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With dynamic records
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -120,9 +123,11 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Create an instance and add records with the new instance IP
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -163,6 +168,7 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Multiple records
  *
@@ -173,10 +179,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Record can be imported using the `{dns_zone}/{id}`, e.g. bash
+ * Record can be imported using the `{dns_zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class DomainRecord extends pulumi.CustomResource {
@@ -215,6 +223,10 @@ export class DomainRecord extends pulumi.CustomResource {
      * The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
      */
     public readonly dnsZone!: pulumi.Output<string>;
+    /**
+     * The FQDN of the record.
+     */
+    public /*out*/ readonly fqdn!: pulumi.Output<string>;
     /**
      * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
      */
@@ -275,6 +287,7 @@ export class DomainRecord extends pulumi.CustomResource {
             const state = argsOrState as DomainRecordState | undefined;
             resourceInputs["data"] = state ? state.data : undefined;
             resourceInputs["dnsZone"] = state ? state.dnsZone : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["geoIp"] = state ? state.geoIp : undefined;
             resourceInputs["httpService"] = state ? state.httpService : undefined;
             resourceInputs["keepEmptyZone"] = state ? state.keepEmptyZone : undefined;
@@ -309,6 +322,7 @@ export class DomainRecord extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["views"] = args ? args.views : undefined;
             resourceInputs["weighteds"] = args ? args.weighteds : undefined;
+            resourceInputs["fqdn"] = undefined /*out*/;
             resourceInputs["rootZone"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -328,6 +342,10 @@ export interface DomainRecordState {
      * The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
      */
     dnsZone?: pulumi.Input<string>;
+    /**
+     * The FQDN of the record.
+     */
+    fqdn?: pulumi.Input<string>;
     /**
      * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
      */

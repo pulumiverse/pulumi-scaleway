@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class DatabaseInstancePrivateNetwork
     {
         /// <summary>
+        /// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        /// </summary>
+        public readonly bool? EnableIpam;
+        /// <summary>
         /// The ID of the endpoint.
         /// </summary>
         public readonly string? EndpointId;
@@ -26,20 +30,37 @@ namespace Pulumiverse.Scaleway.Outputs
         /// IPv4 address on the network.
         /// </summary>
         public readonly string? Ip;
+        /// <summary>
+        /// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation.
+        /// The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+        /// 
+        /// &gt; **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
+        /// handle the host IP on the network.
+        /// 
+        /// &gt; **Important:** Updates to `private_network` will recreate the Instance's endpoint
+        /// </summary>
         public readonly string? IpNet;
         /// <summary>
         /// The name of the Database Instance.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The ID of the private network.
+        /// </summary>
         public readonly string PnId;
         /// <summary>
         /// Port in the Private Network.
         /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]
         private DatabaseInstancePrivateNetwork(
+            bool? enableIpam,
+
             string? endpointId,
 
             string? hostname,
@@ -56,6 +77,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string? zone)
         {
+            EnableIpam = enableIpam;
             EndpointId = endpointId;
             Hostname = hostname;
             Ip = ip;

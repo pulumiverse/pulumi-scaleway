@@ -14,10 +14,11 @@ import (
 // Creates and manages Scaleway IAM Groups.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,9 +44,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With applications
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -76,15 +79,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// IAM groups can be imported using the `{id}`, e.g. bash
+// IAM groups can be imported using the `{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
 // ```
 type IamGroup struct {
 	pulumi.CustomResourceState
@@ -101,6 +105,8 @@ type IamGroup struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The tags associated with the group.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the group
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The list of IDs of the users attached to the group.
@@ -149,6 +155,8 @@ type iamGroupState struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the group.
+	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the group
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The list of IDs of the users attached to the group.
@@ -168,6 +176,8 @@ type IamGroupState struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the group.
+	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the group
 	UpdatedAt pulumi.StringPtrInput
 	// The list of IDs of the users attached to the group.
@@ -189,6 +199,8 @@ type iamGroupArgs struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the group.
+	Tags []string `pulumi:"tags"`
 	// The list of IDs of the users attached to the group.
 	UserIds []string `pulumi:"userIds"`
 }
@@ -205,6 +217,8 @@ type IamGroupArgs struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the group.
+	Tags pulumi.StringArrayInput
 	// The list of IDs of the users attached to the group.
 	UserIds pulumi.StringArrayInput
 }
@@ -324,6 +338,11 @@ func (o IamGroupOutput) Name() pulumi.StringOutput {
 // `organizationId`) The ID of the organization the group is associated with.
 func (o IamGroupOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamGroup) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The tags associated with the group.
+func (o IamGroupOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IamGroup) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The date and time of the last update of the group

@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -20,16 +21,22 @@ import * as utilities from "./utilities";
  *     key: "value",
  * }});
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Creating the bucket in a specific project
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const someBucket = new scaleway.ObjectBucket("someBucket", {projectId: "11111111-1111-1111-1111-111111111111"});
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Using object lifecycle
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -75,7 +82,7 @@ import * as utilities from "./utilities";
  *                 tag1: "value1",
  *             },
  *             transitions: [{
- *                 days: 0,
+ *                 days: 1,
  *                 storageClass: "GLACIER",
  *             }],
  *         },
@@ -87,19 +94,24 @@ import * as utilities from "./utilities";
  *     region: "fr-par",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+ * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
  * ```
  *
- *  If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+ * If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ObjectBucket extends pulumi.CustomResource {
@@ -137,6 +149,10 @@ export class ObjectBucket extends pulumi.CustomResource {
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
+     * API URL of the bucket
+     */
+    public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
+    /**
      * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
      */
     public readonly corsRules!: pulumi.Output<outputs.ObjectBucketCorsRule[] | undefined>;
@@ -173,6 +189,9 @@ export class ObjectBucket extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * A list of tags (key / value) for the bucket.
+     *
+     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -194,6 +213,7 @@ export class ObjectBucket extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ObjectBucketState | undefined;
             resourceInputs["acl"] = state ? state.acl : undefined;
+            resourceInputs["apiEndpoint"] = state ? state.apiEndpoint : undefined;
             resourceInputs["corsRules"] = state ? state.corsRules : undefined;
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
@@ -216,6 +236,7 @@ export class ObjectBucket extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["versioning"] = args ? args.versioning : undefined;
+            resourceInputs["apiEndpoint"] = undefined /*out*/;
             resourceInputs["endpoint"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -233,6 +254,10 @@ export interface ObjectBucketState {
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
      */
     acl?: pulumi.Input<string>;
+    /**
+     * API URL of the bucket
+     */
+    apiEndpoint?: pulumi.Input<string>;
     /**
      * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
      */
@@ -270,6 +295,9 @@ export interface ObjectBucketState {
     region?: pulumi.Input<string>;
     /**
      * A list of tags (key / value) for the bucket.
+     *
+     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -321,6 +349,9 @@ export interface ObjectBucketArgs {
     region?: pulumi.Input<string>;
     /**
      * A list of tags (key / value) for the bucket.
+     *
+     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

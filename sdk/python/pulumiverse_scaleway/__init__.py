@@ -9,6 +9,8 @@ from .account_project import *
 from .account_ssh_key import *
 from .apple_slicon_valley_server import *
 from .baremetal_server import *
+from .block_snapshot import *
+from .block_volume import *
 from .cockpit import *
 from .cockpit_grafana_user import *
 from .cockpit_token import *
@@ -50,6 +52,8 @@ from .get_baremetal_os import *
 from .get_baremetal_server import *
 from .get_billing_consumptions import *
 from .get_billing_invoices import *
+from .get_block_snapshot import *
+from .get_block_volume import *
 from .get_cockpit import *
 from .get_cockpit_plan import *
 from .get_container import *
@@ -74,6 +78,7 @@ from .get_iam_ssh_key import *
 from .get_iam_user import *
 from .get_instance_image import *
 from .get_instance_ip import *
+from .get_instance_placement_group import *
 from .get_instance_private_nic import *
 from .get_instance_security_group import *
 from .get_instance_server import *
@@ -83,6 +88,7 @@ from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
 from .get_ipam_ip import *
+from .get_ipam_ips import *
 from .get_k8s_version import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
@@ -141,6 +147,9 @@ from .iot_device import *
 from .iot_hub import *
 from .iot_network import *
 from .iot_route import *
+from .ipam_ip import *
+from .ipam_ip_reverse_dns import *
+from .job_definition import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .loadbalancer import *
@@ -150,11 +159,12 @@ from .loadbalancer_certificate import *
 from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
 from .loadbalancer_route import *
-from .mnq_credential import *
-from .mnq_namespace import *
 from .mnq_nats_account import *
 from .mnq_nats_credentials import *
-from .mnq_queue import *
+from .mnq_sns import *
+from .mnq_sns_credentials import *
+from .mnq_sns_topic import *
+from .mnq_sns_topic_subscription import *
 from .mnq_sqs import *
 from .mnq_sqs_credentials import *
 from .mnq_sqs_queue import *
@@ -167,6 +177,7 @@ from .object_item import *
 from .provider import *
 from .redis_cluster import *
 from .registry_namespace import *
+from .sdb_database import *
 from .secret import *
 from .secret_version import *
 from .tem_domain import *
@@ -223,6 +234,22 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/baremetalServer:BaremetalServer": "BaremetalServer"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/blockSnapshot",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/blockSnapshot:BlockSnapshot": "BlockSnapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/blockVolume",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/blockVolume:BlockVolume": "BlockVolume"
   }
  },
  {
@@ -659,6 +686,30 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/ipamIp",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/ipamIp:IpamIp": "IpamIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/ipamIpReverseDns",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/ipamIpReverseDns:IpamIpReverseDns": "IpamIpReverseDns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/jobDefinition",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/jobDefinition:JobDefinition": "JobDefinition"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/kubernetesCluster",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -731,22 +782,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/mnqCredential",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/mnqCredential:MnqCredential": "MnqCredential"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/mnqNamespace",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/mnqNamespace:MnqNamespace": "MnqNamespace"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "index/mnqNatsAccount",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -763,10 +798,34 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/mnqQueue",
+  "mod": "index/mnqSns",
   "fqn": "pulumiverse_scaleway",
   "classes": {
-   "scaleway:index/mnqQueue:MnqQueue": "MnqQueue"
+   "scaleway:index/mnqSns:MnqSns": "MnqSns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSnsCredentials",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mnqSnsCredentials:MnqSnsCredentials": "MnqSnsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSnsTopic",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mnqSnsTopic:MnqSnsTopic": "MnqSnsTopic"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSnsTopicSubscription",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription": "MnqSnsTopicSubscription"
   }
  },
  {
@@ -855,6 +914,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/registryNamespace:RegistryNamespace": "RegistryNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/sdbDatabase",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/sdbDatabase:SdbDatabase": "SdbDatabase"
   }
  },
  {

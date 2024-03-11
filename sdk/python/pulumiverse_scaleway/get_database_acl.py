@@ -83,12 +83,14 @@ def get_database_acl(instance_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_acl = scaleway.get_database_acl(instance_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str instance_id: The RDB instance ID.
@@ -116,12 +118,14 @@ def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_acl = scaleway.get_database_acl(instance_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str instance_id: The RDB instance ID.

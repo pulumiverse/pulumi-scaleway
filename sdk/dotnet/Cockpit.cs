@@ -13,17 +13,19 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// Cockpits can be imported using the `{project_id}`, e.g. bash
+    /// Cockpits can be imported using the `{project_id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/cockpit:Cockpit")]
     public partial class Cockpit : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Endpoints
+        /// Endpoints.
         /// </summary>
         [Output("endpoints")]
         public Output<ImmutableArray<Outputs.CockpitEndpoint>> Endpoints { get; private set; } = null!;
@@ -35,7 +37,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Plan { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the current plan
+        /// The ID of the current plan.
         /// </summary>
         [Output("planId")]
         public Output<string> PlanId { get; private set; } = null!;
@@ -117,7 +119,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitEndpointGetArgs>? _endpoints;
 
         /// <summary>
-        /// Endpoints
+        /// Endpoints.
         /// </summary>
         public InputList<Inputs.CockpitEndpointGetArgs> Endpoints
         {
@@ -132,7 +134,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Plan { get; set; }
 
         /// <summary>
-        /// The ID of the current plan
+        /// The ID of the current plan.
         /// </summary>
         [Input("planId")]
         public Input<string>? PlanId { get; set; }

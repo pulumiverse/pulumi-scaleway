@@ -13,6 +13,9 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class ObjectBucketLockConfigurationRuleGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The default retention for the lock.
+        /// </summary>
         [Input("defaultRetention", required: true)]
         public Input<Inputs.ObjectBucketLockConfigurationRuleDefaultRetentionGetArgs> DefaultRetention { get; set; } = null!;
 

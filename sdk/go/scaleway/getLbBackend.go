@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,6 +60,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetLbBackend(ctx *pulumi.Context, args *GetLbBackendArgs, opts ...pulumi.InvokeOption) (*GetLbBackendResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbBackendResult

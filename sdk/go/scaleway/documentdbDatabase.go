@@ -13,12 +13,13 @@ import (
 )
 
 // Creates and manages Scaleway DocumentDB database.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,15 +43,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
-//
+// $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
 // ```
 type DocumentdbDatabase struct {
 	pulumi.CustomResourceState

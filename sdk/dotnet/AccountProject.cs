@@ -11,29 +11,14 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Manages organization's projects on Scaleway.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var project = new Scaleway.AccountProject("project");
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
-    /// Projects can be imported using the `id`, e.g. bash
+    /// Projects can be imported using the `id`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/accountProject:AccountProject")]

@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -18,6 +19,7 @@ import * as utilities from "./utilities";
  *     bucket: "bucket.test.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getObjectBucketPolicy(args: GetObjectBucketPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketPolicyResult> {
 
@@ -37,9 +39,6 @@ export interface GetObjectBucketPolicyArgs {
      * The bucket name.
      */
     bucket: string;
-    /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     */
     projectId?: string;
     /**
      * `region`) The region in which the Object Storage exists.
@@ -69,6 +68,7 @@ export interface GetObjectBucketPolicyResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -77,6 +77,7 @@ export interface GetObjectBucketPolicyResult {
  *     bucket: "bucket.test.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getObjectBucketPolicyOutput(args: GetObjectBucketPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketPolicyResult> {
     return pulumi.output(args).apply((a: any) => getObjectBucketPolicy(a, opts))
@@ -90,9 +91,6 @@ export interface GetObjectBucketPolicyOutputArgs {
      * The bucket name.
      */
     bucket: pulumi.Input<string>;
-    /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     */
     projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the Object Storage exists.

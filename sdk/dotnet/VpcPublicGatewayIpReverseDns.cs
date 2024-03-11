@@ -14,8 +14,9 @@ namespace Pulumiverse.Scaleway
     /// Manages Scaleway VPC Public Gateways IPs reverse DNS.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,13 +44,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+    /// Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns")]

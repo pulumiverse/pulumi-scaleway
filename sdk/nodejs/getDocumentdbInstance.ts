@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbInstance(args?: GetDocumentdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbInstanceResult> {
     args = args || {};
@@ -25,6 +27,7 @@ export function getDocumentdbInstance(args?: GetDocumentdbInstanceArgs, opts?: p
     return pulumi.runtime.invoke("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -43,6 +46,10 @@ export interface GetDocumentdbInstanceArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the DocumentDB instance is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the DocumentDB instance exists.
      */
@@ -63,7 +70,7 @@ export interface GetDocumentdbInstanceResult {
     readonly name?: string;
     readonly nodeType: string;
     readonly password: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly tags: string[];
     readonly telemetryEnabled: boolean;
@@ -76,6 +83,7 @@ export interface GetDocumentdbInstanceResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -84,6 +92,7 @@ export interface GetDocumentdbInstanceResult {
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbInstanceOutput(args?: GetDocumentdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbInstanceResult> {
     return pulumi.output(args).apply((a: any) => getDocumentdbInstance(a, opts))
@@ -103,6 +112,10 @@ export interface GetDocumentdbInstanceOutputArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the DocumentDB instance is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the DocumentDB instance exists.
      */

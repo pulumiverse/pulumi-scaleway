@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an instance snapshot.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -39,8 +38,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInstanceSnapshotResult> InvokeAsync(GetInstanceSnapshotArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceSnapshotResult>("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args ?? new GetInstanceSnapshotArgs(), options.WithDefaults());
@@ -48,10 +46,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an instance snapshot.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,8 +69,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInstanceSnapshotResult> Invoke(GetInstanceSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceSnapshotResult>("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args ?? new GetInstanceSnapshotInvokeArgs(), options.WithDefaults());
@@ -88,6 +84,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The snapshot id.
@@ -116,6 +118,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The snapshot id.
@@ -148,7 +156,7 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetInstanceSnapshotImportResult> Imports;
         public readonly string? Name;
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly int SizeInGb;
         public readonly string? SnapshotId;
         public readonly ImmutableArray<string> Tags;
@@ -168,7 +176,7 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             int sizeInGb,
 

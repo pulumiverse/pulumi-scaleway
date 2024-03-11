@@ -15,39 +15,49 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class CockpitTokenScopes
     {
         /// <summary>
-        /// Query logs
+        /// Query logs.
         /// </summary>
         public readonly bool? QueryLogs;
         /// <summary>
-        /// Query metrics
+        /// Query metrics.
         /// </summary>
         public readonly bool? QueryMetrics;
         /// <summary>
-        /// Setup alerts
+        /// Query traces.
+        /// </summary>
+        public readonly bool? QueryTraces;
+        /// <summary>
+        /// Setup alerts.
         /// </summary>
         public readonly bool? SetupAlerts;
         /// <summary>
-        /// Setup logs rules
+        /// Setup logs rules.
         /// </summary>
         public readonly bool? SetupLogsRules;
         /// <summary>
-        /// Setup metrics rules
+        /// Setup metrics rules.
         /// </summary>
         public readonly bool? SetupMetricsRules;
         /// <summary>
-        /// Write logs
+        /// Write logs.
         /// </summary>
         public readonly bool? WriteLogs;
         /// <summary>
-        /// Write metrics
+        /// Write metrics.
         /// </summary>
         public readonly bool? WriteMetrics;
+        /// <summary>
+        /// Write traces.
+        /// </summary>
+        public readonly bool? WriteTraces;
 
         [OutputConstructor]
         private CockpitTokenScopes(
             bool? queryLogs,
 
             bool? queryMetrics,
+
+            bool? queryTraces,
 
             bool? setupAlerts,
 
@@ -57,15 +67,19 @@ namespace Pulumiverse.Scaleway.Outputs
 
             bool? writeLogs,
 
-            bool? writeMetrics)
+            bool? writeMetrics,
+
+            bool? writeTraces)
         {
             QueryLogs = queryLogs;
             QueryMetrics = queryMetrics;
+            QueryTraces = queryTraces;
             SetupAlerts = setupAlerts;
             SetupLogsRules = setupLogsRules;
             SetupMetricsRules = setupMetricsRules;
             WriteLogs = writeLogs;
             WriteMetrics = writeMetrics;
+            WriteTraces = writeTraces;
         }
     }
 }

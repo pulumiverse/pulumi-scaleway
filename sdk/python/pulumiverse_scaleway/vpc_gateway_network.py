@@ -33,7 +33,7 @@ class VpcGatewayNetworkArgs:
         :param pulumi.Input[str] dhcp_id: The ID of the public gateway DHCP config. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
-        :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
@@ -130,7 +130,7 @@ class VpcGatewayNetworkArgs:
     @pulumi.getter(name="ipamConfigs")
     def ipam_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]]]:
         """
-        Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "ipam_configs")
 
@@ -187,7 +187,7 @@ class _VpcGatewayNetworkState:
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The mac address of the creation of the gateway network.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -298,7 +298,7 @@ class _VpcGatewayNetworkState:
     @pulumi.getter(name="ipamConfigs")
     def ipam_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]]]:
         """
-        Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "ipam_configs")
 
@@ -399,48 +399,11 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 
-        ## Example
-
-        ### Create a gateway network with DHCP
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        gw01 = scaleway.VpcPublicGatewayIp("gw01")
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
-            subnet="192.168.1.0/24",
-            push_default_route=True)
-        pg01 = scaleway.VpcPublicGateway("pg01",
-            type="VPC-GW-S",
-            ip_id=gw01.id)
-        main = scaleway.VpcGatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            dhcp_id=dhcp01.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True)
-        ```
-
-        ### Create a gateway network with a static IP address
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            enable_dhcp=False,
-            enable_masquerade=True,
-            static_address="192.168.1.42/24")
-        ```
+        ## Example Usage
 
         ### Create a gateway network with IPAM config
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -460,13 +423,88 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                 push_default_route=True,
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create a gateway network with a booked IPAM IP
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.Vpc("vpc01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+                subnet="172.16.64.0/22",
+            ),
+            vpc_id=vpc01.id)
+        ip01 = scaleway.IpamIp("ip01",
+            address="172.16.64.7/22",
+            sources=[scaleway.IpamIpSourceArgs(
+                private_network_id=pn01.id,
+            )])
+        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            enable_masquerade=True,
+            ipam_configs=[scaleway.VpcGatewayNetworkIpamConfigArgs(
+                push_default_route=True,
+                ipam_ip_id=ip01.id,
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create a gateway network with DHCP
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        gw01 = scaleway.VpcPublicGatewayIp("gw01")
+        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
+            subnet="192.168.1.0/24",
+            push_default_route=True)
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            type="VPC-GW-S",
+            ip_id=gw01.id)
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            dhcp_id=dhcp01.id,
+            cleanup_dhcp=True,
+            enable_masquerade=True)
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create a gateway network with a static IP address
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            enable_dhcp=False,
+            enable_masquerade=True,
+            static_address="192.168.1.42/24")
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+        Gateway network can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -476,7 +514,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
@@ -492,48 +530,11 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 
-        ## Example
-
-        ### Create a gateway network with DHCP
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        gw01 = scaleway.VpcPublicGatewayIp("gw01")
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
-            subnet="192.168.1.0/24",
-            push_default_route=True)
-        pg01 = scaleway.VpcPublicGateway("pg01",
-            type="VPC-GW-S",
-            ip_id=gw01.id)
-        main = scaleway.VpcGatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            dhcp_id=dhcp01.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True)
-        ```
-
-        ### Create a gateway network with a static IP address
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            enable_dhcp=False,
-            enable_masquerade=True,
-            static_address="192.168.1.42/24")
-        ```
+        ## Example Usage
 
         ### Create a gateway network with IPAM config
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -553,13 +554,88 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                 push_default_route=True,
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create a gateway network with a booked IPAM IP
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.Vpc("vpc01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+                subnet="172.16.64.0/22",
+            ),
+            vpc_id=vpc01.id)
+        ip01 = scaleway.IpamIp("ip01",
+            address="172.16.64.7/22",
+            sources=[scaleway.IpamIpSourceArgs(
+                private_network_id=pn01.id,
+            )])
+        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            enable_masquerade=True,
+            ipam_configs=[scaleway.VpcGatewayNetworkIpamConfigArgs(
+                push_default_route=True,
+                ipam_ip_id=ip01.id,
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create a gateway network with DHCP
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        gw01 = scaleway.VpcPublicGatewayIp("gw01")
+        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
+            subnet="192.168.1.0/24",
+            push_default_route=True)
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            type="VPC-GW-S",
+            ip_id=gw01.id)
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            dhcp_id=dhcp01.id,
+            cleanup_dhcp=True,
+            enable_masquerade=True)
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create a gateway network with a static IP address
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        main = scaleway.VpcGatewayNetwork("main",
+            gateway_id=pg01.id,
+            private_network_id=pn01.id,
+            enable_dhcp=False,
+            enable_masquerade=True,
+            static_address="192.168.1.42/24")
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+        Gateway network can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -648,7 +724,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_dhcp: Enable DHCP config on this network. It requires DHCP id.
         :param pulumi.Input[bool] enable_masquerade: Enable masquerade on this network
         :param pulumi.Input[str] gateway_id: The ID of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]] ipam_configs: Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The mac address of the creation of the gateway network.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -725,9 +801,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipamConfigs")
-    def ipam_configs(self) -> pulumi.Output[Optional[Sequence['outputs.VpcGatewayNetworkIpamConfig']]]:
+    def ipam_configs(self) -> pulumi.Output[Sequence['outputs.VpcGatewayNetworkIpamConfig']]:
         """
-        Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "ipam_configs")
 

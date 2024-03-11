@@ -134,6 +134,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -142,6 +143,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     main = scaleway.VpcPublicGatewayIp("main")
     ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['ipId'] = ip_id
@@ -171,6 +173,7 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -179,5 +182,6 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     main = scaleway.VpcPublicGatewayIp("main")
     ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,6 +45,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupWebhosting(ctx *pulumi.Context, args *LookupWebhostingArgs, opts ...pulumi.InvokeOption) (*LookupWebhostingResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWebhostingResult

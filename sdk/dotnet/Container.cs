@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,6 +62,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Protocols
     /// 
     /// The supported protocols are:
@@ -99,10 +102,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container can be imported using the `{region}/{id}`, e.g. bash
+    /// Container can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/container:Container")]
@@ -229,7 +234,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> RegistryImage { get; private set; } = null!;
 
         /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         [Output("registrySha256")]
         public Output<string?> RegistrySha256 { get; private set; } = null!;
@@ -412,7 +417,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? RegistryImage { get; set; }
 
         /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }
@@ -580,7 +585,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? RegistryImage { get; set; }
 
         /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }

@@ -216,10 +216,11 @@ class DatabaseUser(pulumi.CustomResource):
         Creates and manages Scaleway Database Users.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -233,13 +234,16 @@ class DatabaseUser(pulumi.CustomResource):
             password=db_password.result,
             is_admin=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+        $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
         ```
 
         :param str resource_name: The name of the resource.
@@ -264,10 +268,11 @@ class DatabaseUser(pulumi.CustomResource):
         Creates and manages Scaleway Database Users.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -281,13 +286,16 @@ class DatabaseUser(pulumi.CustomResource):
             password=db_password.result,
             is_admin=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+        $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
         ```
 
         :param str resource_name: The name of the resource.

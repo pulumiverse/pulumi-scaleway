@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupRedisCluster(ctx *pulumi.Context, args *LookupRedisClusterArgs, opts ...pulumi.InvokeOption) (*LookupRedisClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRedisClusterResult
@@ -56,6 +58,8 @@ type LookupRedisClusterArgs struct {
 	// The name of the Redis cluster.
 	// Only one of the `name` and `clusterId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the Redis cluster is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The zone in which the server exists.
 	Zone *string `pulumi:"zone"`
 }
@@ -73,7 +77,7 @@ type LookupRedisClusterResult struct {
 	NodeType        string                          `pulumi:"nodeType"`
 	Password        string                          `pulumi:"password"`
 	PrivateNetworks []GetRedisClusterPrivateNetwork `pulumi:"privateNetworks"`
-	ProjectId       string                          `pulumi:"projectId"`
+	ProjectId       *string                         `pulumi:"projectId"`
 	PublicNetworks  []GetRedisClusterPublicNetwork  `pulumi:"publicNetworks"`
 	Settings        map[string]string               `pulumi:"settings"`
 	Tags            []string                        `pulumi:"tags"`
@@ -105,6 +109,8 @@ type LookupRedisClusterOutputArgs struct {
 	// The name of the Redis cluster.
 	// Only one of the `name` and `clusterId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the Redis cluster is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The zone in which the server exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -169,8 +175,8 @@ func (o LookupRedisClusterResultOutput) PrivateNetworks() GetRedisClusterPrivate
 	return o.ApplyT(func(v LookupRedisClusterResult) []GetRedisClusterPrivateNetwork { return v.PrivateNetworks }).(GetRedisClusterPrivateNetworkArrayOutput)
 }
 
-func (o LookupRedisClusterResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupRedisClusterResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRedisClusterResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupRedisClusterResultOutput) PublicNetworks() GetRedisClusterPublicNetworkArrayOutput {

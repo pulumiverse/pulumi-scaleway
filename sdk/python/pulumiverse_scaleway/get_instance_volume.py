@@ -21,13 +21,10 @@ class GetInstanceVolumeResult:
     """
     A collection of values returned by getInstanceVolume.
     """
-    def __init__(__self__, from_snapshot_id=None, from_volume_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
+    def __init__(__self__, from_snapshot_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
         if from_snapshot_id and not isinstance(from_snapshot_id, str):
             raise TypeError("Expected argument 'from_snapshot_id' to be a str")
         pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
-        if from_volume_id and not isinstance(from_volume_id, str):
-            raise TypeError("Expected argument 'from_volume_id' to be a str")
-        pulumi.set(__self__, "from_volume_id", from_volume_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -65,11 +62,6 @@ class GetInstanceVolumeResult:
         return pulumi.get(self, "from_snapshot_id")
 
     @property
-    @pulumi.getter(name="fromVolumeId")
-    def from_volume_id(self) -> str:
-        return pulumi.get(self, "from_volume_id")
-
-    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -92,7 +84,7 @@ class GetInstanceVolumeResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -133,7 +125,6 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
             yield self
         return GetInstanceVolumeResult(
             from_snapshot_id=self.from_snapshot_id,
-            from_volume_id=self.from_volume_id,
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
@@ -147,6 +138,7 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
 
 
 def get_instance_volume(name: Optional[str] = None,
+                        project_id: Optional[str] = None,
                         volume_id: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceVolumeResult:
@@ -155,22 +147,26 @@ def get_instance_volume(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The volume name.
            Only one of `name` and `volume_id` should be specified.
+    :param str project_id: The ID of the project the volume is associated with.
     :param str volume_id: The volume id.
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -178,7 +174,6 @@ def get_instance_volume(name: Optional[str] = None,
 
     return AwaitableGetInstanceVolumeResult(
         from_snapshot_id=pulumi.get(__ret__, 'from_snapshot_id'),
-        from_volume_id=pulumi.get(__ret__, 'from_volume_id'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
@@ -193,6 +188,7 @@ def get_instance_volume(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_instance_volume)
 def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceVolumeResult]:
@@ -201,16 +197,19 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The volume name.
            Only one of `name` and `volume_id` should be specified.
+    :param str project_id: The ID of the project the volume is associated with.
     :param str volume_id: The volume id.
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.

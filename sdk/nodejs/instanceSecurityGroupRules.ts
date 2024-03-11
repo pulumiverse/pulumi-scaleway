@@ -13,10 +13,11 @@ import * as utilities from "./utilities";
  *
  * > **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -31,13 +32,16 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Instance security group rules can be imported using the `{zone}/{id}`, e.g. bash
+ * Instance security group rules can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceSecurityGroupRules extends pulumi.CustomResource {

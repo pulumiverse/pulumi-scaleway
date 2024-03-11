@@ -10,11 +10,77 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// Provides an Object bucket lock configuration resource.
+    /// For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Configure an Object Lock for a new bucket
+    /// 
+    /// Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket", new()
+    ///     {
+    ///         Acl = "public-read",
+    ///         ObjectLockEnabled = true,
+    ///     });
+    /// 
+    ///     var mainObjectBucketLockConfiguration = new Scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration", new()
+    ///     {
+    ///         Bucket = mainObjectBucket.Name,
+    ///         Rule = new Scaleway.Inputs.ObjectBucketLockConfigurationRuleArgs
+    ///         {
+    ///             DefaultRetention = new Scaleway.Inputs.ObjectBucketLockConfigurationRuleDefaultRetentionArgs
+    ///             {
+    ///                 Mode = "GOVERNANCE",
+    ///                 Days = 1,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Configure an Object Lock for an existing bucket
+    /// 
+    /// You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+    /// 
+    /// ## Import
+    /// 
+    /// Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket
+    /// ```
+    /// 
+    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+    /// 
+    /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration")]
     public partial class ObjectBucketLockConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The bucket name.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -85,7 +151,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectBucketLockConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The bucket name.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -117,7 +183,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectBucketLockConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The bucket name.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }

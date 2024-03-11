@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,6 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create a token for the cockpit that can write metrics and logs
 //			_, err = scaleway.NewCockpitToken(ctx, "mainCockpitToken", &scaleway.CockpitTokenArgs{
 //				ProjectId: *pulumi.String(mainCockpit.ProjectId),
 //			})
@@ -44,7 +46,9 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -61,6 +65,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create a token for the cockpit that can read metrics and logs but not write
 //			_, err = scaleway.NewCockpitToken(ctx, "mainCockpitToken", &scaleway.CockpitTokenArgs{
 //				ProjectId: *pulumi.String(mainCockpit.ProjectId),
 //				Scopes: &scaleway.CockpitTokenScopesArgs{
@@ -78,26 +83,27 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Cockpits can be imported using the token ID, e.g. bash
+// Cockpits can be imported using the token ID, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
 // ```
 type CockpitToken struct {
 	pulumi.CustomResourceState
 
-	// The name of the token
+	// The name of the token.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes CockpitTokenScopesOutput `pulumi:"scopes"`
-	// The secret key of the token
+	// The secret key of the token.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 }
 
@@ -135,24 +141,24 @@ func GetCockpitToken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitToken resources.
 type cockpitTokenState struct {
-	// The name of the token
+	// The name of the token.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
-	// The secret key of the token
+	// The secret key of the token.
 	SecretKey *string `pulumi:"secretKey"`
 }
 
 type CockpitTokenState struct {
-	// The name of the token
+	// The name of the token.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes CockpitTokenScopesPtrInput
-	// The secret key of the token
+	// The secret key of the token.
 	SecretKey pulumi.StringPtrInput
 }
 
@@ -161,21 +167,21 @@ func (CockpitTokenState) ElementType() reflect.Type {
 }
 
 type cockpitTokenArgs struct {
-	// The name of the token
+	// The name of the token.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
 }
 
 // The set of arguments for constructing a CockpitToken resource.
 type CockpitTokenArgs struct {
-	// The name of the token
+	// The name of the token.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Allowed scopes
+	// Allowed scopes.
 	Scopes CockpitTokenScopesPtrInput
 }
 
@@ -266,7 +272,7 @@ func (o CockpitTokenOutput) ToCockpitTokenOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The name of the token
+// The name of the token.
 func (o CockpitTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -276,12 +282,12 @@ func (o CockpitTokenOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Allowed scopes
+// Allowed scopes.
 func (o CockpitTokenOutput) Scopes() CockpitTokenScopesOutput {
 	return o.ApplyT(func(v *CockpitToken) CockpitTokenScopesOutput { return v.Scopes }).(CockpitTokenScopesOutput)
 }
 
-// The secret key of the token
+// The secret key of the token.
 func (o CockpitTokenOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }

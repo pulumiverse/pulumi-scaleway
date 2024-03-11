@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     lbId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerResult> {
     args = args || {};
@@ -30,6 +32,7 @@ export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.Invoke
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancer:getLoadbalancer", {
         "lbId": args.lbId,
         "name": args.name,
+        "projectId": args.projectId,
         "releaseIp": args.releaseIp,
         "zone": args.zone,
     }, opts);
@@ -44,6 +47,10 @@ export interface GetLoadbalancerArgs {
      * The load balancer name.
      */
     name?: string;
+    /**
+     * The ID of the project the LB is associated with.
+     */
+    projectId?: string;
     releaseIp?: boolean;
     /**
      * (Defaults to provider `zone`) The zone in which the LB exists.
@@ -70,10 +77,7 @@ export interface GetLoadbalancerResult {
     readonly name?: string;
     readonly organizationId: string;
     readonly privateNetworks: outputs.GetLoadbalancerPrivateNetwork[];
-    /**
-     * (Defaults to provider `projectId`) The ID of the project the LB is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region: string;
     readonly releaseIp?: boolean;
     readonly sslCompatibilityLevel: string;
@@ -95,6 +99,7 @@ export interface GetLoadbalancerResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -106,6 +111,7 @@ export interface GetLoadbalancerResult {
  *     lbId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerResult> {
     return pulumi.output(args).apply((a: any) => getLoadbalancer(a, opts))
@@ -120,6 +126,10 @@ export interface GetLoadbalancerOutputArgs {
      * The load balancer name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the LB is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     releaseIp?: pulumi.Input<boolean>;
     /**
      * (Defaults to provider `zone`) The zone in which the LB exists.

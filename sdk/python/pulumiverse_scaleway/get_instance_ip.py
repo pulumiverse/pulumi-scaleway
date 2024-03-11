@@ -148,12 +148,14 @@ def get_instance_ip(address: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str address: The IPv4 address to retrieve
@@ -189,12 +191,14 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str address: The IPv4 address to retrieve

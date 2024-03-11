@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a registry image.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,8 +34,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetRegistryImageResult> InvokeAsync(GetRegistryImageArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageArgs(), options.WithDefaults());
@@ -44,10 +42,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a registry image.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,8 +61,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetRegistryImageResult> Invoke(GetRegistryImageInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageInvokeArgs(), options.WithDefaults());
@@ -202,6 +198,10 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
+        /// The date the image of the last update
+        /// </summary>
+        public readonly string UpdatedAt;
+        /// <summary>
         /// The privacy policy of the registry image.
         /// </summary>
         public readonly string Visibility;
@@ -226,6 +226,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags,
 
+            string updatedAt,
+
             string visibility)
         {
             Id = id;
@@ -237,6 +239,7 @@ namespace Pulumiverse.Scaleway
             Region = region;
             Size = size;
             Tags = tags;
+            UpdatedAt = updatedAt;
             Visibility = visibility;
         }
     }

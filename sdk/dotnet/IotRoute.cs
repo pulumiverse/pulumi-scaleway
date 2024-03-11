@@ -10,53 +10,139 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ### S3 Route
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket", new()
+    ///     {
+    ///         Region = "fr-par",
+    ///     });
+    /// 
+    ///     var mainIotRoute = new Scaleway.IotRoute("mainIotRoute", new()
+    ///     {
+    ///         HubId = mainIotHub.Id,
+    ///         Topic = "#",
+    ///         S3 = new Scaleway.Inputs.IotRouteS3Args
+    ///         {
+    ///             BucketRegion = mainObjectBucket.Region,
+    ///             BucketName = mainObjectBucket.Name,
+    ///             ObjectPrefix = "foo",
+    ///             Strategy = "per_topic",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Rest Route
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var mainIotRoute = new Scaleway.IotRoute("mainIotRoute", new()
+    ///     {
+    ///         HubId = mainIotHub.Id,
+    ///         Topic = "#",
+    ///         Rest = new Scaleway.Inputs.IotRouteRestArgs
+    ///         {
+    ///             Verb = "get",
+    ///             Uri = "http://scaleway.com",
+    ///             Headers = 
+    ///             {
+    ///                 { "X-awesome-header", "my-awesome-value" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// IoT Routes can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/iotRoute:IotRoute route01 fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/iotRoute:IotRoute")]
     public partial class IotRoute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the IoT Route
+        /// The date and time the Route was created.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Database Route parameters
+        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
         /// </summary>
         [Output("database")]
         public Output<Outputs.IotRouteDatabase?> Database { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the route's hub
+        /// The hub ID to which the Route will be attached to.
         /// </summary>
         [Output("hubId")]
         public Output<string> HubId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the route
+        /// The name of the IoT Route you want to create (e.g. `my-route`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// (Defaults to provider `region`) The region in which the Route is attached to.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Rest Route parameters
+        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
         /// </summary>
         [Output("rest")]
         public Output<Outputs.IotRouteRest?> Rest { get; private set; } = null!;
 
         /// <summary>
-        /// S3 Route parameters
+        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         /// </summary>
         [Output("s3")]
         public Output<Outputs.IotRouteS3?> S3 { get; private set; } = null!;
 
         /// <summary>
-        /// The Topic the route subscribes to (wildcards allowed)
+        /// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         /// </summary>
         [Output("topic")]
         public Output<string> Topic { get; private set; } = null!;
@@ -109,43 +195,43 @@ namespace Pulumiverse.Scaleway
     public sealed class IotRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database Route parameters
+        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
         /// </summary>
         [Input("database")]
         public Input<Inputs.IotRouteDatabaseArgs>? Database { get; set; }
 
         /// <summary>
-        /// The ID of the route's hub
+        /// The hub ID to which the Route will be attached to.
         /// </summary>
         [Input("hubId", required: true)]
         public Input<string> HubId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the route
+        /// The name of the IoT Route you want to create (e.g. `my-route`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// (Defaults to provider `region`) The region in which the Route is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Rest Route parameters
+        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
         /// </summary>
         [Input("rest")]
         public Input<Inputs.IotRouteRestArgs>? Rest { get; set; }
 
         /// <summary>
-        /// S3 Route parameters
+        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         /// </summary>
         [Input("s3")]
         public Input<Inputs.IotRouteS3Args>? S3 { get; set; }
 
         /// <summary>
-        /// The Topic the route subscribes to (wildcards allowed)
+        /// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         /// </summary>
         [Input("topic", required: true)]
         public Input<string> Topic { get; set; } = null!;
@@ -159,49 +245,49 @@ namespace Pulumiverse.Scaleway
     public sealed class IotRouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the IoT Route
+        /// The date and time the Route was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Database Route parameters
+        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
         /// </summary>
         [Input("database")]
         public Input<Inputs.IotRouteDatabaseGetArgs>? Database { get; set; }
 
         /// <summary>
-        /// The ID of the route's hub
+        /// The hub ID to which the Route will be attached to.
         /// </summary>
         [Input("hubId")]
         public Input<string>? HubId { get; set; }
 
         /// <summary>
-        /// The name of the route
+        /// The name of the IoT Route you want to create (e.g. `my-route`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// (Defaults to provider `region`) The region in which the Route is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Rest Route parameters
+        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
         /// </summary>
         [Input("rest")]
         public Input<Inputs.IotRouteRestGetArgs>? Rest { get; set; }
 
         /// <summary>
-        /// S3 Route parameters
+        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
         /// </summary>
         [Input("s3")]
         public Input<Inputs.IotRouteS3GetArgs>? S3 { get; set; }
 
         /// <summary>
-        /// The Topic the route subscribes to (wildcards allowed)
+        /// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         /// </summary>
         [Input("topic")]
         public Input<string>? Topic { get; set; }

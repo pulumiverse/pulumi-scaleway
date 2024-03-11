@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -41,13 +42,16 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Container Cron can be imported using the `{region}/{id}`, e.g. bash
+ * Container Cron can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ContainerCron extends pulumi.CustomResource {
@@ -88,6 +92,11 @@ export class ContainerCron extends pulumi.CustomResource {
      */
     public readonly containerId!: pulumi.Output<string>;
     /**
+     * The name of the container cron. If not provided, the name is generated.
+     * during
+     */
+    public readonly name!: pulumi.Output<string>;
+    /**
      * (Defaults to provider `region`) The region
      * in where the job was created.
      */
@@ -117,6 +126,7 @@ export class ContainerCron extends pulumi.CustomResource {
             const state = argsOrState as ContainerCronState | undefined;
             resourceInputs["args"] = state ? state.args : undefined;
             resourceInputs["containerId"] = state ? state.containerId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -133,6 +143,7 @@ export class ContainerCron extends pulumi.CustomResource {
             }
             resourceInputs["args"] = args ? args.args : undefined;
             resourceInputs["containerId"] = args ? args.containerId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["status"] = undefined /*out*/;
@@ -155,6 +166,11 @@ export interface ContainerCronState {
      * The container ID to link with your cron.
      */
     containerId?: pulumi.Input<string>;
+    /**
+     * The name of the container cron. If not provided, the name is generated.
+     * during
+     */
+    name?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region
      * in where the job was created.
@@ -184,6 +200,11 @@ export interface ContainerCronArgs {
      * The container ID to link with your cron.
      */
     containerId: pulumi.Input<string>;
+    /**
+     * The name of the container cron. If not provided, the name is generated.
+     * during
+     */
+    name?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region
      * in where the job was created.

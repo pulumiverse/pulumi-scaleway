@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     volumeId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceVolumeResult> {
     args = args || {};
@@ -24,6 +26,7 @@ export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.In
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceVolume:getInstanceVolume", {
         "name": args.name,
+        "projectId": args.projectId,
         "volumeId": args.volumeId,
         "zone": args.zone,
     }, opts);
@@ -38,6 +41,10 @@ export interface GetInstanceVolumeArgs {
      * Only one of `name` and `volumeId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the volume is associated with.
+     */
+    projectId?: string;
     /**
      * The volume id.
      * Only one of `name` and `volumeId` should be specified.
@@ -54,7 +61,6 @@ export interface GetInstanceVolumeArgs {
  */
 export interface GetInstanceVolumeResult {
     readonly fromSnapshotId: string;
-    readonly fromVolumeId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -64,7 +70,7 @@ export interface GetInstanceVolumeResult {
      * The ID of the organization the volume is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly serverId: string;
     readonly sizeInGb: number;
     readonly tags: string[];
@@ -77,6 +83,7 @@ export interface GetInstanceVolumeResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -85,6 +92,7 @@ export interface GetInstanceVolumeResult {
  *     volumeId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceVolumeResult> {
     return pulumi.output(args).apply((a: any) => getInstanceVolume(a, opts))
@@ -99,6 +107,10 @@ export interface GetInstanceVolumeOutputArgs {
      * Only one of `name` and `volumeId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the volume is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The volume id.
      * Only one of `name` and `volumeId` should be specified.

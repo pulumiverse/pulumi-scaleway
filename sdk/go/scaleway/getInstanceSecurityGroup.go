@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupInstanceSecurityGroup(ctx *pulumi.Context, args *LookupInstanceSecurityGroupArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSecurityGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceSecurityGroupResult
@@ -52,6 +54,8 @@ func LookupInstanceSecurityGroup(ctx *pulumi.Context, args *LookupInstanceSecuri
 type LookupInstanceSecurityGroupArgs struct {
 	// The security group name. Only one of `name` and `securityGroupId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the security group is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The security group id. Only one of `name` and `securityGroupId` should be specified.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// `zone`) The zone in which the security group exists.
@@ -75,13 +79,12 @@ type LookupInstanceSecurityGroupResult struct {
 	// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
 	OutboundDefaultPolicy string `pulumi:"outboundDefaultPolicy"`
 	// A list of outbound rule to add to the security group. (Structure is documented below.)
-	OutboundRules []GetInstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
-	// The ID of the project the security group is associated with.
-	ProjectId       string   `pulumi:"projectId"`
-	SecurityGroupId *string  `pulumi:"securityGroupId"`
-	Stateful        bool     `pulumi:"stateful"`
-	Tags            []string `pulumi:"tags"`
-	Zone            *string  `pulumi:"zone"`
+	OutboundRules   []GetInstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
+	ProjectId       *string                                `pulumi:"projectId"`
+	SecurityGroupId *string                                `pulumi:"securityGroupId"`
+	Stateful        bool                                   `pulumi:"stateful"`
+	Tags            []string                               `pulumi:"tags"`
+	Zone            *string                                `pulumi:"zone"`
 }
 
 func LookupInstanceSecurityGroupOutput(ctx *pulumi.Context, args LookupInstanceSecurityGroupOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceSecurityGroupResultOutput {
@@ -101,6 +104,8 @@ func LookupInstanceSecurityGroupOutput(ctx *pulumi.Context, args LookupInstanceS
 type LookupInstanceSecurityGroupOutputArgs struct {
 	// The security group name. Only one of `name` and `securityGroupId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the security group is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The security group id. Only one of `name` and `securityGroupId` should be specified.
 	SecurityGroupId pulumi.StringPtrInput `pulumi:"securityGroupId"`
 	// `zone`) The zone in which the security group exists.
@@ -174,9 +179,8 @@ func (o LookupInstanceSecurityGroupResultOutput) OutboundRules() GetInstanceSecu
 	}).(GetInstanceSecurityGroupOutboundRuleArrayOutput)
 }
 
-// The ID of the project the security group is associated with.
-func (o LookupInstanceSecurityGroupResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceSecurityGroupResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupInstanceSecurityGroupResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceSecurityGroupResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupInstanceSecurityGroupResultOutput) SecurityGroupId() pulumi.StringPtrOutput {

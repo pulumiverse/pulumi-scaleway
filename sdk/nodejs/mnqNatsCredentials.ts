@@ -9,10 +9,11 @@ import * as utilities from "./utilities";
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -20,13 +21,16 @@ import * as utilities from "./utilities";
  * const mainMnqNatsAccount = new scaleway.MnqNatsAccount("mainMnqNatsAccount", {});
  * const mainMnqNatsCredentials = new scaleway.MnqNatsCredentials("mainMnqNatsCredentials", {accountId: mainMnqNatsAccount.id});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g. bash
+ * Namespaces can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
+ * $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
  * ```
  */
 export class MnqNatsCredentials extends pulumi.CustomResource {

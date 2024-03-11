@@ -215,10 +215,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
         Creates and manages Scaleway Database read replicas.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -239,9 +240,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
             instance_id=instance.id,
             direct_access=scaleway.DatabaseReadReplicaDirectAccessArgs())
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Private network
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -261,13 +264,16 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 service_ip="192.168.1.254/24",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -291,10 +297,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
         Creates and manages Scaleway Database read replicas.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -315,9 +322,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
             instance_id=instance.id,
             direct_access=scaleway.DatabaseReadReplicaDirectAccessArgs())
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Private network
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -337,13 +346,16 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 service_ip="192.168.1.254/24",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

@@ -189,6 +189,7 @@ class _VpcPublicGatewayState:
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -204,6 +205,7 @@ class _VpcPublicGatewayState:
         :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[str] status: The status of the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
         :param pulumi.Input[str] type: The gateway type.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
@@ -226,6 +228,8 @@ class _VpcPublicGatewayState:
             pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
@@ -335,6 +339,18 @@ class _VpcPublicGatewayState:
 
     @property
     @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the public gateway.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The tags associated with the public gateway.
@@ -414,8 +430,9 @@ class VpcPublicGateway(pulumi.CustomResource):
         Creates and manages Scaleway VPC Public Gateway.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
 
-        ## Example
+        ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -427,13 +444,16 @@ class VpcPublicGateway(pulumi.CustomResource):
             ],
             type="VPC-GW-S")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+        Public gateway can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -459,8 +479,9 @@ class VpcPublicGateway(pulumi.CustomResource):
         Creates and manages Scaleway VPC Public Gateway.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
 
-        ## Example
+        ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -472,13 +493,16 @@ class VpcPublicGateway(pulumi.CustomResource):
             ],
             type="VPC-GW-S")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+        Public gateway can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -529,6 +553,7 @@ class VpcPublicGateway(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(VpcPublicGateway, __self__).__init__(
             'scaleway:index/vpcPublicGateway:VpcPublicGateway',
@@ -548,6 +573,7 @@ class VpcPublicGateway(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
@@ -568,6 +594,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[str] status: The status of the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
         :param pulumi.Input[str] type: The gateway type.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
@@ -586,6 +613,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -656,6 +684,14 @@ class VpcPublicGateway(pulumi.CustomResource):
         `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Output[str]:
+        """
+        The status of the public gateway.
+        """
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter

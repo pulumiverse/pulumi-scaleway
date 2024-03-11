@@ -15,10 +15,13 @@ import (
 // For further information please check
 // our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// # Activate SQS for default project
+//
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,8 +38,36 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// # Activate SQS for a specific project
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			_, err = scaleway.NewMnqSqs(ctx, "forProject", &scaleway.MnqSqsArgs{
-//				ProjectId: pulumi.Any(scaleway_account_project.Main.Id),
+//				ProjectId: *pulumi.String(project.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -46,15 +77,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+// SQS status can be imported using the `{region}/{project_id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
-//
+// $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
 // ```
 type MnqSqs struct {
 	pulumi.CustomResourceState

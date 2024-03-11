@@ -13,21 +13,21 @@ import (
 
 // ## Import
 //
-// Cockpits can be imported using the `{project_id}`, e.g. bash
+// Cockpits can be imported using the `{project_id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
 // ```
 type Cockpit struct {
 	pulumi.CustomResourceState
 
-	// Endpoints
+	// Endpoints.
 	Endpoints CockpitEndpointArrayOutput `pulumi:"endpoints"`
 	// Name or ID of the plan to use.
 	Plan pulumi.StringPtrOutput `pulumi:"plan"`
-	// The ID of the current plan
+	// The ID of the current plan.
 	PlanId pulumi.StringOutput `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -63,22 +63,22 @@ func GetCockpit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cockpit resources.
 type cockpitState struct {
-	// Endpoints
+	// Endpoints.
 	Endpoints []CockpitEndpoint `pulumi:"endpoints"`
 	// Name or ID of the plan to use.
 	Plan *string `pulumi:"plan"`
-	// The ID of the current plan
+	// The ID of the current plan.
 	PlanId *string `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 type CockpitState struct {
-	// Endpoints
+	// Endpoints.
 	Endpoints CockpitEndpointArrayInput
 	// Name or ID of the plan to use.
 	Plan pulumi.StringPtrInput
-	// The ID of the current plan
+	// The ID of the current plan.
 	PlanId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -190,7 +190,7 @@ func (o CockpitOutput) ToCockpitOutputWithContext(ctx context.Context) CockpitOu
 	return o
 }
 
-// Endpoints
+// Endpoints.
 func (o CockpitOutput) Endpoints() CockpitEndpointArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitEndpointArrayOutput { return v.Endpoints }).(CockpitEndpointArrayOutput)
 }
@@ -200,7 +200,7 @@ func (o CockpitOutput) Plan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringPtrOutput { return v.Plan }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the current plan
+// The ID of the current plan.
 func (o CockpitOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
 }

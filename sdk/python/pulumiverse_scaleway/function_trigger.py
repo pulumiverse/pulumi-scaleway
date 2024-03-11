@@ -236,10 +236,11 @@ class FunctionTrigger(pulumi.CustomResource):
         Creates and manages Scaleway Function Triggers.
         For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
 
-        ## Examples
+        ## Example Usage
 
         ### SQS
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -252,13 +253,16 @@ class FunctionTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_sqs["main"]["region"],
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Function Triggers can be imported using the `{region}/{id}`, e.g. bash
+        Function Triggers can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -280,10 +284,11 @@ class FunctionTrigger(pulumi.CustomResource):
         Creates and manages Scaleway Function Triggers.
         For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
 
-        ## Examples
+        ## Example Usage
 
         ### SQS
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -296,13 +301,16 @@ class FunctionTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_sqs["main"]["region"],
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Function Triggers can be imported using the `{region}/{id}`, e.g. bash
+        Function Triggers can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

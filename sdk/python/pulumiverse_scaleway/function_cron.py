@@ -17,6 +17,7 @@ class FunctionCronArgs:
                  args: pulumi.Input[str],
                  function_id: pulumi.Input[str],
                  schedule: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FunctionCron resource.
@@ -25,12 +26,15 @@ class FunctionCronArgs:
         :param pulumi.Input[str] function_id: The function ID to link with your cron.
         :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
                executed.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] region: `region`) The region
                in where the job was created.
         """
         pulumi.set(__self__, "args", args)
         pulumi.set(__self__, "function_id", function_id)
         pulumi.set(__self__, "schedule", schedule)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -74,9 +78,21 @@ class FunctionCronArgs:
 
     @property
     @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the cron. If not provided, the name is generated.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        (Defaults to provider `region`) The region
+        `region`) The region
         in where the job was created.
         """
         return pulumi.get(self, "region")
@@ -91,6 +107,7 @@ class _FunctionCronState:
     def __init__(__self__, *,
                  args: Optional[pulumi.Input[str]] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
@@ -99,7 +116,8 @@ class _FunctionCronState:
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
                during
         :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] region: `region`) The region
                in where the job was created.
         :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
                executed.
@@ -109,6 +127,8 @@ class _FunctionCronState:
             pulumi.set(__self__, "args", args)
         if function_id is not None:
             pulumi.set(__self__, "function_id", function_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if schedule is not None:
@@ -143,9 +163,21 @@ class _FunctionCronState:
 
     @property
     @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the cron. If not provided, the name is generated.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        (Defaults to provider `region`) The region
+        `region`) The region
         in where the job was created.
         """
         return pulumi.get(self, "region")
@@ -187,6 +219,7 @@ class FunctionCron(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  args: Optional[pulumi.Input[str]] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -201,6 +234,7 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -225,13 +259,16 @@ class FunctionCron(pulumi.CustomResource):
                 "my_var": "terraform",
             }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g. bash
+        Container Cron can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -239,7 +276,8 @@ class FunctionCron(pulumi.CustomResource):
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
                during
         :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] region: `region`) The region
                in where the job was created.
         :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
                executed.
@@ -261,6 +299,7 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -285,13 +324,16 @@ class FunctionCron(pulumi.CustomResource):
                 "my_var": "terraform",
             }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g. bash
+        Container Cron can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -311,6 +353,7 @@ class FunctionCron(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  args: Optional[pulumi.Input[str]] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -328,6 +371,7 @@ class FunctionCron(pulumi.CustomResource):
             if function_id is None and not opts.urn:
                 raise TypeError("Missing required property 'function_id'")
             __props__.__dict__["function_id"] = function_id
+            __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
@@ -345,6 +389,7 @@ class FunctionCron(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             args: Optional[pulumi.Input[str]] = None,
             function_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None) -> 'FunctionCron':
@@ -358,7 +403,8 @@ class FunctionCron(pulumi.CustomResource):
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
                during
         :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] region: `region`) The region
                in where the job was created.
         :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
                executed.
@@ -370,6 +416,7 @@ class FunctionCron(pulumi.CustomResource):
 
         __props__.__dict__["args"] = args
         __props__.__dict__["function_id"] = function_id
+        __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["status"] = status
@@ -394,9 +441,17 @@ class FunctionCron(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        The name of the cron. If not provided, the name is generated.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        (Defaults to provider `region`) The region
+        `region`) The region
         in where the job was created.
         """
         return pulumi.get(self, "region")

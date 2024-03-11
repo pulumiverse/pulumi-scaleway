@@ -14,12 +14,18 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetDatabaseInstanceReadReplicaResult
     {
+        /// <summary>
+        /// IP of the replica
+        /// </summary>
         public readonly string Ip;
         /// <summary>
         /// The name of the RDB instance.
         /// Only one of `name` and `instance_id` should be specified.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Port of the replica
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

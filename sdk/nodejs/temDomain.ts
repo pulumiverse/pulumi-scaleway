@@ -2,25 +2,30 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Transactional Email Domains.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.TemDomain("main", {acceptTos: true});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Add the required records to your DNS zone
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -44,13 +49,16 @@ import * as utilities from "./utilities";
  *     data: ".",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Domains can be imported using the `{region}/{id}`, e.g. bash
+ * Domains can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class TemDomain extends pulumi.CustomResource {
@@ -103,6 +111,10 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public /*out*/ readonly lastValidAt!: pulumi.Output<string>;
     /**
+     * The Scaleway's blackhole MX server to use if you do not have one.
+     */
+    public /*out*/ readonly mxBlackhole!: pulumi.Output<string>;
+    /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
      */
@@ -120,31 +132,35 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
+     * The domain's reputation.
+     */
+    public /*out*/ readonly reputations!: pulumi.Output<outputs.TemDomainReputation[]>;
+    /**
      * The date and time of the revocation of the domain (RFC 3339 format).
      */
     public /*out*/ readonly revokedAt!: pulumi.Output<string>;
     /**
-     * SMTP host to use to send emails
+     * The SMTP host to use to send emails.
      */
     public /*out*/ readonly smtpHost!: pulumi.Output<string>;
     /**
-     * SMTP port to use to send emails over TLS. (Port 587)
+     * The SMTP port to use to send emails over TLS.
      */
     public /*out*/ readonly smtpPort!: pulumi.Output<number>;
     /**
-     * SMTP port to use to send emails over TLS. (Port 2587)
+     * The SMTP port to use to send emails over TLS.
      */
     public /*out*/ readonly smtpPortAlternative!: pulumi.Output<number>;
     /**
-     * SMTP port to use to send emails. (Port 25)
+     * The SMTP port to use to send emails.
      */
     public /*out*/ readonly smtpPortUnsecure!: pulumi.Output<number>;
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      */
     public /*out*/ readonly smtpsPort!: pulumi.Output<number>;
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      */
     public /*out*/ readonly smtpsPortAlternative!: pulumi.Output<number>;
     /**
@@ -152,7 +168,7 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public /*out*/ readonly spfConfig!: pulumi.Output<string>;
     /**
-     * The status of the Transaction Email Domain.
+     * The status of the domain's reputation.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
@@ -174,10 +190,12 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["dkimConfig"] = state ? state.dkimConfig : undefined;
             resourceInputs["lastError"] = state ? state.lastError : undefined;
             resourceInputs["lastValidAt"] = state ? state.lastValidAt : undefined;
+            resourceInputs["mxBlackhole"] = state ? state.mxBlackhole : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nextCheckAt"] = state ? state.nextCheckAt : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["reputations"] = state ? state.reputations : undefined;
             resourceInputs["revokedAt"] = state ? state.revokedAt : undefined;
             resourceInputs["smtpHost"] = state ? state.smtpHost : undefined;
             resourceInputs["smtpPort"] = state ? state.smtpPort : undefined;
@@ -200,7 +218,9 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["dkimConfig"] = undefined /*out*/;
             resourceInputs["lastError"] = undefined /*out*/;
             resourceInputs["lastValidAt"] = undefined /*out*/;
+            resourceInputs["mxBlackhole"] = undefined /*out*/;
             resourceInputs["nextCheckAt"] = undefined /*out*/;
+            resourceInputs["reputations"] = undefined /*out*/;
             resourceInputs["revokedAt"] = undefined /*out*/;
             resourceInputs["smtpHost"] = undefined /*out*/;
             resourceInputs["smtpPort"] = undefined /*out*/;
@@ -242,6 +262,10 @@ export interface TemDomainState {
      */
     lastValidAt?: pulumi.Input<string>;
     /**
+     * The Scaleway's blackhole MX server to use if you do not have one.
+     */
+    mxBlackhole?: pulumi.Input<string>;
+    /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
      */
@@ -259,31 +283,35 @@ export interface TemDomainState {
      */
     region?: pulumi.Input<string>;
     /**
+     * The domain's reputation.
+     */
+    reputations?: pulumi.Input<pulumi.Input<inputs.TemDomainReputation>[]>;
+    /**
      * The date and time of the revocation of the domain (RFC 3339 format).
      */
     revokedAt?: pulumi.Input<string>;
     /**
-     * SMTP host to use to send emails
+     * The SMTP host to use to send emails.
      */
     smtpHost?: pulumi.Input<string>;
     /**
-     * SMTP port to use to send emails over TLS. (Port 587)
+     * The SMTP port to use to send emails over TLS.
      */
     smtpPort?: pulumi.Input<number>;
     /**
-     * SMTP port to use to send emails over TLS. (Port 2587)
+     * The SMTP port to use to send emails over TLS.
      */
     smtpPortAlternative?: pulumi.Input<number>;
     /**
-     * SMTP port to use to send emails. (Port 25)
+     * The SMTP port to use to send emails.
      */
     smtpPortUnsecure?: pulumi.Input<number>;
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      */
     smtpsPort?: pulumi.Input<number>;
     /**
-     * SMTPS port to use to send emails over TLS Wrapper. (Port 2465)
+     * The SMTPS port to use to send emails over TLS Wrapper.
      */
     smtpsPortAlternative?: pulumi.Input<number>;
     /**
@@ -291,7 +319,7 @@ export interface TemDomainState {
      */
     spfConfig?: pulumi.Input<string>;
     /**
-     * The status of the Transaction Email Domain.
+     * The status of the domain's reputation.
      */
     status?: pulumi.Input<string>;
 }

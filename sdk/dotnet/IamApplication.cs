@@ -15,6 +15,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,13 +31,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Applications can be imported using the `{id}`, e.g. bash
+    /// Applications can be imported using the `{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iamApplication:IamApplication")]
@@ -61,7 +65,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool> Editable { get; private set; } = null!;
 
         /// <summary>
-        /// .The name of the iam application.
+        /// The name of the iam application.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -71,6 +75,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags associated with the application.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the last update of the application.
@@ -132,7 +142,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// .The name of the iam application.
+        /// The name of the iam application.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -142,6 +152,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the application.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         public IamApplicationArgs()
         {
@@ -170,7 +192,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Editable { get; set; }
 
         /// <summary>
-        /// .The name of the iam application.
+        /// The name of the iam application.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -180,6 +202,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the application.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The date and time of the last update of the application.

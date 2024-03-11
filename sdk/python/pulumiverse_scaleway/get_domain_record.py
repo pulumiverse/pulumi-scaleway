@@ -22,13 +22,16 @@ class GetDomainRecordResult:
     """
     A collection of values returned by getDomainRecord.
     """
-    def __init__(__self__, data=None, dns_zone=None, geo_ips=None, http_services=None, id=None, keep_empty_zone=None, name=None, priority=None, project_id=None, record_id=None, root_zone=None, ttl=None, type=None, views=None, weighteds=None):
+    def __init__(__self__, data=None, dns_zone=None, fqdn=None, geo_ips=None, http_services=None, id=None, keep_empty_zone=None, name=None, priority=None, project_id=None, record_id=None, root_zone=None, ttl=None, type=None, views=None, weighteds=None):
         if data and not isinstance(data, str):
             raise TypeError("Expected argument 'data' to be a str")
         pulumi.set(__self__, "data", data)
         if dns_zone and not isinstance(dns_zone, str):
             raise TypeError("Expected argument 'dns_zone' to be a str")
         pulumi.set(__self__, "dns_zone", dns_zone)
+        if fqdn and not isinstance(fqdn, str):
+            raise TypeError("Expected argument 'fqdn' to be a str")
+        pulumi.set(__self__, "fqdn", fqdn)
         if geo_ips and not isinstance(geo_ips, list):
             raise TypeError("Expected argument 'geo_ips' to be a list")
         pulumi.set(__self__, "geo_ips", geo_ips)
@@ -80,6 +83,11 @@ class GetDomainRecordResult:
         return pulumi.get(self, "dns_zone")
 
     @property
+    @pulumi.getter
+    def fqdn(self) -> str:
+        return pulumi.get(self, "fqdn")
+
+    @property
     @pulumi.getter(name="geoIps")
     def geo_ips(self) -> Sequence['outputs.GetDomainRecordGeoIpResult']:
         """
@@ -123,7 +131,7 @@ class GetDomainRecordResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -174,6 +182,7 @@ class AwaitableGetDomainRecordResult(GetDomainRecordResult):
         return GetDomainRecordResult(
             data=self.data,
             dns_zone=self.dns_zone,
+            fqdn=self.fqdn,
             geo_ips=self.geo_ips,
             http_services=self.http_services,
             id=self.id,
@@ -192,6 +201,7 @@ class AwaitableGetDomainRecordResult(GetDomainRecordResult):
 def get_domain_record(data: Optional[str] = None,
                       dns_zone: Optional[str] = None,
                       name: Optional[str] = None,
+                      project_id: Optional[str] = None,
                       record_id: Optional[str] = None,
                       type: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainRecordResult:
@@ -200,6 +210,7 @@ def get_domain_record(data: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -211,6 +222,7 @@ def get_domain_record(data: Optional[str] = None,
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
@@ -218,6 +230,7 @@ def get_domain_record(data: Optional[str] = None,
     :param str dns_zone: The IP address.
     :param str name: The name of the record (can be an empty string for a root record).
            Cannot be used with `record_id`.
+    :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str record_id: The record ID.
            Cannot be used with `name`, `type` and `data`.
     :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
@@ -227,6 +240,7 @@ def get_domain_record(data: Optional[str] = None,
     __args__['data'] = data
     __args__['dnsZone'] = dns_zone
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['recordId'] = record_id
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -235,6 +249,7 @@ def get_domain_record(data: Optional[str] = None,
     return AwaitableGetDomainRecordResult(
         data=pulumi.get(__ret__, 'data'),
         dns_zone=pulumi.get(__ret__, 'dns_zone'),
+        fqdn=pulumi.get(__ret__, 'fqdn'),
         geo_ips=pulumi.get(__ret__, 'geo_ips'),
         http_services=pulumi.get(__ret__, 'http_services'),
         id=pulumi.get(__ret__, 'id'),
@@ -254,6 +269,7 @@ def get_domain_record(data: Optional[str] = None,
 def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
                              dns_zone: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
+                             project_id: Optional[pulumi.Input[Optional[str]]] = None,
                              record_id: Optional[pulumi.Input[Optional[str]]] = None,
                              type: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainRecordResult]:
@@ -262,6 +278,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -273,6 +290,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
@@ -280,6 +298,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     :param str dns_zone: The IP address.
     :param str name: The name of the record (can be an empty string for a root record).
            Cannot be used with `record_id`.
+    :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str record_id: The record ID.
            Cannot be used with `name`, `type` and `data`.
     :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).

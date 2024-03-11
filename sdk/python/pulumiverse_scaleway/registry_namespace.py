@@ -242,10 +242,11 @@ class RegistryNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Container Registry.
         For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -254,13 +255,16 @@ class RegistryNamespace(pulumi.CustomResource):
             description="Main container registry",
             is_public=False)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+        Namespaces can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -283,10 +287,11 @@ class RegistryNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Container Registry.
         For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -295,13 +300,16 @@ class RegistryNamespace(pulumi.CustomResource):
             description="Main container registry",
             is_public=False)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+        Namespaces can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

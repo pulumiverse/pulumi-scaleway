@@ -13,12 +13,12 @@ import (
 
 // ## Import
 //
-// Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+// Instance security group can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceSecurityGroup struct {
 	pulumi.CustomResourceState

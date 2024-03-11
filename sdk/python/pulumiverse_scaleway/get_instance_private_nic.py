@@ -118,6 +118,7 @@ def get_instance_private_nic(private_network_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -129,6 +130,7 @@ def get_instance_private_nic(private_network_id: Optional[str] = None,
     by_tags = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         tags=["mytag"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str private_network_id: The ID of the private network
@@ -172,6 +174,7 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -183,6 +186,7 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
     by_tags = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         tags=["mytag"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str private_network_id: The ID of the private network

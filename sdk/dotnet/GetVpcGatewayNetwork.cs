@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a gateway network.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -50,8 +49,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetVpcGatewayNetworkResult> InvokeAsync(GetVpcGatewayNetworkArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcGatewayNetworkResult>("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args ?? new GetVpcGatewayNetworkArgs(), options.WithDefaults());
@@ -59,10 +57,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a gateway network.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -94,8 +91,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetVpcGatewayNetworkResult> Invoke(GetVpcGatewayNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcGatewayNetworkResult>("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args ?? new GetVpcGatewayNetworkInvokeArgs(), options.WithDefaults());

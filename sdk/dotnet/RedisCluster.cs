@@ -14,10 +14,11 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Redis Clusters.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -51,9 +52,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With settings
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -77,9 +80,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With a private network
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -118,13 +123,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+    /// Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/redisCluster:RedisCluster")]
@@ -195,6 +203,7 @@ namespace Pulumiverse.Scaleway
         /// - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won't be
         /// able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -204,6 +213,7 @@ namespace Pulumiverse.Scaleway
         /// {
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.RedisClusterPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
@@ -394,6 +404,7 @@ namespace Pulumiverse.Scaleway
         /// - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won't be
         /// able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -403,6 +414,7 @@ namespace Pulumiverse.Scaleway
         /// {
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkArgs> PrivateNetworks
         {
@@ -571,6 +583,7 @@ namespace Pulumiverse.Scaleway
         /// - Cluster mode (`cluster_size` &gt; 1) : you can define a single private network as you create your cluster, you won't be
         /// able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -580,6 +593,7 @@ namespace Pulumiverse.Scaleway
         /// {
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkGetArgs> PrivateNetworks
         {

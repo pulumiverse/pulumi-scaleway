@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a function.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myFunction = scaleway.getFunction({
+ *     functionId: "11111111-1111-1111-1111-111111111111",
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -11,6 +28,8 @@ export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions):
         "functionId": args.functionId,
         "name": args.name,
         "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
     }, opts);
 }
 
@@ -18,9 +37,26 @@ export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getFunction.
  */
 export interface GetFunctionArgs {
+    /**
+     * The function id. Only one of `name` and `functionId` should be specified.
+     */
     functionId?: string;
+    /**
+     * The function name. Only one of `name` and `namespaceId` should be specified.
+     */
     name?: string;
+    /**
+     * The namespace id associated with this function.
+     */
     namespaceId: string;
+    /**
+     * The ID of the project the function is associated with.
+     */
+    projectId?: string;
+    /**
+     * `region`) The region in which the function exists.
+     */
+    region?: string;
 }
 
 /**
@@ -46,14 +82,31 @@ export interface GetFunctionResult {
     readonly namespaceId: string;
     readonly organizationId: string;
     readonly privacy: string;
-    readonly projectId: string;
-    readonly region: string;
+    readonly projectId?: string;
+    readonly region?: string;
     readonly runtime: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
     readonly timeout: number;
     readonly zipFile: string;
     readonly zipHash: string;
 }
+/**
+ * Gets information about a function.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const myFunction = scaleway.getFunction({
+ *     functionId: "11111111-1111-1111-1111-111111111111",
+ *     namespaceId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionResult> {
     return pulumi.output(args).apply((a: any) => getFunction(a, opts))
 }
@@ -62,7 +115,24 @@ export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getFunction.
  */
 export interface GetFunctionOutputArgs {
+    /**
+     * The function id. Only one of `name` and `functionId` should be specified.
+     */
     functionId?: pulumi.Input<string>;
+    /**
+     * The function name. Only one of `name` and `namespaceId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace id associated with this function.
+     */
     namespaceId: pulumi.Input<string>;
+    /**
+     * The ID of the project the function is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the function exists.
+     */
+    region?: pulumi.Input<string>;
 }

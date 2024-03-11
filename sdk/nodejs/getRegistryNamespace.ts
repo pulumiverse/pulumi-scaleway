@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceResult> {
     args = args || {};
@@ -25,6 +27,7 @@ export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pul
     return pulumi.runtime.invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", {
         "name": args.name,
         "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -43,6 +46,10 @@ export interface GetRegistryNamespaceArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: string;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the namespace exists.
      */
@@ -72,7 +79,7 @@ export interface GetRegistryNamespaceResult {
      * The organization ID the namespace is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
 }
 /**
@@ -80,6 +87,7 @@ export interface GetRegistryNamespaceResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -88,6 +96,7 @@ export interface GetRegistryNamespaceResult {
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryNamespaceResult> {
     return pulumi.output(args).apply((a: any) => getRegistryNamespace(a, opts))
@@ -107,6 +116,10 @@ export interface GetRegistryNamespaceOutputArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the namespace exists.
      */

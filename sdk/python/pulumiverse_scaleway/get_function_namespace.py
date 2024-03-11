@@ -100,7 +100,7 @@ class GetFunctionNamespaceResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -151,6 +151,7 @@ class AwaitableGetFunctionNamespaceResult(GetFunctionNamespaceResult):
 
 def get_function_namespace(name: Optional[str] = None,
                            namespace_id: Optional[str] = None,
+                           project_id: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionNamespaceResult:
     """
@@ -158,23 +159,27 @@ def get_function_namespace(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_namespace = scaleway.get_function_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The namespace name.
            Only one of `name` and `namespace_id` should be specified.
     :param str namespace_id: The namespace id.
            Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
     :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getFunctionNamespace:getFunctionNamespace', __args__, opts=opts, typ=GetFunctionNamespaceResult).value
@@ -196,6 +201,7 @@ def get_function_namespace(name: Optional[str] = None,
 @_utilities.lift_output_func(get_function_namespace)
 def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                   namespace_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
@@ -203,18 +209,21 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_namespace = scaleway.get_function_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The namespace name.
            Only one of `name` and `namespace_id` should be specified.
     :param str namespace_id: The namespace id.
            Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
     :param str region: `region`) The region in which the namespace exists.
     """
     ...

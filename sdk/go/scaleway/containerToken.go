@@ -14,10 +14,11 @@ import (
 // Creates and manages Scaleway Container Token.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#tokens-26b085).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Namespace Token
 //			_, err = scaleway.NewContainerToken(ctx, "namespace", &scaleway.ContainerTokenArgs{
 //				NamespaceId: mainContainerNamespace.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
@@ -47,6 +49,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Container Token
 //			_, err = scaleway.NewContainerToken(ctx, "container", &scaleway.ContainerTokenArgs{
 //				ContainerId: mainContainer.ID(),
 //			})
@@ -58,15 +61,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Tokens can be imported using the `{region}/{id}`, e.g. bash
+// Tokens can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type ContainerToken struct {
 	pulumi.CustomResourceState

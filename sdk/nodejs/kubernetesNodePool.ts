@@ -9,10 +9,12 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+ * Kubernetes pools can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class KubernetesNodePool extends pulumi.CustomResource {
@@ -113,11 +115,11 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     /**
      * The size of the system volume of the nodes in gigabyte
      */
-    public readonly rootVolumeSizeInGb!: pulumi.Output<number | undefined>;
+    public readonly rootVolumeSizeInGb!: pulumi.Output<number>;
     /**
      * System volume type of the nodes composing the pool
      */
-    public readonly rootVolumeType!: pulumi.Output<string | undefined>;
+    public readonly rootVolumeType!: pulumi.Output<string>;
     /**
      * The size of the pool.
      * > **Important:** This field will only be used at creation if autoscaling is enabled.

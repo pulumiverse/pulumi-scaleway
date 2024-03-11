@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an instance server.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInstanceServerResult> InvokeAsync(GetInstanceServerArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an instance server.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInstanceServerResult> Invoke(GetInstanceServerInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerInvokeArgs(), options.WithDefaults());
@@ -77,6 +73,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the instance server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The server id. Only one of `name` and `server_id` should be specified.
@@ -103,6 +105,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the instance server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The server id. Only one of `name` and `server_id` should be specified.
@@ -185,10 +193,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string PrivateIp;
         public readonly ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> PrivateNetworks;
-        /// <summary>
-        /// The ID of the project the server is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The public IP address of the server.
         /// </summary>
@@ -267,7 +272,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             string publicIp,
 

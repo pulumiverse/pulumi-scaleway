@@ -160,7 +160,7 @@ class GetIotHubResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -208,6 +208,7 @@ class AwaitableGetIotHubResult(GetIotHubResult):
 
 def get_iot_hub(hub_id: Optional[str] = None,
                 name: Optional[str] = None,
+                project_id: Optional[str] = None,
                 region: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIotHubResult:
     """
@@ -215,23 +216,27 @@ def get_iot_hub(hub_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_hub = scaleway.get_iot_hub(hub_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str hub_id: The Hub ID.
            Only one of the `name` and `hub_id` should be specified.
     :param str name: The name of the Hub.
            Only one of the `name` and `hub_id` should be specified.
+    :param str project_id: The ID of the project the hub is associated with.
     :param str region: `region`) The region in which the hub exists.
     """
     __args__ = dict()
     __args__['hubId'] = hub_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIotHub:getIotHub', __args__, opts=opts, typ=GetIotHubResult).value
@@ -261,6 +266,7 @@ def get_iot_hub(hub_id: Optional[str] = None,
 @_utilities.lift_output_func(get_iot_hub)
 def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
+                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIotHubResult]:
     """
@@ -268,18 +274,21 @@ def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_hub = scaleway.get_iot_hub(hub_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str hub_id: The Hub ID.
            Only one of the `name` and `hub_id` should be specified.
     :param str name: The name of the Hub.
            Only one of the `name` and `hub_id` should be specified.
+    :param str project_id: The ID of the project the hub is associated with.
     :param str region: `region`) The region in which the hub exists.
     """
     ...

@@ -10,10 +10,11 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Redis Clusters.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -35,9 +36,11 @@ import * as utilities from "./utilities";
  *     version: "6.2.6",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With settings
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -53,9 +56,11 @@ import * as utilities from "./utilities";
  *     version: "6.2.6",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With a private network
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -75,13 +80,16 @@ import * as utilities from "./utilities";
  *     dependsOn: [pn],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+ * Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class RedisCluster extends pulumi.CustomResource {
@@ -163,9 +171,11 @@ export class RedisCluster extends pulumi.CustomResource {
      * - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
      * able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * ```
+     * <!--End PulumiCodeChooser -->
      */
     public readonly privateNetworks!: pulumi.Output<outputs.RedisClusterPrivateNetwork[] | undefined>;
     /**
@@ -338,9 +348,11 @@ export interface RedisClusterState {
      * - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
      * able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * ```
+     * <!--End PulumiCodeChooser -->
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
     /**
@@ -437,9 +449,11 @@ export interface RedisClusterArgs {
      * - Cluster mode (`clusterSize` > 1) : you can define a single private network as you create your cluster, you won't be
      * able to edit or detach it afterward, unless you create another cluster. Your `serviceIps` must be listed as follows:
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * ```
+     * <!--End PulumiCodeChooser -->
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
     /**

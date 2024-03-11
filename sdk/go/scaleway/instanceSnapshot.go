@@ -15,8 +15,9 @@ import (
 // For more information,
 // see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
 //
-// ## Example
+// ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,9 +41,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
-// ## Example with Unified type
+// ### Example with Unified type snapshot
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -90,9 +93,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
-// ## Import a local qcow2 file
+// ### Example importing a local qcow2 file
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -132,15 +137,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+// Snapshots can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceSnapshot struct {
 	pulumi.CustomResourceState

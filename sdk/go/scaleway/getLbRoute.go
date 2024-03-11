@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,6 +73,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetLbRoute(ctx *pulumi.Context, args *GetLbRouteArgs, opts ...pulumi.InvokeOption) (*GetLbRouteResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbRouteResult

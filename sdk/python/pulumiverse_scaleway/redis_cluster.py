@@ -64,9 +64,11 @@ class RedisClusterArgs:
                - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
                able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
                
+               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                ```
+               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
                associated with.
         :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
@@ -218,9 +220,11 @@ class RedisClusterArgs:
         - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
         able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "private_networks")
 
@@ -358,9 +362,11 @@ class _RedisClusterState:
                - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
                able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
                
+               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                ```
+               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
                associated with.
         :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
@@ -525,9 +531,11 @@ class _RedisClusterState:
         - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
         able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "private_networks")
 
@@ -677,10 +685,11 @@ class RedisCluster(pulumi.CustomResource):
         Creates and manages Scaleway Redis Clusters.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -701,9 +710,11 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With settings
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -718,9 +729,11 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With a private network
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -738,13 +751,16 @@ class RedisCluster(pulumi.CustomResource):
             )],
             opts=pulumi.ResourceOptions(depends_on=[pn]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+        Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -776,9 +792,11 @@ class RedisCluster(pulumi.CustomResource):
                - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
                able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
                
+               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                ```
+               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
                associated with.
         :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
@@ -807,10 +825,11 @@ class RedisCluster(pulumi.CustomResource):
         Creates and manages Scaleway Redis Clusters.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -831,9 +850,11 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With settings
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -848,9 +869,11 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With a private network
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -868,13 +891,16 @@ class RedisCluster(pulumi.CustomResource):
             )],
             opts=pulumi.ResourceOptions(depends_on=[pn]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+        Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -1005,9 +1031,11 @@ class RedisCluster(pulumi.CustomResource):
                - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
                able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
                
+               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                ```
+               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis Cluster is
                associated with.
         :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
@@ -1132,9 +1160,11 @@ class RedisCluster(pulumi.CustomResource):
         - Cluster mode (`cluster_size` > 1) : you can define a single private network as you create your cluster, you won't be
         able to edit or detach it afterward, unless you create another cluster. Your `service_ips` must be listed as follows:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "private_networks")
 

@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDocumentdbInstanceResult> InvokeAsync(GetDocumentdbInstanceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbInstanceResult>("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args ?? new GetDocumentdbInstanceArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,8 +59,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDocumentdbInstanceResult> Invoke(GetDocumentdbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentdbInstanceResult>("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args ?? new GetDocumentdbInstanceInvokeArgs(), options.WithDefaults());
@@ -85,6 +81,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the DocumentDB instance is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the DocumentDB instance exists.
@@ -115,6 +117,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the DocumentDB instance is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the DocumentDB instance exists.
         /// </summary>
         [Input("region")]
@@ -140,7 +148,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? Name;
         public readonly string NodeType;
         public readonly string Password;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly ImmutableArray<string> Tags;
         public readonly bool TelemetryEnabled;
@@ -164,7 +172,7 @@ namespace Pulumiverse.Scaleway
 
             string password,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

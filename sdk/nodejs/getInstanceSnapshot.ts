@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSnapshotResult> {
     args = args || {};
@@ -29,6 +31,7 @@ export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulum
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {
         "name": args.name,
+        "projectId": args.projectId,
         "snapshotId": args.snapshotId,
         "zone": args.zone,
     }, opts);
@@ -43,6 +46,10 @@ export interface GetInstanceSnapshotArgs {
      * Only one of `name` and `snapshotId` should be specified.
      */
     name?: string;
+    /**
+     * `projectId`) The ID of the project the snapshot is associated with.
+     */
+    projectId?: string;
     /**
      * The snapshot id.
      * Only one of `name` and `snapshotId` should be specified.
@@ -66,7 +73,7 @@ export interface GetInstanceSnapshotResult {
     readonly imports: outputs.GetInstanceSnapshotImport[];
     readonly name?: string;
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly sizeInGb: number;
     readonly snapshotId?: string;
     readonly tags: string[];
@@ -79,6 +86,7 @@ export interface GetInstanceSnapshotResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -90,6 +98,7 @@ export interface GetInstanceSnapshotResult {
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSnapshotResult> {
     return pulumi.output(args).apply((a: any) => getInstanceSnapshot(a, opts))
@@ -104,6 +113,10 @@ export interface GetInstanceSnapshotOutputArgs {
      * Only one of `name` and `snapshotId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the snapshot is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The snapshot id.
      * Only one of `name` and `snapshotId` should be specified.

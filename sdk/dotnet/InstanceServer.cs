@@ -15,10 +15,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,9 +39,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With additional volumes and tags
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -76,9 +79,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With a reserved IP
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -103,9 +108,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With security group
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -156,9 +163,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With user data and cloud-init
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -181,9 +190,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With private network
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -209,11 +220,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Root volume configuration
     /// 
-    /// #### Resized block volume with installed image
+    /// ### Resized block volume with installed image
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -235,9 +248,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// #### From snapshot
+    /// ### From snapshot
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -269,6 +284,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Private Network
     /// 
@@ -286,10 +302,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+    /// Instance servers can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/instanceServer:InstanceServer")]
@@ -355,6 +373,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
@@ -617,6 +637,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -825,6 +847,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {

@@ -12,14 +12,166 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway Database Instances.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+//
+// ## Example Usage
+//
+// ### Example Basic
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				DisableBackup: pulumi.Bool(true),
+//				Engine:        pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:      pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Example with Settings
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				DisableBackup: pulumi.Bool(true),
+//				Engine:        pulumi.String("MySQL-8"),
+//				InitSettings: pulumi.StringMap{
+//					"lower_case_table_names": pulumi.String("1"),
+//				},
+//				NodeType: pulumi.String("db-dev-s"),
+//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
+//				Settings: pulumi.StringMap{
+//					"max_connections": pulumi.String("350"),
+//				},
+//				UserName: pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Example with backup schedule
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				BackupScheduleFrequency: pulumi.Int(24),
+//				BackupScheduleRetention: pulumi.Int(7),
+//				DisableBackup:           pulumi.Bool(false),
+//				Engine:                  pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:             pulumi.Bool(true),
+//				NodeType:                pulumi.String("DB-DEV-S"),
+//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:                pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Examples of endpoints configuration
+//
+// RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+//
+// ### Default: 1 public endpoint
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				Engine:   pulumi.String("PostgreSQL-11"),
+//				NodeType: pulumi.String("db-dev-s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// > If nothing is defined, your instance will have a default public load-balancer endpoint
+//
+// ## Limitations
+//
+// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+//
 // ## Import
 //
-// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+// Database Instance can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type DatabaseInstance struct {
 	pulumi.CustomResourceState
@@ -47,12 +199,15 @@ type DatabaseInstance struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance.
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -60,6 +215,9 @@ type DatabaseInstance struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -82,10 +240,12 @@ type DatabaseInstance struct {
 	// Identifier for the first user of the database instance.
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
-	UserName pulumi.StringPtrOutput `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	UserName pulumi.StringOutput `pulumi:"userName"`
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
@@ -155,12 +315,15 @@ type databaseInstanceState struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance.
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
 	LoadBalancers []DatabaseInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
@@ -168,6 +331,9 @@ type databaseInstanceState struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType *string `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -191,9 +357,11 @@ type databaseInstanceState struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -221,12 +389,15 @@ type DatabaseInstanceState struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// List of load balancer endpoints of the database instance.
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
@@ -234,6 +405,9 @@ type DatabaseInstanceState struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType pulumi.StringPtrInput
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -257,9 +431,11 @@ type DatabaseInstanceState struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -283,17 +459,25 @@ type databaseInstanceArgs struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	LoadBalancers []DatabaseInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
@@ -313,9 +497,11 @@ type databaseInstanceArgs struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -336,17 +522,25 @@ type DatabaseInstanceArgs struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	LoadBalancers DatabaseInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType pulumi.StringInput
 	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
@@ -366,9 +560,11 @@ type DatabaseInstanceArgs struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -506,6 +702,8 @@ func (o DatabaseInstanceOutput) Engine() pulumi.StringOutput {
 // Map of engine settings to be set at database initialisation.
 //
 // > **Important:** Updates to `initSettings` will recreate the Database Instance.
+//
+// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 func (o DatabaseInstanceOutput) InitSettings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.InitSettings }).(pulumi.StringMapOutput)
 }
@@ -517,7 +715,8 @@ func (o DatabaseInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
 
-// List of load balancer endpoints of the database instance.
+// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+// This block must be defined if you want a public endpoint in addition to your private endpoint.
 func (o DatabaseInstanceOutput) LoadBalancers() DatabaseInstanceLoadBalancerArrayOutput {
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(DatabaseInstanceLoadBalancerArrayOutput)
 }
@@ -531,6 +730,9 @@ func (o DatabaseInstanceOutput) Name() pulumi.StringOutput {
 //
 // > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 // interruption. Keep in mind that you cannot downgrade a Database Instance.
+//
+// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 func (o DatabaseInstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -580,16 +782,18 @@ func (o DatabaseInstanceOutput) Tags() pulumi.StringArrayOutput {
 // Identifier for the first user of the database instance.
 //
 // > **Important:** Updates to `userName` will recreate the Database Instance.
-func (o DatabaseInstanceOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
+func (o DatabaseInstanceOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
-// Volume size (in GB) when `volumeType` is set to `bssd`.
+// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
+//
+// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 func (o DatabaseInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
-// Type of volume where data are stored (`bssd` or `lssd`).
+// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 func (o DatabaseInstanceOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }

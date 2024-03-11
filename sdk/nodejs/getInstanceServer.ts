@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServerResult> {
     args = args || {};
@@ -26,6 +28,7 @@ export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.In
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceServer:getInstanceServer", {
         "name": args.name,
+        "projectId": args.projectId,
         "serverId": args.serverId,
         "zone": args.zone,
     }, opts);
@@ -39,6 +42,10 @@ export interface GetInstanceServerArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the instance server is associated with.
+     */
+    projectId?: string;
     /**
      * The server id. Only one of `name` and `serverId` should be specified.
      */
@@ -112,10 +119,7 @@ export interface GetInstanceServerResult {
      */
     readonly privateIp: string;
     readonly privateNetworks: outputs.GetInstanceServerPrivateNetwork[];
-    /**
-     * The ID of the project the server is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The public IP address of the server.
      */
@@ -159,6 +163,7 @@ export interface GetInstanceServerResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -167,6 +172,7 @@ export interface GetInstanceServerResult {
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServerResult> {
     return pulumi.output(args).apply((a: any) => getInstanceServer(a, opts))
@@ -180,6 +186,10 @@ export interface GetInstanceServerOutputArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the instance server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The server id. Only one of `name` and `serverId` should be specified.
      */

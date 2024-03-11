@@ -62,9 +62,9 @@ class _CockpitState:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Cockpit resources.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan
+        :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         """
         if endpoints is not None:
@@ -80,7 +80,7 @@ class _CockpitState:
     @pulumi.getter
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
         """
-        Endpoints
+        Endpoints.
         """
         return pulumi.get(self, "endpoints")
 
@@ -104,7 +104,7 @@ class _CockpitState:
     @pulumi.getter(name="planId")
     def plan_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the current plan
+        The ID of the current plan.
         """
         return pulumi.get(self, "plan_id")
 
@@ -136,10 +136,12 @@ class Cockpit(pulumi.CustomResource):
         """
         ## Import
 
-        Cockpits can be imported using the `{project_id}`, e.g. bash
+        Cockpits can be imported using the `{project_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -156,10 +158,12 @@ class Cockpit(pulumi.CustomResource):
         """
         ## Import
 
-        Cockpits can be imported using the `{project_id}`, e.g. bash
+        Cockpits can be imported using the `{project_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -213,9 +217,9 @@ class Cockpit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan
+        :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -232,7 +236,7 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter
     def endpoints(self) -> pulumi.Output[Sequence['outputs.CockpitEndpoint']]:
         """
-        Endpoints
+        Endpoints.
         """
         return pulumi.get(self, "endpoints")
 
@@ -248,7 +252,7 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter(name="planId")
     def plan_id(self) -> pulumi.Output[str]:
         """
-        The ID of the current plan
+        The ID of the current plan.
         """
         return pulumi.get(self, "plan_id")
 

@@ -14,15 +14,33 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetVpcPrivateNetworkIpv4SubnetResult
     {
+        /// <summary>
+        /// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// The date and time of the creation of the subnet
+        /// </summary>
         public readonly string CreatedAt;
         /// <summary>
         /// The ID of the private network.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+        /// </summary>
         public readonly int PrefixLength;
+        /// <summary>
+        /// The subnet CIDR
+        /// </summary>
         public readonly string Subnet;
+        /// <summary>
+        /// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+        /// </summary>
         public readonly string SubnetMask;
+        /// <summary>
+        /// The date and time of the last update of the subnet
+        /// </summary>
         public readonly string UpdatedAt;
 
         [OutputConstructor]

@@ -125,10 +125,7 @@ class GetLoadbalancerResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        (Defaults to provider `project_id`) The ID of the project the LB is associated with.
-        """
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -197,6 +194,7 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
 
 def get_loadbalancer(lb_id: Optional[str] = None,
                      name: Optional[str] = None,
+                     project_id: Optional[str] = None,
                      release_ip: Optional[bool] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerResult:
@@ -205,6 +203,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -212,14 +211,17 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     by_name = scaleway.get_loadbalancer(name="foobar")
     by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The load balancer name.
+    :param str project_id: The ID of the project the LB is associated with.
     :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['releaseIp'] = release_ip
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -247,6 +249,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
 @_utilities.lift_output_func(get_loadbalancer)
 def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
+                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
                             release_ip: Optional[pulumi.Input[Optional[bool]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerResult]:
@@ -255,6 +258,7 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -262,9 +266,11 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     by_name = scaleway.get_loadbalancer(name="foobar")
     by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The load balancer name.
+    :param str project_id: The ID of the project the LB is associated with.
     :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
     """
     ...

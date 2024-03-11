@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupIotHub(ctx *pulumi.Context, args *LookupIotHubArgs, opts ...pulumi.InvokeOption) (*LookupIotHubResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIotHubResult
@@ -56,6 +58,8 @@ type LookupIotHubArgs struct {
 	// The name of the Hub.
 	// Only one of the `name` and `hubId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the hub is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the hub exists.
 	Region *string `pulumi:"region"`
 }
@@ -78,7 +82,7 @@ type LookupIotHubResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProductPlan    string  `pulumi:"productPlan"`
-	ProjectId      string  `pulumi:"projectId"`
+	ProjectId      *string `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
 	Status         string  `pulumi:"status"`
 	UpdatedAt      string  `pulumi:"updatedAt"`
@@ -105,6 +109,8 @@ type LookupIotHubOutputArgs struct {
 	// The name of the Hub.
 	// Only one of the `name` and `hubId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the hub is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the hub exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -189,8 +195,8 @@ func (o LookupIotHubResultOutput) ProductPlan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotHubResult) string { return v.ProductPlan }).(pulumi.StringOutput)
 }
 
-func (o LookupIotHubResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIotHubResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupIotHubResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIotHubResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupIotHubResultOutput) Region() pulumi.StringPtrOutput {

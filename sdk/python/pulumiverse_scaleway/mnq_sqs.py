@@ -124,26 +124,42 @@ class MnqSqs(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        Activate SQS for default project
+
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        # For default project in default region
         main = scaleway.MnqSqs("main")
-        # For specific project in default region
-        for_project = scaleway.MnqSqs("forProject", project_id=scaleway_account_project["main"]["id"])
         ```
+        <!--End PulumiCodeChooser -->
+
+        Activate SQS for a specific project
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.get_account_project(name="default")
+        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+        SQS status can be imported using the `{region}/{project_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+        $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -163,26 +179,42 @@ class MnqSqs(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
+        Activate SQS for default project
+
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        # For default project in default region
         main = scaleway.MnqSqs("main")
-        # For specific project in default region
-        for_project = scaleway.MnqSqs("forProject", project_id=scaleway_account_project["main"]["id"])
         ```
+        <!--End PulumiCodeChooser -->
+
+        Activate SQS for a specific project
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.get_account_project(name="default")
+        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+        SQS status can be imported using the `{region}/{project_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+        $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
         ```
 
         :param str resource_name: The name of the resource.

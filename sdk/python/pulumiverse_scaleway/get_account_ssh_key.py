@@ -91,7 +91,7 @@ class GetAccountSshKeyResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -132,6 +132,7 @@ class AwaitableGetAccountSshKeyResult(GetAccountSshKeyResult):
 
 
 def get_account_ssh_key(name: Optional[str] = None,
+                        project_id: Optional[str] = None,
                         ssh_key_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountSshKeyResult:
     """
@@ -139,19 +140,23 @@ def get_account_ssh_key(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_key = scaleway.get_account_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the SSH key is associated with.
     :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['sshKeyId'] = ssh_key_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getAccountSshKey:getAccountSshKey', __args__, opts=opts, typ=GetAccountSshKeyResult).value
@@ -171,6 +176,7 @@ def get_account_ssh_key(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_account_ssh_key)
 def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                ssh_key_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountSshKeyResult]:
     """
@@ -178,15 +184,18 @@ def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_key = scaleway.get_account_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the SSH key is associated with.
     :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
     """
     ...

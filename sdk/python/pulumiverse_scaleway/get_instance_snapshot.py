@@ -90,7 +90,7 @@ class GetInstanceSnapshotResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -145,6 +145,7 @@ class AwaitableGetInstanceSnapshotResult(GetInstanceSnapshotResult):
 
 
 def get_instance_snapshot(name: Optional[str] = None,
+                          project_id: Optional[str] = None,
                           snapshot_id: Optional[str] = None,
                           zone: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceSnapshotResult:
@@ -153,6 +154,7 @@ def get_instance_snapshot(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -160,16 +162,19 @@ def get_instance_snapshot(name: Optional[str] = None,
     by_name = scaleway.get_instance_snapshot(name="my-snapshot-name")
     by_id = scaleway.get_instance_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The snapshot name.
            Only one of `name` and `snapshot_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the snapshot is associated with.
     :param str snapshot_id: The snapshot id.
            Only one of `name` and `snapshot_id` should be specified.
     :param str zone: `zone`) The zone in which the snapshot exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['snapshotId'] = snapshot_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -192,6 +197,7 @@ def get_instance_snapshot(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_instance_snapshot)
 def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                                 project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceSnapshotResult]:
@@ -200,6 +206,7 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -207,10 +214,12 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
     by_name = scaleway.get_instance_snapshot(name="my-snapshot-name")
     by_id = scaleway.get_instance_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The snapshot name.
            Only one of `name` and `snapshot_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the snapshot is associated with.
     :param str snapshot_id: The snapshot id.
            Only one of `name` and `snapshot_id` should be specified.
     :param str zone: `zone`) The zone in which the snapshot exists.

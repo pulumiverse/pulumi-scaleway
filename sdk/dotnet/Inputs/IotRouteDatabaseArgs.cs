@@ -13,14 +13,24 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class IotRouteDatabaseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The database name (e.g. `measurements`).
+        /// </summary>
         [Input("dbname", required: true)]
         public Input<string> Dbname { get; set; } = null!;
 
+        /// <summary>
+        /// The database hostname. Can be an IP or a FQDN.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         [Input("password", required: true)]
         private Input<string>? _password;
+
+        /// <summary>
+        /// The database password.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -31,12 +41,21 @@ namespace Pulumiverse.Scaleway.Inputs
             }
         }
 
+        /// <summary>
+        /// The database port (e.g. `5432`)
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
+        /// </summary>
         [Input("query", required: true)]
         public Input<string> Query { get; set; } = null!;
 
+        /// <summary>
+        /// The database username.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

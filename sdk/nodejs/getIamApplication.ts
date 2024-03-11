@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  *     applicationId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIamApplication(args?: GetIamApplicationArgs, opts?: pulumi.InvokeOptions): Promise<GetIamApplicationResult> {
     args = args || {};
@@ -67,6 +69,7 @@ export interface GetIamApplicationResult {
     readonly id: string;
     readonly name?: string;
     readonly organizationId?: string;
+    readonly tags: string[];
     readonly updatedAt: string;
 }
 /**
@@ -74,6 +77,7 @@ export interface GetIamApplicationResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -85,6 +89,7 @@ export interface GetIamApplicationResult {
  *     applicationId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamApplicationResult> {
     return pulumi.output(args).apply((a: any) => getIamApplication(a, opts))

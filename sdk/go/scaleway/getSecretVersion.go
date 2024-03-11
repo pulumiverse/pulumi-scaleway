@@ -11,6 +11,69 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about Scaleway a Secret Version.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+//
+// ## Examples
+//
+// ### Basic
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainSecret, err := scaleway.NewSecret(ctx, "mainSecret", &scaleway.SecretArgs{
+//				Description: pulumi.String("barr"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewSecretVersion(ctx, "mainSecretVersion", &scaleway.SecretVersionArgs{
+//				Description: pulumi.String("your description"),
+//				SecretId:    mainSecret.ID(),
+//				Data:        pulumi.String("your_secret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			dataBySecretId := scaleway.LookupSecretVersionOutput(ctx, scaleway.GetSecretVersionOutputArgs{
+//				SecretId: mainSecret.ID(),
+//				Revision: pulumi.String("1"),
+//			}, nil)
+//			dataBySecretName := scaleway.LookupSecretVersionOutput(ctx, scaleway.GetSecretVersionOutputArgs{
+//				SecretName: mainSecret.Name,
+//				Revision:   pulumi.String("1"),
+//			}, nil)
+//			ctx.Export("scalewaySecretAccessPayload", dataBySecretName.ApplyT(func(dataBySecretName scaleway.GetSecretVersionResult) (*string, error) {
+//				return &dataBySecretName.Data, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("scalewaySecretAccessPayloadById", dataBySecretId.ApplyT(func(dataBySecretId scaleway.GetSecretVersionResult) (*string, error) {
+//				return &dataBySecretId.Data, nil
+//			}).(pulumi.StringPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Data
+//
+// Note: This Data Source give you **access** to the secret payload encoded en base64.
+//
+// Be aware that this is a sensitive attribute. For more information,
+// see Sensitive Data in State.
+//
+// > **Important:**  This property is sensitive and will not be displayed in the plan.
 func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opts ...pulumi.InvokeOption) (*LookupSecretVersionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretVersionResult
@@ -23,6 +86,8 @@ func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opt
 
 // A collection of arguments for invoking getSecretVersion.
 type LookupSecretVersionArgs struct {
+	// The ID of the project the Secret version is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region
 	// in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -46,6 +111,7 @@ type LookupSecretVersionResult struct {
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
+	ProjectId  *string `pulumi:"projectId"`
 	Region     *string `pulumi:"region"`
 	Revision   *string `pulumi:"revision"`
 	SecretId   *string `pulumi:"secretId"`
@@ -71,6 +137,8 @@ func LookupSecretVersionOutput(ctx *pulumi.Context, args LookupSecretVersionOutp
 
 // A collection of arguments for invoking getSecretVersion.
 type LookupSecretVersionOutputArgs struct {
+	// The ID of the project the Secret version is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -121,6 +189,10 @@ func (o LookupSecretVersionResultOutput) Description() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSecretVersionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretVersionResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSecretVersionResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupSecretVersionResultOutput) Region() pulumi.StringPtrOutput {

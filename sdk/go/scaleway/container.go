@@ -22,6 +22,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,6 +74,8 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Protocols
 //
 // The supported protocols are:
@@ -111,12 +114,12 @@ import (
 //
 // ## Import
 //
-// Container can be imported using the `{region}/{id}`, e.g. bash
+// Container can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type Container struct {
 	pulumi.CustomResourceState
@@ -165,7 +168,7 @@ type Container struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringOutput `pulumi:"registryImage"`
-	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrOutput `pulumi:"registrySha256"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
@@ -259,7 +262,7 @@ type containerState struct {
 	Region *string `pulumi:"region"`
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage *string `pulumi:"registryImage"`
-	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 *string `pulumi:"registrySha256"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
@@ -314,7 +317,7 @@ type ContainerState struct {
 	Region pulumi.StringPtrInput
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringPtrInput
-	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
@@ -367,7 +370,7 @@ type containerArgs struct {
 	Region *string `pulumi:"region"`
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage *string `pulumi:"registryImage"`
-	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 *string `pulumi:"registrySha256"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
@@ -417,7 +420,7 @@ type ContainerArgs struct {
 	Region pulumi.StringPtrInput
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringPtrInput
-	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
@@ -615,7 +618,7 @@ func (o ContainerOutput) RegistryImage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.RegistryImage }).(pulumi.StringOutput)
 }
 
-// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 func (o ContainerOutput) RegistrySha256() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.RegistrySha256 }).(pulumi.StringPtrOutput)
 }

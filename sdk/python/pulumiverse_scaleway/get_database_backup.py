@@ -21,7 +21,7 @@ class GetDatabaseBackupResult:
     """
     A collection of values returned by getDatabaseBackup.
     """
-    def __init__(__self__, backup_id=None, created_at=None, database_name=None, expires_at=None, id=None, instance_id=None, instance_name=None, name=None, region=None, size=None, updated_at=None):
+    def __init__(__self__, backup_id=None, created_at=None, database_name=None, expires_at=None, id=None, instance_id=None, instance_name=None, name=None, project_id=None, region=None, size=None, updated_at=None):
         if backup_id and not isinstance(backup_id, str):
             raise TypeError("Expected argument 'backup_id' to be a str")
         pulumi.set(__self__, "backup_id", backup_id)
@@ -46,6 +46,9 @@ class GetDatabaseBackupResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -100,6 +103,11 @@ class GetDatabaseBackupResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        return pulumi.get(self, "project_id")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
@@ -129,6 +137,7 @@ class AwaitableGetDatabaseBackupResult(GetDatabaseBackupResult):
             instance_id=self.instance_id,
             instance_name=self.instance_name,
             name=self.name,
+            project_id=self.project_id,
             region=self.region,
             size=self.size,
             updated_at=self.updated_at)
@@ -137,6 +146,7 @@ class AwaitableGetDatabaseBackupResult(GetDatabaseBackupResult):
 def get_database_backup(backup_id: Optional[str] = None,
                         instance_id: Optional[str] = None,
                         name: Optional[str] = None,
+                        project_id: Optional[str] = None,
                         region: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseBackupResult:
     """
@@ -144,6 +154,7 @@ def get_database_backup(backup_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -153,6 +164,7 @@ def get_database_backup(backup_id: Optional[str] = None,
         name="mybackup")
     find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str backup_id: The RDB backup ID.
@@ -160,12 +172,14 @@ def get_database_backup(backup_id: Optional[str] = None,
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
            Only one of the `name` and `backup_id` should be specified.
-    :param str region: `region`) The region in which the Database Instance should be created.
+    :param str project_id: The ID of the project the Database Backup is associated with.
+    :param str region: `region`) The region in which the Database Backup is associated with.
     """
     __args__ = dict()
     __args__['backupId'] = backup_id
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getDatabaseBackup:getDatabaseBackup', __args__, opts=opts, typ=GetDatabaseBackupResult).value
@@ -179,6 +193,7 @@ def get_database_backup(backup_id: Optional[str] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
         name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         size=pulumi.get(__ret__, 'size'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
@@ -188,6 +203,7 @@ def get_database_backup(backup_id: Optional[str] = None,
 def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] = None,
                                instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
+                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                region: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseBackupResult]:
     """
@@ -195,6 +211,7 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -204,6 +221,7 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
         name="mybackup")
     find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str backup_id: The RDB backup ID.
@@ -211,6 +229,7 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
            Only one of the `name` and `backup_id` should be specified.
-    :param str region: `region`) The region in which the Database Instance should be created.
+    :param str project_id: The ID of the project the Database Backup is associated with.
+    :param str region: `region`) The region in which the Database Backup is associated with.
     """
     ...

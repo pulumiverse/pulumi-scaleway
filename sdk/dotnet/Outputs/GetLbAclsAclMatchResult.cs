@@ -18,6 +18,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// The matched HTTP filter.
         /// </summary>
         public readonly string HttpFilter;
+        /// <summary>
+        /// A list of possible values for the HTTP filter based on the HTTP header.
+        /// </summary>
         public readonly string HttpFilterOption;
         /// <summary>
         /// The possible values matched for a given HTTP filter.

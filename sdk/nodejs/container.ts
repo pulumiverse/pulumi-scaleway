@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -42,6 +43,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Protocols
  *
  * The supported protocols are:
@@ -80,10 +83,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Container can be imported using the `{region}/{id}`, e.g. bash
+ * Container can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class Container extends pulumi.CustomResource {
@@ -197,7 +202,7 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly registryImage!: pulumi.Output<string>;
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     public readonly registrySha256!: pulumi.Output<string | undefined>;
     /**
@@ -372,7 +377,7 @@ export interface ContainerState {
      */
     registryImage?: pulumi.Input<string>;
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     registrySha256?: pulumi.Input<string>;
     /**
@@ -464,7 +469,7 @@ export interface ContainerArgs {
      */
     registryImage?: pulumi.Input<string>;
     /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
+     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     registrySha256?: pulumi.Input<string>;
     /**

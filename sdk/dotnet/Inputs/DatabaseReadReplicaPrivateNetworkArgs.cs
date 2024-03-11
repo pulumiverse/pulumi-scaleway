@@ -14,6 +14,12 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class DatabaseReadReplicaPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether or not the private network endpoint should be configured with IPAM
+        /// </summary>
+        [Input("enableIpam")]
+        public Input<bool>? EnableIpam { get; set; }
+
+        /// <summary>
         /// The ID of the endpoint of the read replica.
         /// </summary>
         [Input("endpointId")]
@@ -57,6 +63,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("serviceIp")]
         public Input<string>? ServiceIp { get; set; }
 
+        /// <summary>
+        /// Private network zone
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

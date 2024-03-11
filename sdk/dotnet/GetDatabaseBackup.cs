@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an RDB backup.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -45,8 +44,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDatabaseBackupResult> InvokeAsync(GetDatabaseBackupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseBackupResult>("scaleway:index/getDatabaseBackup:getDatabaseBackup", args ?? new GetDatabaseBackupArgs(), options.WithDefaults());
@@ -54,10 +52,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about an RDB backup.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -84,8 +81,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDatabaseBackupResult> Invoke(GetDatabaseBackupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseBackupResult>("scaleway:index/getDatabaseBackup:getDatabaseBackup", args ?? new GetDatabaseBackupInvokeArgs(), options.WithDefaults());
@@ -115,7 +111,13 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The ID of the project the Database Backup is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the Database Backup is associated with.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -149,7 +151,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The ID of the project the Database Backup is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the Database Backup is associated with.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -175,6 +183,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? InstanceId;
         public readonly string InstanceName;
         public readonly string? Name;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly int Size;
         public readonly string UpdatedAt;
@@ -197,6 +206,8 @@ namespace Pulumiverse.Scaleway
 
             string? name,
 
+            string? projectId,
+
             string? region,
 
             int size,
@@ -211,6 +222,7 @@ namespace Pulumiverse.Scaleway
             InstanceId = instanceId;
             InstanceName = instanceName;
             Name = name;
+            ProjectId = projectId;
             Region = region;
             Size = size;
             UpdatedAt = updatedAt;

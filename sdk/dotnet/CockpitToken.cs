@@ -17,6 +17,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,7 +37,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -63,20 +66,23 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Cockpits can be imported using the token ID, e.g. bash
+    /// Cockpits can be imported using the token ID, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/cockpitToken:CockpitToken")]
     public partial class CockpitToken : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the token
+        /// The name of the token.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -88,13 +94,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Allowed scopes
+        /// Allowed scopes.
         /// </summary>
         [Output("scopes")]
         public Output<Outputs.CockpitTokenScopes> Scopes { get; private set; } = null!;
 
         /// <summary>
-        /// The secret key of the token
+        /// The secret key of the token.
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
@@ -151,7 +157,7 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitTokenArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the token
+        /// The name of the token.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -163,7 +169,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Allowed scopes
+        /// Allowed scopes.
         /// </summary>
         [Input("scopes")]
         public Input<Inputs.CockpitTokenScopesArgs>? Scopes { get; set; }
@@ -177,7 +183,7 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitTokenState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the token
+        /// The name of the token.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -189,7 +195,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Allowed scopes
+        /// Allowed scopes.
         /// </summary>
         [Input("scopes")]
         public Input<Inputs.CockpitTokenScopesGetArgs>? Scopes { get; set; }
@@ -198,7 +204,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The secret key of the token
+        /// The secret key of the token.
         /// </summary>
         public Input<string>? SecretKey
         {

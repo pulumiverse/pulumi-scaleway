@@ -15,77 +15,11 @@ namespace Pulumiverse.Scaleway
     /// It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
     /// 
-    /// ## Example
-    /// 
-    /// ### Create a gateway network with DHCP
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
-    /// 
-    ///     var gw01 = new Scaleway.VpcPublicGatewayIp("gw01");
-    /// 
-    ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
-    ///     {
-    ///         Subnet = "192.168.1.0/24",
-    ///         PushDefaultRoute = true,
-    ///     });
-    /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
-    ///     {
-    ///         Type = "VPC-GW-S",
-    ///         IpId = gw01.Id,
-    ///     });
-    /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
-    ///     {
-    ///         GatewayId = pg01.Id,
-    ///         PrivateNetworkId = pn01.Id,
-    ///         DhcpId = dhcp01.Id,
-    ///         CleanupDhcp = true,
-    ///         EnableMasquerade = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Create a gateway network with a static IP address
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
-    /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
-    ///     {
-    ///         Type = "VPC-GW-S",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
-    ///     {
-    ///         GatewayId = pg01.Id,
-    ///         PrivateNetworkId = pn01.Id,
-    ///         EnableDhcp = false,
-    ///         EnableMasquerade = true,
-    ///         StaticAddress = "192.168.1.42/24",
-    ///     });
-    /// 
-    /// });
-    /// ```
+    /// ## Example Usage
     /// 
     /// ### Create a gateway network with IPAM config
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -126,13 +60,145 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Create a gateway network with a booked IPAM IP
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     {
+    ///         Address = "172.16.64.7/22",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             {
+    ///                 PrivateNetworkId = pn01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         EnableMasquerade = true,
+    ///         IpamConfigs = new[]
+    ///         {
+    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
+    ///             {
+    ///                 PushDefaultRoute = true,
+    ///                 IpamIpId = ip01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Create a gateway network with DHCP
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    /// 
+    ///     var gw01 = new Scaleway.VpcPublicGatewayIp("gw01");
+    /// 
+    ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+    ///     {
+    ///         Subnet = "192.168.1.0/24",
+    ///         PushDefaultRoute = true,
+    ///     });
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///         IpId = gw01.Id,
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         DhcpId = dhcp01.Id,
+    ///         CleanupDhcp = true,
+    ///         EnableMasquerade = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Create a gateway network with a static IP address
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    /// 
+    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     {
+    ///         GatewayId = pg01.Id,
+    ///         PrivateNetworkId = pn01.Id,
+    ///         EnableDhcp = false,
+    ///         EnableMasquerade = true,
+    ///         StaticAddress = "192.168.1.42/24",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+    /// Gateway network can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork")]
@@ -175,7 +241,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Output("ipamConfigs")]
         public Output<ImmutableArray<Outputs.VpcGatewayNetworkIpamConfig>> IpamConfigs { get; private set; } = null!;
@@ -297,7 +363,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.VpcGatewayNetworkIpamConfigArgs>? _ipamConfigs;
 
         /// <summary>
-        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         public InputList<Inputs.VpcGatewayNetworkIpamConfigArgs> IpamConfigs
         {
@@ -371,7 +437,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs>? _ipamConfigs;
 
         /// <summary>
-        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service).
+        /// Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         public InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs> IpamConfigs
         {

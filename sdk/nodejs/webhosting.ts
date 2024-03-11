@@ -10,8 +10,9 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Web Hostings.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
  *
- * ## Example
+ * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -31,13 +32,16 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Hostings can be imported using the `{region}/{id}`, e.g. bash
+ * Hostings can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class Webhosting extends pulumi.CustomResource {

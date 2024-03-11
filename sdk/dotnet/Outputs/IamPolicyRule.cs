@@ -15,13 +15,17 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IamPolicyRule
     {
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         public readonly string? OrganizationId;
         /// <summary>
         /// Names of permission sets bound to the rule.
         /// 
         /// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        /// 
+        /// ```shell
+        /// $ scw iam permission-set list
+        /// ```
         /// </summary>
         public readonly ImmutableArray<string> PermissionSetNames;
         /// <summary>

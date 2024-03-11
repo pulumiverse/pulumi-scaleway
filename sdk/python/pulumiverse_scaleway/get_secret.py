@@ -157,6 +157,7 @@ def get_secret(name: Optional[str] = None,
 
     ### Basic
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -166,6 +167,7 @@ def get_secret(name: Optional[str] = None,
     my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
     by_name = scaleway.get_secret(name="your_secret_name")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The secret name.
@@ -217,6 +219,7 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
     ### Basic
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -226,6 +229,7 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
     by_name = scaleway.get_secret(name="your_secret_name")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The secret name.

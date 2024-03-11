@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -22,7 +23,9 @@ import * as utilities from "./utilities";
  * // Create a token for the cockpit that can write metrics and logs
  * const mainCockpitToken = new scaleway.CockpitToken("mainCockpitToken", {projectId: mainCockpit.then(mainCockpit => mainCockpit.projectId)});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -40,13 +43,16 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Cockpits can be imported using the token ID, e.g. bash
+ * Cockpits can be imported using the token ID, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class CockpitToken extends pulumi.CustomResource {
@@ -78,7 +84,7 @@ export class CockpitToken extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the token
+     * The name of the token.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -86,11 +92,11 @@ export class CockpitToken extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Allowed scopes
+     * Allowed scopes.
      */
     public readonly scopes!: pulumi.Output<outputs.CockpitTokenScopes>;
     /**
-     * The secret key of the token
+     * The secret key of the token.
      */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
 
@@ -130,7 +136,7 @@ export class CockpitToken extends pulumi.CustomResource {
  */
 export interface CockpitTokenState {
     /**
-     * The name of the token
+     * The name of the token.
      */
     name?: pulumi.Input<string>;
     /**
@@ -138,11 +144,11 @@ export interface CockpitTokenState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Allowed scopes
+     * Allowed scopes.
      */
     scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
     /**
-     * The secret key of the token
+     * The secret key of the token.
      */
     secretKey?: pulumi.Input<string>;
 }
@@ -152,7 +158,7 @@ export interface CockpitTokenState {
  */
 export interface CockpitTokenArgs {
     /**
-     * The name of the token
+     * The name of the token.
      */
     name?: pulumi.Input<string>;
     /**
@@ -160,7 +166,7 @@ export interface CockpitTokenArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Allowed scopes
+     * Allowed scopes.
      */
     scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
 }

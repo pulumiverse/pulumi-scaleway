@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -39,8 +38,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetLoadbalancerResult> InvokeAsync(GetLoadbalancerArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerResult>("scaleway:index/getLoadbalancer:getLoadbalancer", args ?? new GetLoadbalancerArgs(), options.WithDefaults());
@@ -48,10 +46,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,8 +69,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetLoadbalancerResult> Invoke(GetLoadbalancerInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLoadbalancerResult>("scaleway:index/getLoadbalancer:getLoadbalancer", args ?? new GetLoadbalancerInvokeArgs(), options.WithDefaults());
@@ -90,6 +86,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         [Input("releaseIp")]
         public bool? ReleaseIp { get; set; }
@@ -116,6 +118,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -151,10 +159,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly ImmutableArray<Outputs.GetLoadbalancerPrivateNetworkResult> PrivateNetworks;
-        /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the LB is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string Region;
         public readonly bool? ReleaseIp;
         public readonly string SslCompatibilityLevel;
@@ -191,7 +196,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetLoadbalancerPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             string region,
 

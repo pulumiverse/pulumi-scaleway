@@ -75,12 +75,14 @@ def get_availability_zones(region: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     main = scaleway.get_availability_zones(region="nl-ams")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region is represented as a Geographical area such as France. Defaults: `fr-par`.
@@ -107,12 +109,14 @@ def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     main = scaleway.get_availability_zones(region="nl-ams")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str region: Region is represented as a Geographical area such as France. Defaults: `fr-par`.

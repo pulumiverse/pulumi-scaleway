@@ -12,76 +12,355 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway object storage bucket policy.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
     /// 
     /// ## Example Usage
     /// 
+    /// ### Example Usage with an IAM user
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using System.Text.Json;
     /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     var user = Scaleway.GetIamUser.Invoke(new()
+    ///     {
+    ///         Email = "user@scaleway.com",
+    ///     });
+    /// 
+    ///     var policyIamPolicy = new Scaleway.IamPolicy("policyIamPolicy", new()
+    ///     {
+    ///         UserId = user.Apply(getIamUserResult =&gt; getIamUserResult.Id),
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             {
+    ///                 ProjectIds = new[]
+    ///                 {
+    ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
+    ///                 },
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "ObjectStorageFullAccess",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Object storage configuration
     ///     var bucket = new Scaleway.ObjectBucket("bucket");
     /// 
-    ///     var main = new Scaleway.IamApplication("main", new()
+    ///     var policyObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", new()
     ///     {
-    ///         Description = "a description",
+    ///         Bucket = bucket.Name,
+    ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["Version"] = "2023-04-17",
+    ///             ["Id"] = "MyBucketPolicy",
+    ///             ["Statement"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Action"] = new[]
+    ///                     {
+    ///                         "s3:*",
+    ///                     },
+    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["SCW"] = $"user_id:{user.Apply(getIamUserResult =&gt; getIamUserResult.Id)}",
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         bucket.Name,
+    ///                         bucket.Name.Apply(name =&gt; $"{name}/*"),
+    ///                     },
+    ///                 },
+    ///             },
+    ///         })),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example with an IAM application
+    /// 
+    /// ### Creating a bucket and delegating read access to an application
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // IAM configuration
+    ///     var reading_app = new Scaleway.IamApplication("reading-app");
+    /// 
+    ///     var policyIamPolicy = new Scaleway.IamPolicy("policyIamPolicy", new()
+    ///     {
+    ///         ApplicationId = reading_app.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             {
+    ///                 ProjectIds = new[]
+    ///                 {
+    ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
+    ///                 },
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "ObjectStorageBucketsRead",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Object storage configuration
+    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    /// 
+    ///     var policyObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", new()
+    ///     {
+    ///         Bucket = bucket.Id,
+    ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["Version"] = "2023-04-17",
+    ///             ["Statement"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["Sid"] = "Delegate read access",
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["SCW"] = reading_app.Id.Apply(id =&gt; $"application_id:{id}"),
+    ///                     },
+    ///                     ["Action"] = new[]
+    ///                     {
+    ///                         "s3:ListBucket",
+    ///                         "s3:GetObject",
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         bucket.Name,
+    ///                         bucket.Name.Apply(name =&gt; $"{name}/*"),
+    ///                     },
+    ///                 },
+    ///             },
+    ///         })),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Reading the bucket with the application
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var reading_app = Scaleway.GetIamApplication.Invoke(new()
+    ///     {
+    ///         Name = "reading-app",
+    ///     });
+    /// 
+    ///     var reading_api_key = new Scaleway.IamApiKey("reading-api-key", new()
+    ///     {
+    ///         ApplicationId = reading_app.Apply(reading_app =&gt; reading_app.Apply(getIamApplicationResult =&gt; getIamApplicationResult.Id)),
+    ///     });
+    /// 
+    ///     var reading_profile = new Scaleway.Provider("reading-profile", new()
+    ///     {
+    ///         AccessKey = reading_api_key.AccessKey,
+    ///         SecretKey = reading_api_key.SecretKey,
+    ///     });
+    /// 
+    ///     var bucket = Scaleway.GetObjectBucket.Invoke(new()
+    ///     {
+    ///         Name = "some-unique-name",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example with AWS provider
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // Object storage configuration
+    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    /// 
+    ///     var policy = Aws.Iam.GetPolicyDocument.Invoke(new()
+    ///     {
+    ///         Version = "2012-10-17",
+    ///         Statements = new[]
+    ///         {
+    ///             new Aws.Iam.Inputs.GetPolicyDocumentStatementInputArgs
+    ///             {
+    ///                 Sid = "Delegate access",
+    ///                 Effect = "Allow",
+    ///                 Principals = new[]
+    ///                 {
+    ///                     new Aws.Iam.Inputs.GetPolicyDocumentStatementPrincipalInputArgs
+    ///                     {
+    ///                         Type = "SCW",
+    ///                         Identifiers = new[]
+    ///                         {
+    ///                             $"project_id:{@default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)}",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Actions = new[]
+    ///                 {
+    ///                     "s3:ListBucket",
+    ///                 },
+    ///                 Resources = new[]
+    ///                 {
+    ///                     bucket.Name,
+    ///                     $"{bucket.Name}/*",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var main = new Scaleway.ObjectBucketPolicy("main", new()
+    ///     {
+    ///         Bucket = bucket.Id,
+    ///         Policy = policy.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Json),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example with deprecated version 2012-10-17
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // Object storage configuration
+    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     {
+    ///         Region = "fr-par",
     ///     });
     /// 
     ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Name,
-    ///         Policy = Output.Tuple(main.Id, bucket.Name, bucket.Name).Apply(values =&gt;
+    ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             var id = values.Item1;
-    ///             var bucketName = values.Item2;
-    ///             var bucketName1 = values.Item3;
-    ///             return JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             ["Version"] = "2012-10-17",
+    ///             ["Statement"] = new[]
     ///             {
-    ///                 ["Version"] = "2023-04-17",
-    ///                 ["Id"] = "MyBucketPolicy",
-    ///                 ["Statement"] = new[]
+    ///                 new Dictionary&lt;string, object?&gt;
     ///                 {
-    ///                     new Dictionary&lt;string, object?&gt;
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Action"] = new[]
     ///                     {
-    ///                         ["Sid"] = "Delegate access",
-    ///                         ["Effect"] = "Allow",
-    ///                         ["Principal"] = new Dictionary&lt;string, object?&gt;
-    ///                         {
-    ///                             ["SCW"] = $"application_id:{id}",
-    ///                         },
-    ///                         ["Action"] = "s3:ListBucket",
-    ///                         ["Resource"] = new[]
-    ///                         {
-    ///                             bucketName,
-    ///                             $"{bucketName1}/*",
-    ///                         },
+    ///                         "s3:ListBucket",
+    ///                         "s3:GetObjectTagging",
+    ///                     },
+    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["SCW"] = @default.Apply(@default =&gt; $"project_id:{@default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)}"),
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         bucket.Name,
+    ///                         bucket.Name.Apply(name =&gt; $"{name}/*"),
     ///                     },
     ///                 },
-    ///             });
-    ///         }),
+    ///             },
+    ///         })),
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
     /// 
     /// ## Import
     /// 
-    /// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+    /// Bucket policies can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+    /// $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+    /// ```
+    /// 
+    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+    /// 
+    /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketPolicy:ObjectBucketPolicy")]
     public partial class ObjectBucketPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
@@ -93,9 +372,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Policy { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
-        /// 
-        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -154,7 +431,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectBucketPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -166,9 +443,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Policy { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
-        /// 
-        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -188,7 +463,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ObjectBucketPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the bucket.
+        /// The bucket's name or regional ID.
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
@@ -200,9 +475,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Policy { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
-        /// 
-        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

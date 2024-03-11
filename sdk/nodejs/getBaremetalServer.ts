@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -24,6 +25,7 @@ import * as utilities from "./utilities";
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalServerResult> {
     args = args || {};
@@ -31,6 +33,7 @@ export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalServer:getBaremetalServer", {
         "name": args.name,
+        "projectId": args.projectId,
         "serverId": args.serverId,
         "zone": args.zone,
     }, opts);
@@ -44,6 +47,10 @@ export interface GetBaremetalServerArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the baremetal server is associated with.
+     */
+    projectId?: string;
     serverId?: string;
     /**
      * `zone`) The zone in which the server exists.
@@ -76,7 +83,7 @@ export interface GetBaremetalServerResult {
     readonly osName: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly reinstallOnConfigChanges: boolean;
     readonly serverId?: string;
     readonly servicePassword: string;
@@ -92,6 +99,7 @@ export interface GetBaremetalServerResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -104,6 +112,7 @@ export interface GetBaremetalServerResult {
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalServerResult> {
     return pulumi.output(args).apply((a: any) => getBaremetalServer(a, opts))
@@ -117,6 +126,10 @@ export interface GetBaremetalServerOutputArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the baremetal server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     serverId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server exists.

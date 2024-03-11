@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesClusterResult
@@ -54,6 +56,8 @@ type LookupKubernetesClusterArgs struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The cluster name. Only one of `name` and `clusterId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the cluster is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster exists.
 	Region *string `pulumi:"region"`
 }
@@ -86,9 +90,8 @@ type LookupKubernetesClusterResult struct {
 	// The ID of the organization the cluster is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
-	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The ID of the project the cluster is associated with.
-	ProjectId string `pulumi:"projectId"`
+	PrivateNetworkId string  `pulumi:"privateNetworkId"`
+	ProjectId        *string `pulumi:"projectId"`
 	// The region in which the cluster is.
 	Region *string `pulumi:"region"`
 	// The status of the Kubernetes cluster.
@@ -126,6 +129,8 @@ type LookupKubernetesClusterOutputArgs struct {
 	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
 	// The cluster name. Only one of `name` and `clusterId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the cluster is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the cluster exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -228,9 +233,8 @@ func (o LookupKubernetesClusterResultOutput) PrivateNetworkId() pulumi.StringOut
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the cluster is associated with.
-func (o LookupKubernetesClusterResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupKubernetesClusterResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The region in which the cluster is.

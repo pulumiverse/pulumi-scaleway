@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -34,6 +35,13 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//				Name:  pulumi.StringRef("foobar"),
+//				VpcId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
 //				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -44,6 +52,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult
@@ -56,10 +65,14 @@ func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkA
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkArgs struct {
-	// Name of the private network. One of `name` and `privateNetworkId` should be specified.
+	// Name of the private network. Cannot be used with `privateNetworkId`.
 	Name *string `pulumi:"name"`
-	// ID of the private network. One of `name` and `privateNetworkId` should be specified.
+	// ID of the private network. Cannot be used with `name` and `vpcId`.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// The ID of the project the private network is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by getVpcPrivateNetwork.
@@ -67,19 +80,19 @@ type LookupVpcPrivateNetworkResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// (Optional) The IPv4 subnet associated with the private network.
+	// The IPv4 subnet associated with the private network.
 	Ipv4Subnets []GetVpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnets"`
-	// (Optional) The IPv6 subnets associated with the private network.
+	// The IPv6 subnets associated with the private network.
 	Ipv6Subnets      []GetVpcPrivateNetworkIpv6Subnet `pulumi:"ipv6Subnets"`
 	IsRegional       bool                             `pulumi:"isRegional"`
 	Name             *string                          `pulumi:"name"`
 	OrganizationId   string                           `pulumi:"organizationId"`
 	PrivateNetworkId *string                          `pulumi:"privateNetworkId"`
-	ProjectId        string                           `pulumi:"projectId"`
+	ProjectId        *string                          `pulumi:"projectId"`
 	Region           string                           `pulumi:"region"`
 	Tags             []string                         `pulumi:"tags"`
 	UpdatedAt        string                           `pulumi:"updatedAt"`
-	VpcId            string                           `pulumi:"vpcId"`
+	VpcId            *string                          `pulumi:"vpcId"`
 	Zone             string                           `pulumi:"zone"`
 }
 
@@ -98,10 +111,14 @@ func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNet
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkOutputArgs struct {
-	// Name of the private network. One of `name` and `privateNetworkId` should be specified.
+	// Name of the private network. Cannot be used with `privateNetworkId`.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// ID of the private network. One of `name` and `privateNetworkId` should be specified.
+	// ID of the private network. Cannot be used with `name` and `vpcId`.
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// The ID of the project the private network is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
+	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
 func (LookupVpcPrivateNetworkOutputArgs) ElementType() reflect.Type {
@@ -132,12 +149,12 @@ func (o LookupVpcPrivateNetworkResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// (Optional) The IPv4 subnet associated with the private network.
+// The IPv4 subnet associated with the private network.
 func (o LookupVpcPrivateNetworkResultOutput) Ipv4Subnets() GetVpcPrivateNetworkIpv4SubnetArrayOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) []GetVpcPrivateNetworkIpv4Subnet { return v.Ipv4Subnets }).(GetVpcPrivateNetworkIpv4SubnetArrayOutput)
 }
 
-// (Optional) The IPv6 subnets associated with the private network.
+// The IPv6 subnets associated with the private network.
 func (o LookupVpcPrivateNetworkResultOutput) Ipv6Subnets() GetVpcPrivateNetworkIpv6SubnetArrayOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) []GetVpcPrivateNetworkIpv6Subnet { return v.Ipv6Subnets }).(GetVpcPrivateNetworkIpv6SubnetArrayOutput)
 }
@@ -158,8 +175,8 @@ func (o LookupVpcPrivateNetworkResultOutput) PrivateNetworkId() pulumi.StringPtr
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupVpcPrivateNetworkResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupVpcPrivateNetworkResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) Region() pulumi.StringOutput {
@@ -174,8 +191,8 @@ func (o LookupVpcPrivateNetworkResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPrivateNetworkResultOutput) VpcId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.VpcId }).(pulumi.StringOutput)
+func (o LookupVpcPrivateNetworkResultOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) Zone() pulumi.StringOutput {
