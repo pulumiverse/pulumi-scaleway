@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -123,12 +122,6 @@ func (o GetBaremetalOsResultOutput) ToGetBaremetalOsResultOutput() GetBaremetalO
 
 func (o GetBaremetalOsResultOutput) ToGetBaremetalOsResultOutputWithContext(ctx context.Context) GetBaremetalOsResultOutput {
 	return o
-}
-
-func (o GetBaremetalOsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBaremetalOsResult] {
-	return pulumix.Output[GetBaremetalOsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

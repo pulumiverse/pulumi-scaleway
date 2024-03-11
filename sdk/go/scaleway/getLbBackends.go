@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -121,12 +120,6 @@ func (o GetLbBackendsResultOutput) ToGetLbBackendsResultOutput() GetLbBackendsRe
 
 func (o GetLbBackendsResultOutput) ToGetLbBackendsResultOutputWithContext(ctx context.Context) GetLbBackendsResultOutput {
 	return o
-}
-
-func (o GetLbBackendsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbBackendsResult] {
-	return pulumix.Output[GetLbBackendsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of found backends

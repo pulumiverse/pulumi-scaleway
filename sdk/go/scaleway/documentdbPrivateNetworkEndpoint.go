@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -190,12 +189,6 @@ func (i *DocumentdbPrivateNetworkEndpoint) ToDocumentdbPrivateNetworkEndpointOut
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointOutput)
 }
 
-func (i *DocumentdbPrivateNetworkEndpoint) ToOutput(ctx context.Context) pulumix.Output[*DocumentdbPrivateNetworkEndpoint] {
-	return pulumix.Output[*DocumentdbPrivateNetworkEndpoint]{
-		OutputState: i.ToDocumentdbPrivateNetworkEndpointOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DocumentdbPrivateNetworkEndpointArrayInput is an input type that accepts DocumentdbPrivateNetworkEndpointArray and DocumentdbPrivateNetworkEndpointArrayOutput values.
 // You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointArrayInput` via:
 //
@@ -219,12 +212,6 @@ func (i DocumentdbPrivateNetworkEndpointArray) ToDocumentdbPrivateNetworkEndpoin
 
 func (i DocumentdbPrivateNetworkEndpointArray) ToDocumentdbPrivateNetworkEndpointArrayOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointArrayOutput)
-}
-
-func (i DocumentdbPrivateNetworkEndpointArray) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentdbPrivateNetworkEndpoint] {
-	return pulumix.Output[[]*DocumentdbPrivateNetworkEndpoint]{
-		OutputState: i.ToDocumentdbPrivateNetworkEndpointArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DocumentdbPrivateNetworkEndpointMapInput is an input type that accepts DocumentdbPrivateNetworkEndpointMap and DocumentdbPrivateNetworkEndpointMapOutput values.
@@ -252,12 +239,6 @@ func (i DocumentdbPrivateNetworkEndpointMap) ToDocumentdbPrivateNetworkEndpointM
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointMapOutput)
 }
 
-func (i DocumentdbPrivateNetworkEndpointMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentdbPrivateNetworkEndpoint] {
-	return pulumix.Output[map[string]*DocumentdbPrivateNetworkEndpoint]{
-		OutputState: i.ToDocumentdbPrivateNetworkEndpointMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DocumentdbPrivateNetworkEndpointOutput struct{ *pulumi.OutputState }
 
 func (DocumentdbPrivateNetworkEndpointOutput) ElementType() reflect.Type {
@@ -270,12 +251,6 @@ func (o DocumentdbPrivateNetworkEndpointOutput) ToDocumentdbPrivateNetworkEndpoi
 
 func (o DocumentdbPrivateNetworkEndpointOutput) ToDocumentdbPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointOutput {
 	return o
-}
-
-func (o DocumentdbPrivateNetworkEndpointOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentdbPrivateNetworkEndpoint] {
-	return pulumix.Output[*DocumentdbPrivateNetworkEndpoint]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Hostname of the endpoint.
@@ -339,12 +314,6 @@ func (o DocumentdbPrivateNetworkEndpointArrayOutput) ToDocumentdbPrivateNetworkE
 	return o
 }
 
-func (o DocumentdbPrivateNetworkEndpointArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentdbPrivateNetworkEndpoint] {
-	return pulumix.Output[[]*DocumentdbPrivateNetworkEndpoint]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DocumentdbPrivateNetworkEndpointArrayOutput) Index(i pulumi.IntInput) DocumentdbPrivateNetworkEndpointOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbPrivateNetworkEndpoint {
 		return vs[0].([]*DocumentdbPrivateNetworkEndpoint)[vs[1].(int)]
@@ -363,12 +332,6 @@ func (o DocumentdbPrivateNetworkEndpointMapOutput) ToDocumentdbPrivateNetworkEnd
 
 func (o DocumentdbPrivateNetworkEndpointMapOutput) ToDocumentdbPrivateNetworkEndpointMapOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointMapOutput {
 	return o
-}
-
-func (o DocumentdbPrivateNetworkEndpointMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentdbPrivateNetworkEndpoint] {
-	return pulumix.Output[map[string]*DocumentdbPrivateNetworkEndpoint]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DocumentdbPrivateNetworkEndpointMapOutput) MapIndex(k pulumi.StringInput) DocumentdbPrivateNetworkEndpointOutput {

@@ -117,7 +117,7 @@ import * as utilities from "./utilities";
  *     image: "ubuntu_jammy",
  *     userData: {
  *         foo: "bar",
- *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`),
+ *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`, "utf8"),
  *     },
  * });
  * ```

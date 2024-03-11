@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -233,12 +232,6 @@ func (i *IamGroup) ToIamGroupOutputWithContext(ctx context.Context) IamGroupOutp
 	return pulumi.ToOutputWithContext(ctx, i).(IamGroupOutput)
 }
 
-func (i *IamGroup) ToOutput(ctx context.Context) pulumix.Output[*IamGroup] {
-	return pulumix.Output[*IamGroup]{
-		OutputState: i.ToIamGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IamGroupArrayInput is an input type that accepts IamGroupArray and IamGroupArrayOutput values.
 // You can construct a concrete instance of `IamGroupArrayInput` via:
 //
@@ -262,12 +255,6 @@ func (i IamGroupArray) ToIamGroupArrayOutput() IamGroupArrayOutput {
 
 func (i IamGroupArray) ToIamGroupArrayOutputWithContext(ctx context.Context) IamGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamGroupArrayOutput)
-}
-
-func (i IamGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*IamGroup] {
-	return pulumix.Output[[]*IamGroup]{
-		OutputState: i.ToIamGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IamGroupMapInput is an input type that accepts IamGroupMap and IamGroupMapOutput values.
@@ -295,12 +282,6 @@ func (i IamGroupMap) ToIamGroupMapOutputWithContext(ctx context.Context) IamGrou
 	return pulumi.ToOutputWithContext(ctx, i).(IamGroupMapOutput)
 }
 
-func (i IamGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamGroup] {
-	return pulumix.Output[map[string]*IamGroup]{
-		OutputState: i.ToIamGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IamGroupOutput struct{ *pulumi.OutputState }
 
 func (IamGroupOutput) ElementType() reflect.Type {
@@ -313,12 +294,6 @@ func (o IamGroupOutput) ToIamGroupOutput() IamGroupOutput {
 
 func (o IamGroupOutput) ToIamGroupOutputWithContext(ctx context.Context) IamGroupOutput {
 	return o
-}
-
-func (o IamGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*IamGroup] {
-	return pulumix.Output[*IamGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The list of IDs of the applications attached to the group.
@@ -375,12 +350,6 @@ func (o IamGroupArrayOutput) ToIamGroupArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o IamGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IamGroup] {
-	return pulumix.Output[[]*IamGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IamGroupArrayOutput) Index(i pulumi.IntInput) IamGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IamGroup {
 		return vs[0].([]*IamGroup)[vs[1].(int)]
@@ -399,12 +368,6 @@ func (o IamGroupMapOutput) ToIamGroupMapOutput() IamGroupMapOutput {
 
 func (o IamGroupMapOutput) ToIamGroupMapOutputWithContext(ctx context.Context) IamGroupMapOutput {
 	return o
-}
-
-func (o IamGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamGroup] {
-	return pulumix.Output[map[string]*IamGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IamGroupMapOutput) MapIndex(k pulumi.StringInput) IamGroupOutput {

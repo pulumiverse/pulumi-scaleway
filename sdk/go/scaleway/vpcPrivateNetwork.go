@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -297,12 +296,6 @@ func (i *VpcPrivateNetwork) ToVpcPrivateNetworkOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkOutput)
 }
 
-func (i *VpcPrivateNetwork) ToOutput(ctx context.Context) pulumix.Output[*VpcPrivateNetwork] {
-	return pulumix.Output[*VpcPrivateNetwork]{
-		OutputState: i.ToVpcPrivateNetworkOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpcPrivateNetworkArrayInput is an input type that accepts VpcPrivateNetworkArray and VpcPrivateNetworkArrayOutput values.
 // You can construct a concrete instance of `VpcPrivateNetworkArrayInput` via:
 //
@@ -326,12 +319,6 @@ func (i VpcPrivateNetworkArray) ToVpcPrivateNetworkArrayOutput() VpcPrivateNetwo
 
 func (i VpcPrivateNetworkArray) ToVpcPrivateNetworkArrayOutputWithContext(ctx context.Context) VpcPrivateNetworkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkArrayOutput)
-}
-
-func (i VpcPrivateNetworkArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPrivateNetwork] {
-	return pulumix.Output[[]*VpcPrivateNetwork]{
-		OutputState: i.ToVpcPrivateNetworkArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpcPrivateNetworkMapInput is an input type that accepts VpcPrivateNetworkMap and VpcPrivateNetworkMapOutput values.
@@ -359,12 +346,6 @@ func (i VpcPrivateNetworkMap) ToVpcPrivateNetworkMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkMapOutput)
 }
 
-func (i VpcPrivateNetworkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPrivateNetwork] {
-	return pulumix.Output[map[string]*VpcPrivateNetwork]{
-		OutputState: i.ToVpcPrivateNetworkMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpcPrivateNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcPrivateNetworkOutput) ElementType() reflect.Type {
@@ -377,12 +358,6 @@ func (o VpcPrivateNetworkOutput) ToVpcPrivateNetworkOutput() VpcPrivateNetworkOu
 
 func (o VpcPrivateNetworkOutput) ToVpcPrivateNetworkOutputWithContext(ctx context.Context) VpcPrivateNetworkOutput {
 	return o
-}
-
-func (o VpcPrivateNetworkOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPrivateNetwork] {
-	return pulumix.Output[*VpcPrivateNetwork]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the subnet.
@@ -463,12 +438,6 @@ func (o VpcPrivateNetworkArrayOutput) ToVpcPrivateNetworkArrayOutputWithContext(
 	return o
 }
 
-func (o VpcPrivateNetworkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPrivateNetwork] {
-	return pulumix.Output[[]*VpcPrivateNetwork]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpcPrivateNetworkArrayOutput) Index(i pulumi.IntInput) VpcPrivateNetworkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPrivateNetwork {
 		return vs[0].([]*VpcPrivateNetwork)[vs[1].(int)]
@@ -487,12 +456,6 @@ func (o VpcPrivateNetworkMapOutput) ToVpcPrivateNetworkMapOutput() VpcPrivateNet
 
 func (o VpcPrivateNetworkMapOutput) ToVpcPrivateNetworkMapOutputWithContext(ctx context.Context) VpcPrivateNetworkMapOutput {
 	return o
-}
-
-func (o VpcPrivateNetworkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPrivateNetwork] {
-	return pulumix.Output[map[string]*VpcPrivateNetwork]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpcPrivateNetworkMapOutput) MapIndex(k pulumi.StringInput) VpcPrivateNetworkOutput {

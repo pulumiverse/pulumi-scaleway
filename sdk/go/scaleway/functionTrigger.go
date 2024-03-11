@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -195,12 +194,6 @@ func (i *FunctionTrigger) ToFunctionTriggerOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerOutput)
 }
 
-func (i *FunctionTrigger) ToOutput(ctx context.Context) pulumix.Output[*FunctionTrigger] {
-	return pulumix.Output[*FunctionTrigger]{
-		OutputState: i.ToFunctionTriggerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FunctionTriggerArrayInput is an input type that accepts FunctionTriggerArray and FunctionTriggerArrayOutput values.
 // You can construct a concrete instance of `FunctionTriggerArrayInput` via:
 //
@@ -224,12 +217,6 @@ func (i FunctionTriggerArray) ToFunctionTriggerArrayOutput() FunctionTriggerArra
 
 func (i FunctionTriggerArray) ToFunctionTriggerArrayOutputWithContext(ctx context.Context) FunctionTriggerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerArrayOutput)
-}
-
-func (i FunctionTriggerArray) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionTrigger] {
-	return pulumix.Output[[]*FunctionTrigger]{
-		OutputState: i.ToFunctionTriggerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FunctionTriggerMapInput is an input type that accepts FunctionTriggerMap and FunctionTriggerMapOutput values.
@@ -257,12 +244,6 @@ func (i FunctionTriggerMap) ToFunctionTriggerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerMapOutput)
 }
 
-func (i FunctionTriggerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionTrigger] {
-	return pulumix.Output[map[string]*FunctionTrigger]{
-		OutputState: i.ToFunctionTriggerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FunctionTriggerOutput struct{ *pulumi.OutputState }
 
 func (FunctionTriggerOutput) ElementType() reflect.Type {
@@ -275,12 +256,6 @@ func (o FunctionTriggerOutput) ToFunctionTriggerOutput() FunctionTriggerOutput {
 
 func (o FunctionTriggerOutput) ToFunctionTriggerOutputWithContext(ctx context.Context) FunctionTriggerOutput {
 	return o
-}
-
-func (o FunctionTriggerOutput) ToOutput(ctx context.Context) pulumix.Output[*FunctionTrigger] {
-	return pulumix.Output[*FunctionTrigger]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The description of the trigger.
@@ -327,12 +302,6 @@ func (o FunctionTriggerArrayOutput) ToFunctionTriggerArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o FunctionTriggerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionTrigger] {
-	return pulumix.Output[[]*FunctionTrigger]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FunctionTriggerArrayOutput) Index(i pulumi.IntInput) FunctionTriggerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FunctionTrigger {
 		return vs[0].([]*FunctionTrigger)[vs[1].(int)]
@@ -351,12 +320,6 @@ func (o FunctionTriggerMapOutput) ToFunctionTriggerMapOutput() FunctionTriggerMa
 
 func (o FunctionTriggerMapOutput) ToFunctionTriggerMapOutputWithContext(ctx context.Context) FunctionTriggerMapOutput {
 	return o
-}
-
-func (o FunctionTriggerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionTrigger] {
-	return pulumix.Output[map[string]*FunctionTrigger]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FunctionTriggerMapOutput) MapIndex(k pulumi.StringInput) FunctionTriggerOutput {

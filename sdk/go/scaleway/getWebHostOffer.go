@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -120,12 +119,6 @@ func (o GetWebHostOfferResultOutput) ToGetWebHostOfferResultOutput() GetWebHostO
 
 func (o GetWebHostOfferResultOutput) ToGetWebHostOfferResultOutputWithContext(ctx context.Context) GetWebHostOfferResultOutput {
 	return o
-}
-
-func (o GetWebHostOfferResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetWebHostOfferResult] {
-	return pulumix.Output[GetWebHostOfferResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The unique identifier used for billing.

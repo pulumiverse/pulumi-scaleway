@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -198,12 +197,6 @@ func (i *VpcPublicGatewayIp) ToVpcPublicGatewayIpOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpOutput)
 }
 
-func (i *VpcPublicGatewayIp) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayIp] {
-	return pulumix.Output[*VpcPublicGatewayIp]{
-		OutputState: i.ToVpcPublicGatewayIpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpcPublicGatewayIpArrayInput is an input type that accepts VpcPublicGatewayIpArray and VpcPublicGatewayIpArrayOutput values.
 // You can construct a concrete instance of `VpcPublicGatewayIpArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i VpcPublicGatewayIpArray) ToVpcPublicGatewayIpArrayOutput() VpcPublicGate
 
 func (i VpcPublicGatewayIpArray) ToVpcPublicGatewayIpArrayOutputWithContext(ctx context.Context) VpcPublicGatewayIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpArrayOutput)
-}
-
-func (i VpcPublicGatewayIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayIp] {
-	return pulumix.Output[[]*VpcPublicGatewayIp]{
-		OutputState: i.ToVpcPublicGatewayIpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpcPublicGatewayIpMapInput is an input type that accepts VpcPublicGatewayIpMap and VpcPublicGatewayIpMapOutput values.
@@ -260,12 +247,6 @@ func (i VpcPublicGatewayIpMap) ToVpcPublicGatewayIpMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpMapOutput)
 }
 
-func (i VpcPublicGatewayIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayIp] {
-	return pulumix.Output[map[string]*VpcPublicGatewayIp]{
-		OutputState: i.ToVpcPublicGatewayIpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpcPublicGatewayIpOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayIpOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o VpcPublicGatewayIpOutput) ToVpcPublicGatewayIpOutput() VpcPublicGatewayI
 
 func (o VpcPublicGatewayIpOutput) ToVpcPublicGatewayIpOutputWithContext(ctx context.Context) VpcPublicGatewayIpOutput {
 	return o
-}
-
-func (o VpcPublicGatewayIpOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayIp] {
-	return pulumix.Output[*VpcPublicGatewayIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP address itself.
@@ -340,12 +315,6 @@ func (o VpcPublicGatewayIpArrayOutput) ToVpcPublicGatewayIpArrayOutputWithContex
 	return o
 }
 
-func (o VpcPublicGatewayIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayIp] {
-	return pulumix.Output[[]*VpcPublicGatewayIp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpcPublicGatewayIpArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayIpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayIp {
 		return vs[0].([]*VpcPublicGatewayIp)[vs[1].(int)]
@@ -364,12 +333,6 @@ func (o VpcPublicGatewayIpMapOutput) ToVpcPublicGatewayIpMapOutput() VpcPublicGa
 
 func (o VpcPublicGatewayIpMapOutput) ToVpcPublicGatewayIpMapOutputWithContext(ctx context.Context) VpcPublicGatewayIpMapOutput {
 	return o
-}
-
-func (o VpcPublicGatewayIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayIp] {
-	return pulumix.Output[map[string]*VpcPublicGatewayIp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpcPublicGatewayIpMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayIpOutput {

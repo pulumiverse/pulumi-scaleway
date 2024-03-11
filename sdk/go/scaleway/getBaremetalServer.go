@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -137,12 +136,6 @@ func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutput()
 
 func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutputWithContext(ctx context.Context) LookupBaremetalServerResultOutput {
 	return o
-}
-
-func (o LookupBaremetalServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupBaremetalServerResult] {
-	return pulumix.Output[LookupBaremetalServerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupBaremetalServerResultOutput) Description() pulumi.StringOutput {

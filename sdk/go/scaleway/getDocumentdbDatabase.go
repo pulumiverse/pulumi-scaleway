@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -114,12 +113,6 @@ func (o LookupDocumentdbDatabaseResultOutput) ToLookupDocumentdbDatabaseResultOu
 
 func (o LookupDocumentdbDatabaseResultOutput) ToLookupDocumentdbDatabaseResultOutputWithContext(ctx context.Context) LookupDocumentdbDatabaseResultOutput {
 	return o
-}
-
-func (o LookupDocumentdbDatabaseResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDocumentdbDatabaseResult] {
-	return pulumix.Output[LookupDocumentdbDatabaseResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

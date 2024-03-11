@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -178,12 +177,6 @@ func (i *CockpitGrafanaUser) ToCockpitGrafanaUserOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitGrafanaUserOutput)
 }
 
-func (i *CockpitGrafanaUser) ToOutput(ctx context.Context) pulumix.Output[*CockpitGrafanaUser] {
-	return pulumix.Output[*CockpitGrafanaUser]{
-		OutputState: i.ToCockpitGrafanaUserOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CockpitGrafanaUserArrayInput is an input type that accepts CockpitGrafanaUserArray and CockpitGrafanaUserArrayOutput values.
 // You can construct a concrete instance of `CockpitGrafanaUserArrayInput` via:
 //
@@ -207,12 +200,6 @@ func (i CockpitGrafanaUserArray) ToCockpitGrafanaUserArrayOutput() CockpitGrafan
 
 func (i CockpitGrafanaUserArray) ToCockpitGrafanaUserArrayOutputWithContext(ctx context.Context) CockpitGrafanaUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitGrafanaUserArrayOutput)
-}
-
-func (i CockpitGrafanaUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*CockpitGrafanaUser] {
-	return pulumix.Output[[]*CockpitGrafanaUser]{
-		OutputState: i.ToCockpitGrafanaUserArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CockpitGrafanaUserMapInput is an input type that accepts CockpitGrafanaUserMap and CockpitGrafanaUserMapOutput values.
@@ -240,12 +227,6 @@ func (i CockpitGrafanaUserMap) ToCockpitGrafanaUserMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitGrafanaUserMapOutput)
 }
 
-func (i CockpitGrafanaUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CockpitGrafanaUser] {
-	return pulumix.Output[map[string]*CockpitGrafanaUser]{
-		OutputState: i.ToCockpitGrafanaUserMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CockpitGrafanaUserOutput struct{ *pulumi.OutputState }
 
 func (CockpitGrafanaUserOutput) ElementType() reflect.Type {
@@ -258,12 +239,6 @@ func (o CockpitGrafanaUserOutput) ToCockpitGrafanaUserOutput() CockpitGrafanaUse
 
 func (o CockpitGrafanaUserOutput) ToCockpitGrafanaUserOutputWithContext(ctx context.Context) CockpitGrafanaUserOutput {
 	return o
-}
-
-func (o CockpitGrafanaUserOutput) ToOutput(ctx context.Context) pulumix.Output[*CockpitGrafanaUser] {
-	return pulumix.Output[*CockpitGrafanaUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The login of the grafana user.
@@ -300,12 +275,6 @@ func (o CockpitGrafanaUserArrayOutput) ToCockpitGrafanaUserArrayOutputWithContex
 	return o
 }
 
-func (o CockpitGrafanaUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CockpitGrafanaUser] {
-	return pulumix.Output[[]*CockpitGrafanaUser]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CockpitGrafanaUserArrayOutput) Index(i pulumi.IntInput) CockpitGrafanaUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CockpitGrafanaUser {
 		return vs[0].([]*CockpitGrafanaUser)[vs[1].(int)]
@@ -324,12 +293,6 @@ func (o CockpitGrafanaUserMapOutput) ToCockpitGrafanaUserMapOutput() CockpitGraf
 
 func (o CockpitGrafanaUserMapOutput) ToCockpitGrafanaUserMapOutputWithContext(ctx context.Context) CockpitGrafanaUserMapOutput {
 	return o
-}
-
-func (o CockpitGrafanaUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CockpitGrafanaUser] {
-	return pulumix.Output[map[string]*CockpitGrafanaUser]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CockpitGrafanaUserMapOutput) MapIndex(k pulumi.StringInput) CockpitGrafanaUserOutput {

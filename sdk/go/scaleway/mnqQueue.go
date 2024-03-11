@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -160,12 +159,6 @@ func (i *MnqQueue) ToMnqQueueOutputWithContext(ctx context.Context) MnqQueueOutp
 	return pulumi.ToOutputWithContext(ctx, i).(MnqQueueOutput)
 }
 
-func (i *MnqQueue) ToOutput(ctx context.Context) pulumix.Output[*MnqQueue] {
-	return pulumix.Output[*MnqQueue]{
-		OutputState: i.ToMnqQueueOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MnqQueueArrayInput is an input type that accepts MnqQueueArray and MnqQueueArrayOutput values.
 // You can construct a concrete instance of `MnqQueueArrayInput` via:
 //
@@ -189,12 +182,6 @@ func (i MnqQueueArray) ToMnqQueueArrayOutput() MnqQueueArrayOutput {
 
 func (i MnqQueueArray) ToMnqQueueArrayOutputWithContext(ctx context.Context) MnqQueueArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqQueueArrayOutput)
-}
-
-func (i MnqQueueArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqQueue] {
-	return pulumix.Output[[]*MnqQueue]{
-		OutputState: i.ToMnqQueueArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MnqQueueMapInput is an input type that accepts MnqQueueMap and MnqQueueMapOutput values.
@@ -222,12 +209,6 @@ func (i MnqQueueMap) ToMnqQueueMapOutputWithContext(ctx context.Context) MnqQueu
 	return pulumi.ToOutputWithContext(ctx, i).(MnqQueueMapOutput)
 }
 
-func (i MnqQueueMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqQueue] {
-	return pulumix.Output[map[string]*MnqQueue]{
-		OutputState: i.ToMnqQueueMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MnqQueueOutput struct{ *pulumi.OutputState }
 
 func (MnqQueueOutput) ElementType() reflect.Type {
@@ -240,12 +221,6 @@ func (o MnqQueueOutput) ToMnqQueueOutput() MnqQueueOutput {
 
 func (o MnqQueueOutput) ToMnqQueueOutputWithContext(ctx context.Context) MnqQueueOutput {
 	return o
-}
-
-func (o MnqQueueOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqQueue] {
-	return pulumix.Output[*MnqQueue]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The number of seconds the queue retains a message.
@@ -297,12 +272,6 @@ func (o MnqQueueArrayOutput) ToMnqQueueArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o MnqQueueArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqQueue] {
-	return pulumix.Output[[]*MnqQueue]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MnqQueueArrayOutput) Index(i pulumi.IntInput) MnqQueueOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqQueue {
 		return vs[0].([]*MnqQueue)[vs[1].(int)]
@@ -321,12 +290,6 @@ func (o MnqQueueMapOutput) ToMnqQueueMapOutput() MnqQueueMapOutput {
 
 func (o MnqQueueMapOutput) ToMnqQueueMapOutputWithContext(ctx context.Context) MnqQueueMapOutput {
 	return o
-}
-
-func (o MnqQueueMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqQueue] {
-	return pulumix.Output[map[string]*MnqQueue]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MnqQueueMapOutput) MapIndex(k pulumi.StringInput) MnqQueueOutput {

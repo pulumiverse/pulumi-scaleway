@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -226,12 +225,6 @@ func (i *InstanceSecurityGroup) ToInstanceSecurityGroupOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupOutput)
 }
 
-func (i *InstanceSecurityGroup) ToOutput(ctx context.Context) pulumix.Output[*InstanceSecurityGroup] {
-	return pulumix.Output[*InstanceSecurityGroup]{
-		OutputState: i.ToInstanceSecurityGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceSecurityGroupArrayInput is an input type that accepts InstanceSecurityGroupArray and InstanceSecurityGroupArrayOutput values.
 // You can construct a concrete instance of `InstanceSecurityGroupArrayInput` via:
 //
@@ -255,12 +248,6 @@ func (i InstanceSecurityGroupArray) ToInstanceSecurityGroupArrayOutput() Instanc
 
 func (i InstanceSecurityGroupArray) ToInstanceSecurityGroupArrayOutputWithContext(ctx context.Context) InstanceSecurityGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupArrayOutput)
-}
-
-func (i InstanceSecurityGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceSecurityGroup] {
-	return pulumix.Output[[]*InstanceSecurityGroup]{
-		OutputState: i.ToInstanceSecurityGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceSecurityGroupMapInput is an input type that accepts InstanceSecurityGroupMap and InstanceSecurityGroupMapOutput values.
@@ -288,12 +275,6 @@ func (i InstanceSecurityGroupMap) ToInstanceSecurityGroupMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSecurityGroupMapOutput)
 }
 
-func (i InstanceSecurityGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceSecurityGroup] {
-	return pulumix.Output[map[string]*InstanceSecurityGroup]{
-		OutputState: i.ToInstanceSecurityGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceSecurityGroupOutput struct{ *pulumi.OutputState }
 
 func (InstanceSecurityGroupOutput) ElementType() reflect.Type {
@@ -306,12 +287,6 @@ func (o InstanceSecurityGroupOutput) ToInstanceSecurityGroupOutput() InstanceSec
 
 func (o InstanceSecurityGroupOutput) ToInstanceSecurityGroupOutputWithContext(ctx context.Context) InstanceSecurityGroupOutput {
 	return o
-}
-
-func (o InstanceSecurityGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceSecurityGroup] {
-	return pulumix.Output[*InstanceSecurityGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The description of the security group.
@@ -394,12 +369,6 @@ func (o InstanceSecurityGroupArrayOutput) ToInstanceSecurityGroupArrayOutputWith
 	return o
 }
 
-func (o InstanceSecurityGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceSecurityGroup] {
-	return pulumix.Output[[]*InstanceSecurityGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceSecurityGroupArrayOutput) Index(i pulumi.IntInput) InstanceSecurityGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceSecurityGroup {
 		return vs[0].([]*InstanceSecurityGroup)[vs[1].(int)]
@@ -418,12 +387,6 @@ func (o InstanceSecurityGroupMapOutput) ToInstanceSecurityGroupMapOutput() Insta
 
 func (o InstanceSecurityGroupMapOutput) ToInstanceSecurityGroupMapOutputWithContext(ctx context.Context) InstanceSecurityGroupMapOutput {
 	return o
-}
-
-func (o InstanceSecurityGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceSecurityGroup] {
-	return pulumix.Output[map[string]*InstanceSecurityGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceSecurityGroupMapOutput) MapIndex(k pulumi.StringInput) InstanceSecurityGroupOutput {

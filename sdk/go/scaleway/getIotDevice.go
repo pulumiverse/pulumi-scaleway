@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -127,12 +126,6 @@ func (o LookupIotDeviceResultOutput) ToLookupIotDeviceResultOutput() LookupIotDe
 
 func (o LookupIotDeviceResultOutput) ToLookupIotDeviceResultOutputWithContext(ctx context.Context) LookupIotDeviceResultOutput {
 	return o
-}
-
-func (o LookupIotDeviceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIotDeviceResult] {
-	return pulumix.Output[LookupIotDeviceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupIotDeviceResultOutput) AllowInsecure() pulumi.BoolOutput {

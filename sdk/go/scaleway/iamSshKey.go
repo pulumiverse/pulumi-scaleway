@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -198,12 +197,6 @@ func (i *IamSshKey) ToIamSshKeyOutputWithContext(ctx context.Context) IamSshKeyO
 	return pulumi.ToOutputWithContext(ctx, i).(IamSshKeyOutput)
 }
 
-func (i *IamSshKey) ToOutput(ctx context.Context) pulumix.Output[*IamSshKey] {
-	return pulumix.Output[*IamSshKey]{
-		OutputState: i.ToIamSshKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IamSshKeyArrayInput is an input type that accepts IamSshKeyArray and IamSshKeyArrayOutput values.
 // You can construct a concrete instance of `IamSshKeyArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i IamSshKeyArray) ToIamSshKeyArrayOutput() IamSshKeyArrayOutput {
 
 func (i IamSshKeyArray) ToIamSshKeyArrayOutputWithContext(ctx context.Context) IamSshKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamSshKeyArrayOutput)
-}
-
-func (i IamSshKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*IamSshKey] {
-	return pulumix.Output[[]*IamSshKey]{
-		OutputState: i.ToIamSshKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IamSshKeyMapInput is an input type that accepts IamSshKeyMap and IamSshKeyMapOutput values.
@@ -260,12 +247,6 @@ func (i IamSshKeyMap) ToIamSshKeyMapOutputWithContext(ctx context.Context) IamSs
 	return pulumi.ToOutputWithContext(ctx, i).(IamSshKeyMapOutput)
 }
 
-func (i IamSshKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamSshKey] {
-	return pulumix.Output[map[string]*IamSshKey]{
-		OutputState: i.ToIamSshKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IamSshKeyOutput struct{ *pulumi.OutputState }
 
 func (IamSshKeyOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o IamSshKeyOutput) ToIamSshKeyOutput() IamSshKeyOutput {
 
 func (o IamSshKeyOutput) ToIamSshKeyOutputWithContext(ctx context.Context) IamSshKeyOutput {
 	return o
-}
-
-func (o IamSshKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*IamSshKey] {
-	return pulumix.Output[*IamSshKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the SSH key.
@@ -341,12 +316,6 @@ func (o IamSshKeyArrayOutput) ToIamSshKeyArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o IamSshKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IamSshKey] {
-	return pulumix.Output[[]*IamSshKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IamSshKeyArrayOutput) Index(i pulumi.IntInput) IamSshKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IamSshKey {
 		return vs[0].([]*IamSshKey)[vs[1].(int)]
@@ -365,12 +334,6 @@ func (o IamSshKeyMapOutput) ToIamSshKeyMapOutput() IamSshKeyMapOutput {
 
 func (o IamSshKeyMapOutput) ToIamSshKeyMapOutputWithContext(ctx context.Context) IamSshKeyMapOutput {
 	return o
-}
-
-func (o IamSshKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamSshKey] {
-	return pulumix.Output[map[string]*IamSshKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IamSshKeyMapOutput) MapIndex(k pulumi.StringInput) IamSshKeyOutput {

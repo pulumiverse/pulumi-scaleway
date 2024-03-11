@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -159,12 +158,6 @@ func (o LookupInstanceServerResultOutput) ToLookupInstanceServerResultOutput() L
 
 func (o LookupInstanceServerResultOutput) ToLookupInstanceServerResultOutputWithContext(ctx context.Context) LookupInstanceServerResultOutput {
 	return o
-}
-
-func (o LookupInstanceServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceServerResult] {
-	return pulumix.Output[LookupInstanceServerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)

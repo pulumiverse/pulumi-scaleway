@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -118,12 +117,6 @@ func (o LookupDatabasePrivilegeResultOutput) ToLookupDatabasePrivilegeResultOutp
 
 func (o LookupDatabasePrivilegeResultOutput) ToLookupDatabasePrivilegeResultOutputWithContext(ctx context.Context) LookupDatabasePrivilegeResultOutput {
 	return o
-}
-
-func (o LookupDatabasePrivilegeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabasePrivilegeResult] {
-	return pulumix.Output[LookupDatabasePrivilegeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupDatabasePrivilegeResultOutput) DatabaseName() pulumi.StringOutput {

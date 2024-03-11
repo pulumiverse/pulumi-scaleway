@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -105,12 +104,6 @@ func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutput() LookupD
 
 func (o LookupDatabaseAclResultOutput) ToLookupDatabaseAclResultOutputWithContext(ctx context.Context) LookupDatabaseAclResultOutput {
 	return o
-}
-
-func (o LookupDatabaseAclResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseAclResult] {
-	return pulumix.Output[LookupDatabaseAclResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of ACLs rules (structure is described below)

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -143,12 +142,6 @@ func (o LookupInstancePrivateNicResultOutput) ToLookupInstancePrivateNicResultOu
 
 func (o LookupInstancePrivateNicResultOutput) ToLookupInstancePrivateNicResultOutputWithContext(ctx context.Context) LookupInstancePrivateNicResultOutput {
 	return o
-}
-
-func (o LookupInstancePrivateNicResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstancePrivateNicResult] {
-	return pulumix.Output[LookupInstancePrivateNicResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

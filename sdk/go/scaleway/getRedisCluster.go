@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -127,12 +126,6 @@ func (o LookupRedisClusterResultOutput) ToLookupRedisClusterResultOutput() Looku
 
 func (o LookupRedisClusterResultOutput) ToLookupRedisClusterResultOutputWithContext(ctx context.Context) LookupRedisClusterResultOutput {
 	return o
-}
-
-func (o LookupRedisClusterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRedisClusterResult] {
-	return pulumix.Output[LookupRedisClusterResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupRedisClusterResultOutput) Acls() GetRedisClusterAclArrayOutput {

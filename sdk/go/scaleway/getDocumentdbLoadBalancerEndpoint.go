@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -82,12 +81,6 @@ func (o GetDocumentdbLoadBalancerEndpointResultOutput) ToGetDocumentdbLoadBalanc
 
 func (o GetDocumentdbLoadBalancerEndpointResultOutput) ToGetDocumentdbLoadBalancerEndpointResultOutputWithContext(ctx context.Context) GetDocumentdbLoadBalancerEndpointResultOutput {
 	return o
-}
-
-func (o GetDocumentdbLoadBalancerEndpointResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDocumentdbLoadBalancerEndpointResult] {
-	return pulumix.Output[GetDocumentdbLoadBalancerEndpointResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDocumentdbLoadBalancerEndpointResultOutput) Hostname() pulumi.StringOutput {

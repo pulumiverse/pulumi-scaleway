@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -218,12 +217,6 @@ func (i *DatabasePrivilege) ToDatabasePrivilegeOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(DatabasePrivilegeOutput)
 }
 
-func (i *DatabasePrivilege) ToOutput(ctx context.Context) pulumix.Output[*DatabasePrivilege] {
-	return pulumix.Output[*DatabasePrivilege]{
-		OutputState: i.ToDatabasePrivilegeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DatabasePrivilegeArrayInput is an input type that accepts DatabasePrivilegeArray and DatabasePrivilegeArrayOutput values.
 // You can construct a concrete instance of `DatabasePrivilegeArrayInput` via:
 //
@@ -247,12 +240,6 @@ func (i DatabasePrivilegeArray) ToDatabasePrivilegeArrayOutput() DatabasePrivile
 
 func (i DatabasePrivilegeArray) ToDatabasePrivilegeArrayOutputWithContext(ctx context.Context) DatabasePrivilegeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabasePrivilegeArrayOutput)
-}
-
-func (i DatabasePrivilegeArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabasePrivilege] {
-	return pulumix.Output[[]*DatabasePrivilege]{
-		OutputState: i.ToDatabasePrivilegeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DatabasePrivilegeMapInput is an input type that accepts DatabasePrivilegeMap and DatabasePrivilegeMapOutput values.
@@ -280,12 +267,6 @@ func (i DatabasePrivilegeMap) ToDatabasePrivilegeMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(DatabasePrivilegeMapOutput)
 }
 
-func (i DatabasePrivilegeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabasePrivilege] {
-	return pulumix.Output[map[string]*DatabasePrivilege]{
-		OutputState: i.ToDatabasePrivilegeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DatabasePrivilegeOutput struct{ *pulumi.OutputState }
 
 func (DatabasePrivilegeOutput) ElementType() reflect.Type {
@@ -298,12 +279,6 @@ func (o DatabasePrivilegeOutput) ToDatabasePrivilegeOutput() DatabasePrivilegeOu
 
 func (o DatabasePrivilegeOutput) ToDatabasePrivilegeOutputWithContext(ctx context.Context) DatabasePrivilegeOutput {
 	return o
-}
-
-func (o DatabasePrivilegeOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabasePrivilege] {
-	return pulumix.Output[*DatabasePrivilege]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the database (e.g. `my-db-name`).
@@ -345,12 +320,6 @@ func (o DatabasePrivilegeArrayOutput) ToDatabasePrivilegeArrayOutputWithContext(
 	return o
 }
 
-func (o DatabasePrivilegeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabasePrivilege] {
-	return pulumix.Output[[]*DatabasePrivilege]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DatabasePrivilegeArrayOutput) Index(i pulumi.IntInput) DatabasePrivilegeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabasePrivilege {
 		return vs[0].([]*DatabasePrivilege)[vs[1].(int)]
@@ -369,12 +338,6 @@ func (o DatabasePrivilegeMapOutput) ToDatabasePrivilegeMapOutput() DatabasePrivi
 
 func (o DatabasePrivilegeMapOutput) ToDatabasePrivilegeMapOutputWithContext(ctx context.Context) DatabasePrivilegeMapOutput {
 	return o
-}
-
-func (o DatabasePrivilegeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabasePrivilege] {
-	return pulumix.Output[map[string]*DatabasePrivilege]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DatabasePrivilegeMapOutput) MapIndex(k pulumi.StringInput) DatabasePrivilegeOutput {

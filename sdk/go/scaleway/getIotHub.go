@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -127,12 +126,6 @@ func (o LookupIotHubResultOutput) ToLookupIotHubResultOutput() LookupIotHubResul
 
 func (o LookupIotHubResultOutput) ToLookupIotHubResultOutputWithContext(ctx context.Context) LookupIotHubResultOutput {
 	return o
-}
-
-func (o LookupIotHubResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIotHubResult] {
-	return pulumix.Output[LookupIotHubResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupIotHubResultOutput) ConnectedDeviceCount() pulumi.IntOutput {

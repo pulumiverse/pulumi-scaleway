@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -198,12 +197,6 @@ func (i *DocumentdbDatabase) ToDocumentdbDatabaseOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbDatabaseOutput)
 }
 
-func (i *DocumentdbDatabase) ToOutput(ctx context.Context) pulumix.Output[*DocumentdbDatabase] {
-	return pulumix.Output[*DocumentdbDatabase]{
-		OutputState: i.ToDocumentdbDatabaseOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DocumentdbDatabaseArrayInput is an input type that accepts DocumentdbDatabaseArray and DocumentdbDatabaseArrayOutput values.
 // You can construct a concrete instance of `DocumentdbDatabaseArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i DocumentdbDatabaseArray) ToDocumentdbDatabaseArrayOutput() DocumentdbDat
 
 func (i DocumentdbDatabaseArray) ToDocumentdbDatabaseArrayOutputWithContext(ctx context.Context) DocumentdbDatabaseArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbDatabaseArrayOutput)
-}
-
-func (i DocumentdbDatabaseArray) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentdbDatabase] {
-	return pulumix.Output[[]*DocumentdbDatabase]{
-		OutputState: i.ToDocumentdbDatabaseArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DocumentdbDatabaseMapInput is an input type that accepts DocumentdbDatabaseMap and DocumentdbDatabaseMapOutput values.
@@ -260,12 +247,6 @@ func (i DocumentdbDatabaseMap) ToDocumentdbDatabaseMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbDatabaseMapOutput)
 }
 
-func (i DocumentdbDatabaseMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentdbDatabase] {
-	return pulumix.Output[map[string]*DocumentdbDatabase]{
-		OutputState: i.ToDocumentdbDatabaseMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DocumentdbDatabaseOutput struct{ *pulumi.OutputState }
 
 func (DocumentdbDatabaseOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o DocumentdbDatabaseOutput) ToDocumentdbDatabaseOutput() DocumentdbDatabas
 
 func (o DocumentdbDatabaseOutput) ToDocumentdbDatabaseOutputWithContext(ctx context.Context) DocumentdbDatabaseOutput {
 	return o
-}
-
-func (o DocumentdbDatabaseOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentdbDatabase] {
-	return pulumix.Output[*DocumentdbDatabase]{
-		OutputState: o.OutputState,
-	}
 }
 
 // UUID of the documentdb instance.
@@ -337,12 +312,6 @@ func (o DocumentdbDatabaseArrayOutput) ToDocumentdbDatabaseArrayOutputWithContex
 	return o
 }
 
-func (o DocumentdbDatabaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentdbDatabase] {
-	return pulumix.Output[[]*DocumentdbDatabase]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DocumentdbDatabaseArrayOutput) Index(i pulumi.IntInput) DocumentdbDatabaseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbDatabase {
 		return vs[0].([]*DocumentdbDatabase)[vs[1].(int)]
@@ -361,12 +330,6 @@ func (o DocumentdbDatabaseMapOutput) ToDocumentdbDatabaseMapOutput() DocumentdbD
 
 func (o DocumentdbDatabaseMapOutput) ToDocumentdbDatabaseMapOutputWithContext(ctx context.Context) DocumentdbDatabaseMapOutput {
 	return o
-}
-
-func (o DocumentdbDatabaseMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentdbDatabase] {
-	return pulumix.Output[map[string]*DocumentdbDatabase]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DocumentdbDatabaseMapOutput) MapIndex(k pulumi.StringInput) DocumentdbDatabaseOutput {

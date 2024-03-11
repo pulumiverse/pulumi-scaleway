@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -135,12 +134,6 @@ func (o GetRegistryImageResultOutput) ToGetRegistryImageResultOutput() GetRegist
 
 func (o GetRegistryImageResultOutput) ToGetRegistryImageResultOutputWithContext(ctx context.Context) GetRegistryImageResultOutput {
 	return o
-}
-
-func (o GetRegistryImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegistryImageResult] {
-	return pulumix.Output[GetRegistryImageResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

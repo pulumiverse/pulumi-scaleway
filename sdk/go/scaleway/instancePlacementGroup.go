@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -193,12 +192,6 @@ func (i *InstancePlacementGroup) ToInstancePlacementGroupOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePlacementGroupOutput)
 }
 
-func (i *InstancePlacementGroup) ToOutput(ctx context.Context) pulumix.Output[*InstancePlacementGroup] {
-	return pulumix.Output[*InstancePlacementGroup]{
-		OutputState: i.ToInstancePlacementGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstancePlacementGroupArrayInput is an input type that accepts InstancePlacementGroupArray and InstancePlacementGroupArrayOutput values.
 // You can construct a concrete instance of `InstancePlacementGroupArrayInput` via:
 //
@@ -222,12 +215,6 @@ func (i InstancePlacementGroupArray) ToInstancePlacementGroupArrayOutput() Insta
 
 func (i InstancePlacementGroupArray) ToInstancePlacementGroupArrayOutputWithContext(ctx context.Context) InstancePlacementGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePlacementGroupArrayOutput)
-}
-
-func (i InstancePlacementGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstancePlacementGroup] {
-	return pulumix.Output[[]*InstancePlacementGroup]{
-		OutputState: i.ToInstancePlacementGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstancePlacementGroupMapInput is an input type that accepts InstancePlacementGroupMap and InstancePlacementGroupMapOutput values.
@@ -255,12 +242,6 @@ func (i InstancePlacementGroupMap) ToInstancePlacementGroupMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePlacementGroupMapOutput)
 }
 
-func (i InstancePlacementGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstancePlacementGroup] {
-	return pulumix.Output[map[string]*InstancePlacementGroup]{
-		OutputState: i.ToInstancePlacementGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstancePlacementGroupOutput struct{ *pulumi.OutputState }
 
 func (InstancePlacementGroupOutput) ElementType() reflect.Type {
@@ -273,12 +254,6 @@ func (o InstancePlacementGroupOutput) ToInstancePlacementGroupOutput() InstanceP
 
 func (o InstancePlacementGroupOutput) ToInstancePlacementGroupOutputWithContext(ctx context.Context) InstancePlacementGroupOutput {
 	return o
-}
-
-func (o InstancePlacementGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*InstancePlacementGroup] {
-	return pulumix.Output[*InstancePlacementGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The name of the placement group.
@@ -335,12 +310,6 @@ func (o InstancePlacementGroupArrayOutput) ToInstancePlacementGroupArrayOutputWi
 	return o
 }
 
-func (o InstancePlacementGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstancePlacementGroup] {
-	return pulumix.Output[[]*InstancePlacementGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstancePlacementGroupArrayOutput) Index(i pulumi.IntInput) InstancePlacementGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstancePlacementGroup {
 		return vs[0].([]*InstancePlacementGroup)[vs[1].(int)]
@@ -359,12 +328,6 @@ func (o InstancePlacementGroupMapOutput) ToInstancePlacementGroupMapOutput() Ins
 
 func (o InstancePlacementGroupMapOutput) ToInstancePlacementGroupMapOutputWithContext(ctx context.Context) InstancePlacementGroupMapOutput {
 	return o
-}
-
-func (o InstancePlacementGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstancePlacementGroup] {
-	return pulumix.Output[map[string]*InstancePlacementGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstancePlacementGroupMapOutput) MapIndex(k pulumi.StringInput) InstancePlacementGroupOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -111,12 +110,6 @@ func (o LookupObjectBucketPolicyResultOutput) ToLookupObjectBucketPolicyResultOu
 
 func (o LookupObjectBucketPolicyResultOutput) ToLookupObjectBucketPolicyResultOutputWithContext(ctx context.Context) LookupObjectBucketPolicyResultOutput {
 	return o
-}
-
-func (o LookupObjectBucketPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectBucketPolicyResult] {
-	return pulumix.Output[LookupObjectBucketPolicyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupObjectBucketPolicyResultOutput) Bucket() pulumi.StringOutput {

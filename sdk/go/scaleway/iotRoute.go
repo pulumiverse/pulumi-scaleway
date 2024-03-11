@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -169,12 +168,6 @@ func (i *IotRoute) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutp
 	return pulumi.ToOutputWithContext(ctx, i).(IotRouteOutput)
 }
 
-func (i *IotRoute) ToOutput(ctx context.Context) pulumix.Output[*IotRoute] {
-	return pulumix.Output[*IotRoute]{
-		OutputState: i.ToIotRouteOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IotRouteArrayInput is an input type that accepts IotRouteArray and IotRouteArrayOutput values.
 // You can construct a concrete instance of `IotRouteArrayInput` via:
 //
@@ -198,12 +191,6 @@ func (i IotRouteArray) ToIotRouteArrayOutput() IotRouteArrayOutput {
 
 func (i IotRouteArray) ToIotRouteArrayOutputWithContext(ctx context.Context) IotRouteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IotRouteArrayOutput)
-}
-
-func (i IotRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]*IotRoute] {
-	return pulumix.Output[[]*IotRoute]{
-		OutputState: i.ToIotRouteArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IotRouteMapInput is an input type that accepts IotRouteMap and IotRouteMapOutput values.
@@ -231,12 +218,6 @@ func (i IotRouteMap) ToIotRouteMapOutputWithContext(ctx context.Context) IotRout
 	return pulumi.ToOutputWithContext(ctx, i).(IotRouteMapOutput)
 }
 
-func (i IotRouteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotRoute] {
-	return pulumix.Output[map[string]*IotRoute]{
-		OutputState: i.ToIotRouteMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IotRouteOutput struct{ *pulumi.OutputState }
 
 func (IotRouteOutput) ElementType() reflect.Type {
@@ -249,12 +230,6 @@ func (o IotRouteOutput) ToIotRouteOutput() IotRouteOutput {
 
 func (o IotRouteOutput) ToIotRouteOutputWithContext(ctx context.Context) IotRouteOutput {
 	return o
-}
-
-func (o IotRouteOutput) ToOutput(ctx context.Context) pulumix.Output[*IotRoute] {
-	return pulumix.Output[*IotRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the IoT Route
@@ -311,12 +286,6 @@ func (o IotRouteArrayOutput) ToIotRouteArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o IotRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IotRoute] {
-	return pulumix.Output[[]*IotRoute]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IotRouteArrayOutput) Index(i pulumi.IntInput) IotRouteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IotRoute {
 		return vs[0].([]*IotRoute)[vs[1].(int)]
@@ -335,12 +304,6 @@ func (o IotRouteMapOutput) ToIotRouteMapOutput() IotRouteMapOutput {
 
 func (o IotRouteMapOutput) ToIotRouteMapOutputWithContext(ctx context.Context) IotRouteMapOutput {
 	return o
-}
-
-func (o IotRouteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IotRoute] {
-	return pulumix.Output[map[string]*IotRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IotRouteMapOutput) MapIndex(k pulumi.StringInput) IotRouteOutput {

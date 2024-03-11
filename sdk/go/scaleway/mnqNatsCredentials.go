@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -176,12 +175,6 @@ func (i *MnqNatsCredentials) ToMnqNatsCredentialsOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNatsCredentialsOutput)
 }
 
-func (i *MnqNatsCredentials) ToOutput(ctx context.Context) pulumix.Output[*MnqNatsCredentials] {
-	return pulumix.Output[*MnqNatsCredentials]{
-		OutputState: i.ToMnqNatsCredentialsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MnqNatsCredentialsArrayInput is an input type that accepts MnqNatsCredentialsArray and MnqNatsCredentialsArrayOutput values.
 // You can construct a concrete instance of `MnqNatsCredentialsArrayInput` via:
 //
@@ -205,12 +198,6 @@ func (i MnqNatsCredentialsArray) ToMnqNatsCredentialsArrayOutput() MnqNatsCreden
 
 func (i MnqNatsCredentialsArray) ToMnqNatsCredentialsArrayOutputWithContext(ctx context.Context) MnqNatsCredentialsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNatsCredentialsArrayOutput)
-}
-
-func (i MnqNatsCredentialsArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqNatsCredentials] {
-	return pulumix.Output[[]*MnqNatsCredentials]{
-		OutputState: i.ToMnqNatsCredentialsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MnqNatsCredentialsMapInput is an input type that accepts MnqNatsCredentialsMap and MnqNatsCredentialsMapOutput values.
@@ -238,12 +225,6 @@ func (i MnqNatsCredentialsMap) ToMnqNatsCredentialsMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNatsCredentialsMapOutput)
 }
 
-func (i MnqNatsCredentialsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqNatsCredentials] {
-	return pulumix.Output[map[string]*MnqNatsCredentials]{
-		OutputState: i.ToMnqNatsCredentialsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MnqNatsCredentialsOutput struct{ *pulumi.OutputState }
 
 func (MnqNatsCredentialsOutput) ElementType() reflect.Type {
@@ -256,12 +237,6 @@ func (o MnqNatsCredentialsOutput) ToMnqNatsCredentialsOutput() MnqNatsCredential
 
 func (o MnqNatsCredentialsOutput) ToMnqNatsCredentialsOutputWithContext(ctx context.Context) MnqNatsCredentialsOutput {
 	return o
-}
-
-func (o MnqNatsCredentialsOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqNatsCredentials] {
-	return pulumix.Output[*MnqNatsCredentials]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the nats account the credentials are generated from
@@ -299,12 +274,6 @@ func (o MnqNatsCredentialsArrayOutput) ToMnqNatsCredentialsArrayOutputWithContex
 	return o
 }
 
-func (o MnqNatsCredentialsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqNatsCredentials] {
-	return pulumix.Output[[]*MnqNatsCredentials]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MnqNatsCredentialsArrayOutput) Index(i pulumi.IntInput) MnqNatsCredentialsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqNatsCredentials {
 		return vs[0].([]*MnqNatsCredentials)[vs[1].(int)]
@@ -323,12 +292,6 @@ func (o MnqNatsCredentialsMapOutput) ToMnqNatsCredentialsMapOutput() MnqNatsCred
 
 func (o MnqNatsCredentialsMapOutput) ToMnqNatsCredentialsMapOutputWithContext(ctx context.Context) MnqNatsCredentialsMapOutput {
 	return o
-}
-
-func (o MnqNatsCredentialsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqNatsCredentials] {
-	return pulumix.Output[map[string]*MnqNatsCredentials]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MnqNatsCredentialsMapOutput) MapIndex(k pulumi.StringInput) MnqNatsCredentialsOutput {

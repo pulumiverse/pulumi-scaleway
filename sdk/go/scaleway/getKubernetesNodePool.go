@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -154,12 +153,6 @@ func (o LookupKubernetesNodePoolResultOutput) ToLookupKubernetesNodePoolResultOu
 
 func (o LookupKubernetesNodePoolResultOutput) ToLookupKubernetesNodePoolResultOutputWithContext(ctx context.Context) LookupKubernetesNodePoolResultOutput {
 	return o
-}
-
-func (o LookupKubernetesNodePoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupKubernetesNodePoolResult] {
-	return pulumix.Output[LookupKubernetesNodePoolResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // True if the autohealing feature is enabled for this pool.

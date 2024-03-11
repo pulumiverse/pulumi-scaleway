@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -134,12 +133,6 @@ func (o GetIpamIpResultOutput) ToGetIpamIpResultOutput() GetIpamIpResultOutput {
 
 func (o GetIpamIpResultOutput) ToGetIpamIpResultOutputWithContext(ctx context.Context) GetIpamIpResultOutput {
 	return o
-}
-
-func (o GetIpamIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIpamIpResult] {
-	return pulumix.Output[GetIpamIpResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP address

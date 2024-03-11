@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -160,12 +159,6 @@ func (o GetFlexibleIpsResultOutput) ToGetFlexibleIpsResultOutput() GetFlexibleIp
 
 func (o GetFlexibleIpsResultOutput) ToGetFlexibleIpsResultOutputWithContext(ctx context.Context) GetFlexibleIpsResultOutput {
 	return o
-}
-
-func (o GetFlexibleIpsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFlexibleIpsResult] {
-	return pulumix.Output[GetFlexibleIpsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

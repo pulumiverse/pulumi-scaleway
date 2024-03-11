@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -106,12 +105,6 @@ func (o LookupVpcPublicGatewayDhcpReservationResultOutput) ToLookupVpcPublicGate
 
 func (o LookupVpcPublicGatewayDhcpReservationResultOutput) ToLookupVpcPublicGatewayDhcpReservationResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayDhcpReservationResultOutput {
 	return o
-}
-
-func (o LookupVpcPublicGatewayDhcpReservationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayDhcpReservationResult] {
-	return pulumix.Output[LookupVpcPublicGatewayDhcpReservationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the public gateway DHCP config.

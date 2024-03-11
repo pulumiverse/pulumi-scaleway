@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -320,12 +319,6 @@ func (i *InstanceSnapshot) ToInstanceSnapshotOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotOutput)
 }
 
-func (i *InstanceSnapshot) ToOutput(ctx context.Context) pulumix.Output[*InstanceSnapshot] {
-	return pulumix.Output[*InstanceSnapshot]{
-		OutputState: i.ToInstanceSnapshotOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceSnapshotArrayInput is an input type that accepts InstanceSnapshotArray and InstanceSnapshotArrayOutput values.
 // You can construct a concrete instance of `InstanceSnapshotArrayInput` via:
 //
@@ -349,12 +342,6 @@ func (i InstanceSnapshotArray) ToInstanceSnapshotArrayOutput() InstanceSnapshotA
 
 func (i InstanceSnapshotArray) ToInstanceSnapshotArrayOutputWithContext(ctx context.Context) InstanceSnapshotArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotArrayOutput)
-}
-
-func (i InstanceSnapshotArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceSnapshot] {
-	return pulumix.Output[[]*InstanceSnapshot]{
-		OutputState: i.ToInstanceSnapshotArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceSnapshotMapInput is an input type that accepts InstanceSnapshotMap and InstanceSnapshotMapOutput values.
@@ -382,12 +369,6 @@ func (i InstanceSnapshotMap) ToInstanceSnapshotMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceSnapshotMapOutput)
 }
 
-func (i InstanceSnapshotMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceSnapshot] {
-	return pulumix.Output[map[string]*InstanceSnapshot]{
-		OutputState: i.ToInstanceSnapshotMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceSnapshotOutput struct{ *pulumi.OutputState }
 
 func (InstanceSnapshotOutput) ElementType() reflect.Type {
@@ -400,12 +381,6 @@ func (o InstanceSnapshotOutput) ToInstanceSnapshotOutput() InstanceSnapshotOutpu
 
 func (o InstanceSnapshotOutput) ToInstanceSnapshotOutputWithContext(ctx context.Context) InstanceSnapshotOutput {
 	return o
-}
-
-func (o InstanceSnapshotOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceSnapshot] {
-	return pulumix.Output[*InstanceSnapshot]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The snapshot creation time.
@@ -475,12 +450,6 @@ func (o InstanceSnapshotArrayOutput) ToInstanceSnapshotArrayOutputWithContext(ct
 	return o
 }
 
-func (o InstanceSnapshotArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceSnapshot] {
-	return pulumix.Output[[]*InstanceSnapshot]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceSnapshotArrayOutput) Index(i pulumi.IntInput) InstanceSnapshotOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceSnapshot {
 		return vs[0].([]*InstanceSnapshot)[vs[1].(int)]
@@ -499,12 +468,6 @@ func (o InstanceSnapshotMapOutput) ToInstanceSnapshotMapOutput() InstanceSnapsho
 
 func (o InstanceSnapshotMapOutput) ToInstanceSnapshotMapOutputWithContext(ctx context.Context) InstanceSnapshotMapOutput {
 	return o
-}
-
-func (o InstanceSnapshotMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceSnapshot] {
-	return pulumix.Output[map[string]*InstanceSnapshot]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceSnapshotMapOutput) MapIndex(k pulumi.StringInput) InstanceSnapshotOutput {

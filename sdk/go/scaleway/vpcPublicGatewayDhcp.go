@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -296,12 +295,6 @@ func (i *VpcPublicGatewayDhcp) ToVpcPublicGatewayDhcpOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpOutput)
 }
 
-func (i *VpcPublicGatewayDhcp) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayDhcp] {
-	return pulumix.Output[*VpcPublicGatewayDhcp]{
-		OutputState: i.ToVpcPublicGatewayDhcpOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VpcPublicGatewayDhcpArrayInput is an input type that accepts VpcPublicGatewayDhcpArray and VpcPublicGatewayDhcpArrayOutput values.
 // You can construct a concrete instance of `VpcPublicGatewayDhcpArrayInput` via:
 //
@@ -325,12 +318,6 @@ func (i VpcPublicGatewayDhcpArray) ToVpcPublicGatewayDhcpArrayOutput() VpcPublic
 
 func (i VpcPublicGatewayDhcpArray) ToVpcPublicGatewayDhcpArrayOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpArrayOutput)
-}
-
-func (i VpcPublicGatewayDhcpArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayDhcp] {
-	return pulumix.Output[[]*VpcPublicGatewayDhcp]{
-		OutputState: i.ToVpcPublicGatewayDhcpArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VpcPublicGatewayDhcpMapInput is an input type that accepts VpcPublicGatewayDhcpMap and VpcPublicGatewayDhcpMapOutput values.
@@ -358,12 +345,6 @@ func (i VpcPublicGatewayDhcpMap) ToVpcPublicGatewayDhcpMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayDhcpMapOutput)
 }
 
-func (i VpcPublicGatewayDhcpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayDhcp] {
-	return pulumix.Output[map[string]*VpcPublicGatewayDhcp]{
-		OutputState: i.ToVpcPublicGatewayDhcpMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VpcPublicGatewayDhcpOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayDhcpOutput) ElementType() reflect.Type {
@@ -376,12 +357,6 @@ func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutput() VpcPublicGate
 
 func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpOutput {
 	return o
-}
-
-func (o VpcPublicGatewayDhcpOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayDhcp] {
-	return pulumix.Output[*VpcPublicGatewayDhcp]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP address of the public gateway DHCP config.
@@ -488,12 +463,6 @@ func (o VpcPublicGatewayDhcpArrayOutput) ToVpcPublicGatewayDhcpArrayOutputWithCo
 	return o
 }
 
-func (o VpcPublicGatewayDhcpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayDhcp] {
-	return pulumix.Output[[]*VpcPublicGatewayDhcp]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VpcPublicGatewayDhcpArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayDhcpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayDhcp {
 		return vs[0].([]*VpcPublicGatewayDhcp)[vs[1].(int)]
@@ -512,12 +481,6 @@ func (o VpcPublicGatewayDhcpMapOutput) ToVpcPublicGatewayDhcpMapOutput() VpcPubl
 
 func (o VpcPublicGatewayDhcpMapOutput) ToVpcPublicGatewayDhcpMapOutputWithContext(ctx context.Context) VpcPublicGatewayDhcpMapOutput {
 	return o
-}
-
-func (o VpcPublicGatewayDhcpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayDhcp] {
-	return pulumix.Output[map[string]*VpcPublicGatewayDhcp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VpcPublicGatewayDhcpMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayDhcpOutput {

@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -256,12 +255,6 @@ func (i *DatabaseBackup) ToDatabaseBackupOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseBackupOutput)
 }
 
-func (i *DatabaseBackup) ToOutput(ctx context.Context) pulumix.Output[*DatabaseBackup] {
-	return pulumix.Output[*DatabaseBackup]{
-		OutputState: i.ToDatabaseBackupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DatabaseBackupArrayInput is an input type that accepts DatabaseBackupArray and DatabaseBackupArrayOutput values.
 // You can construct a concrete instance of `DatabaseBackupArrayInput` via:
 //
@@ -285,12 +278,6 @@ func (i DatabaseBackupArray) ToDatabaseBackupArrayOutput() DatabaseBackupArrayOu
 
 func (i DatabaseBackupArray) ToDatabaseBackupArrayOutputWithContext(ctx context.Context) DatabaseBackupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseBackupArrayOutput)
-}
-
-func (i DatabaseBackupArray) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseBackup] {
-	return pulumix.Output[[]*DatabaseBackup]{
-		OutputState: i.ToDatabaseBackupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DatabaseBackupMapInput is an input type that accepts DatabaseBackupMap and DatabaseBackupMapOutput values.
@@ -318,12 +305,6 @@ func (i DatabaseBackupMap) ToDatabaseBackupMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseBackupMapOutput)
 }
 
-func (i DatabaseBackupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseBackup] {
-	return pulumix.Output[map[string]*DatabaseBackup]{
-		OutputState: i.ToDatabaseBackupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DatabaseBackupOutput struct{ *pulumi.OutputState }
 
 func (DatabaseBackupOutput) ElementType() reflect.Type {
@@ -336,12 +317,6 @@ func (o DatabaseBackupOutput) ToDatabaseBackupOutput() DatabaseBackupOutput {
 
 func (o DatabaseBackupOutput) ToDatabaseBackupOutputWithContext(ctx context.Context) DatabaseBackupOutput {
 	return o
-}
-
-func (o DatabaseBackupOutput) ToOutput(ctx context.Context) pulumix.Output[*DatabaseBackup] {
-	return pulumix.Output[*DatabaseBackup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Creation date (Format ISO 8601).
@@ -407,12 +382,6 @@ func (o DatabaseBackupArrayOutput) ToDatabaseBackupArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o DatabaseBackupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DatabaseBackup] {
-	return pulumix.Output[[]*DatabaseBackup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DatabaseBackupArrayOutput) Index(i pulumi.IntInput) DatabaseBackupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DatabaseBackup {
 		return vs[0].([]*DatabaseBackup)[vs[1].(int)]
@@ -431,12 +400,6 @@ func (o DatabaseBackupMapOutput) ToDatabaseBackupMapOutput() DatabaseBackupMapOu
 
 func (o DatabaseBackupMapOutput) ToDatabaseBackupMapOutputWithContext(ctx context.Context) DatabaseBackupMapOutput {
 	return o
-}
-
-func (o DatabaseBackupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DatabaseBackup] {
-	return pulumix.Output[map[string]*DatabaseBackup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DatabaseBackupMapOutput) MapIndex(k pulumi.StringInput) DatabaseBackupOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -171,12 +170,6 @@ func (i *IamApplication) ToIamApplicationOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(IamApplicationOutput)
 }
 
-func (i *IamApplication) ToOutput(ctx context.Context) pulumix.Output[*IamApplication] {
-	return pulumix.Output[*IamApplication]{
-		OutputState: i.ToIamApplicationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IamApplicationArrayInput is an input type that accepts IamApplicationArray and IamApplicationArrayOutput values.
 // You can construct a concrete instance of `IamApplicationArrayInput` via:
 //
@@ -200,12 +193,6 @@ func (i IamApplicationArray) ToIamApplicationArrayOutput() IamApplicationArrayOu
 
 func (i IamApplicationArray) ToIamApplicationArrayOutputWithContext(ctx context.Context) IamApplicationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamApplicationArrayOutput)
-}
-
-func (i IamApplicationArray) ToOutput(ctx context.Context) pulumix.Output[[]*IamApplication] {
-	return pulumix.Output[[]*IamApplication]{
-		OutputState: i.ToIamApplicationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IamApplicationMapInput is an input type that accepts IamApplicationMap and IamApplicationMapOutput values.
@@ -233,12 +220,6 @@ func (i IamApplicationMap) ToIamApplicationMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(IamApplicationMapOutput)
 }
 
-func (i IamApplicationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamApplication] {
-	return pulumix.Output[map[string]*IamApplication]{
-		OutputState: i.ToIamApplicationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IamApplicationOutput struct{ *pulumi.OutputState }
 
 func (IamApplicationOutput) ElementType() reflect.Type {
@@ -251,12 +232,6 @@ func (o IamApplicationOutput) ToIamApplicationOutput() IamApplicationOutput {
 
 func (o IamApplicationOutput) ToIamApplicationOutputWithContext(ctx context.Context) IamApplicationOutput {
 	return o
-}
-
-func (o IamApplicationOutput) ToOutput(ctx context.Context) pulumix.Output[*IamApplication] {
-	return pulumix.Output[*IamApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The date and time of the creation of the application.
@@ -303,12 +278,6 @@ func (o IamApplicationArrayOutput) ToIamApplicationArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o IamApplicationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IamApplication] {
-	return pulumix.Output[[]*IamApplication]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IamApplicationArrayOutput) Index(i pulumi.IntInput) IamApplicationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IamApplication {
 		return vs[0].([]*IamApplication)[vs[1].(int)]
@@ -327,12 +296,6 @@ func (o IamApplicationMapOutput) ToIamApplicationMapOutput() IamApplicationMapOu
 
 func (o IamApplicationMapOutput) ToIamApplicationMapOutputWithContext(ctx context.Context) IamApplicationMapOutput {
 	return o
-}
-
-func (o IamApplicationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IamApplication] {
-	return pulumix.Output[map[string]*IamApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IamApplicationMapOutput) MapIndex(k pulumi.StringInput) IamApplicationOutput {

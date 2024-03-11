@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -221,12 +220,6 @@ func (i *InstanceVolume) ToInstanceVolumeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeOutput)
 }
 
-func (i *InstanceVolume) ToOutput(ctx context.Context) pulumix.Output[*InstanceVolume] {
-	return pulumix.Output[*InstanceVolume]{
-		OutputState: i.ToInstanceVolumeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceVolumeArrayInput is an input type that accepts InstanceVolumeArray and InstanceVolumeArrayOutput values.
 // You can construct a concrete instance of `InstanceVolumeArrayInput` via:
 //
@@ -250,12 +243,6 @@ func (i InstanceVolumeArray) ToInstanceVolumeArrayOutput() InstanceVolumeArrayOu
 
 func (i InstanceVolumeArray) ToInstanceVolumeArrayOutputWithContext(ctx context.Context) InstanceVolumeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeArrayOutput)
-}
-
-func (i InstanceVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceVolume] {
-	return pulumix.Output[[]*InstanceVolume]{
-		OutputState: i.ToInstanceVolumeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceVolumeMapInput is an input type that accepts InstanceVolumeMap and InstanceVolumeMapOutput values.
@@ -283,12 +270,6 @@ func (i InstanceVolumeMap) ToInstanceVolumeMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceVolumeMapOutput)
 }
 
-func (i InstanceVolumeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceVolume] {
-	return pulumix.Output[map[string]*InstanceVolume]{
-		OutputState: i.ToInstanceVolumeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceVolumeOutput struct{ *pulumi.OutputState }
 
 func (InstanceVolumeOutput) ElementType() reflect.Type {
@@ -301,12 +282,6 @@ func (o InstanceVolumeOutput) ToInstanceVolumeOutput() InstanceVolumeOutput {
 
 func (o InstanceVolumeOutput) ToInstanceVolumeOutputWithContext(ctx context.Context) InstanceVolumeOutput {
 	return o
-}
-
-func (o InstanceVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceVolume] {
-	return pulumix.Output[*InstanceVolume]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `fromVolumeId` and `fromSnapshotId` should be specified.
@@ -373,12 +348,6 @@ func (o InstanceVolumeArrayOutput) ToInstanceVolumeArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o InstanceVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceVolume] {
-	return pulumix.Output[[]*InstanceVolume]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceVolumeArrayOutput) Index(i pulumi.IntInput) InstanceVolumeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceVolume {
 		return vs[0].([]*InstanceVolume)[vs[1].(int)]
@@ -397,12 +366,6 @@ func (o InstanceVolumeMapOutput) ToInstanceVolumeMapOutput() InstanceVolumeMapOu
 
 func (o InstanceVolumeMapOutput) ToInstanceVolumeMapOutputWithContext(ctx context.Context) InstanceVolumeMapOutput {
 	return o
-}
-
-func (o InstanceVolumeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceVolume] {
-	return pulumix.Output[map[string]*InstanceVolume]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceVolumeMapOutput) MapIndex(k pulumi.StringInput) InstanceVolumeOutput {

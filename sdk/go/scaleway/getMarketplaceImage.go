@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -112,12 +111,6 @@ func (o GetMarketplaceImageResultOutput) ToGetMarketplaceImageResultOutput() Get
 
 func (o GetMarketplaceImageResultOutput) ToGetMarketplaceImageResultOutputWithContext(ctx context.Context) GetMarketplaceImageResultOutput {
 	return o
-}
-
-func (o GetMarketplaceImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetMarketplaceImageResult] {
-	return pulumix.Output[GetMarketplaceImageResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

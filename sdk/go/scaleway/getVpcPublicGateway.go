@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -127,12 +126,6 @@ func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutput
 
 func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayResultOutput {
 	return o
-}
-
-func (o LookupVpcPublicGatewayResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayResult] {
-	return pulumix.Output[LookupVpcPublicGatewayResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupVpcPublicGatewayResultOutput) BastionEnabled() pulumi.BoolOutput {

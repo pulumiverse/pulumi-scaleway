@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -157,12 +156,6 @@ func (o GetVpcPublicPatRuleResultOutput) ToGetVpcPublicPatRuleResultOutput() Get
 
 func (o GetVpcPublicPatRuleResultOutput) ToGetVpcPublicPatRuleResultOutputWithContext(ctx context.Context) GetVpcPublicPatRuleResultOutput {
 	return o
-}
-
-func (o GetVpcPublicPatRuleResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVpcPublicPatRuleResult] {
-	return pulumix.Output[GetVpcPublicPatRuleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetVpcPublicPatRuleResultOutput) CreatedAt() pulumi.StringOutput {

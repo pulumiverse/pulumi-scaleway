@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -301,12 +300,6 @@ func (i *LoadbalancerRoute) ToLoadbalancerRouteOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerRouteOutput)
 }
 
-func (i *LoadbalancerRoute) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerRoute] {
-	return pulumix.Output[*LoadbalancerRoute]{
-		OutputState: i.ToLoadbalancerRouteOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LoadbalancerRouteArrayInput is an input type that accepts LoadbalancerRouteArray and LoadbalancerRouteArrayOutput values.
 // You can construct a concrete instance of `LoadbalancerRouteArrayInput` via:
 //
@@ -330,12 +323,6 @@ func (i LoadbalancerRouteArray) ToLoadbalancerRouteArrayOutput() LoadbalancerRou
 
 func (i LoadbalancerRouteArray) ToLoadbalancerRouteArrayOutputWithContext(ctx context.Context) LoadbalancerRouteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerRouteArrayOutput)
-}
-
-func (i LoadbalancerRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerRoute] {
-	return pulumix.Output[[]*LoadbalancerRoute]{
-		OutputState: i.ToLoadbalancerRouteArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LoadbalancerRouteMapInput is an input type that accepts LoadbalancerRouteMap and LoadbalancerRouteMapOutput values.
@@ -363,12 +350,6 @@ func (i LoadbalancerRouteMap) ToLoadbalancerRouteMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerRouteMapOutput)
 }
 
-func (i LoadbalancerRouteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerRoute] {
-	return pulumix.Output[map[string]*LoadbalancerRoute]{
-		OutputState: i.ToLoadbalancerRouteMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LoadbalancerRouteOutput struct{ *pulumi.OutputState }
 
 func (LoadbalancerRouteOutput) ElementType() reflect.Type {
@@ -381,12 +362,6 @@ func (o LoadbalancerRouteOutput) ToLoadbalancerRouteOutput() LoadbalancerRouteOu
 
 func (o LoadbalancerRouteOutput) ToLoadbalancerRouteOutputWithContext(ctx context.Context) LoadbalancerRouteOutput {
 	return o
-}
-
-func (o LoadbalancerRouteOutput) ToOutput(ctx context.Context) pulumix.Output[*LoadbalancerRoute] {
-	return pulumix.Output[*LoadbalancerRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the backend to which the route is associated.
@@ -439,12 +414,6 @@ func (o LoadbalancerRouteArrayOutput) ToLoadbalancerRouteArrayOutputWithContext(
 	return o
 }
 
-func (o LoadbalancerRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LoadbalancerRoute] {
-	return pulumix.Output[[]*LoadbalancerRoute]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LoadbalancerRouteArrayOutput) Index(i pulumi.IntInput) LoadbalancerRouteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LoadbalancerRoute {
 		return vs[0].([]*LoadbalancerRoute)[vs[1].(int)]
@@ -463,12 +432,6 @@ func (o LoadbalancerRouteMapOutput) ToLoadbalancerRouteMapOutput() LoadbalancerR
 
 func (o LoadbalancerRouteMapOutput) ToLoadbalancerRouteMapOutputWithContext(ctx context.Context) LoadbalancerRouteMapOutput {
 	return o
-}
-
-func (o LoadbalancerRouteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LoadbalancerRoute] {
-	return pulumix.Output[map[string]*LoadbalancerRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LoadbalancerRouteMapOutput) MapIndex(k pulumi.StringInput) LoadbalancerRouteOutput {

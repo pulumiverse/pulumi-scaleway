@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -112,12 +111,6 @@ func (o LookupAccountSshKeyResultOutput) ToLookupAccountSshKeyResultOutput() Loo
 
 func (o LookupAccountSshKeyResultOutput) ToLookupAccountSshKeyResultOutputWithContext(ctx context.Context) LookupAccountSshKeyResultOutput {
 	return o
-}
-
-func (o LookupAccountSshKeyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAccountSshKeyResult] {
-	return pulumix.Output[LookupAccountSshKeyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupAccountSshKeyResultOutput) CreatedAt() pulumi.StringOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -111,12 +110,6 @@ func (o LookupMnqSqsResultOutput) ToLookupMnqSqsResultOutput() LookupMnqSqsResul
 
 func (o LookupMnqSqsResultOutput) ToLookupMnqSqsResultOutputWithContext(ctx context.Context) LookupMnqSqsResultOutput {
 	return o
-}
-
-func (o LookupMnqSqsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupMnqSqsResult] {
-	return pulumix.Output[LookupMnqSqsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The endpoint of the SQS service for this project.

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -127,12 +126,6 @@ func (i *Cockpit) ToCockpitOutputWithContext(ctx context.Context) CockpitOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitOutput)
 }
 
-func (i *Cockpit) ToOutput(ctx context.Context) pulumix.Output[*Cockpit] {
-	return pulumix.Output[*Cockpit]{
-		OutputState: i.ToCockpitOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CockpitArrayInput is an input type that accepts CockpitArray and CockpitArrayOutput values.
 // You can construct a concrete instance of `CockpitArrayInput` via:
 //
@@ -156,12 +149,6 @@ func (i CockpitArray) ToCockpitArrayOutput() CockpitArrayOutput {
 
 func (i CockpitArray) ToCockpitArrayOutputWithContext(ctx context.Context) CockpitArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitArrayOutput)
-}
-
-func (i CockpitArray) ToOutput(ctx context.Context) pulumix.Output[[]*Cockpit] {
-	return pulumix.Output[[]*Cockpit]{
-		OutputState: i.ToCockpitArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CockpitMapInput is an input type that accepts CockpitMap and CockpitMapOutput values.
@@ -189,12 +176,6 @@ func (i CockpitMap) ToCockpitMapOutputWithContext(ctx context.Context) CockpitMa
 	return pulumi.ToOutputWithContext(ctx, i).(CockpitMapOutput)
 }
 
-func (i CockpitMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Cockpit] {
-	return pulumix.Output[map[string]*Cockpit]{
-		OutputState: i.ToCockpitMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CockpitOutput struct{ *pulumi.OutputState }
 
 func (CockpitOutput) ElementType() reflect.Type {
@@ -207,12 +188,6 @@ func (o CockpitOutput) ToCockpitOutput() CockpitOutput {
 
 func (o CockpitOutput) ToCockpitOutputWithContext(ctx context.Context) CockpitOutput {
 	return o
-}
-
-func (o CockpitOutput) ToOutput(ctx context.Context) pulumix.Output[*Cockpit] {
-	return pulumix.Output[*Cockpit]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Endpoints
@@ -249,12 +224,6 @@ func (o CockpitArrayOutput) ToCockpitArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o CockpitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Cockpit] {
-	return pulumix.Output[[]*Cockpit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CockpitArrayOutput) Index(i pulumi.IntInput) CockpitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Cockpit {
 		return vs[0].([]*Cockpit)[vs[1].(int)]
@@ -273,12 +242,6 @@ func (o CockpitMapOutput) ToCockpitMapOutput() CockpitMapOutput {
 
 func (o CockpitMapOutput) ToCockpitMapOutputWithContext(ctx context.Context) CockpitMapOutput {
 	return o
-}
-
-func (o CockpitMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Cockpit] {
-	return pulumix.Output[map[string]*Cockpit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CockpitMapOutput) MapIndex(k pulumi.StringInput) CockpitOutput {

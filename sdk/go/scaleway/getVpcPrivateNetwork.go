@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -122,12 +121,6 @@ func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutp
 
 func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutputWithContext(ctx context.Context) LookupVpcPrivateNetworkResultOutput {
 	return o
-}
-
-func (o LookupVpcPrivateNetworkResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPrivateNetworkResult] {
-	return pulumix.Output[LookupVpcPrivateNetworkResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) CreatedAt() pulumi.StringOutput {

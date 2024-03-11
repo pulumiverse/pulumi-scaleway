@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -134,12 +133,6 @@ func (o LookupWebhostingResultOutput) ToLookupWebhostingResultOutput() LookupWeb
 
 func (o LookupWebhostingResultOutput) ToLookupWebhostingResultOutputWithContext(ctx context.Context) LookupWebhostingResultOutput {
 	return o
-}
-
-func (o LookupWebhostingResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupWebhostingResult] {
-	return pulumix.Output[LookupWebhostingResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupWebhostingResultOutput) CpanelUrls() GetWebhostingCpanelUrlArrayOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -130,12 +129,6 @@ func (o GetBaremetalOfferResultOutput) ToGetBaremetalOfferResultOutput() GetBare
 
 func (o GetBaremetalOfferResultOutput) ToGetBaremetalOfferResultOutputWithContext(ctx context.Context) GetBaremetalOfferResultOutput {
 	return o
-}
-
-func (o GetBaremetalOfferResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBaremetalOfferResult] {
-	return pulumix.Output[GetBaremetalOfferResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Available Bandwidth with the offer.

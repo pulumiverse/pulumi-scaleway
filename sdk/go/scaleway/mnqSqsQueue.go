@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -299,12 +298,6 @@ func (i *MnqSqsQueue) ToMnqSqsQueueOutputWithContext(ctx context.Context) MnqSqs
 	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsQueueOutput)
 }
 
-func (i *MnqSqsQueue) ToOutput(ctx context.Context) pulumix.Output[*MnqSqsQueue] {
-	return pulumix.Output[*MnqSqsQueue]{
-		OutputState: i.ToMnqSqsQueueOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MnqSqsQueueArrayInput is an input type that accepts MnqSqsQueueArray and MnqSqsQueueArrayOutput values.
 // You can construct a concrete instance of `MnqSqsQueueArrayInput` via:
 //
@@ -328,12 +321,6 @@ func (i MnqSqsQueueArray) ToMnqSqsQueueArrayOutput() MnqSqsQueueArrayOutput {
 
 func (i MnqSqsQueueArray) ToMnqSqsQueueArrayOutputWithContext(ctx context.Context) MnqSqsQueueArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsQueueArrayOutput)
-}
-
-func (i MnqSqsQueueArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqSqsQueue] {
-	return pulumix.Output[[]*MnqSqsQueue]{
-		OutputState: i.ToMnqSqsQueueArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MnqSqsQueueMapInput is an input type that accepts MnqSqsQueueMap and MnqSqsQueueMapOutput values.
@@ -361,12 +348,6 @@ func (i MnqSqsQueueMap) ToMnqSqsQueueMapOutputWithContext(ctx context.Context) M
 	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsQueueMapOutput)
 }
 
-func (i MnqSqsQueueMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqSqsQueue] {
-	return pulumix.Output[map[string]*MnqSqsQueue]{
-		OutputState: i.ToMnqSqsQueueMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MnqSqsQueueOutput struct{ *pulumi.OutputState }
 
 func (MnqSqsQueueOutput) ElementType() reflect.Type {
@@ -379,12 +360,6 @@ func (o MnqSqsQueueOutput) ToMnqSqsQueueOutput() MnqSqsQueueOutput {
 
 func (o MnqSqsQueueOutput) ToMnqSqsQueueOutputWithContext(ctx context.Context) MnqSqsQueueOutput {
 	return o
-}
-
-func (o MnqSqsQueueOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqSqsQueue] {
-	return pulumix.Output[*MnqSqsQueue]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The access key of the SQS queue.
@@ -471,12 +446,6 @@ func (o MnqSqsQueueArrayOutput) ToMnqSqsQueueArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o MnqSqsQueueArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqSqsQueue] {
-	return pulumix.Output[[]*MnqSqsQueue]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MnqSqsQueueArrayOutput) Index(i pulumi.IntInput) MnqSqsQueueOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqSqsQueue {
 		return vs[0].([]*MnqSqsQueue)[vs[1].(int)]
@@ -495,12 +464,6 @@ func (o MnqSqsQueueMapOutput) ToMnqSqsQueueMapOutput() MnqSqsQueueMapOutput {
 
 func (o MnqSqsQueueMapOutput) ToMnqSqsQueueMapOutputWithContext(ctx context.Context) MnqSqsQueueMapOutput {
 	return o
-}
-
-func (o MnqSqsQueueMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqSqsQueue] {
-	return pulumix.Output[map[string]*MnqSqsQueue]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MnqSqsQueueMapOutput) MapIndex(k pulumi.StringInput) MnqSqsQueueOutput {

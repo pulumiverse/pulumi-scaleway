@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -171,12 +170,6 @@ func (i *MnqNatsAccount) ToMnqNatsAccountOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNatsAccountOutput)
 }
 
-func (i *MnqNatsAccount) ToOutput(ctx context.Context) pulumix.Output[*MnqNatsAccount] {
-	return pulumix.Output[*MnqNatsAccount]{
-		OutputState: i.ToMnqNatsAccountOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MnqNatsAccountArrayInput is an input type that accepts MnqNatsAccountArray and MnqNatsAccountArrayOutput values.
 // You can construct a concrete instance of `MnqNatsAccountArrayInput` via:
 //
@@ -200,12 +193,6 @@ func (i MnqNatsAccountArray) ToMnqNatsAccountArrayOutput() MnqNatsAccountArrayOu
 
 func (i MnqNatsAccountArray) ToMnqNatsAccountArrayOutputWithContext(ctx context.Context) MnqNatsAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNatsAccountArrayOutput)
-}
-
-func (i MnqNatsAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*MnqNatsAccount] {
-	return pulumix.Output[[]*MnqNatsAccount]{
-		OutputState: i.ToMnqNatsAccountArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MnqNatsAccountMapInput is an input type that accepts MnqNatsAccountMap and MnqNatsAccountMapOutput values.
@@ -233,12 +220,6 @@ func (i MnqNatsAccountMap) ToMnqNatsAccountMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(MnqNatsAccountMapOutput)
 }
 
-func (i MnqNatsAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqNatsAccount] {
-	return pulumix.Output[map[string]*MnqNatsAccount]{
-		OutputState: i.ToMnqNatsAccountMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MnqNatsAccountOutput struct{ *pulumi.OutputState }
 
 func (MnqNatsAccountOutput) ElementType() reflect.Type {
@@ -251,12 +232,6 @@ func (o MnqNatsAccountOutput) ToMnqNatsAccountOutput() MnqNatsAccountOutput {
 
 func (o MnqNatsAccountOutput) ToMnqNatsAccountOutputWithContext(ctx context.Context) MnqNatsAccountOutput {
 	return o
-}
-
-func (o MnqNatsAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqNatsAccount] {
-	return pulumix.Output[*MnqNatsAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The endpoint of the NATS service for this account.
@@ -295,12 +270,6 @@ func (o MnqNatsAccountArrayOutput) ToMnqNatsAccountArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o MnqNatsAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MnqNatsAccount] {
-	return pulumix.Output[[]*MnqNatsAccount]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MnqNatsAccountArrayOutput) Index(i pulumi.IntInput) MnqNatsAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MnqNatsAccount {
 		return vs[0].([]*MnqNatsAccount)[vs[1].(int)]
@@ -319,12 +288,6 @@ func (o MnqNatsAccountMapOutput) ToMnqNatsAccountMapOutput() MnqNatsAccountMapOu
 
 func (o MnqNatsAccountMapOutput) ToMnqNatsAccountMapOutputWithContext(ctx context.Context) MnqNatsAccountMapOutput {
 	return o
-}
-
-func (o MnqNatsAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MnqNatsAccount] {
-	return pulumix.Output[map[string]*MnqNatsAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MnqNatsAccountMapOutput) MapIndex(k pulumi.StringInput) MnqNatsAccountOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -100,12 +99,6 @@ func (o LookupLoadbalancerCertificateResultOutput) ToLookupLoadbalancerCertifica
 
 func (o LookupLoadbalancerCertificateResultOutput) ToLookupLoadbalancerCertificateResultOutputWithContext(ctx context.Context) LookupLoadbalancerCertificateResultOutput {
 	return o
-}
-
-func (o LookupLoadbalancerCertificateResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLoadbalancerCertificateResult] {
-	return pulumix.Output[LookupLoadbalancerCertificateResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupLoadbalancerCertificateResultOutput) CertificateId() pulumi.StringPtrOutput {

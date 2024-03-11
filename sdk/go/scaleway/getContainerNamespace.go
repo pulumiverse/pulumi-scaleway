@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -131,12 +130,6 @@ func (o LookupContainerNamespaceResultOutput) ToLookupContainerNamespaceResultOu
 
 func (o LookupContainerNamespaceResultOutput) ToLookupContainerNamespaceResultOutputWithContext(ctx context.Context) LookupContainerNamespaceResultOutput {
 	return o
-}
-
-func (o LookupContainerNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContainerNamespaceResult] {
-	return pulumix.Output[LookupContainerNamespaceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The description of the namespace.

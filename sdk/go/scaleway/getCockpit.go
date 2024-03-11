@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -126,12 +125,6 @@ func (o LookupCockpitResultOutput) ToLookupCockpitResultOutput() LookupCockpitRe
 
 func (o LookupCockpitResultOutput) ToLookupCockpitResultOutputWithContext(ctx context.Context) LookupCockpitResultOutput {
 	return o
-}
-
-func (o LookupCockpitResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCockpitResult] {
-	return pulumix.Output[LookupCockpitResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Endpoints

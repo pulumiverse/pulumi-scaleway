@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -177,12 +176,6 @@ func (i *InstanceIpReverseDns) ToInstanceIpReverseDnsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpReverseDnsOutput)
 }
 
-func (i *InstanceIpReverseDns) ToOutput(ctx context.Context) pulumix.Output[*InstanceIpReverseDns] {
-	return pulumix.Output[*InstanceIpReverseDns]{
-		OutputState: i.ToInstanceIpReverseDnsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceIpReverseDnsArrayInput is an input type that accepts InstanceIpReverseDnsArray and InstanceIpReverseDnsArrayOutput values.
 // You can construct a concrete instance of `InstanceIpReverseDnsArrayInput` via:
 //
@@ -206,12 +199,6 @@ func (i InstanceIpReverseDnsArray) ToInstanceIpReverseDnsArrayOutput() InstanceI
 
 func (i InstanceIpReverseDnsArray) ToInstanceIpReverseDnsArrayOutputWithContext(ctx context.Context) InstanceIpReverseDnsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpReverseDnsArrayOutput)
-}
-
-func (i InstanceIpReverseDnsArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceIpReverseDns] {
-	return pulumix.Output[[]*InstanceIpReverseDns]{
-		OutputState: i.ToInstanceIpReverseDnsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceIpReverseDnsMapInput is an input type that accepts InstanceIpReverseDnsMap and InstanceIpReverseDnsMapOutput values.
@@ -239,12 +226,6 @@ func (i InstanceIpReverseDnsMap) ToInstanceIpReverseDnsMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIpReverseDnsMapOutput)
 }
 
-func (i InstanceIpReverseDnsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceIpReverseDns] {
-	return pulumix.Output[map[string]*InstanceIpReverseDns]{
-		OutputState: i.ToInstanceIpReverseDnsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceIpReverseDnsOutput struct{ *pulumi.OutputState }
 
 func (InstanceIpReverseDnsOutput) ElementType() reflect.Type {
@@ -257,12 +238,6 @@ func (o InstanceIpReverseDnsOutput) ToInstanceIpReverseDnsOutput() InstanceIpRev
 
 func (o InstanceIpReverseDnsOutput) ToInstanceIpReverseDnsOutputWithContext(ctx context.Context) InstanceIpReverseDnsOutput {
 	return o
-}
-
-func (o InstanceIpReverseDnsOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceIpReverseDns] {
-	return pulumix.Output[*InstanceIpReverseDns]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IP ID
@@ -294,12 +269,6 @@ func (o InstanceIpReverseDnsArrayOutput) ToInstanceIpReverseDnsArrayOutputWithCo
 	return o
 }
 
-func (o InstanceIpReverseDnsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceIpReverseDns] {
-	return pulumix.Output[[]*InstanceIpReverseDns]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceIpReverseDnsArrayOutput) Index(i pulumi.IntInput) InstanceIpReverseDnsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceIpReverseDns {
 		return vs[0].([]*InstanceIpReverseDns)[vs[1].(int)]
@@ -318,12 +287,6 @@ func (o InstanceIpReverseDnsMapOutput) ToInstanceIpReverseDnsMapOutput() Instanc
 
 func (o InstanceIpReverseDnsMapOutput) ToInstanceIpReverseDnsMapOutputWithContext(ctx context.Context) InstanceIpReverseDnsMapOutput {
 	return o
-}
-
-func (o InstanceIpReverseDnsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceIpReverseDns] {
-	return pulumix.Output[map[string]*InstanceIpReverseDns]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceIpReverseDnsMapOutput) MapIndex(k pulumi.StringInput) InstanceIpReverseDnsOutput {

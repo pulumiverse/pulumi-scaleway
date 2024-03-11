@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
@@ -198,12 +197,6 @@ func (i *DomainZone) ToDomainZoneOutputWithContext(ctx context.Context) DomainZo
 	return pulumi.ToOutputWithContext(ctx, i).(DomainZoneOutput)
 }
 
-func (i *DomainZone) ToOutput(ctx context.Context) pulumix.Output[*DomainZone] {
-	return pulumix.Output[*DomainZone]{
-		OutputState: i.ToDomainZoneOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainZoneArrayInput is an input type that accepts DomainZoneArray and DomainZoneArrayOutput values.
 // You can construct a concrete instance of `DomainZoneArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i DomainZoneArray) ToDomainZoneArrayOutput() DomainZoneArrayOutput {
 
 func (i DomainZoneArray) ToDomainZoneArrayOutputWithContext(ctx context.Context) DomainZoneArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainZoneArrayOutput)
-}
-
-func (i DomainZoneArray) ToOutput(ctx context.Context) pulumix.Output[[]*DomainZone] {
-	return pulumix.Output[[]*DomainZone]{
-		OutputState: i.ToDomainZoneArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DomainZoneMapInput is an input type that accepts DomainZoneMap and DomainZoneMapOutput values.
@@ -260,12 +247,6 @@ func (i DomainZoneMap) ToDomainZoneMapOutputWithContext(ctx context.Context) Dom
 	return pulumi.ToOutputWithContext(ctx, i).(DomainZoneMapOutput)
 }
 
-func (i DomainZoneMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DomainZone] {
-	return pulumix.Output[map[string]*DomainZone]{
-		OutputState: i.ToDomainZoneMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainZoneOutput struct{ *pulumi.OutputState }
 
 func (DomainZoneOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o DomainZoneOutput) ToDomainZoneOutput() DomainZoneOutput {
 
 func (o DomainZoneOutput) ToDomainZoneOutputWithContext(ctx context.Context) DomainZoneOutput {
 	return o
-}
-
-func (o DomainZoneOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainZone] {
-	return pulumix.Output[*DomainZone]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The domain where the DNS zone will be created.
@@ -345,12 +320,6 @@ func (o DomainZoneArrayOutput) ToDomainZoneArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o DomainZoneArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DomainZone] {
-	return pulumix.Output[[]*DomainZone]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainZoneArrayOutput) Index(i pulumi.IntInput) DomainZoneOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DomainZone {
 		return vs[0].([]*DomainZone)[vs[1].(int)]
@@ -369,12 +338,6 @@ func (o DomainZoneMapOutput) ToDomainZoneMapOutput() DomainZoneMapOutput {
 
 func (o DomainZoneMapOutput) ToDomainZoneMapOutputWithContext(ctx context.Context) DomainZoneMapOutput {
 	return o
-}
-
-func (o DomainZoneMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DomainZone] {
-	return pulumix.Output[map[string]*DomainZone]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainZoneMapOutput) MapIndex(k pulumi.StringInput) DomainZoneOutput {
