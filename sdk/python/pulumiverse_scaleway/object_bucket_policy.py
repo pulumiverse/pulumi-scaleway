@@ -177,6 +177,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -186,30 +187,33 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
+            policy=pulumi.Output.json_dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
                 "Statement": [{
                     "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": f"application_id:{id}",
+                        "SCW": main.id.apply(lambda id: f"application_id:{id}"),
                     },
                     "Action": "s3:ListBucket",
                     "Resource": [
-                        bucket_name,
-                        f"{bucket_name1}/*",
+                        bucket.name,
+                        bucket.name.apply(lambda name: f"{name}/*"),
                     ],
                 }],
-            })))
+            }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
         ```
 
         :param str resource_name: The name of the resource.
@@ -233,6 +237,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -242,30 +247,33 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
+            policy=pulumi.Output.json_dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
                 "Statement": [{
                     "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": f"application_id:{id}",
+                        "SCW": main.id.apply(lambda id: f"application_id:{id}"),
                     },
                     "Action": "s3:ListBucket",
                     "Resource": [
-                        bucket_name,
-                        f"{bucket_name1}/*",
+                        bucket.name,
+                        bucket.name.apply(lambda name: f"{name}/*"),
                     ],
                 }],
-            })))
+            }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
         ```
 
         :param str resource_name: The name of the resource.

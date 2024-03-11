@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     email: "foo@bar.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIamUser(args?: GetIamUserArgs, opts?: pulumi.InvokeOptions): Promise<GetIamUserResult> {
     args = args || {};
@@ -72,6 +74,7 @@ export interface GetIamUserResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -83,6 +86,7 @@ export interface GetIamUserResult {
  *     email: "foo@bar.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamUserResult> {
     return pulumi.output(args).apply((a: any) => getIamUser(a, opts))

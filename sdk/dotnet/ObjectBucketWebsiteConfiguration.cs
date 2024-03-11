@@ -16,6 +16,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,8 +41,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Example with `policy`
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -94,6 +98,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## index_document
     /// 
@@ -119,10 +124,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+    /// Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
+    /// $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration")]

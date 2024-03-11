@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -25,6 +26,7 @@ import * as utilities from "./utilities";
  *     name: "your_secret_name",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
     args = args || {};
@@ -97,6 +99,7 @@ export interface GetSecretResult {
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -110,6 +113,7 @@ export interface GetSecretResult {
  *     name: "your_secret_name",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getSecretOutput(args?: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
     return pulumi.output(args).apply((a: any) => getSecret(a, opts))

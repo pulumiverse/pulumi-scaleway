@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,15 +37,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Projects can be imported using the `id`, e.g. bash
+// Projects can be imported using the `id`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
 // ```
 type AccountProject struct {
 	pulumi.CustomResourceState

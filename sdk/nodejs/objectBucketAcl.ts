@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -19,8 +20,11 @@ import * as utilities from "./utilities";
  *     acl: "private",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Example with Grants
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -51,6 +55,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## The ACL
  *
@@ -94,13 +99,15 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+ * Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
  * ```
  *
- *  /private
+ * /private
  */
 export class ObjectBucketAcl extends pulumi.CustomResource {
     /**

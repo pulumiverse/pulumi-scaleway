@@ -60,6 +60,7 @@ def get_cockpit_plan(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -68,6 +69,7 @@ def get_cockpit_plan(name: Optional[str] = None,
     premium = scaleway.get_cockpit_plan(name="premium")
     main = scaleway.Cockpit("main", plan=premium.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the plan.
@@ -90,6 +92,7 @@ def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -98,6 +101,7 @@ def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
     premium = scaleway.get_cockpit_plan(name="premium")
     main = scaleway.Cockpit("main", plan=premium.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the plan.

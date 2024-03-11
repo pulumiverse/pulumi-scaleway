@@ -15,10 +15,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,8 +34,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDocumentdbDatabaseResult> InvokeAsync(GetDocumentdbDatabaseArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbDatabaseResult>("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", args ?? new GetDocumentdbDatabaseArgs(), options.WithDefaults());
@@ -44,10 +42,9 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,8 +61,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDocumentdbDatabaseResult> Invoke(GetDocumentdbDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentdbDatabaseResult>("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", args ?? new GetDocumentdbDatabaseInvokeArgs(), options.WithDefaults());

@@ -26,6 +26,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
         /// </summary>
         public readonly string? StaticConfig;
+        /// <summary>
+        /// The status of private network connection
+        /// </summary>
         public readonly string? Status;
         /// <summary>
         /// `zone`) The zone of the load-balancer.

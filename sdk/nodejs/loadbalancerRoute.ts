@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ### With SNI for direction to TCP backends
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -38,9 +39,11 @@ import * as utilities from "./utilities";
  *     matchSni: "sni.scaleway.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With host-header for direction to HTTP backends
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -67,13 +70,16 @@ import * as utilities from "./utilities";
  *     matchHostHeader: "host.scaleway.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+ * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class LoadbalancerRoute extends pulumi.CustomResource {

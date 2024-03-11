@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -24,8 +25,11 @@ import * as utilities from "./utilities";
  *     name: "bucket.test.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Fetching the bucket from a specific project
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -35,6 +39,7 @@ import * as utilities from "./utilities";
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketResult> {
     args = args || {};
@@ -94,6 +99,7 @@ export interface GetObjectBucketResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -106,8 +112,11 @@ export interface GetObjectBucketResult {
  *     name: "bucket.test.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Fetching the bucket from a specific project
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -117,6 +126,7 @@ export interface GetObjectBucketResult {
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketResult> {
     return pulumi.output(args).apply((a: any) => getObjectBucket(a, opts))

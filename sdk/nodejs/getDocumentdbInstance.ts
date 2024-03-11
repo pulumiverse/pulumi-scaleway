@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbInstance(args?: GetDocumentdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbInstanceResult> {
     args = args || {};
@@ -76,6 +78,7 @@ export interface GetDocumentdbInstanceResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -84,6 +87,7 @@ export interface GetDocumentdbInstanceResult {
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbInstanceOutput(args?: GetDocumentdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbInstanceResult> {
     return pulumi.output(args).apply((a: any) => getDocumentdbInstance(a, opts))

@@ -19,6 +19,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Instance Private Network IP
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -53,6 +54,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetIpamIpResult> InvokeAsync(GetIpamIpArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpamIpResult>("scaleway:index/getIpamIp:getIpamIp", args ?? new GetIpamIpArgs(), options.WithDefaults());
@@ -64,6 +66,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Instance Private Network IP
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -98,6 +101,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetIpamIpResult> Invoke(GetIpamIpInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpamIpResult>("scaleway:index/getIpamIp:getIpamIp", args ?? new GetIpamIpInvokeArgs(), options.WithDefaults());

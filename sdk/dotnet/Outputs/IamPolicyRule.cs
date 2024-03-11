@@ -22,6 +22,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// Names of permission sets bound to the rule.
         /// 
         /// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        /// 
+        /// ```shell
+        /// $ scw iam permission-set list
+        /// ```
         /// </summary>
         public readonly ImmutableArray<string> PermissionSetNames;
         /// <summary>

@@ -19,6 +19,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// Cannot be used with `record_id`.
         /// </summary>
         public readonly string Data;
+        /// <summary>
+        /// The subnet of the view
+        /// </summary>
         public readonly string Subnet;
 
         [OutputConstructor]

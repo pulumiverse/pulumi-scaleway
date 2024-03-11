@@ -17,6 +17,7 @@ import (
 //
 // ### Instance Private Network IP
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,6 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get Instance IP in a private network
 //			nic, err := scaleway.NewInstancePrivateNic(ctx, "nic", &scaleway.InstancePrivateNicArgs{
 //				ServerId:         pulumi.Any(scaleway_instance_server.Server.Id),
 //				PrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn.Id),
@@ -52,6 +54,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetIpamIp(ctx *pulumi.Context, args *GetIpamIpArgs, opts ...pulumi.InvokeOption) (*GetIpamIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpamIpResult

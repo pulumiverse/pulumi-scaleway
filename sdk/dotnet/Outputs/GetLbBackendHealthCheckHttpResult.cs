@@ -14,10 +14,25 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbBackendHealthCheckHttpResult
     {
+        /// <summary>
+        /// The expected HTTP status code
+        /// </summary>
         public readonly int Code;
+        /// <summary>
+        /// The HTTP host header to use for HC requests
+        /// </summary>
         public readonly string HostHeader;
+        /// <summary>
+        /// The HTTP method to use for HC requests
+        /// </summary>
         public readonly string Method;
+        /// <summary>
+        /// The SNI to use for HC requests over SSL
+        /// </summary>
         public readonly string Sni;
+        /// <summary>
+        /// The HTTPS endpoint URL to call for HC requests
+        /// </summary>
         public readonly string Uri;
 
         [OutputConstructor]

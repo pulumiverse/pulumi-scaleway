@@ -14,12 +14,21 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetBaremetalServerIpResult
     {
+        /// <summary>
+        /// The IPv6 address
+        /// </summary>
         public readonly string Address;
         /// <summary>
         /// The ID of the server.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The Reverse of the IPv6
+        /// </summary>
         public readonly string Reverse;
+        /// <summary>
+        /// The version of the IPv6
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

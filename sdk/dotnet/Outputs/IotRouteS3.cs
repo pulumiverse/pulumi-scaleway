@@ -14,9 +14,21 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class IotRouteS3
     {
+        /// <summary>
+        /// The name of the S3 route's destination bucket
+        /// </summary>
         public readonly string BucketName;
+        /// <summary>
+        /// The region of the S3 route's destination bucket
+        /// </summary>
         public readonly string BucketRegion;
+        /// <summary>
+        /// The string to prefix object names with
+        /// </summary>
         public readonly string? ObjectPrefix;
+        /// <summary>
+        /// How the S3 route's objects will be created: one per topic or one per message
+        /// </summary>
         public readonly string Strategy;
 
         [OutputConstructor]

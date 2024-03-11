@@ -9,8 +9,10 @@ import * as utilities from "./utilities";
  * You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
  *
  * ## Example Usage
+ *
  * ### Simple
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -21,8 +23,11 @@ import * as utilities from "./utilities";
  *     hostname: "container.domain.tld",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Complete example with domain
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -53,13 +58,16 @@ import * as utilities from "./utilities";
  *     hostname: pulumi.interpolate`${appDomainRecord.name}.${appDomainRecord.dnsZone}`,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Container domain binding can be imported using the `{region}/{id}`, e.g. bash
+ * Container domain binding can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ContainerDomain extends pulumi.CustomResource {

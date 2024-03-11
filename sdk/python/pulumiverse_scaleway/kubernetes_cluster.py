@@ -751,6 +751,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -764,9 +765,11 @@ class KubernetesCluster(pulumi.CustomResource):
             node_type="DEV1-M",
             size=1)
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Multicloud
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -782,11 +785,13 @@ class KubernetesCluster(pulumi.CustomResource):
             size=0,
             min_size=0)
         ```
+        <!--End PulumiCodeChooser -->
 
         For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
 
         ### With additional configuration
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -818,13 +823,16 @@ class KubernetesCluster(pulumi.CustomResource):
             min_size=1,
             max_size=5)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
+        Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -873,6 +881,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -886,9 +895,11 @@ class KubernetesCluster(pulumi.CustomResource):
             node_type="DEV1-M",
             size=1)
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Multicloud
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -904,11 +915,13 @@ class KubernetesCluster(pulumi.CustomResource):
             size=0,
             min_size=0)
         ```
+        <!--End PulumiCodeChooser -->
 
         For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
 
         ### With additional configuration
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -940,13 +953,16 @@ class KubernetesCluster(pulumi.CustomResource):
             min_size=1,
             max_size=5)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
+        Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

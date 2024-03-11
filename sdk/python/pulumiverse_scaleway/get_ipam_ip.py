@@ -116,6 +116,7 @@ def get_ipam_ip(mac_address: Optional[str] = None,
 
     ### Instance Private Network IP
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -133,6 +134,7 @@ def get_ipam_ip(mac_address: Optional[str] = None,
         ),
         type="ipv4")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str mac_address: The Mac Address linked to the IP.
@@ -174,6 +176,7 @@ def get_ipam_ip_output(mac_address: Optional[pulumi.Input[Optional[str]]] = None
 
     ### Instance Private Network IP
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -191,6 +194,7 @@ def get_ipam_ip_output(mac_address: Optional[pulumi.Input[Optional[str]]] = None
         ),
         type="ipv4")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str mac_address: The Mac Address linked to the IP.

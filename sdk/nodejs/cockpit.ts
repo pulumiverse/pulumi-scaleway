@@ -9,10 +9,12 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * Cockpits can be imported using the `{project_id}`, e.g. bash
+ * Cockpits can be imported using the `{project_id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class Cockpit extends pulumi.CustomResource {

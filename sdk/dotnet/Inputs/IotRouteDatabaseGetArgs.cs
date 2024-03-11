@@ -13,14 +13,24 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class IotRouteDatabaseGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The database name
+        /// </summary>
         [Input("dbname", required: true)]
         public Input<string> Dbname { get; set; } = null!;
 
+        /// <summary>
+        /// The database hostname
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         [Input("password", required: true)]
         private Input<string>? _password;
+
+        /// <summary>
+        /// The database password
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -31,12 +41,21 @@ namespace Pulumiverse.Scaleway.Inputs
             }
         }
 
+        /// <summary>
+        /// The database port
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
+        /// </summary>
         [Input("query", required: true)]
         public Input<string> Query { get; set; } = null!;
 
+        /// <summary>
+        /// The database username
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

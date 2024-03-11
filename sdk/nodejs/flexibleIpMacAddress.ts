@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -22,9 +23,11 @@ import * as utilities from "./utilities";
  *     type: "kvm",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Duplicate on many other flexible IPs
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -49,13 +52,16 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g. bash
+ * Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class FlexibleIpMacAddress extends pulumi.CustomResource {

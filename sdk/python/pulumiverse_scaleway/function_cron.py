@@ -201,6 +201,7 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -225,13 +226,16 @@ class FunctionCron(pulumi.CustomResource):
                 "my_var": "terraform",
             }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g. bash
+        Container Cron can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -261,6 +265,7 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -285,13 +290,16 @@ class FunctionCron(pulumi.CustomResource):
                 "my_var": "terraform",
             }))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g. bash
+        Container Cron can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

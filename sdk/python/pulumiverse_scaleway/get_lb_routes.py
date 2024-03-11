@@ -102,6 +102,7 @@ def get_lb_routes(frontend_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -110,6 +111,7 @@ def get_lb_routes(frontend_id: Optional[str] = None,
     my_key = scaleway.get_lb_routes(frontend_id="11111111-1111-1111-1111-111111111111",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str frontend_id: The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
@@ -141,6 +143,7 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -149,6 +152,7 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     my_key = scaleway.get_lb_routes(frontend_id="11111111-1111-1111-1111-111111111111",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str frontend_id: The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.

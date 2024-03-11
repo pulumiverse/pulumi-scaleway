@@ -112,6 +112,7 @@ def get_lb_acls(frontend_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -120,6 +121,7 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     by_front_id_and_name = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"],
         name="tf-acls-datasource")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
@@ -156,6 +158,7 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -164,6 +167,7 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     by_front_id_and_name = scaleway.get_lb_acls(frontend_id=scaleway_lb_frontend["frt01"]["id"],
         name="tf-acls-datasource")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.

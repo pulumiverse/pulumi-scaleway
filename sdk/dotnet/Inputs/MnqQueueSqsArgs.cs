@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         [Input("accessKey", required: true)]
         private Input<string>? _accessKey;
+
+        /// <summary>
+        /// The access key of the SQS queue
+        /// </summary>
         public Input<string>? AccessKey
         {
             get => _accessKey;
@@ -28,9 +32,15 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
+        /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder.
+        /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
+        /// <summary>
+        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
+        /// </summary>
         [Input("fifoQueue")]
         public Input<bool>? FifoQueue { get; set; }
 
@@ -39,6 +49,10 @@ namespace Pulumiverse.Scaleway.Inputs
 
         [Input("secretKey", required: true)]
         private Input<string>? _secretKey;
+
+        /// <summary>
+        /// The secret key of the SQS queue
+        /// </summary>
         public Input<string>? SecretKey
         {
             get => _secretKey;
@@ -49,6 +63,9 @@ namespace Pulumiverse.Scaleway.Inputs
             }
         }
 
+        /// <summary>
+        /// The URL of the queue
+        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 

@@ -15,15 +15,25 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         [Input("headers", required: true)]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// The HTTP call extra headers
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// The URI of the REST endpoint
+        /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;
 
+        /// <summary>
+        /// The HTTP Verb used to call REST URI
+        /// </summary>
         [Input("verb", required: true)]
         public Input<string> Verb { get; set; } = null!;
 

@@ -30,6 +30,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// The port this rule apply to. If no port is specified, rule will apply to all port.
         /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// Computed port range for this rule (e.g: 1-1024, 22-22)
+        /// </summary>
         public readonly string? PortRange;
         /// <summary>
         /// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.

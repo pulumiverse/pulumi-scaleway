@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetDomainRecordGeoIpMatchResult
     {
+        /// <summary>
+        /// List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
+        /// </summary>
         public readonly ImmutableArray<string> Continents;
+        /// <summary>
+        /// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
+        /// </summary>
         public readonly ImmutableArray<string> Countries;
         /// <summary>
         /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).

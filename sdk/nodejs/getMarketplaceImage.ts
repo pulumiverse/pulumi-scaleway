@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     label: "ubuntu_jammy",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetMarketplaceImageResult> {
 
@@ -65,6 +67,7 @@ export interface GetMarketplaceImageResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -73,6 +76,7 @@ export interface GetMarketplaceImageResult {
  *     label: "ubuntu_jammy",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMarketplaceImageResult> {
     return pulumi.output(args).apply((a: any) => getMarketplaceImage(a, opts))

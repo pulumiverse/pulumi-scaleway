@@ -137,6 +137,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -152,13 +153,16 @@ class InstanceIpReverseDns(pulumi.CustomResource):
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+        IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -180,6 +184,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -195,13 +200,16 @@ class InstanceIpReverseDns(pulumi.CustomResource):
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        IPs reverse DNS can be imported using the `{zone}/{id}`, e.g. bash
+        IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

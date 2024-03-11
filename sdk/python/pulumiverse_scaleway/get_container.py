@@ -333,6 +333,7 @@ def get_container(container_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -345,6 +346,7 @@ def get_container(container_id: Optional[str] = None,
     by_id = scaleway.get_container_output(namespace_id=main_container_namespace.id,
         container_id=main_container.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique name of the container name.
@@ -406,6 +408,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -418,6 +421,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
     by_id = scaleway.get_container_output(namespace_id=main_container_namespace.id,
         container_id=main_container.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique name of the container name.

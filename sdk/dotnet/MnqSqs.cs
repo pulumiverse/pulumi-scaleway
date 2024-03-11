@@ -19,6 +19,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,13 +39,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+    /// SQS status can be imported using the `{region}/{project_id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+    /// $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/mnqSqs:MnqSqs")]

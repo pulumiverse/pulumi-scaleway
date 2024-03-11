@@ -12,33 +12,40 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.FlexibleIp("main", {reverse: "my-reverse.com"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With zone
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.FlexibleIp("main", {zone: "fr-par-2"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With IPv6
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.FlexibleIp("main", {isIpv6: true});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With baremetal server
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -65,13 +72,16 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-2",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Flexible IPs can be imported using the `{zone}/{id}`, e.g. bash
+ * Flexible IPs can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class FlexibleIp extends pulumi.CustomResource {

@@ -20,6 +20,7 @@ import (
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,9 +50,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With additional volumes and tags
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -93,9 +96,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With a reserved IP
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -129,9 +134,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With security group
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -185,9 +192,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With user data and cloud-init
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -227,9 +236,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With private network
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -263,11 +274,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### Root volume configuration
 //
 // #### Resized block volume with installed image
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -296,9 +309,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // #### From snapshot
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -338,6 +353,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Private Network
 //
@@ -355,12 +371,12 @@ import (
 //
 // ## Import
 //
-// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+// Instance servers can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceServer struct {
 	pulumi.CustomResourceState

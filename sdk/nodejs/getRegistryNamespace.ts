@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceResult> {
     args = args || {};
@@ -80,6 +82,7 @@ export interface GetRegistryNamespaceResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -88,6 +91,7 @@ export interface GetRegistryNamespaceResult {
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryNamespaceResult> {
     return pulumi.output(args).apply((a: any) => getRegistryNamespace(a, opts))

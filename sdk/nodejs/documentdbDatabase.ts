@@ -12,19 +12,23 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DocumentdbDatabase("main", {instanceId: "11111111-1111-1111-1111-111111111111"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+ * DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+ * $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
  * ```
  */
 export class DocumentdbDatabase extends pulumi.CustomResource {

@@ -12,19 +12,23 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.FunctionNamespace("main", {description: "Main function namespace"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g. bash
+ * Namespaces can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class FunctionNamespace extends pulumi.CustomResource {

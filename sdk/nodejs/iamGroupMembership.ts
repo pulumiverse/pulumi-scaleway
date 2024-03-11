@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ### Application Membership
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -23,13 +24,20 @@ import * as utilities from "./utilities";
  *     applicationId: app.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * IAM group memberships can be imported using two format- For user`{group_id}/user/{user_id}` - For application`{group_id}/app/{application_id}` bash
+ * IAM group memberships can be imported using two format:
+ *
+ * - For user: `{group_id}/user/{user_id}`
+ *
+ * - For application: `{group_id}/app/{application_id}`
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IamGroupMembership extends pulumi.CustomResource {

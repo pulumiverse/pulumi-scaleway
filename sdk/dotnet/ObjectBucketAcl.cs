@@ -13,6 +13,7 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,8 +32,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Example with Grants
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -78,6 +82,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## The ACL
     /// 
@@ -121,13 +126,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+    /// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+    /// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
     /// ```
     /// 
-    ///  /private
+    /// /private
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketAcl:ObjectBucketAcl")]
     public partial class ObjectBucketAcl : global::Pulumi.CustomResource

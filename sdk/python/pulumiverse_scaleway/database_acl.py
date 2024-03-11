@@ -148,6 +148,7 @@ class DatabaseAcl(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -159,13 +160,16 @@ class DatabaseAcl(pulumi.CustomResource):
                 description="foo",
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -190,6 +194,7 @@ class DatabaseAcl(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -201,13 +206,16 @@ class DatabaseAcl(pulumi.CustomResource):
                 description="foo",
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

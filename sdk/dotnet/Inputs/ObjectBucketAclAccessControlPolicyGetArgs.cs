@@ -21,6 +21,9 @@ namespace Pulumiverse.Scaleway.Inputs
             set => _grants = value;
         }
 
+        /// <summary>
+        /// Configuration block of the bucket project owner's display organization ID.
+        /// </summary>
         [Input("owner", required: true)]
         public Input<Inputs.ObjectBucketAclAccessControlPolicyOwnerGetArgs> Owner { get; set; } = null!;
 

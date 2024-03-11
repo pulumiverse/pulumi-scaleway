@@ -758,6 +758,7 @@ class BaremetalServer(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -770,9 +771,11 @@ class BaremetalServer(pulumi.CustomResource):
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Without install config
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -785,13 +788,16 @@ class BaremetalServer(pulumi.CustomResource):
             offer=my_offer.offer_id,
             install_config_afterward=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+        Baremetal servers can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -834,6 +840,7 @@ class BaremetalServer(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -846,9 +853,11 @@ class BaremetalServer(pulumi.CustomResource):
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Without install config
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -861,13 +870,16 @@ class BaremetalServer(pulumi.CustomResource):
             offer=my_offer.offer_id,
             install_config_afterward=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+        Baremetal servers can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

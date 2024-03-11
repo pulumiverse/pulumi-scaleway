@@ -11,12 +11,209 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Database Instances.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Example Basic
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example With IPAM
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example with Settings
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "MySQL-8",
+    ///         InitSettings = 
+    ///         {
+    ///             { "lower_case_table_names", "1" },
+    ///         },
+    ///         NodeType = "db-dev-s",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Settings = 
+    ///         {
+    ///             { "max_connections", "350" },
+    ///         },
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example with backup schedule
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         BackupScheduleFrequency = 24,
+    ///         BackupScheduleRetention = 7,
+    ///         DisableBackup = false,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example with custom private network
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC PRIVATE NETWORK
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.20.0/22",
+    ///         },
+    ///     });
+    /// 
+    ///     // RDB INSTANCE CONNECTED ON A CUSTOM PRIVATE NETWORK
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         NodeType = "db-dev-s",
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = false,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Region = "fr-par",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform-test",
+    ///             "scaleway_rdb_instance",
+    ///             "volume",
+    ///             "rdb_pn",
+    ///         },
+    ///         VolumeType = "bssd",
+    ///         VolumeSizeInGb = 10,
+    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+    ///         {
+    ///             IpNet = "172.16.20.4/22",
+    ///             PnId = pn.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Settings
+    /// 
+    /// Please consult
+    /// the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+    /// available `settings` and `init_settings` on your `node_type` of your convenient.
+    /// 
+    /// ## Private Network
+    /// 
+    /// &gt; **Important:** Updates to `private_network` will recreate the attachment Instance.
+    /// 
+    /// &gt; **NOTE:** Please calculate your host IP.
+    /// using cirhost. Otherwise, lets IPAM service
+    /// handle the host IP on the network.
+    /// 
+    /// - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+    ///   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+    ///   service if not set.
+    /// - `pn_id` - (Required) The ID of the private network.
+    /// 
+    /// ## Limitations
+    /// 
+    /// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+    /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+    /// 
     /// ## Import
     /// 
-    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+    /// Database Instance can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/databaseInstance:DatabaseInstance")]

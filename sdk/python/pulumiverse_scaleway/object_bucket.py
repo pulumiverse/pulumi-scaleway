@@ -411,6 +411,7 @@ class ObjectBucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -419,16 +420,22 @@ class ObjectBucket(pulumi.CustomResource):
             "key": "value",
         })
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Creating the bucket in a specific project
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         some_bucket = scaleway.ObjectBucket("someBucket", project_id="11111111-1111-1111-1111-111111111111")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Using object lifecycle
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -485,19 +492,24 @@ class ObjectBucket(pulumi.CustomResource):
             ],
             region="fr-par")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
-         If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+        If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -528,6 +540,7 @@ class ObjectBucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -536,16 +549,22 @@ class ObjectBucket(pulumi.CustomResource):
             "key": "value",
         })
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Creating the bucket in a specific project
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         some_bucket = scaleway.ObjectBucket("someBucket", project_id="11111111-1111-1111-1111-111111111111")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Using object lifecycle
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -602,19 +621,24 @@ class ObjectBucket(pulumi.CustomResource):
             ],
             region="fr-par")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
-         If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+        If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

@@ -200,6 +200,7 @@ class DatabasePrivilege(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -226,13 +227,16 @@ class DatabasePrivilege(pulumi.CustomResource):
                     main_database,
                 ]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -255,6 +259,7 @@ class DatabasePrivilege(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -281,13 +286,16 @@ class DatabasePrivilege(pulumi.CustomResource):
                     main_database,
                 ]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
         :param str resource_name: The name of the resource.

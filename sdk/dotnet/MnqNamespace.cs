@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Basic
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,13 +38,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+    /// Namespaces can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/mnqNamespace:MnqNamespace main fr-par/11111111111111111111111111111111
+    /// $ pulumi import scaleway:index/mnqNamespace:MnqNamespace main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/mnqNamespace:MnqNamespace")]

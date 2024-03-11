@@ -84,6 +84,7 @@ def get_mnq_sqs(project_id: Optional[str] = None,
 
     ### Basic
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -91,6 +92,7 @@ def get_mnq_sqs(project_id: Optional[str] = None,
     main = scaleway.get_mnq_sqs()
     for_project = scaleway.get_mnq_sqs(project_id=scaleway_account_project["main"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: `project_id`) The ID of the project for which sqs is enabled.
@@ -120,6 +122,7 @@ def get_mnq_sqs_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ### Basic
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -127,6 +130,7 @@ def get_mnq_sqs_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     main = scaleway.get_mnq_sqs()
     for_project = scaleway.get_mnq_sqs(project_id=scaleway_account_project["main"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: `project_id`) The ID of the project for which sqs is enabled.

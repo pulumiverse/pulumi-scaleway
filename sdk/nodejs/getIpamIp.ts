@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ### Instance Private Network IP
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -35,6 +36,7 @@ import * as utilities from "./utilities";
  *     type: "ipv4",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIpamIp(args: GetIpamIpArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpResult> {
 
@@ -99,6 +101,7 @@ export interface GetIpamIpResult {
  *
  * ### Instance Private Network IP
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -121,6 +124,7 @@ export interface GetIpamIpResult {
  *     type: "ipv4",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getIpamIpOutput(args: GetIpamIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpamIpResult> {
     return pulumi.output(args).apply((a: any) => getIpamIp(a, opts))

@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -26,6 +27,7 @@ import * as utilities from "./utilities";
  *     tags: ["mytag"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstancePrivateNic(args: GetInstancePrivateNicArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancePrivateNicResult> {
 
@@ -89,6 +91,7 @@ export interface GetInstancePrivateNicResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -106,6 +109,7 @@ export interface GetInstancePrivateNicResult {
  *     tags: ["mytag"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstancePrivateNicOutput(args: GetInstancePrivateNicOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancePrivateNicResult> {
     return pulumi.output(args).apply((a: any) => getInstancePrivateNic(a, opts))

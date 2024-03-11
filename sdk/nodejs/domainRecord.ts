@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -45,9 +46,11 @@ import * as utilities from "./utilities";
  *     type: "MX",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With dynamic records
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -120,9 +123,11 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Create an instance and add records with the new instance IP
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -163,6 +168,7 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Multiple records
  *
@@ -173,10 +179,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Record can be imported using the `{dns_zone}/{id}`, e.g. bash
+ * Record can be imported using the `{dns_zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class DomainRecord extends pulumi.CustomResource {

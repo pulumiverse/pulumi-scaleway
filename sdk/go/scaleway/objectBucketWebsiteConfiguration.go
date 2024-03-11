@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,8 +50,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Example with `policy`
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -113,6 +117,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## indexDocument
 //
@@ -138,12 +143,12 @@ import (
 //
 // ## Import
 //
-// Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+// Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
-//
+// $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
 // ```
 type ObjectBucketWebsiteConfiguration struct {
 	pulumi.CustomResourceState

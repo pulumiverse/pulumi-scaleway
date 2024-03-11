@@ -114,6 +114,7 @@ def get_lbs(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -121,6 +122,7 @@ def get_lbs(name: Optional[str] = None,
     my_key = scaleway.get_lbs(name="foobar",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The load balancer name used as a filter. LBs with a name like it are listed.
@@ -153,6 +155,7 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -160,6 +163,7 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     my_key = scaleway.get_lbs(name="foobar",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The load balancer name used as a filter. LBs with a name like it are listed.

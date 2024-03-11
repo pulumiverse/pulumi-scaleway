@@ -22,6 +22,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
+        /// <summary>
+        /// Type of grantee. Valid values: `CanonicalUser`
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

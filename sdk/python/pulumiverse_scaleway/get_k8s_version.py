@@ -108,22 +108,28 @@ def get_k8s_version(name: Optional[str] = None,
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
     ## Example Usage
+
     ### Use the latest version
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     latest = scaleway.get_k8s_version(name="latest")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### Use a specific version
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     by_name = scaleway.get_k8s_version(name="1.26.0")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the Kubernetes version.
@@ -155,22 +161,28 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
     ## Example Usage
+
     ### Use the latest version
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     latest = scaleway.get_k8s_version(name="latest")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### Use a specific version
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     by_name = scaleway.get_k8s_version(name="1.26.0")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the Kubernetes version.

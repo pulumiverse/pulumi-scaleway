@@ -920,11 +920,14 @@ class DatabaseInstancePrivateNetworkArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] pn_id: The private network ID
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[str] hostname: Hostname of the endpoint.
         :param pulumi.Input[str] ip: IPv4 address on the network.
+        :param pulumi.Input[str] ip_net: The IP with the given mask within the private subnet
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[int] port: Port in the Private Network.
+        :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "pn_id", pn_id)
         if endpoint_id is not None:
@@ -945,6 +948,9 @@ class DatabaseInstancePrivateNetworkArgs:
     @property
     @pulumi.getter(name="pnId")
     def pn_id(self) -> pulumi.Input[str]:
+        """
+        The private network ID
+        """
         return pulumi.get(self, "pn_id")
 
     @pn_id.setter
@@ -990,6 +996,9 @@ class DatabaseInstancePrivateNetworkArgs:
     @property
     @pulumi.getter(name="ipNet")
     def ip_net(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP with the given mask within the private subnet
+        """
         return pulumi.get(self, "ip_net")
 
     @ip_net.setter
@@ -1023,6 +1032,9 @@ class DatabaseInstancePrivateNetworkArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The zone you want to attach the resource to
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -1193,6 +1205,7 @@ class DatabaseReadReplicaPrivateNetworkArgs:
         :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a
                CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
                service if not set.
+        :param pulumi.Input[str] zone: Private network zone
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if endpoint_id is not None:
@@ -1299,6 +1312,9 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private network zone
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -1414,6 +1430,7 @@ class DocumentdbReadReplicaPrivateNetworkArgs:
         :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a
                CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
                service if not set.
+        :param pulumi.Input[str] zone: Private network zone
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if endpoint_id is not None:
@@ -1520,6 +1537,9 @@ class DocumentdbReadReplicaPrivateNetworkArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private network zone
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -1910,6 +1930,10 @@ class IamPolicyRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permission_set_names: Names of permission sets bound to the rule.
                
                **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+               
+               ```shell
+               $ scw iam permission-set list
+               ```
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: List of project IDs scoped to the rule.
                
@@ -1928,6 +1952,10 @@ class IamPolicyRuleArgs:
         Names of permission sets bound to the rule.
 
         **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+
+        ```shell
+        $ scw iam permission-set list
+        ```
         """
         return pulumi.get(self, "permission_set_names")
 
@@ -2191,6 +2219,7 @@ class InstanceSecurityGroupInboundRuleArgs:
         :param pulumi.Input[str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[int] port: The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
+        :param pulumi.Input[str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
         :param pulumi.Input[str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -2262,6 +2291,9 @@ class InstanceSecurityGroupInboundRuleArgs:
     @property
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed port range for this rule (e.g: 1-1024, 22-22)
+        """
         return pulumi.get(self, "port_range")
 
     @port_range.setter
@@ -2295,6 +2327,7 @@ class InstanceSecurityGroupOutboundRuleArgs:
         :param pulumi.Input[str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[int] port: The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
+        :param pulumi.Input[str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
         :param pulumi.Input[str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -2366,6 +2399,9 @@ class InstanceSecurityGroupOutboundRuleArgs:
     @property
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed port range for this rule (e.g: 1-1024, 22-22)
+        """
         return pulumi.get(self, "port_range")
 
     @port_range.setter
@@ -2399,6 +2435,7 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
         :param pulumi.Input[str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[int] port: The port this rule apply to. If no port is specified, rule will apply to all port.
+        :param pulumi.Input[str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
         :param pulumi.Input[str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -2470,6 +2507,9 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
     @property
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed port range for this rule (e.g: 1-1024, 22-22)
+        """
         return pulumi.get(self, "port_range")
 
     @port_range.setter
@@ -2503,6 +2543,7 @@ class InstanceSecurityGroupRulesOutboundRuleArgs:
         :param pulumi.Input[str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[int] port: The port this rule apply to. If no port is specified, rule will apply to all port.
+        :param pulumi.Input[str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
         :param pulumi.Input[str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -2574,6 +2615,9 @@ class InstanceSecurityGroupRulesOutboundRuleArgs:
     @property
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed port range for this rule (e.g: 1-1024, 22-22)
+        """
         return pulumi.get(self, "port_range")
 
     @port_range.setter
@@ -2601,6 +2645,9 @@ class InstanceServerPrivateNetworkArgs:
                  status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] pn_id: The Private Network ID
+        :param pulumi.Input[str] mac_address: MAC address of the NIC
+        :param pulumi.Input[str] status: The private NIC state
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "pn_id", pn_id)
@@ -2614,6 +2661,9 @@ class InstanceServerPrivateNetworkArgs:
     @property
     @pulumi.getter(name="pnId")
     def pn_id(self) -> pulumi.Input[str]:
+        """
+        The Private Network ID
+        """
         return pulumi.get(self, "pn_id")
 
     @pn_id.setter
@@ -2623,6 +2673,9 @@ class InstanceServerPrivateNetworkArgs:
     @property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC address of the NIC
+        """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
@@ -2632,6 +2685,9 @@ class InstanceServerPrivateNetworkArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private NIC state
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -2700,6 +2756,7 @@ class InstanceServerRootVolumeArgs:
                  volume_id: Optional[pulumi.Input[str]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] boot: Set the volume where the boot the server
         :param pulumi.Input[bool] delete_on_termination: Forces deletion of the root volume on instance termination.
                
                > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
@@ -2727,6 +2784,9 @@ class InstanceServerRootVolumeArgs:
     @property
     @pulumi.getter
     def boot(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set the volume where the boot the server
+        """
         return pulumi.get(self, "boot")
 
     @boot.setter
@@ -2846,6 +2906,7 @@ class IotDeviceCertificateArgs:
                  crt: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] crt: X509 PEM encoded certificate of the device
         :param pulumi.Input[str] key: The private key of the device, in case it is generated by Scaleway.
         """
         if crt is not None:
@@ -2856,6 +2917,9 @@ class IotDeviceCertificateArgs:
     @property
     @pulumi.getter
     def crt(self) -> Optional[pulumi.Input[str]]:
+        """
+        X509 PEM encoded certificate of the device
+        """
         return pulumi.get(self, "crt")
 
     @crt.setter
@@ -3017,6 +3081,14 @@ class IotRouteDatabaseArgs:
                  port: pulumi.Input[int],
                  query: pulumi.Input[str],
                  username: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] dbname: The database name
+        :param pulumi.Input[str] host: The database hostname
+        :param pulumi.Input[str] password: The database password
+        :param pulumi.Input[int] port: The database port
+        :param pulumi.Input[str] query: SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
+        :param pulumi.Input[str] username: The database username
+        """
         pulumi.set(__self__, "dbname", dbname)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "password", password)
@@ -3027,6 +3099,9 @@ class IotRouteDatabaseArgs:
     @property
     @pulumi.getter
     def dbname(self) -> pulumi.Input[str]:
+        """
+        The database name
+        """
         return pulumi.get(self, "dbname")
 
     @dbname.setter
@@ -3036,6 +3111,9 @@ class IotRouteDatabaseArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The database hostname
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -3045,6 +3123,9 @@ class IotRouteDatabaseArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The database password
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -3054,6 +3135,9 @@ class IotRouteDatabaseArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The database port
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -3063,6 +3147,9 @@ class IotRouteDatabaseArgs:
     @property
     @pulumi.getter
     def query(self) -> pulumi.Input[str]:
+        """
+        SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -3072,6 +3159,9 @@ class IotRouteDatabaseArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The database username
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -3085,6 +3175,11 @@ class IotRouteRestArgs:
                  headers: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  uri: pulumi.Input[str],
                  verb: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: The HTTP call extra headers
+        :param pulumi.Input[str] uri: The URI of the REST endpoint
+        :param pulumi.Input[str] verb: The HTTP Verb used to call REST URI
+        """
         pulumi.set(__self__, "headers", headers)
         pulumi.set(__self__, "uri", uri)
         pulumi.set(__self__, "verb", verb)
@@ -3092,6 +3187,9 @@ class IotRouteRestArgs:
     @property
     @pulumi.getter
     def headers(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        The HTTP call extra headers
+        """
         return pulumi.get(self, "headers")
 
     @headers.setter
@@ -3101,6 +3199,9 @@ class IotRouteRestArgs:
     @property
     @pulumi.getter
     def uri(self) -> pulumi.Input[str]:
+        """
+        The URI of the REST endpoint
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -3110,6 +3211,9 @@ class IotRouteRestArgs:
     @property
     @pulumi.getter
     def verb(self) -> pulumi.Input[str]:
+        """
+        The HTTP Verb used to call REST URI
+        """
         return pulumi.get(self, "verb")
 
     @verb.setter
@@ -3124,6 +3228,12 @@ class IotRouteS3Args:
                  bucket_region: pulumi.Input[str],
                  strategy: pulumi.Input[str],
                  object_prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] bucket_name: The name of the S3 route's destination bucket
+        :param pulumi.Input[str] bucket_region: The region of the S3 route's destination bucket
+        :param pulumi.Input[str] strategy: How the S3 route's objects will be created: one per topic or one per message
+        :param pulumi.Input[str] object_prefix: The string to prefix object names with
+        """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "bucket_region", bucket_region)
         pulumi.set(__self__, "strategy", strategy)
@@ -3133,6 +3243,9 @@ class IotRouteS3Args:
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
+        """
+        The name of the S3 route's destination bucket
+        """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
@@ -3142,6 +3255,9 @@ class IotRouteS3Args:
     @property
     @pulumi.getter(name="bucketRegion")
     def bucket_region(self) -> pulumi.Input[str]:
+        """
+        The region of the S3 route's destination bucket
+        """
         return pulumi.get(self, "bucket_region")
 
     @bucket_region.setter
@@ -3151,6 +3267,9 @@ class IotRouteS3Args:
     @property
     @pulumi.getter
     def strategy(self) -> pulumi.Input[str]:
+        """
+        How the S3 route's objects will be created: one per topic or one per message
+        """
         return pulumi.get(self, "strategy")
 
     @strategy.setter
@@ -3160,6 +3279,9 @@ class IotRouteS3Args:
     @property
     @pulumi.getter(name="objectPrefix")
     def object_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The string to prefix object names with
+        """
         return pulumi.get(self, "object_prefix")
 
     @object_prefix.setter
@@ -3793,6 +3915,7 @@ class LoadbalancerAclMatchArgs:
         :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param pulumi.Input[str] http_filter_option: You can use this field with http_header_match acl type to set the header name to filter
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
@@ -3826,6 +3949,9 @@ class LoadbalancerAclMatchArgs:
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        You can use this field with http_header_match acl type to set the header name to filter
+        """
         return pulumi.get(self, "http_filter_option")
 
     @http_filter_option.setter
@@ -4112,7 +4238,10 @@ class LoadbalancerFrontendAclArgs:
         """
         :param pulumi.Input['LoadbalancerFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[str] created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param pulumi.Input[str] description: Description of the ACL
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
+        :param pulumi.Input[str] updated_at: Date and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -4152,6 +4281,9 @@ class LoadbalancerFrontendAclArgs:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date and time of ACL's creation (RFC 3339 format)
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -4161,6 +4293,9 @@ class LoadbalancerFrontendAclArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the ACL
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -4182,6 +4317,9 @@ class LoadbalancerFrontendAclArgs:
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date and time of ACL's update (RFC 3339 format)
+        """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
@@ -4294,6 +4432,7 @@ class LoadbalancerFrontendAclMatchArgs:
         :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param pulumi.Input[str] http_filter_option: You can use this field with http_header_match acl type to set the header name to filter
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
@@ -4327,6 +4466,9 @@ class LoadbalancerFrontendAclMatchArgs:
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        You can use this field with http_header_match acl type to set the header name to filter
+        """
         return pulumi.get(self, "http_filter_option")
 
     @http_filter_option.setter
@@ -4383,6 +4525,7 @@ class LoadbalancerPrivateNetworkArgs:
         :param pulumi.Input[str] private_network_id: (Required) The ID of the Private Network to associate.
         :param pulumi.Input[bool] dhcp_config: (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
         :param pulumi.Input[str] static_config: (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        :param pulumi.Input[str] status: The status of private network connection
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -4434,6 +4577,9 @@ class LoadbalancerPrivateNetworkArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of private network connection
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -4592,6 +4738,11 @@ class MnqQueueNatsArgs:
                  credentials: pulumi.Input[str],
                  endpoint: Optional[pulumi.Input[str]] = None,
                  retention_policy: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] credentials: Line jump separated key and seed
+        :param pulumi.Input[str] endpoint: The endpoint of the NATS queue. Can contain a {region} placeholder.
+        :param pulumi.Input[str] retention_policy: The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
+        """
         pulumi.set(__self__, "credentials", credentials)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
@@ -4601,6 +4752,9 @@ class MnqQueueNatsArgs:
     @property
     @pulumi.getter
     def credentials(self) -> pulumi.Input[str]:
+        """
+        Line jump separated key and seed
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -4610,6 +4764,9 @@ class MnqQueueNatsArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint of the NATS queue. Can contain a {region} placeholder.
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -4619,6 +4776,9 @@ class MnqQueueNatsArgs:
     @property
     @pulumi.getter(name="retentionPolicy")
     def retention_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
+        """
         return pulumi.get(self, "retention_policy")
 
     @retention_policy.setter
@@ -4637,6 +4797,13 @@ class MnqQueueSqsArgs:
                  receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] access_key: The access key of the SQS queue
+        :param pulumi.Input[str] secret_key: The secret key of the SQS queue
+        :param pulumi.Input[str] endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder.
+        :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
+        :param pulumi.Input[str] url: The URL of the queue
+        """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "secret_key", secret_key)
         if content_based_deduplication is not None:
@@ -4655,6 +4822,9 @@ class MnqQueueSqsArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
+        """
+        The access key of the SQS queue
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -4664,6 +4834,9 @@ class MnqQueueSqsArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
+        """
+        The secret key of the SQS queue
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -4682,6 +4855,9 @@ class MnqQueueSqsArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint of the SQS queue. Can contain a {region} placeholder.
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -4691,6 +4867,9 @@ class MnqQueueSqsArgs:
     @property
     @pulumi.getter(name="fifoQueue")
     def fifo_queue(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
+        """
         return pulumi.get(self, "fifo_queue")
 
     @fifo_queue.setter
@@ -4709,6 +4888,9 @@ class MnqQueueSqsArgs:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL of the queue
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -4785,6 +4967,9 @@ class ObjectBucketAclAccessControlPolicyArgs:
     def __init__(__self__, *,
                  owner: pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs'],
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]] = None):
+        """
+        :param pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs'] owner: Configuration block of the bucket project owner's display organization ID.
+        """
         pulumi.set(__self__, "owner", owner)
         if grants is not None:
             pulumi.set(__self__, "grants", grants)
@@ -4792,6 +4977,9 @@ class ObjectBucketAclAccessControlPolicyArgs:
     @property
     @pulumi.getter
     def owner(self) -> pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs']:
+        """
+        Configuration block of the bucket project owner's display organization ID.
+        """
         return pulumi.get(self, "owner")
 
     @owner.setter
@@ -4813,6 +5001,10 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[str],
                  grantee: Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgs']] = None):
+        """
+        :param pulumi.Input[str] permission: Logging permissions assigned to the grantee for the bucket.
+        :param pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgs'] grantee: Configuration block for the project being granted permissions.
+        """
         pulumi.set(__self__, "permission", permission)
         if grantee is not None:
             pulumi.set(__self__, "grantee", grantee)
@@ -4820,6 +5012,9 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
     @property
     @pulumi.getter
     def permission(self) -> pulumi.Input[str]:
+        """
+        Logging permissions assigned to the grantee for the bucket.
+        """
         return pulumi.get(self, "permission")
 
     @permission.setter
@@ -4829,6 +5024,9 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
     @property
     @pulumi.getter
     def grantee(self) -> Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgs']]:
+        """
+        Configuration block for the project being granted permissions.
+        """
         return pulumi.get(self, "grantee")
 
     @grantee.setter
@@ -4844,6 +5042,7 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
                  display_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] id: The `region`,`bucket` and `acl` separated by (`/`).
+        :param pulumi.Input[str] type: Type of grantee. Valid values: `CanonicalUser`
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "type", type)
@@ -4865,6 +5064,9 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of grantee. Valid values: `CanonicalUser`
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -4888,6 +5090,7 @@ class ObjectBucketAclAccessControlPolicyOwnerArgs:
                  display_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] id: The `region`,`bucket` and `acl` separated by (`/`).
+        :param pulumi.Input[str] display_name: The project ID of the grantee.
         """
         pulumi.set(__self__, "id", id)
         if display_name is not None:
@@ -4908,6 +5111,9 @@ class ObjectBucketAclAccessControlPolicyOwnerArgs:
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project ID of the grantee.
+        """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
@@ -5216,6 +5422,11 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
                  mode: pulumi.Input[str],
                  days: Optional[pulumi.Input[int]] = None,
                  years: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        :param pulumi.Input[int] days: The number of days that you want to specify for the default retention period.
+        :param pulumi.Input[int] years: The number of years that you want to specify for the default retention period.
+        """
         pulumi.set(__self__, "mode", mode)
         if days is not None:
             pulumi.set(__self__, "days", days)
@@ -5225,6 +5436,9 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
+        """
+        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -5234,6 +5448,9 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @property
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of days that you want to specify for the default retention period.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -5243,6 +5460,9 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @property
     @pulumi.getter
     def years(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of years that you want to specify for the default retention period.
+        """
         return pulumi.get(self, "years")
 
     @years.setter

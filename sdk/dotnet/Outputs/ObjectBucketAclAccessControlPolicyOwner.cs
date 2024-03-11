@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketAclAccessControlPolicyOwner
     {
+        /// <summary>
+        /// The project ID of the grantee.
+        /// </summary>
         public readonly string? DisplayName;
         /// <summary>
         /// The `region`,`bucket` and `acl` separated by (`/`).

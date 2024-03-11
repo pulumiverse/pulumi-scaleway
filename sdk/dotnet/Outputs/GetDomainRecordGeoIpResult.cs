@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetDomainRecordGeoIpResult
     {
+        /// <summary>
+        /// The list of matches
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDomainRecordGeoIpMatchResult> Matches;
 
         [OutputConstructor]

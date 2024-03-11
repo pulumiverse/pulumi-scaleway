@@ -312,6 +312,7 @@ class IamApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -321,13 +322,16 @@ class IamApiKey(pulumi.CustomResource):
             application_id=scaleway_iam_application["main"]["id"],
             description="a description")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Api keys can be imported using the `{id}`, e.g. bash
+        Api keys can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
+        $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -353,6 +357,7 @@ class IamApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -362,13 +367,16 @@ class IamApiKey(pulumi.CustomResource):
             application_id=scaleway_iam_application["main"]["id"],
             description="a description")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Api keys can be imported using the `{id}`, e.g. bash
+        Api keys can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
+        $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
         ```
 
         :param str resource_name: The name of the resource.

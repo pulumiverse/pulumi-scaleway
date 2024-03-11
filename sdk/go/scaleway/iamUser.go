@@ -19,6 +19,7 @@ import (
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,15 +43,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// IAM users can be imported using the `{id}`, e.g. bash
+// IAM users can be imported using the `{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
 // ```
 type IamUser struct {
 	pulumi.CustomResourceState

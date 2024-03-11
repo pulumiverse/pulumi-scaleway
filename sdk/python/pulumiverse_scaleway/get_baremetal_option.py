@@ -96,6 +96,7 @@ def get_baremetal_option(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -103,6 +104,7 @@ def get_baremetal_option(name: Optional[str] = None,
     by_name = scaleway.get_baremetal_option(name="Remote Access")
     by_id = scaleway.get_baremetal_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The option name. Only one of `name` and `option_id` should be specified.
@@ -135,6 +137,7 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -142,6 +145,7 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
     by_name = scaleway.get_baremetal_option(name="Remote Access")
     by_id = scaleway.get_baremetal_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The option name. Only one of `name` and `option_id` should be specified.

@@ -13,10 +13,12 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
+    /// IoT Hubs can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iotHub:IotHub")]

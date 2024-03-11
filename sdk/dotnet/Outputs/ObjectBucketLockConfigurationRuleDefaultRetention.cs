@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketLockConfigurationRuleDefaultRetention
     {
+        /// <summary>
+        /// The number of days that you want to specify for the default retention period.
+        /// </summary>
         public readonly int? Days;
+        /// <summary>
+        /// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        /// </summary>
         public readonly string Mode;
+        /// <summary>
+        /// The number of years that you want to specify for the default retention period.
+        /// </summary>
         public readonly int? Years;
 
         [OutputConstructor]

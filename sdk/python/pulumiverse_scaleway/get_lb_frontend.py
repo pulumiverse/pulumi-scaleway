@@ -154,6 +154,7 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -176,6 +177,7 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
     by_name = scaleway.get_lb_frontend_output(name=frt01.name,
         lb_id=lb01.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str frontend_id: The frontend id.
@@ -217,6 +219,7 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -239,6 +242,7 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
     by_name = scaleway.get_lb_frontend_output(name=frt01.name,
         lb_id=lb01.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str frontend_id: The frontend id.

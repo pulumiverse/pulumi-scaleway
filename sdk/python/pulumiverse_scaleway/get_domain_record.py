@@ -200,6 +200,7 @@ def get_domain_record(data: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -211,6 +212,7 @@ def get_domain_record(data: Optional[str] = None,
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
@@ -262,6 +264,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -273,6 +276,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).

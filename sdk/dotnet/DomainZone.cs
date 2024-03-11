@@ -16,6 +16,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Examples
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,13 +33,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+    /// Zone can be imported using the `{subdomain}.{domain}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
+    /// $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/domainZone:DomainZone")]

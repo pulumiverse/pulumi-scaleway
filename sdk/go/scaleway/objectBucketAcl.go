@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,8 +43,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Example with Grants
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -92,6 +96,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## The ACL
 //
@@ -135,15 +140,15 @@ import (
 //
 // ## Import
 //
-// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
-//
+// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
 // ```
 //
-//	/private
+// /private
 type ObjectBucketAcl struct {
 	pulumi.CustomResourceState
 

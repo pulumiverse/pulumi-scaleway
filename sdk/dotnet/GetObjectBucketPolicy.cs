@@ -16,10 +16,9 @@ namespace Pulumiverse.Scaleway
         /// Gets information about the Bucket's policy.
         /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,8 +34,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetObjectBucketPolicyResult> InvokeAsync(GetObjectBucketPolicyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketPolicyResult>("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args ?? new GetObjectBucketPolicyArgs(), options.WithDefaults());
@@ -45,10 +43,9 @@ namespace Pulumiverse.Scaleway
         /// Gets information about the Bucket's policy.
         /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,8 +61,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetObjectBucketPolicyResult> Invoke(GetObjectBucketPolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketPolicyResult>("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args ?? new GetObjectBucketPolicyInvokeArgs(), options.WithDefaults());

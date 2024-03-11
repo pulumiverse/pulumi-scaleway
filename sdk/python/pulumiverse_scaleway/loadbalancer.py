@@ -473,6 +473,7 @@ class Loadbalancer(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -483,9 +484,11 @@ class Loadbalancer(pulumi.CustomResource):
             zone=main.zone,
             type="LB-S")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Private LB
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -496,63 +499,7 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             assign_flexible_ip=False)
         ```
-
-        ### IP for Public Gateway
-        resource "scaleway_vpc_public_gateway_ip" "main" {
-        }
-
-        ### Scaleway Private Network
-        resource scaleway_vpc_private_network main {
-        }
-
-        ### VPC Public Gateway Network
-        resource "scaleway_vpc_public_gateway" "main" {
-            name  = "tf-test-public-gw"
-            type  = "VPC-GW-S"
-            ip_id = scaleway_vpc_public_gateway_ip.main.id
-        }
-
-        ### VPC Public Gateway Network DHCP config
-        resource "scaleway_vpc_public_gateway_dhcp" "main" {
-            subnet = "10.0.0.0/24"
-        }
-
-        ### VPC Gateway Network
-        resource "scaleway_vpc_gateway_network" "main" {
-            gateway_id         = scaleway_vpc_public_gateway.main.id
-            private_network_id = scaleway_vpc_private_network.main.id
-            dhcp_id            = scaleway_vpc_public_gateway_dhcp.main.id
-            cleanup_dhcp       = true
-            enable_masquerade  = true
-        }
-
-        ### Scaleway Instance
-        resource "scaleway_instance_server" "main" {
-            name        = "Scaleway Terraform Provider"
-            type        = "DEV1-S"
-            image       = "debian_bullseye"
-            enable_ipv6 = false
-
-            private_network {
-                pn_id = scaleway_vpc_private_network.main.id
-            }
-        }
-
-        ### IP for LB IP
-        resource scaleway_lb_ip main {
-        }
-
-        ### Scaleway Private Network
-        resource scaleway_vpc_private_network "main" {
-            name = "private network with static config"
-        }
-
-        ## Migration
-
-        In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
-        this change will not recreate your Load Balancer.
-
-        Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
+        <!--End PulumiCodeChooser -->
 
         ## IP ID
 
@@ -562,6 +509,7 @@ class Loadbalancer(pulumi.CustomResource):
 
         For instance, if you had the following:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -570,9 +518,11 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             zone="fr-par-1")
         ```
+        <!--End PulumiCodeChooser -->
 
         You will need to update it to:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -584,16 +534,19 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             release_ip=False)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
+        Load-Balancer can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
-         Be aware that you will also need to import the `scaleway_lb_ip` resource.
+        Be aware that you will also need to import the `scaleway_lb_ip` resource.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -625,6 +578,7 @@ class Loadbalancer(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -635,9 +589,11 @@ class Loadbalancer(pulumi.CustomResource):
             zone=main.zone,
             type="LB-S")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Private LB
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -648,63 +604,7 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             assign_flexible_ip=False)
         ```
-
-        ### IP for Public Gateway
-        resource "scaleway_vpc_public_gateway_ip" "main" {
-        }
-
-        ### Scaleway Private Network
-        resource scaleway_vpc_private_network main {
-        }
-
-        ### VPC Public Gateway Network
-        resource "scaleway_vpc_public_gateway" "main" {
-            name  = "tf-test-public-gw"
-            type  = "VPC-GW-S"
-            ip_id = scaleway_vpc_public_gateway_ip.main.id
-        }
-
-        ### VPC Public Gateway Network DHCP config
-        resource "scaleway_vpc_public_gateway_dhcp" "main" {
-            subnet = "10.0.0.0/24"
-        }
-
-        ### VPC Gateway Network
-        resource "scaleway_vpc_gateway_network" "main" {
-            gateway_id         = scaleway_vpc_public_gateway.main.id
-            private_network_id = scaleway_vpc_private_network.main.id
-            dhcp_id            = scaleway_vpc_public_gateway_dhcp.main.id
-            cleanup_dhcp       = true
-            enable_masquerade  = true
-        }
-
-        ### Scaleway Instance
-        resource "scaleway_instance_server" "main" {
-            name        = "Scaleway Terraform Provider"
-            type        = "DEV1-S"
-            image       = "debian_bullseye"
-            enable_ipv6 = false
-
-            private_network {
-                pn_id = scaleway_vpc_private_network.main.id
-            }
-        }
-
-        ### IP for LB IP
-        resource scaleway_lb_ip main {
-        }
-
-        ### Scaleway Private Network
-        resource scaleway_vpc_private_network "main" {
-            name = "private network with static config"
-        }
-
-        ## Migration
-
-        In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
-        this change will not recreate your Load Balancer.
-
-        Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
+        <!--End PulumiCodeChooser -->
 
         ## IP ID
 
@@ -714,6 +614,7 @@ class Loadbalancer(pulumi.CustomResource):
 
         For instance, if you had the following:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -722,9 +623,11 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             zone="fr-par-1")
         ```
+        <!--End PulumiCodeChooser -->
 
         You will need to update it to:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -736,16 +639,19 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             release_ip=False)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Load-Balancer can be imported using the `{zone}/{id}`, e.g. bash
+        Load-Balancer can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/loadbalancer:Loadbalancer main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
-         Be aware that you will also need to import the `scaleway_lb_ip` resource.
+        Be aware that you will also need to import the `scaleway_lb_ip` resource.
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerArgs args: The arguments to use to populate this resource's properties.

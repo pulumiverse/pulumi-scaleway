@@ -433,10 +433,12 @@ class ObjectItem(pulumi.CustomResource):
 
         ## Import
 
-        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g. bash
+        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
+        $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
         ```
 
         :param str resource_name: The name of the resource.
@@ -466,10 +468,12 @@ class ObjectItem(pulumi.CustomResource):
 
         ## Import
 
-        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g. bash
+        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
+        $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
         ```
 
         :param str resource_name: The name of the resource.

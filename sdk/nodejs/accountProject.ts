@@ -9,19 +9,23 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const project = new scaleway.AccountProject("project", {});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Projects can be imported using the `id`, e.g. bash
+ * Projects can be imported using the `id`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class AccountProject extends pulumi.CustomResource {

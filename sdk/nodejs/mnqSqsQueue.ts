@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -33,13 +34,16 @@ import * as utilities from "./utilities";
  *     secretKey: mainMnqSqsCredentials.secretKey,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g. bash
+ * SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
+ * $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
  * ```
  */
 export class MnqSqsQueue extends pulumi.CustomResource {

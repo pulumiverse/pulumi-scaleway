@@ -352,33 +352,40 @@ class FlexibleIp(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With zone
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", zone="fr-par-2")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With IPv6
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", is_ipv6=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With baremetal server
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -399,13 +406,16 @@ class FlexibleIp(pulumi.CustomResource):
             server_id=base.id,
             zone="fr-par-2")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Flexible IPs can be imported using the `{zone}/{id}`, e.g. bash
+        Flexible IPs can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -432,33 +442,40 @@ class FlexibleIp(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With zone
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", zone="fr-par-2")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With IPv6
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", is_ipv6=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With baremetal server
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -479,13 +496,16 @@ class FlexibleIp(pulumi.CustomResource):
             server_id=base.id,
             zone="fr-par-2")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Flexible IPs can be imported using the `{zone}/{id}`, e.g. bash
+        Flexible IPs can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

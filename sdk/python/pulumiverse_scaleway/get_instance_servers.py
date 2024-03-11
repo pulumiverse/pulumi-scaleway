@@ -129,6 +129,7 @@ def get_instance_servers(name: Optional[str] = None,
 
     ### Basic
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -136,6 +137,7 @@ def get_instance_servers(name: Optional[str] = None,
     my_key = scaleway.get_instance_servers(name="myserver",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The server name used as filter. Servers with a name like it are listed.
@@ -174,6 +176,7 @@ def get_instance_servers_output(name: Optional[pulumi.Input[Optional[str]]] = No
 
     ### Basic
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -181,6 +184,7 @@ def get_instance_servers_output(name: Optional[pulumi.Input[Optional[str]]] = No
     my_key = scaleway.get_instance_servers(name="myserver",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The server name used as filter. Servers with a name like it are listed.

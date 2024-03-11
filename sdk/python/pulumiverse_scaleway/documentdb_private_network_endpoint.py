@@ -286,12 +286,19 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Database Private Network Endpoint.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Examples
+
         ## Import
 
-        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -312,12 +319,19 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                  args: DocumentdbPrivateNetworkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Database Private Network Endpoint.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Examples
+
         ## Import
 
-        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

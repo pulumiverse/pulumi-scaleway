@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  *     region: "nl-ams",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAvailabilityZones(args?: GetAvailabilityZonesArgs, opts?: pulumi.InvokeOptions): Promise<GetAvailabilityZonesResult> {
     args = args || {};
@@ -62,6 +64,7 @@ export interface GetAvailabilityZonesResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -70,6 +73,7 @@ export interface GetAvailabilityZonesResult {
  *     region: "nl-ams",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAvailabilityZonesOutput(args?: GetAvailabilityZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAvailabilityZonesResult> {
     return pulumi.output(args).apply((a: any) => getAvailabilityZones(a, opts))

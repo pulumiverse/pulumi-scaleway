@@ -782,12 +782,158 @@ class DatabaseInstance(pulumi.CustomResource):
                  volume_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Database Instances.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Examples
+
+        ### Example Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            disable_backup=True,
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            node_type="DB-DEV-S",
+            password="thiZ_is_v&ry_s3cret",
+            user_name="my_initial_user")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example With IPAM
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.DatabaseInstance("main",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example with Settings
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            disable_backup=True,
+            engine="MySQL-8",
+            init_settings={
+                "lower_case_table_names": "1",
+            },
+            node_type="db-dev-s",
+            password="thiZ_is_v&ry_s3cret",
+            settings={
+                "max_connections": "350",
+            },
+            user_name="my_initial_user")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example with backup schedule
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            backup_schedule_frequency=24,
+            backup_schedule_retention=7,
+            disable_backup=False,
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            node_type="DB-DEV-S",
+            password="thiZ_is_v&ry_s3cret",
+            user_name="my_initial_user")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example with custom private network
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # VPC PRIVATE NETWORK
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+            subnet="172.16.20.0/22",
+        ))
+        # RDB INSTANCE CONNECTED ON A CUSTOM PRIVATE NETWORK
+        main = scaleway.DatabaseInstance("main",
+            node_type="db-dev-s",
+            engine="PostgreSQL-11",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            region="fr-par",
+            tags=[
+                "terraform-test",
+                "scaleway_rdb_instance",
+                "volume",
+                "rdb_pn",
+            ],
+            volume_type="bssd",
+            volume_size_in_gb=10,
+            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+                ip_net="172.16.20.4/22",
+                pn_id=pn.id,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Settings
+
+        Please consult
+        the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+        available `settings` and `init_settings` on your `node_type` of your convenient.
+
+        ## Private Network
+
+        > **Important:** Updates to `private_network` will recreate the attachment Instance.
+
+        > **NOTE:** Please calculate your host IP.
+        using cirhost. Otherwise, lets IPAM service
+        handle the host IP on the network.
+
+        - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+          CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+          service if not set.
+        - `pn_id` - (Required) The ID of the private network.
+
+        ## Limitations
+
+        The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -831,12 +977,158 @@ class DatabaseInstance(pulumi.CustomResource):
                  args: DatabaseInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Database Instances.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Examples
+
+        ### Example Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            disable_backup=True,
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            node_type="DB-DEV-S",
+            password="thiZ_is_v&ry_s3cret",
+            user_name="my_initial_user")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example With IPAM
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.DatabaseInstance("main",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example with Settings
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            disable_backup=True,
+            engine="MySQL-8",
+            init_settings={
+                "lower_case_table_names": "1",
+            },
+            node_type="db-dev-s",
+            password="thiZ_is_v&ry_s3cret",
+            settings={
+                "max_connections": "350",
+            },
+            user_name="my_initial_user")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example with backup schedule
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            backup_schedule_frequency=24,
+            backup_schedule_retention=7,
+            disable_backup=False,
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            node_type="DB-DEV-S",
+            password="thiZ_is_v&ry_s3cret",
+            user_name="my_initial_user")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example with custom private network
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # VPC PRIVATE NETWORK
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+            subnet="172.16.20.0/22",
+        ))
+        # RDB INSTANCE CONNECTED ON A CUSTOM PRIVATE NETWORK
+        main = scaleway.DatabaseInstance("main",
+            node_type="db-dev-s",
+            engine="PostgreSQL-11",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            region="fr-par",
+            tags=[
+                "terraform-test",
+                "scaleway_rdb_instance",
+                "volume",
+                "rdb_pn",
+            ],
+            volume_type="bssd",
+            volume_size_in_gb=10,
+            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+                ip_net="172.16.20.4/22",
+                pn_id=pn.id,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Settings
+
+        Please consult
+        the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+        available `settings` and `init_settings` on your `node_type` of your convenient.
+
+        ## Private Network
+
+        > **Important:** Updates to `private_network` will recreate the attachment Instance.
+
+        > **NOTE:** Please calculate your host IP.
+        using cirhost. Otherwise, lets IPAM service
+        handle the host IP on the network.
+
+        - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+          CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+          service if not set.
+        - `pn_id` - (Required) The ID of the private network.
+
+        ## Limitations
+
+        The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

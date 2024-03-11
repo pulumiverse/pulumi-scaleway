@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetIotDeviceMessageFilterSubscribeResult
     {
+        /// <summary>
+        /// Subscribe message filter policy
+        /// </summary>
         public readonly string Policy;
+        /// <summary>
+        /// List of topics in the set
+        /// </summary>
         public readonly ImmutableArray<string> Topics;
 
         [OutputConstructor]

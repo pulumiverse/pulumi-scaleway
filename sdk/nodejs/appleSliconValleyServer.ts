@@ -12,19 +12,23 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const server = new scaleway.AppleSliconValleyServer("server", {type: "M1-M"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+ * Instance servers can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class AppleSliconValleyServer extends pulumi.CustomResource {

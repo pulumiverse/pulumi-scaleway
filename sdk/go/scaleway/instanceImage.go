@@ -19,6 +19,7 @@ import (
 //
 // ### From a volume
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,9 +56,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### From a server
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -94,15 +97,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Images can be imported using the `{zone}/{id}`, e.g. bash
+// Images can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceImage struct {
 	pulumi.CustomResourceState

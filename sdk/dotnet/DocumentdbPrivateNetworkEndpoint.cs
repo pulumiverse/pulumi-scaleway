@@ -11,12 +11,19 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Database Private Network Endpoint.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+    /// 
+    /// ## Examples
+    /// 
     /// ## Import
     /// 
-    /// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+    /// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint")]

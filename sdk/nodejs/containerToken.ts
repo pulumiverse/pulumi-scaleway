@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -26,13 +27,16 @@ import * as utilities from "./utilities";
  * // Container Token
  * const container = new scaleway.ContainerToken("container", {containerId: mainContainer.id});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Tokens can be imported using the `{region}/{id}`, e.g. bash
+ * Tokens can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ContainerToken extends pulumi.CustomResource {

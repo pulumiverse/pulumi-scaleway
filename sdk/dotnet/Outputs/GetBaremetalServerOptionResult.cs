@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetBaremetalServerOptionResult
     {
+        /// <summary>
+        /// Auto expire the option after this date
+        /// </summary>
         public readonly string ExpiresAt;
         /// <summary>
         /// The ID of the server.

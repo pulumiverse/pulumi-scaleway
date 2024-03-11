@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     imageId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceImageResult> {
     args = args || {};
@@ -121,6 +123,7 @@ export interface GetInstanceImageResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -129,6 +132,7 @@ export interface GetInstanceImageResult {
  *     imageId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceImageResult> {
     return pulumi.output(args).apply((a: any) => getInstanceImage(a, opts))

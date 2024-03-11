@@ -13,10 +13,12 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// IoT devices can be imported using the `{region}/{id}`, e.g. bash
+    /// IoT devices can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iotDevice:IotDevice")]

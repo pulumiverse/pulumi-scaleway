@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetInstanceServerPrivateNetworkResult
     {
+        /// <summary>
+        /// MAC address of the NIC
+        /// </summary>
         public readonly string MacAddress;
+        /// <summary>
+        /// The Private Network ID
+        /// </summary>
         public readonly string PnId;
+        /// <summary>
+        /// The private NIC state
+        /// </summary>
         public readonly string Status;
         /// <summary>
         /// `zone`) The zone in which the server exists.

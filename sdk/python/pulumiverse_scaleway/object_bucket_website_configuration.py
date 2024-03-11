@@ -236,6 +236,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -247,8 +248,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Example with `policy`
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -274,6 +278,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## index_document
 
@@ -299,10 +304,12 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Import
 
-        Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
         ```
 
         :param str resource_name: The name of the resource.
@@ -325,6 +332,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -336,8 +344,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Example with `policy`
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -363,6 +374,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## index_document
 
@@ -388,10 +400,12 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Import
 
-        Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Website configuration Bucket can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket
         ```
 
         :param str resource_name: The name of the resource.
