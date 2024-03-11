@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -26,9 +27,11 @@ import * as utilities from "./utilities";
  *     ipId: publicIp.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With additional volumes and tags
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -50,9 +53,11 @@ import * as utilities from "./utilities";
  *     additionalVolumeIds: [data.id],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With a reserved IP
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -68,9 +73,11 @@ import * as utilities from "./utilities";
  *     ipId: ip.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With security group
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -104,9 +111,11 @@ import * as utilities from "./utilities";
  *     securityGroupId: www.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With user data and cloud-init
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -121,9 +130,11 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### With private network
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -137,11 +148,13 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Root volume configuration
  *
  * #### Resized block volume with installed image
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -155,9 +168,11 @@ import * as utilities from "./utilities";
  *     type: "PRO2-XXS",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * #### From snapshot
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -177,6 +192,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Private Network
  *
@@ -194,10 +210,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+ * Instance servers can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceServer extends pulumi.CustomResource {

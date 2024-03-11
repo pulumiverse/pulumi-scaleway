@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -22,13 +23,16 @@ import * as utilities from "./utilities";
  * // For specific project in default region
  * const forProject = new scaleway.MnqSqs("forProject", {projectId: scaleway_account_project.main.id});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+ * SQS status can be imported using the `{region}/{project_id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+ * $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
  * ```
  */
 export class MnqSqs extends pulumi.CustomResource {

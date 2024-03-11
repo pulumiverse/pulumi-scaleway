@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -18,31 +19,34 @@ import * as utilities from "./utilities";
  * const main = new scaleway.IamApplication("main", {description: "a description"});
  * const policy = new scaleway.ObjectBucketPolicy("policy", {
  *     bucket: bucket.name,
- *     policy: pulumi.all([main.id, bucket.name, bucket.name]).apply(([id, bucketName, bucketName1]) => JSON.stringify({
+ *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
  *         Id: "MyBucketPolicy",
  *         Statement: [{
  *             Sid: "Delegate access",
  *             Effect: "Allow",
  *             Principal: {
- *                 SCW: `application_id:${id}`,
+ *                 SCW: pulumi.interpolate`application_id:${main.id}`,
  *             },
  *             Action: "s3:ListBucket",
  *             Resource: [
- *                 bucketName,
- *                 `${bucketName1}/*`,
+ *                 bucket.name,
+ *                 pulumi.interpolate`${bucket.name}/*`,
  *             ],
  *         }],
- *     })),
+ *     }),
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+ * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
  * ```
  */
 export class ObjectBucketPolicy extends pulumi.CustomResource {

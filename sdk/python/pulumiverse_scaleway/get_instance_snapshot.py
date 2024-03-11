@@ -153,6 +153,7 @@ def get_instance_snapshot(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -160,6 +161,7 @@ def get_instance_snapshot(name: Optional[str] = None,
     by_name = scaleway.get_instance_snapshot(name="my-snapshot-name")
     by_id = scaleway.get_instance_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The snapshot name.
@@ -200,6 +202,7 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -207,6 +210,7 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
     by_name = scaleway.get_instance_snapshot(name="my-snapshot-name")
     by_id = scaleway.get_instance_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The snapshot name.

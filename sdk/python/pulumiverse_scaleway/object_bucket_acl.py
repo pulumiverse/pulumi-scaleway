@@ -235,6 +235,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -244,8 +245,11 @@ class ObjectBucketAcl(pulumi.CustomResource):
             bucket=scaleway_object_bucket["main"]["name"],
             acl="private")
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Example with Grants
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -275,6 +279,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## The ACL
 
@@ -318,13 +323,15 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
         ```
 
-         /private
+        /private
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -344,6 +351,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -353,8 +361,11 @@ class ObjectBucketAcl(pulumi.CustomResource):
             bucket=scaleway_object_bucket["main"]["name"],
             acl="private")
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Example with Grants
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -384,6 +395,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## The ACL
 
@@ -427,13 +439,15 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
         ```
 
-         /private
+        /private
 
         :param str resource_name: The name of the resource.
         :param ObjectBucketAclArgs args: The arguments to use to populate this resource's properties.

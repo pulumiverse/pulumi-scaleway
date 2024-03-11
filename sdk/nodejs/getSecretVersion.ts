@@ -4,6 +4,48 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about Scaleway a Secret Version.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainSecret = new scaleway.Secret("mainSecret", {description: "barr"});
+ * const mainSecretVersion = new scaleway.SecretVersion("mainSecretVersion", {
+ *     description: "your description",
+ *     secretId: mainSecret.id,
+ *     data: "your_secret",
+ * });
+ * const dataBySecretId = scaleway.getSecretVersionOutput({
+ *     secretId: mainSecret.id,
+ *     revision: "1",
+ * });
+ * const dataBySecretName = scaleway.getSecretVersionOutput({
+ *     secretName: mainSecret.name,
+ *     revision: "1",
+ * });
+ * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
+ * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Data
+ *
+ * Note: This Data Source give you **access** to the secret payload encoded en base64.
+ *
+ * Be aware that this is a sensitive attribute. For more information,
+ * see Sensitive Data in State.
+ *
+ * > **Important:**  This property is sensitive and will not be displayed in the plan.
+ */
 export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {
     args = args || {};
 
@@ -74,6 +116,48 @@ export interface GetSecretVersionResult {
      */
     readonly updatedAt: string;
 }
+/**
+ * Gets information about Scaleway a Secret Version.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainSecret = new scaleway.Secret("mainSecret", {description: "barr"});
+ * const mainSecretVersion = new scaleway.SecretVersion("mainSecretVersion", {
+ *     description: "your description",
+ *     secretId: mainSecret.id,
+ *     data: "your_secret",
+ * });
+ * const dataBySecretId = scaleway.getSecretVersionOutput({
+ *     secretId: mainSecret.id,
+ *     revision: "1",
+ * });
+ * const dataBySecretName = scaleway.getSecretVersionOutput({
+ *     secretName: mainSecret.name,
+ *     revision: "1",
+ * });
+ * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
+ * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Data
+ *
+ * Note: This Data Source give you **access** to the secret payload encoded en base64.
+ *
+ * Be aware that this is a sensitive attribute. For more information,
+ * see Sensitive Data in State.
+ *
+ * > **Important:**  This property is sensitive and will not be displayed in the plan.
+ */
 export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretVersionResult> {
     return pulumi.output(args).apply((a: any) => getSecretVersion(a, opts))
 }

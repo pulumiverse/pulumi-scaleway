@@ -20,6 +20,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
         /// </summary>
         public readonly string? HttpFilter;
+        /// <summary>
+        /// You can use this field with http_header_match acl type to set the header name to filter
+        /// </summary>
         public readonly string? HttpFilterOption;
         /// <summary>
         /// A list of possible values to match for the given HTTP filter.

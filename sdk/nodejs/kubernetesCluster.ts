@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -28,9 +29,11 @@ import * as utilities from "./utilities";
  *     size: 1,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### Multicloud
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -48,11 +51,13 @@ import * as utilities from "./utilities";
  *     minSize: 0,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
  *
  * ### With additional configuration
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -86,13 +91,16 @@ import * as utilities from "./utilities";
  *     maxSize: 5,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
+ * Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class KubernetesCluster extends pulumi.CustomResource {

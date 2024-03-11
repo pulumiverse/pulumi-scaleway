@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -20,13 +21,16 @@ import * as utilities from "./utilities";
  *     description: "a description",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Api keys can be imported using the `{id}`, e.g. bash
+ * Api keys can be imported using the `{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
+ * $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
  * ```
  */
 export class IamApiKey extends pulumi.CustomResource {

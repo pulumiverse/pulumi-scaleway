@@ -232,12 +232,51 @@ class SecretVersion(pulumi.CustomResource):
                  secret_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Secret Versions.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+
+        ## Examples
+
+        ### Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.Secret("main",
+            description="barr",
+            tags=[
+                "foo",
+                "terraform",
+            ])
+        v1 = scaleway.SecretVersion("v1",
+            description="version1",
+            secret_id=main.id,
+            data="my_new_secret")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Data
+
+        Note: The `data` should be a base64 encoded string when sent from the API. **It is already handled by the provider so you don't need to encode it yourself.**
+
+        Updating `data` will force creating a new the secret version.
+
+        Be aware that this is a sensitive attribute. For more information, see Sensitive Data in State.
+
+        > **Important:**  This property is sensitive and will not be displayed in the plan.
+
         ## Import
 
-        The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g. ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before. bash
+        The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+
+        ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
+        $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
         ```
 
         :param str resource_name: The name of the resource.
@@ -255,12 +294,51 @@ class SecretVersion(pulumi.CustomResource):
                  args: SecretVersionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Secret Versions.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+
+        ## Examples
+
+        ### Basic
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.Secret("main",
+            description="barr",
+            tags=[
+                "foo",
+                "terraform",
+            ])
+        v1 = scaleway.SecretVersion("v1",
+            description="version1",
+            secret_id=main.id,
+            data="my_new_secret")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Data
+
+        Note: The `data` should be a base64 encoded string when sent from the API. **It is already handled by the provider so you don't need to encode it yourself.**
+
+        Updating `data` will force creating a new the secret version.
+
+        Be aware that this is a sensitive attribute. For more information, see Sensitive Data in State.
+
+        > **Important:**  This property is sensitive and will not be displayed in the plan.
+
         ## Import
 
-        The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g. ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before. bash
+        The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+
+        ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
+        $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
         ```
 
         :param str resource_name: The name of the resource.

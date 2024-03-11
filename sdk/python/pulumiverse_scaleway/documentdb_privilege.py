@@ -200,6 +200,7 @@ class DocumentdbPrivilege(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -210,13 +211,16 @@ class DocumentdbPrivilege(pulumi.CustomResource):
             permission="all",
             user_name="my-db-user")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -239,6 +243,7 @@ class DocumentdbPrivilege(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -249,13 +254,16 @@ class DocumentdbPrivilege(pulumi.CustomResource):
             permission="all",
             user_name="my-db-user")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
         :param str resource_name: The name of the resource.

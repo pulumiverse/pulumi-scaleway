@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class MnqQueueNats
     {
+        /// <summary>
+        /// Line jump separated key and seed
+        /// </summary>
         public readonly string Credentials;
+        /// <summary>
+        /// The endpoint of the NATS queue. Can contain a {region} placeholder.
+        /// </summary>
         public readonly string? Endpoint;
+        /// <summary>
+        /// The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
+        /// </summary>
         public readonly string? RetentionPolicy;
 
         [OutputConstructor]

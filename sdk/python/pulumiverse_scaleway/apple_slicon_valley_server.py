@@ -302,19 +302,23 @@ class AppleSliconValleyServer(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         server = scaleway.AppleSliconValleyServer("server", type="M1-M")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+        Instance servers can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -342,19 +346,23 @@ class AppleSliconValleyServer(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         server = scaleway.AppleSliconValleyServer("server", type="M1-M")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+        Instance servers can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer server fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

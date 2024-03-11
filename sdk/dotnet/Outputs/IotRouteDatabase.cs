@@ -14,11 +14,29 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class IotRouteDatabase
     {
+        /// <summary>
+        /// The database name
+        /// </summary>
         public readonly string Dbname;
+        /// <summary>
+        /// The database hostname
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// The database password
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// The database port
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
+        /// </summary>
         public readonly string Query;
+        /// <summary>
+        /// The database username
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

@@ -452,6 +452,7 @@ class DomainRecord(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -479,9 +480,11 @@ class DomainRecord(pulumi.CustomResource):
             ttl=3600,
             type="MX")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With dynamic records
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -550,9 +553,11 @@ class DomainRecord(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Create an instance and add records with the new instance IP
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -589,6 +594,7 @@ class DomainRecord(pulumi.CustomResource):
             data=f"web.{dns_zone}.",
             ttl=3600)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Multiple records
 
@@ -599,10 +605,12 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Import
 
-        Record can be imported using the `{dns_zone}/{id}`, e.g. bash
+        Record can be imported using the `{dns_zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -634,6 +642,7 @@ class DomainRecord(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -661,9 +670,11 @@ class DomainRecord(pulumi.CustomResource):
             ttl=3600,
             type="MX")
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With dynamic records
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -732,9 +743,11 @@ class DomainRecord(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ### Create an instance and add records with the new instance IP
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -771,6 +784,7 @@ class DomainRecord(pulumi.CustomResource):
             data=f"web.{dns_zone}.",
             ttl=3600)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Multiple records
 
@@ -781,10 +795,12 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Import
 
-        Record can be imported using the `{dns_zone}/{id}`, e.g. bash
+        Record can be imported using the `{dns_zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

@@ -31,6 +31,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
+        /// <summary>
+        /// The IP with the given mask within the private subnet
+        /// </summary>
         [Input("ipNet")]
         public Input<string>? IpNet { get; set; }
 
@@ -40,6 +43,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The private network ID
+        /// </summary>
         [Input("pnId", required: true)]
         public Input<string> PnId { get; set; } = null!;
 
@@ -49,6 +55,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

@@ -197,6 +197,7 @@ class InstanceUserData(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -227,13 +228,16 @@ class InstanceUserData(pulumi.CustomResource):
                 key=range["key"],
                 value=range["value"]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash
+        User data can be imported using the `{zone}/{key}/{server_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -269,6 +273,7 @@ class InstanceUserData(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -299,13 +304,16 @@ class InstanceUserData(pulumi.CustomResource):
                 key=range["key"],
                 value=range["value"]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash
+        User data can be imported using the `{zone}/{key}/{server_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ### From a volume
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -25,9 +26,11 @@ import * as utilities from "./utilities";
  * const volumeSnapshot = new scaleway.InstanceSnapshot("volumeSnapshot", {volumeId: volume.id});
  * const volumeImage = new scaleway.InstanceImage("volumeImage", {rootVolumeId: volumeSnapshot.id});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ### From a server
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -39,13 +42,16 @@ import * as utilities from "./utilities";
  * const serverSnapshot = new scaleway.InstanceSnapshot("serverSnapshot", {volumeId: scaleway_instance_server.main.root_volume[0].volume_id});
  * const serverImage = new scaleway.InstanceImage("serverImage", {rootVolumeId: serverSnapshot.id});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Images can be imported using the `{zone}/{id}`, e.g. bash
+ * Images can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceImage extends pulumi.CustomResource {

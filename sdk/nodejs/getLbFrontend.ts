@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -41,6 +42,7 @@ import * as utilities from "./utilities";
  *     lbId: lb01.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLbFrontend(args?: GetLbFrontendArgs, opts?: pulumi.InvokeOptions): Promise<GetLbFrontendResult> {
     args = args || {};
@@ -99,6 +101,7 @@ export interface GetLbFrontendResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -128,6 +131,7 @@ export interface GetLbFrontendResult {
  *     lbId: lb01.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLbFrontendOutput(args?: GetLbFrontendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbFrontendResult> {
     return pulumi.output(args).apply((a: any) => getLbFrontend(a, opts))

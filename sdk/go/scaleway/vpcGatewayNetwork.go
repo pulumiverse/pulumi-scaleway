@@ -20,6 +20,7 @@ import (
 //
 // ### Create a gateway network with DHCP
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,9 +70,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### Create a gateway network with a static IP address
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -109,9 +112,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### Create a gateway network with IPAM config
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -161,15 +166,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+// Gateway network can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type VpcGatewayNetwork struct {
 	pulumi.CustomResourceState

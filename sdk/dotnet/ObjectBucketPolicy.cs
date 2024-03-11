@@ -16,6 +16,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,46 +36,43 @@ namespace Pulumiverse.Scaleway
     ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Name,
-    ///         Policy = Output.Tuple(main.Id, bucket.Name, bucket.Name).Apply(values =&gt;
+    ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             var id = values.Item1;
-    ///             var bucketName = values.Item2;
-    ///             var bucketName1 = values.Item3;
-    ///             return JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             ["Version"] = "2023-04-17",
+    ///             ["Id"] = "MyBucketPolicy",
+    ///             ["Statement"] = new[]
     ///             {
-    ///                 ["Version"] = "2023-04-17",
-    ///                 ["Id"] = "MyBucketPolicy",
-    ///                 ["Statement"] = new[]
+    ///                 new Dictionary&lt;string, object?&gt;
     ///                 {
-    ///                     new Dictionary&lt;string, object?&gt;
+    ///                     ["Sid"] = "Delegate access",
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
     ///                     {
-    ///                         ["Sid"] = "Delegate access",
-    ///                         ["Effect"] = "Allow",
-    ///                         ["Principal"] = new Dictionary&lt;string, object?&gt;
-    ///                         {
-    ///                             ["SCW"] = $"application_id:{id}",
-    ///                         },
-    ///                         ["Action"] = "s3:ListBucket",
-    ///                         ["Resource"] = new[]
-    ///                         {
-    ///                             bucketName,
-    ///                             $"{bucketName1}/*",
-    ///                         },
+    ///                         ["SCW"] = main.Id.Apply(id =&gt; $"application_id:{id}"),
+    ///                     },
+    ///                     ["Action"] = "s3:ListBucket",
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         bucket.Name,
+    ///                         bucket.Name.Apply(name =&gt; $"{name}/*"),
     ///                     },
     ///                 },
-    ///             });
-    ///         }),
+    ///             },
+    ///         })),
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+    /// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+    /// $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectBucketPolicy:ObjectBucketPolicy")]

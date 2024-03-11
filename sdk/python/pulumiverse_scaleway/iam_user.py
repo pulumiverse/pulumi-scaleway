@@ -234,19 +234,23 @@ class IamUser(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         basic = scaleway.IamUser("basic", email="test@test.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        IAM users can be imported using the `{id}`, e.g. bash
+        IAM users can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -268,19 +272,23 @@ class IamUser(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         basic = scaleway.IamUser("basic", email="test@test.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        IAM users can be imported using the `{id}`, e.g. bash
+        IAM users can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

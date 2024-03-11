@@ -170,12 +170,14 @@ def get_documentdb_instance(instance_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     db = scaleway.get_documentdb_instance(instance_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str instance_id: The DocumentDB instance ID.
@@ -218,12 +220,14 @@ def get_documentdb_instance_output(instance_id: Optional[pulumi.Input[Optional[s
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     db = scaleway.get_documentdb_instance(instance_id="11111111-1111-1111-1111-111111111111")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str instance_id: The DocumentDB instance ID.

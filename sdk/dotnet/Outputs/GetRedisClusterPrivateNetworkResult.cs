@@ -14,11 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetRedisClusterPrivateNetworkResult
     {
+        /// <summary>
+        /// UUID of the endpoint to be connected to the cluster
+        /// </summary>
         public readonly string EndpointId;
         /// <summary>
         /// The ID of the Redis cluster.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// List of IPv4 addresses of the private network with a CIDR notation
+        /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>
         /// `region`) The zone in which the server exists.

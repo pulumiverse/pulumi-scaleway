@@ -179,6 +179,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -191,6 +192,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
         zone="nl-ams-1")
     pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: Exact name of the public gateway.
@@ -232,6 +234,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -244,6 +247,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
         zone="nl-ams-1")
     pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: Exact name of the public gateway.

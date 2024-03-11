@@ -10,19 +10,23 @@ import * as utilities from "./utilities";
  *
  * ## Example
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
+ * Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class VpcPublicGatewayDhcp extends pulumi.CustomResource {

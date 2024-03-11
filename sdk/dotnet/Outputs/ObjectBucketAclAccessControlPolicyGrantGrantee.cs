@@ -19,6 +19,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// The `region`,`bucket` and `acl` separated by (`/`).
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Type of grantee. Valid values: `CanonicalUser`
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

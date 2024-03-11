@@ -112,6 +112,7 @@ def get_lb_backends(lb_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -120,6 +121,7 @@ def get_lb_backends(lb_id: Optional[str] = None,
     by_lbid_and_name = scaleway.get_lb_backends(lb_id=scaleway_lb["lb01"]["id"],
         name="tf-backend-datasource")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str lb_id: The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
@@ -155,6 +157,7 @@ def get_lb_backends_output(lb_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -163,6 +166,7 @@ def get_lb_backends_output(lb_id: Optional[pulumi.Input[str]] = None,
     by_lbid_and_name = scaleway.get_lb_backends(lb_id=scaleway_lb["lb01"]["id"],
         name="tf-backend-datasource")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str lb_id: The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.

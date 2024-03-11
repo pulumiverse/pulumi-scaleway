@@ -19,6 +19,7 @@ import (
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,10 +32,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// For default project in default region
 //			_, err := scaleway.NewMnqSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
+//			// For specific project in default region
 //			_, err = scaleway.NewMnqSqs(ctx, "forProject", &scaleway.MnqSqsArgs{
 //				ProjectId: pulumi.Any(scaleway_account_project.Main.Id),
 //			})
@@ -46,15 +49,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+// SQS status can be imported using the `{region}/{project_id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
-//
+// $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
 // ```
 type MnqSqs struct {
 	pulumi.CustomResourceState

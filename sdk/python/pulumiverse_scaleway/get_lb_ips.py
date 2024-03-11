@@ -111,6 +111,7 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -118,6 +119,7 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
     my_key = scaleway.get_lb_ips(ip_cidr_range="0.0.0.0/0",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str ip_cidr_range: The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
@@ -150,6 +152,7 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -157,6 +160,7 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     my_key = scaleway.get_lb_ips(ip_cidr_range="0.0.0.0/0",
         zone="fr-par-2")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str ip_cidr_range: The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.

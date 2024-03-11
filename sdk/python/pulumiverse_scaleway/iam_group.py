@@ -271,6 +271,7 @@ class IamGroup(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -280,9 +281,11 @@ class IamGroup(pulumi.CustomResource):
             description="basic description",
             user_ids=[])
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With applications
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -292,13 +295,16 @@ class IamGroup(pulumi.CustomResource):
             application_ids=[app.id],
             user_ids=[])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        IAM groups can be imported using the `{id}`, e.g. bash
+        IAM groups can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -324,6 +330,7 @@ class IamGroup(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -333,9 +340,11 @@ class IamGroup(pulumi.CustomResource):
             description="basic description",
             user_ids=[])
         ```
+        <!--End PulumiCodeChooser -->
 
         ### With applications
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -345,13 +354,16 @@ class IamGroup(pulumi.CustomResource):
             application_ids=[app.id],
             user_ids=[])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        IAM groups can be imported using the `{id}`, e.g. bash
+        IAM groups can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

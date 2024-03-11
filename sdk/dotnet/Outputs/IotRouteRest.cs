@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class IotRouteRest
     {
+        /// <summary>
+        /// The HTTP call extra headers
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Headers;
+        /// <summary>
+        /// The URI of the REST endpoint
+        /// </summary>
         public readonly string Uri;
+        /// <summary>
+        /// The HTTP Verb used to call REST URI
+        /// </summary>
         public readonly string Verb;
 
         [OutputConstructor]

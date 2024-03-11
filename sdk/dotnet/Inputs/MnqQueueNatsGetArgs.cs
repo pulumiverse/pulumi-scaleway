@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         [Input("credentials", required: true)]
         private Input<string>? _credentials;
+
+        /// <summary>
+        /// Line jump separated key and seed
+        /// </summary>
         public Input<string>? Credentials
         {
             get => _credentials;
@@ -25,9 +29,15 @@ namespace Pulumiverse.Scaleway.Inputs
             }
         }
 
+        /// <summary>
+        /// The endpoint of the NATS queue. Can contain a {region} placeholder.
+        /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
+        /// <summary>
+        /// The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
+        /// </summary>
         [Input("retentionPolicy")]
         public Input<string>? RetentionPolicy { get; set; }
 

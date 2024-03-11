@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -43,6 +44,7 @@ import * as utilities from "./utilities";
  *     patRuleId: mainVpcPublicGatewayPatRule.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getVpcPublicPatRule(args: GetVpcPublicPatRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicPatRuleResult> {
 
@@ -108,6 +110,7 @@ export interface GetVpcPublicPatRuleResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -141,6 +144,7 @@ export interface GetVpcPublicPatRuleResult {
  *     patRuleId: mainVpcPublicGatewayPatRule.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getVpcPublicPatRuleOutput(args: GetVpcPublicPatRuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicPatRuleResult> {
     return pulumi.output(args).apply((a: any) => getVpcPublicPatRule(a, opts))

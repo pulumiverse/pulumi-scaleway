@@ -21,6 +21,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("httpFilter")]
         public Input<string>? HttpFilter { get; set; }
 
+        /// <summary>
+        /// You can use this field with http_header_match acl type to set the header name to filter
+        /// </summary>
         [Input("httpFilterOption")]
         public Input<string>? HttpFilterOption { get; set; }
 

@@ -157,6 +157,7 @@ class CockpitToken(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -166,7 +167,9 @@ class CockpitToken(pulumi.CustomResource):
         # Create a token for the cockpit that can write metrics and logs
         main_cockpit_token = scaleway.CockpitToken("mainCockpitToken", project_id=main_cockpit.project_id)
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -183,13 +186,16 @@ class CockpitToken(pulumi.CustomResource):
                 write_logs=False,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Cockpits can be imported using the token ID, e.g. bash
+        Cockpits can be imported using the token ID, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -211,6 +217,7 @@ class CockpitToken(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -220,7 +227,9 @@ class CockpitToken(pulumi.CustomResource):
         # Create a token for the cockpit that can write metrics and logs
         main_cockpit_token = scaleway.CockpitToken("mainCockpitToken", project_id=main_cockpit.project_id)
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -237,13 +246,16 @@ class CockpitToken(pulumi.CustomResource):
                 write_logs=False,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Cockpits can be imported using the token ID, e.g. bash
+        Cockpits can be imported using the token ID, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

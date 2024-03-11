@@ -14,10 +14,25 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbFrontendAclMatchResult
     {
+        /// <summary>
+        /// The HTTP filter to match
+        /// </summary>
         public readonly string HttpFilter;
+        /// <summary>
+        /// You can use this field with http_header_match acl type to set the header name to filter
+        /// </summary>
         public readonly string HttpFilterOption;
+        /// <summary>
+        /// A list of possible values to match for the given HTTP filter
+        /// </summary>
         public readonly ImmutableArray<string> HttpFilterValues;
+        /// <summary>
+        /// If set to true, the condition will be of type "unless"
+        /// </summary>
         public readonly bool Invert;
+        /// <summary>
+        /// A list of IPs or CIDR v4/v6 addresses of the client of the session to match
+        /// </summary>
         public readonly ImmutableArray<string> IpSubnets;
 
         [OutputConstructor]

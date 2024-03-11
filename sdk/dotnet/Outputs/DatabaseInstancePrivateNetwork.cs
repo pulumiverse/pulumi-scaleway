@@ -26,16 +26,25 @@ namespace Pulumiverse.Scaleway.Outputs
         /// IPv4 address on the network.
         /// </summary>
         public readonly string? Ip;
+        /// <summary>
+        /// The IP with the given mask within the private subnet
+        /// </summary>
         public readonly string? IpNet;
         /// <summary>
         /// The name of the Database Instance.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The private network ID
+        /// </summary>
         public readonly string PnId;
         /// <summary>
         /// Port in the Private Network.
         /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]

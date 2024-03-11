@@ -16,10 +16,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g. bash
+    /// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
+    /// $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/objectItem:ObjectItem")]

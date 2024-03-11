@@ -239,6 +239,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -271,13 +272,16 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             mac_address=main_instance_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g. bash
+        Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -306,6 +310,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -338,13 +343,16 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             mac_address=main_instance_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g. bash
+        Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

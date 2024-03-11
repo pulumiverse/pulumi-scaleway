@@ -14,12 +14,27 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class MnqQueueSqs
     {
+        /// <summary>
+        /// The access key of the SQS queue
+        /// </summary>
         public readonly string AccessKey;
         public readonly bool? ContentBasedDeduplication;
+        /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder.
+        /// </summary>
         public readonly string? Endpoint;
+        /// <summary>
+        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
+        /// </summary>
         public readonly bool? FifoQueue;
         public readonly int? ReceiveWaitTimeSeconds;
+        /// <summary>
+        /// The secret key of the SQS queue
+        /// </summary>
         public readonly string SecretKey;
+        /// <summary>
+        /// The URL of the queue
+        /// </summary>
         public readonly string? Url;
         public readonly int? VisibilityTimeoutSeconds;
 

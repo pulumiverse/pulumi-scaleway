@@ -14,8 +14,17 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbFrontendAclActionRedirectResult
     {
+        /// <summary>
+        /// The HTTP redirect code to use
+        /// </summary>
         public readonly int Code;
+        /// <summary>
+        /// An URL can be used in case of a location redirect
+        /// </summary>
         public readonly string Target;
+        /// <summary>
+        /// The redirect type
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

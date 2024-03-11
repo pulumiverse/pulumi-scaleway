@@ -14,9 +14,21 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetLoadbalancerPrivateNetworkResult
     {
+        /// <summary>
+        /// Set to true if you want to let DHCP assign IP addresses
+        /// </summary>
         public readonly bool DhcpConfig;
+        /// <summary>
+        /// The Private Network ID
+        /// </summary>
         public readonly string PrivateNetworkId;
+        /// <summary>
+        /// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
+        /// </summary>
         public readonly ImmutableArray<string> StaticConfigs;
+        /// <summary>
+        /// The status of private network connection
+        /// </summary>
         public readonly string Status;
         /// <summary>
         /// (Defaults to provider `zone`) The zone in which the LB exists.

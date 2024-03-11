@@ -485,6 +485,7 @@ class MnqSqsQueue(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -503,13 +504,16 @@ class MnqSqsQueue(pulumi.CustomResource):
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g. bash
+        SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
+        $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
         ```
 
         :param str resource_name: The name of the resource.
@@ -543,6 +547,7 @@ class MnqSqsQueue(pulumi.CustomResource):
 
         ### Basic
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -561,13 +566,16 @@ class MnqSqsQueue(pulumi.CustomResource):
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g. bash
+        SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
+        $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
         ```
 
         :param str resource_name: The name of the resource.

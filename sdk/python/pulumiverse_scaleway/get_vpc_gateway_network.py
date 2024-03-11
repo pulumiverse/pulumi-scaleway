@@ -182,6 +182,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -197,6 +198,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
         private_network_id=scaleway_vpc_private_network["pn01"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str dhcp_id: ID of the public gateway DHCP config
@@ -246,6 +248,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -261,6 +264,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
         private_network_id=scaleway_vpc_private_network["pn01"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str dhcp_id: ID of the public gateway DHCP config

@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     userName: "my-user",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDatabasePrivilege(args: GetDatabasePrivilegeArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabasePrivilegeResult> {
 
@@ -76,6 +78,7 @@ export interface GetDatabasePrivilegeResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -86,6 +89,7 @@ export interface GetDatabasePrivilegeResult {
  *     userName: "my-user",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDatabasePrivilegeOutput(args: GetDatabasePrivilegeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabasePrivilegeResult> {
     return pulumi.output(args).apply((a: any) => getDatabasePrivilege(a, opts))

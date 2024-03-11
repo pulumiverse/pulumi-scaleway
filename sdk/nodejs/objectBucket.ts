@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -20,16 +21,22 @@ import * as utilities from "./utilities";
  *     key: "value",
  * }});
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Creating the bucket in a specific project
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const someBucket = new scaleway.ObjectBucket("someBucket", {projectId: "11111111-1111-1111-1111-111111111111"});
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Using object lifecycle
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -87,19 +94,24 @@ import * as utilities from "./utilities";
  *     region: "fr-par",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+ * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
  * ```
  *
- *  If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+ * If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ObjectBucket extends pulumi.CustomResource {

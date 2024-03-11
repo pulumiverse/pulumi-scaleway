@@ -19,6 +19,7 @@ import (
 //
 // ### Basic
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,9 +75,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### With dynamic records
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -179,9 +182,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### Create an instance and add records with the new instance IP
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -254,6 +259,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Multiple records
 //
@@ -264,12 +270,12 @@ import (
 //
 // ## Import
 //
-// Record can be imported using the `{dns_zone}/{id}`, e.g. bash
+// Record can be imported using the `{dns_zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
 // ```
 type DomainRecord struct {
 	pulumi.CustomResourceState

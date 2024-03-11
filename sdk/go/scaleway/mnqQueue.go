@@ -12,6 +12,153 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway Messaging and Queuing queues.
+//
+// For more information about MNQ, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/).
+//
+// > NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS.
+//
+// ## Examples
+//
+// ### NATS
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainMnqNamespace, err := scaleway.NewMnqNamespace(ctx, "mainMnqNamespace", &scaleway.MnqNamespaceArgs{
+//				Protocol: pulumi.String("nats"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainMnqCredential, err := scaleway.NewMnqCredential(ctx, "mainMnqCredential", &scaleway.MnqCredentialArgs{
+//				NamespaceId: mainMnqNamespace.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewMnqQueue(ctx, "myQueue", &scaleway.MnqQueueArgs{
+//				NamespaceId: mainMnqNamespace.ID(),
+//				Nats: &scaleway.MnqQueueNatsArgs{
+//					Credentials: mainMnqCredential.NatsCredentials.ApplyT(func(natsCredentials scaleway.MnqCredentialNatsCredentials) (*string, error) {
+//						return &natsCredentials.Content, nil
+//					}).(pulumi.StringPtrOutput),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### SQS
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainMnqNamespace, err := scaleway.NewMnqNamespace(ctx, "mainMnqNamespace", &scaleway.MnqNamespaceArgs{
+//				Protocol: pulumi.String("sqs_sns"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainMnqCredential, err := scaleway.NewMnqCredential(ctx, "mainMnqCredential", &scaleway.MnqCredentialArgs{
+//				NamespaceId: mainMnqNamespace.ID(),
+//				SqsSnsCredentials: &scaleway.MnqCredentialSqsSnsCredentialsArgs{
+//					Permissions: &scaleway.MnqCredentialSqsSnsCredentialsPermissionsArgs{
+//						CanPublish: pulumi.Bool(true),
+//						CanReceive: pulumi.Bool(true),
+//						CanManage:  pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewMnqQueue(ctx, "myQueue", &scaleway.MnqQueueArgs{
+//				NamespaceId: mainMnqNamespace.ID(),
+//				Sqs: &scaleway.MnqQueueSqsArgs{
+//					AccessKey: mainMnqCredential.SqsSnsCredentials.ApplyT(func(sqsSnsCredentials scaleway.MnqCredentialSqsSnsCredentials) (*string, error) {
+//						return &sqsSnsCredentials.AccessKey, nil
+//					}).(pulumi.StringPtrOutput),
+//					SecretKey: mainMnqCredential.SqsSnsCredentials.ApplyT(func(sqsSnsCredentials scaleway.MnqCredentialSqsSnsCredentials) (*string, error) {
+//						return &sqsSnsCredentials.SecretKey, nil
+//					}).(pulumi.StringPtrOutput),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// * `namespaceId` - (Required) The ID of the Namespace associated to.
+//
+// * `name` - (Optional) The name of the queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+//
+// * `namePrefix` - (Optional) Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+//
+// * `messageMaxAge` - (Optional) The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
+//
+// * `messageMaxSize` - (Optional) The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
+//
+// * `sqs` - (Optional) The SQS attributes of the queue. Conflicts with `nats`.
+//   - `endpoint` - (Optional) The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
+//   - `accessKey` - (Required) The access key of the SQS queue.
+//   - `secretKey` - (Required) The secret key of the SQS queue.
+//   - `fifoQueue` - (Optional) Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
+//   - `contentBasedDeduplication` - (Optional) Specifies whether to enable content-based deduplication. Defaults to `false`.
+//   - `receiveWaitTimeSeconds` - (Optional) The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
+//   - `visibilityTimeoutSeconds` - (Optional) The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
+//   - For more information about the SQS limitations, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/#technical-limitations).
+//
+// * `nats` - (Optional) The NATS attributes of the queue. Conflicts with `sqs`.
+//   - `endpoint` - (Optional) The endpoint of the NATS queue. Can contain a {region} placeholder. Defaults to `nats://nats.mnq.{region}.scw.cloud:4222`.
+//   - `credentials` - (Required) Line jump separated key and seed.
+//   - `retentionPolicy` - (Optional) The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information. Defaults to `workqueue`.
+//
+// ### Attribute Reference
+//
+// In addition to all arguments above, the following attributes are exported:
+//
+//   - `sqs` - The SQS attributes of the queue.
+//     ~ `url` - The URL of the queue.
+//
+// ### Import
+//
+// Queues can be imported using the `{region}/{namespace-id}/{queue-name}` format:
 type MnqQueue struct {
 	pulumi.CustomResourceState
 

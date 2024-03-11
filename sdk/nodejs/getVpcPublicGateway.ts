@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -26,6 +27,7 @@ import * as utilities from "./utilities";
  *     publicGatewayId: main.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayResult> {
     args = args || {};
@@ -82,6 +84,7 @@ export interface GetVpcPublicGatewayResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -99,6 +102,7 @@ export interface GetVpcPublicGatewayResult {
  *     publicGatewayId: main.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getVpcPublicGatewayOutput(args?: GetVpcPublicGatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayResult> {
     return pulumi.output(args).apply((a: any) => getVpcPublicGateway(a, opts))

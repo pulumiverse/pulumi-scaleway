@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,6 +46,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetLbAcls(ctx *pulumi.Context, args *GetLbAclsArgs, opts ...pulumi.InvokeOption) (*GetLbAclsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbAclsResult

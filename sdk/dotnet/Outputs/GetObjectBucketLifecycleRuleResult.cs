@@ -14,15 +14,33 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetObjectBucketLifecycleRuleResult
     {
+        /// <summary>
+        /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed
+        /// </summary>
         public readonly int AbortIncompleteMultipartUploadDays;
+        /// <summary>
+        /// Specifies if the configuration rule is Enabled or Disabled
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Specifies a period in the object's expire
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetObjectBucketLifecycleRuleExpirationResult> Expirations;
         /// <summary>
         /// The unique name of the bucket.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The prefix identifying one or more objects to which the rule applies
+        /// </summary>
         public readonly string Prefix;
+        /// <summary>
+        /// The tags associated with the bucket lifecycle
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Tags;
+        /// <summary>
+        /// Define when objects transition to another storage class
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetObjectBucketLifecycleRuleTransitionResult> Transitions;
 
         [OutputConstructor]

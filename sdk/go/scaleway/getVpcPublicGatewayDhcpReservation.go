@@ -13,6 +13,184 @@ import (
 
 // Gets information about a dhcp entries. For further information please check the
 // API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+//
+// ## Example Dynamic
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, "mainVpcPrivateNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
+//				Image: pulumi.String("ubuntu_jammy"),
+//				Type:  pulumi.String("DEV1-S"),
+//				Zone:  pulumi.String("fr-par-1"),
+//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
+//					&scaleway.InstanceServerPrivateNetworkArgs{
+//						PnId: mainVpcPrivateNetwork.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet: pulumi.String("192.168.1.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//				IpId: mainVpcPublicGatewayIp.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        mainVpcPublicGateway.ID(),
+//				PrivateNetworkId: mainVpcPrivateNetwork.ID(),
+//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = pulumi.All(mainInstanceServer.PrivateNetworks, mainVpcGatewayNetwork.ID()).ApplyT(func(_args []interface{}) (scaleway.GetVpcPublicGatewayDhcpReservationResult, error) {
+//				privateNetworks := _args[0].([]scaleway.InstanceServerPrivateNetwork)
+//				id := _args[1].(string)
+//				return scaleway.LookupVpcPublicGatewayDhcpReservationOutput(ctx, scaleway.GetVpcPublicGatewayDhcpReservationOutputArgs{
+//					MacAddress:       privateNetworks[0].MacAddress,
+//					GatewayNetworkId: id,
+//				}, nil), nil
+//			}).(scaleway.GetVpcPublicGatewayDhcpReservationResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Example Static and PAT rule
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, "mainVpcPrivateNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainInstanceSecurityGroup, err := scaleway.NewInstanceSecurityGroup(ctx, "mainInstanceSecurityGroup", &scaleway.InstanceSecurityGroupArgs{
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("accept"),
+//				InboundRules: scaleway.InstanceSecurityGroupInboundRuleArray{
+//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
+//						Action: pulumi.String("accept"),
+//						Port:   pulumi.Int(22),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
+//				Image:           pulumi.String("ubuntu_jammy"),
+//				Type:            pulumi.String("DEV1-S"),
+//				Zone:            pulumi.String("fr-par-1"),
+//				SecurityGroupId: mainInstanceSecurityGroup.ID(),
+//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
+//					&scaleway.InstanceServerPrivateNetworkArgs{
+//						PnId: mainVpcPrivateNetwork.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet: pulumi.String("192.168.1.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//				IpId: mainVpcPublicGatewayIp.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        mainVpcPublicGateway.ID(),
+//				PrivateNetworkId: mainVpcPrivateNetwork.ID(),
+//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainVpcPublicGatewayDhcpReservation, err := scaleway.NewVpcPublicGatewayDhcpReservation(ctx, "mainVpcPublicGatewayDhcpReservation", &scaleway.VpcPublicGatewayDhcpReservationArgs{
+//				GatewayNetworkId: mainVpcGatewayNetwork.ID(),
+//				MacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (*string, error) {
+//					return &privateNetworks[0].MacAddress, nil
+//				}).(pulumi.StringPtrOutput),
+//				IpAddress: pulumi.String("192.168.1.4"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// ## VPC PAT RULE
+//			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "mainVpcPublicGatewayPatRule", &scaleway.VpcPublicGatewayPatRuleArgs{
+//				GatewayId:   mainVpcPublicGateway.ID(),
+//				PrivateIp:   mainVpcPublicGatewayDhcpReservation.IpAddress,
+//				PrivatePort: pulumi.Int(22),
+//				PublicPort:  pulumi.Int(2222),
+//				Protocol:    pulumi.String("tcp"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.LookupVpcPublicGatewayDhcpReservationOutput(ctx, scaleway.GetVpcPublicGatewayDhcpReservationOutputArgs{
+//				ReservationId: mainVpcPublicGatewayDhcpReservation.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupVpcPublicGatewayDhcpReservation(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpReservationArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpReservationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpReservationResult

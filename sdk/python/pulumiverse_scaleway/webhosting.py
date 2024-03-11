@@ -445,6 +445,7 @@ class Webhosting(pulumi.CustomResource):
 
         ## Example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -461,13 +462,16 @@ class Webhosting(pulumi.CustomResource):
                 "terraform",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Hostings can be imported using the `{region}/{id}`, e.g. bash
+        Hostings can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -492,6 +496,7 @@ class Webhosting(pulumi.CustomResource):
 
         ## Example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -508,13 +513,16 @@ class Webhosting(pulumi.CustomResource):
                 "terraform",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Hostings can be imported using the `{region}/{id}`, e.g. bash
+        Hostings can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

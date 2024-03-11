@@ -13,15 +13,27 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class IotRouteS3Args : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the S3 route's destination bucket
+        /// </summary>
         [Input("bucketName", required: true)]
         public Input<string> BucketName { get; set; } = null!;
 
+        /// <summary>
+        /// The region of the S3 route's destination bucket
+        /// </summary>
         [Input("bucketRegion", required: true)]
         public Input<string> BucketRegion { get; set; } = null!;
 
+        /// <summary>
+        /// The string to prefix object names with
+        /// </summary>
         [Input("objectPrefix")]
         public Input<string>? ObjectPrefix { get; set; }
 
+        /// <summary>
+        /// How the S3 route's objects will be created: one per topic or one per message
+        /// </summary>
         [Input("strategy", required: true)]
         public Input<string> Strategy { get; set; } = null!;
 

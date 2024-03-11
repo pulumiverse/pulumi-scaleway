@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getWebHostOffer(args?: GetWebHostOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetWebHostOfferResult> {
     args = args || {};
@@ -81,6 +83,7 @@ export interface GetWebHostOfferResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -92,6 +95,7 @@ export interface GetWebHostOfferResult {
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getWebHostOfferOutput(args?: GetWebHostOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebHostOfferResult> {
     return pulumi.output(args).apply((a: any) => getWebHostOffer(a, opts))

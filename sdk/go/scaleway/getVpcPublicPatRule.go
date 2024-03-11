@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,6 +78,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetVpcPublicPatRule(ctx *pulumi.Context, args *GetVpcPublicPatRuleArgs, opts ...pulumi.InvokeOption) (*GetVpcPublicPatRuleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcPublicPatRuleResult

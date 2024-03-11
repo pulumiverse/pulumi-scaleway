@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetVpcGatewayNetworkIpamConfigResult
     {
+        /// <summary>
+        /// Defines whether the default route is enabled on that Gateway Network
+        /// </summary>
         public readonly bool PushDefaultRoute;
 
         [OutputConstructor]

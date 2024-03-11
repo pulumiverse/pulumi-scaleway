@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class InstanceServerRootVolume
     {
+        /// <summary>
+        /// Set the volume where the boot the server
+        /// </summary>
         public readonly bool? Boot;
         /// <summary>
         /// Forces deletion of the root volume on instance termination.

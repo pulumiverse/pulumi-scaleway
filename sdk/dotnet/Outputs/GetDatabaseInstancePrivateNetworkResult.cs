@@ -14,17 +14,38 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetDatabaseInstancePrivateNetworkResult
     {
+        /// <summary>
+        /// The endpoint ID
+        /// </summary>
         public readonly string EndpointId;
+        /// <summary>
+        /// The hostname of your endpoint
+        /// </summary>
         public readonly string Hostname;
+        /// <summary>
+        /// The IP of your Instance within the private service
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// The IP with the given mask within the private subnet
+        /// </summary>
         public readonly string IpNet;
         /// <summary>
         /// The name of the RDB instance.
         /// Only one of `name` and `instance_id` should be specified.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The private network ID
+        /// </summary>
         public readonly string PnId;
+        /// <summary>
+        /// The port of your private service
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

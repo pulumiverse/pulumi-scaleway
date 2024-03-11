@@ -26,6 +26,10 @@ namespace Pulumiverse.Scaleway.Inputs
         /// Names of permission sets bound to the rule.
         /// 
         /// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        /// 
+        /// ```shell
+        /// $ scw iam permission-set list
+        /// ```
         /// </summary>
         public InputList<string> PermissionSetNames
         {

@@ -358,8 +358,10 @@ class IamPolicy(pulumi.CustomResource):
         Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
 
         ## Example Usage
+
         ### Create a policy for an organization's project
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -375,13 +377,16 @@ class IamPolicy(pulumi.CustomResource):
                 permission_set_names=["ObjectStorageReadOnly"],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Policies can be imported using the `{id}`, e.g. bash
+        Policies can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -407,8 +412,10 @@ class IamPolicy(pulumi.CustomResource):
         Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
 
         ## Example Usage
+
         ### Create a policy for an organization's project
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -424,13 +431,16 @@ class IamPolicy(pulumi.CustomResource):
                 permission_set_names=["ObjectStorageReadOnly"],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Policies can be imported using the `{id}`, e.g. bash
+        Policies can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

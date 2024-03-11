@@ -266,7 +266,97 @@ class MnqQueue(pulumi.CustomResource):
                  sqs: Optional[pulumi.Input[pulumi.InputType['MnqQueueSqsArgs']]] = None,
                  __props__=None):
         """
-        Create a MnqQueue resource with the given unique name, props, and options.
+        Creates and manages Scaleway Messaging and Queuing queues.
+
+        For more information about MNQ, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/).
+
+        > NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS.
+
+        ## Examples
+
+        ### NATS
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_mnq_namespace = scaleway.MnqNamespace("mainMnqNamespace", protocol="nats")
+        main_mnq_credential = scaleway.MnqCredential("mainMnqCredential", namespace_id=main_mnq_namespace.id)
+        my_queue = scaleway.MnqQueue("myQueue",
+            namespace_id=main_mnq_namespace.id,
+            nats=scaleway.MnqQueueNatsArgs(
+                credentials=main_mnq_credential.nats_credentials.content,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### SQS
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_mnq_namespace = scaleway.MnqNamespace("mainMnqNamespace", protocol="sqs_sns")
+        main_mnq_credential = scaleway.MnqCredential("mainMnqCredential",
+            namespace_id=main_mnq_namespace.id,
+            sqs_sns_credentials=scaleway.MnqCredentialSqsSnsCredentialsArgs(
+                permissions=scaleway.MnqCredentialSqsSnsCredentialsPermissionsArgs(
+                    can_publish=True,
+                    can_receive=True,
+                    can_manage=True,
+                ),
+            ))
+        my_queue = scaleway.MnqQueue("myQueue",
+            namespace_id=main_mnq_namespace.id,
+            sqs=scaleway.MnqQueueSqsArgs(
+                access_key=main_mnq_credential.sqs_sns_credentials.access_key,
+                secret_key=main_mnq_credential.sqs_sns_credentials.secret_key,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        * `namespace_id` - (Required) The ID of the Namespace associated to.
+
+        * `name` - (Optional) The name of the queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+
+        * `name_prefix` - (Optional) Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+
+        * `message_max_age` - (Optional) The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
+
+        * `message_max_size` - (Optional) The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
+
+        * `sqs` - (Optional) The SQS attributes of the queue. Conflicts with `nats`.
+            - `endpoint` - (Optional) The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
+            - `access_key` - (Required) The access key of the SQS queue.
+            - `secret_key` - (Required) The secret key of the SQS queue.
+            - `fifo_queue` - (Optional) Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
+            - `content_based_deduplication` - (Optional) Specifies whether to enable content-based deduplication. Defaults to `false`.
+            - `receive_wait_time_seconds` - (Optional) The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
+            - `visibility_timeout_seconds` - (Optional) The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
+            - For more information about the SQS limitations, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/#technical-limitations).
+
+        * `nats` - (Optional) The NATS attributes of the queue. Conflicts with `sqs`.
+            - `endpoint` - (Optional) The endpoint of the NATS queue. Can contain a {region} placeholder. Defaults to `nats://nats.mnq.{region}.scw.cloud:4222`.
+            - `credentials` - (Required) Line jump separated key and seed.
+            - `retention_policy` - (Optional) The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information. Defaults to `workqueue`.
+
+        ### Attribute Reference
+
+        In addition to all arguments above, the following attributes are exported:
+
+        * `sqs` - The SQS attributes of the queue.
+          ~ `url` - The URL of the queue.
+
+        ### Import
+
+        Queues can be imported using the `{region}/{namespace-id}/{queue-name}` format:
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message.
@@ -284,7 +374,97 @@ class MnqQueue(pulumi.CustomResource):
                  args: MnqQueueArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MnqQueue resource with the given unique name, props, and options.
+        Creates and manages Scaleway Messaging and Queuing queues.
+
+        For more information about MNQ, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/).
+
+        > NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS.
+
+        ## Examples
+
+        ### NATS
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_mnq_namespace = scaleway.MnqNamespace("mainMnqNamespace", protocol="nats")
+        main_mnq_credential = scaleway.MnqCredential("mainMnqCredential", namespace_id=main_mnq_namespace.id)
+        my_queue = scaleway.MnqQueue("myQueue",
+            namespace_id=main_mnq_namespace.id,
+            nats=scaleway.MnqQueueNatsArgs(
+                credentials=main_mnq_credential.nats_credentials.content,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### SQS
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_mnq_namespace = scaleway.MnqNamespace("mainMnqNamespace", protocol="sqs_sns")
+        main_mnq_credential = scaleway.MnqCredential("mainMnqCredential",
+            namespace_id=main_mnq_namespace.id,
+            sqs_sns_credentials=scaleway.MnqCredentialSqsSnsCredentialsArgs(
+                permissions=scaleway.MnqCredentialSqsSnsCredentialsPermissionsArgs(
+                    can_publish=True,
+                    can_receive=True,
+                    can_manage=True,
+                ),
+            ))
+        my_queue = scaleway.MnqQueue("myQueue",
+            namespace_id=main_mnq_namespace.id,
+            sqs=scaleway.MnqQueueSqsArgs(
+                access_key=main_mnq_credential.sqs_sns_credentials.access_key,
+                secret_key=main_mnq_credential.sqs_sns_credentials.secret_key,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        * `namespace_id` - (Required) The ID of the Namespace associated to.
+
+        * `name` - (Optional) The name of the queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+
+        * `name_prefix` - (Optional) Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+
+        * `message_max_age` - (Optional) The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
+
+        * `message_max_size` - (Optional) The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
+
+        * `sqs` - (Optional) The SQS attributes of the queue. Conflicts with `nats`.
+            - `endpoint` - (Optional) The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
+            - `access_key` - (Required) The access key of the SQS queue.
+            - `secret_key` - (Required) The secret key of the SQS queue.
+            - `fifo_queue` - (Optional) Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
+            - `content_based_deduplication` - (Optional) Specifies whether to enable content-based deduplication. Defaults to `false`.
+            - `receive_wait_time_seconds` - (Optional) The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
+            - `visibility_timeout_seconds` - (Optional) The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
+            - For more information about the SQS limitations, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/#technical-limitations).
+
+        * `nats` - (Optional) The NATS attributes of the queue. Conflicts with `sqs`.
+            - `endpoint` - (Optional) The endpoint of the NATS queue. Can contain a {region} placeholder. Defaults to `nats://nats.mnq.{region}.scw.cloud:4222`.
+            - `credentials` - (Required) Line jump separated key and seed.
+            - `retention_policy` - (Optional) The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information. Defaults to `workqueue`.
+
+        ### Attribute Reference
+
+        In addition to all arguments above, the following attributes are exported:
+
+        * `sqs` - The SQS attributes of the queue.
+          ~ `url` - The URL of the queue.
+
+        ### Import
+
+        Queues can be imported using the `{region}/{namespace-id}/{queue-name}` format:
+
         :param str resource_name: The name of the resource.
         :param MnqQueueArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

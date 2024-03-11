@@ -107,6 +107,7 @@ def get_account_project(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -114,6 +115,7 @@ def get_account_project(name: Optional[str] = None,
     by_name = scaleway.get_account_project(name="default")
     by_id = scaleway.get_account_project(project_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the Project.
@@ -150,6 +152,7 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -157,6 +160,7 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     by_name = scaleway.get_account_project(name="default")
     by_id = scaleway.get_account_project(project_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the Project.

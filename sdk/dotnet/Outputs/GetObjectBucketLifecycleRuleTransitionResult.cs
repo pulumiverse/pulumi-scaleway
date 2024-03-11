@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetObjectBucketLifecycleRuleTransitionResult
     {
+        /// <summary>
+        /// Specifies the number of days after object creation when the specific rule action takes effect
+        /// </summary>
         public readonly int Days;
+        /// <summary>
+        /// Specifies the Scaleway Object Storage class to which you want the object to transition
+        /// </summary>
         public readonly string StorageClass;
 
         [OutputConstructor]

@@ -334,6 +334,7 @@ class InstanceVolume(pulumi.CustomResource):
 
         ## Example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -342,13 +343,16 @@ class InstanceVolume(pulumi.CustomResource):
             size_in_gb=20,
             type="l_ssd")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        volumes can be imported using the `{zone}/{id}`, e.g. bash
+        volumes can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -374,6 +378,7 @@ class InstanceVolume(pulumi.CustomResource):
 
         ## Example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -382,13 +387,16 @@ class InstanceVolume(pulumi.CustomResource):
             size_in_gb=20,
             type="l_ssd")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        volumes can be imported using the `{zone}/{id}`, e.g. bash
+        volumes can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
