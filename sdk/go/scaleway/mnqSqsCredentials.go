@@ -15,7 +15,7 @@ import (
 // For further information please check
 // our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //

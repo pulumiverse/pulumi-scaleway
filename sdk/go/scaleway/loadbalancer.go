@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Load-Balancers.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //

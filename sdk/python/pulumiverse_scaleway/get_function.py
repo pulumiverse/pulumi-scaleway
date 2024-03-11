@@ -177,12 +177,12 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
     @property
@@ -245,14 +245,37 @@ class AwaitableGetFunctionResult(GetFunctionResult):
 def get_function(function_id: Optional[str] = None,
                  name: Optional[str] = None,
                  namespace_id: Optional[str] = None,
+                 project_id: Optional[str] = None,
+                 region: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a function.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_function = scaleway.get_function(function_id="11111111-1111-1111-1111-111111111111",
+        namespace_id="11111111-1111-1111-1111-111111111111")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str function_id: The function id. Only one of `name` and `function_id` should be specified.
+    :param str name: The function name. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace id associated with this function.
+    :param str project_id: The ID of the project the function is associated with.
+    :param str region: `region`) The region in which the function exists.
     """
     __args__ = dict()
     __args__['functionId'] = function_id
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getFunction:getFunction', __args__, opts=opts, typ=GetFunctionResult).value
 
@@ -286,8 +309,29 @@ def get_function(function_id: Optional[str] = None,
 def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         namespace_id: Optional[pulumi.Input[str]] = None,
+                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                        region: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a function.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_function = scaleway.get_function(function_id="11111111-1111-1111-1111-111111111111",
+        namespace_id="11111111-1111-1111-1111-111111111111")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str function_id: The function id. Only one of `name` and `function_id` should be specified.
+    :param str name: The function name. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace id associated with this function.
+    :param str project_id: The ID of the project the function is associated with.
+    :param str region: `region`) The region in which the function exists.
     """
     ...

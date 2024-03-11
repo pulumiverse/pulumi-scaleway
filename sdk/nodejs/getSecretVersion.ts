@@ -51,6 +51,7 @@ export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.Invo
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecretVersion:getSecretVersion", {
+        "projectId": args.projectId,
         "region": args.region,
         "revision": args.revision,
         "secretId": args.secretId,
@@ -62,6 +63,10 @@ export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getSecretVersion.
  */
 export interface GetSecretVersionArgs {
+    /**
+     * The ID of the project the Secret version is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region
      * in which the resource exists.
@@ -103,6 +108,7 @@ export interface GetSecretVersionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly revision?: string;
     readonly secretId?: string;
@@ -166,6 +172,10 @@ export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?:
  * A collection of arguments for invoking getSecretVersion.
  */
 export interface GetSecretVersionOutputArgs {
+    /**
+     * The ID of the project the Secret version is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region
      * in which the resource exists.

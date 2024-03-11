@@ -16,6 +16,7 @@ __all__ = [
     'BaremetalServerOptionArgs',
     'BaremetalServerPrivateNetworkArgs',
     'CockpitEndpointArgs',
+    'CockpitPushUrlArgs',
     'CockpitTokenScopesArgs',
     'ContainerTriggerNatsArgs',
     'ContainerTriggerSqsArgs',
@@ -51,6 +52,10 @@ __all__ = [
     'IotRouteDatabaseArgs',
     'IotRouteRestArgs',
     'IotRouteS3Args',
+    'IpamIpResourceArgs',
+    'IpamIpReverseArgs',
+    'IpamIpSourceArgs',
+    'JobDefinitionCronArgs',
     'KubernetesClusterAutoUpgradeArgs',
     'KubernetesClusterAutoscalerConfigArgs',
     'KubernetesClusterKubeconfigArgs',
@@ -70,11 +75,7 @@ __all__ = [
     'LoadbalancerFrontendAclActionRedirectArgs',
     'LoadbalancerFrontendAclMatchArgs',
     'LoadbalancerPrivateNetworkArgs',
-    'MnqCredentialNatsCredentialsArgs',
-    'MnqCredentialSqsSnsCredentialsArgs',
-    'MnqCredentialSqsSnsCredentialsPermissionsArgs',
-    'MnqQueueNatsArgs',
-    'MnqQueueSqsArgs',
+    'MnqSnsCredentialsPermissionsArgs',
     'MnqSqsCredentialsPermissionsArgs',
     'ObjectBucketAclAccessControlPolicyArgs',
     'ObjectBucketAclAccessControlPolicyGrantArgs',
@@ -92,12 +93,14 @@ __all__ = [
     'RedisClusterAclArgs',
     'RedisClusterPrivateNetworkArgs',
     'RedisClusterPublicNetworkArgs',
+    'TemDomainReputationArgs',
     'VpcGatewayNetworkIpamConfigArgs',
     'VpcPrivateNetworkIpv4SubnetArgs',
     'VpcPrivateNetworkIpv6SubnetArgs',
     'WebhostingCpanelUrlArgs',
     'WebhostingOptionArgs',
     'GetIpamIpResourceArgs',
+    'GetIpamIpsResourceArgs',
 ]
 
 @pulumi.input_type
@@ -459,12 +462,14 @@ class CockpitEndpointArgs:
                  alertmanager_url: Optional[pulumi.Input[str]] = None,
                  grafana_url: Optional[pulumi.Input[str]] = None,
                  logs_url: Optional[pulumi.Input[str]] = None,
-                 metrics_url: Optional[pulumi.Input[str]] = None):
+                 metrics_url: Optional[pulumi.Input[str]] = None,
+                 traces_url: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] alertmanager_url: The alertmanager URL
-        :param pulumi.Input[str] grafana_url: The grafana URL
-        :param pulumi.Input[str] logs_url: The logs URL
-        :param pulumi.Input[str] metrics_url: The metrics URL
+        :param pulumi.Input[str] alertmanager_url: The alertmanager URL.
+        :param pulumi.Input[str] grafana_url: The grafana URL.
+        :param pulumi.Input[str] logs_url: The logs URL.
+        :param pulumi.Input[str] metrics_url: The metrics URL.
+        :param pulumi.Input[str] traces_url: The traces URL.
         """
         if alertmanager_url is not None:
             pulumi.set(__self__, "alertmanager_url", alertmanager_url)
@@ -474,12 +479,14 @@ class CockpitEndpointArgs:
             pulumi.set(__self__, "logs_url", logs_url)
         if metrics_url is not None:
             pulumi.set(__self__, "metrics_url", metrics_url)
+        if traces_url is not None:
+            pulumi.set(__self__, "traces_url", traces_url)
 
     @property
     @pulumi.getter(name="alertmanagerUrl")
     def alertmanager_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The alertmanager URL
+        The alertmanager URL.
         """
         return pulumi.get(self, "alertmanager_url")
 
@@ -491,7 +498,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="grafanaUrl")
     def grafana_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The grafana URL
+        The grafana URL.
         """
         return pulumi.get(self, "grafana_url")
 
@@ -503,7 +510,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="logsUrl")
     def logs_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The logs URL
+        The logs URL.
         """
         return pulumi.get(self, "logs_url")
 
@@ -515,7 +522,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="metricsUrl")
     def metrics_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The metrics URL
+        The metrics URL.
         """
         return pulumi.get(self, "metrics_url")
 
@@ -523,30 +530,87 @@ class CockpitEndpointArgs:
     def metrics_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "metrics_url", value)
 
+    @property
+    @pulumi.getter(name="tracesUrl")
+    def traces_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The traces URL.
+        """
+        return pulumi.get(self, "traces_url")
+
+    @traces_url.setter
+    def traces_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "traces_url", value)
+
+
+@pulumi.input_type
+class CockpitPushUrlArgs:
+    def __init__(__self__, *,
+                 push_logs_url: Optional[pulumi.Input[str]] = None,
+                 push_metrics_url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] push_logs_url: Push URL for logs (Grafana Loki)
+        :param pulumi.Input[str] push_metrics_url: Push URL for metrics (Grafana Mimir)
+        """
+        if push_logs_url is not None:
+            pulumi.set(__self__, "push_logs_url", push_logs_url)
+        if push_metrics_url is not None:
+            pulumi.set(__self__, "push_metrics_url", push_metrics_url)
+
+    @property
+    @pulumi.getter(name="pushLogsUrl")
+    def push_logs_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Push URL for logs (Grafana Loki)
+        """
+        return pulumi.get(self, "push_logs_url")
+
+    @push_logs_url.setter
+    def push_logs_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "push_logs_url", value)
+
+    @property
+    @pulumi.getter(name="pushMetricsUrl")
+    def push_metrics_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Push URL for metrics (Grafana Mimir)
+        """
+        return pulumi.get(self, "push_metrics_url")
+
+    @push_metrics_url.setter
+    def push_metrics_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "push_metrics_url", value)
+
 
 @pulumi.input_type
 class CockpitTokenScopesArgs:
     def __init__(__self__, *,
                  query_logs: Optional[pulumi.Input[bool]] = None,
                  query_metrics: Optional[pulumi.Input[bool]] = None,
+                 query_traces: Optional[pulumi.Input[bool]] = None,
                  setup_alerts: Optional[pulumi.Input[bool]] = None,
                  setup_logs_rules: Optional[pulumi.Input[bool]] = None,
                  setup_metrics_rules: Optional[pulumi.Input[bool]] = None,
                  write_logs: Optional[pulumi.Input[bool]] = None,
-                 write_metrics: Optional[pulumi.Input[bool]] = None):
+                 write_metrics: Optional[pulumi.Input[bool]] = None,
+                 write_traces: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] query_logs: Query logs
-        :param pulumi.Input[bool] query_metrics: Query metrics
-        :param pulumi.Input[bool] setup_alerts: Setup alerts
-        :param pulumi.Input[bool] setup_logs_rules: Setup logs rules
-        :param pulumi.Input[bool] setup_metrics_rules: Setup metrics rules
-        :param pulumi.Input[bool] write_logs: Write logs
-        :param pulumi.Input[bool] write_metrics: Write metrics
+        :param pulumi.Input[bool] query_logs: Query logs.
+        :param pulumi.Input[bool] query_metrics: Query metrics.
+        :param pulumi.Input[bool] query_traces: Query traces.
+        :param pulumi.Input[bool] setup_alerts: Setup alerts.
+        :param pulumi.Input[bool] setup_logs_rules: Setup logs rules.
+        :param pulumi.Input[bool] setup_metrics_rules: Setup metrics rules.
+        :param pulumi.Input[bool] write_logs: Write logs.
+        :param pulumi.Input[bool] write_metrics: Write metrics.
+        :param pulumi.Input[bool] write_traces: Write traces.
         """
         if query_logs is not None:
             pulumi.set(__self__, "query_logs", query_logs)
         if query_metrics is not None:
             pulumi.set(__self__, "query_metrics", query_metrics)
+        if query_traces is not None:
+            pulumi.set(__self__, "query_traces", query_traces)
         if setup_alerts is not None:
             pulumi.set(__self__, "setup_alerts", setup_alerts)
         if setup_logs_rules is not None:
@@ -557,12 +621,14 @@ class CockpitTokenScopesArgs:
             pulumi.set(__self__, "write_logs", write_logs)
         if write_metrics is not None:
             pulumi.set(__self__, "write_metrics", write_metrics)
+        if write_traces is not None:
+            pulumi.set(__self__, "write_traces", write_traces)
 
     @property
     @pulumi.getter(name="queryLogs")
     def query_logs(self) -> Optional[pulumi.Input[bool]]:
         """
-        Query logs
+        Query logs.
         """
         return pulumi.get(self, "query_logs")
 
@@ -574,7 +640,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="queryMetrics")
     def query_metrics(self) -> Optional[pulumi.Input[bool]]:
         """
-        Query metrics
+        Query metrics.
         """
         return pulumi.get(self, "query_metrics")
 
@@ -583,10 +649,22 @@ class CockpitTokenScopesArgs:
         pulumi.set(self, "query_metrics", value)
 
     @property
+    @pulumi.getter(name="queryTraces")
+    def query_traces(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Query traces.
+        """
+        return pulumi.get(self, "query_traces")
+
+    @query_traces.setter
+    def query_traces(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "query_traces", value)
+
+    @property
     @pulumi.getter(name="setupAlerts")
     def setup_alerts(self) -> Optional[pulumi.Input[bool]]:
         """
-        Setup alerts
+        Setup alerts.
         """
         return pulumi.get(self, "setup_alerts")
 
@@ -598,7 +676,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="setupLogsRules")
     def setup_logs_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        Setup logs rules
+        Setup logs rules.
         """
         return pulumi.get(self, "setup_logs_rules")
 
@@ -610,7 +688,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="setupMetricsRules")
     def setup_metrics_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        Setup metrics rules
+        Setup metrics rules.
         """
         return pulumi.get(self, "setup_metrics_rules")
 
@@ -622,7 +700,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="writeLogs")
     def write_logs(self) -> Optional[pulumi.Input[bool]]:
         """
-        Write logs
+        Write logs.
         """
         return pulumi.get(self, "write_logs")
 
@@ -634,13 +712,25 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="writeMetrics")
     def write_metrics(self) -> Optional[pulumi.Input[bool]]:
         """
-        Write metrics
+        Write metrics.
         """
         return pulumi.get(self, "write_metrics")
 
     @write_metrics.setter
     def write_metrics(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "write_metrics", value)
+
+    @property
+    @pulumi.getter(name="writeTraces")
+    def write_traces(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Write traces.
+        """
+        return pulumi.get(self, "write_traces")
+
+    @write_traces.setter
+    def write_traces(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_traces", value)
 
 
 @pulumi.input_type
@@ -912,6 +1002,7 @@ class DatabaseInstanceLoadBalancerArgs:
 class DatabaseInstancePrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[str],
+                 enable_ipam: Optional[pulumi.Input[bool]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
@@ -920,16 +1011,24 @@ class DatabaseInstancePrivateNetworkArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] pn_id: The private network ID
+        :param pulumi.Input[str] pn_id: The ID of the private network.
+        :param pulumi.Input[bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               
+               > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
+               handle the host IP on the network.
+               
+               > **Important:** Updates to `private_network` will recreate the Instance's endpoint
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[str] hostname: Hostname of the endpoint.
         :param pulumi.Input[str] ip: IPv4 address on the network.
-        :param pulumi.Input[str] ip_net: The IP with the given mask within the private subnet
+        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[int] port: Port in the Private Network.
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
         pulumi.set(__self__, "pn_id", pn_id)
+        if enable_ipam is not None:
+            pulumi.set(__self__, "enable_ipam", enable_ipam)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if hostname is not None:
@@ -949,13 +1048,30 @@ class DatabaseInstancePrivateNetworkArgs:
     @pulumi.getter(name="pnId")
     def pn_id(self) -> pulumi.Input[str]:
         """
-        The private network ID
+        The ID of the private network.
         """
         return pulumi.get(self, "pn_id")
 
     @pn_id.setter
     def pn_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "pn_id", value)
+
+    @property
+    @pulumi.getter(name="enableIpam")
+    def enable_ipam(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+
+        > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
+        handle the host IP on the network.
+
+        > **Important:** Updates to `private_network` will recreate the Instance's endpoint
+        """
+        return pulumi.get(self, "enable_ipam")
+
+    @enable_ipam.setter
+    def enable_ipam(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipam", value)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -997,7 +1113,7 @@ class DatabaseInstancePrivateNetworkArgs:
     @pulumi.getter(name="ipNet")
     def ip_net(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP with the given mask within the private subnet
+        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         """
         return pulumi.get(self, "ip_net")
 
@@ -1188,6 +1304,7 @@ class DatabaseReadReplicaDirectAccessArgs:
 class DatabaseReadReplicaPrivateNetworkArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[str],
+                 enable_ipam: Optional[pulumi.Input[bool]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
@@ -1197,17 +1314,18 @@ class DatabaseReadReplicaPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] private_network_id: UUID of the private network to be connected to the read replica.
+        :param pulumi.Input[bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
         :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
         :param pulumi.Input[str] name: Name of the endpoint.
         :param pulumi.Input[int] port: TCP port of the endpoint.
-        :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a
-               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
+        :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         :param pulumi.Input[str] zone: Private network zone
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
+        if enable_ipam is not None:
+            pulumi.set(__self__, "enable_ipam", enable_ipam)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if hostname is not None:
@@ -1234,6 +1352,18 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     @private_network_id.setter
     def private_network_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "private_network_id", value)
+
+    @property
+    @pulumi.getter(name="enableIpam")
+    def enable_ipam(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        """
+        return pulumi.get(self, "enable_ipam")
+
+    @enable_ipam.setter
+    def enable_ipam(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipam", value)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -1299,9 +1429,7 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     @pulumi.getter(name="serviceIp")
     def service_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP network address within the private subnet. This must be an IPv4 address with a
-        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
+        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         """
         return pulumi.get(self, "service_ip")
 
@@ -1934,7 +2062,7 @@ class IamPolicyRuleArgs:
                ```shell
                $ scw iam permission-set list
                ```
-        :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
+        :param pulumi.Input[str] organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: List of project IDs scoped to the rule.
                
                > **Important** One of `organization_id` or `project_ids`  must be set per rule.
@@ -1967,7 +2095,7 @@ class IamPolicyRuleArgs:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of organization scoped to the rule.
+        ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         """
         return pulumi.get(self, "organization_id")
 
@@ -3082,12 +3210,12 @@ class IotRouteDatabaseArgs:
                  query: pulumi.Input[str],
                  username: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] dbname: The database name
-        :param pulumi.Input[str] host: The database hostname
-        :param pulumi.Input[str] password: The database password
-        :param pulumi.Input[int] port: The database port
-        :param pulumi.Input[str] query: SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
-        :param pulumi.Input[str] username: The database username
+        :param pulumi.Input[str] dbname: The database name (e.g. `measurements`).
+        :param pulumi.Input[str] host: The database hostname. Can be an IP or a FQDN.
+        :param pulumi.Input[str] password: The database password.
+        :param pulumi.Input[int] port: The database port (e.g. `5432`)
+        :param pulumi.Input[str] query: The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
+        :param pulumi.Input[str] username: The database username.
         """
         pulumi.set(__self__, "dbname", dbname)
         pulumi.set(__self__, "host", host)
@@ -3100,7 +3228,7 @@ class IotRouteDatabaseArgs:
     @pulumi.getter
     def dbname(self) -> pulumi.Input[str]:
         """
-        The database name
+        The database name (e.g. `measurements`).
         """
         return pulumi.get(self, "dbname")
 
@@ -3112,7 +3240,7 @@ class IotRouteDatabaseArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The database hostname
+        The database hostname. Can be an IP or a FQDN.
         """
         return pulumi.get(self, "host")
 
@@ -3124,7 +3252,7 @@ class IotRouteDatabaseArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The database password
+        The database password.
         """
         return pulumi.get(self, "password")
 
@@ -3136,7 +3264,7 @@ class IotRouteDatabaseArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The database port
+        The database port (e.g. `5432`)
         """
         return pulumi.get(self, "port")
 
@@ -3148,7 +3276,7 @@ class IotRouteDatabaseArgs:
     @pulumi.getter
     def query(self) -> pulumi.Input[str]:
         """
-        SQL query to be executed ($TOPIC and $PAYLOAD variables are available, see documentation)
+        The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
         """
         return pulumi.get(self, "query")
 
@@ -3160,7 +3288,7 @@ class IotRouteDatabaseArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The database username
+        The database username.
         """
         return pulumi.get(self, "username")
 
@@ -3176,9 +3304,9 @@ class IotRouteRestArgs:
                  uri: pulumi.Input[str],
                  verb: pulumi.Input[str]):
         """
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: The HTTP call extra headers
-        :param pulumi.Input[str] uri: The URI of the REST endpoint
-        :param pulumi.Input[str] verb: The HTTP Verb used to call REST URI
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] headers: a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
+        :param pulumi.Input[str] uri: The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
+        :param pulumi.Input[str] verb: The HTTP Verb used to call Rest URI (e.g. `post`).
         """
         pulumi.set(__self__, "headers", headers)
         pulumi.set(__self__, "uri", uri)
@@ -3188,7 +3316,7 @@ class IotRouteRestArgs:
     @pulumi.getter
     def headers(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
-        The HTTP call extra headers
+        a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
         """
         return pulumi.get(self, "headers")
 
@@ -3200,7 +3328,7 @@ class IotRouteRestArgs:
     @pulumi.getter
     def uri(self) -> pulumi.Input[str]:
         """
-        The URI of the REST endpoint
+        The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
         """
         return pulumi.get(self, "uri")
 
@@ -3212,7 +3340,7 @@ class IotRouteRestArgs:
     @pulumi.getter
     def verb(self) -> pulumi.Input[str]:
         """
-        The HTTP Verb used to call REST URI
+        The HTTP Verb used to call Rest URI (e.g. `post`).
         """
         return pulumi.get(self, "verb")
 
@@ -3229,10 +3357,10 @@ class IotRouteS3Args:
                  strategy: pulumi.Input[str],
                  object_prefix: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] bucket_name: The name of the S3 route's destination bucket
-        :param pulumi.Input[str] bucket_region: The region of the S3 route's destination bucket
-        :param pulumi.Input[str] strategy: How the S3 route's objects will be created: one per topic or one per message
-        :param pulumi.Input[str] object_prefix: The string to prefix object names with
+        :param pulumi.Input[str] bucket_name: The name of the S3 route's destination bucket (e.g. `my-object-storage`).
+        :param pulumi.Input[str] bucket_region: The region of the S3 route's destination bucket (e.g. `fr-par`).
+        :param pulumi.Input[str] strategy: How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+        :param pulumi.Input[str] object_prefix: The string to prefix object names with (e.g. `mykeyprefix-`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "bucket_region", bucket_region)
@@ -3244,7 +3372,7 @@ class IotRouteS3Args:
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        The name of the S3 route's destination bucket
+        The name of the S3 route's destination bucket (e.g. `my-object-storage`).
         """
         return pulumi.get(self, "bucket_name")
 
@@ -3256,7 +3384,7 @@ class IotRouteS3Args:
     @pulumi.getter(name="bucketRegion")
     def bucket_region(self) -> pulumi.Input[str]:
         """
-        The region of the S3 route's destination bucket
+        The region of the S3 route's destination bucket (e.g. `fr-par`).
         """
         return pulumi.get(self, "bucket_region")
 
@@ -3268,7 +3396,7 @@ class IotRouteS3Args:
     @pulumi.getter
     def strategy(self) -> pulumi.Input[str]:
         """
-        How the S3 route's objects will be created: one per topic or one per message
+        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
         """
         return pulumi.get(self, "strategy")
 
@@ -3280,13 +3408,205 @@ class IotRouteS3Args:
     @pulumi.getter(name="objectPrefix")
     def object_prefix(self) -> Optional[pulumi.Input[str]]:
         """
-        The string to prefix object names with
+        The string to prefix object names with (e.g. `mykeyprefix-`).
         """
         return pulumi.get(self, "object_prefix")
 
     @object_prefix.setter
     def object_prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "object_prefix", value)
+
+
+@pulumi.input_type
+class IpamIpResourceArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
+                 mac_address: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The ID of the resource that the IP is bound to.
+        :param pulumi.Input[str] mac_address: The MAC Address of the resource the IP is attached to.
+        :param pulumi.Input[str] name: The name of the resource the IP is attached to.
+        :param pulumi.Input[str] type: The type of resource the IP is attached to.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if mac_address is not None:
+            pulumi.set(__self__, "mac_address", mac_address)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the resource that the IP is bound to.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The MAC Address of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @mac_address.setter
+    def mac_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_address", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of resource the IP is attached to.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class IpamIpReverseArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] hostname: The reverse domain name.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Request a specific IP in the requested source pool.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reverse domain name.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+
+@pulumi.input_type
+class IpamIpSourceArgs:
+    def __init__(__self__, *,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None,
+                 zonal: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] private_network_id: The private network the IP lives in if the IP is a private IP.
+        :param pulumi.Input[str] subnet_id: The private network subnet the IP lives in if the IP is a private IP in a private network.
+        :param pulumi.Input[str] zonal: The zone the IP lives in if the IP is a public zoned one
+        """
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if zonal is not None:
+            pulumi.set(__self__, "zonal", zonal)
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network the IP lives in if the IP is a private IP.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network subnet the IP lives in if the IP is a private IP in a private network.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter
+    def zonal(self) -> Optional[pulumi.Input[str]]:
+        """
+        The zone the IP lives in if the IP is a public zoned one
+        """
+        return pulumi.get(self, "zonal")
+
+    @zonal.setter
+    def zonal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zonal", value)
+
+
+@pulumi.input_type
+class JobDefinitionCronArgs:
+    def __init__(__self__, *,
+                 schedule: pulumi.Input[str],
+                 timezone: pulumi.Input[str]):
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[str]):
+        pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: pulumi.Input[str]):
+        pulumi.set(self, "timezone", value)
 
 
 @pulumi.input_type
@@ -3915,7 +4235,7 @@ class LoadbalancerAclMatchArgs:
         :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
-        :param pulumi.Input[str] http_filter_option: You can use this field with http_header_match acl type to set the header name to filter
+        :param pulumi.Input[str] http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
@@ -3950,7 +4270,7 @@ class LoadbalancerAclMatchArgs:
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[pulumi.Input[str]]:
         """
-        You can use this field with http_header_match acl type to set the header name to filter
+        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         """
         return pulumi.get(self, "http_filter_option")
 
@@ -4432,7 +4752,7 @@ class LoadbalancerFrontendAclMatchArgs:
         :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
-        :param pulumi.Input[str] http_filter_option: You can use this field with http_header_match acl type to set the header name to filter
+        :param pulumi.Input[str] http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
@@ -4467,7 +4787,7 @@ class LoadbalancerFrontendAclMatchArgs:
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[pulumi.Input[str]]:
         """
-        You can use this field with http_header_match acl type to set the header name to filter
+        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         """
         return pulumi.get(self, "http_filter_option")
 
@@ -4600,85 +4920,7 @@ class LoadbalancerPrivateNetworkArgs:
 
 
 @pulumi.input_type
-class MnqCredentialNatsCredentialsArgs:
-    def __init__(__self__, *,
-                 content: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] content: Raw content of the NATS credentials file.
-        """
-        if content is not None:
-            pulumi.set(__self__, "content", content)
-
-    @property
-    @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[str]]:
-        """
-        Raw content of the NATS credentials file.
-        """
-        return pulumi.get(self, "content")
-
-    @content.setter
-    def content(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "content", value)
-
-
-@pulumi.input_type
-class MnqCredentialSqsSnsCredentialsArgs:
-    def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']] = None,
-                 secret_key: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] access_key: The ID of the key.
-        :param pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs'] permissions: List of permissions associated to this Credential. Only one of permissions may be set.
-        :param pulumi.Input[str] secret_key: The Secret value of the key.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if permissions is not None:
-            pulumi.set(__self__, "permissions", permissions)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the key.
-        """
-        return pulumi.get(self, "access_key")
-
-    @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "access_key", value)
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']]:
-        """
-        List of permissions associated to this Credential. Only one of permissions may be set.
-        """
-        return pulumi.get(self, "permissions")
-
-    @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']]):
-        pulumi.set(self, "permissions", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Secret value of the key.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_key", value)
-
-
-@pulumi.input_type
-class MnqCredentialSqsSnsCredentialsPermissionsArgs:
+class MnqSnsCredentialsPermissionsArgs:
     def __init__(__self__, *,
                  can_manage: Optional[pulumi.Input[bool]] = None,
                  can_publish: Optional[pulumi.Input[bool]] = None,
@@ -4730,181 +4972,6 @@ class MnqCredentialSqsSnsCredentialsPermissionsArgs:
     @can_receive.setter
     def can_receive(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "can_receive", value)
-
-
-@pulumi.input_type
-class MnqQueueNatsArgs:
-    def __init__(__self__, *,
-                 credentials: pulumi.Input[str],
-                 endpoint: Optional[pulumi.Input[str]] = None,
-                 retention_policy: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] credentials: Line jump separated key and seed
-        :param pulumi.Input[str] endpoint: The endpoint of the NATS queue. Can contain a {region} placeholder.
-        :param pulumi.Input[str] retention_policy: The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
-        """
-        pulumi.set(__self__, "credentials", credentials)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if retention_policy is not None:
-            pulumi.set(__self__, "retention_policy", retention_policy)
-
-    @property
-    @pulumi.getter
-    def credentials(self) -> pulumi.Input[str]:
-        """
-        Line jump separated key and seed
-        """
-        return pulumi.get(self, "credentials")
-
-    @credentials.setter
-    def credentials(self, value: pulumi.Input[str]):
-        pulumi.set(self, "credentials", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        """
-        The endpoint of the NATS queue. Can contain a {region} placeholder.
-        """
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
-
-    @property
-    @pulumi.getter(name="retentionPolicy")
-    def retention_policy(self) -> Optional[pulumi.Input[str]]:
-        """
-        The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information.
-        """
-        return pulumi.get(self, "retention_policy")
-
-    @retention_policy.setter
-    def retention_policy(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "retention_policy", value)
-
-
-@pulumi.input_type
-class MnqQueueSqsArgs:
-    def __init__(__self__, *,
-                 access_key: pulumi.Input[str],
-                 secret_key: pulumi.Input[str],
-                 content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
-                 fifo_queue: Optional[pulumi.Input[bool]] = None,
-                 receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
-                 url: Optional[pulumi.Input[str]] = None,
-                 visibility_timeout_seconds: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] access_key: The access key of the SQS queue
-        :param pulumi.Input[str] secret_key: The secret key of the SQS queue
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder.
-        :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
-        :param pulumi.Input[str] url: The URL of the queue
-        """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "secret_key", secret_key)
-        if content_based_deduplication is not None:
-            pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if fifo_queue is not None:
-            pulumi.set(__self__, "fifo_queue", fifo_queue)
-        if receive_wait_time_seconds is not None:
-            pulumi.set(__self__, "receive_wait_time_seconds", receive_wait_time_seconds)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-        if visibility_timeout_seconds is not None:
-            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> pulumi.Input[str]:
-        """
-        The access key of the SQS queue
-        """
-        return pulumi.get(self, "access_key")
-
-    @access_key.setter
-    def access_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "access_key", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> pulumi.Input[str]:
-        """
-        The secret key of the SQS queue
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "secret_key", value)
-
-    @property
-    @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "content_based_deduplication")
-
-    @content_based_deduplication.setter
-    def content_based_deduplication(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "content_based_deduplication", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        """
-        The endpoint of the SQS queue. Can contain a {region} placeholder.
-        """
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
-
-    @property
-    @pulumi.getter(name="fifoQueue")
-    def fifo_queue(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether the queue is a FIFO queue. If true, the queue name must end with .fifo
-        """
-        return pulumi.get(self, "fifo_queue")
-
-    @fifo_queue.setter
-    def fifo_queue(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "fifo_queue", value)
-
-    @property
-    @pulumi.getter(name="receiveWaitTimeSeconds")
-    def receive_wait_time_seconds(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "receive_wait_time_seconds")
-
-    @receive_wait_time_seconds.setter
-    def receive_wait_time_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "receive_wait_time_seconds", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[str]]:
-        """
-        The URL of the queue
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "url", value)
-
-    @property
-    @pulumi.getter(name="visibilityTimeoutSeconds")
-    def visibility_timeout_seconds(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "visibility_timeout_seconds")
-
-    @visibility_timeout_seconds.setter
-    def visibility_timeout_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "visibility_timeout_seconds", value)
 
 
 @pulumi.input_type
@@ -5404,11 +5471,17 @@ class ObjectBucketLifecycleRuleTransitionArgs:
 class ObjectBucketLockConfigurationRuleArgs:
     def __init__(__self__, *,
                  default_retention: pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgs']):
+        """
+        :param pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgs'] default_retention: The default retention for the lock.
+        """
         pulumi.set(__self__, "default_retention", default_retention)
 
     @property
     @pulumi.getter(name="defaultRetention")
     def default_retention(self) -> pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgs']:
+        """
+        The default retention for the lock.
+        """
         return pulumi.get(self, "default_retention")
 
     @default_retention.setter
@@ -5423,7 +5496,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
                  days: Optional[pulumi.Input[int]] = None,
                  years: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        :param pulumi.Input[str] mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
         :param pulumi.Input[int] days: The number of days that you want to specify for the default retention period.
         :param pulumi.Input[int] years: The number of years that you want to specify for the default retention period.
         """
@@ -5437,7 +5510,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
         """
-        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
         """
         return pulumi.get(self, "mode")
 
@@ -5497,11 +5570,17 @@ class ObjectBucketVersioningArgs:
 class ObjectBucketWebsiteConfigurationErrorDocumentArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The object key name to use when a 4XX class error occurs.
+        """
         pulumi.set(__self__, "key", key)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        The object key name to use when a 4XX class error occurs.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -5513,11 +5592,21 @@ class ObjectBucketWebsiteConfigurationErrorDocumentArgs:
 class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
     def __init__(__self__, *,
                  suffix: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] suffix: A suffix that is appended to a request that is for a directory on the website endpoint.
+               
+               > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+        """
         pulumi.set(__self__, "suffix", suffix)
 
     @property
     @pulumi.getter
     def suffix(self) -> pulumi.Input[str]:
+        """
+        A suffix that is appended to a request that is for a directory on the website endpoint.
+
+        > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+        """
         return pulumi.get(self, "suffix")
 
     @suffix.setter
@@ -5537,7 +5626,7 @@ class RedisClusterAclArgs:
         :param pulumi.Input[str] description: A text describing this rule. Default description: `Allow IP`
                
                > The `acl` conflict with `private_network`. Only one should be specified.
-        :param pulumi.Input[str] id: The UUID of the private network resource.
+        :param pulumi.Input[str] id: The UUID of the Private Network resource.
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -5576,7 +5665,7 @@ class RedisClusterAclArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of the private network resource.
+        The UUID of the Private Network resource.
         """
         return pulumi.get(self, "id")
 
@@ -5593,14 +5682,33 @@ class RedisClusterPrivateNetworkArgs:
                  service_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The UUID of the private network resource.
+        :param pulumi.Input[str] id: The UUID of the Private Network resource.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_ips: Endpoint IPv4 addresses
-               in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-               least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+               Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+               scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+               If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
                
-               > The `private_network` conflict with `acl`. Only one should be specified.
+               > The `private_network` conflicts with `acl`. Only one should be specified.
+               
+               > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+               
+               - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+               block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+               Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+               by side.
+               
+               - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+               able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+               configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+               require updating the private network to add IPs.
+               Your `service_ips` must be listed as follows:
+               
+               <!--Start PulumiCodeChooser -->
+               ```python
+               import pulumi
+               ```
+               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] zone: `zone`) The zone in which the
                Redis Cluster should be created.
         """
@@ -5616,7 +5724,7 @@ class RedisClusterPrivateNetworkArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The UUID of the private network resource.
+        The UUID of the Private Network resource.
         """
         return pulumi.get(self, "id")
 
@@ -5640,12 +5748,31 @@ class RedisClusterPrivateNetworkArgs:
     @pulumi.getter(name="serviceIps")
     def service_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Endpoint IPv4 addresses
-        in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-        least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
+        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+        scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+        If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
-        > The `private_network` conflict with `acl`. Only one should be specified.
+        > The `private_network` conflicts with `acl`. Only one should be specified.
+
+        > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+
+        - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+        block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+        Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+        by side.
+
+        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+        able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+        configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+        require updating the private network to add IPs.
+        Your `service_ips` must be listed as follows:
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        ```
+        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "service_ips")
 
@@ -5674,7 +5801,7 @@ class RedisClusterPublicNetworkArgs:
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  port: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] id: The UUID of the private network resource.
+        :param pulumi.Input[str] id: The UUID of the Private Network resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Lis of IPv4 address of the endpoint (IP address).
         :param pulumi.Input[int] port: TCP port of the endpoint.
         """
@@ -5689,7 +5816,7 @@ class RedisClusterPublicNetworkArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of the private network resource.
+        The UUID of the Private Network resource.
         """
         return pulumi.get(self, "id")
 
@@ -5723,20 +5850,123 @@ class RedisClusterPublicNetworkArgs:
 
 
 @pulumi.input_type
+class TemDomainReputationArgs:
+    def __init__(__self__, *,
+                 previous_score: Optional[pulumi.Input[int]] = None,
+                 previous_scored_at: Optional[pulumi.Input[str]] = None,
+                 score: Optional[pulumi.Input[int]] = None,
+                 scored_at: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] previous_score: The previously-calculated domain's reputation score.
+        :param pulumi.Input[str] previous_scored_at: The time and date the previous reputation score was calculated.
+        :param pulumi.Input[int] score: A range from 0 to 100 that determines your domain's reputation score.
+        :param pulumi.Input[str] scored_at: The time and date the score was calculated.
+        :param pulumi.Input[str] status: The status of the domain's reputation.
+        """
+        if previous_score is not None:
+            pulumi.set(__self__, "previous_score", previous_score)
+        if previous_scored_at is not None:
+            pulumi.set(__self__, "previous_scored_at", previous_scored_at)
+        if score is not None:
+            pulumi.set(__self__, "score", score)
+        if scored_at is not None:
+            pulumi.set(__self__, "scored_at", scored_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="previousScore")
+    def previous_score(self) -> Optional[pulumi.Input[int]]:
+        """
+        The previously-calculated domain's reputation score.
+        """
+        return pulumi.get(self, "previous_score")
+
+    @previous_score.setter
+    def previous_score(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "previous_score", value)
+
+    @property
+    @pulumi.getter(name="previousScoredAt")
+    def previous_scored_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time and date the previous reputation score was calculated.
+        """
+        return pulumi.get(self, "previous_scored_at")
+
+    @previous_scored_at.setter
+    def previous_scored_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "previous_scored_at", value)
+
+    @property
+    @pulumi.getter
+    def score(self) -> Optional[pulumi.Input[int]]:
+        """
+        A range from 0 to 100 that determines your domain's reputation score.
+        """
+        return pulumi.get(self, "score")
+
+    @score.setter
+    def score(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "score", value)
+
+    @property
+    @pulumi.getter(name="scoredAt")
+    def scored_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time and date the score was calculated.
+        """
+        return pulumi.get(self, "scored_at")
+
+    @scored_at.setter
+    def scored_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scored_at", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the domain's reputation.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
 class VpcGatewayNetworkIpamConfigArgs:
     def __init__(__self__, *,
+                 ipam_ip_id: Optional[pulumi.Input[str]] = None,
                  push_default_route: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] push_default_route: Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[str] ipam_ip_id: Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        :param pulumi.Input[bool] push_default_route: Defines whether the default route is enabled on that Gateway Network.
         """
+        if ipam_ip_id is not None:
+            pulumi.set(__self__, "ipam_ip_id", ipam_ip_id)
         if push_default_route is not None:
             pulumi.set(__self__, "push_default_route", push_default_route)
+
+    @property
+    @pulumi.getter(name="ipamIpId")
+    def ipam_ip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        """
+        return pulumi.get(self, "ipam_ip_id")
+
+    @ipam_ip_id.setter
+    def ipam_ip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipam_ip_id", value)
 
     @property
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Defines whether the default route is enabled on that Gateway Network.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -6064,16 +6294,31 @@ class WebhostingOptionArgs:
 @pulumi.input_type
 class GetIpamIpResourceArgs:
     def __init__(__self__, *,
+                 type: str,
                  id: Optional[str] = None,
-                 type: Optional[str] = None):
+                 name: Optional[str] = None):
         """
+        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         :param str id: The ID of the resource that the IP is bound to.
-        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        :param str name: The name of the resource to get the IP from.
         """
+        pulumi.set(__self__, "type", type)
         if id is not None:
             pulumi.set(__self__, "id", id)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: str):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -6089,14 +6334,68 @@ class GetIpamIpResourceArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def name(self) -> Optional[str]:
         """
-        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        The name of the resource to get the IP from.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class GetIpamIpsResourceArgs:
+    def __init__(__self__, *,
+                 type: str,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        """
+        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        :param str id: The ID of the resource that the IP is bound to.
+        :param str name: The name of the resource to get the IP from.
+        """
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[str]):
+    def type(self, value: str):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the resource that the IP is bound to.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the resource to get the IP from.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
 
 

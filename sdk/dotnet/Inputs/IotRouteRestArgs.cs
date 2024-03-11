@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputMap<string>? _headers;
 
         /// <summary>
-        /// The HTTP call extra headers
+        /// a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
         /// </summary>
         public InputMap<string> Headers
         {
@@ -26,13 +26,13 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// The URI of the REST endpoint
+        /// The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
         /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;
 
         /// <summary>
-        /// The HTTP Verb used to call REST URI
+        /// The HTTP Verb used to call Rest URI (e.g. `post`).
         /// </summary>
         [Input("verb", required: true)]
         public Input<string> Verb { get; set; } = null!;

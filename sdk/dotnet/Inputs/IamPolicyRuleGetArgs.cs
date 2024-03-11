@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IamPolicyRuleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

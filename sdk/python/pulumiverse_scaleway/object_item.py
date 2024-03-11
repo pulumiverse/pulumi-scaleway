@@ -28,14 +28,14 @@ class ObjectItemArgs:
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ObjectItem resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
@@ -68,7 +68,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[str]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -152,7 +152,7 @@ class ObjectItemArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the bucket is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -226,14 +226,14 @@ class _ObjectItemState:
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ObjectItem resources.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
@@ -268,7 +268,7 @@ class _ObjectItemState:
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -352,7 +352,7 @@ class _ObjectItemState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the bucket is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -441,16 +441,26 @@ class ObjectItem(pulumi.CustomResource):
         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
         ```
 
+        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+
+        If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
@@ -474,6 +484,16 @@ class ObjectItem(pulumi.CustomResource):
 
         ```sh
         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
+        ```
+
+        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+
+        If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -557,14 +577,14 @@ class ObjectItem(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
         :param pulumi.Input[str] key: The path of the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
@@ -592,7 +612,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def bucket(self) -> pulumi.Output[str]:
         """
-        The name of the bucket.
+        The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -648,7 +668,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the bucket is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 

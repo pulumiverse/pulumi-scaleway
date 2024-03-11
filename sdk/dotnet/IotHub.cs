@@ -11,6 +11,28 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ### Basic
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.IotHub("main", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// IoT Hubs can be imported using the `{region}/{id}`, e.g.
@@ -85,6 +107,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("hubCaChallenge")]
         public Output<string?> HubCaChallenge { get; private set; } = null!;
+
+        /// <summary>
+        /// The MQTT certificat content
+        /// </summary>
+        [Output("mqttCa")]
+        public Output<string> MqttCa { get; private set; } = null!;
+
+        /// <summary>
+        /// The MQTT ca url
+        /// </summary>
+        [Output("mqttCaUrl")]
+        public Output<string> MqttCaUrl { get; private set; } = null!;
 
         /// <summary>
         /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
@@ -310,6 +344,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("hubCaChallenge")]
         public Input<string>? HubCaChallenge { get; set; }
+
+        /// <summary>
+        /// The MQTT certificat content
+        /// </summary>
+        [Input("mqttCa")]
+        public Input<string>? MqttCa { get; set; }
+
+        /// <summary>
+        /// The MQTT ca url
+        /// </summary>
+        [Input("mqttCaUrl")]
+        public Input<string>? MqttCaUrl { get; set; }
 
         /// <summary>
         /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).

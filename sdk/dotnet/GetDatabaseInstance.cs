@@ -43,6 +43,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the RDB instance exists.
         /// </summary>
         [Input("region")]
@@ -69,6 +75,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the RDB instance exists.
@@ -107,7 +119,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetDatabaseInstancePrivateNetworkResult> PrivateNetworks;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly ImmutableArray<Outputs.GetDatabaseInstanceReadReplicaResult> ReadReplicas;
         public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Settings;
@@ -154,7 +166,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetDatabaseInstancePrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             ImmutableArray<Outputs.GetDatabaseInstanceReadReplicaResult> readReplicas,
 

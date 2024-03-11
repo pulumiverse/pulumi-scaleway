@@ -57,13 +57,10 @@ import (
 //			}
 //			_, err = scaleway.NewDatabasePrivilege(ctx, "mainDatabasePrivilege", &scaleway.DatabasePrivilegeArgs{
 //				InstanceId:   mainDatabaseInstance.ID(),
-//				UserName:     pulumi.String("my-db-user"),
-//				DatabaseName: pulumi.String("my-db-name"),
+//				UserName:     mainDatabaseUser.Name,
+//				DatabaseName: mainDatabase.Name,
 //				Permission:   pulumi.String("all"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainDatabaseUser,
-//				mainDatabase,
-//			}))
+//			})
 //			if err != nil {
 //				return err
 //			}

@@ -25,6 +25,16 @@ export type BaremetalServer = import("./baremetalServer").BaremetalServer;
 export const BaremetalServer: typeof import("./baremetalServer").BaremetalServer = null as any;
 utilities.lazyLoad(exports, ["BaremetalServer"], () => require("./baremetalServer"));
 
+export { BlockSnapshotArgs, BlockSnapshotState } from "./blockSnapshot";
+export type BlockSnapshot = import("./blockSnapshot").BlockSnapshot;
+export const BlockSnapshot: typeof import("./blockSnapshot").BlockSnapshot = null as any;
+utilities.lazyLoad(exports, ["BlockSnapshot"], () => require("./blockSnapshot"));
+
+export { BlockVolumeArgs, BlockVolumeState } from "./blockVolume";
+export type BlockVolume = import("./blockVolume").BlockVolume;
+export const BlockVolume: typeof import("./blockVolume").BlockVolume = null as any;
+utilities.lazyLoad(exports, ["BlockVolume"], () => require("./blockVolume"));
+
 export { CockpitArgs, CockpitState } from "./cockpit";
 export type Cockpit = import("./cockpit").Cockpit;
 export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
@@ -220,7 +230,7 @@ export const getBaremetalServer: typeof import("./getBaremetalServer").getBareme
 export const getBaremetalServerOutput: typeof import("./getBaremetalServer").getBaremetalServerOutput = null as any;
 utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
 
-export { GetBillingConsumptionsResult } from "./getBillingConsumptions";
+export { GetBillingConsumptionsArgs, GetBillingConsumptionsResult, GetBillingConsumptionsOutputArgs } from "./getBillingConsumptions";
 export const getBillingConsumptions: typeof import("./getBillingConsumptions").getBillingConsumptions = null as any;
 export const getBillingConsumptionsOutput: typeof import("./getBillingConsumptions").getBillingConsumptionsOutput = null as any;
 utilities.lazyLoad(exports, ["getBillingConsumptions","getBillingConsumptionsOutput"], () => require("./getBillingConsumptions"));
@@ -229,6 +239,16 @@ export { GetBillingInvoicesArgs, GetBillingInvoicesResult, GetBillingInvoicesOut
 export const getBillingInvoices: typeof import("./getBillingInvoices").getBillingInvoices = null as any;
 export const getBillingInvoicesOutput: typeof import("./getBillingInvoices").getBillingInvoicesOutput = null as any;
 utilities.lazyLoad(exports, ["getBillingInvoices","getBillingInvoicesOutput"], () => require("./getBillingInvoices"));
+
+export { GetBlockSnapshotArgs, GetBlockSnapshotResult, GetBlockSnapshotOutputArgs } from "./getBlockSnapshot";
+export const getBlockSnapshot: typeof import("./getBlockSnapshot").getBlockSnapshot = null as any;
+export const getBlockSnapshotOutput: typeof import("./getBlockSnapshot").getBlockSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getBlockSnapshot","getBlockSnapshotOutput"], () => require("./getBlockSnapshot"));
+
+export { GetBlockVolumeArgs, GetBlockVolumeResult, GetBlockVolumeOutputArgs } from "./getBlockVolume";
+export const getBlockVolume: typeof import("./getBlockVolume").getBlockVolume = null as any;
+export const getBlockVolumeOutput: typeof import("./getBlockVolume").getBlockVolumeOutput = null as any;
+utilities.lazyLoad(exports, ["getBlockVolume","getBlockVolumeOutput"], () => require("./getBlockVolume"));
 
 export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCockpit";
 export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
@@ -350,6 +370,11 @@ export const getInstanceIp: typeof import("./getInstanceIp").getInstanceIp = nul
 export const getInstanceIpOutput: typeof import("./getInstanceIp").getInstanceIpOutput = null as any;
 utilities.lazyLoad(exports, ["getInstanceIp","getInstanceIpOutput"], () => require("./getInstanceIp"));
 
+export { GetInstancePlacementGroupArgs, GetInstancePlacementGroupResult, GetInstancePlacementGroupOutputArgs } from "./getInstancePlacementGroup";
+export const getInstancePlacementGroup: typeof import("./getInstancePlacementGroup").getInstancePlacementGroup = null as any;
+export const getInstancePlacementGroupOutput: typeof import("./getInstancePlacementGroup").getInstancePlacementGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePlacementGroup","getInstancePlacementGroupOutput"], () => require("./getInstancePlacementGroup"));
+
 export { GetInstancePrivateNicArgs, GetInstancePrivateNicResult, GetInstancePrivateNicOutputArgs } from "./getInstancePrivateNic";
 export const getInstancePrivateNic: typeof import("./getInstancePrivateNic").getInstancePrivateNic = null as any;
 export const getInstancePrivateNicOutput: typeof import("./getInstancePrivateNic").getInstancePrivateNicOutput = null as any;
@@ -394,6 +419,11 @@ export { GetIpamIpArgs, GetIpamIpResult, GetIpamIpOutputArgs } from "./getIpamIp
 export const getIpamIp: typeof import("./getIpamIp").getIpamIp = null as any;
 export const getIpamIpOutput: typeof import("./getIpamIp").getIpamIpOutput = null as any;
 utilities.lazyLoad(exports, ["getIpamIp","getIpamIpOutput"], () => require("./getIpamIp"));
+
+export { GetIpamIpsArgs, GetIpamIpsResult, GetIpamIpsOutputArgs } from "./getIpamIps";
+export const getIpamIps: typeof import("./getIpamIps").getIpamIps = null as any;
+export const getIpamIpsOutput: typeof import("./getIpamIps").getIpamIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getIpamIps","getIpamIpsOutput"], () => require("./getIpamIps"));
 
 export { GetK8sVersionArgs, GetK8sVersionResult, GetK8sVersionOutputArgs } from "./getK8sVersion";
 export const getK8sVersion: typeof import("./getK8sVersion").getK8sVersion = null as any;
@@ -685,6 +715,21 @@ export type IotRoute = import("./iotRoute").IotRoute;
 export const IotRoute: typeof import("./iotRoute").IotRoute = null as any;
 utilities.lazyLoad(exports, ["IotRoute"], () => require("./iotRoute"));
 
+export { IpamIpArgs, IpamIpState } from "./ipamIp";
+export type IpamIp = import("./ipamIp").IpamIp;
+export const IpamIp: typeof import("./ipamIp").IpamIp = null as any;
+utilities.lazyLoad(exports, ["IpamIp"], () => require("./ipamIp"));
+
+export { IpamIpReverseDnsArgs, IpamIpReverseDnsState } from "./ipamIpReverseDns";
+export type IpamIpReverseDns = import("./ipamIpReverseDns").IpamIpReverseDns;
+export const IpamIpReverseDns: typeof import("./ipamIpReverseDns").IpamIpReverseDns = null as any;
+utilities.lazyLoad(exports, ["IpamIpReverseDns"], () => require("./ipamIpReverseDns"));
+
+export { JobDefinitionArgs, JobDefinitionState } from "./jobDefinition";
+export type JobDefinition = import("./jobDefinition").JobDefinition;
+export const JobDefinition: typeof import("./jobDefinition").JobDefinition = null as any;
+utilities.lazyLoad(exports, ["JobDefinition"], () => require("./jobDefinition"));
+
 export { KubernetesClusterArgs, KubernetesClusterState } from "./kubernetesCluster";
 export type KubernetesCluster = import("./kubernetesCluster").KubernetesCluster;
 export const KubernetesCluster: typeof import("./kubernetesCluster").KubernetesCluster = null as any;
@@ -730,16 +775,6 @@ export type LoadbalancerRoute = import("./loadbalancerRoute").LoadbalancerRoute;
 export const LoadbalancerRoute: typeof import("./loadbalancerRoute").LoadbalancerRoute = null as any;
 utilities.lazyLoad(exports, ["LoadbalancerRoute"], () => require("./loadbalancerRoute"));
 
-export { MnqCredentialArgs, MnqCredentialState } from "./mnqCredential";
-export type MnqCredential = import("./mnqCredential").MnqCredential;
-export const MnqCredential: typeof import("./mnqCredential").MnqCredential = null as any;
-utilities.lazyLoad(exports, ["MnqCredential"], () => require("./mnqCredential"));
-
-export { MnqNamespaceArgs, MnqNamespaceState } from "./mnqNamespace";
-export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
-export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
-utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
-
 export { MnqNatsAccountArgs, MnqNatsAccountState } from "./mnqNatsAccount";
 export type MnqNatsAccount = import("./mnqNatsAccount").MnqNatsAccount;
 export const MnqNatsAccount: typeof import("./mnqNatsAccount").MnqNatsAccount = null as any;
@@ -750,10 +785,25 @@ export type MnqNatsCredentials = import("./mnqNatsCredentials").MnqNatsCredentia
 export const MnqNatsCredentials: typeof import("./mnqNatsCredentials").MnqNatsCredentials = null as any;
 utilities.lazyLoad(exports, ["MnqNatsCredentials"], () => require("./mnqNatsCredentials"));
 
-export { MnqQueueArgs, MnqQueueState } from "./mnqQueue";
-export type MnqQueue = import("./mnqQueue").MnqQueue;
-export const MnqQueue: typeof import("./mnqQueue").MnqQueue = null as any;
-utilities.lazyLoad(exports, ["MnqQueue"], () => require("./mnqQueue"));
+export { MnqSnsArgs, MnqSnsState } from "./mnqSns";
+export type MnqSns = import("./mnqSns").MnqSns;
+export const MnqSns: typeof import("./mnqSns").MnqSns = null as any;
+utilities.lazyLoad(exports, ["MnqSns"], () => require("./mnqSns"));
+
+export { MnqSnsCredentialsArgs, MnqSnsCredentialsState } from "./mnqSnsCredentials";
+export type MnqSnsCredentials = import("./mnqSnsCredentials").MnqSnsCredentials;
+export const MnqSnsCredentials: typeof import("./mnqSnsCredentials").MnqSnsCredentials = null as any;
+utilities.lazyLoad(exports, ["MnqSnsCredentials"], () => require("./mnqSnsCredentials"));
+
+export { MnqSnsTopicArgs, MnqSnsTopicState } from "./mnqSnsTopic";
+export type MnqSnsTopic = import("./mnqSnsTopic").MnqSnsTopic;
+export const MnqSnsTopic: typeof import("./mnqSnsTopic").MnqSnsTopic = null as any;
+utilities.lazyLoad(exports, ["MnqSnsTopic"], () => require("./mnqSnsTopic"));
+
+export { MnqSnsTopicSubscriptionArgs, MnqSnsTopicSubscriptionState } from "./mnqSnsTopicSubscription";
+export type MnqSnsTopicSubscription = import("./mnqSnsTopicSubscription").MnqSnsTopicSubscription;
+export const MnqSnsTopicSubscription: typeof import("./mnqSnsTopicSubscription").MnqSnsTopicSubscription = null as any;
+utilities.lazyLoad(exports, ["MnqSnsTopicSubscription"], () => require("./mnqSnsTopicSubscription"));
 
 export { MnqSqsArgs, MnqSqsState } from "./mnqSqs";
 export type MnqSqs = import("./mnqSqs").MnqSqs;
@@ -814,6 +864,11 @@ export { RegistryNamespaceArgs, RegistryNamespaceState } from "./registryNamespa
 export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;
 export const RegistryNamespace: typeof import("./registryNamespace").RegistryNamespace = null as any;
 utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
+
+export { SdbDatabaseArgs, SdbDatabaseState } from "./sdbDatabase";
+export type SdbDatabase = import("./sdbDatabase").SdbDatabase;
+export const SdbDatabase: typeof import("./sdbDatabase").SdbDatabase = null as any;
+utilities.lazyLoad(exports, ["SdbDatabase"], () => require("./sdbDatabase"));
 
 export { SecretArgs, SecretState } from "./secret";
 export type Secret = import("./secret").Secret;
@@ -902,6 +957,10 @@ const _module = {
                 return new AppleSliconValleyServer(name, <any>undefined, { urn })
             case "scaleway:index/baremetalServer:BaremetalServer":
                 return new BaremetalServer(name, <any>undefined, { urn })
+            case "scaleway:index/blockSnapshot:BlockSnapshot":
+                return new BlockSnapshot(name, <any>undefined, { urn })
+            case "scaleway:index/blockVolume:BlockVolume":
+                return new BlockVolume(name, <any>undefined, { urn })
             case "scaleway:index/cockpit:Cockpit":
                 return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
@@ -1010,6 +1069,12 @@ const _module = {
                 return new IotNetwork(name, <any>undefined, { urn })
             case "scaleway:index/iotRoute:IotRoute":
                 return new IotRoute(name, <any>undefined, { urn })
+            case "scaleway:index/ipamIp:IpamIp":
+                return new IpamIp(name, <any>undefined, { urn })
+            case "scaleway:index/ipamIpReverseDns:IpamIpReverseDns":
+                return new IpamIpReverseDns(name, <any>undefined, { urn })
+            case "scaleway:index/jobDefinition:JobDefinition":
+                return new JobDefinition(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesCluster:KubernetesCluster":
                 return new KubernetesCluster(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -1028,16 +1093,18 @@ const _module = {
                 return new LoadbalancerIp(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
                 return new LoadbalancerRoute(name, <any>undefined, { urn })
-            case "scaleway:index/mnqCredential:MnqCredential":
-                return new MnqCredential(name, <any>undefined, { urn })
-            case "scaleway:index/mnqNamespace:MnqNamespace":
-                return new MnqNamespace(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
                 return new MnqNatsAccount(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
                 return new MnqNatsCredentials(name, <any>undefined, { urn })
-            case "scaleway:index/mnqQueue:MnqQueue":
-                return new MnqQueue(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSns:MnqSns":
+                return new MnqSns(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSnsCredentials:MnqSnsCredentials":
+                return new MnqSnsCredentials(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSnsTopic:MnqSnsTopic":
+                return new MnqSnsTopic(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription":
+                return new MnqSnsTopicSubscription(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqs:MnqSqs":
                 return new MnqSqs(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
@@ -1060,6 +1127,8 @@ const _module = {
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
                 return new RegistryNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/sdbDatabase:SdbDatabase":
+                return new SdbDatabase(name, <any>undefined, { urn })
             case "scaleway:index/secret:Secret":
                 return new Secret(name, <any>undefined, { urn })
             case "scaleway:index/secretVersion:SecretVersion":
@@ -1095,6 +1164,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)
@@ -1149,6 +1220,9 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotDevice", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/ipamIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/ipamIpReverseDns", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/jobDefinition", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancer", _module)
@@ -1158,11 +1232,12 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerCertificate
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mnqQueue", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSns", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsCredentials", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsTopic", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsTopicSubscription", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqs", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsQueue", _module)
@@ -1174,6 +1249,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConf
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/sdbDatabase", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)

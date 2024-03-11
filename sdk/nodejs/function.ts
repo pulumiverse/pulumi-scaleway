@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Functions.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -112,7 +112,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
@@ -280,7 +280,7 @@ export interface FunctionState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -364,7 +364,7 @@ export interface FunctionArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     namespaceId: pulumi.Input<string>;
     /**

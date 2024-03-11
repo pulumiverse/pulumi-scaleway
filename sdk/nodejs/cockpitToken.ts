@@ -84,7 +84,7 @@ export class CockpitToken extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the token
+     * The name of the token.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -92,11 +92,11 @@ export class CockpitToken extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Allowed scopes
+     * Allowed scopes.
      */
     public readonly scopes!: pulumi.Output<outputs.CockpitTokenScopes>;
     /**
-     * The secret key of the token
+     * The secret key of the token.
      */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
 
@@ -136,7 +136,7 @@ export class CockpitToken extends pulumi.CustomResource {
  */
 export interface CockpitTokenState {
     /**
-     * The name of the token
+     * The name of the token.
      */
     name?: pulumi.Input<string>;
     /**
@@ -144,11 +144,11 @@ export interface CockpitTokenState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Allowed scopes
+     * Allowed scopes.
      */
     scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
     /**
-     * The secret key of the token
+     * The secret key of the token.
      */
     secretKey?: pulumi.Input<string>;
 }
@@ -158,7 +158,7 @@ export interface CockpitTokenState {
  */
 export interface CockpitTokenArgs {
     /**
-     * The name of the token
+     * The name of the token.
      */
     name?: pulumi.Input<string>;
     /**
@@ -166,7 +166,7 @@ export interface CockpitTokenArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Allowed scopes
+     * Allowed scopes.
      */
     scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
 }

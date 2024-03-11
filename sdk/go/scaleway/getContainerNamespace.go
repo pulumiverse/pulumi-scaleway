@@ -64,6 +64,8 @@ type LookupContainerNamespaceArgs struct {
 	// The namespace id.
 	// Only one of `name` and `namespaceId` should be specified.
 	NamespaceId *string `pulumi:"namespaceId"`
+	// `projectId`) The ID of the project the namespace is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the namespace exists.
 	Region *string `pulumi:"region"`
 }
@@ -81,7 +83,7 @@ type LookupContainerNamespaceResult struct {
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The organization ID the namespace is associated with.
 	OrganizationId string  `pulumi:"organizationId"`
-	ProjectId      string  `pulumi:"projectId"`
+	ProjectId      *string `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint string `pulumi:"registryEndpoint"`
@@ -111,6 +113,8 @@ type LookupContainerNamespaceOutputArgs struct {
 	// The namespace id.
 	// Only one of `name` and `namespaceId` should be specified.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
+	// `projectId`) The ID of the project the namespace is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the namespace exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -166,8 +170,8 @@ func (o LookupContainerNamespaceResultOutput) OrganizationId() pulumi.StringOutp
 	return o.ApplyT(func(v LookupContainerNamespaceResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupContainerNamespaceResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupContainerNamespaceResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupContainerNamespaceResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupContainerNamespaceResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupContainerNamespaceResultOutput) Region() pulumi.StringPtrOutput {

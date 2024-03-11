@@ -14,8 +14,9 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Messaging and queuing Nats Accounts.
     /// For further information please check
     /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+    /// To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 

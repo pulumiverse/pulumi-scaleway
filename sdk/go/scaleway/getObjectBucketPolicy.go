@@ -54,8 +54,7 @@ func LookupObjectBucketPolicy(ctx *pulumi.Context, args *LookupObjectBucketPolic
 // A collection of arguments for invoking getObjectBucketPolicy.
 type LookupObjectBucketPolicyArgs struct {
 	// The bucket name.
-	Bucket string `pulumi:"bucket"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	Bucket    string  `pulumi:"bucket"`
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
 	Region *string `pulumi:"region"`
@@ -88,8 +87,7 @@ func LookupObjectBucketPolicyOutput(ctx *pulumi.Context, args LookupObjectBucket
 // A collection of arguments for invoking getObjectBucketPolicy.
 type LookupObjectBucketPolicyOutputArgs struct {
 	// The bucket name.
-	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	Bucket    pulumi.StringInput    `pulumi:"bucket"`
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`

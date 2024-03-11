@@ -12,6 +12,34 @@ import (
 )
 
 // Gets information about a transactional email domain.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupTemDomain(ctx, &scaleway.LookupTemDomainArgs{
+//				DomainId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupTemDomain(ctx *pulumi.Context, args *LookupTemDomainArgs, opts ...pulumi.InvokeOption) (*LookupTemDomainResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTemDomainResult
@@ -24,51 +52,44 @@ func LookupTemDomain(ctx *pulumi.Context, args *LookupTemDomainArgs, opts ...pul
 
 // A collection of arguments for invoking getTemDomain.
 type LookupTemDomainArgs struct {
+	// The domain id.
+	// Only one of `name` and `domainId` should be specified.
 	DomainId *string `pulumi:"domainId"`
 	// The domain name.
-	// Only one of `name` and `id` should be specified.
+	// Only one of `name` and `domainId` should be specified.
 	Name *string `pulumi:"name"`
+	// `projectId`) The ID of the project the domain is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the domain exists.
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getTemDomain.
 type LookupTemDomainResult struct {
-	AcceptTos bool `pulumi:"acceptTos"`
-	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
-	CreatedAt string `pulumi:"createdAt"`
-	// The DKIM public key, as should be recorded in the DNS zone.
+	AcceptTos  bool    `pulumi:"acceptTos"`
+	CreatedAt  string  `pulumi:"createdAt"`
 	DkimConfig string  `pulumi:"dkimConfig"`
 	DomainId   *string `pulumi:"domainId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The error message if the last check failed.
-	LastError string `pulumi:"lastError"`
-	// The date and time the domain was last found to be valid (RFC 3339 format).
-	LastValidAt string  `pulumi:"lastValidAt"`
-	Name        *string `pulumi:"name"`
-	// The date and time of the next scheduled check (RFC 3339 format).
-	NextCheckAt string  `pulumi:"nextCheckAt"`
-	ProjectId   string  `pulumi:"projectId"`
-	Region      *string `pulumi:"region"`
-	// The date and time of the revocation of the domain (RFC 3339 format).
-	RevokedAt string `pulumi:"revokedAt"`
-	// The SMTP host to use to send emails.
-	SmtpHost string `pulumi:"smtpHost"`
-	// The SMTP port to use to send emails over TLS.
-	SmtpPort int `pulumi:"smtpPort"`
-	// The SMTP port to use to send emails over TLS.
-	SmtpPortAlternative int `pulumi:"smtpPortAlternative"`
-	// The SMTP port to use to send emails.
-	SmtpPortUnsecure int `pulumi:"smtpPortUnsecure"`
-	// The SMTPS port to use to send emails over TLS Wrapper.
-	SmtpsPort int `pulumi:"smtpsPort"`
-	// The SMTPS port to use to send emails over TLS Wrapper.
-	SmtpsPortAlternative int `pulumi:"smtpsPortAlternative"`
-	// The snippet of the SPF record that should be registered in the DNS zone.
-	SpfConfig string `pulumi:"spfConfig"`
-	// The status of the Transaction Email Domain.
-	Status string `pulumi:"status"`
+	Id                   string                   `pulumi:"id"`
+	LastError            string                   `pulumi:"lastError"`
+	LastValidAt          string                   `pulumi:"lastValidAt"`
+	MxBlackhole          string                   `pulumi:"mxBlackhole"`
+	Name                 *string                  `pulumi:"name"`
+	NextCheckAt          string                   `pulumi:"nextCheckAt"`
+	ProjectId            *string                  `pulumi:"projectId"`
+	Region               *string                  `pulumi:"region"`
+	Reputations          []GetTemDomainReputation `pulumi:"reputations"`
+	RevokedAt            string                   `pulumi:"revokedAt"`
+	SmtpHost             string                   `pulumi:"smtpHost"`
+	SmtpPort             int                      `pulumi:"smtpPort"`
+	SmtpPortAlternative  int                      `pulumi:"smtpPortAlternative"`
+	SmtpPortUnsecure     int                      `pulumi:"smtpPortUnsecure"`
+	SmtpsAuthUser        string                   `pulumi:"smtpsAuthUser"`
+	SmtpsPort            int                      `pulumi:"smtpsPort"`
+	SmtpsPortAlternative int                      `pulumi:"smtpsPortAlternative"`
+	SpfConfig            string                   `pulumi:"spfConfig"`
+	Status               string                   `pulumi:"status"`
 }
 
 func LookupTemDomainOutput(ctx *pulumi.Context, args LookupTemDomainOutputArgs, opts ...pulumi.InvokeOption) LookupTemDomainResultOutput {
@@ -86,10 +107,14 @@ func LookupTemDomainOutput(ctx *pulumi.Context, args LookupTemDomainOutputArgs, 
 
 // A collection of arguments for invoking getTemDomain.
 type LookupTemDomainOutputArgs struct {
+	// The domain id.
+	// Only one of `name` and `domainId` should be specified.
 	DomainId pulumi.StringPtrInput `pulumi:"domainId"`
 	// The domain name.
-	// Only one of `name` and `id` should be specified.
+	// Only one of `name` and `domainId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `projectId`) The ID of the project the domain is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the domain exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -117,12 +142,10 @@ func (o LookupTemDomainResultOutput) AcceptTos() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) bool { return v.AcceptTos }).(pulumi.BoolOutput)
 }
 
-// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 func (o LookupTemDomainResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The DKIM public key, as should be recorded in the DNS zone.
 func (o LookupTemDomainResultOutput) DkimConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DkimConfig }).(pulumi.StringOutput)
 }
@@ -136,74 +159,74 @@ func (o LookupTemDomainResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The error message if the last check failed.
 func (o LookupTemDomainResultOutput) LastError() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.LastError }).(pulumi.StringOutput)
 }
 
-// The date and time the domain was last found to be valid (RFC 3339 format).
 func (o LookupTemDomainResultOutput) LastValidAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.LastValidAt }).(pulumi.StringOutput)
+}
+
+func (o LookupTemDomainResultOutput) MxBlackhole() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.MxBlackhole }).(pulumi.StringOutput)
 }
 
 func (o LookupTemDomainResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the next scheduled check (RFC 3339 format).
 func (o LookupTemDomainResultOutput) NextCheckAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.NextCheckAt }).(pulumi.StringOutput)
 }
 
-func (o LookupTemDomainResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTemDomainResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupTemDomainResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupTemDomainResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the revocation of the domain (RFC 3339 format).
+func (o LookupTemDomainResultOutput) Reputations() GetTemDomainReputationArrayOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) []GetTemDomainReputation { return v.Reputations }).(GetTemDomainReputationArrayOutput)
+}
+
 func (o LookupTemDomainResultOutput) RevokedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.RevokedAt }).(pulumi.StringOutput)
 }
 
-// The SMTP host to use to send emails.
 func (o LookupTemDomainResultOutput) SmtpHost() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SmtpHost }).(pulumi.StringOutput)
 }
 
-// The SMTP port to use to send emails over TLS.
 func (o LookupTemDomainResultOutput) SmtpPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPort }).(pulumi.IntOutput)
 }
 
-// The SMTP port to use to send emails over TLS.
 func (o LookupTemDomainResultOutput) SmtpPortAlternative() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPortAlternative }).(pulumi.IntOutput)
 }
 
-// The SMTP port to use to send emails.
 func (o LookupTemDomainResultOutput) SmtpPortUnsecure() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPortUnsecure }).(pulumi.IntOutput)
 }
 
-// The SMTPS port to use to send emails over TLS Wrapper.
+func (o LookupTemDomainResultOutput) SmtpsAuthUser() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SmtpsAuthUser }).(pulumi.StringOutput)
+}
+
 func (o LookupTemDomainResultOutput) SmtpsPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpsPort }).(pulumi.IntOutput)
 }
 
-// The SMTPS port to use to send emails over TLS Wrapper.
 func (o LookupTemDomainResultOutput) SmtpsPortAlternative() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpsPortAlternative }).(pulumi.IntOutput)
 }
 
-// The snippet of the SPF record that should be registered in the DNS zone.
 func (o LookupTemDomainResultOutput) SpfConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SpfConfig }).(pulumi.StringOutput)
 }
 
-// The status of the Transaction Email Domain.
 func (o LookupTemDomainResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.Status }).(pulumi.StringOutput)
 }

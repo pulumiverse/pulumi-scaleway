@@ -30,6 +30,7 @@ export function getContainerNamespace(args?: GetContainerNamespaceArgs, opts?: p
     return pulumi.runtime.invoke("scaleway:index/getContainerNamespace:getContainerNamespace", {
         "name": args.name,
         "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -48,6 +49,10 @@ export interface GetContainerNamespaceArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: string;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the namespace exists.
      */
@@ -77,7 +82,7 @@ export interface GetContainerNamespaceResult {
      * The organization ID the namespace is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
     /**
      * The registry endpoint of the namespace.
@@ -126,6 +131,10 @@ export interface GetContainerNamespaceOutputArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the namespace exists.
      */

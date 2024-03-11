@@ -131,7 +131,7 @@ import (
 //						},
 //						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
 //							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
-//								Days:         pulumi.Int(0),
+//								Days:         pulumi.Int(1),
 //								StorageClass: pulumi.String("GLACIER"),
 //							},
 //						},
@@ -177,6 +177,8 @@ type ObjectBucket struct {
 	//
 	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
+	// API URL of the bucket
+	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules ObjectBucketCorsRuleArrayOutput `pulumi:"corsRules"`
 	// The endpoint URL of the bucket
@@ -197,6 +199,9 @@ type ObjectBucket struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning ObjectBucketVersioningOutput `pulumi:"versioning"`
@@ -236,6 +241,8 @@ type objectBucketState struct {
 	//
 	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl *string `pulumi:"acl"`
+	// API URL of the bucket
+	ApiEndpoint *string `pulumi:"apiEndpoint"`
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
 	// The endpoint URL of the bucket
@@ -256,6 +263,9 @@ type objectBucketState struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags map[string]string `pulumi:"tags"`
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning *ObjectBucketVersioning `pulumi:"versioning"`
@@ -266,6 +276,8 @@ type ObjectBucketState struct {
 	//
 	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
 	Acl pulumi.StringPtrInput
+	// API URL of the bucket
+	ApiEndpoint pulumi.StringPtrInput
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules ObjectBucketCorsRuleArrayInput
 	// The endpoint URL of the bucket
@@ -286,6 +298,9 @@ type ObjectBucketState struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapInput
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning ObjectBucketVersioningPtrInput
@@ -318,6 +333,9 @@ type objectBucketArgs struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags map[string]string `pulumi:"tags"`
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning *ObjectBucketVersioning `pulumi:"versioning"`
@@ -347,6 +365,9 @@ type ObjectBucketArgs struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapInput
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning ObjectBucketVersioningPtrInput
@@ -446,6 +467,11 @@ func (o ObjectBucketOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }
 
+// API URL of the bucket
+func (o ObjectBucketOutput) ApiEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.ApiEndpoint }).(pulumi.StringOutput)
+}
+
 // A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 func (o ObjectBucketOutput) CorsRules() ObjectBucketCorsRuleArrayOutput {
 	return o.ApplyT(func(v *ObjectBucket) ObjectBucketCorsRuleArrayOutput { return v.CorsRules }).(ObjectBucketCorsRuleArrayOutput)
@@ -490,6 +516,9 @@ func (o ObjectBucketOutput) Region() pulumi.StringOutput {
 }
 
 // A list of tags (key / value) for the bucket.
+//
+// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 func (o ObjectBucketOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }

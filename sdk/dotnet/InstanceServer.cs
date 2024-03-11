@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -224,7 +224,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Root volume configuration
     /// 
-    /// #### Resized block volume with installed image
+    /// ### Resized block volume with installed image
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -250,7 +250,7 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// #### From snapshot
+    /// ### From snapshot
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -373,6 +373,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
@@ -635,6 +637,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -843,6 +847,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// 
+        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {

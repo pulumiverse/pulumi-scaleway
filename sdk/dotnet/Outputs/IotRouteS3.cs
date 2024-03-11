@@ -15,19 +15,19 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IotRouteS3
     {
         /// <summary>
-        /// The name of the S3 route's destination bucket
+        /// The name of the S3 route's destination bucket (e.g. `my-object-storage`).
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// The region of the S3 route's destination bucket
+        /// The region of the S3 route's destination bucket (e.g. `fr-par`).
         /// </summary>
         public readonly string BucketRegion;
         /// <summary>
-        /// The string to prefix object names with
+        /// The string to prefix object names with (e.g. `mykeyprefix-`).
         /// </summary>
         public readonly string? ObjectPrefix;
         /// <summary>
-        /// How the S3 route's objects will be created: one per topic or one per message
+        /// How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
         /// </summary>
         public readonly string Strategy;
 

@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway DocumentDB Database read replicas.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 

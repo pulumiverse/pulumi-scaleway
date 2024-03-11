@@ -9,19 +9,33 @@ import * as utilities from "./utilities";
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
+ *
+ * Activate SQS for default project
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // For default project in default region
  * const main = new scaleway.MnqSqs("main", {});
- * // For specific project in default region
- * const forProject = new scaleway.MnqSqs("forProject", {projectId: scaleway_account_project.main.id});
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Activate SQS for a specific project
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * const forProject = new scaleway.MnqSqs("forProject", {projectId: project.then(project => project.id)});
  * ```
  * <!--End PulumiCodeChooser -->
  *

@@ -19,6 +19,10 @@ import * as utilities from "./utilities";
  * const myName = scaleway.getVpcPrivateNetwork({
  *     name: "foobar",
  * });
+ * const myNameAndVpcId = scaleway.getVpcPrivateNetwork({
+ *     name: "foobar",
+ *     vpcId: "11111111-1111-1111-1111-111111111111",
+ * });
  * const myId = scaleway.getVpcPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -32,6 +36,8 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
     return pulumi.runtime.invoke("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {
         "name": args.name,
         "privateNetworkId": args.privateNetworkId,
+        "projectId": args.projectId,
+        "vpcId": args.vpcId,
     }, opts);
 }
 
@@ -40,13 +46,21 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
  */
 export interface GetVpcPrivateNetworkArgs {
     /**
-     * Name of the private network. One of `name` and `privateNetworkId` should be specified.
+     * Name of the private network. Cannot be used with `privateNetworkId`.
      */
     name?: string;
     /**
-     * ID of the private network. One of `name` and `privateNetworkId` should be specified.
+     * ID of the private network. Cannot be used with `name` and `vpcId`.
      */
     privateNetworkId?: string;
+    /**
+     * The ID of the project the private network is associated with.
+     */
+    projectId?: string;
+    /**
+     * ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
+     */
+    vpcId?: string;
 }
 
 /**
@@ -59,22 +73,22 @@ export interface GetVpcPrivateNetworkResult {
      */
     readonly id: string;
     /**
-     * (Optional) The IPv4 subnet associated with the private network.
+     * The IPv4 subnet associated with the private network.
      */
     readonly ipv4Subnets: outputs.GetVpcPrivateNetworkIpv4Subnet[];
     /**
-     * (Optional) The IPv6 subnets associated with the private network.
+     * The IPv6 subnets associated with the private network.
      */
     readonly ipv6Subnets: outputs.GetVpcPrivateNetworkIpv6Subnet[];
     readonly isRegional: boolean;
     readonly name?: string;
     readonly organizationId: string;
     readonly privateNetworkId?: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region: string;
     readonly tags: string[];
     readonly updatedAt: string;
-    readonly vpcId: string;
+    readonly vpcId?: string;
     readonly zone: string;
 }
 /**
@@ -89,6 +103,10 @@ export interface GetVpcPrivateNetworkResult {
  *
  * const myName = scaleway.getVpcPrivateNetwork({
  *     name: "foobar",
+ * });
+ * const myNameAndVpcId = scaleway.getVpcPrivateNetwork({
+ *     name: "foobar",
+ *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * const myId = scaleway.getVpcPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
@@ -105,11 +123,19 @@ export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs
  */
 export interface GetVpcPrivateNetworkOutputArgs {
     /**
-     * Name of the private network. One of `name` and `privateNetworkId` should be specified.
+     * Name of the private network. Cannot be used with `privateNetworkId`.
      */
     name?: pulumi.Input<string>;
     /**
-     * ID of the private network. One of `name` and `privateNetworkId` should be specified.
+     * ID of the private network. Cannot be used with `name` and `vpcId`.
      */
     privateNetworkId?: pulumi.Input<string>;
+    /**
+     * The ID of the project the private network is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
+     */
+    vpcId?: pulumi.Input<string>;
 }

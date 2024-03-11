@@ -7,6 +7,41 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {hubId: mainIotHub.id});
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### With custom certificate
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as local from "@pulumi/local";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const deviceCert = local.getFile({
+ *     filename: "device-certificate.pem",
+ * });
+ * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {
+ *     hubId: mainIotHub.id,
+ *     certificate: {
+ *         crt: deviceCert.then(deviceCert => deviceCert.content),
+ *     },
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * IoT devices can be imported using the `{region}/{id}`, e.g.

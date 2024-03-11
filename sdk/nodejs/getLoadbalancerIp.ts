@@ -27,6 +27,7 @@ export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.In
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
+        "projectId": args.projectId,
     }, opts);
 }
 
@@ -44,6 +45,10 @@ export interface GetLoadbalancerIpArgs {
      * Only one of `ipAddress` and `ipId` should be specified.
      */
     ipId?: string;
+    /**
+     * The ID of the project the LB IP associated with.
+     */
+    projectId?: string;
 }
 
 /**
@@ -106,4 +111,8 @@ export interface GetLoadbalancerIpOutputArgs {
      * Only one of `ipAddress` and `ipId` should be specified.
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * The ID of the project the LB IP associated with.
+     */
+    projectId?: pulumi.Input<string>;
 }

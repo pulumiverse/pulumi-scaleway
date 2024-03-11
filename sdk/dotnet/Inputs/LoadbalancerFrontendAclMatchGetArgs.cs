@@ -22,7 +22,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? HttpFilter { get; set; }
 
         /// <summary>
-        /// You can use this field with http_header_match acl type to set the header name to filter
+        /// If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         /// </summary>
         [Input("httpFilterOption")]
         public Input<string>? HttpFilterOption { get; set; }

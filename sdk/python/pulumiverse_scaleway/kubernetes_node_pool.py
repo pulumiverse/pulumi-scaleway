@@ -1167,7 +1167,7 @@ class KubernetesNodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rootVolumeSizeInGb")
-    def root_volume_size_in_gb(self) -> pulumi.Output[Optional[int]]:
+    def root_volume_size_in_gb(self) -> pulumi.Output[int]:
         """
         The size of the system volume of the nodes in gigabyte
         """
@@ -1175,7 +1175,7 @@ class KubernetesNodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rootVolumeType")
-    def root_volume_type(self) -> pulumi.Output[Optional[str]]:
+    def root_volume_type(self) -> pulumi.Output[str]:
         """
         System volume type of the nodes composing the pool
         """

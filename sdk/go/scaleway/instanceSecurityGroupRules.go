@@ -18,7 +18,7 @@ import (
 //
 // > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //

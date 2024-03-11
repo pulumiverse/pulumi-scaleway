@@ -234,7 +234,7 @@ class FunctionToken(pulumi.CustomResource):
         Creates and manages Scaleway Function Token.
         For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/#tokens-26b085).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -290,7 +290,7 @@ class FunctionToken(pulumi.CustomResource):
         Creates and manages Scaleway Function Token.
         For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/#tokens-26b085).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

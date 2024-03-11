@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Database Instances.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Example Basic
     /// 
@@ -35,37 +35,6 @@ namespace Pulumiverse.Scaleway
     ///         NodeType = "DB-DEV-S",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         UserName = "my_initial_user",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ### Example With IPAM
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
-    /// 
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
-    ///     {
-    ///         NodeType = "DB-DEV-S",
-    ///         Engine = "PostgreSQL-11",
-    ///         IsHaCluster = true,
-    ///         DisableBackup = true,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
-    ///         {
-    ///             PnId = pn.Id,
-    ///         },
     ///     });
     /// 
     /// });
@@ -131,7 +100,11 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ### Example with custom private network
+    /// ### Examples of endpoints configuration
+    /// 
+    /// RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+    /// 
+    /// ### 1 static private network endpoint
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -142,7 +115,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // VPC PRIVATE NETWORK
     ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
     ///     {
     ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
@@ -151,29 +123,14 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     // RDB INSTANCE CONNECTED ON A CUSTOM PRIVATE NETWORK
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-11",
-    ///         IsHaCluster = false,
-    ///         DisableBackup = true,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         Region = "fr-par",
-    ///         Tags = new[]
-    ///         {
-    ///             "terraform-test",
-    ///             "scaleway_rdb_instance",
-    ///             "volume",
-    ///             "rdb_pn",
-    ///         },
-    ///         VolumeType = "bssd",
-    ///         VolumeSizeInGb = 10,
     ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
     ///         {
-    ///             IpNet = "172.16.20.4/22",
     ///             PnId = pn.Id,
+    ///             IpNet = "172.16.20.4/22",
     ///         },
     ///     });
     /// 
@@ -181,24 +138,60 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Settings
+    /// ### 1 IPAM private network endpoint + 1 public endpoint
     /// 
-    /// Please consult
-    /// the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
-    /// available `settings` and `init_settings` on your `node_type` of your convenient.
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
     /// 
-    /// ## Private Network
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
     /// 
-    /// &gt; **Important:** Updates to `private_network` will recreate the attachment Instance.
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-11",
+    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///             EnableIpam = true,
+    ///         },
+    ///         LoadBalancers = new[]
+    ///         {
+    ///             null,
+    ///         },
+    ///     });
     /// 
-    /// &gt; **NOTE:** Please calculate your host IP.
-    /// using cirhost. Otherwise, lets IPAM service
-    /// handle the host IP on the network.
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
-    ///   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-    ///   service if not set.
-    /// - `pn_id` - (Required) The ID of the private network.
+    /// ### Default: 1 public endpoint
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         Engine = "PostgreSQL-11",
+    ///         NodeType = "db-dev-s",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &gt; If nothing is defined, your instance will have a default public load-balancer endpoint
     /// 
     /// ## Limitations
     /// 
@@ -273,6 +266,8 @@ namespace Pulumiverse.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
@@ -286,7 +281,8 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
@@ -302,6 +298,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -362,16 +361,18 @@ namespace Pulumiverse.Scaleway
         /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
-        public Output<string?> UserName { get; private set; } = null!;
+        public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         /// </summary>
         [Output("volumeType")]
         public Output<string?> VolumeType { get; private set; } = null!;
@@ -466,6 +467,8 @@ namespace Pulumiverse.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -481,6 +484,19 @@ namespace Pulumiverse.Scaleway
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
+        [Input("loadBalancers")]
+        private InputList<Inputs.DatabaseInstanceLoadBalancerArgs>? _loadBalancers;
+
+        /// <summary>
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// </summary>
+        public InputList<Inputs.DatabaseInstanceLoadBalancerArgs> LoadBalancers
+        {
+            get => _loadBalancers ?? (_loadBalancers = new InputList<Inputs.DatabaseInstanceLoadBalancerArgs>());
+            set => _loadBalancers = value;
+        }
+
         /// <summary>
         /// The name of the Database Instance.
         /// </summary>
@@ -492,6 +508,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -565,13 +584,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
@@ -641,6 +662,8 @@ namespace Pulumiverse.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -660,7 +683,8 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs> LoadBalancers
         {
@@ -679,6 +703,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -770,13 +797,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

@@ -13,6 +13,8 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
     /// 
+    /// &gt; You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
+    /// 
     /// ## Example Usage
     /// 
     /// ### Create a policy for an organization's project
@@ -46,6 +48,40 @@ namespace Pulumiverse.Scaleway
     ///                 {
     ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
     ///                 },
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "ObjectStorageReadOnly",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Create a policy for all current and future projects in an organization
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var app = new Scaleway.IamApplication("app");
+    /// 
+    ///     var objectReadOnly = new Scaleway.IamPolicy("objectReadOnly", new()
+    ///     {
+    ///         Description = "gives app readonly access to object storage in project",
+    ///         ApplicationId = app.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             {
+    ///                 OrganizationId = app.OrganizationId,
     ///                 PermissionSetNames = new[]
     ///                 {
     ///                     "ObjectStorageReadOnly",
@@ -102,7 +138,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// .The name of the iam policy.
+        /// The name of the iam policy.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -116,7 +152,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> NoPrincipal { get; private set; } = null!;
 
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -126,6 +162,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.IamPolicyRule>> Rules { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags associated with the iam policy.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the last update of the policy.
@@ -205,7 +247,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// .The name of the iam policy.
+        /// The name of the iam policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -219,7 +261,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -234,6 +276,18 @@ namespace Pulumiverse.Scaleway
         {
             get => _rules ?? (_rules = new InputList<Inputs.IamPolicyRuleArgs>());
             set => _rules = value;
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the iam policy.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -281,7 +335,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// .The name of the iam policy.
+        /// The name of the iam policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -295,7 +349,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -310,6 +364,18 @@ namespace Pulumiverse.Scaleway
         {
             get => _rules ?? (_rules = new InputList<Inputs.IamPolicyRuleGetArgs>());
             set => _rules = value;
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the iam policy.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
         }
 
         /// <summary>

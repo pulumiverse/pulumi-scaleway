@@ -83,6 +83,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the Redis cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
@@ -109,6 +115,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the Redis cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The zone in which the server exists.
@@ -139,7 +151,7 @@ namespace Pulumiverse.Scaleway
         public readonly string NodeType;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetRedisClusterPrivateNetworkResult> PrivateNetworks;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly ImmutableArray<Outputs.GetRedisClusterPublicNetworkResult> PublicNetworks;
         public readonly ImmutableDictionary<string, string> Settings;
         public readonly ImmutableArray<string> Tags;
@@ -171,7 +183,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetRedisClusterPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             ImmutableArray<Outputs.GetRedisClusterPublicNetworkResult> publicNetworks,
 

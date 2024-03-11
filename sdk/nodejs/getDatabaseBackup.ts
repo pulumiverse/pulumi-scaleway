@@ -35,6 +35,7 @@ export function getDatabaseBackup(args?: GetDatabaseBackupArgs, opts?: pulumi.In
         "backupId": args.backupId,
         "instanceId": args.instanceId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -58,7 +59,11 @@ export interface GetDatabaseBackupArgs {
      */
     name?: string;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The ID of the project the Database Backup is associated with.
+     */
+    projectId?: string;
+    /**
+     * `region`) The region in which the Database Backup is associated with.
      */
     region?: string;
 }
@@ -78,6 +83,7 @@ export interface GetDatabaseBackupResult {
     readonly instanceId?: string;
     readonly instanceName: string;
     readonly name?: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly size: number;
     readonly updatedAt: string;
@@ -128,7 +134,11 @@ export interface GetDatabaseBackupOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * The ID of the project the Database Backup is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the Database Backup is associated with.
      */
     region?: pulumi.Input<string>;
 }

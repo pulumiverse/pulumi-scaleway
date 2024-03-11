@@ -234,7 +234,7 @@ class ContainerToken(pulumi.CustomResource):
         Creates and manages Scaleway Container Token.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#tokens-26b085).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -286,7 +286,7 @@ class ContainerToken(pulumi.CustomResource):
         Creates and manages Scaleway Container Token.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#tokens-26b085).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

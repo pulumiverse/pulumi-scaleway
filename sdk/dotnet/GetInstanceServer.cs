@@ -75,6 +75,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the instance server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The server id. Only one of `name` and `server_id` should be specified.
         /// </summary>
         [Input("serverId")]
@@ -99,6 +105,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the instance server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The server id. Only one of `name` and `server_id` should be specified.
@@ -181,10 +193,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string PrivateIp;
         public readonly ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> PrivateNetworks;
-        /// <summary>
-        /// The ID of the project the server is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The public IP address of the server.
         /// </summary>
@@ -263,7 +272,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             string publicIp,
 

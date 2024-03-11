@@ -21,7 +21,7 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, project_id=None, region=None, secret_id=None, status=None, tags=None, updated_at=None, version_count=None):
+    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, path=None, project_id=None, region=None, secret_id=None, status=None, tags=None, updated_at=None, version_count=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -37,6 +37,9 @@ class GetSecretResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -88,6 +91,11 @@ class GetSecretResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        return pulumi.get(self, "path")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
@@ -134,6 +142,7 @@ class AwaitableGetSecretResult(GetSecretResult):
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
+            path=self.path,
             project_id=self.project_id,
             region=self.region,
             secret_id=self.secret_id,
@@ -145,6 +154,7 @@ class AwaitableGetSecretResult(GetSecretResult):
 
 def get_secret(name: Optional[str] = None,
                organization_id: Optional[str] = None,
+               path: Optional[str] = None,
                project_id: Optional[str] = None,
                region: Optional[str] = None,
                secret_id: Optional[str] = None,
@@ -174,6 +184,8 @@ def get_secret(name: Optional[str] = None,
            Only one of `name` and `secret_id` should be specified.
     :param str organization_id: The organization ID the Project is associated with.
            If no default organization_id is set, one must be set explicitly in this datasource
+    :param str path: The secret path.
+           Conflicts with `secret_id`.
     :param str project_id: `project_id`) The ID of the
            project the secret is associated with.
     :param str region: `region`) The region in which the secret exists.
@@ -183,6 +195,7 @@ def get_secret(name: Optional[str] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['organizationId'] = organization_id
+    __args__['path'] = path
     __args__['projectId'] = project_id
     __args__['region'] = region
     __args__['secretId'] = secret_id
@@ -195,6 +208,7 @@ def get_secret(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        path=pulumi.get(__ret__, 'path'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         secret_id=pulumi.get(__ret__, 'secret_id'),
@@ -207,6 +221,7 @@ def get_secret(name: Optional[str] = None,
 @_utilities.lift_output_func(get_secret)
 def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                       organization_id: Optional[pulumi.Input[Optional[str]]] = None,
+                      path: Optional[pulumi.Input[Optional[str]]] = None,
                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
                       region: Optional[pulumi.Input[Optional[str]]] = None,
                       secret_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -236,6 +251,8 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
            Only one of `name` and `secret_id` should be specified.
     :param str organization_id: The organization ID the Project is associated with.
            If no default organization_id is set, one must be set explicitly in this datasource
+    :param str path: The secret path.
+           Conflicts with `secret_id`.
     :param str project_id: `project_id`) The ID of the
            project the secret is associated with.
     :param str region: `region`) The region in which the secret exists.

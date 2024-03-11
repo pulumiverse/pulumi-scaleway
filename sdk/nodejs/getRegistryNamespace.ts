@@ -27,6 +27,7 @@ export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pul
     return pulumi.runtime.invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", {
         "name": args.name,
         "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -45,6 +46,10 @@ export interface GetRegistryNamespaceArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: string;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the namespace exists.
      */
@@ -74,7 +79,7 @@ export interface GetRegistryNamespaceResult {
      * The organization ID the namespace is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
 }
 /**
@@ -111,6 +116,10 @@ export interface GetRegistryNamespaceOutputArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the namespace exists.
      */

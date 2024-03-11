@@ -215,6 +215,7 @@ class _DomainRecordState:
     def __init__(__self__, *,
                  data: Optional[pulumi.Input[str]] = None,
                  dns_zone: Optional[pulumi.Input[str]] = None,
+                 fqdn: Optional[pulumi.Input[str]] = None,
                  geo_ip: Optional[pulumi.Input['DomainRecordGeoIpArgs']] = None,
                  http_service: Optional[pulumi.Input['DomainRecordHttpServiceArgs']] = None,
                  keep_empty_zone: Optional[pulumi.Input[bool]] = None,
@@ -230,6 +231,7 @@ class _DomainRecordState:
         Input properties used for looking up and filtering DomainRecord resources.
         :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        :param pulumi.Input[str] fqdn: The FQDN of the record.
         :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
         :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
         :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
@@ -246,6 +248,8 @@ class _DomainRecordState:
             pulumi.set(__self__, "data", data)
         if dns_zone is not None:
             pulumi.set(__self__, "dns_zone", dns_zone)
+        if fqdn is not None:
+            pulumi.set(__self__, "fqdn", fqdn)
         if geo_ip is not None:
             pulumi.set(__self__, "geo_ip", geo_ip)
         if http_service is not None:
@@ -292,6 +296,18 @@ class _DomainRecordState:
     @dns_zone.setter
     def dns_zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dns_zone", value)
+
+    @property
+    @pulumi.getter
+    def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The FQDN of the record.
+        """
+        return pulumi.get(self, "fqdn")
+
+    @fqdn.setter
+    def fqdn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fqdn", value)
 
     @property
     @pulumi.getter(name="geoIp")
@@ -448,7 +464,7 @@ class DomainRecord(pulumi.CustomResource):
         Creates and manages Scaleway Domain record.\\
         For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -638,7 +654,7 @@ class DomainRecord(pulumi.CustomResource):
         Creates and manages Scaleway Domain record.\\
         For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -857,6 +873,7 @@ class DomainRecord(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["views"] = views
             __props__.__dict__["weighteds"] = weighteds
+            __props__.__dict__["fqdn"] = None
             __props__.__dict__["root_zone"] = None
         super(DomainRecord, __self__).__init__(
             'scaleway:index/domainRecord:DomainRecord',
@@ -870,6 +887,7 @@ class DomainRecord(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             data: Optional[pulumi.Input[str]] = None,
             dns_zone: Optional[pulumi.Input[str]] = None,
+            fqdn: Optional[pulumi.Input[str]] = None,
             geo_ip: Optional[pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']]] = None,
             http_service: Optional[pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']]] = None,
             keep_empty_zone: Optional[pulumi.Input[bool]] = None,
@@ -890,6 +908,7 @@ class DomainRecord(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        :param pulumi.Input[str] fqdn: The FQDN of the record.
         :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
         :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
         :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
@@ -908,6 +927,7 @@ class DomainRecord(pulumi.CustomResource):
 
         __props__.__dict__["data"] = data
         __props__.__dict__["dns_zone"] = dns_zone
+        __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["geo_ip"] = geo_ip
         __props__.__dict__["http_service"] = http_service
         __props__.__dict__["keep_empty_zone"] = keep_empty_zone
@@ -936,6 +956,14 @@ class DomainRecord(pulumi.CustomResource):
         The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         """
         return pulumi.get(self, "dns_zone")
+
+    @property
+    @pulumi.getter
+    def fqdn(self) -> pulumi.Output[str]:
+        """
+        The FQDN of the record.
+        """
+        return pulumi.get(self, "fqdn")
 
     @property
     @pulumi.getter(name="geoIp")

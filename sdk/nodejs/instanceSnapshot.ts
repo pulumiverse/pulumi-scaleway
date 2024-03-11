@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  * For more information,
  * see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
  *
- * ## Example
+ * ## Example Usage
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## Example with Unified type
+ * ### Example with Unified type snapshot
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## Import a local qcow2 file
+ * ### Example importing a local qcow2 file
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript

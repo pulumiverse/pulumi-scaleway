@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway VPC Private Networks.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 

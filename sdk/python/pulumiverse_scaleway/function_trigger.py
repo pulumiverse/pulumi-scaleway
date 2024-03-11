@@ -236,7 +236,7 @@ class FunctionTrigger(pulumi.CustomResource):
         Creates and manages Scaleway Function Triggers.
         For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
 
-        ## Examples
+        ## Example Usage
 
         ### SQS
 
@@ -284,7 +284,7 @@ class FunctionTrigger(pulumi.CustomResource):
         Creates and manages Scaleway Function Triggers.
         For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
 
-        ## Examples
+        ## Example Usage
 
         ### SQS
 

@@ -121,11 +121,17 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public string NamespaceId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project the container is associated with.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// (Defaults to provider `region`) The region in which the container was created.
@@ -152,11 +158,17 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project the container is associated with.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// (Defaults to provider `region`) The region in which the container was created.
@@ -234,6 +246,7 @@ namespace Pulumiverse.Scaleway
         /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
         /// </summary>
         public readonly string Privacy;
+        public readonly string? ProjectId;
         /// <summary>
         /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
@@ -298,6 +311,8 @@ namespace Pulumiverse.Scaleway
 
             string privacy,
 
+            string? projectId,
+
             string protocol,
 
             string? region,
@@ -330,6 +345,7 @@ namespace Pulumiverse.Scaleway
             NamespaceId = namespaceId;
             Port = port;
             Privacy = privacy;
+            ProjectId = projectId;
             Protocol = protocol;
             Region = region;
             RegistryImage = registryImage;

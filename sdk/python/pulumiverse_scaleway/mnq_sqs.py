@@ -124,19 +124,31 @@ class MnqSqs(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
+
+        Activate SQS for default project
 
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        # For default project in default region
         main = scaleway.MnqSqs("main")
-        # For specific project in default region
-        for_project = scaleway.MnqSqs("forProject", project_id=scaleway_account_project["main"]["id"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        Activate SQS for a specific project
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.get_account_project(name="default")
+        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -167,19 +179,31 @@ class MnqSqs(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
+
+        Activate SQS for default project
 
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        # For default project in default region
         main = scaleway.MnqSqs("main")
-        # For specific project in default region
-        for_project = scaleway.MnqSqs("forProject", project_id=scaleway_account_project["main"]["id"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        Activate SQS for a specific project
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.get_account_project(name="default")
+        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
         ```
         <!--End PulumiCodeChooser -->
 

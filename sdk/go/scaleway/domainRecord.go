@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Domain record.\
 // For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -284,6 +284,8 @@ type DomainRecord struct {
 	Data pulumi.StringOutput `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringOutput `pulumi:"dnsZone"`
+	// The FQDN of the record.
+	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
 	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp DomainRecordGeoIpPtrOutput `pulumi:"geoIp"`
 	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
@@ -351,6 +353,8 @@ type domainRecordState struct {
 	Data *string `pulumi:"data"`
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone *string `pulumi:"dnsZone"`
+	// The FQDN of the record.
+	Fqdn *string `pulumi:"fqdn"`
 	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
 	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
@@ -380,6 +384,8 @@ type DomainRecordState struct {
 	Data pulumi.StringPtrInput
 	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 	DnsZone pulumi.StringPtrInput
+	// The FQDN of the record.
+	Fqdn pulumi.StringPtrInput
 	// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
 	GeoIp DomainRecordGeoIpPtrInput
 	// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
@@ -558,6 +564,11 @@ func (o DomainRecordOutput) Data() pulumi.StringOutput {
 // The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
 func (o DomainRecordOutput) DnsZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.DnsZone }).(pulumi.StringOutput)
+}
+
+// The FQDN of the record.
+func (o DomainRecordOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
 // The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)

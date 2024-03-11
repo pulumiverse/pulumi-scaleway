@@ -336,7 +336,7 @@ class ContainerNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Serverless Container Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -381,7 +381,7 @@ class ContainerNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Serverless Container Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

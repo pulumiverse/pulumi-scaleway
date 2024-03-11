@@ -81,6 +81,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the cluster exists.
         /// </summary>
         [Input("region")]
@@ -105,6 +111,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the cluster exists.
@@ -171,10 +183,7 @@ namespace Pulumiverse.Scaleway
         /// The ID of the private network of the cluster.
         /// </summary>
         public readonly string PrivateNetworkId;
-        /// <summary>
-        /// The ID of the project the cluster is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The region in which the cluster is.
         /// </summary>
@@ -242,7 +251,7 @@ namespace Pulumiverse.Scaleway
 
             string privateNetworkId,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

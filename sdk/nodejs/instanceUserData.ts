@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *

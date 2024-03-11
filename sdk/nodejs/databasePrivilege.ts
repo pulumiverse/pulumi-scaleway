@@ -31,14 +31,9 @@ import * as utilities from "./utilities";
  * });
  * const mainDatabasePrivilege = new scaleway.DatabasePrivilege("mainDatabasePrivilege", {
  *     instanceId: mainDatabaseInstance.id,
- *     userName: "my-db-user",
- *     databaseName: "my-db-name",
+ *     userName: mainDatabaseUser.name,
+ *     databaseName: mainDatabase.name,
  *     permission: "all",
- * }, {
- *     dependsOn: [
- *         mainDatabaseUser,
- *         mainDatabase,
- *     ],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

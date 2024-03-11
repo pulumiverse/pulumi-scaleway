@@ -15,9 +15,11 @@ import (
 // For further information please check
 // our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
+//
+// # Activate SQS for default project
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -32,14 +34,40 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// For default project in default region
 //			_, err := scaleway.NewMnqSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			// For specific project in default region
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// # Activate SQS for a specific project
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			_, err = scaleway.NewMnqSqs(ctx, "forProject", &scaleway.MnqSqsArgs{
-//				ProjectId: pulumi.Any(scaleway_account_project.Main.Id),
+//				ProjectId: *pulumi.String(project.Id),
 //			})
 //			if err != nil {
 //				return err

@@ -11,6 +11,36 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about a function.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupFunction(ctx, &scaleway.LookupFunctionArgs{
+//				FunctionId:  pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//				NamespaceId: "11111111-1111-1111-1111-111111111111",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulumi.InvokeOption) (*LookupFunctionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionResult
@@ -23,9 +53,16 @@ func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulum
 
 // A collection of arguments for invoking getFunction.
 type LookupFunctionArgs struct {
-	FunctionId  *string `pulumi:"functionId"`
-	Name        *string `pulumi:"name"`
-	NamespaceId string  `pulumi:"namespaceId"`
+	// The function id. Only one of `name` and `functionId` should be specified.
+	FunctionId *string `pulumi:"functionId"`
+	// The function name. Only one of `name` and `namespaceId` should be specified.
+	Name *string `pulumi:"name"`
+	// The namespace id associated with this function.
+	NamespaceId string `pulumi:"namespaceId"`
+	// The ID of the project the function is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region in which the function exists.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getFunction.
@@ -47,8 +84,8 @@ type LookupFunctionResult struct {
 	NamespaceId                string            `pulumi:"namespaceId"`
 	OrganizationId             string            `pulumi:"organizationId"`
 	Privacy                    string            `pulumi:"privacy"`
-	ProjectId                  string            `pulumi:"projectId"`
-	Region                     string            `pulumi:"region"`
+	ProjectId                  *string           `pulumi:"projectId"`
+	Region                     *string           `pulumi:"region"`
 	Runtime                    string            `pulumi:"runtime"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	Timeout                    int               `pulumi:"timeout"`
@@ -71,9 +108,16 @@ func LookupFunctionOutput(ctx *pulumi.Context, args LookupFunctionOutputArgs, op
 
 // A collection of arguments for invoking getFunction.
 type LookupFunctionOutputArgs struct {
-	FunctionId  pulumi.StringPtrInput `pulumi:"functionId"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
-	NamespaceId pulumi.StringInput    `pulumi:"namespaceId"`
+	// The function id. Only one of `name` and `functionId` should be specified.
+	FunctionId pulumi.StringPtrInput `pulumi:"functionId"`
+	// The function name. Only one of `name` and `namespaceId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The namespace id associated with this function.
+	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
+	// The ID of the project the function is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`) The region in which the function exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupFunctionOutputArgs) ElementType() reflect.Type {
@@ -160,12 +204,12 @@ func (o LookupFunctionResultOutput) Privacy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionResult) string { return v.Privacy }).(pulumi.StringOutput)
 }
 
-func (o LookupFunctionResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFunctionResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupFunctionResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFunctionResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupFunctionResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFunctionResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupFunctionResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFunctionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupFunctionResultOutput) Runtime() pulumi.StringOutput {

@@ -92,7 +92,11 @@ export class FunctionCron extends pulumi.CustomResource {
      */
     public readonly functionId!: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region
+     * The name of the cron. If not provided, the name is generated.
+     */
+    public readonly name!: pulumi.Output<string>;
+    /**
+     * `region`) The region
      * in where the job was created.
      */
     public readonly region!: pulumi.Output<string>;
@@ -121,6 +125,7 @@ export class FunctionCron extends pulumi.CustomResource {
             const state = argsOrState as FunctionCronState | undefined;
             resourceInputs["args"] = state ? state.args : undefined;
             resourceInputs["functionId"] = state ? state.functionId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -137,6 +142,7 @@ export class FunctionCron extends pulumi.CustomResource {
             }
             resourceInputs["args"] = args ? args.args : undefined;
             resourceInputs["functionId"] = args ? args.functionId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["status"] = undefined /*out*/;
@@ -160,7 +166,11 @@ export interface FunctionCronState {
      */
     functionId?: pulumi.Input<string>;
     /**
-     * (Defaults to provider `region`) The region
+     * The name of the cron. If not provided, the name is generated.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * `region`) The region
      * in where the job was created.
      */
     region?: pulumi.Input<string>;
@@ -189,7 +199,11 @@ export interface FunctionCronArgs {
      */
     functionId: pulumi.Input<string>;
     /**
-     * (Defaults to provider `region`) The region
+     * The name of the cron. If not provided, the name is generated.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * `region`) The region
      * in where the job was created.
      */
     region?: pulumi.Input<string>;

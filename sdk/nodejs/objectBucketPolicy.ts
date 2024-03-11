@@ -6,29 +6,44 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway object storage bucket policy.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
+ * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
  *
  * ## Example Usage
+ *
+ * ### Example Usage with an IAM user
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * const default = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * const user = scaleway.getIamUser({
+ *     email: "user@scaleway.com",
+ * });
+ * const policyIamPolicy = new scaleway.IamPolicy("policyIamPolicy", {
+ *     userId: user.then(user => user.id),
+ *     rules: [{
+ *         projectIds: [_default.then(_default => _default.id)],
+ *         permissionSetNames: ["ObjectStorageFullAccess"],
+ *     }],
+ * });
+ * // Object storage configuration
  * const bucket = new scaleway.ObjectBucket("bucket", {});
- * const main = new scaleway.IamApplication("main", {description: "a description"});
- * const policy = new scaleway.ObjectBucketPolicy("policy", {
+ * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", {
  *     bucket: bucket.name,
  *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
  *         Id: "MyBucketPolicy",
  *         Statement: [{
- *             Sid: "Delegate access",
  *             Effect: "Allow",
+ *             Action: ["s3:*"],
  *             Principal: {
- *                 SCW: pulumi.interpolate`application_id:${main.id}`,
+ *                 SCW: user.then(user => `user_id:${user.id}`),
  *             },
- *             Action: "s3:ListBucket",
  *             Resource: [
  *                 bucket.name,
  *                 pulumi.interpolate`${bucket.name}/*`,
@@ -39,14 +54,169 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
+ * ### Example with an IAM application
+ *
+ * ### Creating a bucket and delegating read access to an application
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const default = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * // IAM configuration
+ * const reading_app = new scaleway.IamApplication("reading-app", {});
+ * const policyIamPolicy = new scaleway.IamPolicy("policyIamPolicy", {
+ *     applicationId: reading_app.id,
+ *     rules: [{
+ *         projectIds: [_default.then(_default => _default.id)],
+ *         permissionSetNames: ["ObjectStorageBucketsRead"],
+ *     }],
+ * });
+ * // Object storage configuration
+ * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", {
+ *     bucket: bucket.id,
+ *     policy: pulumi.jsonStringify({
+ *         Version: "2023-04-17",
+ *         Statement: [{
+ *             Sid: "Delegate read access",
+ *             Effect: "Allow",
+ *             Principal: {
+ *                 SCW: pulumi.interpolate`application_id:${reading_app.id}`,
+ *             },
+ *             Action: [
+ *                 "s3:ListBucket",
+ *                 "s3:GetObject",
+ *             ],
+ *             Resource: [
+ *                 bucket.name,
+ *                 pulumi.interpolate`${bucket.name}/*`,
+ *             ],
+ *         }],
+ *     }),
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Reading the bucket with the application
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const reading-app = scaleway.getIamApplication({
+ *     name: "reading-app",
+ * });
+ * const reading_api_key = new scaleway.IamApiKey("reading-api-key", {applicationId: reading_app.then(reading_app => reading_app.id)});
+ * const reading_profile = new scaleway.Provider("reading-profile", {
+ *     accessKey: reading_api_key.accessKey,
+ *     secretKey: reading_api_key.secretKey,
+ * });
+ * const bucket = scaleway.getObjectBucket({
+ *     name: "some-unique-name",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Example with AWS provider
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const default = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * // Object storage configuration
+ * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const policy = aws.iam.getPolicyDocumentOutput({
+ *     version: "2012-10-17",
+ *     statements: [{
+ *         sid: "Delegate access",
+ *         effect: "Allow",
+ *         principals: [{
+ *             type: "SCW",
+ *             identifiers: [_default.then(_default => `project_id:${_default.id}`)],
+ *         }],
+ *         actions: ["s3:ListBucket"],
+ *         resources: [
+ *             bucket.name,
+ *             pulumi.interpolate`${bucket.name}/*`,
+ *         ],
+ *     }],
+ * });
+ * const main = new scaleway.ObjectBucketPolicy("main", {
+ *     bucket: bucket.id,
+ *     policy: policy.apply(policy => policy.json),
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Example with deprecated version 2012-10-17
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const default = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * // Object storage configuration
+ * const bucket = new scaleway.ObjectBucket("bucket", {region: "fr-par"});
+ * const policy = new scaleway.ObjectBucketPolicy("policy", {
+ *     bucket: bucket.name,
+ *     policy: pulumi.jsonStringify({
+ *         Version: "2012-10-17",
+ *         Statement: [{
+ *             Effect: "Allow",
+ *             Action: [
+ *                 "s3:ListBucket",
+ *                 "s3:GetObjectTagging",
+ *             ],
+ *             Principal: {
+ *                 SCW: _default.then(_default => `project_id:${_default.id}`),
+ *             },
+ *             Resource: [
+ *                 bucket.name,
+ *                 pulumi.interpolate`${bucket.name}/*`,
+ *             ],
+ *         }],
+ *     }),
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+ *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+ * Bucket policies can be imported using the `{region}/{bucketName}` identifier, e.g.
  *
  * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+ * ```
+ *
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
  */
 export class ObjectBucketPolicy extends pulumi.CustomResource {
@@ -78,7 +248,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
@@ -86,9 +256,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
      */
     public readonly policy!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -136,7 +304,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
  */
 export interface ObjectBucketPolicyState {
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket?: pulumi.Input<string>;
     /**
@@ -144,9 +312,7 @@ export interface ObjectBucketPolicyState {
      */
     policy?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -160,7 +326,7 @@ export interface ObjectBucketPolicyState {
  */
 export interface ObjectBucketPolicyArgs {
     /**
-     * The name of the bucket.
+     * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
     /**
@@ -168,9 +334,7 @@ export interface ObjectBucketPolicyArgs {
      */
     policy: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

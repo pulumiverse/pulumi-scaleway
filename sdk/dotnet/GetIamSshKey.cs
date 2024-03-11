@@ -75,6 +75,13 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the SSH
+        /// key is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
         /// </summary>
         [Input("sshKeyId")]
@@ -93,6 +100,13 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the SSH
+        /// key is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
@@ -128,7 +142,7 @@ namespace Pulumiverse.Scaleway
         /// The ID of the organization the SSH key is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The SSH public key string
         /// </summary>
@@ -153,7 +167,7 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string publicKey,
 

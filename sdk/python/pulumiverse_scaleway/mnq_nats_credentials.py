@@ -156,7 +156,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -198,7 +198,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

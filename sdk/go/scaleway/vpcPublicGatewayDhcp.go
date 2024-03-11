@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway VPC Public Gateway DHCP.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544).
 //
-// ## Example
+// ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
 // ```go

@@ -331,7 +331,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         For more information,
         see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
 
-        ## Example
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -342,7 +342,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Example with Unified type
+        ### Example with Unified type snapshot
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -367,7 +367,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Import a local qcow2 file
+        ### Example importing a local qcow2 file
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -422,7 +422,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         For more information,
         see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
 
-        ## Example
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -433,7 +433,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Example with Unified type
+        ### Example with Unified type snapshot
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -458,7 +458,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Import a local qcow2 file
+        ### Example importing a local qcow2 file
 
         <!--Start PulumiCodeChooser -->
         ```python

@@ -16,7 +16,7 @@ import (
 // For further information please check
 // our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -40,8 +40,8 @@ import (
 //			mainMnqSqsCredentials, err := scaleway.NewMnqSqsCredentials(ctx, "mainMnqSqsCredentials", &scaleway.MnqSqsCredentialsArgs{
 //				ProjectId: mainMnqSqs.ProjectId,
 //				Permissions: &scaleway.MnqSqsCredentialsPermissionsArgs{
-//					CanManage:  pulumi.Bool(false),
-//					CanReceive: pulumi.Bool(true),
+//					CanManage:  pulumi.Bool(true),
+//					CanReceive: pulumi.Bool(false),
 //					CanPublish: pulumi.Bool(false),
 //				},
 //			})
@@ -49,10 +49,10 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewMnqSqsQueue(ctx, "mainMnqSqsQueue", &scaleway.MnqSqsQueueArgs{
-//				ProjectId: mainMnqSqs.ProjectId,
-//				Endpoint:  mainMnqSqs.Endpoint,
-//				AccessKey: mainMnqSqsCredentials.AccessKey,
-//				SecretKey: mainMnqSqsCredentials.SecretKey,
+//				ProjectId:   mainMnqSqs.ProjectId,
+//				SqsEndpoint: mainMnqSqs.Endpoint,
+//				AccessKey:   mainMnqSqsCredentials.AccessKey,
+//				SecretKey:   mainMnqSqsCredentials.SecretKey,
 //			})
 //			if err != nil {
 //				return err
@@ -63,16 +63,6 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g.
-//
-// bash
-//
-// ```sh
-// $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
-// ```
 type MnqSqsQueue struct {
 	pulumi.CustomResourceState
 
@@ -80,8 +70,6 @@ type MnqSqsQueue struct {
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication pulumi.BoolOutput `pulumi:"contentBasedDeduplication"`
-	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue pulumi.BoolOutput `pulumi:"fifoQueue"`
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -100,6 +88,8 @@ type MnqSqsQueue struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
+	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+	SqsEndpoint pulumi.StringPtrOutput `pulumi:"sqsEndpoint"`
 	// The URL of the queue.
 	Url pulumi.StringOutput `pulumi:"url"`
 	// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
@@ -157,8 +147,6 @@ type mnqSqsQueueState struct {
 	AccessKey *string `pulumi:"accessKey"`
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
-	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-	Endpoint *string `pulumi:"endpoint"`
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue *bool `pulumi:"fifoQueue"`
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -177,6 +165,8 @@ type mnqSqsQueueState struct {
 	Region *string `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey *string `pulumi:"secretKey"`
+	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+	SqsEndpoint *string `pulumi:"sqsEndpoint"`
 	// The URL of the queue.
 	Url *string `pulumi:"url"`
 	// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
@@ -188,8 +178,6 @@ type MnqSqsQueueState struct {
 	AccessKey pulumi.StringPtrInput
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication pulumi.BoolPtrInput
-	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-	Endpoint pulumi.StringPtrInput
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue pulumi.BoolPtrInput
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -208,6 +196,8 @@ type MnqSqsQueueState struct {
 	Region pulumi.StringPtrInput
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringPtrInput
+	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+	SqsEndpoint pulumi.StringPtrInput
 	// The URL of the queue.
 	Url pulumi.StringPtrInput
 	// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
@@ -223,8 +213,6 @@ type mnqSqsQueueArgs struct {
 	AccessKey string `pulumi:"accessKey"`
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
-	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-	Endpoint *string `pulumi:"endpoint"`
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue *bool `pulumi:"fifoQueue"`
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -243,6 +231,8 @@ type mnqSqsQueueArgs struct {
 	Region *string `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey string `pulumi:"secretKey"`
+	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+	SqsEndpoint *string `pulumi:"sqsEndpoint"`
 	// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
 	VisibilityTimeoutSeconds *int `pulumi:"visibilityTimeoutSeconds"`
 }
@@ -253,8 +243,6 @@ type MnqSqsQueueArgs struct {
 	AccessKey pulumi.StringInput
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication pulumi.BoolPtrInput
-	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-	Endpoint pulumi.StringPtrInput
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue pulumi.BoolPtrInput
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -273,6 +261,8 @@ type MnqSqsQueueArgs struct {
 	Region pulumi.StringPtrInput
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringInput
+	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+	SqsEndpoint pulumi.StringPtrInput
 	// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
 	VisibilityTimeoutSeconds pulumi.IntPtrInput
 }
@@ -374,11 +364,6 @@ func (o MnqSqsQueueOutput) ContentBasedDeduplication() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.BoolOutput { return v.ContentBasedDeduplication }).(pulumi.BoolOutput)
 }
 
-// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-func (o MnqSqsQueueOutput) Endpoint() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
-}
-
 // Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 func (o MnqSqsQueueOutput) FifoQueue() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.BoolOutput { return v.FifoQueue }).(pulumi.BoolOutput)
@@ -422,6 +407,11 @@ func (o MnqSqsQueueOutput) Region() pulumi.StringOutput {
 // The secret key of the SQS queue.
 func (o MnqSqsQueueOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+func (o MnqSqsQueueOutput) SqsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringPtrOutput { return v.SqsEndpoint }).(pulumi.StringPtrOutput)
 }
 
 // The URL of the queue.

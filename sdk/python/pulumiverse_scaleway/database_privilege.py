@@ -219,13 +219,9 @@ class DatabasePrivilege(pulumi.CustomResource):
             is_admin=False)
         main_database_privilege = scaleway.DatabasePrivilege("mainDatabasePrivilege",
             instance_id=main_database_instance.id,
-            user_name="my-db-user",
-            database_name="my-db-name",
-            permission="all",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_database_user,
-                    main_database,
-                ]))
+            user_name=main_database_user.name,
+            database_name=main_database.name,
+            permission="all")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -278,13 +274,9 @@ class DatabasePrivilege(pulumi.CustomResource):
             is_admin=False)
         main_database_privilege = scaleway.DatabasePrivilege("mainDatabasePrivilege",
             instance_id=main_database_instance.id,
-            user_name="my-db-user",
-            database_name="my-db-name",
-            permission="all",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_database_user,
-                    main_database,
-                ]))
+            user_name=main_database_user.name,
+            database_name=main_database.name,
+            permission="all")
         ```
         <!--End PulumiCodeChooser -->
 

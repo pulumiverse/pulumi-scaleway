@@ -55,6 +55,8 @@ type LookupInstanceVolumeArgs struct {
 	// The volume name.
 	// Only one of `name` and `volumeId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the volume is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The volume id.
 	// Only one of `name` and `volumeId` should be specified.
 	VolumeId *string `pulumi:"volumeId"`
@@ -65,13 +67,12 @@ type LookupInstanceVolumeArgs struct {
 // A collection of values returned by getInstanceVolume.
 type LookupInstanceVolumeResult struct {
 	FromSnapshotId string `pulumi:"fromSnapshotId"`
-	FromVolumeId   string `pulumi:"fromVolumeId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id   string  `pulumi:"id"`
 	Name *string `pulumi:"name"`
 	// The ID of the organization the volume is associated with.
 	OrganizationId string   `pulumi:"organizationId"`
-	ProjectId      string   `pulumi:"projectId"`
+	ProjectId      *string  `pulumi:"projectId"`
 	ServerId       string   `pulumi:"serverId"`
 	SizeInGb       int      `pulumi:"sizeInGb"`
 	Tags           []string `pulumi:"tags"`
@@ -98,6 +99,8 @@ type LookupInstanceVolumeOutputArgs struct {
 	// The volume name.
 	// Only one of `name` and `volumeId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the volume is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The volume id.
 	// Only one of `name` and `volumeId` should be specified.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
@@ -128,10 +131,6 @@ func (o LookupInstanceVolumeResultOutput) FromSnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.FromSnapshotId }).(pulumi.StringOutput)
 }
 
-func (o LookupInstanceVolumeResultOutput) FromVolumeId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.FromVolumeId }).(pulumi.StringOutput)
-}
-
 // The provider-assigned unique ID for this managed resource.
 func (o LookupInstanceVolumeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.Id }).(pulumi.StringOutput)
@@ -146,8 +145,8 @@ func (o LookupInstanceVolumeResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupInstanceVolumeResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupInstanceVolumeResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceVolumeResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupInstanceVolumeResultOutput) ServerId() pulumi.StringOutput {

@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway VPC Public Gateway.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
 //
-// ## Example
+// ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -75,6 +75,8 @@ type VpcPublicGateway struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The status of the public gateway.
+	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the public gateway.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The gateway type.
@@ -136,6 +138,8 @@ type vpcPublicGatewayState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The status of the public gateway.
+	Status *string `pulumi:"status"`
 	// The tags associated with the public gateway.
 	Tags []string `pulumi:"tags"`
 	// The gateway type.
@@ -165,6 +169,8 @@ type VpcPublicGatewayState struct {
 	OrganizationId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the public gateway is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The status of the public gateway.
+	Status pulumi.StringPtrInput
 	// The tags associated with the public gateway.
 	Tags pulumi.StringArrayInput
 	// The gateway type.
@@ -353,6 +359,11 @@ func (o VpcPublicGatewayOutput) OrganizationId() pulumi.StringOutput {
 // `projectId`) The ID of the project the public gateway is associated with.
 func (o VpcPublicGatewayOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The status of the public gateway.
+func (o VpcPublicGatewayOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPublicGateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 // The tags associated with the public gateway.

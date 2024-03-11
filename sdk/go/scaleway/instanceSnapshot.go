@@ -15,7 +15,7 @@ import (
 // For more information,
 // see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
 //
-// ## Example
+// ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -43,7 +43,7 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
-// ## Example with Unified type
+// ### Example with Unified type snapshot
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -95,7 +95,7 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
-// ## Import a local qcow2 file
+// ### Example importing a local qcow2 file
 //
 // <!--Start PulumiCodeChooser -->
 // ```go

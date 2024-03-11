@@ -265,7 +265,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
         """
         Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
 
-        ## Examples Usage
+        ## Example Usage
 
         ### Basic
 
@@ -319,7 +319,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
         """
         Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
 
-        ## Examples Usage
+        ## Example Usage
 
         ### Basic
 

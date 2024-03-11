@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
  *
+ * > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
+ *
  * ## Example Usage
  *
  * ### Create a policy for an organization's project
@@ -28,6 +30,25 @@ import * as utilities from "./utilities";
  *     applicationId: app.id,
  *     rules: [{
  *         projectIds: [_default.then(_default => _default.id)],
+ *         permissionSetNames: ["ObjectStorageReadOnly"],
+ *     }],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Create a policy for all current and future projects in an organization
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const app = new scaleway.IamApplication("app", {});
+ * const objectReadOnly = new scaleway.IamPolicy("objectReadOnly", {
+ *     description: "gives app readonly access to object storage in project",
+ *     applicationId: app.id,
+ *     rules: [{
+ *         organizationId: app.organizationId,
  *         permissionSetNames: ["ObjectStorageReadOnly"],
  *     }],
  * });
@@ -93,7 +114,7 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public readonly groupId!: pulumi.Output<string | undefined>;
     /**
-     * .The name of the iam policy.
+     * The name of the iam policy.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -103,13 +124,17 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public readonly noPrincipal!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of organization scoped to the rule.
+     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
      * List of rules in the policy.
      */
     public readonly rules!: pulumi.Output<outputs.IamPolicyRule[]>;
+    /**
+     * The tags associated with the iam policy.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the policy.
      */
@@ -141,6 +166,7 @@ export class IamPolicy extends pulumi.CustomResource {
             resourceInputs["noPrincipal"] = state ? state.noPrincipal : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userId"] = state ? state.userId : undefined;
         } else {
@@ -155,6 +181,7 @@ export class IamPolicy extends pulumi.CustomResource {
             resourceInputs["noPrincipal"] = args ? args.noPrincipal : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userId"] = args ? args.userId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["editable"] = undefined /*out*/;
@@ -190,7 +217,7 @@ export interface IamPolicyState {
      */
     groupId?: pulumi.Input<string>;
     /**
-     * .The name of the iam policy.
+     * The name of the iam policy.
      */
     name?: pulumi.Input<string>;
     /**
@@ -200,13 +227,17 @@ export interface IamPolicyState {
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
-     * ID of organization scoped to the rule.
+     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: pulumi.Input<string>;
     /**
      * List of rules in the policy.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.IamPolicyRule>[]>;
+    /**
+     * The tags associated with the iam policy.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The date and time of the last update of the policy.
      */
@@ -234,7 +265,7 @@ export interface IamPolicyArgs {
      */
     groupId?: pulumi.Input<string>;
     /**
-     * .The name of the iam policy.
+     * The name of the iam policy.
      */
     name?: pulumi.Input<string>;
     /**
@@ -244,13 +275,17 @@ export interface IamPolicyArgs {
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
-     * ID of organization scoped to the rule.
+     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: pulumi.Input<string>;
     /**
      * List of rules in the policy.
      */
     rules: pulumi.Input<pulumi.Input<inputs.IamPolicyRule>[]>;
+    /**
+     * The tags associated with the iam policy.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * ID of the User the policy will be linked to
      */

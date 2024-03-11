@@ -66,6 +66,8 @@ class InstanceServerArgs:
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
                
@@ -265,6 +267,8 @@ class InstanceServerArgs:
     def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+
+        > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         """
         return pulumi.get(self, "ip_ids")
 
@@ -494,6 +498,8 @@ class _InstanceServerState:
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -704,6 +710,8 @@ class _InstanceServerState:
     def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+
+        > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         """
         return pulumi.get(self, "ip_ids")
 
@@ -1014,7 +1022,7 @@ class InstanceServer(pulumi.CustomResource):
 
         Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -1146,7 +1154,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ### Root volume configuration
 
-        #### Resized block volume with installed image
+        ### Resized block volume with installed image
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -1163,7 +1171,7 @@ class InstanceServer(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        #### From snapshot
+        ### From snapshot
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -1228,6 +1236,8 @@ class InstanceServer(pulumi.CustomResource):
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
                
@@ -1270,7 +1280,7 @@ class InstanceServer(pulumi.CustomResource):
 
         Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -1402,7 +1412,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ### Root volume configuration
 
-        #### Resized block volume with installed image
+        ### Resized block volume with installed image
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -1419,7 +1429,7 @@ class InstanceServer(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        #### From snapshot
+        ### From snapshot
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -1608,6 +1618,8 @@ class InstanceServer(pulumi.CustomResource):
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -1761,6 +1773,8 @@ class InstanceServer(pulumi.CustomResource):
     def ip_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+
+        > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         """
         return pulumi.get(self, "ip_ids")
 

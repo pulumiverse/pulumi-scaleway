@@ -53,6 +53,9 @@ class GetDocumentdbLoadBalancerEndpointResult:
     @property
     @pulumi.getter
     def hostname(self) -> str:
+        """
+        The hostname of your endpoint.
+        """
         return pulumi.get(self, "hostname")
 
     @property
@@ -76,16 +79,25 @@ class GetDocumentdbLoadBalancerEndpointResult:
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        The IP of your load balancer service.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of your load balancer service.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        The port of your load balancer service.
+        """
         return pulumi.get(self, "port")
 
     @property
@@ -122,7 +134,24 @@ def get_documentdb_load_balancer_endpoint(instance_id: Optional[str] = None,
                                           region: Optional[str] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentdbLoadBalancerEndpointResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an DocumentDB load balancer endpoint.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_endpoint = scaleway.get_documentdb_load_balancer_endpoint(instance_id="11111111-1111-1111-1111-111111111111")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str instance_id: The DocumentDB Instance on which the endpoint is attached. Only one of `instance_name` and `instance_id` should be specified.
+    :param str instance_name: The DocumentDB Instance Name on which the endpoint is attached. Only one of `instance_name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the DocumentDB endpoint is associated with.
+    :param str region: `region`) The region in which the DocumentDB endpoint exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -151,6 +180,23 @@ def get_documentdb_load_balancer_endpoint_output(instance_id: Optional[pulumi.In
                                                  region: Optional[pulumi.Input[Optional[str]]] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentdbLoadBalancerEndpointResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an DocumentDB load balancer endpoint.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_endpoint = scaleway.get_documentdb_load_balancer_endpoint(instance_id="11111111-1111-1111-1111-111111111111")
+    ```
+    <!--End PulumiCodeChooser -->
+
+
+    :param str instance_id: The DocumentDB Instance on which the endpoint is attached. Only one of `instance_name` and `instance_id` should be specified.
+    :param str instance_name: The DocumentDB Instance Name on which the endpoint is attached. Only one of `instance_name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the DocumentDB endpoint is associated with.
+    :param str region: `region`) The region in which the DocumentDB endpoint exists.
     """
     ...

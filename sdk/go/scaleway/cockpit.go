@@ -23,14 +23,16 @@ import (
 type Cockpit struct {
 	pulumi.CustomResourceState
 
-	// Endpoints
+	// Endpoints.
 	Endpoints CockpitEndpointArrayOutput `pulumi:"endpoints"`
 	// Name or ID of the plan to use.
 	Plan pulumi.StringPtrOutput `pulumi:"plan"`
-	// The ID of the current plan
+	// The ID of the current plan.
 	PlanId pulumi.StringOutput `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Push_url
+	PushUrls CockpitPushUrlArrayOutput `pulumi:"pushUrls"`
 }
 
 // NewCockpit registers a new resource with the given unique name, arguments, and options.
@@ -63,25 +65,29 @@ func GetCockpit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cockpit resources.
 type cockpitState struct {
-	// Endpoints
+	// Endpoints.
 	Endpoints []CockpitEndpoint `pulumi:"endpoints"`
 	// Name or ID of the plan to use.
 	Plan *string `pulumi:"plan"`
-	// The ID of the current plan
+	// The ID of the current plan.
 	PlanId *string `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Push_url
+	PushUrls []CockpitPushUrl `pulumi:"pushUrls"`
 }
 
 type CockpitState struct {
-	// Endpoints
+	// Endpoints.
 	Endpoints CockpitEndpointArrayInput
 	// Name or ID of the plan to use.
 	Plan pulumi.StringPtrInput
-	// The ID of the current plan
+	// The ID of the current plan.
 	PlanId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Push_url
+	PushUrls CockpitPushUrlArrayInput
 }
 
 func (CockpitState) ElementType() reflect.Type {
@@ -190,7 +196,7 @@ func (o CockpitOutput) ToCockpitOutputWithContext(ctx context.Context) CockpitOu
 	return o
 }
 
-// Endpoints
+// Endpoints.
 func (o CockpitOutput) Endpoints() CockpitEndpointArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitEndpointArrayOutput { return v.Endpoints }).(CockpitEndpointArrayOutput)
 }
@@ -200,7 +206,7 @@ func (o CockpitOutput) Plan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringPtrOutput { return v.Plan }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the current plan
+// The ID of the current plan.
 func (o CockpitOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
 }
@@ -208,6 +214,11 @@ func (o CockpitOutput) PlanId() pulumi.StringOutput {
 // `projectId`) The ID of the project the cockpit is associated with.
 func (o CockpitOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Push_url
+func (o CockpitOutput) PushUrls() CockpitPushUrlArrayOutput {
+	return o.ApplyT(func(v *Cockpit) CockpitPushUrlArrayOutput { return v.PushUrls }).(CockpitPushUrlArrayOutput)
 }
 
 type CockpitArrayOutput struct{ *pulumi.OutputState }

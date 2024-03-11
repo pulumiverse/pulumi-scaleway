@@ -15,13 +15,21 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetVpcGatewayNetworkIpamConfigResult
     {
         /// <summary>
+        /// Use this IPAM-booked IP ID as the Gateway's IP in this Private Network
+        /// </summary>
+        public readonly string IpamIpId;
+        /// <summary>
         /// Defines whether the default route is enabled on that Gateway Network
         /// </summary>
         public readonly bool PushDefaultRoute;
 
         [OutputConstructor]
-        private GetVpcGatewayNetworkIpamConfigResult(bool pushDefaultRoute)
+        private GetVpcGatewayNetworkIpamConfigResult(
+            string ipamIpId,
+
+            bool pushDefaultRoute)
         {
+            IpamIpId = ipamIpId;
             PushDefaultRoute = pushDefaultRoute;
         }
     }

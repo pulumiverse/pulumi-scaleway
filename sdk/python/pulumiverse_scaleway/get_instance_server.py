@@ -257,10 +257,7 @@ class GetInstanceServerResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of the project the server is associated with.
-        """
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -390,6 +387,7 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
 
 
 def get_instance_server(name: Optional[str] = None,
+                        project_id: Optional[str] = None,
                         server_id: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceServerResult:
@@ -409,11 +407,13 @@ def get_instance_server(name: Optional[str] = None,
 
 
     :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str project_id: The ID of the project the instance server is associated with.
     :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
     :param str zone: `zone`) The zone in which the server exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['serverId'] = server_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -456,6 +456,7 @@ def get_instance_server(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_instance_server)
 def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                server_id: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceServerResult]:
@@ -475,6 +476,7 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
 
     :param str name: The server name. Only one of `name` and `server_id` should be specified.
+    :param str project_id: The ID of the project the instance server is associated with.
     :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
     :param str zone: `zone`) The zone in which the server exists.
     """

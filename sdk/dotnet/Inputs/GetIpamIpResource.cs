@@ -20,10 +20,16 @@ namespace Pulumiverse.Scaleway.Inputs
         public string? Id { get; set; }
 
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        /// The name of the resource to get the IP from.
         /// </summary>
-        [Input("type")]
-        public string? Type { get; set; }
+        [Input("name")]
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        /// </summary>
+        [Input("type", required: true)]
+        public string Type { get; set; } = null!;
 
         public GetIpamIpResourceArgs()
         {

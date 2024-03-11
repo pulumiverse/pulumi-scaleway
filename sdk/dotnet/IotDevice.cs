@@ -11,6 +11,68 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ### Basic
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var mainIotDevice = new Scaleway.IotDevice("mainIotDevice", new()
+    ///     {
+    ///         HubId = mainIotHub.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### With custom certificate
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Local = Pulumi.Local;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var deviceCert = Local.GetFile.Invoke(new()
+    ///     {
+    ///         Filename = "device-certificate.pem",
+    ///     });
+    /// 
+    ///     var mainIotDevice = new Scaleway.IotDevice("mainIotDevice", new()
+    ///     {
+    ///         HubId = mainIotHub.Id,
+    ///         Certificate = new Scaleway.Inputs.IotDeviceCertificateArgs
+    ///         {
+    ///             Crt = deviceCert.Apply(getFileResult =&gt; getFileResult.Content),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// IoT devices can be imported using the `{region}/{id}`, e.g.

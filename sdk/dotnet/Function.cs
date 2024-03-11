@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// Creates and manages Scaleway Functions.
     /// For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -126,7 +126,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace ID associated with this function
+        /// The namespace ID the function is associated with.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -299,7 +299,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace ID associated with this function
+        /// The namespace ID the function is associated with.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -445,7 +445,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace ID associated with this function
+        /// The namespace ID the function is associated with.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }

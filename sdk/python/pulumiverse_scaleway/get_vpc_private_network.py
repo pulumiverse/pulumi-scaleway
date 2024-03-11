@@ -83,7 +83,7 @@ class GetVpcPrivateNetworkResult:
     @pulumi.getter(name="ipv4Subnets")
     def ipv4_subnets(self) -> Sequence['outputs.GetVpcPrivateNetworkIpv4SubnetResult']:
         """
-        (Optional) The IPv4 subnet associated with the private network.
+        The IPv4 subnet associated with the private network.
         """
         return pulumi.get(self, "ipv4_subnets")
 
@@ -91,7 +91,7 @@ class GetVpcPrivateNetworkResult:
     @pulumi.getter(name="ipv6Subnets")
     def ipv6_subnets(self) -> Sequence['outputs.GetVpcPrivateNetworkIpv6SubnetResult']:
         """
-        (Optional) The IPv6 subnets associated with the private network.
+        The IPv6 subnets associated with the private network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
@@ -117,7 +117,7 @@ class GetVpcPrivateNetworkResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -137,7 +137,7 @@ class GetVpcPrivateNetworkResult:
 
     @property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> str:
+    def vpc_id(self) -> Optional[str]:
         return pulumi.get(self, "vpc_id")
 
     @property
@@ -170,6 +170,8 @@ class AwaitableGetVpcPrivateNetworkResult(GetVpcPrivateNetworkResult):
 
 def get_vpc_private_network(name: Optional[str] = None,
                             private_network_id: Optional[str] = None,
+                            project_id: Optional[str] = None,
+                            vpc_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPrivateNetworkResult:
     """
     Gets information about a private network.
@@ -182,17 +184,23 @@ def get_vpc_private_network(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     my_name = scaleway.get_vpc_private_network(name="foobar")
+    my_name_and_vpc_id = scaleway.get_vpc_private_network(name="foobar",
+        vpc_id="11111111-1111-1111-1111-111111111111")
     my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
     <!--End PulumiCodeChooser -->
 
 
-    :param str name: Name of the private network. One of `name` and `private_network_id` should be specified.
-    :param str private_network_id: ID of the private network. One of `name` and `private_network_id` should be specified.
+    :param str name: Name of the private network. Cannot be used with `private_network_id`.
+    :param str private_network_id: ID of the private network. Cannot be used with `name` and `vpc_id`.
+    :param str project_id: The ID of the project the private network is associated with.
+    :param str vpc_id: ID of the VPC in which the private network is. Cannot be used with `private_network_id`.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['privateNetworkId'] = private_network_id
+    __args__['projectId'] = project_id
+    __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork', __args__, opts=opts, typ=GetVpcPrivateNetworkResult).value
 
@@ -216,6 +224,8 @@ def get_vpc_private_network(name: Optional[str] = None,
 @_utilities.lift_output_func(get_vpc_private_network)
 def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                    private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                   vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
     """
     Gets information about a private network.
@@ -228,12 +238,16 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     import pulumi_scaleway as scaleway
 
     my_name = scaleway.get_vpc_private_network(name="foobar")
+    my_name_and_vpc_id = scaleway.get_vpc_private_network(name="foobar",
+        vpc_id="11111111-1111-1111-1111-111111111111")
     my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
     <!--End PulumiCodeChooser -->
 
 
-    :param str name: Name of the private network. One of `name` and `private_network_id` should be specified.
-    :param str private_network_id: ID of the private network. One of `name` and `private_network_id` should be specified.
+    :param str name: Name of the private network. Cannot be used with `private_network_id`.
+    :param str private_network_id: ID of the private network. Cannot be used with `name` and `vpc_id`.
+    :param str project_id: The ID of the project the private network is associated with.
+    :param str vpc_id: ID of the VPC in which the private network is. Cannot be used with `private_network_id`.
     """
     ...

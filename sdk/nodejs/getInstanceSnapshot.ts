@@ -31,6 +31,7 @@ export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulum
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {
         "name": args.name,
+        "projectId": args.projectId,
         "snapshotId": args.snapshotId,
         "zone": args.zone,
     }, opts);
@@ -45,6 +46,10 @@ export interface GetInstanceSnapshotArgs {
      * Only one of `name` and `snapshotId` should be specified.
      */
     name?: string;
+    /**
+     * `projectId`) The ID of the project the snapshot is associated with.
+     */
+    projectId?: string;
     /**
      * The snapshot id.
      * Only one of `name` and `snapshotId` should be specified.
@@ -68,7 +73,7 @@ export interface GetInstanceSnapshotResult {
     readonly imports: outputs.GetInstanceSnapshotImport[];
     readonly name?: string;
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly sizeInGb: number;
     readonly snapshotId?: string;
     readonly tags: string[];
@@ -108,6 +113,10 @@ export interface GetInstanceSnapshotOutputArgs {
      * Only one of `name` and `snapshotId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the snapshot is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The snapshot id.
      * Only one of `name` and `snapshotId` should be specified.

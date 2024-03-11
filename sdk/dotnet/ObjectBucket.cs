@@ -127,7 +127,7 @@ namespace Pulumiverse.Scaleway
     ///                 {
     ///                     new Scaleway.Inputs.ObjectBucketLifecycleRuleTransitionArgs
     ///                     {
-    ///                         Days = 0,
+    ///                         Days = 1,
     ///                         StorageClass = "GLACIER",
     ///                     },
     ///                 },
@@ -171,6 +171,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
+
+        /// <summary>
+        /// API URL of the bucket
+        /// </summary>
+        [Output("apiEndpoint")]
+        public Output<string> ApiEndpoint { get; private set; } = null!;
 
         /// <summary>
         /// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
@@ -225,6 +231,9 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A list of tags (key / value) for the bucket.
+        /// 
+        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
@@ -350,6 +359,9 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A list of tags (key / value) for the bucket.
+        /// 
+        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -376,6 +388,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
+
+        /// <summary>
+        /// API URL of the bucket
+        /// </summary>
+        [Input("apiEndpoint")]
+        public Input<string>? ApiEndpoint { get; set; }
 
         [Input("corsRules")]
         private InputList<Inputs.ObjectBucketCorsRuleGetArgs>? _corsRules;
@@ -445,6 +463,9 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A list of tags (key / value) for the bucket.
+        /// 
+        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
         {

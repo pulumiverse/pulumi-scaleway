@@ -28,6 +28,7 @@ export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.In
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceServer:getInstanceServer", {
         "name": args.name,
+        "projectId": args.projectId,
         "serverId": args.serverId,
         "zone": args.zone,
     }, opts);
@@ -41,6 +42,10 @@ export interface GetInstanceServerArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the instance server is associated with.
+     */
+    projectId?: string;
     /**
      * The server id. Only one of `name` and `serverId` should be specified.
      */
@@ -114,10 +119,7 @@ export interface GetInstanceServerResult {
      */
     readonly privateIp: string;
     readonly privateNetworks: outputs.GetInstanceServerPrivateNetwork[];
-    /**
-     * The ID of the project the server is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The public IP address of the server.
      */
@@ -184,6 +186,10 @@ export interface GetInstanceServerOutputArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the instance server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The server id. Only one of `name` and `serverId` should be specified.
      */

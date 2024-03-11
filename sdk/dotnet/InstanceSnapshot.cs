@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
     /// For more information,
     /// see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Example with Unified type
+    /// ### Example with Unified type snapshot
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -83,7 +83,7 @@ namespace Pulumiverse.Scaleway
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import a local qcow2 file
+    /// ### Example importing a local qcow2 file
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp

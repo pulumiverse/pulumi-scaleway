@@ -21,7 +21,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? HttpFilter;
         /// <summary>
-        /// You can use this field with http_header_match acl type to set the header name to filter
+        /// If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         /// </summary>
         public readonly string? HttpFilterOption;
         /// <summary>

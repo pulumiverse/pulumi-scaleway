@@ -16,6 +16,7 @@ class SecretArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -23,6 +24,7 @@ class SecretArgs:
         The set of arguments for constructing a Secret resource.
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
+        :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
@@ -32,6 +34,8 @@ class SecretArgs:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -62,6 +66,18 @@ class SecretArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path of the secret, defaults to `/`.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -107,6 +123,7 @@ class _SecretState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -118,6 +135,7 @@ class _SecretState:
         :param pulumi.Input[str] created_at: Date and time of secret's creation (RFC 3339 format).
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
+        :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
@@ -132,6 +150,8 @@ class _SecretState:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -180,6 +200,18 @@ class _SecretState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path of the secret, defaults to `/`.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -262,6 +294,7 @@ class Secret(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -270,7 +303,7 @@ class Secret(pulumi.CustomResource):
         Creates and manages Scaleway Secrets.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -302,6 +335,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
+        :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
@@ -317,7 +351,7 @@ class Secret(pulumi.CustomResource):
         Creates and manages Scaleway Secrets.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -362,6 +396,7 @@ class Secret(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -376,6 +411,7 @@ class Secret(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
+            __props__.__dict__["path"] = path
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
@@ -396,6 +432,7 @@ class Secret(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -412,6 +449,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Date and time of secret's creation (RFC 3339 format).
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
+        :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
@@ -427,6 +465,7 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
+        __props__.__dict__["path"] = path
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
@@ -458,6 +497,14 @@ class Secret(pulumi.CustomResource):
         Name of the secret (e.g. `my-secret`).
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path of the secret, defaults to `/`.
+        """
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="projectId")

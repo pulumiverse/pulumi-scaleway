@@ -14,6 +14,17 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class DatabaseInstancePrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        /// 
+        /// &gt; **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
+        /// handle the host IP on the network.
+        /// 
+        /// &gt; **Important:** Updates to `private_network` will recreate the Instance's endpoint
+        /// </summary>
+        [Input("enableIpam")]
+        public Input<bool>? EnableIpam { get; set; }
+
+        /// <summary>
         /// The ID of the endpoint.
         /// </summary>
         [Input("endpointId")]
@@ -32,7 +43,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// The IP with the given mask within the private subnet
+        /// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         /// </summary>
         [Input("ipNet")]
         public Input<string>? IpNet { get; set; }
@@ -44,7 +55,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network.
         /// </summary>
         [Input("pnId", required: true)]
         public Input<string> PnId { get; set; } = null!;

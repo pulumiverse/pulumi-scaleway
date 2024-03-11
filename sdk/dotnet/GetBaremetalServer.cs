@@ -88,6 +88,12 @@ namespace Pulumiverse.Scaleway
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the baremetal server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         [Input("serverId")]
         public string? ServerId { get; set; }
 
@@ -110,6 +116,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the baremetal server is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
@@ -151,7 +163,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OsName;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
         public readonly string ServicePassword;
@@ -199,7 +211,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             bool reinstallOnConfigChanges,
 

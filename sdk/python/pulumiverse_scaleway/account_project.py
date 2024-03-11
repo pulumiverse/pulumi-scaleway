@@ -165,19 +165,6 @@ class AccountProject(pulumi.CustomResource):
                  organization_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages organization's projects on Scaleway.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        project = scaleway.AccountProject("project")
-        ```
-        <!--End PulumiCodeChooser -->
-
         ## Import
 
         Projects can be imported using the `id`, e.g.
@@ -201,19 +188,6 @@ class AccountProject(pulumi.CustomResource):
                  args: Optional[AccountProjectArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages organization's projects on Scaleway.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        project = scaleway.AccountProject("project")
-        ```
-        <!--End PulumiCodeChooser -->
-
         ## Import
 
         Projects can be imported using the `id`, e.g.

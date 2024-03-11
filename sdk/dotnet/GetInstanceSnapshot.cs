@@ -86,6 +86,12 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The snapshot id.
         /// Only one of `name` and `snapshot_id` should be specified.
         /// </summary>
@@ -112,6 +118,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The snapshot id.
@@ -144,7 +156,7 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetInstanceSnapshotImportResult> Imports;
         public readonly string? Name;
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly int SizeInGb;
         public readonly string? SnapshotId;
         public readonly ImmutableArray<string> Tags;
@@ -164,7 +176,7 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             int sizeInGb,
 

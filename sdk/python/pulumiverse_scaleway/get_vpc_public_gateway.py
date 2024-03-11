@@ -21,7 +21,7 @@ class GetVpcPublicGatewayResult:
     """
     A collection of values returned by getVpcPublicGateway.
     """
-    def __init__(__self__, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
+    def __init__(__self__, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, status=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
         if bastion_enabled and not isinstance(bastion_enabled, bool):
             raise TypeError("Expected argument 'bastion_enabled' to be a bool")
         pulumi.set(__self__, "bastion_enabled", bastion_enabled)
@@ -52,6 +52,9 @@ class GetVpcPublicGatewayResult:
         if public_gateway_id and not isinstance(public_gateway_id, str):
             raise TypeError("Expected argument 'public_gateway_id' to be a str")
         pulumi.set(__self__, "public_gateway_id", public_gateway_id)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -113,13 +116,18 @@ class GetVpcPublicGatewayResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="publicGatewayId")
     def public_gateway_id(self) -> Optional[str]:
         return pulumi.get(self, "public_gateway_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -163,6 +171,7 @@ class AwaitableGetVpcPublicGatewayResult(GetVpcPublicGatewayResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             public_gateway_id=self.public_gateway_id,
+            status=self.status,
             tags=self.tags,
             type=self.type,
             updated_at=self.updated_at,
@@ -171,6 +180,7 @@ class AwaitableGetVpcPublicGatewayResult(GetVpcPublicGatewayResult):
 
 
 def get_vpc_public_gateway(name: Optional[str] = None,
+                           project_id: Optional[str] = None,
                            public_gateway_id: Optional[str] = None,
                            zone: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayResult:
@@ -196,11 +206,13 @@ def get_vpc_public_gateway(name: Optional[str] = None,
 
 
     :param str name: Exact name of the public gateway.
+    :param str project_id: The ID of the project the public gateway is associated with.
     :param str zone: `zone`) The zone in which
            the public gateway should be created.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['publicGatewayId'] = public_gateway_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -217,6 +229,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_gateway_id=pulumi.get(__ret__, 'public_gateway_id'),
+        status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -226,6 +239,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_vpc_public_gateway)
 def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   zone: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
@@ -251,6 +265,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
 
 
     :param str name: Exact name of the public gateway.
+    :param str project_id: The ID of the project the public gateway is associated with.
     :param str zone: `zone`) The zone in which
            the public gateway should be created.
     """

@@ -348,7 +348,7 @@ class FlexibleIp(pulumi.CustomResource):
         Creates and manages Scaleway flexible IPs.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -438,7 +438,7 @@ class FlexibleIp(pulumi.CustomResource):
         Creates and manages Scaleway flexible IPs.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

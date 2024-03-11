@@ -74,9 +74,11 @@ type LookupContainerArgs struct {
 	// The unique name of the container name.
 	Name *string `pulumi:"name"`
 	// The container namespace ID of the container.
+	NamespaceId string `pulumi:"namespaceId"`
+	// The ID of the project the container is associated with.
 	//
 	// > **Important** Updates to `name` will recreate the container.
-	NamespaceId string `pulumi:"namespaceId"`
+	ProjectId *string `pulumi:"projectId"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
 }
@@ -114,7 +116,8 @@ type LookupContainerResult struct {
 	// The port to expose the container. Defaults to 8080.
 	Port int `pulumi:"port"`
 	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
-	Privacy string `pulumi:"privacy"`
+	Privacy   string  `pulumi:"privacy"`
+	ProjectId *string `pulumi:"projectId"`
 	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol string `pulumi:"protocol"`
 	// (Defaults to provider `region`) The region in which the container was created.
@@ -149,9 +152,11 @@ type LookupContainerOutputArgs struct {
 	// The unique name of the container name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The container namespace ID of the container.
+	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
+	// The ID of the project the container is associated with.
 	//
 	// > **Important** Updates to `name` will recreate the container.
-	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -259,6 +264,10 @@ func (o LookupContainerResultOutput) Port() pulumi.IntOutput {
 // The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
 func (o LookupContainerResultOutput) Privacy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Privacy }).(pulumi.StringOutput)
+}
+
+func (o LookupContainerResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupContainerResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.

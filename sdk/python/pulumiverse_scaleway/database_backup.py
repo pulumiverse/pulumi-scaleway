@@ -280,7 +280,7 @@ class DatabaseBackup(pulumi.CustomResource):
         Creates and manages Scaleway RDB database backup.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -341,7 +341,7 @@ class DatabaseBackup(pulumi.CustomResource):
         Creates and manages Scaleway RDB database backup.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 

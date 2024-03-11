@@ -6,11 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export function getBillingConsumptions(opts?: pulumi.InvokeOptions): Promise<GetBillingConsumptionsResult> {
+export function getBillingConsumptions(args?: GetBillingConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingConsumptionsResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBillingConsumptions:getBillingConsumptions", {
+        "projectId": args.projectId,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getBillingConsumptions.
+ */
+export interface GetBillingConsumptionsArgs {
+    projectId?: string;
 }
 
 /**
@@ -23,8 +32,16 @@ export interface GetBillingConsumptionsResult {
      */
     readonly id: string;
     readonly organizationId: string;
+    readonly projectId: string;
     readonly updatedAt: string;
 }
-export function getBillingConsumptionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingConsumptionsResult> {
-    return pulumi.output(getBillingConsumptions(opts))
+export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingConsumptionsResult> {
+    return pulumi.output(args).apply((a: any) => getBillingConsumptions(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBillingConsumptions.
+ */
+export interface GetBillingConsumptionsOutputArgs {
+    projectId?: pulumi.Input<string>;
 }

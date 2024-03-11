@@ -87,6 +87,12 @@ namespace Pulumiverse.Scaleway
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the LB is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         [Input("releaseIp")]
         public bool? ReleaseIp { get; set; }
 
@@ -112,6 +118,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -147,10 +159,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly ImmutableArray<Outputs.GetLoadbalancerPrivateNetworkResult> PrivateNetworks;
-        /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the LB is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string Region;
         public readonly bool? ReleaseIp;
         public readonly string SslCompatibilityLevel;
@@ -187,7 +196,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetLoadbalancerPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             string region,
 
