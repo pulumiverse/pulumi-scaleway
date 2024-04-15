@@ -138,8 +138,8 @@ import (
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 //				Zone:      pulumi.String("fr-par-2"),
-//				Offer:     *pulumi.String(myOffer.OfferId),
-//				Os:        *pulumi.String(byId.OsId),
+//				Offer:     pulumi.String(myOffer.OfferId),
+//				Os:        pulumi.String(byId.OsId),
 //				SshKeyIds: mainAccountSshKey.ID(),
 //			})
 //			if err != nil {

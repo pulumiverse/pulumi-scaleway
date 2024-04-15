@@ -48,11 +48,11 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewIamPolicy(ctx, "policyIamPolicy", &scaleway.IamPolicyArgs{
-//				UserId: *pulumi.String(user.Id),
+//				UserId: pulumi.String(user.Id),
 //				Rules: scaleway.IamPolicyRuleArray{
 //					&scaleway.IamPolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
-//							*pulumi.String(_default.Id),
+//							pulumi.String(_default.Id),
 //						},
 //						PermissionSetNames: pulumi.StringArray{
 //							pulumi.String("ObjectStorageFullAccess"),
@@ -146,7 +146,7 @@ import (
 //				Rules: scaleway.IamPolicyRuleArray{
 //					&scaleway.IamPolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
-//							*pulumi.String(_default.Id),
+//							pulumi.String(_default.Id),
 //						},
 //						PermissionSetNames: pulumi.StringArray{
 //							pulumi.String("ObjectStorageBucketsRead"),
@@ -228,7 +228,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewIamApiKey(ctx, "reading-api-key", &scaleway.IamApiKeyArgs{
-//				ApplicationId: *pulumi.String(reading_app.Id),
+//				ApplicationId: pulumi.String(reading_app.Id),
 //			})
 //			if err != nil {
 //				return err

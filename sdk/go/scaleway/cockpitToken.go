@@ -36,7 +36,7 @@ import (
 //			}
 //			// Create a token for the cockpit that can write metrics and logs
 //			_, err = scaleway.NewCockpitToken(ctx, "mainCockpitToken", &scaleway.CockpitTokenArgs{
-//				ProjectId: *pulumi.String(mainCockpit.ProjectId),
+//				ProjectId: pulumi.String(mainCockpit.ProjectId),
 //			})
 //			if err != nil {
 //				return err
@@ -67,7 +67,7 @@ import (
 //			}
 //			// Create a token for the cockpit that can read metrics and logs but not write
 //			_, err = scaleway.NewCockpitToken(ctx, "mainCockpitToken", &scaleway.CockpitTokenArgs{
-//				ProjectId: *pulumi.String(mainCockpit.ProjectId),
+//				ProjectId: pulumi.String(mainCockpit.ProjectId),
 //				Scopes: &scaleway.CockpitTokenScopesArgs{
 //					QueryMetrics: pulumi.Bool(true),
 //					WriteMetrics: pulumi.Bool(false),

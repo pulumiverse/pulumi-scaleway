@@ -139,7 +139,7 @@ type LoadbalancerBackend struct {
 	RedispatchAttemptCount pulumi.IntPtrOutput `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
-	// Deprecated: Please use proxy_protocol instead
+	// Deprecated: Please use proxyProtocol instead
 	SendProxyV2 pulumi.BoolOutput `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayOutput `pulumi:"serverIps"`
@@ -245,7 +245,7 @@ type loadbalancerBackendState struct {
 	RedispatchAttemptCount *int `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
-	// Deprecated: Please use proxy_protocol instead
+	// Deprecated: Please use proxyProtocol instead
 	SendProxyV2 *bool `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps []string `pulumi:"serverIps"`
@@ -313,7 +313,7 @@ type LoadbalancerBackendState struct {
 	RedispatchAttemptCount pulumi.IntPtrInput
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
-	// Deprecated: Please use proxy_protocol instead
+	// Deprecated: Please use proxyProtocol instead
 	SendProxyV2 pulumi.BoolPtrInput
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayInput
@@ -385,7 +385,7 @@ type loadbalancerBackendArgs struct {
 	RedispatchAttemptCount *int `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
-	// Deprecated: Please use proxy_protocol instead
+	// Deprecated: Please use proxyProtocol instead
 	SendProxyV2 *bool `pulumi:"sendProxyV2"`
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps []string `pulumi:"serverIps"`
@@ -454,7 +454,7 @@ type LoadbalancerBackendArgs struct {
 	RedispatchAttemptCount pulumi.IntPtrInput
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
-	// Deprecated: Please use proxy_protocol instead
+	// Deprecated: Please use proxyProtocol instead
 	SendProxyV2 pulumi.BoolPtrInput
 	// List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
 	ServerIps pulumi.StringArrayInput
@@ -671,7 +671,7 @@ func (o LoadbalancerBackendOutput) RedispatchAttemptCount() pulumi.IntPtrOutput 
 
 // DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 //
-// Deprecated: Please use proxy_protocol instead
+// Deprecated: Please use proxyProtocol instead
 func (o LoadbalancerBackendOutput) SendProxyV2() pulumi.BoolOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolOutput { return v.SendProxyV2 }).(pulumi.BoolOutput)
 }

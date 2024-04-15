@@ -79,7 +79,7 @@ import (
 //			_, err = scaleway.NewIotDevice(ctx, "mainIotDevice", &scaleway.IotDeviceArgs{
 //				HubId: mainIotHub.ID(),
 //				Certificate: &scaleway.IotDeviceCertificateArgs{
-//					Crt: *pulumi.String(deviceCert.Content),
+//					Crt: pulumi.String(deviceCert.Content),
 //				},
 //			})
 //			if err != nil {

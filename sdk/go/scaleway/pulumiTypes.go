@@ -4607,7 +4607,7 @@ type InstanceSecurityGroupInboundRule struct {
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -4635,7 +4635,7 @@ type InstanceSecurityGroupInboundRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -4705,7 +4705,7 @@ func (o InstanceSecurityGroupInboundRuleOutput) Action() pulumi.StringOutput {
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 //
-// Deprecated: Ip address is deprecated. Please use ip_range instead
+// Deprecated: Ip address is deprecated. Please use ipRange instead
 func (o InstanceSecurityGroupInboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -4755,7 +4755,7 @@ type InstanceSecurityGroupOutboundRule struct {
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -4783,7 +4783,7 @@ type InstanceSecurityGroupOutboundRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -4853,7 +4853,7 @@ func (o InstanceSecurityGroupOutboundRuleOutput) Action() pulumi.StringOutput {
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 //
-// Deprecated: Ip address is deprecated. Please use ip_range instead
+// Deprecated: Ip address is deprecated. Please use ipRange instead
 func (o InstanceSecurityGroupOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -4903,7 +4903,7 @@ type InstanceSecurityGroupRulesInboundRule struct {
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -4931,7 +4931,7 @@ type InstanceSecurityGroupRulesInboundRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -5001,7 +5001,7 @@ func (o InstanceSecurityGroupRulesInboundRuleOutput) Action() pulumi.StringOutpu
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 //
-// Deprecated: Ip address is deprecated. Please use ip_range instead
+// Deprecated: Ip address is deprecated. Please use ipRange instead
 func (o InstanceSecurityGroupRulesInboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -5051,7 +5051,7 @@ type InstanceSecurityGroupRulesOutboundRule struct {
 	Action string `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip *string `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange *string `pulumi:"ipRange"`
@@ -5079,7 +5079,7 @@ type InstanceSecurityGroupRulesOutboundRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	//
-	// Deprecated: Ip address is deprecated. Please use ip_range instead
+	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
@@ -5149,7 +5149,7 @@ func (o InstanceSecurityGroupRulesOutboundRuleOutput) Action() pulumi.StringOutp
 
 // The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
 //
-// Deprecated: Ip address is deprecated. Please use ip_range instead
+// Deprecated: Ip address is deprecated. Please use ipRange instead
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }

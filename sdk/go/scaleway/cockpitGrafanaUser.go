@@ -37,7 +37,7 @@ import (
 //			}
 //			// Create an editor grafana user for the cockpit
 //			_, err = scaleway.NewCockpitGrafanaUser(ctx, "mainCockpitGrafanaUser", &scaleway.CockpitGrafanaUserArgs{
-//				ProjectId: *pulumi.String(mainCockpit.ProjectId),
+//				ProjectId: pulumi.String(mainCockpit.ProjectId),
 //				Login:     pulumi.String("my-awesome-user"),
 //				Role:      pulumi.String("editor"),
 //			})

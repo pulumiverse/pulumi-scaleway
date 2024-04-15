@@ -173,7 +173,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
-     * @deprecated Please use proxy_protocol instead
+     * @deprecated Please use proxyProtocol instead
      */
     public readonly sendProxyV2!: pulumi.Output<boolean>;
     /**
@@ -393,7 +393,7 @@ export interface LoadbalancerBackendState {
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
-     * @deprecated Please use proxy_protocol instead
+     * @deprecated Please use proxyProtocol instead
      */
     sendProxyV2?: pulumi.Input<boolean>;
     /**
@@ -524,7 +524,7 @@ export interface LoadbalancerBackendArgs {
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
-     * @deprecated Please use proxy_protocol instead
+     * @deprecated Please use proxyProtocol instead
      */
     sendProxyV2?: pulumi.Input<boolean>;
     /**

@@ -115,9 +115,9 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             pn,
+    ///             pn, 
     ///         },
     ///     });
     /// 

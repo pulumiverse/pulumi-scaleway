@@ -677,7 +677,7 @@ export interface InstanceSecurityGroupInboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -706,7 +706,7 @@ export interface InstanceSecurityGroupOutboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -735,7 +735,7 @@ export interface InstanceSecurityGroupRulesInboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -764,7 +764,7 @@ export interface InstanceSecurityGroupRulesOutboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
