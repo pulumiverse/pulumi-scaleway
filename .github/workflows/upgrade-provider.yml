@@ -19,5 +19,7 @@ jobs:
         uses: pulumi/pulumi-upgrade-provider-action@v0.0.12
         with:
           kind: provider
+          email: ringo@de-smet.name
+          username: "Ringo De Smet"
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
