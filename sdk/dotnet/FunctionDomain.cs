@@ -45,9 +45,9 @@ namespace Pulumiverse.Scaleway
     ///         Hostname = "example.com",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             mainFunction,
+    ///             mainFunction, 
     ///         },
     ///     });
     /// 

@@ -175,7 +175,7 @@ type ObjectBucket struct {
 
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
 	// API URL of the bucket
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
@@ -239,7 +239,7 @@ func GetObjectBucket(ctx *pulumi.Context,
 type objectBucketState struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl *string `pulumi:"acl"`
 	// API URL of the bucket
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
@@ -274,7 +274,7 @@ type objectBucketState struct {
 type ObjectBucketState struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl pulumi.StringPtrInput
 	// API URL of the bucket
 	ApiEndpoint pulumi.StringPtrInput
@@ -313,7 +313,7 @@ func (ObjectBucketState) ElementType() reflect.Type {
 type objectBucketArgs struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl *string `pulumi:"acl"`
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
@@ -345,7 +345,7 @@ type objectBucketArgs struct {
 type ObjectBucketArgs struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl pulumi.StringPtrInput
 	// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
 	CorsRules ObjectBucketCorsRuleArrayInput
@@ -462,7 +462,7 @@ func (o ObjectBucketOutput) ToObjectBucketOutputWithContext(ctx context.Context)
 
 // (Deprecated) The canned ACL you want to apply to the bucket.
 //
-// Deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 func (o ObjectBucketOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }

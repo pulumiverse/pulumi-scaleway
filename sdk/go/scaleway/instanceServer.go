@@ -333,7 +333,7 @@ import (
 //				return err
 //			}
 //			fromSnapshotInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "fromSnapshotInstanceVolume", &scaleway.InstanceVolumeArgs{
-//				FromSnapshotId: *pulumi.String(snapshot.Id),
+//				FromSnapshotId: pulumi.String(snapshot.Id),
 //				Type:           pulumi.String("b_ssd"),
 //			})
 //			if err != nil {

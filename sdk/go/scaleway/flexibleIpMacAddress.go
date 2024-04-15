@@ -72,7 +72,7 @@ import (
 //				return err
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
-//				Offer:                  *pulumi.String(myOffer.OfferId),
+//				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {

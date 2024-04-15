@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewWebhosting(ctx, "main", &scaleway.WebhostingArgs{
-//				OfferId: *pulumi.String(byName.OfferId),
+//				OfferId: pulumi.String(byName.OfferId),
 //				Email:   pulumi.String("your@email.com"),
 //				Domain:  pulumi.String("yourdomain.com"),
 //				Tags: pulumi.StringArray{

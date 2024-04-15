@@ -269,7 +269,7 @@ type DatabaseInstance struct {
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
 	// (Deprecated) The IP of the Database Instance.
 	//
-	// Deprecated: Please use the private_network or the load_balancer attribute
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringOutput `pulumi:"endpointIp"`
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
@@ -385,7 +385,7 @@ type databaseInstanceState struct {
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// (Deprecated) The IP of the Database Instance.
 	//
-	// Deprecated: Please use the private_network or the load_balancer attribute
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp *string `pulumi:"endpointIp"`
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort *int `pulumi:"endpointPort"`
@@ -459,7 +459,7 @@ type DatabaseInstanceState struct {
 	DisableBackup pulumi.BoolPtrInput
 	// (Deprecated) The IP of the Database Instance.
 	//
-	// Deprecated: Please use the private_network or the load_balancer attribute
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringPtrInput
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntPtrInput
@@ -763,7 +763,7 @@ func (o DatabaseInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 
 // (Deprecated) The IP of the Database Instance.
 //
-// Deprecated: Please use the private_network or the load_balancer attribute
+// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 func (o DatabaseInstanceOutput) EndpointIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.EndpointIp }).(pulumi.StringOutput)
 }

@@ -145,7 +145,7 @@ export class ObjectBucket extends pulumi.CustomResource {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
@@ -251,7 +251,7 @@ export interface ObjectBucketState {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -313,7 +313,7 @@ export interface ObjectBucketArgs {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     acl?: pulumi.Input<string>;
     /**

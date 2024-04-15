@@ -70,10 +70,10 @@ namespace Pulumiverse.Scaleway
     ///         EnableMasquerade = true,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             mainVpcPublicGatewayIp,
-    ///             mainVpcPrivateNetwork,
+    ///             mainVpcPublicGatewayIp, 
+    ///             mainVpcPrivateNetwork, 
     ///         },
     ///     });
     /// 

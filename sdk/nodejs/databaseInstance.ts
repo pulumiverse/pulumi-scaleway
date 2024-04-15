@@ -201,7 +201,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
     /**
      * (Deprecated) The IP of the Database Instance.
      *
-     * @deprecated Please use the private_network or the load_balancer attribute
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     public /*out*/ readonly endpointIp!: pulumi.Output<string>;
     /**
@@ -402,7 +402,7 @@ export interface DatabaseInstanceState {
     /**
      * (Deprecated) The IP of the Database Instance.
      *
-     * @deprecated Please use the private_network or the load_balancer attribute
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     endpointIp?: pulumi.Input<string>;
     /**

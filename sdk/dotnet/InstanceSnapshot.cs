@@ -73,9 +73,9 @@ namespace Pulumiverse.Scaleway
     ///         Type = "unified",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             mainInstanceServer,
+    ///             mainInstanceServer, 
     ///         },
     ///     });
     /// 
