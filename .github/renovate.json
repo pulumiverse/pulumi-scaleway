@@ -1,0 +1,24 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        ":semanticCommitScopeDisabled",
+        "schedule:earlyMondays"
+    ],
+    "packageRules": [
+        {
+            "excludePackagePatterns": [
+                "github.com/pulumi/*"
+            ],
+            "matchDatasources": [
+                "go",
+                "golang-version"
+            ],
+            "groupName": "Pulumi package updates to be done by the update-bridge workflow"
+        },
+        {
+          "matchFileNames": ["sdk/**"],
+          "enabled": false
+        }
+    ],
+    "dependencyDashboard": true
+}
