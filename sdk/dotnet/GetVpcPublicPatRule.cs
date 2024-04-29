@@ -18,7 +18,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -103,7 +102,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetVpcPublicPatRuleResult> InvokeAsync(GetVpcPublicPatRuleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleArgs(), options.WithDefaults());
@@ -114,7 +112,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -199,7 +196,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetVpcPublicPatRuleResult> Invoke(GetVpcPublicPatRuleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleInvokeArgs(), options.WithDefaults());

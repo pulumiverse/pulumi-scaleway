@@ -203,14 +203,12 @@ class BlockSnapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         block_snapshot = scaleway.BlockSnapshot("blockSnapshot", volume_id="11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -242,14 +240,12 @@ class BlockSnapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         block_snapshot = scaleway.BlockSnapshot("blockSnapshot", volume_id="11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

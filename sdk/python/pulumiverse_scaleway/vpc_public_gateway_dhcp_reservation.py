@@ -239,7 +239,6 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -272,7 +271,6 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             mac_address=main_instance_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -310,7 +308,6 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -343,7 +340,6 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             mac_address=main_instance_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

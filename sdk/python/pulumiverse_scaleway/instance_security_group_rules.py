@@ -144,7 +144,6 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -158,7 +157,6 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 ip_range="0.0.0.0/0",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -193,7 +191,6 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -207,7 +204,6 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 ip_range="0.0.0.0/0",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -334,7 +334,6 @@ def get_lb_backend(backend_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -352,7 +351,6 @@ def get_lb_backend(backend_id: Optional[str] = None,
     by_name = scaleway.get_lb_backend_output(name=main_loadbalancer_backend.name,
         lb_id=main_loadbalancer.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend_id: The backend id.
@@ -414,7 +412,6 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -432,7 +429,6 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     by_name = scaleway.get_lb_backend_output(name=main_loadbalancer_backend.name,
         lb_id=main_loadbalancer.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend_id: The backend id.

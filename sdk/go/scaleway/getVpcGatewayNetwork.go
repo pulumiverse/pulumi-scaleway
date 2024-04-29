@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupVpcGatewayNetwork(ctx *pulumi.Context, args *LookupVpcGatewayNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcGatewayNetworkResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcGatewayNetworkResult

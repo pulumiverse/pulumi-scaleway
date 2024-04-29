@@ -21,7 +21,6 @@ import (
 //
 // Please note that `objectLockEnabled` must be set to `true` before configuring the lock.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,7 +57,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Configure an Object Lock for an existing bucket
 //

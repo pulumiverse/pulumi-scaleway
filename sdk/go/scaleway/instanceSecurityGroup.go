@@ -46,7 +46,7 @@ type InstanceSecurityGroup struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrOutput `pulumi:"stateful"`
-	// The tags of the security group.
+	// The tags associated with the security group
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -105,7 +105,7 @@ type instanceSecurityGroupState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful *bool `pulumi:"stateful"`
-	// The tags of the security group.
+	// The tags associated with the security group
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
 	Zone *string `pulumi:"zone"`
@@ -135,7 +135,7 @@ type InstanceSecurityGroupState struct {
 	ProjectId pulumi.StringPtrInput
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrInput
-	// The tags of the security group.
+	// The tags associated with the security group
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrInput
@@ -167,7 +167,7 @@ type instanceSecurityGroupArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful *bool `pulumi:"stateful"`
-	// The tags of the security group.
+	// The tags associated with the security group
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
 	Zone *string `pulumi:"zone"`
@@ -196,7 +196,7 @@ type InstanceSecurityGroupArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrInput
-	// The tags of the security group.
+	// The tags associated with the security group
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrInput
@@ -345,7 +345,7 @@ func (o InstanceSecurityGroupOutput) Stateful() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroup) pulumi.BoolPtrOutput { return v.Stateful }).(pulumi.BoolPtrOutput)
 }
 
-// The tags of the security group.
+// The tags associated with the security group
 func (o InstanceSecurityGroupOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroup) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }

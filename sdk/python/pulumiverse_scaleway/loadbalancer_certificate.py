@@ -22,12 +22,10 @@ class LoadbalancerCertificateArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerCertificate resource.
-        :param pulumi.Input[str] lb_id: The load-balancer ID this certificate is attached to.
-               
-               > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
-        :param pulumi.Input['LoadbalancerCertificateCustomCertificateArgs'] custom_certificate: Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
-        :param pulumi.Input['LoadbalancerCertificateLetsencryptArgs'] letsencrypt: Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
-        :param pulumi.Input[str] name: The name of the certificate backend.
+        :param pulumi.Input[str] lb_id: The load-balancer ID
+        :param pulumi.Input['LoadbalancerCertificateCustomCertificateArgs'] custom_certificate: The custom type certificate type configuration
+        :param pulumi.Input['LoadbalancerCertificateLetsencryptArgs'] letsencrypt: The Let's Encrypt type certificate configuration
+        :param pulumi.Input[str] name: The name of the load-balancer certificate
         """
         pulumi.set(__self__, "lb_id", lb_id)
         if custom_certificate is not None:
@@ -41,9 +39,7 @@ class LoadbalancerCertificateArgs:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Input[str]:
         """
-        The load-balancer ID this certificate is attached to.
-
-        > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+        The load-balancer ID
         """
         return pulumi.get(self, "lb_id")
 
@@ -55,7 +51,7 @@ class LoadbalancerCertificateArgs:
     @pulumi.getter(name="customCertificate")
     def custom_certificate(self) -> Optional[pulumi.Input['LoadbalancerCertificateCustomCertificateArgs']]:
         """
-        Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        The custom type certificate type configuration
         """
         return pulumi.get(self, "custom_certificate")
 
@@ -67,7 +63,7 @@ class LoadbalancerCertificateArgs:
     @pulumi.getter
     def letsencrypt(self) -> Optional[pulumi.Input['LoadbalancerCertificateLetsencryptArgs']]:
         """
-        Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        The Let's Encrypt type certificate configuration
         """
         return pulumi.get(self, "letsencrypt")
 
@@ -79,7 +75,7 @@ class LoadbalancerCertificateArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the certificate backend.
+        The name of the load-balancer certificate
         """
         return pulumi.get(self, "name")
 
@@ -103,20 +99,16 @@ class _LoadbalancerCertificateState:
                  subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerCertificate resources.
-        :param pulumi.Input[str] common_name: Main domain of the certificate. A new certificate will be created if this field is changed.
-        :param pulumi.Input['LoadbalancerCertificateCustomCertificateArgs'] custom_certificate: Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        :param pulumi.Input[str] common_name: Main domain of the certificate
+        :param pulumi.Input['LoadbalancerCertificateCustomCertificateArgs'] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input[str] fingerprint: The identifier (SHA-1) of the certificate
-        :param pulumi.Input[str] lb_id: The load-balancer ID this certificate is attached to.
-               
-               > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
-        :param pulumi.Input['LoadbalancerCertificateLetsencryptArgs'] letsencrypt: Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
-        :param pulumi.Input[str] name: The name of the certificate backend.
+        :param pulumi.Input[str] lb_id: The load-balancer ID
+        :param pulumi.Input['LoadbalancerCertificateLetsencryptArgs'] letsencrypt: The Let's Encrypt type certificate configuration
+        :param pulumi.Input[str] name: The name of the load-balancer certificate
         :param pulumi.Input[str] not_valid_after: The not valid after validity bound timestamp
         :param pulumi.Input[str] not_valid_before: The not valid before validity bound timestamp
         :param pulumi.Input[str] status: Certificate status
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: Array of alternative domain names.  A new certificate will be created if this field is changed.
-               
-               > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: The alternative domain names of the certificate
         """
         if common_name is not None:
             pulumi.set(__self__, "common_name", common_name)
@@ -143,7 +135,7 @@ class _LoadbalancerCertificateState:
     @pulumi.getter(name="commonName")
     def common_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Main domain of the certificate. A new certificate will be created if this field is changed.
+        Main domain of the certificate
         """
         return pulumi.get(self, "common_name")
 
@@ -155,7 +147,7 @@ class _LoadbalancerCertificateState:
     @pulumi.getter(name="customCertificate")
     def custom_certificate(self) -> Optional[pulumi.Input['LoadbalancerCertificateCustomCertificateArgs']]:
         """
-        Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        The custom type certificate type configuration
         """
         return pulumi.get(self, "custom_certificate")
 
@@ -179,9 +171,7 @@ class _LoadbalancerCertificateState:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balancer ID this certificate is attached to.
-
-        > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+        The load-balancer ID
         """
         return pulumi.get(self, "lb_id")
 
@@ -193,7 +183,7 @@ class _LoadbalancerCertificateState:
     @pulumi.getter
     def letsencrypt(self) -> Optional[pulumi.Input['LoadbalancerCertificateLetsencryptArgs']]:
         """
-        Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        The Let's Encrypt type certificate configuration
         """
         return pulumi.get(self, "letsencrypt")
 
@@ -205,7 +195,7 @@ class _LoadbalancerCertificateState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the certificate backend.
+        The name of the load-balancer certificate
         """
         return pulumi.get(self, "name")
 
@@ -253,9 +243,7 @@ class _LoadbalancerCertificateState:
     @pulumi.getter(name="subjectAlternativeNames")
     def subject_alternative_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Array of alternative domain names.  A new certificate will be created if this field is changed.
-
-        > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        The alternative domain names of the certificate
         """
         return pulumi.get(self, "subject_alternative_names")
 
@@ -278,12 +266,10 @@ class LoadbalancerCertificate(pulumi.CustomResource):
         Create a LoadbalancerCertificate resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateCustomCertificateArgs']] custom_certificate: Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
-        :param pulumi.Input[str] lb_id: The load-balancer ID this certificate is attached to.
-               
-               > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateLetsencryptArgs']] letsencrypt: Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
-        :param pulumi.Input[str] name: The name of the certificate backend.
+        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateCustomCertificateArgs']] custom_certificate: The custom type certificate type configuration
+        :param pulumi.Input[str] lb_id: The load-balancer ID
+        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateLetsencryptArgs']] letsencrypt: The Let's Encrypt type certificate configuration
+        :param pulumi.Input[str] name: The name of the load-balancer certificate
         """
         ...
     @overload
@@ -360,20 +346,16 @@ class LoadbalancerCertificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] common_name: Main domain of the certificate. A new certificate will be created if this field is changed.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateCustomCertificateArgs']] custom_certificate: Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        :param pulumi.Input[str] common_name: Main domain of the certificate
+        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateCustomCertificateArgs']] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input[str] fingerprint: The identifier (SHA-1) of the certificate
-        :param pulumi.Input[str] lb_id: The load-balancer ID this certificate is attached to.
-               
-               > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
-        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateLetsencryptArgs']] letsencrypt: Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
-        :param pulumi.Input[str] name: The name of the certificate backend.
+        :param pulumi.Input[str] lb_id: The load-balancer ID
+        :param pulumi.Input[pulumi.InputType['LoadbalancerCertificateLetsencryptArgs']] letsencrypt: The Let's Encrypt type certificate configuration
+        :param pulumi.Input[str] name: The name of the load-balancer certificate
         :param pulumi.Input[str] not_valid_after: The not valid after validity bound timestamp
         :param pulumi.Input[str] not_valid_before: The not valid before validity bound timestamp
         :param pulumi.Input[str] status: Certificate status
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: Array of alternative domain names.  A new certificate will be created if this field is changed.
-               
-               > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: The alternative domain names of the certificate
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -395,7 +377,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
     @pulumi.getter(name="commonName")
     def common_name(self) -> pulumi.Output[str]:
         """
-        Main domain of the certificate. A new certificate will be created if this field is changed.
+        Main domain of the certificate
         """
         return pulumi.get(self, "common_name")
 
@@ -403,7 +385,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
     @pulumi.getter(name="customCertificate")
     def custom_certificate(self) -> pulumi.Output[Optional['outputs.LoadbalancerCertificateCustomCertificate']]:
         """
-        Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        The custom type certificate type configuration
         """
         return pulumi.get(self, "custom_certificate")
 
@@ -419,9 +401,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Output[str]:
         """
-        The load-balancer ID this certificate is attached to.
-
-        > **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+        The load-balancer ID
         """
         return pulumi.get(self, "lb_id")
 
@@ -429,7 +409,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
     @pulumi.getter
     def letsencrypt(self) -> pulumi.Output[Optional['outputs.LoadbalancerCertificateLetsencrypt']]:
         """
-        Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        The Let's Encrypt type certificate configuration
         """
         return pulumi.get(self, "letsencrypt")
 
@@ -437,7 +417,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the certificate backend.
+        The name of the load-balancer certificate
         """
         return pulumi.get(self, "name")
 
@@ -469,9 +449,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
     @pulumi.getter(name="subjectAlternativeNames")
     def subject_alternative_names(self) -> pulumi.Output[Sequence[str]]:
         """
-        Array of alternative domain names.  A new certificate will be created if this field is changed.
-
-        > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        The alternative domain names of the certificate
         """
         return pulumi.get(self, "subject_alternative_names")
 

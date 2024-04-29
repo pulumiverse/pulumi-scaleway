@@ -373,7 +373,6 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -389,7 +388,6 @@ class MnqSnsTopic(pulumi.CustomResource):
             access_key=main_mnq_sns_credentials.access_key,
             secret_key=main_mnq_sns_credentials.secret_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -429,7 +427,6 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -445,7 +442,6 @@ class MnqSnsTopic(pulumi.CustomResource):
             access_key=main_mnq_sns_credentials.access_key,
             secret_key=main_mnq_sns_credentials.secret_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

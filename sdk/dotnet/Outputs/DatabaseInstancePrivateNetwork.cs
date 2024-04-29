@@ -15,12 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class DatabaseInstancePrivateNetwork
     {
         /// <summary>
-        /// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-        /// 
-        /// &gt; **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
-        /// handle the host IP on the network.
-        /// 
-        /// &gt; **Important:** Updates to `private_network` will recreate the Instance's endpoint
+        /// Whether or not the private network endpoint should be configured with IPAM
         /// </summary>
         public readonly bool? EnableIpam;
         /// <summary>
@@ -36,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Ip;
         /// <summary>
-        /// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        /// The IP with the given mask within the private subnet
         /// </summary>
         public readonly string? IpNet;
         /// <summary>
@@ -44,7 +39,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The ID of the private network.
+        /// The private network ID
         /// </summary>
         public readonly string PnId;
         /// <summary>

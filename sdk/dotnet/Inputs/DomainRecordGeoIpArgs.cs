@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<Inputs.DomainRecordGeoIpMatchArgs>? _matches;
 
         /// <summary>
-        /// The list of matches. *(Can be more than 1)*
+        /// The list of matches
         /// </summary>
         public InputList<Inputs.DomainRecordGeoIpMatchArgs> Matches
         {

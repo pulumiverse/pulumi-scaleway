@@ -234,7 +234,6 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -259,7 +258,6 @@ class FunctionCron(pulumi.CustomResource):
                 "my_var": "terraform",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -299,7 +297,6 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -324,7 +321,6 @@ class FunctionCron(pulumi.CustomResource):
                 "my_var": "terraform",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

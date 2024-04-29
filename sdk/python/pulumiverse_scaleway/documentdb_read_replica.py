@@ -186,7 +186,6 @@ class DocumentdbReadReplica(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -195,11 +194,9 @@ class DocumentdbReadReplica(pulumi.CustomResource):
             direct_access=scaleway.DocumentdbReadReplicaDirectAccessArgs(),
             instance_id="11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private network
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -212,7 +209,6 @@ class DocumentdbReadReplica(pulumi.CustomResource):
                 service_ip="192.168.1.254/24",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -248,7 +244,6 @@ class DocumentdbReadReplica(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -257,11 +252,9 @@ class DocumentdbReadReplica(pulumi.CustomResource):
             direct_access=scaleway.DocumentdbReadReplicaDirectAccessArgs(),
             instance_id="11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private network
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -274,7 +267,6 @@ class DocumentdbReadReplica(pulumi.CustomResource):
                 service_ip="192.168.1.254/24",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

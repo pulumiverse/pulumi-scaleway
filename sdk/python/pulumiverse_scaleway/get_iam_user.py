@@ -82,7 +82,6 @@ def get_iam_user(email: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -90,7 +89,6 @@ def get_iam_user(email: Optional[str] = None,
     find_by_id = scaleway.get_iam_user(user_id="11111111-1111-1111-1111-111111111111")
     find_by_email = scaleway.get_iam_user(email="foo@bar.com")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str email: The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
@@ -124,7 +122,6 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -132,7 +129,6 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     find_by_id = scaleway.get_iam_user(user_id="11111111-1111-1111-1111-111111111111")
     find_by_email = scaleway.get_iam_user(email="foo@bar.com")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str email: The email address of the IAM user. Only one of the `email` and `user_id` should be specified.

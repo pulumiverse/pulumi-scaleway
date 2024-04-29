@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  *
  * Please note that `objectLockEnabled` must be set to `true` before configuring the lock.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -35,7 +34,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Configure an Object Lock for an existing bucket
  *

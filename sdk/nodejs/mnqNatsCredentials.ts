@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -21,7 +20,6 @@ import * as utilities from "./utilities";
  * const mainMnqNatsAccount = new scaleway.MnqNatsAccount("mainMnqNatsAccount", {});
  * const mainMnqNatsCredentials = new scaleway.MnqNatsCredentials("mainMnqNatsCredentials", {accountId: mainMnqNatsAccount.id});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

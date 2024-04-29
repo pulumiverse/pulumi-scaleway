@@ -14,18 +14,15 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.TemDomain("main", {acceptTos: true});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Add the required records to your DNS zone
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -49,7 +46,6 @@ import * as utilities from "./utilities";
  *     data: ".",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

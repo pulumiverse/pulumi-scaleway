@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class DomainRecordHttpService
     {
         /// <summary>
-        /// List of IPs to check
+        /// IPs to check
         /// </summary>
         public readonly ImmutableArray<string> Ips;
         /// <summary>
@@ -23,11 +23,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string MustContain;
         /// <summary>
-        /// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+        /// Strategy to return an IP from the IPs list
         /// </summary>
         public readonly string Strategy;
         /// <summary>
-        /// URL to match the `must_contain` text to validate an IP
+        /// URL to match the must_contain text to validate an IP
         /// </summary>
         public readonly string Url;
         /// <summary>

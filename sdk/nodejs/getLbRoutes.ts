@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLbRoutes(args?: GetLbRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GetLbRoutesResult> {
     args = args || {};
@@ -74,7 +72,6 @@ export interface GetLbRoutesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -87,7 +84,6 @@ export interface GetLbRoutesResult {
  *     zone: "fr-par-2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLbRoutesOutput(args?: GetLbRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbRoutesResult> {
     return pulumi.output(args).apply((a: any) => getLbRoutes(a, opts))

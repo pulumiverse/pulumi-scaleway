@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// ID of the project that contain the mnq nats account, defaults to provider's project
+        /// ID of the project where sqs is enabled, defaults to provider's project
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> Queue { get; set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// Region where sqs is enabled, defaults to provider's region
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

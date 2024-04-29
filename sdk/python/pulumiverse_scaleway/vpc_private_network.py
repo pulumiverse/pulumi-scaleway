@@ -412,7 +412,6 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -422,11 +421,9 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             "terraform",
         ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With subnets
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -448,7 +445,6 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                 "terraform",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -486,7 +482,6 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -496,11 +491,9 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             "terraform",
         ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With subnets
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -522,7 +515,6 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                 "terraform",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

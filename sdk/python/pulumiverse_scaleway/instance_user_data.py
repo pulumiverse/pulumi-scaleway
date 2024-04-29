@@ -197,7 +197,6 @@ class InstanceUserData(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -228,7 +227,6 @@ class InstanceUserData(pulumi.CustomResource):
                 key=range["key"],
                 value=range["value"]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -273,7 +271,6 @@ class InstanceUserData(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -304,7 +301,6 @@ class InstanceUserData(pulumi.CustomResource):
                 key=range["key"],
                 value=range["value"]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

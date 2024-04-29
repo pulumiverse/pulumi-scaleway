@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.IotHub("main", {productPlan: "plan_shared"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

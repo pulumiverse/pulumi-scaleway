@@ -14,13 +14,13 @@ namespace Pulumiverse.Scaleway
     public partial class LoadbalancerCertificate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Main domain of the certificate. A new certificate will be created if this field is changed.
+        /// Main domain of the certificate
         /// </summary>
         [Output("commonName")]
         public Output<string> CommonName { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        /// The custom type certificate type configuration
         /// </summary>
         [Output("customCertificate")]
         public Output<Outputs.LoadbalancerCertificateCustomCertificate?> CustomCertificate { get; private set; } = null!;
@@ -32,21 +32,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID this certificate is attached to.
-        /// 
-        /// &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+        /// The load-balancer ID
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        /// The Let's Encrypt type certificate configuration
         /// </summary>
         [Output("letsencrypt")]
         public Output<Outputs.LoadbalancerCertificateLetsencrypt?> Letsencrypt { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the certificate backend.
+        /// The name of the load-balancer certificate
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -70,9 +68,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Array of alternative domain names.  A new certificate will be created if this field is changed.
-        /// 
-        /// &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        /// The alternative domain names of the certificate
         /// </summary>
         [Output("subjectAlternativeNames")]
         public Output<ImmutableArray<string>> SubjectAlternativeNames { get; private set; } = null!;
@@ -125,27 +121,25 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerCertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        /// The custom type certificate type configuration
         /// </summary>
         [Input("customCertificate")]
         public Input<Inputs.LoadbalancerCertificateCustomCertificateArgs>? CustomCertificate { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this certificate is attached to.
-        /// 
-        /// &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+        /// The load-balancer ID
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
-        /// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        /// The Let's Encrypt type certificate configuration
         /// </summary>
         [Input("letsencrypt")]
         public Input<Inputs.LoadbalancerCertificateLetsencryptArgs>? Letsencrypt { get; set; }
 
         /// <summary>
-        /// The name of the certificate backend.
+        /// The name of the load-balancer certificate
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -159,13 +153,13 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerCertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Main domain of the certificate. A new certificate will be created if this field is changed.
+        /// Main domain of the certificate
         /// </summary>
         [Input("commonName")]
         public Input<string>? CommonName { get; set; }
 
         /// <summary>
-        /// Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        /// The custom type certificate type configuration
         /// </summary>
         [Input("customCertificate")]
         public Input<Inputs.LoadbalancerCertificateCustomCertificateGetArgs>? CustomCertificate { get; set; }
@@ -177,21 +171,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this certificate is attached to.
-        /// 
-        /// &gt; **Important:** Updates to `lb_id` will recreate the load-balancer certificate.
+        /// The load-balancer ID
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
+        /// The Let's Encrypt type certificate configuration
         /// </summary>
         [Input("letsencrypt")]
         public Input<Inputs.LoadbalancerCertificateLetsencryptGetArgs>? Letsencrypt { get; set; }
 
         /// <summary>
-        /// The name of the certificate backend.
+        /// The name of the load-balancer certificate
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -218,9 +210,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _subjectAlternativeNames;
 
         /// <summary>
-        /// Array of alternative domain names.  A new certificate will be created if this field is changed.
-        /// 
-        /// &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        /// The alternative domain names of the certificate
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {

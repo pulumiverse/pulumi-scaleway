@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,11 +41,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Creating the bucket in a specific project
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,11 +67,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using object lifecycle
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -151,7 +146,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

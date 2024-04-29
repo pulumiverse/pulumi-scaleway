@@ -473,7 +473,6 @@ class Loadbalancer(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -484,11 +483,9 @@ class Loadbalancer(pulumi.CustomResource):
             zone=main.zone,
             type="LB-S")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private LB
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -499,7 +496,6 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             assign_flexible_ip=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## IP ID
 
@@ -509,7 +505,6 @@ class Loadbalancer(pulumi.CustomResource):
 
         For instance, if you had the following:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -518,11 +513,9 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             zone="fr-par-1")
         ```
-        <!--End PulumiCodeChooser -->
 
         You will need to update it to:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -534,7 +527,6 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             release_ip=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -578,7 +570,6 @@ class Loadbalancer(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -589,11 +580,9 @@ class Loadbalancer(pulumi.CustomResource):
             zone=main.zone,
             type="LB-S")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private LB
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -604,7 +593,6 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             assign_flexible_ip=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## IP ID
 
@@ -614,7 +602,6 @@ class Loadbalancer(pulumi.CustomResource):
 
         For instance, if you had the following:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -623,11 +610,9 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             zone="fr-par-1")
         ```
-        <!--End PulumiCodeChooser -->
 
         You will need to update it to:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -639,7 +624,6 @@ class Loadbalancer(pulumi.CustomResource):
             type="LB-S",
             release_ip=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

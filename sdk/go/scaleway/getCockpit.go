@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,9 +38,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,7 +62,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCockpit(ctx *pulumi.Context, args *LookupCockpitArgs, opts ...pulumi.InvokeOption) (*LookupCockpitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCockpitResult

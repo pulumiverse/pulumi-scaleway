@@ -19,7 +19,6 @@ import (
 //
 // ### With SNI for direction to TCP backends
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,11 +72,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With host-header for direction to HTTP backends
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -131,7 +128,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

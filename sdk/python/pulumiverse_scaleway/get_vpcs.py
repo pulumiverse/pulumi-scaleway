@@ -118,7 +118,6 @@ def get_vpcs(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -126,7 +125,6 @@ def get_vpcs(name: Optional[str] = None,
     my_key = scaleway.get_vpcs(name="tf-vpc-datasource",
         region="nl-ams")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The VPC name used as filter. VPCs with a name like it are listed.
@@ -163,7 +161,6 @@ def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -171,7 +168,6 @@ def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     my_key = scaleway.get_vpcs(name="tf-vpc-datasource",
         region="nl-ams")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The VPC name used as filter. VPCs with a name like it are listed.

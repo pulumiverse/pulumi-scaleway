@@ -527,14 +527,12 @@ class IotHub(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.IotHub("main", product_plan="plan_shared")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -574,14 +572,12 @@ class IotHub(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.IotHub("main", product_plan="plan_shared")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

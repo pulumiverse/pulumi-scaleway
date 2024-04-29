@@ -44,7 +44,7 @@ type LookupIpamIpArgs struct {
 	// The tags associated with the IP. Cannot be used with `ipamIpId`.
 	// As datasource only returns one IP, the search with given tags must return only one result.
 	Tags []string `pulumi:"tags"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
 	Type *string `pulumi:"type"`
 	// Only IPs that are zonal, and in this zone, will be returned.
 	Zonal *string `pulumi:"zonal"`
@@ -104,7 +104,7 @@ type LookupIpamIpOutputArgs struct {
 	// The tags associated with the IP. Cannot be used with `ipamIpId`.
 	// As datasource only returns one IP, the search with given tags must return only one result.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Only IPs that are zonal, and in this zone, will be returned.
 	Zonal pulumi.StringPtrInput `pulumi:"zonal"`

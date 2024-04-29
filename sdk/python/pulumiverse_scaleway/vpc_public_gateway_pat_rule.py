@@ -281,7 +281,6 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -325,7 +324,6 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
             public_port=2202,
             protocol="tcp")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -358,7 +356,6 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -402,7 +399,6 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
             public_port=2202,
             protocol="tcp")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

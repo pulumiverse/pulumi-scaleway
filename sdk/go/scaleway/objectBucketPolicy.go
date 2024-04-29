@@ -19,7 +19,6 @@ import (
 //
 // ### Example Usage with an IAM user
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -108,13 +107,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with an IAM application
 //
 // ### Creating a bucket and delegating read access to an application
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -204,11 +201,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Reading the bucket with the application
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -251,11 +246,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with AWS provider
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -322,11 +315,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with deprecated version 2012-10-17
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -395,7 +386,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
 //

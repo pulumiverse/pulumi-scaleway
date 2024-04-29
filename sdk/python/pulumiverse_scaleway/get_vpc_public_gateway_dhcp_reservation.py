@@ -146,7 +146,6 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
 
     ## Example Dynamic
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -175,11 +174,9 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
     by_mac_address_and_gw_network = scaleway.get_vpc_public_gateway_dhcp_reservation_output(mac_address=main_instance_private_nic.mac_address,
         gateway_network_id=main_vpc_gateway_network.id)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Example Static and PAT rule
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -225,7 +222,6 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
         protocol="tcp")
     by_id = scaleway.get_vpc_public_gateway_dhcp_reservation_output(reservation_id=main_vpc_public_gateway_dhcp_reservation.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str gateway_network_id: The ID of the owning GatewayNetwork.
@@ -272,7 +268,6 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
 
     ## Example Dynamic
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -301,11 +296,9 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
     by_mac_address_and_gw_network = scaleway.get_vpc_public_gateway_dhcp_reservation_output(mac_address=main_instance_private_nic.mac_address,
         gateway_network_id=main_vpc_gateway_network.id)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Example Static and PAT rule
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -351,7 +344,6 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
         protocol="tcp")
     by_id = scaleway.get_vpc_public_gateway_dhcp_reservation_output(reservation_id=main_vpc_public_gateway_dhcp_reservation.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str gateway_network_id: The ID of the owning GatewayNetwork.

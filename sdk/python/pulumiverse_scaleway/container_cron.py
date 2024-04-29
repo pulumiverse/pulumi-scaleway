@@ -243,7 +243,6 @@ class ContainerCron(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -265,7 +264,6 @@ class ContainerCron(pulumi.CustomResource):
                 "lastName": "Smith",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -311,7 +309,6 @@ class ContainerCron(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -333,7 +330,6 @@ class ContainerCron(pulumi.CustomResource):
                 "lastName": "Smith",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

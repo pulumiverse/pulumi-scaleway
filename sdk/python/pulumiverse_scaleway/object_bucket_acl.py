@@ -235,7 +235,6 @@ class ObjectBucketAcl(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -245,11 +244,9 @@ class ObjectBucketAcl(pulumi.CustomResource):
             bucket=scaleway_object_bucket["main"]["id"],
             acl="private")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With Grants
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -279,7 +276,6 @@ class ObjectBucketAcl(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## The ACL
 
@@ -359,7 +355,6 @@ class ObjectBucketAcl(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -369,11 +364,9 @@ class ObjectBucketAcl(pulumi.CustomResource):
             bucket=scaleway_object_bucket["main"]["id"],
             acl="private")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With Grants
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -403,7 +396,6 @@ class ObjectBucketAcl(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## The ACL
 

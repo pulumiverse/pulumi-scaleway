@@ -403,7 +403,6 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         ### Create a gateway network with IPAM config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -423,11 +422,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                 push_default_route=True,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create a gateway network with a booked IPAM IP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -453,11 +450,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                 ipam_ip_id=ip01.id,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create a gateway network with DHCP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -477,11 +472,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             cleanup_dhcp=True,
             enable_masquerade=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create a gateway network with a static IP address
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -495,7 +488,6 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             enable_masquerade=True,
             static_address="192.168.1.42/24")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -534,7 +526,6 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         ### Create a gateway network with IPAM config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -554,11 +545,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                 push_default_route=True,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create a gateway network with a booked IPAM IP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -584,11 +573,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                 ipam_ip_id=ip01.id,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create a gateway network with DHCP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -608,11 +595,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             cleanup_dhcp=True,
             enable_masquerade=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create a gateway network with a static IP address
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -626,7 +611,6 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             enable_masquerade=True,
             static_address="192.168.1.42/24")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

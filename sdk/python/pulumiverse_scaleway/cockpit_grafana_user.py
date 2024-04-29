@@ -153,7 +153,6 @@ class CockpitGrafanaUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -166,7 +165,6 @@ class CockpitGrafanaUser(pulumi.CustomResource):
             login="my-awesome-user",
             role="editor")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -197,7 +195,6 @@ class CockpitGrafanaUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -210,7 +207,6 @@ class CockpitGrafanaUser(pulumi.CustomResource):
             login="my-awesome-user",
             role="editor")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

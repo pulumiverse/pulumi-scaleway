@@ -147,14 +147,12 @@ def get_instance_volume(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The volume name.
@@ -197,14 +195,12 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_volume = scaleway.get_instance_volume(volume_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The volume name.

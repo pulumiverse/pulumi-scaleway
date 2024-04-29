@@ -136,7 +136,6 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -152,7 +151,6 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
             gateway_ip_id=main_vpc_public_gateway_ip.id,
             reverse="tf.example.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -182,7 +180,6 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -198,7 +195,6 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
             gateway_ip_id=main_vpc_public_gateway_ip.id,
             reverse="tf.example.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

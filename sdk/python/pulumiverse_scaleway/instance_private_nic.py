@@ -220,7 +220,6 @@ class InstancePrivateNic(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -229,11 +228,9 @@ class InstancePrivateNic(pulumi.CustomResource):
             private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
             server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With zone
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -248,7 +245,6 @@ class InstancePrivateNic(pulumi.CustomResource):
             private_network_id=pn01.id,
             zone=pn01.zone)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -282,7 +278,6 @@ class InstancePrivateNic(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -291,11 +286,9 @@ class InstancePrivateNic(pulumi.CustomResource):
             private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
             server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With zone
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -310,7 +303,6 @@ class InstancePrivateNic(pulumi.CustomResource):
             private_network_id=pn01.id,
             zone=pn01.zone)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

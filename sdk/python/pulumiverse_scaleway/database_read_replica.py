@@ -219,7 +219,6 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -240,11 +239,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
             instance_id=instance.id,
             direct_access=scaleway.DatabaseReadReplicaDirectAccessArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private network with static endpoint
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -264,11 +261,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 service_ip="192.168.1.254/24",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private network with IPAM
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -288,7 +283,6 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 enable_ipam=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -325,7 +319,6 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -346,11 +339,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
             instance_id=instance.id,
             direct_access=scaleway.DatabaseReadReplicaDirectAccessArgs())
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private network with static endpoint
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -370,11 +361,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 service_ip="192.168.1.254/24",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Private network with IPAM
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -394,7 +383,6 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 enable_ipam=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

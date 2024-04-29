@@ -49,7 +49,6 @@ namespace Pulumiverse.Scaleway.Inputs
         /// require updating the private network to add IPs.
         /// Your `service_ips` must be listed as follows:
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -59,7 +58,6 @@ namespace Pulumiverse.Scaleway.Inputs
         /// {
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public InputList<string> ServiceIps
         {

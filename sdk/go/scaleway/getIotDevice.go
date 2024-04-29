@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupIotDevice(ctx *pulumi.Context, args *LookupIotDeviceArgs, opts ...pulumi.InvokeOption) (*LookupIotDeviceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIotDeviceResult

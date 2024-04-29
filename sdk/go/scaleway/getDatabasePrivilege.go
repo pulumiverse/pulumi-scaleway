@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeArgs, opts ...pulumi.InvokeOption) (*LookupDatabasePrivilegeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabasePrivilegeResult

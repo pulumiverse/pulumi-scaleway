@@ -15,18 +15,15 @@ import * as utilities from "./utilities";
  *
  * Activate SNS for default project
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.MnqSns("main", {});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Activate SNS for a specific project
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -38,7 +35,6 @@ import * as utilities from "./utilities";
  * // For specific project in default region
  * const forProject = new scaleway.MnqSns("forProject", {projectId: project.then(project => project.id)});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

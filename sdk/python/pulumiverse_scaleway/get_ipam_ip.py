@@ -196,7 +196,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
-    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    :param str type: The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     __args__ = dict()
@@ -258,7 +258,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
-    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    :param str type: The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     ...

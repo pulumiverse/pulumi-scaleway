@@ -93,7 +93,6 @@ def get_baremetal_os(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -102,7 +101,6 @@ def get_baremetal_os(name: Optional[str] = None,
         version="20.04 LTS (Focal Fossa)")
     by_id = scaleway.get_baremetal_os(os_id="03b7f4ba-a6a1-4305-984e-b54fafbf1681")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The os name. Only one of `name` and `os_id` should be specified.
@@ -140,7 +138,6 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -149,7 +146,6 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         version="20.04 LTS (Focal Fossa)")
     by_id = scaleway.get_baremetal_os(os_id="03b7f4ba-a6a1-4305-984e-b54fafbf1681")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The os name. Only one of `name` and `os_id` should be specified.

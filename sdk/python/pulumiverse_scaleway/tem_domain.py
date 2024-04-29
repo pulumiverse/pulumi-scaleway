@@ -454,18 +454,15 @@ class TemDomain(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.TemDomain("main", accept_tos=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Add the required records to your DNS zone
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -486,7 +483,6 @@ class TemDomain(pulumi.CustomResource):
             type="MX",
             data=".")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -521,18 +517,15 @@ class TemDomain(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.TemDomain("main", accept_tos=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Add the required records to your DNS zone
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -553,7 +546,6 @@ class TemDomain(pulumi.CustomResource):
             type="MX",
             data=".")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -34,7 +33,6 @@ import * as utilities from "./utilities";
  *     secretKey: mainMnqSqsCredentials.secretKey,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class MnqSqsQueue extends pulumi.CustomResource {
     /**

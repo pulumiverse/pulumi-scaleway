@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -36,11 +35,9 @@ import * as utilities from "./utilities";
  *     version: "6.2.6",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With settings
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -56,11 +53,9 @@ import * as utilities from "./utilities";
  *     version: "6.2.6",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With a private network
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -80,7 +75,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [pn],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

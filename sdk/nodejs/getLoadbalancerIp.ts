@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     ipId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIpResult> {
     args = args || {};
@@ -82,7 +80,6 @@ export interface GetLoadbalancerIpResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -91,7 +88,6 @@ export interface GetLoadbalancerIpResult {
  *     ipId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerIpResult> {
     return pulumi.output(args).apply((a: any) => getLoadbalancerIp(a, opts))

@@ -68,7 +68,7 @@ export interface GetIpamIpArgs {
      */
     tags?: string[];
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
      */
     type?: string;
     /**
@@ -153,7 +153,7 @@ export interface GetIpamIpOutputArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
      */
     type?: pulumi.Input<string>;
     /**

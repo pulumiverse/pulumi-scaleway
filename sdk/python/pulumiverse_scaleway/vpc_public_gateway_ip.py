@@ -235,7 +235,6 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -248,7 +247,6 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
             ttl=3600,
             type="A")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -279,7 +277,6 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -292,7 +289,6 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
             ttl=3600,
             type="A")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -312,7 +312,6 @@ class IamApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -322,7 +321,6 @@ class IamApiKey(pulumi.CustomResource):
             application_id=scaleway_iam_application["main"]["id"],
             description="a description")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +355,6 @@ class IamApiKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -367,7 +364,6 @@ class IamApiKey(pulumi.CustomResource):
             application_id=scaleway_iam_application["main"]["id"],
             description="a description")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

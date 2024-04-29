@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -32,7 +31,6 @@ import * as utilities from "./utilities";
  *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getVpcGatewayNetwork(args?: GetVpcGatewayNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGatewayNetworkResult> {
     args = args || {};
@@ -103,7 +101,6 @@ export interface GetVpcGatewayNetworkResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -124,7 +121,6 @@ export interface GetVpcGatewayNetworkResult {
  *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcGatewayNetworkResult> {
     return pulumi.output(args).apply((a: any) => getVpcGatewayNetwork(a, opts))

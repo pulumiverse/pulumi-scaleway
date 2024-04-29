@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -56,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupInstancePrivateNic(ctx *pulumi.Context, args *LookupInstancePrivateNicArgs, opts ...pulumi.InvokeOption) (*LookupInstancePrivateNicResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstancePrivateNicResult

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSnapshotResult> {
     args = args || {};
@@ -86,7 +84,6 @@ export interface GetInstanceSnapshotResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -98,7 +95,6 @@ export interface GetInstanceSnapshotResult {
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSnapshotResult> {
     return pulumi.output(args).apply((a: any) => getInstanceSnapshot(a, opts))

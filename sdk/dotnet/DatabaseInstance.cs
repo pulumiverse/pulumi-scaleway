@@ -18,7 +18,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Example Basic
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -39,11 +38,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Example with Settings
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -71,11 +68,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Example with backup schedule
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -98,7 +93,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Examples of endpoints configuration
     /// 
@@ -106,7 +100,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### 1 static private network endpoint
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -136,11 +129,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### 1 IPAM private network endpoint + 1 public endpoint
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -168,11 +159,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Default: 1 public endpoint
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -189,7 +178,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &gt; If nothing is defined, your instance will have a default public load-balancer endpoint
     /// 
@@ -213,19 +201,19 @@ namespace Pulumiverse.Scaleway
     public partial class DatabaseInstance : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Boolean to store logical backups in the same region as the database instance.
+        /// Boolean to store logical backups in the same region as the database instance
         /// </summary>
         [Output("backupSameRegion")]
         public Output<bool> BackupSameRegion { get; private set; } = null!;
 
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Backup schedule frequency in hours
         /// </summary>
         [Output("backupScheduleFrequency")]
         public Output<int> BackupScheduleFrequency { get; private set; } = null!;
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Output("backupScheduleRetention")]
         public Output<int> BackupScheduleRetention { get; private set; } = null!;
@@ -237,7 +225,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Output("disableBackup")]
         public Output<bool?> DisableBackup { get; private set; } = null!;
@@ -264,10 +252,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
-        /// 
-        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
-        /// 
-        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
@@ -281,8 +265,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// List of load balancer endpoints of the database instance.
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
@@ -344,7 +327,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config.
+        /// Map of engine settings to be set on a running instance.
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
@@ -429,25 +412,25 @@ namespace Pulumiverse.Scaleway
     public sealed class DatabaseInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Boolean to store logical backups in the same region as the database instance.
+        /// Boolean to store logical backups in the same region as the database instance
         /// </summary>
         [Input("backupSameRegion")]
         public Input<bool>? BackupSameRegion { get; set; }
 
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Backup schedule frequency in hours
         /// </summary>
         [Input("backupScheduleFrequency")]
         public Input<int>? BackupScheduleFrequency { get; set; }
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
@@ -465,10 +448,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
-        /// 
-        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
-        /// 
-        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -488,8 +467,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// List of load balancer endpoints of the database instance.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerArgs> LoadBalancers
         {
@@ -555,7 +533,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config.
+        /// Map of engine settings to be set on a running instance.
         /// </summary>
         public InputMap<string> Settings
         {
@@ -606,19 +584,19 @@ namespace Pulumiverse.Scaleway
     public sealed class DatabaseInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Boolean to store logical backups in the same region as the database instance.
+        /// Boolean to store logical backups in the same region as the database instance
         /// </summary>
         [Input("backupSameRegion")]
         public Input<bool>? BackupSameRegion { get; set; }
 
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Backup schedule frequency in hours
         /// </summary>
         [Input("backupScheduleFrequency")]
         public Input<int>? BackupScheduleFrequency { get; set; }
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
@@ -630,7 +608,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
@@ -660,10 +638,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
-        /// 
-        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
-        /// 
-        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -683,8 +657,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// List of load balancer endpoints of the database instance.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs> LoadBalancers
         {
@@ -768,7 +741,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config.
+        /// Map of engine settings to be set on a running instance.
         /// </summary>
         public InputMap<string> Settings
         {
