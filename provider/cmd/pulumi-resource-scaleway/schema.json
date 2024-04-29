@@ -128,7 +128,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The id of the private network to attach.\n"
+                    "description": "The ID of the IPv6.\n"
                 },
                 "reverse": {
                     "type": "string",
@@ -159,7 +159,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The id of the private network to attach.\n"
+                    "description": "The ID of the IPv6.\n"
                 },
                 "reverse": {
                     "type": "string",
@@ -190,7 +190,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The id of the private network to attach.\n"
+                    "description": "The ID of the IPv6.\n"
                 },
                 "reverse": {
                     "type": "string",
@@ -221,7 +221,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The id of the private network to attach.\n"
+                    "description": "The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.\n"
                 },
                 "name": {
                     "type": "string",
@@ -402,7 +402,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "`region`). The region in which the namespace should be created.\n",
+                    "description": "Region where the mnq nats account is, defaults to provider's region\n",
                     "willReplaceOnChanges": true
                 },
                 "subject": {
@@ -434,7 +434,7 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "ID of the project that contain the mnq nats account, defaults to provider's project\n",
+                    "description": "ID of the project where sqs is enabled, defaults to provider's project\n",
                     "willReplaceOnChanges": true
                 },
                 "queue": {
@@ -444,7 +444,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "`region`). The region in which the namespace should be created.\n",
+                    "description": "Region where sqs is enabled, defaults to provider's region\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -526,7 +526,7 @@
             "properties": {
                 "enableIpam": {
                     "type": "boolean",
-                    "description": "If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.\n\n\u003e **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service\nhandle the host IP on the network.\n\n\u003e **Important:** Updates to `private_network` will recreate the Instance's endpoint\n"
+                    "description": "Whether or not the private network endpoint should be configured with IPAM\n"
                 },
                 "endpointId": {
                     "type": "string",
@@ -542,7 +542,7 @@
                 },
                 "ipNet": {
                     "type": "string",
-                    "description": "The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.\n"
+                    "description": "The IP with the given mask within the private subnet\n"
                 },
                 "name": {
                     "type": "string",
@@ -550,7 +550,7 @@
                 },
                 "pnId": {
                     "type": "string",
-                    "description": "The ID of the private network.\n"
+                    "description": "The private network ID\n"
                 },
                 "port": {
                     "type": "integer",
@@ -800,7 +800,7 @@
                     "items": {
                         "$ref": "#/types/scaleway:index/DomainRecordGeoIpMatch:DomainRecordGeoIpMatch"
                     },
-                    "description": "The list of matches. *(Can be more than 1)*\n"
+                    "description": "The list of matches\n"
                 }
             },
             "type": "object",
@@ -815,14 +815,14 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)\n"
+                    "description": "List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents\n"
                 },
                 "countries": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)\n"
+                    "description": "List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries\n"
                 },
                 "data": {
                     "type": "string",
@@ -841,7 +841,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of IPs to check\n"
+                    "description": "IPs to check\n"
                 },
                 "mustContain": {
                     "type": "string",
@@ -849,11 +849,11 @@
                 },
                 "strategy": {
                     "type": "string",
-                    "description": "Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`\n"
+                    "description": "Strategy to return an IP from the IPs list\n"
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL to match the `must_contain` text to validate an IP\n"
+                    "description": "URL to match the must_contain text to validate an IP\n"
                 },
                 "userAgent": {
                     "type": "string",
@@ -893,7 +893,7 @@
                 },
                 "weight": {
                     "type": "integer",
-                    "description": "The weight of the IP as an integer UInt32.\n"
+                    "description": "The weight of the IP\n"
                 }
             },
             "type": "object",
@@ -916,7 +916,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "`region`). The region in which the namespace should be created.\n",
+                    "description": "Region where the mnq nats account is, defaults to provider's region\n",
                     "willReplaceOnChanges": true
                 },
                 "subject": {
@@ -948,7 +948,7 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "ID of the project that contain the mnq nats account, defaults to provider's project\n",
+                    "description": "ID of the project that contain the mnq namespace, defaults to provider's project\n",
                     "willReplaceOnChanges": true
                 },
                 "queue": {
@@ -958,7 +958,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "`region`). The region in which the namespace should be created.\n",
+                    "description": "Region where the mnq namespace is, defaults to provider's region\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -1121,20 +1121,20 @@
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to take when rule match. Possible values are: `accept` or `drop`.\n"
+                    "description": "Action when rule match request (drop or accept)\n"
                 },
                 "ip": {
                     "type": "string",
-                    "description": "The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.\n",
+                    "description": "Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided\n",
                     "deprecationMessage": "Ip address is deprecated. Please use ip_range instead"
                 },
                 "ipRange": {
                     "type": "string",
-                    "description": "The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.\n"
+                    "description": "Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided\n"
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.\n"
+                    "description": "Network port for this rule\n"
                 },
                 "portRange": {
                     "type": "string",
@@ -1142,7 +1142,7 @@
                 },
                 "protocol": {
                     "type": "string",
-                    "description": "The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.\n"
+                    "description": "Protocol for this rule (TCP, UDP, ICMP or ANY)\n"
                 }
             },
             "type": "object",
@@ -1187,20 +1187,20 @@
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to take when rule match. Possible values are: `accept` or `drop`.\n"
+                    "description": "Action when rule match request (drop or accept)\n"
                 },
                 "ip": {
                     "type": "string",
-                    "description": "The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.\n",
+                    "description": "Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided\n",
                     "deprecationMessage": "Ip address is deprecated. Please use ip_range instead"
                 },
                 "ipRange": {
                     "type": "string",
-                    "description": "The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.\n"
+                    "description": "Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided\n"
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port this rule apply to. If no port is specified, rule will apply to all port.\n"
+                    "description": "Network port for this rule\n"
                 },
                 "portRange": {
                     "type": "string",
@@ -1208,7 +1208,7 @@
                 },
                 "protocol": {
                     "type": "string",
-                    "description": "The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.\n"
+                    "description": "Protocol for this rule (TCP, UDP, ICMP or ANY)\n"
                 }
             },
             "type": "object",
@@ -1372,14 +1372,14 @@
             "properties": {
                 "policy": {
                     "type": "string",
-                    "description": "Same as publish rules.\n"
+                    "description": "Publish message filter policy\n"
                 },
                 "topics": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Same as publish rules.\n\n- `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.\n\n\u003e **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.\n"
+                    "description": "List of topics in the set\n"
                 }
             },
             "type": "object"
@@ -1388,14 +1388,14 @@
             "properties": {
                 "policy": {
                     "type": "string",
-                    "description": "Same as publish rules.\n"
+                    "description": "Subscribe message filter policy\n"
                 },
                 "topics": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Same as publish rules.\n\n- `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.\n\n\u003e **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.\n"
+                    "description": "List of topics in the set\n"
                 }
             },
             "type": "object"
@@ -1803,15 +1803,15 @@
             "properties": {
                 "code": {
                     "type": "integer",
-                    "description": "The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.\n"
+                    "description": "The HTTP redirect code to use\n"
                 },
                 "target": {
                     "type": "string",
-                    "description": "An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.\n"
+                    "description": "An URL can be used in case of a location redirect\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "The redirect type. Possible values are: `location` or `scheme`.\n"
+                    "description": "The redirect type\n"
                 }
             },
             "type": "object"
@@ -1851,19 +1851,19 @@
             "properties": {
                 "code": {
                     "type": "integer",
-                    "description": "The expected HTTP status code.\n"
+                    "description": "The expected HTTP status code\n"
                 },
                 "hostHeader": {
                     "type": "string",
-                    "description": "The HTTP host header to use for HC requests.\n"
+                    "description": "The HTTP host header to use for HC requests\n"
                 },
                 "method": {
                     "type": "string",
-                    "description": "The HTTP method to use for HC requests.\n"
+                    "description": "The HTTP method to use for HC requests\n"
                 },
                 "uri": {
                     "type": "string",
-                    "description": "The HTTPS endpoint URL to call for HC requests.\n"
+                    "description": "The HTTP endpoint URL to call for HC requests\n"
                 }
             },
             "type": "object",
@@ -1875,23 +1875,23 @@
             "properties": {
                 "code": {
                     "type": "integer",
-                    "description": "The expected HTTP status code.\n"
+                    "description": "The expected HTTP status code\n"
                 },
                 "hostHeader": {
                     "type": "string",
-                    "description": "The HTTP host header to use for HC requests.\n"
+                    "description": "The HTTP host header to use for HC requests\n"
                 },
                 "method": {
                     "type": "string",
-                    "description": "The HTTP method to use for HC requests.\n"
+                    "description": "The HTTP method to use for HC requests\n"
                 },
                 "sni": {
                     "type": "string",
-                    "description": "The SNI to use for HC requests over SSL.\n"
+                    "description": "The SNI to use for HC requests over SSL\n"
                 },
                 "uri": {
                     "type": "string",
-                    "description": "The HTTPS endpoint URL to call for HC requests.\n"
+                    "description": "The HTTPS endpoint URL to call for HC requests\n"
                 }
             },
             "type": "object",
@@ -1906,7 +1906,7 @@
             "properties": {
                 "certificateChain": {
                     "type": "string",
-                    "description": "Full PEM-formatted certificate chain.\n\n\u003e **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.\n",
+                    "description": "The full PEM-formatted certificate chain\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -1919,7 +1919,7 @@
             "properties": {
                 "commonName": {
                     "type": "string",
-                    "description": "Main domain of the certificate. A new certificate will be created if this field is changed.\n",
+                    "description": "Main domain of the certificate\n",
                     "willReplaceOnChanges": true
                 },
                 "subjectAlternativeNames": {
@@ -1927,7 +1927,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Array of alternative domain names.  A new certificate will be created if this field is changed.\n\n\u003e **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.\n",
+                    "description": "The alternative domain names of the certificate\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -2003,15 +2003,15 @@
             "properties": {
                 "code": {
                     "type": "integer",
-                    "description": "The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.\n"
+                    "description": "The HTTP redirect code to use\n"
                 },
                 "target": {
                     "type": "string",
-                    "description": "An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.\n"
+                    "description": "An URL can be used in case of a location redirect\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "The redirect type. Possible values are: `location` or `scheme`.\n"
+                    "description": "The redirect type\n"
                 }
             },
             "type": "object"
@@ -2363,7 +2363,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).\n"
+                    "description": "The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.\n"
                 },
                 "years": {
                     "type": "integer",
@@ -2423,7 +2423,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The UUID of the Private Network resource.\n"
+                    "description": "(Required) The UUID of the endpoint.\n"
                 },
                 "ip": {
                     "type": "string",
@@ -2485,7 +2485,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "The UUID of the Private Network resource.\n"
+                    "description": "(Required) The UUID of the endpoint.\n"
                 },
                 "ips": {
                     "type": "array",
@@ -4038,7 +4038,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The ID of the resource that the IP is bound to.\n"
+                    "description": "The ID of the resource.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -8276,15 +8276,15 @@
             "properties": {
                 "backupSameRegion": {
                     "type": "boolean",
-                    "description": "Boolean to store logical backups in the same region as the database instance.\n"
+                    "description": "Boolean to store logical backups in the same region as the database instance\n"
                 },
                 "backupScheduleFrequency": {
                     "type": "integer",
-                    "description": "Backup schedule frequency in hours.\n"
+                    "description": "Backup schedule frequency in hours\n"
                 },
                 "backupScheduleRetention": {
                     "type": "integer",
-                    "description": "Backup schedule retention in days.\n"
+                    "description": "Backup schedule retention in days\n"
                 },
                 "certificate": {
                     "type": "string",
@@ -8292,7 +8292,7 @@
                 },
                 "disableBackup": {
                     "type": "boolean",
-                    "description": "Disable automated backup for the database instance.\n"
+                    "description": "Disable automated backup for the database instance\n"
                 },
                 "endpointIp": {
                     "type": "string",
@@ -8312,7 +8312,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Map of engine settings to be set at database initialisation.\n\n\u003e **Important:** Updates to `init_settings` will recreate the Database Instance.\n\nPlease consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.\n"
+                    "description": "Map of engine settings to be set at database initialisation.\n"
                 },
                 "isHaCluster": {
                     "type": "boolean",
@@ -8323,7 +8323,7 @@
                     "items": {
                         "$ref": "#/types/scaleway:index/DatabaseInstanceLoadBalancer:DatabaseInstanceLoadBalancer"
                     },
-                    "description": "List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.\nThis block must be defined if you want a public endpoint in addition to your private endpoint.\n"
+                    "description": "List of load balancer endpoints of the database instance.\n"
                 },
                 "name": {
                     "type": "string",
@@ -8366,7 +8366,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Map of engine settings to be set. Using this option will override default config.\n"
+                    "description": "Map of engine settings to be set on a running instance.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -8410,19 +8410,19 @@
             "inputProperties": {
                 "backupSameRegion": {
                     "type": "boolean",
-                    "description": "Boolean to store logical backups in the same region as the database instance.\n"
+                    "description": "Boolean to store logical backups in the same region as the database instance\n"
                 },
                 "backupScheduleFrequency": {
                     "type": "integer",
-                    "description": "Backup schedule frequency in hours.\n"
+                    "description": "Backup schedule frequency in hours\n"
                 },
                 "backupScheduleRetention": {
                     "type": "integer",
-                    "description": "Backup schedule retention in days.\n"
+                    "description": "Backup schedule retention in days\n"
                 },
                 "disableBackup": {
                     "type": "boolean",
-                    "description": "Disable automated backup for the database instance.\n"
+                    "description": "Disable automated backup for the database instance\n"
                 },
                 "engine": {
                     "type": "string",
@@ -8434,7 +8434,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Map of engine settings to be set at database initialisation.\n\n\u003e **Important:** Updates to `init_settings` will recreate the Database Instance.\n\nPlease consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.\n",
+                    "description": "Map of engine settings to be set at database initialisation.\n",
                     "willReplaceOnChanges": true
                 },
                 "isHaCluster": {
@@ -8446,7 +8446,7 @@
                     "items": {
                         "$ref": "#/types/scaleway:index/DatabaseInstanceLoadBalancer:DatabaseInstanceLoadBalancer"
                     },
-                    "description": "List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.\nThis block must be defined if you want a public endpoint in addition to your private endpoint.\n"
+                    "description": "List of load balancer endpoints of the database instance.\n"
                 },
                 "name": {
                     "type": "string",
@@ -8480,7 +8480,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Map of engine settings to be set. Using this option will override default config.\n"
+                    "description": "Map of engine settings to be set on a running instance.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -8512,15 +8512,15 @@
                 "properties": {
                     "backupSameRegion": {
                         "type": "boolean",
-                        "description": "Boolean to store logical backups in the same region as the database instance.\n"
+                        "description": "Boolean to store logical backups in the same region as the database instance\n"
                     },
                     "backupScheduleFrequency": {
                         "type": "integer",
-                        "description": "Backup schedule frequency in hours.\n"
+                        "description": "Backup schedule frequency in hours\n"
                     },
                     "backupScheduleRetention": {
                         "type": "integer",
-                        "description": "Backup schedule retention in days.\n"
+                        "description": "Backup schedule retention in days\n"
                     },
                     "certificate": {
                         "type": "string",
@@ -8528,7 +8528,7 @@
                     },
                     "disableBackup": {
                         "type": "boolean",
-                        "description": "Disable automated backup for the database instance.\n"
+                        "description": "Disable automated backup for the database instance\n"
                     },
                     "endpointIp": {
                         "type": "string",
@@ -8549,7 +8549,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Map of engine settings to be set at database initialisation.\n\n\u003e **Important:** Updates to `init_settings` will recreate the Database Instance.\n\nPlease consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.\n",
+                        "description": "Map of engine settings to be set at database initialisation.\n",
                         "willReplaceOnChanges": true
                     },
                     "isHaCluster": {
@@ -8561,7 +8561,7 @@
                         "items": {
                             "$ref": "#/types/scaleway:index/DatabaseInstanceLoadBalancer:DatabaseInstanceLoadBalancer"
                         },
-                        "description": "List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.\nThis block must be defined if you want a public endpoint in addition to your private endpoint.\n"
+                        "description": "List of load balancer endpoints of the database instance.\n"
                     },
                     "name": {
                         "type": "string",
@@ -8606,7 +8606,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Map of engine settings to be set. Using this option will override default config.\n"
+                        "description": "Map of engine settings to be set on a running instance.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -9595,11 +9595,11 @@
                 },
                 "geoIp": {
                     "$ref": "#/types/scaleway:index/DomainRecordGeoIp:DomainRecordGeoIp",
-                    "description": "The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)\n"
+                    "description": "Return record based on client localisation\n"
                 },
                 "httpService": {
                     "$ref": "#/types/scaleway:index/DomainRecordHttpService:DomainRecordHttpService",
-                    "description": "The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)\n"
+                    "description": "Return record based on client localisation\n"
                 },
                 "keepEmptyZone": {
                     "type": "boolean",
@@ -9634,14 +9634,14 @@
                     "items": {
                         "$ref": "#/types/scaleway:index/DomainRecordView:DomainRecordView"
                     },
-                    "description": "The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)\n"
+                    "description": "Return record based on client subnet\n"
                 },
                 "weighteds": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/scaleway:index/DomainRecordWeighted:DomainRecordWeighted"
                     },
-                    "description": "You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)\n"
+                    "description": "Return record based on weight\n"
                 }
             },
             "required": [
@@ -9666,11 +9666,11 @@
                 },
                 "geoIp": {
                     "$ref": "#/types/scaleway:index/DomainRecordGeoIp:DomainRecordGeoIp",
-                    "description": "The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)\n"
+                    "description": "Return record based on client localisation\n"
                 },
                 "httpService": {
                     "$ref": "#/types/scaleway:index/DomainRecordHttpService:DomainRecordHttpService",
-                    "description": "The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)\n"
+                    "description": "Return record based on client localisation\n"
                 },
                 "keepEmptyZone": {
                     "type": "boolean",
@@ -9704,14 +9704,14 @@
                     "items": {
                         "$ref": "#/types/scaleway:index/DomainRecordView:DomainRecordView"
                     },
-                    "description": "The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)\n"
+                    "description": "Return record based on client subnet\n"
                 },
                 "weighteds": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/scaleway:index/DomainRecordWeighted:DomainRecordWeighted"
                     },
-                    "description": "You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)\n"
+                    "description": "Return record based on weight\n"
                 }
             },
             "requiredInputs": [
@@ -9737,11 +9737,11 @@
                     },
                     "geoIp": {
                         "$ref": "#/types/scaleway:index/DomainRecordGeoIp:DomainRecordGeoIp",
-                        "description": "The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)\n"
+                        "description": "Return record based on client localisation\n"
                     },
                     "httpService": {
                         "$ref": "#/types/scaleway:index/DomainRecordHttpService:DomainRecordHttpService",
-                        "description": "The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)\n"
+                        "description": "Return record based on client localisation\n"
                     },
                     "keepEmptyZone": {
                         "type": "boolean",
@@ -9779,14 +9779,14 @@
                         "items": {
                             "$ref": "#/types/scaleway:index/DomainRecordView:DomainRecordView"
                         },
-                        "description": "The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)\n"
+                        "description": "Return record based on client subnet\n"
                     },
                     "weighteds": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/scaleway:index/DomainRecordWeighted:DomainRecordWeighted"
                         },
-                        "description": "You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)\n"
+                        "description": "Return record based on weight\n"
                     }
                 },
                 "type": "object"
@@ -10603,7 +10603,7 @@
             }
         },
         "scaleway:index/functionDomain:FunctionDomain": {
-            "description": "Creates and manages Scaleway Function Domain bindings.\nFor more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst mainFunctionNamespace = new scaleway.FunctionNamespace(\"mainFunctionNamespace\", {});\nconst mainFunction = new scaleway.Function(\"mainFunction\", {\n    namespaceId: mainFunctionNamespace.id,\n    runtime: \"go118\",\n    privacy: \"private\",\n    handler: \"Handle\",\n    zipFile: \"testfixture/gofunction.zip\",\n    deploy: true,\n});\nconst mainFunctionDomain = new scaleway.FunctionDomain(\"mainFunctionDomain\", {\n    functionId: mainFunction.id,\n    hostname: \"example.com\",\n}, {\n    dependsOn: [mainFunction],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain_function_namespace = scaleway.FunctionNamespace(\"mainFunctionNamespace\")\nmain_function = scaleway.Function(\"mainFunction\",\n    namespace_id=main_function_namespace.id,\n    runtime=\"go118\",\n    privacy=\"private\",\n    handler=\"Handle\",\n    zip_file=\"testfixture/gofunction.zip\",\n    deploy=True)\nmain_function_domain = scaleway.FunctionDomain(\"mainFunctionDomain\",\n    function_id=main_function.id,\n    hostname=\"example.com\",\n    opts=pulumi.ResourceOptions(depends_on=[main_function]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainFunctionNamespace = new Scaleway.FunctionNamespace(\"mainFunctionNamespace\");\n\n    var mainFunction = new Scaleway.Function(\"mainFunction\", new()\n    {\n        NamespaceId = mainFunctionNamespace.Id,\n        Runtime = \"go118\",\n        Privacy = \"private\",\n        Handler = \"Handle\",\n        ZipFile = \"testfixture/gofunction.zip\",\n        Deploy = true,\n    });\n\n    var mainFunctionDomain = new Scaleway.FunctionDomain(\"mainFunctionDomain\", new()\n    {\n        FunctionId = mainFunction.Id,\n        Hostname = \"example.com\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            mainFunction, \n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, \"mainFunctionNamespace\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainFunction, err := scaleway.NewFunction(ctx, \"mainFunction\", \u0026scaleway.FunctionArgs{\n\t\t\tNamespaceId: mainFunctionNamespace.ID(),\n\t\t\tRuntime:     pulumi.String(\"go118\"),\n\t\t\tPrivacy:     pulumi.String(\"private\"),\n\t\t\tHandler:     pulumi.String(\"Handle\"),\n\t\t\tZipFile:     pulumi.String(\"testfixture/gofunction.zip\"),\n\t\t\tDeploy:      pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewFunctionDomain(ctx, \"mainFunctionDomain\", \u0026scaleway.FunctionDomainArgs{\n\t\t\tFunctionId: mainFunction.ID(),\n\t\t\tHostname:   pulumi.String(\"example.com\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmainFunction,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.FunctionNamespace;\nimport com.pulumi.scaleway.Function;\nimport com.pulumi.scaleway.FunctionArgs;\nimport com.pulumi.scaleway.FunctionDomain;\nimport com.pulumi.scaleway.FunctionDomainArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainFunctionNamespace = new FunctionNamespace(\"mainFunctionNamespace\");\n\n        var mainFunction = new Function(\"mainFunction\", FunctionArgs.builder()        \n            .namespaceId(mainFunctionNamespace.id())\n            .runtime(\"go118\")\n            .privacy(\"private\")\n            .handler(\"Handle\")\n            .zipFile(\"testfixture/gofunction.zip\")\n            .deploy(true)\n            .build());\n\n        var mainFunctionDomain = new FunctionDomain(\"mainFunctionDomain\", FunctionDomainArgs.builder()        \n            .functionId(mainFunction.id())\n            .hostname(\"example.com\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(mainFunction)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainFunctionDomain:\n    type: scaleway:FunctionDomain\n    properties:\n      functionId: ${mainFunction.id}\n      hostname: example.com\n    options:\n      dependson:\n        - ${mainFunction}\n  mainFunctionNamespace:\n    type: scaleway:FunctionNamespace\n  mainFunction:\n    type: scaleway:Function\n    properties:\n      namespaceId: ${mainFunctionNamespace.id}\n      runtime: go118\n      privacy: private\n      handler: Handle\n      zipFile: testfixture/gofunction.zip\n      deploy: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nDomain can be imported using the `{region}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Function Domain bindings.\nFor more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst mainFunctionNamespace = new scaleway.FunctionNamespace(\"mainFunctionNamespace\", {});\nconst mainFunction = new scaleway.Function(\"mainFunction\", {\n    namespaceId: mainFunctionNamespace.id,\n    runtime: \"go118\",\n    privacy: \"private\",\n    handler: \"Handle\",\n    zipFile: \"testfixture/gofunction.zip\",\n    deploy: true,\n});\nconst mainFunctionDomain = new scaleway.FunctionDomain(\"mainFunctionDomain\", {\n    functionId: mainFunction.id,\n    hostname: \"example.com\",\n}, {\n    dependsOn: [mainFunction],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain_function_namespace = scaleway.FunctionNamespace(\"mainFunctionNamespace\")\nmain_function = scaleway.Function(\"mainFunction\",\n    namespace_id=main_function_namespace.id,\n    runtime=\"go118\",\n    privacy=\"private\",\n    handler=\"Handle\",\n    zip_file=\"testfixture/gofunction.zip\",\n    deploy=True)\nmain_function_domain = scaleway.FunctionDomain(\"mainFunctionDomain\",\n    function_id=main_function.id,\n    hostname=\"example.com\",\n    opts=pulumi.ResourceOptions(depends_on=[main_function]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainFunctionNamespace = new Scaleway.FunctionNamespace(\"mainFunctionNamespace\");\n\n    var mainFunction = new Scaleway.Function(\"mainFunction\", new()\n    {\n        NamespaceId = mainFunctionNamespace.Id,\n        Runtime = \"go118\",\n        Privacy = \"private\",\n        Handler = \"Handle\",\n        ZipFile = \"testfixture/gofunction.zip\",\n        Deploy = true,\n    });\n\n    var mainFunctionDomain = new Scaleway.FunctionDomain(\"mainFunctionDomain\", new()\n    {\n        FunctionId = mainFunction.Id,\n        Hostname = \"example.com\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            mainFunction,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, \"mainFunctionNamespace\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainFunction, err := scaleway.NewFunction(ctx, \"mainFunction\", \u0026scaleway.FunctionArgs{\n\t\t\tNamespaceId: mainFunctionNamespace.ID(),\n\t\t\tRuntime:     pulumi.String(\"go118\"),\n\t\t\tPrivacy:     pulumi.String(\"private\"),\n\t\t\tHandler:     pulumi.String(\"Handle\"),\n\t\t\tZipFile:     pulumi.String(\"testfixture/gofunction.zip\"),\n\t\t\tDeploy:      pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewFunctionDomain(ctx, \"mainFunctionDomain\", \u0026scaleway.FunctionDomainArgs{\n\t\t\tFunctionId: mainFunction.ID(),\n\t\t\tHostname:   pulumi.String(\"example.com\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmainFunction,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.FunctionNamespace;\nimport com.pulumi.scaleway.Function;\nimport com.pulumi.scaleway.FunctionArgs;\nimport com.pulumi.scaleway.FunctionDomain;\nimport com.pulumi.scaleway.FunctionDomainArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainFunctionNamespace = new FunctionNamespace(\"mainFunctionNamespace\");\n\n        var mainFunction = new Function(\"mainFunction\", FunctionArgs.builder()        \n            .namespaceId(mainFunctionNamespace.id())\n            .runtime(\"go118\")\n            .privacy(\"private\")\n            .handler(\"Handle\")\n            .zipFile(\"testfixture/gofunction.zip\")\n            .deploy(true)\n            .build());\n\n        var mainFunctionDomain = new FunctionDomain(\"mainFunctionDomain\", FunctionDomainArgs.builder()        \n            .functionId(mainFunction.id())\n            .hostname(\"example.com\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(mainFunction)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainFunctionDomain:\n    type: scaleway:FunctionDomain\n    properties:\n      functionId: ${mainFunction.id}\n      hostname: example.com\n    options:\n      dependson:\n        - ${mainFunction}\n  mainFunctionNamespace:\n    type: scaleway:FunctionNamespace\n  mainFunction:\n    type: scaleway:Function\n    properties:\n      namespaceId: ${mainFunctionNamespace.id}\n      runtime: go118\n      privacy: private\n      handler: Handle\n      zipFile: testfixture/gofunction.zip\n      deploy: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nDomain can be imported using the `{region}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "functionId": {
                     "type": "string",
@@ -11494,7 +11494,7 @@
                 },
                 "organizationId": {
                     "type": "string",
-                    "description": "ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.\n"
+                    "description": "`organization_id`) The ID of the organization the policy is associated with.\n"
                 },
                 "rules": {
                     "type": "array",
@@ -11550,7 +11550,7 @@
                 },
                 "organizationId": {
                     "type": "string",
-                    "description": "ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.\n"
+                    "description": "`organization_id`) The ID of the organization the policy is associated with.\n"
                 },
                 "rules": {
                     "type": "array",
@@ -11607,7 +11607,7 @@
                     },
                     "organizationId": {
                         "type": "string",
-                        "description": "ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.\n"
+                        "description": "`organization_id`) The ID of the organization the policy is associated with.\n"
                     },
                     "rules": {
                         "type": "array",
@@ -12533,7 +12533,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags of the security group.\n"
+                    "description": "The tags associated with the security group\n"
                 },
                 "zone": {
                     "type": "string",
@@ -12599,7 +12599,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The tags of the security group.\n"
+                    "description": "The tags associated with the security group\n"
                 },
                 "zone": {
                     "type": "string",
@@ -12666,7 +12666,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The tags of the security group.\n"
+                        "description": "The tags associated with the security group\n"
                     },
                     "zone": {
                         "type": "string",
@@ -13179,7 +13179,7 @@
             }
         },
         "scaleway:index/instanceSnapshot:InstanceSnapshot": {
-            "description": "Creates and manages Scaleway Compute Snapshots.\nFor more information,\nsee [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.InstanceSnapshot(\"main\", {volumeId: \"11111111-1111-1111-1111-111111111111\"});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.InstanceSnapshot(\"main\", volume_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.InstanceSnapshot(\"main\", new()\n    {\n        VolumeId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewInstanceSnapshot(ctx, \"main\", \u0026scaleway.InstanceSnapshotArgs{\n\t\t\tVolumeId: pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.InstanceSnapshot;\nimport com.pulumi.scaleway.InstanceSnapshotArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new InstanceSnapshot(\"main\", InstanceSnapshotArgs.builder()        \n            .volumeId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:InstanceSnapshot\n    properties:\n      volumeId: 11111111-1111-1111-1111-111111111111\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example with Unified type snapshot\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst mainInstanceVolume = new scaleway.InstanceVolume(\"mainInstanceVolume\", {\n    type: \"l_ssd\",\n    sizeInGb: 10,\n});\nconst mainInstanceServer = new scaleway.InstanceServer(\"mainInstanceServer\", {\n    image: \"ubuntu_jammy\",\n    type: \"DEV1-S\",\n    rootVolume: {\n        sizeInGb: 10,\n        volumeType: \"l_ssd\",\n    },\n    additionalVolumeIds: [mainInstanceVolume.id],\n});\nconst mainInstanceSnapshot = new scaleway.InstanceSnapshot(\"mainInstanceSnapshot\", {\n    volumeId: mainInstanceVolume.id,\n    type: \"unified\",\n}, {\n    dependsOn: [mainInstanceServer],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain_instance_volume = scaleway.InstanceVolume(\"mainInstanceVolume\",\n    type=\"l_ssd\",\n    size_in_gb=10)\nmain_instance_server = scaleway.InstanceServer(\"mainInstanceServer\",\n    image=\"ubuntu_jammy\",\n    type=\"DEV1-S\",\n    root_volume=scaleway.InstanceServerRootVolumeArgs(\n        size_in_gb=10,\n        volume_type=\"l_ssd\",\n    ),\n    additional_volume_ids=[main_instance_volume.id])\nmain_instance_snapshot = scaleway.InstanceSnapshot(\"mainInstanceSnapshot\",\n    volume_id=main_instance_volume.id,\n    type=\"unified\",\n    opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainInstanceVolume = new Scaleway.InstanceVolume(\"mainInstanceVolume\", new()\n    {\n        Type = \"l_ssd\",\n        SizeInGb = 10,\n    });\n\n    var mainInstanceServer = new Scaleway.InstanceServer(\"mainInstanceServer\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"DEV1-S\",\n        RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs\n        {\n            SizeInGb = 10,\n            VolumeType = \"l_ssd\",\n        },\n        AdditionalVolumeIds = new[]\n        {\n            mainInstanceVolume.Id,\n        },\n    });\n\n    var mainInstanceSnapshot = new Scaleway.InstanceSnapshot(\"mainInstanceSnapshot\", new()\n    {\n        VolumeId = mainInstanceVolume.Id,\n        Type = \"unified\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            mainInstanceServer, \n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainInstanceVolume, err := scaleway.NewInstanceVolume(ctx, \"mainInstanceVolume\", \u0026scaleway.InstanceVolumeArgs{\n\t\t\tType:     pulumi.String(\"l_ssd\"),\n\t\t\tSizeInGb: pulumi.Int(10),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainInstanceServer, err := scaleway.NewInstanceServer(ctx, \"mainInstanceServer\", \u0026scaleway.InstanceServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"DEV1-S\"),\n\t\t\tRootVolume: \u0026scaleway.InstanceServerRootVolumeArgs{\n\t\t\t\tSizeInGb:   pulumi.Int(10),\n\t\t\t\tVolumeType: pulumi.String(\"l_ssd\"),\n\t\t\t},\n\t\t\tAdditionalVolumeIds: pulumi.StringArray{\n\t\t\t\tmainInstanceVolume.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewInstanceSnapshot(ctx, \"mainInstanceSnapshot\", \u0026scaleway.InstanceSnapshotArgs{\n\t\t\tVolumeId: mainInstanceVolume.ID(),\n\t\t\tType:     pulumi.String(\"unified\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmainInstanceServer,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.InstanceVolume;\nimport com.pulumi.scaleway.InstanceVolumeArgs;\nimport com.pulumi.scaleway.InstanceServer;\nimport com.pulumi.scaleway.InstanceServerArgs;\nimport com.pulumi.scaleway.inputs.InstanceServerRootVolumeArgs;\nimport com.pulumi.scaleway.InstanceSnapshot;\nimport com.pulumi.scaleway.InstanceSnapshotArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainInstanceVolume = new InstanceVolume(\"mainInstanceVolume\", InstanceVolumeArgs.builder()        \n            .type(\"l_ssd\")\n            .sizeInGb(10)\n            .build());\n\n        var mainInstanceServer = new InstanceServer(\"mainInstanceServer\", InstanceServerArgs.builder()        \n            .image(\"ubuntu_jammy\")\n            .type(\"DEV1-S\")\n            .rootVolume(InstanceServerRootVolumeArgs.builder()\n                .sizeInGb(10)\n                .volumeType(\"l_ssd\")\n                .build())\n            .additionalVolumeIds(mainInstanceVolume.id())\n            .build());\n\n        var mainInstanceSnapshot = new InstanceSnapshot(\"mainInstanceSnapshot\", InstanceSnapshotArgs.builder()        \n            .volumeId(mainInstanceVolume.id())\n            .type(\"unified\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(mainInstanceServer)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainInstanceVolume:\n    type: scaleway:InstanceVolume\n    properties:\n      type: l_ssd\n      sizeInGb: 10\n  mainInstanceServer:\n    type: scaleway:InstanceServer\n    properties:\n      image: ubuntu_jammy\n      type: DEV1-S\n      rootVolume:\n        sizeInGb: 10\n        volumeType: l_ssd\n      additionalVolumeIds:\n        - ${mainInstanceVolume.id}\n  mainInstanceSnapshot:\n    type: scaleway:InstanceSnapshot\n    properties:\n      volumeId: ${mainInstanceVolume.id}\n      type: unified\n    options:\n      dependson:\n        - ${mainInstanceServer}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example importing a local qcow2 file\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst bucket = new scaleway.ObjectBucket(\"bucket\", {});\nconst qcow = new scaleway.ObjectItem(\"qcow\", {\n    bucket: bucket.name,\n    key: \"server.qcow2\",\n    file: \"myqcow.qcow2\",\n});\nconst snapshot = new scaleway.InstanceSnapshot(\"snapshot\", {\n    type: \"unified\",\n    \"import\": {\n        bucket: qcow.bucket,\n        key: qcow.key,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nbucket = scaleway.ObjectBucket(\"bucket\")\nqcow = scaleway.ObjectItem(\"qcow\",\n    bucket=bucket.name,\n    key=\"server.qcow2\",\n    file=\"myqcow.qcow2\")\nsnapshot = scaleway.InstanceSnapshot(\"snapshot\",\n    type=\"unified\",\n    import_=scaleway.InstanceSnapshotImportArgs(\n        bucket=qcow.bucket,\n        key=qcow.key,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bucket = new Scaleway.ObjectBucket(\"bucket\");\n\n    var qcow = new Scaleway.ObjectItem(\"qcow\", new()\n    {\n        Bucket = bucket.Name,\n        Key = \"server.qcow2\",\n        File = \"myqcow.qcow2\",\n    });\n\n    var snapshot = new Scaleway.InstanceSnapshot(\"snapshot\", new()\n    {\n        Type = \"unified\",\n        Import = new Scaleway.Inputs.InstanceSnapshotImportArgs\n        {\n            Bucket = qcow.Bucket,\n            Key = qcow.Key,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbucket, err := scaleway.NewObjectBucket(ctx, \"bucket\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tqcow, err := scaleway.NewObjectItem(ctx, \"qcow\", \u0026scaleway.ObjectItemArgs{\n\t\t\tBucket: bucket.Name,\n\t\t\tKey:    pulumi.String(\"server.qcow2\"),\n\t\t\tFile:   pulumi.String(\"myqcow.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewInstanceSnapshot(ctx, \"snapshot\", \u0026scaleway.InstanceSnapshotArgs{\n\t\t\tType: pulumi.String(\"unified\"),\n\t\t\tImport: \u0026scaleway.InstanceSnapshotImportArgs{\n\t\t\t\tBucket: qcow.Bucket,\n\t\t\t\tKey:    qcow.Key,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ObjectBucket;\nimport com.pulumi.scaleway.ObjectItem;\nimport com.pulumi.scaleway.ObjectItemArgs;\nimport com.pulumi.scaleway.InstanceSnapshot;\nimport com.pulumi.scaleway.InstanceSnapshotArgs;\nimport com.pulumi.scaleway.inputs.InstanceSnapshotImportArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bucket = new ObjectBucket(\"bucket\");\n\n        var qcow = new ObjectItem(\"qcow\", ObjectItemArgs.builder()        \n            .bucket(bucket.name())\n            .key(\"server.qcow2\")\n            .file(\"myqcow.qcow2\")\n            .build());\n\n        var snapshot = new InstanceSnapshot(\"snapshot\", InstanceSnapshotArgs.builder()        \n            .type(\"unified\")\n            .import_(InstanceSnapshotImportArgs.builder()\n                .bucket(qcow.bucket())\n                .key(qcow.key())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bucket:\n    type: scaleway:ObjectBucket\n  qcow:\n    type: scaleway:ObjectItem\n    properties:\n      bucket: ${bucket.name}\n      key: server.qcow2\n      file: myqcow.qcow2\n  snapshot:\n    type: scaleway:InstanceSnapshot\n    properties:\n      type: unified\n      import:\n        bucket: ${qcow.bucket}\n        key: ${qcow.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nSnapshots can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Compute Snapshots.\nFor more information,\nsee [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.InstanceSnapshot(\"main\", {volumeId: \"11111111-1111-1111-1111-111111111111\"});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.InstanceSnapshot(\"main\", volume_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.InstanceSnapshot(\"main\", new()\n    {\n        VolumeId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewInstanceSnapshot(ctx, \"main\", \u0026scaleway.InstanceSnapshotArgs{\n\t\t\tVolumeId: pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.InstanceSnapshot;\nimport com.pulumi.scaleway.InstanceSnapshotArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new InstanceSnapshot(\"main\", InstanceSnapshotArgs.builder()        \n            .volumeId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:InstanceSnapshot\n    properties:\n      volumeId: 11111111-1111-1111-1111-111111111111\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example with Unified type snapshot\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst mainInstanceVolume = new scaleway.InstanceVolume(\"mainInstanceVolume\", {\n    type: \"l_ssd\",\n    sizeInGb: 10,\n});\nconst mainInstanceServer = new scaleway.InstanceServer(\"mainInstanceServer\", {\n    image: \"ubuntu_jammy\",\n    type: \"DEV1-S\",\n    rootVolume: {\n        sizeInGb: 10,\n        volumeType: \"l_ssd\",\n    },\n    additionalVolumeIds: [mainInstanceVolume.id],\n});\nconst mainInstanceSnapshot = new scaleway.InstanceSnapshot(\"mainInstanceSnapshot\", {\n    volumeId: mainInstanceVolume.id,\n    type: \"unified\",\n}, {\n    dependsOn: [mainInstanceServer],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain_instance_volume = scaleway.InstanceVolume(\"mainInstanceVolume\",\n    type=\"l_ssd\",\n    size_in_gb=10)\nmain_instance_server = scaleway.InstanceServer(\"mainInstanceServer\",\n    image=\"ubuntu_jammy\",\n    type=\"DEV1-S\",\n    root_volume=scaleway.InstanceServerRootVolumeArgs(\n        size_in_gb=10,\n        volume_type=\"l_ssd\",\n    ),\n    additional_volume_ids=[main_instance_volume.id])\nmain_instance_snapshot = scaleway.InstanceSnapshot(\"mainInstanceSnapshot\",\n    volume_id=main_instance_volume.id,\n    type=\"unified\",\n    opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainInstanceVolume = new Scaleway.InstanceVolume(\"mainInstanceVolume\", new()\n    {\n        Type = \"l_ssd\",\n        SizeInGb = 10,\n    });\n\n    var mainInstanceServer = new Scaleway.InstanceServer(\"mainInstanceServer\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"DEV1-S\",\n        RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs\n        {\n            SizeInGb = 10,\n            VolumeType = \"l_ssd\",\n        },\n        AdditionalVolumeIds = new[]\n        {\n            mainInstanceVolume.Id,\n        },\n    });\n\n    var mainInstanceSnapshot = new Scaleway.InstanceSnapshot(\"mainInstanceSnapshot\", new()\n    {\n        VolumeId = mainInstanceVolume.Id,\n        Type = \"unified\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            mainInstanceServer,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainInstanceVolume, err := scaleway.NewInstanceVolume(ctx, \"mainInstanceVolume\", \u0026scaleway.InstanceVolumeArgs{\n\t\t\tType:     pulumi.String(\"l_ssd\"),\n\t\t\tSizeInGb: pulumi.Int(10),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainInstanceServer, err := scaleway.NewInstanceServer(ctx, \"mainInstanceServer\", \u0026scaleway.InstanceServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"DEV1-S\"),\n\t\t\tRootVolume: \u0026scaleway.InstanceServerRootVolumeArgs{\n\t\t\t\tSizeInGb:   pulumi.Int(10),\n\t\t\t\tVolumeType: pulumi.String(\"l_ssd\"),\n\t\t\t},\n\t\t\tAdditionalVolumeIds: pulumi.StringArray{\n\t\t\t\tmainInstanceVolume.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewInstanceSnapshot(ctx, \"mainInstanceSnapshot\", \u0026scaleway.InstanceSnapshotArgs{\n\t\t\tVolumeId: mainInstanceVolume.ID(),\n\t\t\tType:     pulumi.String(\"unified\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmainInstanceServer,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.InstanceVolume;\nimport com.pulumi.scaleway.InstanceVolumeArgs;\nimport com.pulumi.scaleway.InstanceServer;\nimport com.pulumi.scaleway.InstanceServerArgs;\nimport com.pulumi.scaleway.inputs.InstanceServerRootVolumeArgs;\nimport com.pulumi.scaleway.InstanceSnapshot;\nimport com.pulumi.scaleway.InstanceSnapshotArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainInstanceVolume = new InstanceVolume(\"mainInstanceVolume\", InstanceVolumeArgs.builder()        \n            .type(\"l_ssd\")\n            .sizeInGb(10)\n            .build());\n\n        var mainInstanceServer = new InstanceServer(\"mainInstanceServer\", InstanceServerArgs.builder()        \n            .image(\"ubuntu_jammy\")\n            .type(\"DEV1-S\")\n            .rootVolume(InstanceServerRootVolumeArgs.builder()\n                .sizeInGb(10)\n                .volumeType(\"l_ssd\")\n                .build())\n            .additionalVolumeIds(mainInstanceVolume.id())\n            .build());\n\n        var mainInstanceSnapshot = new InstanceSnapshot(\"mainInstanceSnapshot\", InstanceSnapshotArgs.builder()        \n            .volumeId(mainInstanceVolume.id())\n            .type(\"unified\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(mainInstanceServer)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainInstanceVolume:\n    type: scaleway:InstanceVolume\n    properties:\n      type: l_ssd\n      sizeInGb: 10\n  mainInstanceServer:\n    type: scaleway:InstanceServer\n    properties:\n      image: ubuntu_jammy\n      type: DEV1-S\n      rootVolume:\n        sizeInGb: 10\n        volumeType: l_ssd\n      additionalVolumeIds:\n        - ${mainInstanceVolume.id}\n  mainInstanceSnapshot:\n    type: scaleway:InstanceSnapshot\n    properties:\n      volumeId: ${mainInstanceVolume.id}\n      type: unified\n    options:\n      dependson:\n        - ${mainInstanceServer}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example importing a local qcow2 file\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst bucket = new scaleway.ObjectBucket(\"bucket\", {});\nconst qcow = new scaleway.ObjectItem(\"qcow\", {\n    bucket: bucket.name,\n    key: \"server.qcow2\",\n    file: \"myqcow.qcow2\",\n});\nconst snapshot = new scaleway.InstanceSnapshot(\"snapshot\", {\n    type: \"unified\",\n    \"import\": {\n        bucket: qcow.bucket,\n        key: qcow.key,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nbucket = scaleway.ObjectBucket(\"bucket\")\nqcow = scaleway.ObjectItem(\"qcow\",\n    bucket=bucket.name,\n    key=\"server.qcow2\",\n    file=\"myqcow.qcow2\")\nsnapshot = scaleway.InstanceSnapshot(\"snapshot\",\n    type=\"unified\",\n    import_=scaleway.InstanceSnapshotImportArgs(\n        bucket=qcow.bucket,\n        key=qcow.key,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bucket = new Scaleway.ObjectBucket(\"bucket\");\n\n    var qcow = new Scaleway.ObjectItem(\"qcow\", new()\n    {\n        Bucket = bucket.Name,\n        Key = \"server.qcow2\",\n        File = \"myqcow.qcow2\",\n    });\n\n    var snapshot = new Scaleway.InstanceSnapshot(\"snapshot\", new()\n    {\n        Type = \"unified\",\n        Import = new Scaleway.Inputs.InstanceSnapshotImportArgs\n        {\n            Bucket = qcow.Bucket,\n            Key = qcow.Key,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbucket, err := scaleway.NewObjectBucket(ctx, \"bucket\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tqcow, err := scaleway.NewObjectItem(ctx, \"qcow\", \u0026scaleway.ObjectItemArgs{\n\t\t\tBucket: bucket.Name,\n\t\t\tKey:    pulumi.String(\"server.qcow2\"),\n\t\t\tFile:   pulumi.String(\"myqcow.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewInstanceSnapshot(ctx, \"snapshot\", \u0026scaleway.InstanceSnapshotArgs{\n\t\t\tType: pulumi.String(\"unified\"),\n\t\t\tImport: \u0026scaleway.InstanceSnapshotImportArgs{\n\t\t\t\tBucket: qcow.Bucket,\n\t\t\t\tKey:    qcow.Key,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ObjectBucket;\nimport com.pulumi.scaleway.ObjectItem;\nimport com.pulumi.scaleway.ObjectItemArgs;\nimport com.pulumi.scaleway.InstanceSnapshot;\nimport com.pulumi.scaleway.InstanceSnapshotArgs;\nimport com.pulumi.scaleway.inputs.InstanceSnapshotImportArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bucket = new ObjectBucket(\"bucket\");\n\n        var qcow = new ObjectItem(\"qcow\", ObjectItemArgs.builder()        \n            .bucket(bucket.name())\n            .key(\"server.qcow2\")\n            .file(\"myqcow.qcow2\")\n            .build());\n\n        var snapshot = new InstanceSnapshot(\"snapshot\", InstanceSnapshotArgs.builder()        \n            .type(\"unified\")\n            .import_(InstanceSnapshotImportArgs.builder()\n                .bucket(qcow.bucket())\n                .key(qcow.key())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bucket:\n    type: scaleway:ObjectBucket\n  qcow:\n    type: scaleway:ObjectItem\n    properties:\n      bucket: ${bucket.name}\n      key: server.qcow2\n      file: myqcow.qcow2\n  snapshot:\n    type: scaleway:InstanceSnapshot\n    properties:\n      type: unified\n      import:\n        bucket: ${qcow.bucket}\n        key: ${qcow.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nSnapshots can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -15624,91 +15624,88 @@
             "properties": {
                 "failoverHost": {
                     "type": "string",
-                    "description": "Scaleway S3 bucket website to be served in case all backend servers are down.\n\u003e **Note:** Only the host part of the Scaleway S3 bucket website is expected:\ne.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.\n"
+                    "description": "Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the\nScaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL\nis 'https://failover-website.s3-website.fr-par.scw.cloud/'.\n"
                 },
                 "forwardPort": {
                     "type": "integer",
-                    "description": "User sessions will be forwarded to this port of backend servers.\n"
+                    "description": "User sessions will be forwarded to this port of backend servers\n"
                 },
                 "forwardPortAlgorithm": {
                     "type": "string",
-                    "description": "Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.\n"
+                    "description": "Load balancing algorithm\n"
                 },
                 "forwardProtocol": {
                     "type": "string",
-                    "description": "Backend protocol. Possible values are: `tcp` or `http`.\n"
+                    "description": "Backend protocol\n"
                 },
                 "healthCheckDelay": {
                     "type": "string",
-                    "description": "Interval between two HC requests.\n"
+                    "description": "Interval between two HC requests\n"
                 },
                 "healthCheckHttp": {
-                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttp:LoadbalancerBackendHealthCheckHttp",
-                    "description": "This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttp:LoadbalancerBackendHealthCheckHttp"
                 },
                 "healthCheckHttps": {
-                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttps:LoadbalancerBackendHealthCheckHttps",
-                    "description": "This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttps:LoadbalancerBackendHealthCheckHttps"
                 },
                 "healthCheckMaxRetries": {
                     "type": "integer",
-                    "description": "Number of allowed failed HC requests before the backend server is marked down.\n"
+                    "description": "Number of allowed failed HC requests before the backend server is marked down\n"
                 },
                 "healthCheckPort": {
                     "type": "integer",
-                    "description": "Port the HC requests will be send to.\n"
+                    "description": "Port the HC requests will be send to. Default to `forward_port`\n"
                 },
                 "healthCheckSendProxy": {
                     "type": "boolean",
-                    "description": "Defines whether proxy protocol should be activated for the health check.\n"
+                    "description": "Defines whether proxy protocol should be activated for the health check\n"
                 },
                 "healthCheckTcp": {
-                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckTcp:LoadbalancerBackendHealthCheckTcp",
-                    "description": "This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckTcp:LoadbalancerBackendHealthCheckTcp"
                 },
                 "healthCheckTimeout": {
                     "type": "string",
-                    "description": "Timeout before we consider a HC request failed.\n"
+                    "description": "Timeout before we consider a HC request failed\n"
                 },
                 "healthCheckTransientDelay": {
                     "type": "string",
-                    "description": "The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).\n"
+                    "description": "Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)\n"
                 },
                 "ignoreSslServerVerify": {
                     "type": "boolean",
-                    "description": "Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.\n"
+                    "description": "Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection\n"
                 },
                 "lbId": {
                     "type": "string",
-                    "description": "The load-balancer ID this backend is attached to.\n\u003e **Important:** Updates to `lb_id` will recreate the backend.\n"
+                    "description": "The load-balancer ID\n"
                 },
                 "maxConnections": {
                     "type": "integer",
-                    "description": "Maximum number of connections allowed per backend server.\n"
+                    "description": "Maximum number of connections allowed per backend server\n"
                 },
                 "maxRetries": {
                     "type": "integer",
-                    "description": "Number of retries when a backend server connection failed.\n"
+                    "description": "Number of retries when a backend server connection failed\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the load-balancer backend.\n"
+                    "description": "The name of the backend\n"
                 },
                 "onMarkedDownAction": {
                     "type": "string",
-                    "description": "Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.\n"
+                    "description": "Modify what occurs when a backend server is marked down\n"
                 },
                 "proxyProtocol": {
                     "type": "string",
-                    "description": "Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)\n"
+                    "description": "Type of PROXY protocol to enable\n"
                 },
                 "redispatchAttemptCount": {
                     "type": "integer",
-                    "description": "Whether to use another backend server on each attempt.\n"
+                    "description": "Whether to use another backend server on each attempt\n"
                 },
                 "sendProxyV2": {
                     "type": "boolean",
-                    "description": "DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.\n",
+                    "description": "Enables PROXY protocol version 2\n",
                     "deprecationMessage": "Please use proxy_protocol instead"
                 },
                 "serverIps": {
@@ -15716,35 +15713,35 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of backend server IP addresses. Addresses can be either IPv4 or IPv6.\n"
+                    "description": "Backend server IP addresses list (IPv4 or IPv6)\n"
                 },
                 "sslBridging": {
                     "type": "boolean",
-                    "description": "Enables SSL between load balancer and backend servers.\n"
+                    "description": "Enables SSL between load balancer and backend servers\n"
                 },
                 "stickySessions": {
                     "type": "string",
-                    "description": "The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.\n"
+                    "description": "The type of sticky sessions\n"
                 },
                 "stickySessionsCookieName": {
                     "type": "string",
-                    "description": "Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.\n"
+                    "description": "Cookie name for sticky sessions\n"
                 },
                 "timeoutConnect": {
                     "type": "string",
-                    "description": "Maximum initial server connection establishment time. (e.g.: `1s`)\n"
+                    "description": "Maximum initial server connection establishment time\n"
                 },
                 "timeoutQueue": {
                     "type": "string",
-                    "description": "Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)\n"
+                    "description": "Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached\n"
                 },
                 "timeoutServer": {
                     "type": "string",
-                    "description": "Maximum server connection inactivity time. (e.g.: `1s`)\n"
+                    "description": "Maximum server connection inactivity time\n"
                 },
                 "timeoutTunnel": {
                     "type": "string",
-                    "description": "Maximum tunnel inactivity time. (e.g.: `1s`)\n"
+                    "description": "Maximum tunnel inactivity time\n"
                 }
             },
             "required": [
@@ -15759,92 +15756,89 @@
             "inputProperties": {
                 "failoverHost": {
                     "type": "string",
-                    "description": "Scaleway S3 bucket website to be served in case all backend servers are down.\n\u003e **Note:** Only the host part of the Scaleway S3 bucket website is expected:\ne.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.\n"
+                    "description": "Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the\nScaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL\nis 'https://failover-website.s3-website.fr-par.scw.cloud/'.\n"
                 },
                 "forwardPort": {
                     "type": "integer",
-                    "description": "User sessions will be forwarded to this port of backend servers.\n"
+                    "description": "User sessions will be forwarded to this port of backend servers\n"
                 },
                 "forwardPortAlgorithm": {
                     "type": "string",
-                    "description": "Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.\n"
+                    "description": "Load balancing algorithm\n"
                 },
                 "forwardProtocol": {
                     "type": "string",
-                    "description": "Backend protocol. Possible values are: `tcp` or `http`.\n"
+                    "description": "Backend protocol\n"
                 },
                 "healthCheckDelay": {
                     "type": "string",
-                    "description": "Interval between two HC requests.\n"
+                    "description": "Interval between two HC requests\n"
                 },
                 "healthCheckHttp": {
-                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttp:LoadbalancerBackendHealthCheckHttp",
-                    "description": "This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttp:LoadbalancerBackendHealthCheckHttp"
                 },
                 "healthCheckHttps": {
-                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttps:LoadbalancerBackendHealthCheckHttps",
-                    "description": "This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttps:LoadbalancerBackendHealthCheckHttps"
                 },
                 "healthCheckMaxRetries": {
                     "type": "integer",
-                    "description": "Number of allowed failed HC requests before the backend server is marked down.\n"
+                    "description": "Number of allowed failed HC requests before the backend server is marked down\n"
                 },
                 "healthCheckPort": {
                     "type": "integer",
-                    "description": "Port the HC requests will be send to.\n"
+                    "description": "Port the HC requests will be send to. Default to `forward_port`\n"
                 },
                 "healthCheckSendProxy": {
                     "type": "boolean",
-                    "description": "Defines whether proxy protocol should be activated for the health check.\n"
+                    "description": "Defines whether proxy protocol should be activated for the health check\n"
                 },
                 "healthCheckTcp": {
-                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckTcp:LoadbalancerBackendHealthCheckTcp",
-                    "description": "This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                    "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckTcp:LoadbalancerBackendHealthCheckTcp"
                 },
                 "healthCheckTimeout": {
                     "type": "string",
-                    "description": "Timeout before we consider a HC request failed.\n"
+                    "description": "Timeout before we consider a HC request failed\n"
                 },
                 "healthCheckTransientDelay": {
                     "type": "string",
-                    "description": "The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).\n"
+                    "description": "Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)\n"
                 },
                 "ignoreSslServerVerify": {
                     "type": "boolean",
-                    "description": "Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.\n"
+                    "description": "Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection\n"
                 },
                 "lbId": {
                     "type": "string",
-                    "description": "The load-balancer ID this backend is attached to.\n\u003e **Important:** Updates to `lb_id` will recreate the backend.\n",
+                    "description": "The load-balancer ID\n",
                     "willReplaceOnChanges": true
                 },
                 "maxConnections": {
                     "type": "integer",
-                    "description": "Maximum number of connections allowed per backend server.\n"
+                    "description": "Maximum number of connections allowed per backend server\n"
                 },
                 "maxRetries": {
                     "type": "integer",
-                    "description": "Number of retries when a backend server connection failed.\n"
+                    "description": "Number of retries when a backend server connection failed\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the load-balancer backend.\n"
+                    "description": "The name of the backend\n"
                 },
                 "onMarkedDownAction": {
                     "type": "string",
-                    "description": "Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.\n"
+                    "description": "Modify what occurs when a backend server is marked down\n"
                 },
                 "proxyProtocol": {
                     "type": "string",
-                    "description": "Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)\n"
+                    "description": "Type of PROXY protocol to enable\n"
                 },
                 "redispatchAttemptCount": {
                     "type": "integer",
-                    "description": "Whether to use another backend server on each attempt.\n"
+                    "description": "Whether to use another backend server on each attempt\n"
                 },
                 "sendProxyV2": {
                     "type": "boolean",
-                    "description": "DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.\n",
+                    "description": "Enables PROXY protocol version 2\n",
                     "deprecationMessage": "Please use proxy_protocol instead"
                 },
                 "serverIps": {
@@ -15852,35 +15846,35 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of backend server IP addresses. Addresses can be either IPv4 or IPv6.\n"
+                    "description": "Backend server IP addresses list (IPv4 or IPv6)\n"
                 },
                 "sslBridging": {
                     "type": "boolean",
-                    "description": "Enables SSL between load balancer and backend servers.\n"
+                    "description": "Enables SSL between load balancer and backend servers\n"
                 },
                 "stickySessions": {
                     "type": "string",
-                    "description": "The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.\n"
+                    "description": "The type of sticky sessions\n"
                 },
                 "stickySessionsCookieName": {
                     "type": "string",
-                    "description": "Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.\n"
+                    "description": "Cookie name for sticky sessions\n"
                 },
                 "timeoutConnect": {
                     "type": "string",
-                    "description": "Maximum initial server connection establishment time. (e.g.: `1s`)\n"
+                    "description": "Maximum initial server connection establishment time\n"
                 },
                 "timeoutQueue": {
                     "type": "string",
-                    "description": "Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)\n"
+                    "description": "Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached\n"
                 },
                 "timeoutServer": {
                     "type": "string",
-                    "description": "Maximum server connection inactivity time. (e.g.: `1s`)\n"
+                    "description": "Maximum server connection inactivity time\n"
                 },
                 "timeoutTunnel": {
                     "type": "string",
-                    "description": "Maximum tunnel inactivity time. (e.g.: `1s`)\n"
+                    "description": "Maximum tunnel inactivity time\n"
                 }
             },
             "requiredInputs": [
@@ -15893,92 +15887,89 @@
                 "properties": {
                     "failoverHost": {
                         "type": "string",
-                        "description": "Scaleway S3 bucket website to be served in case all backend servers are down.\n\u003e **Note:** Only the host part of the Scaleway S3 bucket website is expected:\ne.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.\n"
+                        "description": "Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the\nScaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL\nis 'https://failover-website.s3-website.fr-par.scw.cloud/'.\n"
                     },
                     "forwardPort": {
                         "type": "integer",
-                        "description": "User sessions will be forwarded to this port of backend servers.\n"
+                        "description": "User sessions will be forwarded to this port of backend servers\n"
                     },
                     "forwardPortAlgorithm": {
                         "type": "string",
-                        "description": "Load balancing algorithm. Possible values are: `roundrobin`, `leastconn` and `first`.\n"
+                        "description": "Load balancing algorithm\n"
                     },
                     "forwardProtocol": {
                         "type": "string",
-                        "description": "Backend protocol. Possible values are: `tcp` or `http`.\n"
+                        "description": "Backend protocol\n"
                     },
                     "healthCheckDelay": {
                         "type": "string",
-                        "description": "Interval between two HC requests.\n"
+                        "description": "Interval between two HC requests\n"
                     },
                     "healthCheckHttp": {
-                        "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttp:LoadbalancerBackendHealthCheckHttp",
-                        "description": "This block enable HTTP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                        "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttp:LoadbalancerBackendHealthCheckHttp"
                     },
                     "healthCheckHttps": {
-                        "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttps:LoadbalancerBackendHealthCheckHttps",
-                        "description": "This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                        "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckHttps:LoadbalancerBackendHealthCheckHttps"
                     },
                     "healthCheckMaxRetries": {
                         "type": "integer",
-                        "description": "Number of allowed failed HC requests before the backend server is marked down.\n"
+                        "description": "Number of allowed failed HC requests before the backend server is marked down\n"
                     },
                     "healthCheckPort": {
                         "type": "integer",
-                        "description": "Port the HC requests will be send to.\n"
+                        "description": "Port the HC requests will be send to. Default to `forward_port`\n"
                     },
                     "healthCheckSendProxy": {
                         "type": "boolean",
-                        "description": "Defines whether proxy protocol should be activated for the health check.\n"
+                        "description": "Defines whether proxy protocol should be activated for the health check\n"
                     },
                     "healthCheckTcp": {
-                        "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckTcp:LoadbalancerBackendHealthCheckTcp",
-                        "description": "This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
+                        "$ref": "#/types/scaleway:index/LoadbalancerBackendHealthCheckTcp:LoadbalancerBackendHealthCheckTcp"
                     },
                     "healthCheckTimeout": {
                         "type": "string",
-                        "description": "Timeout before we consider a HC request failed.\n"
+                        "description": "Timeout before we consider a HC request failed\n"
                     },
                     "healthCheckTransientDelay": {
                         "type": "string",
-                        "description": "The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).\n"
+                        "description": "Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)\n"
                     },
                     "ignoreSslServerVerify": {
                         "type": "boolean",
-                        "description": "Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.\n"
+                        "description": "Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection\n"
                     },
                     "lbId": {
                         "type": "string",
-                        "description": "The load-balancer ID this backend is attached to.\n\u003e **Important:** Updates to `lb_id` will recreate the backend.\n",
+                        "description": "The load-balancer ID\n",
                         "willReplaceOnChanges": true
                     },
                     "maxConnections": {
                         "type": "integer",
-                        "description": "Maximum number of connections allowed per backend server.\n"
+                        "description": "Maximum number of connections allowed per backend server\n"
                     },
                     "maxRetries": {
                         "type": "integer",
-                        "description": "Number of retries when a backend server connection failed.\n"
+                        "description": "Number of retries when a backend server connection failed\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the load-balancer backend.\n"
+                        "description": "The name of the backend\n"
                     },
                     "onMarkedDownAction": {
                         "type": "string",
-                        "description": "Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.\n"
+                        "description": "Modify what occurs when a backend server is marked down\n"
                     },
                     "proxyProtocol": {
                         "type": "string",
-                        "description": "Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)\n"
+                        "description": "Type of PROXY protocol to enable\n"
                     },
                     "redispatchAttemptCount": {
                         "type": "integer",
-                        "description": "Whether to use another backend server on each attempt.\n"
+                        "description": "Whether to use another backend server on each attempt\n"
                     },
                     "sendProxyV2": {
                         "type": "boolean",
-                        "description": "DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.\n",
+                        "description": "Enables PROXY protocol version 2\n",
                         "deprecationMessage": "Please use proxy_protocol instead"
                     },
                     "serverIps": {
@@ -15986,35 +15977,35 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of backend server IP addresses. Addresses can be either IPv4 or IPv6.\n"
+                        "description": "Backend server IP addresses list (IPv4 or IPv6)\n"
                     },
                     "sslBridging": {
                         "type": "boolean",
-                        "description": "Enables SSL between load balancer and backend servers.\n"
+                        "description": "Enables SSL between load balancer and backend servers\n"
                     },
                     "stickySessions": {
                         "type": "string",
-                        "description": "The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.\n"
+                        "description": "The type of sticky sessions\n"
                     },
                     "stickySessionsCookieName": {
                         "type": "string",
-                        "description": "Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.\n"
+                        "description": "Cookie name for sticky sessions\n"
                     },
                     "timeoutConnect": {
                         "type": "string",
-                        "description": "Maximum initial server connection establishment time. (e.g.: `1s`)\n"
+                        "description": "Maximum initial server connection establishment time\n"
                     },
                     "timeoutQueue": {
                         "type": "string",
-                        "description": "Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)\n"
+                        "description": "Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached\n"
                     },
                     "timeoutServer": {
                         "type": "string",
-                        "description": "Maximum server connection inactivity time. (e.g.: `1s`)\n"
+                        "description": "Maximum server connection inactivity time\n"
                     },
                     "timeoutTunnel": {
                         "type": "string",
-                        "description": "Maximum tunnel inactivity time. (e.g.: `1s`)\n"
+                        "description": "Maximum tunnel inactivity time\n"
                     }
                 },
                 "type": "object"
@@ -16024,11 +16015,11 @@
             "properties": {
                 "commonName": {
                     "type": "string",
-                    "description": "Main domain of the certificate. A new certificate will be created if this field is changed.\n"
+                    "description": "Main domain of the certificate\n"
                 },
                 "customCertificate": {
                     "$ref": "#/types/scaleway:index/LoadbalancerCertificateCustomCertificate:LoadbalancerCertificateCustomCertificate",
-                    "description": "Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.\n"
+                    "description": "The custom type certificate type configuration\n"
                 },
                 "fingerprint": {
                     "type": "string",
@@ -16036,15 +16027,15 @@
                 },
                 "lbId": {
                     "type": "string",
-                    "description": "The load-balancer ID this certificate is attached to.\n\n\u003e **Important:** Updates to `lb_id` will recreate the load-balancer certificate.\n"
+                    "description": "The load-balancer ID\n"
                 },
                 "letsencrypt": {
                     "$ref": "#/types/scaleway:index/LoadbalancerCertificateLetsencrypt:LoadbalancerCertificateLetsencrypt",
-                    "description": "Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.\n"
+                    "description": "The Let's Encrypt type certificate configuration\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the certificate backend.\n"
+                    "description": "The name of the load-balancer certificate\n"
                 },
                 "notValidAfter": {
                     "type": "string",
@@ -16063,7 +16054,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Array of alternative domain names.  A new certificate will be created if this field is changed.\n\n\u003e **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.\n"
+                    "description": "The alternative domain names of the certificate\n"
                 }
             },
             "required": [
@@ -16079,22 +16070,22 @@
             "inputProperties": {
                 "customCertificate": {
                     "$ref": "#/types/scaleway:index/LoadbalancerCertificateCustomCertificate:LoadbalancerCertificateCustomCertificate",
-                    "description": "Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.\n",
+                    "description": "The custom type certificate type configuration\n",
                     "willReplaceOnChanges": true
                 },
                 "lbId": {
                     "type": "string",
-                    "description": "The load-balancer ID this certificate is attached to.\n\n\u003e **Important:** Updates to `lb_id` will recreate the load-balancer certificate.\n",
+                    "description": "The load-balancer ID\n",
                     "willReplaceOnChanges": true
                 },
                 "letsencrypt": {
                     "$ref": "#/types/scaleway:index/LoadbalancerCertificateLetsencrypt:LoadbalancerCertificateLetsencrypt",
-                    "description": "Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.\n",
+                    "description": "The Let's Encrypt type certificate configuration\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the certificate backend.\n"
+                    "description": "The name of the load-balancer certificate\n"
                 }
             },
             "requiredInputs": [
@@ -16105,11 +16096,11 @@
                 "properties": {
                     "commonName": {
                         "type": "string",
-                        "description": "Main domain of the certificate. A new certificate will be created if this field is changed.\n"
+                        "description": "Main domain of the certificate\n"
                     },
                     "customCertificate": {
                         "$ref": "#/types/scaleway:index/LoadbalancerCertificateCustomCertificate:LoadbalancerCertificateCustomCertificate",
-                        "description": "Configuration block for custom certificate chain. Only one of `letsencrypt` and `custom_certificate` should be specified.\n",
+                        "description": "The custom type certificate type configuration\n",
                         "willReplaceOnChanges": true
                     },
                     "fingerprint": {
@@ -16118,17 +16109,17 @@
                     },
                     "lbId": {
                         "type": "string",
-                        "description": "The load-balancer ID this certificate is attached to.\n\n\u003e **Important:** Updates to `lb_id` will recreate the load-balancer certificate.\n",
+                        "description": "The load-balancer ID\n",
                         "willReplaceOnChanges": true
                     },
                     "letsencrypt": {
                         "$ref": "#/types/scaleway:index/LoadbalancerCertificateLetsencrypt:LoadbalancerCertificateLetsencrypt",
-                        "description": "Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.\n",
+                        "description": "The Let's Encrypt type certificate configuration\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the certificate backend.\n"
+                        "description": "The name of the load-balancer certificate\n"
                     },
                     "notValidAfter": {
                         "type": "string",
@@ -16147,7 +16138,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Array of alternative domain names.  A new certificate will be created if this field is changed.\n\n\u003e **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.\n"
+                        "description": "The alternative domain names of the certificate\n"
                     }
                 },
                 "type": "object"
@@ -18231,7 +18222,7 @@
             }
         },
         "scaleway:index/redisCluster:RedisCluster": {
-            "description": "Creates and manages Scaleway Redis Clusters.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.RedisCluster(\"main\", {\n    acls: [{\n        description: \"Allow all\",\n        ip: \"0.0.0.0/0\",\n    }],\n    clusterSize: 1,\n    nodeType: \"RED1-MICRO\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    tags: [\n        \"test\",\n        \"redis\",\n    ],\n    tlsEnabled: true,\n    userName: \"my_initial_user\",\n    version: \"6.2.6\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.RedisCluster(\"main\",\n    acls=[scaleway.RedisClusterAclArgs(\n        description=\"Allow all\",\n        ip=\"0.0.0.0/0\",\n    )],\n    cluster_size=1,\n    node_type=\"RED1-MICRO\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    tags=[\n        \"test\",\n        \"redis\",\n    ],\n    tls_enabled=True,\n    user_name=\"my_initial_user\",\n    version=\"6.2.6\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.RedisCluster(\"main\", new()\n    {\n        Acls = new[]\n        {\n            new Scaleway.Inputs.RedisClusterAclArgs\n            {\n                Description = \"Allow all\",\n                Ip = \"0.0.0.0/0\",\n            },\n        },\n        ClusterSize = 1,\n        NodeType = \"RED1-MICRO\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Tags = new[]\n        {\n            \"test\",\n            \"redis\",\n        },\n        TlsEnabled = true,\n        UserName = \"my_initial_user\",\n        Version = \"6.2.6\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewRedisCluster(ctx, \"main\", \u0026scaleway.RedisClusterArgs{\n\t\t\tAcls: scaleway.RedisClusterAclArray{\n\t\t\t\t\u0026scaleway.RedisClusterAclArgs{\n\t\t\t\t\tDescription: pulumi.String(\"Allow all\"),\n\t\t\t\t\tIp:          pulumi.String(\"0.0.0.0/0\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tClusterSize: pulumi.Int(1),\n\t\t\tNodeType:    pulumi.String(\"RED1-MICRO\"),\n\t\t\tPassword:    pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t\tpulumi.String(\"redis\"),\n\t\t\t},\n\t\t\tTlsEnabled: pulumi.Bool(true),\n\t\t\tUserName:   pulumi.String(\"my_initial_user\"),\n\t\t\tVersion:    pulumi.String(\"6.2.6\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.RedisCluster;\nimport com.pulumi.scaleway.RedisClusterArgs;\nimport com.pulumi.scaleway.inputs.RedisClusterAclArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new RedisCluster(\"main\", RedisClusterArgs.builder()        \n            .acls(RedisClusterAclArgs.builder()\n                .description(\"Allow all\")\n                .ip(\"0.0.0.0/0\")\n                .build())\n            .clusterSize(1)\n            .nodeType(\"RED1-MICRO\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .tags(            \n                \"test\",\n                \"redis\")\n            .tlsEnabled(\"true\")\n            .userName(\"my_initial_user\")\n            .version(\"6.2.6\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:RedisCluster\n    properties:\n      acls:\n        - description: Allow all\n          ip: 0.0.0.0/0\n      clusterSize: 1\n      nodeType: RED1-MICRO\n      password: thiZ_is_v\u0026ry_s3cret\n      tags:\n        - test\n        - redis\n      tlsEnabled: 'true'\n      userName: my_initial_user\n      version: 6.2.6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With settings\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.RedisCluster(\"main\", {\n    nodeType: \"RED1-MICRO\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    settings: {\n        maxclients: \"1000\",\n        \"tcp-keepalive\": \"120\",\n    },\n    userName: \"my_initial_user\",\n    version: \"6.2.6\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.RedisCluster(\"main\",\n    node_type=\"RED1-MICRO\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    settings={\n        \"maxclients\": \"1000\",\n        \"tcp-keepalive\": \"120\",\n    },\n    user_name=\"my_initial_user\",\n    version=\"6.2.6\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.RedisCluster(\"main\", new()\n    {\n        NodeType = \"RED1-MICRO\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Settings = \n        {\n            { \"maxclients\", \"1000\" },\n            { \"tcp-keepalive\", \"120\" },\n        },\n        UserName = \"my_initial_user\",\n        Version = \"6.2.6\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewRedisCluster(ctx, \"main\", \u0026scaleway.RedisClusterArgs{\n\t\t\tNodeType: pulumi.String(\"RED1-MICRO\"),\n\t\t\tPassword: pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tSettings: pulumi.StringMap{\n\t\t\t\t\"maxclients\":    pulumi.String(\"1000\"),\n\t\t\t\t\"tcp-keepalive\": pulumi.String(\"120\"),\n\t\t\t},\n\t\t\tUserName: pulumi.String(\"my_initial_user\"),\n\t\t\tVersion:  pulumi.String(\"6.2.6\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.RedisCluster;\nimport com.pulumi.scaleway.RedisClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new RedisCluster(\"main\", RedisClusterArgs.builder()        \n            .nodeType(\"RED1-MICRO\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .settings(Map.ofEntries(\n                Map.entry(\"maxclients\", \"1000\"),\n                Map.entry(\"tcp-keepalive\", \"120\")\n            ))\n            .userName(\"my_initial_user\")\n            .version(\"6.2.6\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:RedisCluster\n    properties:\n      nodeType: RED1-MICRO\n      password: thiZ_is_v\u0026ry_s3cret\n      settings:\n        maxclients: '1000'\n        tcp-keepalive: '120'\n      userName: my_initial_user\n      version: 6.2.6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With a private network\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst pn = new scaleway.VpcPrivateNetwork(\"pn\", {});\nconst main = new scaleway.RedisCluster(\"main\", {\n    version: \"6.2.6\",\n    nodeType: \"RED1-MICRO\",\n    userName: \"my_initial_user\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    clusterSize: 1,\n    privateNetworks: [{\n        id: pn.id,\n        serviceIps: [\"10.12.1.1/20\"],\n    }],\n}, {\n    dependsOn: [pn],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\npn = scaleway.VpcPrivateNetwork(\"pn\")\nmain = scaleway.RedisCluster(\"main\",\n    version=\"6.2.6\",\n    node_type=\"RED1-MICRO\",\n    user_name=\"my_initial_user\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    cluster_size=1,\n    private_networks=[scaleway.RedisClusterPrivateNetworkArgs(\n        id=pn.id,\n        service_ips=[\"10.12.1.1/20\"],\n    )],\n    opts=pulumi.ResourceOptions(depends_on=[pn]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pn = new Scaleway.VpcPrivateNetwork(\"pn\");\n\n    var main = new Scaleway.RedisCluster(\"main\", new()\n    {\n        Version = \"6.2.6\",\n        NodeType = \"RED1-MICRO\",\n        UserName = \"my_initial_user\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        ClusterSize = 1,\n        PrivateNetworks = new[]\n        {\n            new Scaleway.Inputs.RedisClusterPrivateNetworkArgs\n            {\n                Id = pn.Id,\n                ServiceIps = new[]\n                {\n                    \"10.12.1.1/20\",\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            pn, \n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpn, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewRedisCluster(ctx, \"main\", \u0026scaleway.RedisClusterArgs{\n\t\t\tVersion:     pulumi.String(\"6.2.6\"),\n\t\t\tNodeType:    pulumi.String(\"RED1-MICRO\"),\n\t\t\tUserName:    pulumi.String(\"my_initial_user\"),\n\t\t\tPassword:    pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tClusterSize: pulumi.Int(1),\n\t\t\tPrivateNetworks: scaleway.RedisClusterPrivateNetworkArray{\n\t\t\t\t\u0026scaleway.RedisClusterPrivateNetworkArgs{\n\t\t\t\t\tId: pn.ID(),\n\t\t\t\t\tServiceIps: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"10.12.1.1/20\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tpn,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.RedisCluster;\nimport com.pulumi.scaleway.RedisClusterArgs;\nimport com.pulumi.scaleway.inputs.RedisClusterPrivateNetworkArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pn = new VpcPrivateNetwork(\"pn\");\n\n        var main = new RedisCluster(\"main\", RedisClusterArgs.builder()        \n            .version(\"6.2.6\")\n            .nodeType(\"RED1-MICRO\")\n            .userName(\"my_initial_user\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .clusterSize(1)\n            .privateNetworks(RedisClusterPrivateNetworkArgs.builder()\n                .id(pn.id())\n                .serviceIps(\"10.12.1.1/20\")\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(pn)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pn:\n    type: scaleway:VpcPrivateNetwork\n  main:\n    type: scaleway:RedisCluster\n    properties:\n      version: 6.2.6\n      nodeType: RED1-MICRO\n      userName: my_initial_user\n      password: thiZ_is_v\u0026ry_s3cret\n      clusterSize: 1\n      privateNetworks:\n        - id: ${pn.id}\n          serviceIps:\n            - 10.12.1.1/20\n    options:\n      dependson:\n        - ${pn}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nRedis Cluster can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Redis Clusters.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.RedisCluster(\"main\", {\n    acls: [{\n        description: \"Allow all\",\n        ip: \"0.0.0.0/0\",\n    }],\n    clusterSize: 1,\n    nodeType: \"RED1-MICRO\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    tags: [\n        \"test\",\n        \"redis\",\n    ],\n    tlsEnabled: true,\n    userName: \"my_initial_user\",\n    version: \"6.2.6\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.RedisCluster(\"main\",\n    acls=[scaleway.RedisClusterAclArgs(\n        description=\"Allow all\",\n        ip=\"0.0.0.0/0\",\n    )],\n    cluster_size=1,\n    node_type=\"RED1-MICRO\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    tags=[\n        \"test\",\n        \"redis\",\n    ],\n    tls_enabled=True,\n    user_name=\"my_initial_user\",\n    version=\"6.2.6\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.RedisCluster(\"main\", new()\n    {\n        Acls = new[]\n        {\n            new Scaleway.Inputs.RedisClusterAclArgs\n            {\n                Description = \"Allow all\",\n                Ip = \"0.0.0.0/0\",\n            },\n        },\n        ClusterSize = 1,\n        NodeType = \"RED1-MICRO\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Tags = new[]\n        {\n            \"test\",\n            \"redis\",\n        },\n        TlsEnabled = true,\n        UserName = \"my_initial_user\",\n        Version = \"6.2.6\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewRedisCluster(ctx, \"main\", \u0026scaleway.RedisClusterArgs{\n\t\t\tAcls: scaleway.RedisClusterAclArray{\n\t\t\t\t\u0026scaleway.RedisClusterAclArgs{\n\t\t\t\t\tDescription: pulumi.String(\"Allow all\"),\n\t\t\t\t\tIp:          pulumi.String(\"0.0.0.0/0\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tClusterSize: pulumi.Int(1),\n\t\t\tNodeType:    pulumi.String(\"RED1-MICRO\"),\n\t\t\tPassword:    pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t\tpulumi.String(\"redis\"),\n\t\t\t},\n\t\t\tTlsEnabled: pulumi.Bool(true),\n\t\t\tUserName:   pulumi.String(\"my_initial_user\"),\n\t\t\tVersion:    pulumi.String(\"6.2.6\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.RedisCluster;\nimport com.pulumi.scaleway.RedisClusterArgs;\nimport com.pulumi.scaleway.inputs.RedisClusterAclArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new RedisCluster(\"main\", RedisClusterArgs.builder()        \n            .acls(RedisClusterAclArgs.builder()\n                .description(\"Allow all\")\n                .ip(\"0.0.0.0/0\")\n                .build())\n            .clusterSize(1)\n            .nodeType(\"RED1-MICRO\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .tags(            \n                \"test\",\n                \"redis\")\n            .tlsEnabled(\"true\")\n            .userName(\"my_initial_user\")\n            .version(\"6.2.6\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:RedisCluster\n    properties:\n      acls:\n        - description: Allow all\n          ip: 0.0.0.0/0\n      clusterSize: 1\n      nodeType: RED1-MICRO\n      password: thiZ_is_v\u0026ry_s3cret\n      tags:\n        - test\n        - redis\n      tlsEnabled: 'true'\n      userName: my_initial_user\n      version: 6.2.6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With settings\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.RedisCluster(\"main\", {\n    nodeType: \"RED1-MICRO\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    settings: {\n        maxclients: \"1000\",\n        \"tcp-keepalive\": \"120\",\n    },\n    userName: \"my_initial_user\",\n    version: \"6.2.6\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.RedisCluster(\"main\",\n    node_type=\"RED1-MICRO\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    settings={\n        \"maxclients\": \"1000\",\n        \"tcp-keepalive\": \"120\",\n    },\n    user_name=\"my_initial_user\",\n    version=\"6.2.6\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.RedisCluster(\"main\", new()\n    {\n        NodeType = \"RED1-MICRO\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Settings = \n        {\n            { \"maxclients\", \"1000\" },\n            { \"tcp-keepalive\", \"120\" },\n        },\n        UserName = \"my_initial_user\",\n        Version = \"6.2.6\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewRedisCluster(ctx, \"main\", \u0026scaleway.RedisClusterArgs{\n\t\t\tNodeType: pulumi.String(\"RED1-MICRO\"),\n\t\t\tPassword: pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tSettings: pulumi.StringMap{\n\t\t\t\t\"maxclients\":    pulumi.String(\"1000\"),\n\t\t\t\t\"tcp-keepalive\": pulumi.String(\"120\"),\n\t\t\t},\n\t\t\tUserName: pulumi.String(\"my_initial_user\"),\n\t\t\tVersion:  pulumi.String(\"6.2.6\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.RedisCluster;\nimport com.pulumi.scaleway.RedisClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new RedisCluster(\"main\", RedisClusterArgs.builder()        \n            .nodeType(\"RED1-MICRO\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .settings(Map.ofEntries(\n                Map.entry(\"maxclients\", \"1000\"),\n                Map.entry(\"tcp-keepalive\", \"120\")\n            ))\n            .userName(\"my_initial_user\")\n            .version(\"6.2.6\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:RedisCluster\n    properties:\n      nodeType: RED1-MICRO\n      password: thiZ_is_v\u0026ry_s3cret\n      settings:\n        maxclients: '1000'\n        tcp-keepalive: '120'\n      userName: my_initial_user\n      version: 6.2.6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With a private network\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst pn = new scaleway.VpcPrivateNetwork(\"pn\", {});\nconst main = new scaleway.RedisCluster(\"main\", {\n    version: \"6.2.6\",\n    nodeType: \"RED1-MICRO\",\n    userName: \"my_initial_user\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    clusterSize: 1,\n    privateNetworks: [{\n        id: pn.id,\n        serviceIps: [\"10.12.1.1/20\"],\n    }],\n}, {\n    dependsOn: [pn],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\npn = scaleway.VpcPrivateNetwork(\"pn\")\nmain = scaleway.RedisCluster(\"main\",\n    version=\"6.2.6\",\n    node_type=\"RED1-MICRO\",\n    user_name=\"my_initial_user\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    cluster_size=1,\n    private_networks=[scaleway.RedisClusterPrivateNetworkArgs(\n        id=pn.id,\n        service_ips=[\"10.12.1.1/20\"],\n    )],\n    opts=pulumi.ResourceOptions(depends_on=[pn]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pn = new Scaleway.VpcPrivateNetwork(\"pn\");\n\n    var main = new Scaleway.RedisCluster(\"main\", new()\n    {\n        Version = \"6.2.6\",\n        NodeType = \"RED1-MICRO\",\n        UserName = \"my_initial_user\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        ClusterSize = 1,\n        PrivateNetworks = new[]\n        {\n            new Scaleway.Inputs.RedisClusterPrivateNetworkArgs\n            {\n                Id = pn.Id,\n                ServiceIps = new[]\n                {\n                    \"10.12.1.1/20\",\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            pn,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpn, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewRedisCluster(ctx, \"main\", \u0026scaleway.RedisClusterArgs{\n\t\t\tVersion:     pulumi.String(\"6.2.6\"),\n\t\t\tNodeType:    pulumi.String(\"RED1-MICRO\"),\n\t\t\tUserName:    pulumi.String(\"my_initial_user\"),\n\t\t\tPassword:    pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tClusterSize: pulumi.Int(1),\n\t\t\tPrivateNetworks: scaleway.RedisClusterPrivateNetworkArray{\n\t\t\t\t\u0026scaleway.RedisClusterPrivateNetworkArgs{\n\t\t\t\t\tId: pn.ID(),\n\t\t\t\t\tServiceIps: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"10.12.1.1/20\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tpn,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.RedisCluster;\nimport com.pulumi.scaleway.RedisClusterArgs;\nimport com.pulumi.scaleway.inputs.RedisClusterPrivateNetworkArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pn = new VpcPrivateNetwork(\"pn\");\n\n        var main = new RedisCluster(\"main\", RedisClusterArgs.builder()        \n            .version(\"6.2.6\")\n            .nodeType(\"RED1-MICRO\")\n            .userName(\"my_initial_user\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .clusterSize(1)\n            .privateNetworks(RedisClusterPrivateNetworkArgs.builder()\n                .id(pn.id())\n                .serviceIps(\"10.12.1.1/20\")\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(pn)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pn:\n    type: scaleway:VpcPrivateNetwork\n  main:\n    type: scaleway:RedisCluster\n    properties:\n      version: 6.2.6\n      nodeType: RED1-MICRO\n      userName: my_initial_user\n      password: thiZ_is_v\u0026ry_s3cret\n      clusterSize: 1\n      privateNetworks:\n        - id: ${pn.id}\n          serviceIps:\n            - 10.12.1.1/20\n    options:\n      dependson:\n        - ${pn}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nRedis Cluster can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "acls": {
                     "type": "array",
@@ -20134,7 +20125,7 @@
             }
         },
         "scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation": {
-            "description": "Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).\n\nThe static associations are used to assign IP addresses based on the MAC addresses of the Instance.\n\nStatically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.\n\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).\n\n[DHCP reservations](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork(\"mainVpcPrivateNetwork\", {});\nconst mainInstanceServer = new scaleway.InstanceServer(\"mainInstanceServer\", {\n    image: \"ubuntu_jammy\",\n    type: \"DEV1-S\",\n    zone: \"fr-par-1\",\n    privateNetworks: [{\n        pnId: mainVpcPrivateNetwork.id,\n    }],\n});\nconst mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\", {});\nconst mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", {subnet: \"192.168.1.0/24\"});\nconst mainVpcPublicGateway = new scaleway.VpcPublicGateway(\"mainVpcPublicGateway\", {\n    type: \"VPC-GW-S\",\n    ipId: mainVpcPublicGatewayIp.id,\n});\nconst mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork(\"mainVpcGatewayNetwork\", {\n    gatewayId: mainVpcPublicGateway.id,\n    privateNetworkId: mainVpcPrivateNetwork.id,\n    dhcpId: mainVpcPublicGatewayDhcp.id,\n    cleanupDhcp: true,\n    enableMasquerade: true,\n}, {\n    dependsOn: [\n        mainVpcPublicGatewayIp,\n        mainVpcPrivateNetwork,\n    ],\n});\nconst mainVpcPublicGatewayDhcpReservation = new scaleway.VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\", {\n    gatewayNetworkId: mainVpcGatewayNetwork.id,\n    macAddress: mainInstanceServer.privateNetworks.apply(privateNetworks =\u003e privateNetworks?.[0]?.macAddress),\n    ipAddress: \"192.168.1.1\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain_vpc_private_network = scaleway.VpcPrivateNetwork(\"mainVpcPrivateNetwork\")\nmain_instance_server = scaleway.InstanceServer(\"mainInstanceServer\",\n    image=\"ubuntu_jammy\",\n    type=\"DEV1-S\",\n    zone=\"fr-par-1\",\n    private_networks=[scaleway.InstanceServerPrivateNetworkArgs(\n        pn_id=main_vpc_private_network.id,\n    )])\nmain_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\")\nmain_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", subnet=\"192.168.1.0/24\")\nmain_vpc_public_gateway = scaleway.VpcPublicGateway(\"mainVpcPublicGateway\",\n    type=\"VPC-GW-S\",\n    ip_id=main_vpc_public_gateway_ip.id)\nmain_vpc_gateway_network = scaleway.VpcGatewayNetwork(\"mainVpcGatewayNetwork\",\n    gateway_id=main_vpc_public_gateway.id,\n    private_network_id=main_vpc_private_network.id,\n    dhcp_id=main_vpc_public_gateway_dhcp.id,\n    cleanup_dhcp=True,\n    enable_masquerade=True,\n    opts=pulumi.ResourceOptions(depends_on=[\n            main_vpc_public_gateway_ip,\n            main_vpc_private_network,\n        ]))\nmain_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\",\n    gateway_network_id=main_vpc_gateway_network.id,\n    mac_address=main_instance_server.private_networks[0].mac_address,\n    ip_address=\"192.168.1.1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork(\"mainVpcPrivateNetwork\");\n\n    var mainInstanceServer = new Scaleway.InstanceServer(\"mainInstanceServer\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"DEV1-S\",\n        Zone = \"fr-par-1\",\n        PrivateNetworks = new[]\n        {\n            new Scaleway.Inputs.InstanceServerPrivateNetworkArgs\n            {\n                PnId = mainVpcPrivateNetwork.Id,\n            },\n        },\n    });\n\n    var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\");\n\n    var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", new()\n    {\n        Subnet = \"192.168.1.0/24\",\n    });\n\n    var mainVpcPublicGateway = new Scaleway.VpcPublicGateway(\"mainVpcPublicGateway\", new()\n    {\n        Type = \"VPC-GW-S\",\n        IpId = mainVpcPublicGatewayIp.Id,\n    });\n\n    var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork(\"mainVpcGatewayNetwork\", new()\n    {\n        GatewayId = mainVpcPublicGateway.Id,\n        PrivateNetworkId = mainVpcPrivateNetwork.Id,\n        DhcpId = mainVpcPublicGatewayDhcp.Id,\n        CleanupDhcp = true,\n        EnableMasquerade = true,\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            mainVpcPublicGatewayIp, \n            mainVpcPrivateNetwork, \n        },\n    });\n\n    var mainVpcPublicGatewayDhcpReservation = new Scaleway.VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\", new()\n    {\n        GatewayNetworkId = mainVpcGatewayNetwork.Id,\n        MacAddress = mainInstanceServer.PrivateNetworks.Apply(privateNetworks =\u003e privateNetworks[0]?.MacAddress),\n        IpAddress = \"192.168.1.1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, \"mainVpcPrivateNetwork\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainInstanceServer, err := scaleway.NewInstanceServer(ctx, \"mainInstanceServer\", \u0026scaleway.InstanceServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"DEV1-S\"),\n\t\t\tZone:  pulumi.String(\"fr-par-1\"),\n\t\t\tPrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{\n\t\t\t\t\u0026scaleway.InstanceServerPrivateNetworkArgs{\n\t\t\t\t\tPnId: mainVpcPrivateNetwork.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, \"mainVpcPublicGatewayIp\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, \"mainVpcPublicGatewayDhcp\", \u0026scaleway.VpcPublicGatewayDhcpArgs{\n\t\t\tSubnet: pulumi.String(\"192.168.1.0/24\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, \"mainVpcPublicGateway\", \u0026scaleway.VpcPublicGatewayArgs{\n\t\t\tType: pulumi.String(\"VPC-GW-S\"),\n\t\t\tIpId: mainVpcPublicGatewayIp.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, \"mainVpcGatewayNetwork\", \u0026scaleway.VpcGatewayNetworkArgs{\n\t\t\tGatewayId:        mainVpcPublicGateway.ID(),\n\t\t\tPrivateNetworkId: mainVpcPrivateNetwork.ID(),\n\t\t\tDhcpId:           mainVpcPublicGatewayDhcp.ID(),\n\t\t\tCleanupDhcp:      pulumi.Bool(true),\n\t\t\tEnableMasquerade: pulumi.Bool(true),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmainVpcPublicGatewayIp,\n\t\t\tmainVpcPrivateNetwork,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewVpcPublicGatewayDhcpReservation(ctx, \"mainVpcPublicGatewayDhcpReservation\", \u0026scaleway.VpcPublicGatewayDhcpReservationArgs{\n\t\t\tGatewayNetworkId: mainVpcGatewayNetwork.ID(),\n\t\t\tMacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (*string, error) {\n\t\t\t\treturn \u0026privateNetworks[0].MacAddress, nil\n\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\tIpAddress: pulumi.String(\"192.168.1.1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.InstanceServer;\nimport com.pulumi.scaleway.InstanceServerArgs;\nimport com.pulumi.scaleway.inputs.InstanceServerPrivateNetworkArgs;\nimport com.pulumi.scaleway.VpcPublicGatewayIp;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcp;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpArgs;\nimport com.pulumi.scaleway.VpcPublicGateway;\nimport com.pulumi.scaleway.VpcPublicGatewayArgs;\nimport com.pulumi.scaleway.VpcGatewayNetwork;\nimport com.pulumi.scaleway.VpcGatewayNetworkArgs;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpReservation;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpReservationArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainVpcPrivateNetwork = new VpcPrivateNetwork(\"mainVpcPrivateNetwork\");\n\n        var mainInstanceServer = new InstanceServer(\"mainInstanceServer\", InstanceServerArgs.builder()        \n            .image(\"ubuntu_jammy\")\n            .type(\"DEV1-S\")\n            .zone(\"fr-par-1\")\n            .privateNetworks(InstanceServerPrivateNetworkArgs.builder()\n                .pnId(mainVpcPrivateNetwork.id())\n                .build())\n            .build());\n\n        var mainVpcPublicGatewayIp = new VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\");\n\n        var mainVpcPublicGatewayDhcp = new VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", VpcPublicGatewayDhcpArgs.builder()        \n            .subnet(\"192.168.1.0/24\")\n            .build());\n\n        var mainVpcPublicGateway = new VpcPublicGateway(\"mainVpcPublicGateway\", VpcPublicGatewayArgs.builder()        \n            .type(\"VPC-GW-S\")\n            .ipId(mainVpcPublicGatewayIp.id())\n            .build());\n\n        var mainVpcGatewayNetwork = new VpcGatewayNetwork(\"mainVpcGatewayNetwork\", VpcGatewayNetworkArgs.builder()        \n            .gatewayId(mainVpcPublicGateway.id())\n            .privateNetworkId(mainVpcPrivateNetwork.id())\n            .dhcpId(mainVpcPublicGatewayDhcp.id())\n            .cleanupDhcp(true)\n            .enableMasquerade(true)\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(                \n                    mainVpcPublicGatewayIp,\n                    mainVpcPrivateNetwork)\n                .build());\n\n        var mainVpcPublicGatewayDhcpReservation = new VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\", VpcPublicGatewayDhcpReservationArgs.builder()        \n            .gatewayNetworkId(mainVpcGatewayNetwork.id())\n            .macAddress(mainInstanceServer.privateNetworks().applyValue(privateNetworks -\u003e privateNetworks[0].macAddress()))\n            .ipAddress(\"192.168.1.1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainVpcPrivateNetwork:\n    type: scaleway:VpcPrivateNetwork\n  mainInstanceServer:\n    type: scaleway:InstanceServer\n    properties:\n      image: ubuntu_jammy\n      type: DEV1-S\n      zone: fr-par-1\n      privateNetworks:\n        - pnId: ${mainVpcPrivateNetwork.id}\n  mainVpcPublicGatewayIp:\n    type: scaleway:VpcPublicGatewayIp\n  mainVpcPublicGatewayDhcp:\n    type: scaleway:VpcPublicGatewayDhcp\n    properties:\n      subnet: 192.168.1.0/24\n  mainVpcPublicGateway:\n    type: scaleway:VpcPublicGateway\n    properties:\n      type: VPC-GW-S\n      ipId: ${mainVpcPublicGatewayIp.id}\n  mainVpcGatewayNetwork:\n    type: scaleway:VpcGatewayNetwork\n    properties:\n      gatewayId: ${mainVpcPublicGateway.id}\n      privateNetworkId: ${mainVpcPrivateNetwork.id}\n      dhcpId: ${mainVpcPublicGatewayDhcp.id}\n      cleanupDhcp: true\n      enableMasquerade: true\n    options:\n      dependson:\n        - ${mainVpcPublicGatewayIp}\n        - ${mainVpcPrivateNetwork}\n  mainVpcPublicGatewayDhcpReservation:\n    type: scaleway:VpcPublicGatewayDhcpReservation\n    properties:\n      gatewayNetworkId: ${mainVpcGatewayNetwork.id}\n      macAddress: ${mainInstanceServer.privateNetworks[0].macAddress}\n      ipAddress: 192.168.1.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nPublic gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).\n\nThe static associations are used to assign IP addresses based on the MAC addresses of the Instance.\n\nStatically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.\n\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).\n\n[DHCP reservations](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork(\"mainVpcPrivateNetwork\", {});\nconst mainInstanceServer = new scaleway.InstanceServer(\"mainInstanceServer\", {\n    image: \"ubuntu_jammy\",\n    type: \"DEV1-S\",\n    zone: \"fr-par-1\",\n    privateNetworks: [{\n        pnId: mainVpcPrivateNetwork.id,\n    }],\n});\nconst mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\", {});\nconst mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", {subnet: \"192.168.1.0/24\"});\nconst mainVpcPublicGateway = new scaleway.VpcPublicGateway(\"mainVpcPublicGateway\", {\n    type: \"VPC-GW-S\",\n    ipId: mainVpcPublicGatewayIp.id,\n});\nconst mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork(\"mainVpcGatewayNetwork\", {\n    gatewayId: mainVpcPublicGateway.id,\n    privateNetworkId: mainVpcPrivateNetwork.id,\n    dhcpId: mainVpcPublicGatewayDhcp.id,\n    cleanupDhcp: true,\n    enableMasquerade: true,\n}, {\n    dependsOn: [\n        mainVpcPublicGatewayIp,\n        mainVpcPrivateNetwork,\n    ],\n});\nconst mainVpcPublicGatewayDhcpReservation = new scaleway.VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\", {\n    gatewayNetworkId: mainVpcGatewayNetwork.id,\n    macAddress: mainInstanceServer.privateNetworks.apply(privateNetworks =\u003e privateNetworks?.[0]?.macAddress),\n    ipAddress: \"192.168.1.1\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain_vpc_private_network = scaleway.VpcPrivateNetwork(\"mainVpcPrivateNetwork\")\nmain_instance_server = scaleway.InstanceServer(\"mainInstanceServer\",\n    image=\"ubuntu_jammy\",\n    type=\"DEV1-S\",\n    zone=\"fr-par-1\",\n    private_networks=[scaleway.InstanceServerPrivateNetworkArgs(\n        pn_id=main_vpc_private_network.id,\n    )])\nmain_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\")\nmain_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", subnet=\"192.168.1.0/24\")\nmain_vpc_public_gateway = scaleway.VpcPublicGateway(\"mainVpcPublicGateway\",\n    type=\"VPC-GW-S\",\n    ip_id=main_vpc_public_gateway_ip.id)\nmain_vpc_gateway_network = scaleway.VpcGatewayNetwork(\"mainVpcGatewayNetwork\",\n    gateway_id=main_vpc_public_gateway.id,\n    private_network_id=main_vpc_private_network.id,\n    dhcp_id=main_vpc_public_gateway_dhcp.id,\n    cleanup_dhcp=True,\n    enable_masquerade=True,\n    opts=pulumi.ResourceOptions(depends_on=[\n            main_vpc_public_gateway_ip,\n            main_vpc_private_network,\n        ]))\nmain_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\",\n    gateway_network_id=main_vpc_gateway_network.id,\n    mac_address=main_instance_server.private_networks[0].mac_address,\n    ip_address=\"192.168.1.1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork(\"mainVpcPrivateNetwork\");\n\n    var mainInstanceServer = new Scaleway.InstanceServer(\"mainInstanceServer\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"DEV1-S\",\n        Zone = \"fr-par-1\",\n        PrivateNetworks = new[]\n        {\n            new Scaleway.Inputs.InstanceServerPrivateNetworkArgs\n            {\n                PnId = mainVpcPrivateNetwork.Id,\n            },\n        },\n    });\n\n    var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\");\n\n    var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", new()\n    {\n        Subnet = \"192.168.1.0/24\",\n    });\n\n    var mainVpcPublicGateway = new Scaleway.VpcPublicGateway(\"mainVpcPublicGateway\", new()\n    {\n        Type = \"VPC-GW-S\",\n        IpId = mainVpcPublicGatewayIp.Id,\n    });\n\n    var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork(\"mainVpcGatewayNetwork\", new()\n    {\n        GatewayId = mainVpcPublicGateway.Id,\n        PrivateNetworkId = mainVpcPrivateNetwork.Id,\n        DhcpId = mainVpcPublicGatewayDhcp.Id,\n        CleanupDhcp = true,\n        EnableMasquerade = true,\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            mainVpcPublicGatewayIp,\n            mainVpcPrivateNetwork,\n        },\n    });\n\n    var mainVpcPublicGatewayDhcpReservation = new Scaleway.VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\", new()\n    {\n        GatewayNetworkId = mainVpcGatewayNetwork.Id,\n        MacAddress = mainInstanceServer.PrivateNetworks.Apply(privateNetworks =\u003e privateNetworks[0]?.MacAddress),\n        IpAddress = \"192.168.1.1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, \"mainVpcPrivateNetwork\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainInstanceServer, err := scaleway.NewInstanceServer(ctx, \"mainInstanceServer\", \u0026scaleway.InstanceServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"DEV1-S\"),\n\t\t\tZone:  pulumi.String(\"fr-par-1\"),\n\t\t\tPrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{\n\t\t\t\t\u0026scaleway.InstanceServerPrivateNetworkArgs{\n\t\t\t\t\tPnId: mainVpcPrivateNetwork.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, \"mainVpcPublicGatewayIp\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, \"mainVpcPublicGatewayDhcp\", \u0026scaleway.VpcPublicGatewayDhcpArgs{\n\t\t\tSubnet: pulumi.String(\"192.168.1.0/24\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, \"mainVpcPublicGateway\", \u0026scaleway.VpcPublicGatewayArgs{\n\t\t\tType: pulumi.String(\"VPC-GW-S\"),\n\t\t\tIpId: mainVpcPublicGatewayIp.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, \"mainVpcGatewayNetwork\", \u0026scaleway.VpcGatewayNetworkArgs{\n\t\t\tGatewayId:        mainVpcPublicGateway.ID(),\n\t\t\tPrivateNetworkId: mainVpcPrivateNetwork.ID(),\n\t\t\tDhcpId:           mainVpcPublicGatewayDhcp.ID(),\n\t\t\tCleanupDhcp:      pulumi.Bool(true),\n\t\t\tEnableMasquerade: pulumi.Bool(true),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmainVpcPublicGatewayIp,\n\t\t\tmainVpcPrivateNetwork,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewVpcPublicGatewayDhcpReservation(ctx, \"mainVpcPublicGatewayDhcpReservation\", \u0026scaleway.VpcPublicGatewayDhcpReservationArgs{\n\t\t\tGatewayNetworkId: mainVpcGatewayNetwork.ID(),\n\t\t\tMacAddress: mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (*string, error) {\n\t\t\t\treturn \u0026privateNetworks[0].MacAddress, nil\n\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\tIpAddress: pulumi.String(\"192.168.1.1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.InstanceServer;\nimport com.pulumi.scaleway.InstanceServerArgs;\nimport com.pulumi.scaleway.inputs.InstanceServerPrivateNetworkArgs;\nimport com.pulumi.scaleway.VpcPublicGatewayIp;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcp;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpArgs;\nimport com.pulumi.scaleway.VpcPublicGateway;\nimport com.pulumi.scaleway.VpcPublicGatewayArgs;\nimport com.pulumi.scaleway.VpcGatewayNetwork;\nimport com.pulumi.scaleway.VpcGatewayNetworkArgs;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpReservation;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpReservationArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainVpcPrivateNetwork = new VpcPrivateNetwork(\"mainVpcPrivateNetwork\");\n\n        var mainInstanceServer = new InstanceServer(\"mainInstanceServer\", InstanceServerArgs.builder()        \n            .image(\"ubuntu_jammy\")\n            .type(\"DEV1-S\")\n            .zone(\"fr-par-1\")\n            .privateNetworks(InstanceServerPrivateNetworkArgs.builder()\n                .pnId(mainVpcPrivateNetwork.id())\n                .build())\n            .build());\n\n        var mainVpcPublicGatewayIp = new VpcPublicGatewayIp(\"mainVpcPublicGatewayIp\");\n\n        var mainVpcPublicGatewayDhcp = new VpcPublicGatewayDhcp(\"mainVpcPublicGatewayDhcp\", VpcPublicGatewayDhcpArgs.builder()        \n            .subnet(\"192.168.1.0/24\")\n            .build());\n\n        var mainVpcPublicGateway = new VpcPublicGateway(\"mainVpcPublicGateway\", VpcPublicGatewayArgs.builder()        \n            .type(\"VPC-GW-S\")\n            .ipId(mainVpcPublicGatewayIp.id())\n            .build());\n\n        var mainVpcGatewayNetwork = new VpcGatewayNetwork(\"mainVpcGatewayNetwork\", VpcGatewayNetworkArgs.builder()        \n            .gatewayId(mainVpcPublicGateway.id())\n            .privateNetworkId(mainVpcPrivateNetwork.id())\n            .dhcpId(mainVpcPublicGatewayDhcp.id())\n            .cleanupDhcp(true)\n            .enableMasquerade(true)\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(                \n                    mainVpcPublicGatewayIp,\n                    mainVpcPrivateNetwork)\n                .build());\n\n        var mainVpcPublicGatewayDhcpReservation = new VpcPublicGatewayDhcpReservation(\"mainVpcPublicGatewayDhcpReservation\", VpcPublicGatewayDhcpReservationArgs.builder()        \n            .gatewayNetworkId(mainVpcGatewayNetwork.id())\n            .macAddress(mainInstanceServer.privateNetworks().applyValue(privateNetworks -\u003e privateNetworks[0].macAddress()))\n            .ipAddress(\"192.168.1.1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainVpcPrivateNetwork:\n    type: scaleway:VpcPrivateNetwork\n  mainInstanceServer:\n    type: scaleway:InstanceServer\n    properties:\n      image: ubuntu_jammy\n      type: DEV1-S\n      zone: fr-par-1\n      privateNetworks:\n        - pnId: ${mainVpcPrivateNetwork.id}\n  mainVpcPublicGatewayIp:\n    type: scaleway:VpcPublicGatewayIp\n  mainVpcPublicGatewayDhcp:\n    type: scaleway:VpcPublicGatewayDhcp\n    properties:\n      subnet: 192.168.1.0/24\n  mainVpcPublicGateway:\n    type: scaleway:VpcPublicGateway\n    properties:\n      type: VPC-GW-S\n      ipId: ${mainVpcPublicGatewayIp.id}\n  mainVpcGatewayNetwork:\n    type: scaleway:VpcGatewayNetwork\n    properties:\n      gatewayId: ${mainVpcPublicGateway.id}\n      privateNetworkId: ${mainVpcPrivateNetwork.id}\n      dhcpId: ${mainVpcPublicGatewayDhcp.id}\n      cleanupDhcp: true\n      enableMasquerade: true\n    options:\n      dependson:\n        - ${mainVpcPublicGatewayIp}\n        - ${mainVpcPrivateNetwork}\n  mainVpcPublicGatewayDhcpReservation:\n    type: scaleway:VpcPublicGatewayDhcpReservation\n    properties:\n      gatewayNetworkId: ${mainVpcGatewayNetwork.id}\n      macAddress: ${mainInstanceServer.privateNetworks[0].macAddress}\n      ipAddress: 192.168.1.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nPublic gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -24504,7 +24495,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.\n"
+                        "description": "The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.\n"
                     },
                     "zonal": {
                         "type": "string",
@@ -24618,7 +24609,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.\n"
+                        "description": "The type of IP used as filter (ipv4, ipv6).\n"
                     },
                     "zonal": {
                         "type": "string",
