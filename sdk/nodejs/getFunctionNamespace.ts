@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionNamespaceResult> {
     args = args || {};
@@ -95,7 +93,6 @@ export interface GetFunctionNamespaceResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -104,7 +101,6 @@ export interface GetFunctionNamespaceResult {
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionNamespaceResult> {
     return pulumi.output(args).apply((a: any) => getFunctionNamespace(a, opts))

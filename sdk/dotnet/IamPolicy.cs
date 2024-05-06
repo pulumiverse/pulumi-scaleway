@@ -19,7 +19,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Create a policy for an organization's project
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,11 +57,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Create a policy for all current and future projects in an organization
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -92,7 +89,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -152,7 +148,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> NoPrincipal { get; private set; } = null!;
 
         /// <summary>
-        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+        /// `organization_id`) The ID of the organization the policy is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -261,7 +257,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+        /// `organization_id`) The ID of the organization the policy is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -349,7 +345,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+        /// `organization_id`) The ID of the organization the policy is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

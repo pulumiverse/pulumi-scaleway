@@ -228,14 +228,12 @@ class DocumentdbDatabase(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DocumentdbDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -270,14 +268,12 @@ class DocumentdbDatabase(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DocumentdbDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

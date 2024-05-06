@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInstanceServers(args?: GetInstanceServersArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServersResult> {
     args = args || {};
@@ -99,7 +97,6 @@ export interface GetInstanceServersResult {
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -109,7 +106,6 @@ export interface GetInstanceServersResult {
  *     zone: "fr-par-2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInstanceServersOutput(args?: GetInstanceServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServersResult> {
     return pulumi.output(args).apply((a: any) => getInstanceServers(a, opts))

@@ -378,7 +378,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -388,11 +387,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             backend_id=scaleway_lb_backend["backend01"]["id"],
             inbound_port=80)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## With ACLs
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -477,7 +474,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -519,7 +515,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -529,11 +524,9 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             backend_id=scaleway_lb_backend["backend01"]["id"],
             inbound_port=80)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## With ACLs
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -618,7 +611,6 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -268,14 +268,12 @@ class InstancePlacementGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         availability_group = scaleway.InstancePlacementGroup("availabilityGroup")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -307,14 +305,12 @@ class InstancePlacementGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         availability_group = scaleway.InstancePlacementGroup("availabilityGroup")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

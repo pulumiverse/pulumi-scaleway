@@ -20,7 +20,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,11 +49,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With additional volumes and tags
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -96,11 +93,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With a reserved IP
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -134,11 +129,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With security group
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -192,11 +185,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With user data and cloud-init
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -236,11 +227,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With private network
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -274,13 +263,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Root volume configuration
 //
 // ### Resized block volume with installed image
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -309,11 +296,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### From snapshot
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -353,7 +338,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Private Network
 //

@@ -96,23 +96,19 @@ def get_cockpit(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     main = scaleway.get_cockpit()
     ```
-    <!--End PulumiCodeChooser -->
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     main = scaleway.get_cockpit(project_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: `project_id`) The ID of the project the cockpit is associated with.
@@ -140,23 +136,19 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     main = scaleway.get_cockpit()
     ```
-    <!--End PulumiCodeChooser -->
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     main = scaleway.get_cockpit(project_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: `project_id`) The ID of the project the cockpit is associated with.

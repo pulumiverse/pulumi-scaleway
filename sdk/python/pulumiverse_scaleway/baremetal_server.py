@@ -758,7 +758,6 @@ class BaremetalServer(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -771,11 +770,9 @@ class BaremetalServer(pulumi.CustomResource):
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Without install config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -788,7 +785,6 @@ class BaremetalServer(pulumi.CustomResource):
             offer=my_offer.offer_id,
             install_config_afterward=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -840,7 +836,6 @@ class BaremetalServer(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -853,11 +848,9 @@ class BaremetalServer(pulumi.CustomResource):
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Without install config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -870,7 +863,6 @@ class BaremetalServer(pulumi.CustomResource):
             offer=my_offer.offer_id,
             install_config_afterward=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -39,7 +38,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetLbAclsResult> InvokeAsync(GetLbAclsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbAclsResult>("scaleway:index/getLbAcls:getLbAcls", args ?? new GetLbAclsArgs(), options.WithDefaults());
@@ -49,7 +47,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -71,7 +68,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetLbAclsResult> Invoke(GetLbAclsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbAclsResult>("scaleway:index/getLbAcls:getLbAcls", args ?? new GetLbAclsInvokeArgs(), options.WithDefaults());

@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,7 +32,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetRegistryNamespaceResult> InvokeAsync(GetRegistryNamespaceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceArgs(), options.WithDefaults());
@@ -43,7 +41,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -59,7 +56,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetRegistryNamespaceResult> Invoke(GetRegistryNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceInvokeArgs(), options.WithDefaults());

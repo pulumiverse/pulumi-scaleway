@@ -410,7 +410,6 @@ class InstanceImage(pulumi.CustomResource):
 
         ### From a volume
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -421,11 +420,9 @@ class InstanceImage(pulumi.CustomResource):
         volume_snapshot = scaleway.InstanceSnapshot("volumeSnapshot", volume_id=volume.id)
         volume_image = scaleway.InstanceImage("volumeImage", root_volume_id=volume_snapshot.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### From a server
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -436,7 +433,6 @@ class InstanceImage(pulumi.CustomResource):
         server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
         server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -475,7 +471,6 @@ class InstanceImage(pulumi.CustomResource):
 
         ### From a volume
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -486,11 +481,9 @@ class InstanceImage(pulumi.CustomResource):
         volume_snapshot = scaleway.InstanceSnapshot("volumeSnapshot", volume_id=volume.id)
         volume_image = scaleway.InstanceImage("volumeImage", root_volume_id=volume_snapshot.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### From a server
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -501,7 +494,6 @@ class InstanceImage(pulumi.CustomResource):
         server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
         server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

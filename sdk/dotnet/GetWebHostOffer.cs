@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -38,7 +37,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetWebHostOfferResult> InvokeAsync(GetWebHostOfferArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebHostOfferResult>("scaleway:index/getWebHostOffer:getWebHostOffer", args ?? new GetWebHostOfferArgs(), options.WithDefaults());
@@ -48,7 +46,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -69,7 +66,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetWebHostOfferResult> Invoke(GetWebHostOfferInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetWebHostOfferResult>("scaleway:index/getWebHostOffer:getWebHostOffer", args ?? new GetWebHostOfferInvokeArgs(), options.WithDefaults());

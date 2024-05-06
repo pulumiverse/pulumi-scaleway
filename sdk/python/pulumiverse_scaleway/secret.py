@@ -307,7 +307,6 @@ class Secret(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -319,7 +318,6 @@ class Secret(pulumi.CustomResource):
                 "terraform",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -355,7 +353,6 @@ class Secret(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -367,7 +364,6 @@ class Secret(pulumi.CustomResource):
                 "terraform",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

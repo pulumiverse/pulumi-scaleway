@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -27,7 +26,6 @@ import * as utilities from "./utilities";
  *     recordId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainRecordResult> {
     args = args || {};
@@ -124,7 +122,6 @@ export interface GetDomainRecordResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -140,7 +137,6 @@ export interface GetDomainRecordResult {
  *     recordId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainRecordResult> {
     return pulumi.output(args).apply((a: any) => getDomainRecord(a, opts))

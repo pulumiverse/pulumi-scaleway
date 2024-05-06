@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -46,11 +45,9 @@ import * as utilities from "./utilities";
  *     type: "MX",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With dynamic records
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -123,11 +120,9 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create an instance and add records with the new instance IP
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -168,7 +163,6 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Multiple records
  *
@@ -228,11 +222,11 @@ export class DomainRecord extends pulumi.CustomResource {
      */
     public /*out*/ readonly fqdn!: pulumi.Output<string>;
     /**
-     * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+     * Return record based on client localisation
      */
     public readonly geoIp!: pulumi.Output<outputs.DomainRecordGeoIp | undefined>;
     /**
-     * The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+     * Return record based on client localisation
      */
     public readonly httpService!: pulumi.Output<outputs.DomainRecordHttpService | undefined>;
     /**
@@ -264,11 +258,11 @@ export class DomainRecord extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+     * Return record based on client subnet
      */
     public readonly views!: pulumi.Output<outputs.DomainRecordView[] | undefined>;
     /**
-     * You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+     * Return record based on weight
      */
     public readonly weighteds!: pulumi.Output<outputs.DomainRecordWeighted[] | undefined>;
 
@@ -347,11 +341,11 @@ export interface DomainRecordState {
      */
     fqdn?: pulumi.Input<string>;
     /**
-     * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+     * Return record based on client localisation
      */
     geoIp?: pulumi.Input<inputs.DomainRecordGeoIp>;
     /**
-     * The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+     * Return record based on client localisation
      */
     httpService?: pulumi.Input<inputs.DomainRecordHttpService>;
     /**
@@ -383,11 +377,11 @@ export interface DomainRecordState {
      */
     type?: pulumi.Input<string>;
     /**
-     * The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+     * Return record based on client subnet
      */
     views?: pulumi.Input<pulumi.Input<inputs.DomainRecordView>[]>;
     /**
-     * You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+     * Return record based on weight
      */
     weighteds?: pulumi.Input<pulumi.Input<inputs.DomainRecordWeighted>[]>;
 }
@@ -405,11 +399,11 @@ export interface DomainRecordArgs {
      */
     dnsZone: pulumi.Input<string>;
     /**
-     * The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+     * Return record based on client localisation
      */
     geoIp?: pulumi.Input<inputs.DomainRecordGeoIp>;
     /**
-     * The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+     * Return record based on client localisation
      */
     httpService?: pulumi.Input<inputs.DomainRecordHttpService>;
     /**
@@ -437,11 +431,11 @@ export interface DomainRecordArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+     * Return record based on client subnet
      */
     views?: pulumi.Input<pulumi.Input<inputs.DomainRecordView>[]>;
     /**
-     * You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+     * Return record based on weight
      */
     weighteds?: pulumi.Input<pulumi.Input<inputs.DomainRecordWeighted>[]>;
 }

@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,7 +32,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDocumentdbInstanceResult> InvokeAsync(GetDocumentdbInstanceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbInstanceResult>("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args ?? new GetDocumentdbInstanceArgs(), options.WithDefaults());
@@ -43,7 +41,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -59,7 +56,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDocumentdbInstanceResult> Invoke(GetDocumentdbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentdbInstanceResult>("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args ?? new GetDocumentdbInstanceInvokeArgs(), options.WithDefaults());

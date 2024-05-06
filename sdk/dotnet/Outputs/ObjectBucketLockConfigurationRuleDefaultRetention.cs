@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? Days;
         /// <summary>
-        /// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+        /// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
         /// </summary>
         public readonly string Mode;
         /// <summary>

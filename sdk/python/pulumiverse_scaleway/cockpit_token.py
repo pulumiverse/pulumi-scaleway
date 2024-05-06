@@ -157,7 +157,6 @@ class CockpitToken(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -167,9 +166,7 @@ class CockpitToken(pulumi.CustomResource):
         # Create a token for the cockpit that can write metrics and logs
         main_cockpit_token = scaleway.CockpitToken("mainCockpitToken", project_id=main_cockpit.project_id)
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -186,7 +183,6 @@ class CockpitToken(pulumi.CustomResource):
                 write_logs=False,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -217,7 +213,6 @@ class CockpitToken(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -227,9 +222,7 @@ class CockpitToken(pulumi.CustomResource):
         # Create a token for the cockpit that can write metrics and logs
         main_cockpit_token = scaleway.CockpitToken("mainCockpitToken", project_id=main_cockpit.project_id)
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -246,7 +239,6 @@ class CockpitToken(pulumi.CustomResource):
                 write_logs=False,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

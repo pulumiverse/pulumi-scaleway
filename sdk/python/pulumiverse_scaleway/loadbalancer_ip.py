@@ -204,14 +204,12 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         ip = scaleway.LoadbalancerIp("ip", reverse="my-reverse.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -243,14 +241,12 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         ip = scaleway.LoadbalancerIp("ip", reverse="my-reverse.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -295,14 +295,12 @@ class FunctionNamespace(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FunctionNamespace("main", description="Main function namespace")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -339,14 +337,12 @@ class FunctionNamespace(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FunctionNamespace("main", description="Main function namespace")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -284,7 +284,6 @@ class DatabaseBackup(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -293,11 +292,9 @@ class DatabaseBackup(pulumi.CustomResource):
             instance_id=data["scaleway_rdb_instance"]["main"]["id"],
             database_name=data["scaleway_rdb_database"]["main"]["name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With expiration
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -307,7 +304,6 @@ class DatabaseBackup(pulumi.CustomResource):
             database_name=data["scaleway_rdb_database"]["main"]["name"],
             expires_at="2022-06-16T07:48:44Z")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -345,7 +341,6 @@ class DatabaseBackup(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -354,11 +349,9 @@ class DatabaseBackup(pulumi.CustomResource):
             instance_id=data["scaleway_rdb_instance"]["main"]["id"],
             database_name=data["scaleway_rdb_database"]["main"]["name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With expiration
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -368,7 +361,6 @@ class DatabaseBackup(pulumi.CustomResource):
             database_name=data["scaleway_rdb_database"]["main"]["name"],
             expires_at="2022-06-16T07:48:44Z")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

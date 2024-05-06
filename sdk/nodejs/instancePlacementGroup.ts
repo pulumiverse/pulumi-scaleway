@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const availabilityGroup = new scaleway.InstancePlacementGroup("availabilityGroup", {});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

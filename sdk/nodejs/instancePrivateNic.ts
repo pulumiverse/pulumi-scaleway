@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -22,11 +21,9 @@ import * as utilities from "./utilities";
  *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With zone
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -43,7 +40,6 @@ import * as utilities from "./utilities";
  *     zone: pn01.zone,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

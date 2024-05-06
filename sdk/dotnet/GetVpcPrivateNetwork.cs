@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -44,7 +43,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetVpcPrivateNetworkResult> InvokeAsync(GetVpcPrivateNetworkArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkArgs(), options.WithDefaults());
@@ -54,7 +52,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -81,7 +78,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetVpcPrivateNetworkResult> Invoke(GetVpcPrivateNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkInvokeArgs(), options.WithDefaults());

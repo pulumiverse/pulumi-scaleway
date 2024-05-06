@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -25,7 +24,6 @@ import * as utilities from "./utilities";
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalServerResult> {
     args = args || {};
@@ -99,7 +97,6 @@ export interface GetBaremetalServerResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -112,7 +109,6 @@ export interface GetBaremetalServerResult {
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalServerResult> {
     return pulumi.output(args).apply((a: any) => getBaremetalServer(a, opts))

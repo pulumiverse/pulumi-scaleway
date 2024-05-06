@@ -137,7 +137,6 @@ def get_vpc(is_default: Optional[bool] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -146,7 +145,6 @@ def get_vpc(is_default: Optional[bool] = None,
     by_id = scaleway.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
     default = scaleway.get_vpc(is_default=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool is_default: To get default VPC's information.
@@ -191,7 +189,6 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -200,7 +197,6 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     by_id = scaleway.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
     default = scaleway.get_vpc(is_default=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool is_default: To get default VPC's information.

@@ -389,7 +389,6 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -415,7 +414,6 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
             protocol="http",
             endpoint="http://example.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -456,7 +454,6 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -482,7 +479,6 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
             protocol="http",
             endpoint="http://example.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

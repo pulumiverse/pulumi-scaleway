@@ -687,7 +687,6 @@ class Function(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -699,7 +698,6 @@ class Function(pulumi.CustomResource):
             handler="Handle",
             privacy="private")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -748,7 +746,6 @@ class Function(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -760,7 +757,6 @@ class Function(pulumi.CustomResource):
             handler="Handle",
             privacy="private")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbLoadBalancerEndpoint(args?: GetDocumentdbLoadBalancerEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbLoadBalancerEndpointResult> {
     args = args || {};
@@ -88,7 +86,6 @@ export interface GetDocumentdbLoadBalancerEndpointResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -97,7 +94,6 @@ export interface GetDocumentdbLoadBalancerEndpointResult {
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbLoadBalancerEndpointOutput(args?: GetDocumentdbLoadBalancerEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbLoadBalancerEndpointResult> {
     return pulumi.output(args).apply((a: any) => getDocumentdbLoadBalancerEndpoint(a, opts))

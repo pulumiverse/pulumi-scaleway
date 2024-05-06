@@ -12,14 +12,12 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.FunctionNamespace("main", {description: "Main function namespace"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

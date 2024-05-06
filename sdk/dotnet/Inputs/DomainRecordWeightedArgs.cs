@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> Ip { get; set; } = null!;
 
         /// <summary>
-        /// The weight of the IP as an integer UInt32.
+        /// The weight of the IP
         /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;

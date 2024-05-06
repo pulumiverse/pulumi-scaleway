@@ -19,7 +19,6 @@ import (
 //
 // ### Simple
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,11 +47,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Complete example with domain
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -119,7 +116,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

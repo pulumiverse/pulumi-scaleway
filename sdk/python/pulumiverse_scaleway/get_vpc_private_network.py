@@ -178,7 +178,6 @@ def get_vpc_private_network(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -188,7 +187,6 @@ def get_vpc_private_network(name: Optional[str] = None,
         vpc_id="11111111-1111-1111-1111-111111111111")
     my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the private network. Cannot be used with `private_network_id`.
@@ -232,7 +230,6 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -242,7 +239,6 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
         vpc_id="11111111-1111-1111-1111-111111111111")
     my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the private network. Cannot be used with `private_network_id`.

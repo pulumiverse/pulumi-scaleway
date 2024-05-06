@@ -14,25 +14,25 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class InstanceSecurityGroupRulesOutboundRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to take when rule match. Possible values are: `accept` or `drop`.
+        /// Action when rule match request (drop or accept)
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+        /// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+        /// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
         /// </summary>
         [Input("ipRange")]
         public Input<string>? IpRange { get; set; }
 
         /// <summary>
-        /// The port this rule apply to. If no port is specified, rule will apply to all port.
+        /// Network port for this rule
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? PortRange { get; set; }
 
         /// <summary>
-        /// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+        /// Protocol for this rule (TCP, UDP, ICMP or ANY)
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

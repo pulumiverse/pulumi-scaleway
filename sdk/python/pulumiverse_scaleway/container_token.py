@@ -238,7 +238,6 @@ class ContainerToken(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -252,7 +251,6 @@ class ContainerToken(pulumi.CustomResource):
         # Container Token
         container = scaleway.ContainerToken("container", container_id=main_container.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -290,7 +288,6 @@ class ContainerToken(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -304,7 +301,6 @@ class ContainerToken(pulumi.CustomResource):
         # Container Token
         container = scaleway.ContainerToken("container", container_id=main_container.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

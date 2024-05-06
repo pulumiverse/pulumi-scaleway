@@ -300,14 +300,12 @@ class AppleSliconValleyServer(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         server = scaleway.AppleSliconValleyServer("server", type="M1-M")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -344,14 +342,12 @@ class AppleSliconValleyServer(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         server = scaleway.AppleSliconValleyServer("server", type="M1-M")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

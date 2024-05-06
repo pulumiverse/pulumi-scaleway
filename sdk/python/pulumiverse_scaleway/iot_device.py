@@ -407,7 +407,6 @@ class IotDevice(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -415,11 +414,9 @@ class IotDevice(pulumi.CustomResource):
         main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
         main_iot_device = scaleway.IotDevice("mainIotDevice", hub_id=main_iot_hub.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With custom certificate
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_local as local
@@ -433,7 +430,6 @@ class IotDevice(pulumi.CustomResource):
                 crt=device_cert.content,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -473,7 +469,6 @@ class IotDevice(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -481,11 +476,9 @@ class IotDevice(pulumi.CustomResource):
         main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
         main_iot_device = scaleway.IotDevice("mainIotDevice", hub_id=main_iot_hub.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With custom certificate
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_local as local
@@ -499,7 +492,6 @@ class IotDevice(pulumi.CustomResource):
                 crt=device_cert.content,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

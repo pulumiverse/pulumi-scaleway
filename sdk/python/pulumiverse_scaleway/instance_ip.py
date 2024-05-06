@@ -258,14 +258,12 @@ class InstanceIp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         server_ip = scaleway.InstanceIp("serverIp")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -297,14 +295,12 @@ class InstanceIp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         server_ip = scaleway.InstanceIp("serverIp")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetWebHostOffer(ctx *pulumi.Context, args *GetWebHostOfferArgs, opts ...pulumi.InvokeOption) (*GetWebHostOfferResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetWebHostOfferResult

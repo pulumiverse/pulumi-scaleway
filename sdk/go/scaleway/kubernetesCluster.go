@@ -18,7 +18,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,11 +56,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Multicloud
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -97,13 +94,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
 //
 // ### With additional configuration
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -160,7 +155,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -147,7 +147,6 @@ class IamGroupMembership(pulumi.CustomResource):
 
         ### Application Membership
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -158,7 +157,6 @@ class IamGroupMembership(pulumi.CustomResource):
             group_id=group.id,
             application_id=app.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -196,7 +194,6 @@ class IamGroupMembership(pulumi.CustomResource):
 
         ### Application Membership
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -207,7 +204,6 @@ class IamGroupMembership(pulumi.CustomResource):
             group_id=group.id,
             application_id=app.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

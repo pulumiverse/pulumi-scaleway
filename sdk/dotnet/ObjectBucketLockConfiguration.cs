@@ -20,7 +20,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -50,7 +49,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Configure an Object Lock for an existing bucket
     /// 

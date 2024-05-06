@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Simple
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -23,11 +22,9 @@ import * as utilities from "./utilities";
  *     hostname: "container.domain.tld",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Complete example with domain
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -58,7 +55,6 @@ import * as utilities from "./utilities";
  *     hostname: pulumi.interpolate`${appDomainRecord.name}.${appDomainRecord.dnsZone}`,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

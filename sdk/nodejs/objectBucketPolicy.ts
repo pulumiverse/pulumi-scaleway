@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Example Usage with an IAM user
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -52,13 +51,11 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with an IAM application
  *
  * ### Creating a bucket and delegating read access to an application
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -100,11 +97,9 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Reading the bucket with the application
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -122,11 +117,9 @@ import * as utilities from "./utilities";
  *     name: "some-unique-name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with AWS provider
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -159,11 +152,9 @@ import * as utilities from "./utilities";
  *     policy: policy.apply(policy => policy.json),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with deprecated version 2012-10-17
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -195,7 +186,6 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
  *

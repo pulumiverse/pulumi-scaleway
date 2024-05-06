@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -22,11 +21,9 @@ import * as utilities from "./utilities";
  *     databaseName: data.scaleway_rdb_database.main.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With expiration
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -37,7 +34,6 @@ import * as utilities from "./utilities";
  *     expiresAt: "2022-06-16T07:48:44Z",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

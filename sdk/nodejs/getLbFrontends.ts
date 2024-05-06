@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     name: "tf-frontend-datasource",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLbFrontends(args: GetLbFrontendsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbFrontendsResult> {
 
@@ -79,7 +77,6 @@ export interface GetLbFrontendsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -92,7 +89,6 @@ export interface GetLbFrontendsResult {
  *     name: "tf-frontend-datasource",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLbFrontendsOutput(args: GetLbFrontendsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbFrontendsResult> {
     return pulumi.output(args).apply((a: any) => getLbFrontends(a, opts))

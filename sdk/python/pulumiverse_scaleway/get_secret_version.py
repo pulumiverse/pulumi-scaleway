@@ -163,7 +163,6 @@ def get_secret_version(project_id: Optional[str] = None,
 
     ### Basic
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -181,7 +180,6 @@ def get_secret_version(project_id: Optional[str] = None,
     pulumi.export("scalewaySecretAccessPayload", data_by_secret_name.data)
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Data
 
@@ -240,7 +238,6 @@ def get_secret_version_output(project_id: Optional[pulumi.Input[Optional[str]]] 
 
     ### Basic
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -258,7 +255,6 @@ def get_secret_version_output(project_id: Optional[pulumi.Input[Optional[str]]] 
     pulumi.export("scalewaySecretAccessPayload", data_by_secret_name.data)
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Data
 

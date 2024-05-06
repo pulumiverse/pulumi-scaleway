@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### Create a policy for an organization's project
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -34,11 +33,9 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create a policy for all current and future projects in an organization
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -53,7 +50,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -124,7 +120,7 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public readonly noPrincipal!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+     * `organizationId`) The ID of the organization the policy is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
@@ -227,7 +223,7 @@ export interface IamPolicyState {
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
-     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+     * `organizationId`) The ID of the organization the policy is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -275,7 +271,7 @@ export interface IamPolicyArgs {
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
-     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+     * `organizationId`) The ID of the organization the policy is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**

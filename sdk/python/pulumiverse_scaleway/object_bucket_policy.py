@@ -171,7 +171,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         ### Example Usage with an IAM user
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -206,13 +205,11 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with an IAM application
 
         ### Creating a bucket and delegating read access to an application
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -251,11 +248,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Reading the bucket with the application
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -268,11 +263,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             secret_key=reading_api_key.secret_key)
         bucket = scaleway.get_object_bucket(name="some-unique-name")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with AWS provider
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -300,11 +293,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             bucket=bucket.id,
             policy=policy.json)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with deprecated version 2012-10-17
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -334,7 +325,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
 
@@ -379,7 +369,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         ### Example Usage with an IAM user
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -414,13 +403,11 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with an IAM application
 
         ### Creating a bucket and delegating read access to an application
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -459,11 +446,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Reading the bucket with the application
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -476,11 +461,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             secret_key=reading_api_key.secret_key)
         bucket = scaleway.get_object_bucket(name="some-unique-name")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with AWS provider
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -508,11 +491,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             bucket=bucket.id,
             policy=policy.json)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with deprecated version 2012-10-17
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -542,7 +523,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
 

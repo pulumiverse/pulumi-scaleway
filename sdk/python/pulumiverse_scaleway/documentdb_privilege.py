@@ -200,7 +200,6 @@ class DocumentdbPrivilege(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -211,7 +210,6 @@ class DocumentdbPrivilege(pulumi.CustomResource):
             permission="all",
             user_name="my-db-user")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -243,7 +241,6 @@ class DocumentdbPrivilege(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -254,7 +251,6 @@ class DocumentdbPrivilege(pulumi.CustomResource):
             permission="all",
             user_name="my-db-user")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

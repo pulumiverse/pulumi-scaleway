@@ -154,7 +154,6 @@ def get_database_backup(backup_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -164,7 +163,6 @@ def get_database_backup(backup_id: Optional[str] = None,
         name="mybackup")
     find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backup_id: The RDB backup ID.
@@ -211,7 +209,6 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -221,7 +218,6 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
         name="mybackup")
     find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backup_id: The RDB backup ID.

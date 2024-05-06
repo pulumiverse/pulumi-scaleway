@@ -13,18 +13,15 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.InstanceSnapshot("main", {volumeId: "11111111-1111-1111-1111-111111111111"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with Unified type snapshot
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -49,11 +46,9 @@ import * as utilities from "./utilities";
  *     dependsOn: [mainInstanceServer],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example importing a local qcow2 file
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -72,7 +67,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

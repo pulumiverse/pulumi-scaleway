@@ -352,40 +352,33 @@ class FlexibleIp(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With zone
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", zone="fr-par-2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With IPv6
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", is_ipv6=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With baremetal server
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -406,7 +399,6 @@ class FlexibleIp(pulumi.CustomResource):
             server_id=base.id,
             zone="fr-par-2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -442,40 +434,33 @@ class FlexibleIp(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With zone
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", zone="fr-par-2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With IPv6
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FlexibleIp("main", is_ipv6=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With baremetal server
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -496,7 +481,6 @@ class FlexibleIp(pulumi.CustomResource):
             server_id=base.id,
             zone="fr-par-2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

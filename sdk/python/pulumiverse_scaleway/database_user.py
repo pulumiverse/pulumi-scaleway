@@ -220,7 +220,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -234,7 +233,6 @@ class DatabaseUser(pulumi.CustomResource):
             password=db_password.result,
             is_admin=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -272,7 +270,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_random as random
@@ -286,7 +283,6 @@ class DatabaseUser(pulumi.CustomResource):
             password=db_password.result,
             is_admin=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

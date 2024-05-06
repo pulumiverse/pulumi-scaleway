@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Address;
         /// <summary>
-        /// The id of the private network to attach.
+        /// The ID of the IPv6.
         /// </summary>
         public readonly string? Id;
         /// <summary>

@@ -335,14 +335,12 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_id: The cluster ID. Required when `name` is set.
@@ -402,14 +400,12 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_id: The cluster ID. Required when `name` is set.

@@ -92,7 +92,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> Stateful { get; private set; } = null!;
 
         /// <summary>
-        /// The tags of the security group.
+        /// The tags associated with the security group
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags of the security group.
+        /// The tags associated with the security group
         /// </summary>
         public InputList<string> Tags
         {
@@ -332,7 +332,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags of the security group.
+        /// The tags associated with the security group
         /// </summary>
         public InputList<string> Tags
         {

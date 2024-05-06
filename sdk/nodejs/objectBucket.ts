@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -21,22 +20,18 @@ import * as utilities from "./utilities";
  *     key: "value",
  * }});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Creating the bucket in a specific project
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const someBucket = new scaleway.ObjectBucket("someBucket", {projectId: "11111111-1111-1111-1111-111111111111"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using object lifecycle
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -94,7 +89,6 @@ import * as utilities from "./utilities";
  *     region: "fr-par",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

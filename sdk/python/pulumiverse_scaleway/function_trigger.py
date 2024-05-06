@@ -240,7 +240,6 @@ class FunctionTrigger(pulumi.CustomResource):
 
         ### SQS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -253,7 +252,6 @@ class FunctionTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_sqs["main"]["region"],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -288,7 +286,6 @@ class FunctionTrigger(pulumi.CustomResource):
 
         ### SQS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -301,7 +298,6 @@ class FunctionTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_sqs["main"]["region"],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

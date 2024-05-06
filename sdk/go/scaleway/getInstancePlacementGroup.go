@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupInstancePlacementGroup(ctx *pulumi.Context, args *LookupInstancePlacementGroupArgs, opts ...pulumi.InvokeOption) (*LookupInstancePlacementGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstancePlacementGroupResult

@@ -21,7 +21,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// The UUID of the Private Network resource.
+        /// (Required) The UUID of the endpoint.
         /// </summary>
         public readonly string? Id;
         /// <summary>

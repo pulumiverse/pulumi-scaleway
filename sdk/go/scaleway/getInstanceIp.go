@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupInstanceIp(ctx *pulumi.Context, args *LookupInstanceIpArgs, opts ...pulumi.InvokeOption) (*LookupInstanceIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceIpResult

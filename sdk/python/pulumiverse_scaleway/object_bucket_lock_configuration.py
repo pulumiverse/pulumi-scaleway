@@ -175,7 +175,6 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
 
         Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -192,7 +191,6 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Configure an Object Lock for an existing bucket
 
@@ -241,7 +239,6 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
 
         Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -258,7 +255,6 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Configure an Object Lock for an existing bucket
 

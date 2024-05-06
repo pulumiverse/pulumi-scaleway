@@ -19,7 +19,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### By tag
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -38,11 +37,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By type and resource
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -91,7 +88,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetIpamIpsResult> InvokeAsync(GetIpamIpsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpamIpsResult>("scaleway:index/getIpamIps:getIpamIps", args ?? new GetIpamIpsArgs(), options.WithDefaults());
@@ -103,7 +99,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### By tag
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -122,11 +117,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By type and resource
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -175,7 +168,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetIpamIpsResult> Invoke(GetIpamIpsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpamIpsResult>("scaleway:index/getIpamIps:getIpamIps", args ?? new GetIpamIpsInvokeArgs(), options.WithDefaults());
@@ -233,7 +225,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        /// The type of IP used as filter (ipv4, ipv6).
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -301,7 +293,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        /// The type of IP used as filter (ipv4, ipv6).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -319,7 +319,6 @@ class IpamIp(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -334,11 +333,9 @@ class IpamIp(pulumi.CustomResource):
             private_network_id=pn01.id,
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Request a specific IPv4
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -355,11 +352,9 @@ class IpamIp(pulumi.CustomResource):
                 private_network_id=pn01.id,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Request an IPv6
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -376,7 +371,6 @@ class IpamIp(pulumi.CustomResource):
                 private_network_id=pn01.id,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -410,7 +404,6 @@ class IpamIp(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -425,11 +418,9 @@ class IpamIp(pulumi.CustomResource):
             private_network_id=pn01.id,
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Request a specific IPv4
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -446,11 +437,9 @@ class IpamIp(pulumi.CustomResource):
                 private_network_id=pn01.id,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Request an IPv6
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -467,7 +456,6 @@ class IpamIp(pulumi.CustomResource):
                 private_network_id=pn01.id,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

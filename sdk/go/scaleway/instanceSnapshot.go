@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,11 +40,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with Unified type snapshot
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -93,11 +90,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example importing a local qcow2 file
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -137,7 +132,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

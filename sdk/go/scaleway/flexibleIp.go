@@ -18,7 +18,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,11 +41,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With zone
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,11 +67,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With IPv6
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -98,11 +93,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With baremetal server
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -157,7 +150,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

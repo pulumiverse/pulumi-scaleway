@@ -234,14 +234,12 @@ class IamUser(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         basic = scaleway.IamUser("basic", email="test@test.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -272,14 +270,12 @@ class IamUser(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         basic = scaleway.IamUser("basic", email="test@test.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

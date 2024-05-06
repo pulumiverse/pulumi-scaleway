@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * ### From a volume
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -26,11 +25,9 @@ import * as utilities from "./utilities";
  * const volumeSnapshot = new scaleway.InstanceSnapshot("volumeSnapshot", {volumeId: volume.id});
  * const volumeImage = new scaleway.InstanceImage("volumeImage", {rootVolumeId: volumeSnapshot.id});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### From a server
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -42,7 +39,6 @@ import * as utilities from "./utilities";
  * const serverSnapshot = new scaleway.InstanceSnapshot("serverSnapshot", {volumeId: scaleway_instance_server.main.root_volume[0].volume_id});
  * const serverImage = new scaleway.InstanceImage("serverImage", {rootVolumeId: serverSnapshot.id});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

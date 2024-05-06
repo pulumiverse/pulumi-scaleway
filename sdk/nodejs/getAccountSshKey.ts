@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     sshKeyId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountSshKeyResult> {
     args = args || {};
@@ -78,7 +76,6 @@ export interface GetAccountSshKeyResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -87,7 +84,6 @@ export interface GetAccountSshKeyResult {
  *     sshKeyId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountSshKeyResult> {
     return pulumi.output(args).apply((a: any) => getAccountSshKey(a, opts))

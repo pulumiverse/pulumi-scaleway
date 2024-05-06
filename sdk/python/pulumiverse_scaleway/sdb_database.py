@@ -229,7 +229,6 @@ class SdbDatabase(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -238,7 +237,6 @@ class SdbDatabase(pulumi.CustomResource):
             max_cpu=8,
             min_cpu=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -273,7 +271,6 @@ class SdbDatabase(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -282,7 +279,6 @@ class SdbDatabase(pulumi.CustomResource):
             max_cpu=8,
             min_cpu=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

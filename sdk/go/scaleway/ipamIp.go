@@ -18,7 +18,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,11 +58,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Request a specific IPv4
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -105,11 +102,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Request an IPv6
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -153,7 +148,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

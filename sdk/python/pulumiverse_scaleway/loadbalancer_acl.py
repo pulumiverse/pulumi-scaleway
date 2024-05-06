@@ -269,7 +269,6 @@ class LoadbalancerAcl(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -289,7 +288,6 @@ class LoadbalancerAcl(pulumi.CustomResource):
                 ],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -323,7 +321,6 @@ class LoadbalancerAcl(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -343,7 +340,6 @@ class LoadbalancerAcl(pulumi.CustomResource):
                 ],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -236,7 +236,6 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -248,11 +247,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With `Policy`
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -278,7 +275,6 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -320,7 +316,6 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -332,11 +327,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With `Policy`
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -362,7 +355,6 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 suffix="index.html",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -26,11 +25,9 @@ import * as utilities from "./utilities";
  *     type: "LB-S",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Private LB
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -42,7 +39,6 @@ import * as utilities from "./utilities";
  *     assignFlexibleIp: false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## IP ID
  *
@@ -52,7 +48,6 @@ import * as utilities from "./utilities";
  *
  * For instance, if you had the following:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -62,11 +57,9 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * You will need to update it to:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -79,7 +72,6 @@ import * as utilities from "./utilities";
  *     releaseIp: false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

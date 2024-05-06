@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,7 +32,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDocumentdbLoadBalancerEndpointResult> InvokeAsync(GetDocumentdbLoadBalancerEndpointArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbLoadBalancerEndpointResult>("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", args ?? new GetDocumentdbLoadBalancerEndpointArgs(), options.WithDefaults());
@@ -43,7 +41,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -59,7 +56,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDocumentdbLoadBalancerEndpointResult> Invoke(GetDocumentdbLoadBalancerEndpointInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentdbLoadBalancerEndpointResult>("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", args ?? new GetDocumentdbLoadBalancerEndpointInvokeArgs(), options.WithDefaults());

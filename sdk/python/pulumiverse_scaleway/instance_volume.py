@@ -301,7 +301,6 @@ class InstanceVolume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -310,7 +309,6 @@ class InstanceVolume(pulumi.CustomResource):
             size_in_gb=20,
             type="l_ssd")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -344,7 +342,6 @@ class InstanceVolume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -353,7 +350,6 @@ class InstanceVolume(pulumi.CustomResource):
             size_in_gb=20,
             type="l_ssd")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

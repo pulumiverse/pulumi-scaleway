@@ -18,7 +18,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Basic
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,13 +46,12 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         DependsOn =
     ///         {
-    ///             mainFunction, 
+    ///             mainFunction,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

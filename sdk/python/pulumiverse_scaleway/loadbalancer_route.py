@@ -227,7 +227,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         ### With SNI for direction to TCP backends
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -250,11 +249,9 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_sni="sni.scaleway.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With host-header for direction to HTTP backends
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -277,7 +274,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_host_header="host.scaleway.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -316,7 +312,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         ### With SNI for direction to TCP backends
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -339,11 +334,9 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_sni="sni.scaleway.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With host-header for direction to HTTP backends
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -366,7 +359,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
             backend_id=bkd01.id,
             match_host_header="host.scaleway.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

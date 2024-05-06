@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _ips;
 
         /// <summary>
-        /// List of IPs to check
+        /// IPs to check
         /// </summary>
         public InputList<string> Ips
         {
@@ -32,13 +32,13 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> MustContain { get; set; } = null!;
 
         /// <summary>
-        /// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+        /// Strategy to return an IP from the IPs list
         /// </summary>
         [Input("strategy", required: true)]
         public Input<string> Strategy { get; set; } = null!;
 
         /// <summary>
-        /// URL to match the `must_contain` text to validate an IP
+        /// URL to match the must_contain text to validate an IP
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
