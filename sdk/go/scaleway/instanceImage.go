@@ -19,7 +19,6 @@ import (
 //
 // ### From a volume
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -56,11 +55,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### From a server
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -97,7 +94,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

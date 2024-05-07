@@ -641,7 +641,6 @@ class RedisCluster(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -662,11 +661,9 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With settings
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -681,11 +678,9 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With a private network
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -703,7 +698,6 @@ class RedisCluster(pulumi.CustomResource):
             )],
             opts=pulumi.ResourceOptions(depends_on=[pn]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -769,7 +763,6 @@ class RedisCluster(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -790,11 +783,9 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With settings
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -809,11 +800,9 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             version="6.2.6")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With a private network
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -831,7 +820,6 @@ class RedisCluster(pulumi.CustomResource):
             )],
             opts=pulumi.ResourceOptions(depends_on=[pn]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -20,7 +20,6 @@ import (
 //
 // ### Create a policy for an organization's project
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,11 +64,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Create a policy for all current and future projects in an organization
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -106,7 +103,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -136,7 +132,7 @@ type IamPolicy struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrOutput `pulumi:"noPrincipal"`
-	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayOutput `pulumi:"rules"`
@@ -197,7 +193,7 @@ type iamPolicyState struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
-	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
@@ -226,7 +222,7 @@ type IamPolicyState struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrInput
-	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
@@ -255,7 +251,7 @@ type iamPolicyArgs struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
-	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
@@ -279,7 +275,7 @@ type IamPolicyArgs struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrInput
-	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
@@ -413,7 +409,7 @@ func (o IamPolicyOutput) NoPrincipal() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.BoolPtrOutput { return v.NoPrincipal }).(pulumi.BoolPtrOutput)
 }
 
-// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+// `organizationId`) The ID of the organization the policy is associated with.
 func (o IamPolicyOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

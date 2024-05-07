@@ -479,7 +479,6 @@ class DocumentdbInstance(pulumi.CustomResource):
 
         ### Example Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -496,7 +495,6 @@ class DocumentdbInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             volume_size_in_gb=20)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -548,7 +546,6 @@ class DocumentdbInstance(pulumi.CustomResource):
 
         ### Example Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -565,7 +562,6 @@ class DocumentdbInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             volume_size_in_gb=20)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

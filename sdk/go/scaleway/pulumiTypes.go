@@ -16,7 +16,7 @@ var _ = internal.GetEnvOrDefault
 type BaremetalServerIp struct {
 	// The address of the IPv6.
 	Address *string `pulumi:"address"`
-	// The id of the private network to attach.
+	// The ID of the IPv6.
 	Id *string `pulumi:"id"`
 	// The reverse of the IPv6.
 	Reverse *string `pulumi:"reverse"`
@@ -38,7 +38,7 @@ type BaremetalServerIpInput interface {
 type BaremetalServerIpArgs struct {
 	// The address of the IPv6.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The id of the private network to attach.
+	// The ID of the IPv6.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The reverse of the IPv6.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
@@ -102,7 +102,7 @@ func (o BaremetalServerIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The id of the private network to attach.
+// The ID of the IPv6.
 func (o BaremetalServerIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIp) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -140,7 +140,7 @@ func (o BaremetalServerIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerIp
 type BaremetalServerIpv4 struct {
 	// The address of the IPv6.
 	Address *string `pulumi:"address"`
-	// The id of the private network to attach.
+	// The ID of the IPv6.
 	Id *string `pulumi:"id"`
 	// The reverse of the IPv6.
 	Reverse *string `pulumi:"reverse"`
@@ -162,7 +162,7 @@ type BaremetalServerIpv4Input interface {
 type BaremetalServerIpv4Args struct {
 	// The address of the IPv6.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The id of the private network to attach.
+	// The ID of the IPv6.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The reverse of the IPv6.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
@@ -226,7 +226,7 @@ func (o BaremetalServerIpv4Output) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIpv4) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The id of the private network to attach.
+// The ID of the IPv6.
 func (o BaremetalServerIpv4Output) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIpv4) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -264,7 +264,7 @@ func (o BaremetalServerIpv4ArrayOutput) Index(i pulumi.IntInput) BaremetalServer
 type BaremetalServerIpv6 struct {
 	// The address of the IPv6.
 	Address *string `pulumi:"address"`
-	// The id of the private network to attach.
+	// The ID of the IPv6.
 	Id *string `pulumi:"id"`
 	// The reverse of the IPv6.
 	Reverse *string `pulumi:"reverse"`
@@ -286,7 +286,7 @@ type BaremetalServerIpv6Input interface {
 type BaremetalServerIpv6Args struct {
 	// The address of the IPv6.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The id of the private network to attach.
+	// The ID of the IPv6.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The reverse of the IPv6.
 	Reverse pulumi.StringPtrInput `pulumi:"reverse"`
@@ -350,7 +350,7 @@ func (o BaremetalServerIpv6Output) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIpv6) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The id of the private network to attach.
+// The ID of the IPv6.
 func (o BaremetalServerIpv6Output) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerIpv6) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -388,7 +388,7 @@ func (o BaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) BaremetalServer
 type BaremetalServerOption struct {
 	// The auto expiration date for compatible options
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The id of the private network to attach.
+	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
 	Id string `pulumi:"id"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -408,7 +408,7 @@ type BaremetalServerOptionInput interface {
 type BaremetalServerOptionArgs struct {
 	// The auto expiration date for compatible options
 	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
-	// The id of the private network to attach.
+	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -470,7 +470,7 @@ func (o BaremetalServerOptionOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerOption) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The id of the private network to attach.
+// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
 func (o BaremetalServerOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1166,7 +1166,7 @@ type ContainerTriggerNats struct {
 	AccountId *string `pulumi:"accountId"`
 	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// Region where the mnq nats account is, defaults to provider's region
 	Region *string `pulumi:"region"`
 	// The subject to listen to
 	Subject string `pulumi:"subject"`
@@ -1188,7 +1188,7 @@ type ContainerTriggerNatsArgs struct {
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
 	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// Region where the mnq nats account is, defaults to provider's region
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The subject to listen to
 	Subject pulumi.StringInput `pulumi:"subject"`
@@ -1281,7 +1281,7 @@ func (o ContainerTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where the mnq nats account is, defaults to provider's region
 func (o ContainerTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1335,7 +1335,7 @@ func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where the mnq nats account is, defaults to provider's region
 func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1358,11 +1358,11 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 type ContainerTriggerSqs struct {
 	// ID of the mnq namespace. Deprecated.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// ID of the project where sqs is enabled, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the queue
 	Queue string `pulumi:"queue"`
-	// `region`). The region in which the namespace should be created.
+	// Region where sqs is enabled, defaults to provider's region
 	Region *string `pulumi:"region"`
 }
 
@@ -1380,11 +1380,11 @@ type ContainerTriggerSqsInput interface {
 type ContainerTriggerSqsArgs struct {
 	// ID of the mnq namespace. Deprecated.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// ID of the project where sqs is enabled, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Name of the queue
 	Queue pulumi.StringInput `pulumi:"queue"`
-	// `region`). The region in which the namespace should be created.
+	// Region where sqs is enabled, defaults to provider's region
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -1470,7 +1470,7 @@ func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// ID of the project where sqs is enabled, defaults to provider's project
 func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -1480,7 +1480,7 @@ func (o ContainerTriggerSqsOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where sqs is enabled, defaults to provider's region
 func (o ContainerTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1519,7 +1519,7 @@ func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// ID of the project where sqs is enabled, defaults to provider's project
 func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1539,7 +1539,7 @@ func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where sqs is enabled, defaults to provider's region
 func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1789,12 +1789,7 @@ func (o DatabaseInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) Databa
 }
 
 type DatabaseInstancePrivateNetwork struct {
-	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-	//
-	// > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
-	// handle the host IP on the network.
-	//
-	// > **Important:** Updates to `privateNetwork` will recreate the Instance's endpoint
+	// Whether or not the private network endpoint should be configured with IPAM
 	EnableIpam *bool `pulumi:"enableIpam"`
 	// The ID of the endpoint.
 	EndpointId *string `pulumi:"endpointId"`
@@ -1802,11 +1797,11 @@ type DatabaseInstancePrivateNetwork struct {
 	Hostname *string `pulumi:"hostname"`
 	// IPv4 address on the network.
 	Ip *string `pulumi:"ip"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	// The IP with the given mask within the private subnet
 	IpNet *string `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// The ID of the private network.
+	// The private network ID
 	PnId string `pulumi:"pnId"`
 	// Port in the Private Network.
 	Port *int `pulumi:"port"`
@@ -1826,12 +1821,7 @@ type DatabaseInstancePrivateNetworkInput interface {
 }
 
 type DatabaseInstancePrivateNetworkArgs struct {
-	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-	//
-	// > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
-	// handle the host IP on the network.
-	//
-	// > **Important:** Updates to `privateNetwork` will recreate the Instance's endpoint
+	// Whether or not the private network endpoint should be configured with IPAM
 	EnableIpam pulumi.BoolPtrInput `pulumi:"enableIpam"`
 	// The ID of the endpoint.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
@@ -1839,11 +1829,11 @@ type DatabaseInstancePrivateNetworkArgs struct {
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
 	// IPv4 address on the network.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	// The IP with the given mask within the private subnet
 	IpNet pulumi.StringPtrInput `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the private network.
+	// The private network ID
 	PnId pulumi.StringInput `pulumi:"pnId"`
 	// Port in the Private Network.
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -1928,12 +1918,7 @@ func (o DatabaseInstancePrivateNetworkOutput) ToDatabaseInstancePrivateNetworkPt
 	}).(DatabaseInstancePrivateNetworkPtrOutput)
 }
 
-// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-//
-// > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
-// handle the host IP on the network.
-//
-// > **Important:** Updates to `privateNetwork` will recreate the Instance's endpoint
+// Whether or not the private network endpoint should be configured with IPAM
 func (o DatabaseInstancePrivateNetworkOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateNetwork) *bool { return v.EnableIpam }).(pulumi.BoolPtrOutput)
 }
@@ -1953,7 +1938,7 @@ func (o DatabaseInstancePrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+// The IP with the given mask within the private subnet
 func (o DatabaseInstancePrivateNetworkOutput) IpNet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateNetwork) *string { return v.IpNet }).(pulumi.StringPtrOutput)
 }
@@ -1963,7 +1948,7 @@ func (o DatabaseInstancePrivateNetworkOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the private network.
+// The private network ID
 func (o DatabaseInstancePrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
 }
@@ -2002,12 +1987,7 @@ func (o DatabaseInstancePrivateNetworkPtrOutput) Elem() DatabaseInstancePrivateN
 	}).(DatabaseInstancePrivateNetworkOutput)
 }
 
-// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-//
-// > **NOTE:** Please calculate your host IP using cidrhost. Otherwise, let IPAM service
-// handle the host IP on the network.
-//
-// > **Important:** Updates to `privateNetwork` will recreate the Instance's endpoint
+// Whether or not the private network endpoint should be configured with IPAM
 func (o DatabaseInstancePrivateNetworkPtrOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstancePrivateNetwork) *bool {
 		if v == nil {
@@ -2047,7 +2027,7 @@ func (o DatabaseInstancePrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+// The IP with the given mask within the private subnet
 func (o DatabaseInstancePrivateNetworkPtrOutput) IpNet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstancePrivateNetwork) *string {
 		if v == nil {
@@ -2067,7 +2047,7 @@ func (o DatabaseInstancePrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ID of the private network.
+// The private network ID
 func (o DatabaseInstancePrivateNetworkPtrOutput) PnId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstancePrivateNetwork) *string {
 		if v == nil {
@@ -3206,7 +3186,7 @@ func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOut
 }
 
 type DomainRecordGeoIp struct {
-	// The list of matches. *(Can be more than 1)*
+	// The list of matches
 	Matches []DomainRecordGeoIpMatch `pulumi:"matches"`
 }
 
@@ -3222,7 +3202,7 @@ type DomainRecordGeoIpInput interface {
 }
 
 type DomainRecordGeoIpArgs struct {
-	// The list of matches. *(Can be more than 1)*
+	// The list of matches
 	Matches DomainRecordGeoIpMatchArrayInput `pulumi:"matches"`
 }
 
@@ -3303,7 +3283,7 @@ func (o DomainRecordGeoIpOutput) ToDomainRecordGeoIpPtrOutputWithContext(ctx con
 	}).(DomainRecordGeoIpPtrOutput)
 }
 
-// The list of matches. *(Can be more than 1)*
+// The list of matches
 func (o DomainRecordGeoIpOutput) Matches() DomainRecordGeoIpMatchArrayOutput {
 	return o.ApplyT(func(v DomainRecordGeoIp) []DomainRecordGeoIpMatch { return v.Matches }).(DomainRecordGeoIpMatchArrayOutput)
 }
@@ -3332,7 +3312,7 @@ func (o DomainRecordGeoIpPtrOutput) Elem() DomainRecordGeoIpOutput {
 	}).(DomainRecordGeoIpOutput)
 }
 
-// The list of matches. *(Can be more than 1)*
+// The list of matches
 func (o DomainRecordGeoIpPtrOutput) Matches() DomainRecordGeoIpMatchArrayOutput {
 	return o.ApplyT(func(v *DomainRecordGeoIp) []DomainRecordGeoIpMatch {
 		if v == nil {
@@ -3343,9 +3323,9 @@ func (o DomainRecordGeoIpPtrOutput) Matches() DomainRecordGeoIpMatchArrayOutput 
 }
 
 type DomainRecordGeoIpMatch struct {
-	// List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+	// List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
 	Continents []string `pulumi:"continents"`
-	// List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries []string `pulumi:"countries"`
 	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data string `pulumi:"data"`
@@ -3363,9 +3343,9 @@ type DomainRecordGeoIpMatchInput interface {
 }
 
 type DomainRecordGeoIpMatchArgs struct {
-	// List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+	// List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
 	Continents pulumi.StringArrayInput `pulumi:"continents"`
-	// List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries pulumi.StringArrayInput `pulumi:"countries"`
 	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
 	Data pulumi.StringInput `pulumi:"data"`
@@ -3422,12 +3402,12 @@ func (o DomainRecordGeoIpMatchOutput) ToDomainRecordGeoIpMatchOutputWithContext(
 	return o
 }
 
-// List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+// List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
 func (o DomainRecordGeoIpMatchOutput) Continents() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DomainRecordGeoIpMatch) []string { return v.Continents }).(pulumi.StringArrayOutput)
 }
 
-// List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 func (o DomainRecordGeoIpMatchOutput) Countries() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DomainRecordGeoIpMatch) []string { return v.Countries }).(pulumi.StringArrayOutput)
 }
@@ -3458,13 +3438,13 @@ func (o DomainRecordGeoIpMatchArrayOutput) Index(i pulumi.IntInput) DomainRecord
 }
 
 type DomainRecordHttpService struct {
-	// List of IPs to check
+	// IPs to check
 	Ips []string `pulumi:"ips"`
 	// Text to search
 	MustContain string `pulumi:"mustContain"`
-	// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+	// Strategy to return an IP from the IPs list
 	Strategy string `pulumi:"strategy"`
-	// URL to match the `mustContain` text to validate an IP
+	// URL to match the mustContain text to validate an IP
 	Url string `pulumi:"url"`
 	// User-agent used when checking the URL
 	UserAgent *string `pulumi:"userAgent"`
@@ -3482,13 +3462,13 @@ type DomainRecordHttpServiceInput interface {
 }
 
 type DomainRecordHttpServiceArgs struct {
-	// List of IPs to check
+	// IPs to check
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// Text to search
 	MustContain pulumi.StringInput `pulumi:"mustContain"`
-	// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+	// Strategy to return an IP from the IPs list
 	Strategy pulumi.StringInput `pulumi:"strategy"`
-	// URL to match the `mustContain` text to validate an IP
+	// URL to match the mustContain text to validate an IP
 	Url pulumi.StringInput `pulumi:"url"`
 	// User-agent used when checking the URL
 	UserAgent pulumi.StringPtrInput `pulumi:"userAgent"`
@@ -3571,7 +3551,7 @@ func (o DomainRecordHttpServiceOutput) ToDomainRecordHttpServicePtrOutputWithCon
 	}).(DomainRecordHttpServicePtrOutput)
 }
 
-// List of IPs to check
+// IPs to check
 func (o DomainRecordHttpServiceOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DomainRecordHttpService) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
@@ -3581,12 +3561,12 @@ func (o DomainRecordHttpServiceOutput) MustContain() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordHttpService) string { return v.MustContain }).(pulumi.StringOutput)
 }
 
-// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+// Strategy to return an IP from the IPs list
 func (o DomainRecordHttpServiceOutput) Strategy() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordHttpService) string { return v.Strategy }).(pulumi.StringOutput)
 }
 
-// URL to match the `mustContain` text to validate an IP
+// URL to match the mustContain text to validate an IP
 func (o DomainRecordHttpServiceOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordHttpService) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -3620,7 +3600,7 @@ func (o DomainRecordHttpServicePtrOutput) Elem() DomainRecordHttpServiceOutput {
 	}).(DomainRecordHttpServiceOutput)
 }
 
-// List of IPs to check
+// IPs to check
 func (o DomainRecordHttpServicePtrOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DomainRecordHttpService) []string {
 		if v == nil {
@@ -3640,7 +3620,7 @@ func (o DomainRecordHttpServicePtrOutput) MustContain() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+// Strategy to return an IP from the IPs list
 func (o DomainRecordHttpServicePtrOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainRecordHttpService) *string {
 		if v == nil {
@@ -3650,7 +3630,7 @@ func (o DomainRecordHttpServicePtrOutput) Strategy() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// URL to match the `mustContain` text to validate an IP
+// URL to match the mustContain text to validate an IP
 func (o DomainRecordHttpServicePtrOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainRecordHttpService) *string {
 		if v == nil {
@@ -3779,7 +3759,7 @@ func (o DomainRecordViewArrayOutput) Index(i pulumi.IntInput) DomainRecordViewOu
 type DomainRecordWeighted struct {
 	// The weighted IP
 	Ip string `pulumi:"ip"`
-	// The weight of the IP as an integer UInt32.
+	// The weight of the IP
 	Weight int `pulumi:"weight"`
 }
 
@@ -3797,7 +3777,7 @@ type DomainRecordWeightedInput interface {
 type DomainRecordWeightedArgs struct {
 	// The weighted IP
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// The weight of the IP as an integer UInt32.
+	// The weight of the IP
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -3857,7 +3837,7 @@ func (o DomainRecordWeightedOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordWeighted) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// The weight of the IP as an integer UInt32.
+// The weight of the IP
 func (o DomainRecordWeightedOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v DomainRecordWeighted) int { return v.Weight }).(pulumi.IntOutput)
 }
@@ -3887,7 +3867,7 @@ type FunctionTriggerNats struct {
 	AccountId *string `pulumi:"accountId"`
 	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// Region where the mnq nats account is, defaults to provider's region
 	Region *string `pulumi:"region"`
 	// The subject to listen to
 	Subject string `pulumi:"subject"`
@@ -3909,7 +3889,7 @@ type FunctionTriggerNatsArgs struct {
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
 	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// Region where the mnq nats account is, defaults to provider's region
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The subject to listen to
 	Subject pulumi.StringInput `pulumi:"subject"`
@@ -4002,7 +3982,7 @@ func (o FunctionTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where the mnq nats account is, defaults to provider's region
 func (o FunctionTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -4056,7 +4036,7 @@ func (o FunctionTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where the mnq nats account is, defaults to provider's region
 func (o FunctionTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -4079,11 +4059,11 @@ func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 type FunctionTriggerSqs struct {
 	// ID of the mnq namespace. Deprecated.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// ID of the project that contain the mnq namespace, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the queue
 	Queue string `pulumi:"queue"`
-	// `region`). The region in which the namespace should be created.
+	// Region where the mnq namespace is, defaults to provider's region
 	Region *string `pulumi:"region"`
 }
 
@@ -4101,11 +4081,11 @@ type FunctionTriggerSqsInput interface {
 type FunctionTriggerSqsArgs struct {
 	// ID of the mnq namespace. Deprecated.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// ID of the project that contain the mnq namespace, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Name of the queue
 	Queue pulumi.StringInput `pulumi:"queue"`
-	// `region`). The region in which the namespace should be created.
+	// Region where the mnq namespace is, defaults to provider's region
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -4191,7 +4171,7 @@ func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// ID of the project that contain the mnq namespace, defaults to provider's project
 func (o FunctionTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -4201,7 +4181,7 @@ func (o FunctionTriggerSqsOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where the mnq namespace is, defaults to provider's region
 func (o FunctionTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -4240,7 +4220,7 @@ func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// ID of the project that contain the mnq namespace, defaults to provider's project
 func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -4260,7 +4240,7 @@ func (o FunctionTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// Region where the mnq namespace is, defaults to provider's region
 func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -4751,19 +4731,19 @@ func (o InstanceSecurityGroupInboundRuleArrayOutput) Index(i pulumi.IntInput) In
 }
 
 type InstanceSecurityGroupOutboundRule struct {
-	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	// Action when rule match request (drop or accept)
 	Action string `pulumi:"action"`
-	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
 	//
 	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip *string `pulumi:"ip"`
-	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
 	IpRange *string `pulumi:"ipRange"`
-	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+	// Network port for this rule
 	Port *int `pulumi:"port"`
 	// Computed port range for this rule (e.g: 1-1024, 22-22)
 	PortRange *string `pulumi:"portRange"`
-	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	// Protocol for this rule (TCP, UDP, ICMP or ANY)
 	Protocol *string `pulumi:"protocol"`
 }
 
@@ -4779,19 +4759,19 @@ type InstanceSecurityGroupOutboundRuleInput interface {
 }
 
 type InstanceSecurityGroupOutboundRuleArgs struct {
-	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	// Action when rule match request (drop or accept)
 	Action pulumi.StringInput `pulumi:"action"`
-	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
 	//
 	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
-	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+	// Network port for this rule
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Computed port range for this rule (e.g: 1-1024, 22-22)
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
-	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	// Protocol for this rule (TCP, UDP, ICMP or ANY)
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
@@ -4846,24 +4826,24 @@ func (o InstanceSecurityGroupOutboundRuleOutput) ToInstanceSecurityGroupOutbound
 	return o
 }
 
-// The action to take when rule match. Possible values are: `accept` or `drop`.
+// Action when rule match request (drop or accept)
 func (o InstanceSecurityGroupOutboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
 //
 // Deprecated: Ip address is deprecated. Please use ipRange instead
 func (o InstanceSecurityGroupOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
 func (o InstanceSecurityGroupOutboundRuleOutput) IpRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.IpRange }).(pulumi.StringPtrOutput)
 }
 
-// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+// Network port for this rule
 func (o InstanceSecurityGroupOutboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -4873,7 +4853,7 @@ func (o InstanceSecurityGroupOutboundRuleOutput) PortRange() pulumi.StringPtrOut
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
 
-// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+// Protocol for this rule (TCP, UDP, ICMP or ANY)
 func (o InstanceSecurityGroupOutboundRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupOutboundRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -5047,19 +5027,19 @@ func (o InstanceSecurityGroupRulesInboundRuleArrayOutput) Index(i pulumi.IntInpu
 }
 
 type InstanceSecurityGroupRulesOutboundRule struct {
-	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	// Action when rule match request (drop or accept)
 	Action string `pulumi:"action"`
-	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
 	//
 	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip *string `pulumi:"ip"`
-	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
 	IpRange *string `pulumi:"ipRange"`
-	// The port this rule apply to. If no port is specified, rule will apply to all port.
+	// Network port for this rule
 	Port *int `pulumi:"port"`
 	// Computed port range for this rule (e.g: 1-1024, 22-22)
 	PortRange *string `pulumi:"portRange"`
-	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	// Protocol for this rule (TCP, UDP, ICMP or ANY)
 	Protocol *string `pulumi:"protocol"`
 }
 
@@ -5075,19 +5055,19 @@ type InstanceSecurityGroupRulesOutboundRuleInput interface {
 }
 
 type InstanceSecurityGroupRulesOutboundRuleArgs struct {
-	// The action to take when rule match. Possible values are: `accept` or `drop`.
+	// Action when rule match request (drop or accept)
 	Action pulumi.StringInput `pulumi:"action"`
-	// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
 	//
 	// Deprecated: Ip address is deprecated. Please use ipRange instead
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+	// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
-	// The port this rule apply to. If no port is specified, rule will apply to all port.
+	// Network port for this rule
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Computed port range for this rule (e.g: 1-1024, 22-22)
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
-	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+	// Protocol for this rule (TCP, UDP, ICMP or ANY)
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
@@ -5142,24 +5122,24 @@ func (o InstanceSecurityGroupRulesOutboundRuleOutput) ToInstanceSecurityGroupRul
 	return o
 }
 
-// The action to take when rule match. Possible values are: `accept` or `drop`.
+// Action when rule match request (drop or accept)
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
 //
 // Deprecated: Ip address is deprecated. Please use ipRange instead
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) IpRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.IpRange }).(pulumi.StringPtrOutput)
 }
 
-// The port this rule apply to. If no port is specified, rule will apply to all port.
+// Network port for this rule
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -5169,7 +5149,7 @@ func (o InstanceSecurityGroupRulesOutboundRuleOutput) PortRange() pulumi.StringP
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
 
-// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+// Protocol for this rule (TCP, UDP, ICMP or ANY)
 func (o InstanceSecurityGroupRulesOutboundRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesOutboundRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -6153,13 +6133,9 @@ func (o IotDeviceMessageFiltersPtrOutput) Subscribe() IotDeviceMessageFiltersSub
 }
 
 type IotDeviceMessageFiltersPublish struct {
-	// Same as publish rules.
+	// Publish message filter policy
 	Policy *string `pulumi:"policy"`
-	// Same as publish rules.
-	//
-	// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-	//
-	// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+	// List of topics in the set
 	Topics []string `pulumi:"topics"`
 }
 
@@ -6175,13 +6151,9 @@ type IotDeviceMessageFiltersPublishInput interface {
 }
 
 type IotDeviceMessageFiltersPublishArgs struct {
-	// Same as publish rules.
+	// Publish message filter policy
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// Same as publish rules.
-	//
-	// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-	//
-	// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+	// List of topics in the set
 	Topics pulumi.StringArrayInput `pulumi:"topics"`
 }
 
@@ -6262,16 +6234,12 @@ func (o IotDeviceMessageFiltersPublishOutput) ToIotDeviceMessageFiltersPublishPt
 	}).(IotDeviceMessageFiltersPublishPtrOutput)
 }
 
-// Same as publish rules.
+// Publish message filter policy
 func (o IotDeviceMessageFiltersPublishOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersPublish) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// Same as publish rules.
-//
-// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-//
-// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+// List of topics in the set
 func (o IotDeviceMessageFiltersPublishOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersPublish) []string { return v.Topics }).(pulumi.StringArrayOutput)
 }
@@ -6300,7 +6268,7 @@ func (o IotDeviceMessageFiltersPublishPtrOutput) Elem() IotDeviceMessageFiltersP
 	}).(IotDeviceMessageFiltersPublishOutput)
 }
 
-// Same as publish rules.
+// Publish message filter policy
 func (o IotDeviceMessageFiltersPublishPtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) *string {
 		if v == nil {
@@ -6310,11 +6278,7 @@ func (o IotDeviceMessageFiltersPublishPtrOutput) Policy() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Same as publish rules.
-//
-// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-//
-// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+// List of topics in the set
 func (o IotDeviceMessageFiltersPublishPtrOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) []string {
 		if v == nil {
@@ -6325,13 +6289,9 @@ func (o IotDeviceMessageFiltersPublishPtrOutput) Topics() pulumi.StringArrayOutp
 }
 
 type IotDeviceMessageFiltersSubscribe struct {
-	// Same as publish rules.
+	// Subscribe message filter policy
 	Policy *string `pulumi:"policy"`
-	// Same as publish rules.
-	//
-	// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-	//
-	// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+	// List of topics in the set
 	Topics []string `pulumi:"topics"`
 }
 
@@ -6347,13 +6307,9 @@ type IotDeviceMessageFiltersSubscribeInput interface {
 }
 
 type IotDeviceMessageFiltersSubscribeArgs struct {
-	// Same as publish rules.
+	// Subscribe message filter policy
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// Same as publish rules.
-	//
-	// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-	//
-	// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+	// List of topics in the set
 	Topics pulumi.StringArrayInput `pulumi:"topics"`
 }
 
@@ -6434,16 +6390,12 @@ func (o IotDeviceMessageFiltersSubscribeOutput) ToIotDeviceMessageFiltersSubscri
 	}).(IotDeviceMessageFiltersSubscribePtrOutput)
 }
 
-// Same as publish rules.
+// Subscribe message filter policy
 func (o IotDeviceMessageFiltersSubscribeOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersSubscribe) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// Same as publish rules.
-//
-// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-//
-// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+// List of topics in the set
 func (o IotDeviceMessageFiltersSubscribeOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersSubscribe) []string { return v.Topics }).(pulumi.StringArrayOutput)
 }
@@ -6472,7 +6424,7 @@ func (o IotDeviceMessageFiltersSubscribePtrOutput) Elem() IotDeviceMessageFilter
 	}).(IotDeviceMessageFiltersSubscribeOutput)
 }
 
-// Same as publish rules.
+// Subscribe message filter policy
 func (o IotDeviceMessageFiltersSubscribePtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) *string {
 		if v == nil {
@@ -6482,11 +6434,7 @@ func (o IotDeviceMessageFiltersSubscribePtrOutput) Policy() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Same as publish rules.
-//
-// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-//
-// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+// List of topics in the set
 func (o IotDeviceMessageFiltersSubscribePtrOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) []string {
 		if v == nil {
@@ -8892,11 +8840,11 @@ func (o LoadbalancerAclActionPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type LoadbalancerAclActionRedirect struct {
-	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	// The HTTP redirect code to use
 	Code *int `pulumi:"code"`
-	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	// An URL can be used in case of a location redirect
 	Target *string `pulumi:"target"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The redirect type
 	Type *string `pulumi:"type"`
 }
 
@@ -8912,11 +8860,11 @@ type LoadbalancerAclActionRedirectInput interface {
 }
 
 type LoadbalancerAclActionRedirectArgs struct {
-	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	// The HTTP redirect code to use
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	// An URL can be used in case of a location redirect
 	Target pulumi.StringPtrInput `pulumi:"target"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The redirect type
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -8971,17 +8919,17 @@ func (o LoadbalancerAclActionRedirectOutput) ToLoadbalancerAclActionRedirectOutp
 	return o
 }
 
-// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+// The HTTP redirect code to use
 func (o LoadbalancerAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+// An URL can be used in case of a location redirect
 func (o LoadbalancerAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
 }
 
-// The redirect type. Possible values are: `location` or `scheme`.
+// The redirect type
 func (o LoadbalancerAclActionRedirectOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerAclActionRedirect) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -9232,13 +9180,13 @@ func (o LoadbalancerAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
 }
 
 type LoadbalancerBackendHealthCheckHttp struct {
-	// The expected HTTP status code.
+	// The expected HTTP status code
 	Code *int `pulumi:"code"`
-	// The HTTP host header to use for HC requests.
+	// The HTTP host header to use for HC requests
 	HostHeader *string `pulumi:"hostHeader"`
-	// The HTTP method to use for HC requests.
+	// The HTTP method to use for HC requests
 	Method *string `pulumi:"method"`
-	// The HTTPS endpoint URL to call for HC requests.
+	// The HTTP endpoint URL to call for HC requests
 	Uri string `pulumi:"uri"`
 }
 
@@ -9254,13 +9202,13 @@ type LoadbalancerBackendHealthCheckHttpInput interface {
 }
 
 type LoadbalancerBackendHealthCheckHttpArgs struct {
-	// The expected HTTP status code.
+	// The expected HTTP status code
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// The HTTP host header to use for HC requests.
+	// The HTTP host header to use for HC requests
 	HostHeader pulumi.StringPtrInput `pulumi:"hostHeader"`
-	// The HTTP method to use for HC requests.
+	// The HTTP method to use for HC requests
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The HTTPS endpoint URL to call for HC requests.
+	// The HTTP endpoint URL to call for HC requests
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -9341,22 +9289,22 @@ func (o LoadbalancerBackendHealthCheckHttpOutput) ToLoadbalancerBackendHealthChe
 	}).(LoadbalancerBackendHealthCheckHttpPtrOutput)
 }
 
-// The expected HTTP status code.
+// The expected HTTP status code
 func (o LoadbalancerBackendHealthCheckHttpOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// The HTTP host header to use for HC requests.
+// The HTTP host header to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpOutput) HostHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) *string { return v.HostHeader }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP method to use for HC requests.
+// The HTTP method to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The HTTPS endpoint URL to call for HC requests.
+// The HTTP endpoint URL to call for HC requests
 func (o LoadbalancerBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -9385,7 +9333,7 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Elem() LoadbalancerBackendH
 	}).(LoadbalancerBackendHealthCheckHttpOutput)
 }
 
-// The expected HTTP status code.
+// The expected HTTP status code
 func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttp) *int {
 		if v == nil {
@@ -9395,7 +9343,7 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Code() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// The HTTP host header to use for HC requests.
+// The HTTP host header to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpPtrOutput) HostHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttp) *string {
 		if v == nil {
@@ -9405,7 +9353,7 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) HostHeader() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// The HTTP method to use for HC requests.
+// The HTTP method to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttp) *string {
 		if v == nil {
@@ -9415,7 +9363,7 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Method() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// The HTTPS endpoint URL to call for HC requests.
+// The HTTP endpoint URL to call for HC requests
 func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttp) *string {
 		if v == nil {
@@ -9426,15 +9374,15 @@ func (o LoadbalancerBackendHealthCheckHttpPtrOutput) Uri() pulumi.StringPtrOutpu
 }
 
 type LoadbalancerBackendHealthCheckHttps struct {
-	// The expected HTTP status code.
+	// The expected HTTP status code
 	Code *int `pulumi:"code"`
-	// The HTTP host header to use for HC requests.
+	// The HTTP host header to use for HC requests
 	HostHeader *string `pulumi:"hostHeader"`
-	// The HTTP method to use for HC requests.
+	// The HTTP method to use for HC requests
 	Method *string `pulumi:"method"`
-	// The SNI to use for HC requests over SSL.
+	// The SNI to use for HC requests over SSL
 	Sni *string `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for HC requests
 	Uri string `pulumi:"uri"`
 }
 
@@ -9450,15 +9398,15 @@ type LoadbalancerBackendHealthCheckHttpsInput interface {
 }
 
 type LoadbalancerBackendHealthCheckHttpsArgs struct {
-	// The expected HTTP status code.
+	// The expected HTTP status code
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// The HTTP host header to use for HC requests.
+	// The HTTP host header to use for HC requests
 	HostHeader pulumi.StringPtrInput `pulumi:"hostHeader"`
-	// The HTTP method to use for HC requests.
+	// The HTTP method to use for HC requests
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The SNI to use for HC requests over SSL.
+	// The SNI to use for HC requests over SSL
 	Sni pulumi.StringPtrInput `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for HC requests
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -9539,27 +9487,27 @@ func (o LoadbalancerBackendHealthCheckHttpsOutput) ToLoadbalancerBackendHealthCh
 	}).(LoadbalancerBackendHealthCheckHttpsPtrOutput)
 }
 
-// The expected HTTP status code.
+// The expected HTTP status code
 func (o LoadbalancerBackendHealthCheckHttpsOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// The HTTP host header to use for HC requests.
+// The HTTP host header to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpsOutput) HostHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *string { return v.HostHeader }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP method to use for HC requests.
+// The HTTP method to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpsOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The SNI to use for HC requests over SSL.
+// The SNI to use for HC requests over SSL
 func (o LoadbalancerBackendHealthCheckHttpsOutput) Sni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) *string { return v.Sni }).(pulumi.StringPtrOutput)
 }
 
-// The HTTPS endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for HC requests
 func (o LoadbalancerBackendHealthCheckHttpsOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerBackendHealthCheckHttps) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -9588,7 +9536,7 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Elem() LoadbalancerBackend
 	}).(LoadbalancerBackendHealthCheckHttpsOutput)
 }
 
-// The expected HTTP status code.
+// The expected HTTP status code
 func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *int {
 		if v == nil {
@@ -9598,7 +9546,7 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Code() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// The HTTP host header to use for HC requests.
+// The HTTP host header to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) HostHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
 		if v == nil {
@@ -9608,7 +9556,7 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) HostHeader() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// The HTTP method to use for HC requests.
+// The HTTP method to use for HC requests
 func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
 		if v == nil {
@@ -9618,7 +9566,7 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Method() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// The SNI to use for HC requests over SSL.
+// The SNI to use for HC requests over SSL
 func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Sni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
 		if v == nil {
@@ -9628,7 +9576,7 @@ func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Sni() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// The HTTPS endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for HC requests
 func (o LoadbalancerBackendHealthCheckHttpsPtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackendHealthCheckHttps) *string {
 		if v == nil {
@@ -9757,9 +9705,7 @@ func (o LoadbalancerBackendHealthCheckTcpPtrOutput) Elem() LoadbalancerBackendHe
 }
 
 type LoadbalancerCertificateCustomCertificate struct {
-	// Full PEM-formatted certificate chain.
-	//
-	// > **Important:** Updates to `customCertificate` will recreate the load-balancer certificate.
+	// The full PEM-formatted certificate chain
 	CertificateChain string `pulumi:"certificateChain"`
 }
 
@@ -9775,9 +9721,7 @@ type LoadbalancerCertificateCustomCertificateInput interface {
 }
 
 type LoadbalancerCertificateCustomCertificateArgs struct {
-	// Full PEM-formatted certificate chain.
-	//
-	// > **Important:** Updates to `customCertificate` will recreate the load-balancer certificate.
+	// The full PEM-formatted certificate chain
 	CertificateChain pulumi.StringInput `pulumi:"certificateChain"`
 }
 
@@ -9858,9 +9802,7 @@ func (o LoadbalancerCertificateCustomCertificateOutput) ToLoadbalancerCertificat
 	}).(LoadbalancerCertificateCustomCertificatePtrOutput)
 }
 
-// Full PEM-formatted certificate chain.
-//
-// > **Important:** Updates to `customCertificate` will recreate the load-balancer certificate.
+// The full PEM-formatted certificate chain
 func (o LoadbalancerCertificateCustomCertificateOutput) CertificateChain() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerCertificateCustomCertificate) string { return v.CertificateChain }).(pulumi.StringOutput)
 }
@@ -9889,9 +9831,7 @@ func (o LoadbalancerCertificateCustomCertificatePtrOutput) Elem() LoadbalancerCe
 	}).(LoadbalancerCertificateCustomCertificateOutput)
 }
 
-// Full PEM-formatted certificate chain.
-//
-// > **Important:** Updates to `customCertificate` will recreate the load-balancer certificate.
+// The full PEM-formatted certificate chain
 func (o LoadbalancerCertificateCustomCertificatePtrOutput) CertificateChain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerCertificateCustomCertificate) *string {
 		if v == nil {
@@ -9902,11 +9842,9 @@ func (o LoadbalancerCertificateCustomCertificatePtrOutput) CertificateChain() pu
 }
 
 type LoadbalancerCertificateLetsencrypt struct {
-	// Main domain of the certificate. A new certificate will be created if this field is changed.
+	// Main domain of the certificate
 	CommonName string `pulumi:"commonName"`
-	// Array of alternative domain names.  A new certificate will be created if this field is changed.
-	//
-	// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+	// The alternative domain names of the certificate
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
 
@@ -9922,11 +9860,9 @@ type LoadbalancerCertificateLetsencryptInput interface {
 }
 
 type LoadbalancerCertificateLetsencryptArgs struct {
-	// Main domain of the certificate. A new certificate will be created if this field is changed.
+	// Main domain of the certificate
 	CommonName pulumi.StringInput `pulumi:"commonName"`
-	// Array of alternative domain names.  A new certificate will be created if this field is changed.
-	//
-	// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+	// The alternative domain names of the certificate
 	SubjectAlternativeNames pulumi.StringArrayInput `pulumi:"subjectAlternativeNames"`
 }
 
@@ -10007,14 +9943,12 @@ func (o LoadbalancerCertificateLetsencryptOutput) ToLoadbalancerCertificateLetse
 	}).(LoadbalancerCertificateLetsencryptPtrOutput)
 }
 
-// Main domain of the certificate. A new certificate will be created if this field is changed.
+// Main domain of the certificate
 func (o LoadbalancerCertificateLetsencryptOutput) CommonName() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerCertificateLetsencrypt) string { return v.CommonName }).(pulumi.StringOutput)
 }
 
-// Array of alternative domain names.  A new certificate will be created if this field is changed.
-//
-// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+// The alternative domain names of the certificate
 func (o LoadbalancerCertificateLetsencryptOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerCertificateLetsencrypt) []string { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
 }
@@ -10043,7 +9977,7 @@ func (o LoadbalancerCertificateLetsencryptPtrOutput) Elem() LoadbalancerCertific
 	}).(LoadbalancerCertificateLetsencryptOutput)
 }
 
-// Main domain of the certificate. A new certificate will be created if this field is changed.
+// Main domain of the certificate
 func (o LoadbalancerCertificateLetsencryptPtrOutput) CommonName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerCertificateLetsencrypt) *string {
 		if v == nil {
@@ -10053,9 +9987,7 @@ func (o LoadbalancerCertificateLetsencryptPtrOutput) CommonName() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Array of alternative domain names.  A new certificate will be created if this field is changed.
-//
-// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+// The alternative domain names of the certificate
 func (o LoadbalancerCertificateLetsencryptPtrOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerCertificateLetsencrypt) []string {
 		if v == nil {
@@ -10269,11 +10201,11 @@ func (o LoadbalancerFrontendAclActionOutput) Type() pulumi.StringOutput {
 }
 
 type LoadbalancerFrontendAclActionRedirect struct {
-	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	// The HTTP redirect code to use
 	Code *int `pulumi:"code"`
-	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	// An URL can be used in case of a location redirect
 	Target *string `pulumi:"target"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The redirect type
 	Type *string `pulumi:"type"`
 }
 
@@ -10289,11 +10221,11 @@ type LoadbalancerFrontendAclActionRedirectInput interface {
 }
 
 type LoadbalancerFrontendAclActionRedirectArgs struct {
-	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	// The HTTP redirect code to use
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	// An URL can be used in case of a location redirect
 	Target pulumi.StringPtrInput `pulumi:"target"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The redirect type
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -10348,17 +10280,17 @@ func (o LoadbalancerFrontendAclActionRedirectOutput) ToLoadbalancerFrontendAclAc
 	return o
 }
 
-// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+// The HTTP redirect code to use
 func (o LoadbalancerFrontendAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+// An URL can be used in case of a location redirect
 func (o LoadbalancerFrontendAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
 }
 
-// The redirect type. Possible values are: `location` or `scheme`.
+// The redirect type
 func (o LoadbalancerFrontendAclActionRedirectOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclActionRedirect) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -12245,7 +12177,7 @@ func (o ObjectBucketLockConfigurationRulePtrOutput) DefaultRetention() ObjectBuc
 type ObjectBucketLockConfigurationRuleDefaultRetention struct {
 	// The number of days that you want to specify for the default retention period.
 	Days *int `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
 	Mode string `pulumi:"mode"`
 	// The number of years that you want to specify for the default retention period.
 	Years *int `pulumi:"years"`
@@ -12265,7 +12197,7 @@ type ObjectBucketLockConfigurationRuleDefaultRetentionInput interface {
 type ObjectBucketLockConfigurationRuleDefaultRetentionArgs struct {
 	// The number of days that you want to specify for the default retention period.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The number of years that you want to specify for the default retention period.
 	Years pulumi.IntPtrInput `pulumi:"years"`
@@ -12353,7 +12285,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.I
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -12397,7 +12329,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *string {
 		if v == nil {
@@ -12841,7 +12773,7 @@ type RedisClusterAcl struct {
 	//
 	// > The `acl` conflict with `privateNetwork`. Only one should be specified.
 	Description *string `pulumi:"description"`
-	// The UUID of the Private Network resource.
+	// (Required) The UUID of the endpoint.
 	Id *string `pulumi:"id"`
 	// The ip range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
@@ -12864,7 +12796,7 @@ type RedisClusterAclArgs struct {
 	//
 	// > The `acl` conflict with `privateNetwork`. Only one should be specified.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The UUID of the Private Network resource.
+	// (Required) The UUID of the endpoint.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The ip range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
@@ -12929,7 +12861,7 @@ func (o RedisClusterAclOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The UUID of the Private Network resource.
+// (Required) The UUID of the endpoint.
 func (o RedisClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -12985,7 +12917,6 @@ type RedisClusterPrivateNetwork struct {
 	// require updating the private network to add IPs.
 	// Your `serviceIps` must be listed as follows:
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -12999,7 +12930,6 @@ type RedisClusterPrivateNetwork struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -13042,7 +12972,6 @@ type RedisClusterPrivateNetworkArgs struct {
 	// require updating the private network to add IPs.
 	// Your `serviceIps` must be listed as follows:
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -13056,7 +12985,6 @@ type RedisClusterPrivateNetworkArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -13144,7 +13072,6 @@ func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 // require updating the private network to add IPs.
 // Your `serviceIps` must be listed as follows:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -13161,7 +13088,6 @@ func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func (o RedisClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
 }
@@ -13193,7 +13119,7 @@ func (o RedisClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) RedisClu
 }
 
 type RedisClusterPublicNetwork struct {
-	// The UUID of the Private Network resource.
+	// (Required) The UUID of the endpoint.
 	Id *string `pulumi:"id"`
 	// Lis of IPv4 address of the endpoint (IP address).
 	Ips []string `pulumi:"ips"`
@@ -13213,7 +13139,7 @@ type RedisClusterPublicNetworkInput interface {
 }
 
 type RedisClusterPublicNetworkArgs struct {
-	// The UUID of the Private Network resource.
+	// (Required) The UUID of the endpoint.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Lis of IPv4 address of the endpoint (IP address).
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
@@ -13298,7 +13224,7 @@ func (o RedisClusterPublicNetworkOutput) ToRedisClusterPublicNetworkPtrOutputWit
 	}).(RedisClusterPublicNetworkPtrOutput)
 }
 
-// The UUID of the Private Network resource.
+// (Required) The UUID of the endpoint.
 func (o RedisClusterPublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -13337,7 +13263,7 @@ func (o RedisClusterPublicNetworkPtrOutput) Elem() RedisClusterPublicNetworkOutp
 	}).(RedisClusterPublicNetworkOutput)
 }
 
-// The UUID of the Private Network resource.
+// (Required) The UUID of the endpoint.
 func (o RedisClusterPublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RedisClusterPublicNetwork) *string {
 		if v == nil {
@@ -18974,7 +18900,7 @@ type GetIpamIpsIp struct {
 	Address string `pulumi:"address"`
 	// The date and time of the creation of the IP.
 	CreatedAt string `pulumi:"createdAt"`
-	// The ID of the resource that the IP is bound to.
+	// The ID of the resource.
 	Id string `pulumi:"id"`
 	// The ID of the project used as filter.
 	ProjectId string `pulumi:"projectId"`
@@ -19006,7 +18932,7 @@ type GetIpamIpsIpArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
 	// The date and time of the creation of the IP.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The ID of the resource that the IP is bound to.
+	// The ID of the resource.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The ID of the project used as filter.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -19083,7 +19009,7 @@ func (o GetIpamIpsIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the resource.
 func (o GetIpamIpsIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.Id }).(pulumi.StringOutput)
 }

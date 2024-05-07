@@ -246,7 +246,6 @@ class RegistryNamespace(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -255,7 +254,6 @@ class RegistryNamespace(pulumi.CustomResource):
             description="Main container registry",
             is_public=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -291,7 +289,6 @@ class RegistryNamespace(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -300,7 +297,6 @@ class RegistryNamespace(pulumi.CustomResource):
             description="Main container registry",
             is_public=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

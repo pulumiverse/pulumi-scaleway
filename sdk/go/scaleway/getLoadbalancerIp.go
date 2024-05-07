@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupLoadbalancerIp(ctx *pulumi.Context, args *LookupLoadbalancerIpArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerIpResult

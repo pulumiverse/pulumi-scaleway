@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Dynamic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -45,11 +44,9 @@ import * as utilities from "./utilities";
  *     gatewayNetworkId: mainVpcGatewayNetwork.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example Static and PAT rule
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -104,7 +101,6 @@ import * as utilities from "./utilities";
  *     reservationId: mainVpcPublicGatewayDhcpReservation.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getVpcPublicGatewayDhcpReservation(args?: GetVpcPublicGatewayDhcpReservationArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpReservationResult> {
     args = args || {};
@@ -172,7 +168,6 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
  *
  * ## Example Dynamic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -207,11 +202,9 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
  *     gatewayNetworkId: mainVpcGatewayNetwork.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example Static and PAT rule
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -266,7 +259,6 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
  *     reservationId: mainVpcPublicGatewayDhcpReservation.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGatewayDhcpReservationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpReservationResult> {
     return pulumi.output(args).apply((a: any) => getVpcPublicGatewayDhcpReservation(a, opts))

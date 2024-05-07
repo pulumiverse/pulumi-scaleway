@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### By tag
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -22,11 +21,9 @@ import * as utilities from "./utilities";
  *     tags: ["tag"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By type and resource
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -57,7 +54,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getIpamIps(args?: GetIpamIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpsResult> {
     args = args || {};
@@ -109,7 +105,7 @@ export interface GetIpamIpsArgs {
      */
     tags?: string[];
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of IP used as filter (ipv4, ipv6).
      */
     type?: string;
     /**
@@ -166,7 +162,6 @@ export interface GetIpamIpsResult {
  *
  * ### By tag
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -175,11 +170,9 @@ export interface GetIpamIpsResult {
  *     tags: ["tag"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By type and resource
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -210,7 +203,6 @@ export interface GetIpamIpsResult {
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getIpamIpsOutput(args?: GetIpamIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpamIpsResult> {
     return pulumi.output(args).apply((a: any) => getIpamIps(a, opts))
@@ -249,7 +241,7 @@ export interface GetIpamIpsOutputArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of IP used as filter (ipv4, ipv6).
      */
     type?: pulumi.Input<string>;
     /**

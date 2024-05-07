@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     name: "tf-acls-datasource",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLbAcls(args: GetLbAclsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbAclsResult> {
 
@@ -80,7 +78,6 @@ export interface GetLbAclsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -93,7 +90,6 @@ export interface GetLbAclsResult {
  *     name: "tf-acls-datasource",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLbAclsOutput(args: GetLbAclsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbAclsResult> {
     return pulumi.output(args).apply((a: any) => getLbAcls(a, opts))

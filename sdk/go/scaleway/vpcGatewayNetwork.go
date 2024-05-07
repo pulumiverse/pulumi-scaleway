@@ -20,7 +20,6 @@ import (
 //
 // ### Create a gateway network with IPAM config
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,11 +69,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Create a gateway network with a booked IPAM IP
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -136,11 +133,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Create a gateway network with DHCP
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -190,11 +185,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Create a gateway network with a static IP address
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -232,7 +225,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

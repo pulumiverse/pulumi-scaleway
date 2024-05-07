@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDocumentdbLoadBalancerEndpoint(ctx *pulumi.Context, args *GetDocumentdbLoadBalancerEndpointArgs, opts ...pulumi.InvokeOption) (*GetDocumentdbLoadBalancerEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDocumentdbLoadBalancerEndpointResult

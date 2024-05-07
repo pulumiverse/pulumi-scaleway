@@ -125,7 +125,6 @@ def get_iam_application(application_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -133,7 +132,6 @@ def get_iam_application(application_id: Optional[str] = None,
     find_by_name = scaleway.get_iam_application(name="foobar")
     find_by_id = scaleway.get_iam_application(application_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str application_id: The ID of the IAM application.
@@ -172,7 +170,6 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -180,7 +177,6 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
     find_by_name = scaleway.get_iam_application(name="foobar")
     find_by_id = scaleway.get_iam_application(application_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str application_id: The ID of the IAM application.

@@ -240,7 +240,6 @@ class ContainerTrigger(pulumi.CustomResource):
 
         ### SQS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -253,11 +252,9 @@ class ContainerTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_sqs["main"]["region"],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Nats
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -270,7 +267,6 @@ class ContainerTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_nats_account["main"]["region"],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -305,7 +301,6 @@ class ContainerTrigger(pulumi.CustomResource):
 
         ### SQS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -318,11 +313,9 @@ class ContainerTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_sqs["main"]["region"],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Nats
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -335,7 +328,6 @@ class ContainerTrigger(pulumi.CustomResource):
                 region=scaleway_mnq_nats_account["main"]["region"],
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

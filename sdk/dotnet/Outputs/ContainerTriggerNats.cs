@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// Region where the mnq nats account is, defaults to provider's region
         /// </summary>
         public readonly string? Region;
         /// <summary>

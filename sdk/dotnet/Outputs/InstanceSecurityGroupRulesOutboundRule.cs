@@ -15,19 +15,19 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class InstanceSecurityGroupRulesOutboundRule
     {
         /// <summary>
-        /// The action to take when rule match. Possible values are: `accept` or `drop`.
+        /// Action when rule match request (drop or accept)
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+        /// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         /// </summary>
         public readonly string? Ip;
         /// <summary>
-        /// The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+        /// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
         /// </summary>
         public readonly string? IpRange;
         /// <summary>
-        /// The port this rule apply to. If no port is specified, rule will apply to all port.
+        /// Network port for this rule
         /// </summary>
         public readonly int? Port;
         /// <summary>
@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? PortRange;
         /// <summary>
-        /// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+        /// Protocol for this rule (TCP, UDP, ICMP or ANY)
         /// </summary>
         public readonly string? Protocol;
 

@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupObjectBucketPolicy(ctx *pulumi.Context, args *LookupObjectBucketPolicyArgs, opts ...pulumi.InvokeOption) (*LookupObjectBucketPolicyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectBucketPolicyResult

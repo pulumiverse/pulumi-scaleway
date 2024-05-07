@@ -16,7 +16,6 @@ import (
 //
 // ### S3 Route
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,11 +58,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Rest Route
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -101,7 +98,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

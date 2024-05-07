@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Ip;
         /// <summary>
-        /// The weight of the IP as an integer UInt32.
+        /// The weight of the IP
         /// </summary>
         public readonly int Weight;
 

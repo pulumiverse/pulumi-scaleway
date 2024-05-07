@@ -137,7 +137,6 @@ class InstanceIpReverseDns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -153,7 +152,6 @@ class InstanceIpReverseDns(pulumi.CustomResource):
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -184,7 +182,6 @@ class InstanceIpReverseDns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -200,7 +197,6 @@ class InstanceIpReverseDns(pulumi.CustomResource):
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

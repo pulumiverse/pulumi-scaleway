@@ -234,14 +234,12 @@ def get_iot_hub(hub_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_hub = scaleway.get_iot_hub(hub_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str hub_id: The Hub ID.
@@ -294,14 +292,12 @@ def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_hub = scaleway.get_iot_hub(hub_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str hub_id: The Hub ID.

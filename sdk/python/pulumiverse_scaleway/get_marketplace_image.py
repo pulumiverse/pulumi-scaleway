@@ -80,14 +80,12 @@ def get_marketplace_image(instance_type: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_image = scaleway.get_marketplace_image(label="ubuntu_jammy")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str instance_type: The instance type the image is compatible with.
@@ -120,14 +118,12 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     my_image = scaleway.get_marketplace_image(label="ubuntu_jammy")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str instance_type: The instance type the image is compatible with.

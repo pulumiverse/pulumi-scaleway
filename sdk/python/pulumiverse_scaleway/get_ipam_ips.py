@@ -183,18 +183,15 @@ def get_ipam_ips(attached: Optional[bool] = None,
 
     ### By tag
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     by_tag = scaleway.get_ipam_ips(tags=["tag"])
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By type and resource
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -221,7 +218,6 @@ def get_ipam_ips(attached: Optional[bool] = None,
             type="redis_cluster",
         ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource.
@@ -231,7 +227,7 @@ def get_ipam_ips(attached: Optional[bool] = None,
     :param str region: The region used as filter.
     :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter by resource ID, type or name.
     :param Sequence[str] tags: The tags used as filter.
-    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    :param str type: The type of IP used as filter (ipv4, ipv6).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     __args__ = dict()
@@ -280,18 +276,15 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
 
     ### By tag
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
     by_tag = scaleway.get_ipam_ips(tags=["tag"])
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By type and resource
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -318,7 +311,6 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
             type="redis_cluster",
         ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource.
@@ -328,7 +320,7 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str region: The region used as filter.
     :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter by resource ID, type or name.
     :param Sequence[str] tags: The tags used as filter.
-    :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    :param str type: The type of IP used as filter (ipv4, ipv6).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     ...

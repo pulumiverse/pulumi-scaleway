@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -39,7 +38,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetVpcPublicGatewayDhcpResult> InvokeAsync(GetVpcPublicGatewayDhcpArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpArgs(), options.WithDefaults());
@@ -49,7 +47,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -71,7 +68,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetVpcPublicGatewayDhcpResult> Invoke(GetVpcPublicGatewayDhcpInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpInvokeArgs(), options.WithDefaults());

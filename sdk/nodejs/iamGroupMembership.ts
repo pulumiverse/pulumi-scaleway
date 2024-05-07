@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Application Membership
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     applicationId: app.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

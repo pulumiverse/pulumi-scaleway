@@ -432,7 +432,6 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -444,7 +443,6 @@ class VpcPublicGateway(pulumi.CustomResource):
             ],
             type="VPC-GW-S")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -481,7 +479,6 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -493,7 +490,6 @@ class VpcPublicGateway(pulumi.CustomResource):
             ],
             type="VPC-GW-S")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

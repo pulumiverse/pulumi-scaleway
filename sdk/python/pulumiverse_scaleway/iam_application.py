@@ -218,14 +218,12 @@ class IamApplication(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.IamApplication("main", description="a description")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -255,14 +253,12 @@ class IamApplication(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.IamApplication("main", description="a description")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

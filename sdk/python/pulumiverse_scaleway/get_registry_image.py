@@ -161,7 +161,6 @@ def get_registry_image(image_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -169,7 +168,6 @@ def get_registry_image(image_id: Optional[str] = None,
     my_image = scaleway.get_registry_image(image_id="11111111-1111-1111-1111-111111111111",
         namespace_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str image_id: The image ID.
@@ -218,7 +216,6 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -226,7 +223,6 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
     my_image = scaleway.get_registry_image(image_id="11111111-1111-1111-1111-111111111111",
         namespace_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str image_id: The image ID.

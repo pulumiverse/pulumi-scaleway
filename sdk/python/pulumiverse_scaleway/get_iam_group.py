@@ -144,7 +144,6 @@ def get_iam_group(group_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -152,7 +151,6 @@ def get_iam_group(group_id: Optional[str] = None,
     find_by_name = scaleway.get_iam_group(name="foobar")
     find_by_id = scaleway.get_iam_group(group_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str group_id: The ID of the IAM group.
@@ -194,7 +192,6 @@ def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -202,7 +199,6 @@ def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     find_by_name = scaleway.get_iam_group(name="foobar")
     find_by_id = scaleway.get_iam_group(group_id="11111111-1111-1111-1111-111111111111")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str group_id: The ID of the IAM group.

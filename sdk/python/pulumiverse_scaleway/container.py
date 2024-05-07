@@ -775,7 +775,6 @@ class Container(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -802,7 +801,6 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Protocols
 
@@ -896,7 +894,6 @@ class Container(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -923,7 +920,6 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Protocols
 

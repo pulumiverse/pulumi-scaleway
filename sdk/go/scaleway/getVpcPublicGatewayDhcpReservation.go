@@ -16,7 +16,6 @@ import (
 //
 // ## Example Dynamic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -84,11 +83,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Example Static and PAT rule
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -188,7 +185,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupVpcPublicGatewayDhcpReservation(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpReservationArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpReservationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpReservationResult

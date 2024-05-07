@@ -235,7 +235,6 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -245,7 +244,6 @@ class Vpc(pulumi.CustomResource):
             "terraform",
         ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -276,7 +274,6 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -286,7 +283,6 @@ class Vpc(pulumi.CustomResource):
             "terraform",
         ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -19,7 +19,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,11 +50,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Private LB
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -82,7 +79,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## IP ID
 //
@@ -92,7 +88,6 @@ import (
 //
 // For instance, if you had the following:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -117,11 +112,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // You will need to update it to:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -152,7 +145,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -239,7 +239,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -249,11 +248,9 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
             flexible_ip_id=main_flexible_ip.id,
             type="kvm")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Duplicate on many other flexible IPs
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -274,7 +271,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
                 ip03.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -308,7 +304,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -318,11 +313,9 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
             flexible_ip_id=main_flexible_ip.id,
             type="kvm")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Duplicate on many other flexible IPs
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -343,7 +336,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
                 ip03.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

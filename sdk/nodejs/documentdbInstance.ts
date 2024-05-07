@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Example Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -30,7 +29,6 @@ import * as utilities from "./utilities";
  *     volumeSizeInGb: 20,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -130,18 +130,15 @@ class MnqSns(pulumi.CustomResource):
 
         Activate SNS for default project
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.MnqSns("main")
         ```
-        <!--End PulumiCodeChooser -->
 
         Activate SNS for a specific project
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -151,7 +148,6 @@ class MnqSns(pulumi.CustomResource):
         # For specific project in default region
         for_project = scaleway.MnqSns("forProject", project_id=project.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -186,18 +182,15 @@ class MnqSns(pulumi.CustomResource):
 
         Activate SNS for default project
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.MnqSns("main")
         ```
-        <!--End PulumiCodeChooser -->
 
         Activate SNS for a specific project
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -207,7 +200,6 @@ class MnqSns(pulumi.CustomResource):
         # For specific project in default region
         for_project = scaleway.MnqSns("forProject", project_id=project.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

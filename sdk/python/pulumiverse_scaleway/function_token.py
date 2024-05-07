@@ -238,7 +238,6 @@ class FunctionToken(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -256,7 +255,6 @@ class FunctionToken(pulumi.CustomResource):
         # Function Token
         function = scaleway.FunctionToken("function", function_id=main_function.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -294,7 +292,6 @@ class FunctionToken(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -312,7 +309,6 @@ class FunctionToken(pulumi.CustomResource):
         # Function Token
         function = scaleway.FunctionToken("function", function_id=main_function.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

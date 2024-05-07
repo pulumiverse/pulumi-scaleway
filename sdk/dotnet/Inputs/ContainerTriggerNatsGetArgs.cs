@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// Region where the mnq nats account is, defaults to provider's region
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

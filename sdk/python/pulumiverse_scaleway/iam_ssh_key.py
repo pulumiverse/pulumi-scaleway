@@ -239,14 +239,12 @@ class IamSshKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.IamSshKey("main", public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -279,14 +277,12 @@ class IamSshKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.IamSshKey("main", public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

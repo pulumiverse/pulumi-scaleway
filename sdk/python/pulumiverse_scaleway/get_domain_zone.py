@@ -151,7 +151,6 @@ def get_domain_zone(domain: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -159,7 +158,6 @@ def get_domain_zone(domain: Optional[str] = None,
     main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
         subdomain="test")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str domain: The domain where the DNS zone will be created.
@@ -193,7 +191,6 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -201,7 +198,6 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
         subdomain="test")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str domain: The domain where the DNS zone will be created.

@@ -269,7 +269,6 @@ class BlockVolume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -278,7 +277,6 @@ class BlockVolume(pulumi.CustomResource):
             iops=5000,
             size_in_gb=20)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -312,7 +310,6 @@ class BlockVolume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -321,7 +318,6 @@ class BlockVolume(pulumi.CustomResource):
             iops=5000,
             size_in_gb=20)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

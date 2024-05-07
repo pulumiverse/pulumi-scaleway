@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -29,11 +28,9 @@ import * as utilities from "./utilities";
  *     sshKeyIds: [main.then(main => main.id)],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Without install config
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -49,7 +46,6 @@ import * as utilities from "./utilities";
  *     installConfigAfterward: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

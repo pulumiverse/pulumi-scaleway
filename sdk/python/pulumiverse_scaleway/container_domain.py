@@ -154,7 +154,6 @@ class ContainerDomain(pulumi.CustomResource):
 
         ### Simple
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -164,11 +163,9 @@ class ContainerDomain(pulumi.CustomResource):
             container_id=app_container.id,
             hostname="container.domain.tld")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Complete example with domain
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -196,7 +193,6 @@ class ContainerDomain(pulumi.CustomResource):
             container_id=app_container.id,
             hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f"{name}.{dns_zone}"))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -228,7 +224,6 @@ class ContainerDomain(pulumi.CustomResource):
 
         ### Simple
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -238,11 +233,9 @@ class ContainerDomain(pulumi.CustomResource):
             container_id=app_container.id,
             hostname="container.domain.tld")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Complete example with domain
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -270,7 +263,6 @@ class ContainerDomain(pulumi.CustomResource):
             container_id=app_container.id,
             hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f"{name}.{dns_zone}"))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

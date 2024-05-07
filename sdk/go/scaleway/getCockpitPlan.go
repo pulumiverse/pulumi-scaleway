@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetCockpitPlan(ctx *pulumi.Context, args *GetCockpitPlanArgs, opts ...pulumi.InvokeOption) (*GetCockpitPlanResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCockpitPlanResult

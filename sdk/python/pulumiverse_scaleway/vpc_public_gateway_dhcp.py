@@ -581,14 +581,12 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -630,14 +628,12 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

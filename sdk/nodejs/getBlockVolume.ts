@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     volumeId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBlockVolume(args?: GetBlockVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockVolumeResult> {
     args = args || {};
@@ -76,7 +74,6 @@ export interface GetBlockVolumeResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -85,7 +82,6 @@ export interface GetBlockVolumeResult {
  *     volumeId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockVolumeResult> {
     return pulumi.output(args).apply((a: any) => getBlockVolume(a, opts))

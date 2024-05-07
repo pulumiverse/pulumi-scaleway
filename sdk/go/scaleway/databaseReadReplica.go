@@ -19,7 +19,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,11 +59,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Private network with static endpoint
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -107,11 +104,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Private network with IPAM
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -154,7 +149,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

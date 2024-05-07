@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -35,7 +34,6 @@ import * as utilities from "./utilities";
  * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
  * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Data
  *
@@ -130,7 +128,6 @@ export interface GetSecretVersionResult {
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -153,7 +150,6 @@ export interface GetSecretVersionResult {
  * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
  * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Data
  *

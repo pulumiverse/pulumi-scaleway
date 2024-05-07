@@ -103,7 +103,6 @@ def get_database_privilege(database_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -112,7 +111,6 @@ def get_database_privilege(database_name: Optional[str] = None,
         instance_id="11111111-1111-111111111111",
         user_name="my-user")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str database_name: The database name.
@@ -148,7 +146,6 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -157,7 +154,6 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
         instance_id="11111111-1111-111111111111",
         user_name="my-user")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str database_name: The database name.

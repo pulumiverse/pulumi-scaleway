@@ -232,7 +232,6 @@ class DomainZone(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -241,7 +240,6 @@ class DomainZone(pulumi.CustomResource):
             domain="scaleway-terraform.com",
             subdomain="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -271,7 +269,6 @@ class DomainZone(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -280,7 +277,6 @@ class DomainZone(pulumi.CustomResource):
             domain="scaleway-terraform.com",
             subdomain="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

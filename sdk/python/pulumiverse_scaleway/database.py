@@ -195,14 +195,12 @@ class Database(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.Database("main", instance_id=scaleway_rdb_instance["main"]["id"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -236,14 +234,12 @@ class Database(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.Database("main", instance_id=scaleway_rdb_instance["main"]["id"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

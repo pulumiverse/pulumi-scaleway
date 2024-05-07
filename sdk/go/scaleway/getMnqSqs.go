@@ -17,7 +17,6 @@ import (
 //
 // ### Basic
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupMnqSqs(ctx *pulumi.Context, args *LookupMnqSqsArgs, opts ...pulumi.InvokeOption) (*LookupMnqSqsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMnqSqsResult

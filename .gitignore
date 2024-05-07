@@ -24,3 +24,5 @@ yarn.lock
 dist/**
 **/.DS_store
 .vscode
+
+go.work.sum

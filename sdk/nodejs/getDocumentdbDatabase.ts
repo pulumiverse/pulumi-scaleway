@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -19,7 +18,6 @@ import * as utilities from "./utilities";
  *     name: "foobar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbDatabase(args: GetDocumentdbDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbDatabaseResult> {
 
@@ -76,7 +74,6 @@ export interface GetDocumentdbDatabaseResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -86,7 +83,6 @@ export interface GetDocumentdbDatabaseResult {
  *     name: "foobar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDocumentdbDatabaseOutput(args: GetDocumentdbDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbDatabaseResult> {
     return pulumi.output(args).apply((a: any) => getDocumentdbDatabase(a, opts))

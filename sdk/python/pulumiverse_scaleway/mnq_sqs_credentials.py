@@ -208,7 +208,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -222,7 +221,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
                 can_publish=False,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -256,7 +254,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -270,7 +267,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
                 can_publish=False,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

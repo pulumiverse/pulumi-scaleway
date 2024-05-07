@@ -12,14 +12,12 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const server = new scaleway.AppleSliconValleyServer("server", {type: "M1-M"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

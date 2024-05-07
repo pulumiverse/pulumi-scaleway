@@ -10,14 +10,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

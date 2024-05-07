@@ -485,7 +485,6 @@ class MnqSqsQueue(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -504,7 +503,6 @@ class MnqSqsQueue(pulumi.CustomResource):
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -537,7 +535,6 @@ class MnqSqsQueue(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -556,7 +553,6 @@ class MnqSqsQueue(pulumi.CustomResource):
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param MnqSqsQueueArgs args: The arguments to use to populate this resource's properties.

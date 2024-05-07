@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The ID of the resource that the IP is bound to.
+        /// The ID of the resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

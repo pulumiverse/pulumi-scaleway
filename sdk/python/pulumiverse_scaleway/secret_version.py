@@ -239,7 +239,6 @@ class SecretVersion(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -255,7 +254,6 @@ class SecretVersion(pulumi.CustomResource):
             secret_id=main.id,
             data="my_new_secret")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -291,7 +289,6 @@ class SecretVersion(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -307,7 +304,6 @@ class SecretVersion(pulumi.CustomResource):
             secret_id=main.id,
             data="my_new_secret")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

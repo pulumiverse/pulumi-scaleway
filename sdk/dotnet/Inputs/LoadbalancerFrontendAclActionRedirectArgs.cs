@@ -14,19 +14,19 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class LoadbalancerFrontendAclActionRedirectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        /// The HTTP redirect code to use
         /// </summary>
         [Input("code")]
         public Input<int>? Code { get; set; }
 
         /// <summary>
-        /// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        /// An URL can be used in case of a location redirect
         /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }
 
         /// <summary>
-        /// The redirect type. Possible values are: `location` or `scheme`.
+        /// The redirect type
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

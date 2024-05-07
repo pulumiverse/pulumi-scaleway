@@ -166,7 +166,6 @@ class FunctionDomain(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -184,7 +183,6 @@ class FunctionDomain(pulumi.CustomResource):
             hostname="example.com",
             opts=pulumi.ResourceOptions(depends_on=[main_function]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -219,7 +217,6 @@ class FunctionDomain(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -237,7 +234,6 @@ class FunctionDomain(pulumi.CustomResource):
             hostname="example.com",
             opts=pulumi.ResourceOptions(depends_on=[main_function]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

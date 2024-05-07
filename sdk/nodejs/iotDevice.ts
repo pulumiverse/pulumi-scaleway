@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -19,11 +18,9 @@ import * as utilities from "./utilities";
  * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
  * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {hubId: mainIotHub.id});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With custom certificate
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as local from "@pulumi/local";
@@ -40,7 +37,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

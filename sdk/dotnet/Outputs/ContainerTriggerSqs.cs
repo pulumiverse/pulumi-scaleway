@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? NamespaceId;
         /// <summary>
-        /// ID of the project that contain the mnq nats account, defaults to provider's project
+        /// ID of the project where sqs is enabled, defaults to provider's project
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Queue;
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// Region where sqs is enabled, defaults to provider's region
         /// </summary>
         public readonly string? Region;
 

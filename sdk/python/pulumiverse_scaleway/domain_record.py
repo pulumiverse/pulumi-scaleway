@@ -33,15 +33,15 @@ class DomainRecordArgs:
         :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-        :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
-        :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: Return record based on client localisation
+        :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: Return record based on client localisation
         :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
-        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]] weighteds: You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: Return record based on client subnet
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]] weighteds: Return record based on weight
         """
         pulumi.set(__self__, "data", data)
         pulumi.set(__self__, "dns_zone", dns_zone)
@@ -105,7 +105,7 @@ class DomainRecordArgs:
     @pulumi.getter(name="geoIp")
     def geo_ip(self) -> Optional[pulumi.Input['DomainRecordGeoIpArgs']]:
         """
-        The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+        Return record based on client localisation
         """
         return pulumi.get(self, "geo_ip")
 
@@ -117,7 +117,7 @@ class DomainRecordArgs:
     @pulumi.getter(name="httpService")
     def http_service(self) -> Optional[pulumi.Input['DomainRecordHttpServiceArgs']]:
         """
-        The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        Return record based on client localisation
         """
         return pulumi.get(self, "http_service")
 
@@ -189,7 +189,7 @@ class DomainRecordArgs:
     @pulumi.getter
     def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]]]:
         """
-        The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+        Return record based on client subnet
         """
         return pulumi.get(self, "views")
 
@@ -201,7 +201,7 @@ class DomainRecordArgs:
     @pulumi.getter
     def weighteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]]:
         """
-        You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        Return record based on weight
         """
         return pulumi.get(self, "weighteds")
 
@@ -232,8 +232,8 @@ class _DomainRecordState:
         :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input[str] fqdn: The FQDN of the record.
-        :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
-        :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: Return record based on client localisation
+        :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: Return record based on client localisation
         :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
@@ -241,8 +241,8 @@ class _DomainRecordState:
         :param pulumi.Input[bool] root_zone: Does the DNS zone is the root zone or not
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
-        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]] weighteds: You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: Return record based on client subnet
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]] weighteds: Return record based on weight
         """
         if data is not None:
             pulumi.set(__self__, "data", data)
@@ -313,7 +313,7 @@ class _DomainRecordState:
     @pulumi.getter(name="geoIp")
     def geo_ip(self) -> Optional[pulumi.Input['DomainRecordGeoIpArgs']]:
         """
-        The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+        Return record based on client localisation
         """
         return pulumi.get(self, "geo_ip")
 
@@ -325,7 +325,7 @@ class _DomainRecordState:
     @pulumi.getter(name="httpService")
     def http_service(self) -> Optional[pulumi.Input['DomainRecordHttpServiceArgs']]:
         """
-        The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        Return record based on client localisation
         """
         return pulumi.get(self, "http_service")
 
@@ -421,7 +421,7 @@ class _DomainRecordState:
     @pulumi.getter
     def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]]]:
         """
-        The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+        Return record based on client subnet
         """
         return pulumi.get(self, "views")
 
@@ -433,7 +433,7 @@ class _DomainRecordState:
     @pulumi.getter
     def weighteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]]:
         """
-        You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        Return record based on weight
         """
         return pulumi.get(self, "weighteds")
 
@@ -468,7 +468,6 @@ class DomainRecord(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -496,11 +495,9 @@ class DomainRecord(pulumi.CustomResource):
             ttl=3600,
             type="MX")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With dynamic records
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -569,11 +566,9 @@ class DomainRecord(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create an instance and add records with the new instance IP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -610,7 +605,6 @@ class DomainRecord(pulumi.CustomResource):
             data=f"web.{dns_zone}.",
             ttl=3600)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Multiple records
 
@@ -633,16 +627,16 @@ class DomainRecord(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
-        :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
-        :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: Return record based on client localisation
+        :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: Return record based on client localisation
         :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordViewArgs']]]] views: The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordWeightedArgs']]]] weighteds: You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordViewArgs']]]] views: Return record based on client subnet
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordWeightedArgs']]]] weighteds: Return record based on weight
         """
         ...
     @overload
@@ -658,7 +652,6 @@ class DomainRecord(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -686,11 +679,9 @@ class DomainRecord(pulumi.CustomResource):
             ttl=3600,
             type="MX")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### With dynamic records
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -759,11 +750,9 @@ class DomainRecord(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create an instance and add records with the new instance IP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -800,7 +789,6 @@ class DomainRecord(pulumi.CustomResource):
             data=f"web.{dns_zone}.",
             ttl=3600)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Multiple records
 
@@ -909,8 +897,8 @@ class DomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
         :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
         :param pulumi.Input[str] fqdn: The FQDN of the record.
-        :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
-        :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        :param pulumi.Input[pulumi.InputType['DomainRecordGeoIpArgs']] geo_ip: Return record based on client localisation
+        :param pulumi.Input[pulumi.InputType['DomainRecordHttpServiceArgs']] http_service: Return record based on client localisation
         :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
@@ -918,8 +906,8 @@ class DomainRecord(pulumi.CustomResource):
         :param pulumi.Input[bool] root_zone: Does the DNS zone is the root zone or not
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordViewArgs']]]] views: The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordWeightedArgs']]]] weighteds: You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordViewArgs']]]] views: Return record based on client subnet
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainRecordWeightedArgs']]]] weighteds: Return record based on weight
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -969,7 +957,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="geoIp")
     def geo_ip(self) -> pulumi.Output[Optional['outputs.DomainRecordGeoIp']]:
         """
-        The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+        Return record based on client localisation
         """
         return pulumi.get(self, "geo_ip")
 
@@ -977,7 +965,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="httpService")
     def http_service(self) -> pulumi.Output[Optional['outputs.DomainRecordHttpService']]:
         """
-        The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        Return record based on client localisation
         """
         return pulumi.get(self, "http_service")
 
@@ -1041,7 +1029,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def views(self) -> pulumi.Output[Optional[Sequence['outputs.DomainRecordView']]]:
         """
-        The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+        Return record based on client subnet
         """
         return pulumi.get(self, "views")
 
@@ -1049,7 +1037,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def weighteds(self) -> pulumi.Output[Optional[Sequence['outputs.DomainRecordWeighted']]]:
         """
-        You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        Return record based on weight
         """
         return pulumi.get(self, "weighteds")
 

@@ -14,31 +14,31 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class LoadbalancerBackendHealthCheckHttpsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The expected HTTP status code.
+        /// The expected HTTP status code
         /// </summary>
         [Input("code")]
         public Input<int>? Code { get; set; }
 
         /// <summary>
-        /// The HTTP host header to use for HC requests.
+        /// The HTTP host header to use for HC requests
         /// </summary>
         [Input("hostHeader")]
         public Input<string>? HostHeader { get; set; }
 
         /// <summary>
-        /// The HTTP method to use for HC requests.
+        /// The HTTP method to use for HC requests
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// The SNI to use for HC requests over SSL.
+        /// The SNI to use for HC requests over SSL
         /// </summary>
         [Input("sni")]
         public Input<string>? Sni { get; set; }
 
         /// <summary>
-        /// The HTTPS endpoint URL to call for HC requests.
+        /// The HTTPS endpoint URL to call for HC requests
         /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;

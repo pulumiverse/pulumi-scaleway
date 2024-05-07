@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class LoadbalancerCertificateLetsencryptArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Main domain of the certificate. A new certificate will be created if this field is changed.
+        /// Main domain of the certificate
         /// </summary>
         [Input("commonName", required: true)]
         public Input<string> CommonName { get; set; } = null!;
@@ -23,9 +23,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _subjectAlternativeNames;
 
         /// <summary>
-        /// Array of alternative domain names.  A new certificate will be created if this field is changed.
-        /// 
-        /// &gt; **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+        /// The alternative domain names of the certificate
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {

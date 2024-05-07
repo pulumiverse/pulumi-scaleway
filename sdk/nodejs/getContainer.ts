@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -32,7 +31,6 @@ import * as utilities from "./utilities";
  *     containerId: mainContainer.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getContainer(args: GetContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerResult> {
 
@@ -173,7 +171,6 @@ export interface GetContainerResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -190,7 +187,6 @@ export interface GetContainerResult {
  *     containerId: mainContainer.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerResult> {
     return pulumi.output(args).apply((a: any) => getContainer(a, opts))

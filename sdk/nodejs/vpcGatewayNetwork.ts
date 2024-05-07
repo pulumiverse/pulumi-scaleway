@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### Create a gateway network with IPAM config
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -37,11 +36,9 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create a gateway network with a booked IPAM IP
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -70,11 +67,9 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create a gateway network with DHCP
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -97,11 +92,9 @@ import * as utilities from "./utilities";
  *     enableMasquerade: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create a gateway network with a static IP address
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -116,7 +109,6 @@ import * as utilities from "./utilities";
  *     staticAddress: "192.168.1.42/24",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

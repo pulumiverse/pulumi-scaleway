@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -19,7 +18,6 @@ import * as utilities from "./utilities";
  *     subdomain: "test",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainZoneResult> {
     args = args || {};
@@ -86,7 +84,6 @@ export interface GetDomainZoneResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -96,7 +93,6 @@ export interface GetDomainZoneResult {
  *     subdomain: "test",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainZoneResult> {
     return pulumi.output(args).apply((a: any) => getDomainZone(a, opts))

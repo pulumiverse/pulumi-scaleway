@@ -285,7 +285,6 @@ class IotRoute(pulumi.CustomResource):
 
         ### S3 Route
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -302,11 +301,9 @@ class IotRoute(pulumi.CustomResource):
                 strategy="per_topic",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Rest Route
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -323,7 +320,6 @@ class IotRoute(pulumi.CustomResource):
                 },
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -356,7 +352,6 @@ class IotRoute(pulumi.CustomResource):
 
         ### S3 Route
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -373,11 +368,9 @@ class IotRoute(pulumi.CustomResource):
                 strategy="per_topic",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Rest Route
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -394,7 +387,6 @@ class IotRoute(pulumi.CustomResource):
                 },
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -214,7 +214,6 @@ class IotNetwork(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -224,7 +223,6 @@ class IotNetwork(pulumi.CustomResource):
             hub_id=main_iot_hub.id,
             type="sigfox")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -252,7 +250,6 @@ class IotNetwork(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -262,7 +259,6 @@ class IotNetwork(pulumi.CustomResource):
             hub_id=main_iot_hub.id,
             type="sigfox")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

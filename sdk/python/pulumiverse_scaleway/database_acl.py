@@ -148,7 +148,6 @@ class DatabaseAcl(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -160,7 +159,6 @@ class DatabaseAcl(pulumi.CustomResource):
                 description="foo",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -194,7 +192,6 @@ class DatabaseAcl(pulumi.CustomResource):
 
         ### Basic
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -206,7 +203,6 @@ class DatabaseAcl(pulumi.CustomResource):
                 description="foo",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -115,7 +115,6 @@ def get_lb_route(route_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -140,7 +139,6 @@ def get_lb_route(route_id: Optional[str] = None,
         match_sni="sni.scaleway.com")
     by_id = scaleway.get_lb_route_output(route_id=rt01.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str route_id: The route id.
@@ -170,7 +168,6 @@ def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
@@ -195,7 +192,6 @@ def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
         match_sni="sni.scaleway.com")
     by_id = scaleway.get_lb_route_output(route_id=rt01.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str route_id: The route id.

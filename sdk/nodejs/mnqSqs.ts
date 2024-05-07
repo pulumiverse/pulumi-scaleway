@@ -15,18 +15,15 @@ import * as utilities from "./utilities";
  *
  * Activate SQS for default project
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.MnqSqs("main", {});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Activate SQS for a specific project
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
@@ -37,7 +34,6 @@ import * as utilities from "./utilities";
  * });
  * const forProject = new scaleway.MnqSqs("forProject", {projectId: project.then(project => project.id)});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

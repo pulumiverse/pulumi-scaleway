@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ### With SNI for direction to TCP backends
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -39,11 +38,9 @@ import * as utilities from "./utilities";
  *     matchSni: "sni.scaleway.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With host-header for direction to HTTP backends
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -70,7 +67,6 @@ import * as utilities from "./utilities";
  *     matchHostHeader: "host.scaleway.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -17,7 +17,6 @@ import (
 //
 // ### By tag
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,11 +42,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By type and resource
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -100,7 +97,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetIpamIps(ctx *pulumi.Context, args *GetIpamIpsArgs, opts ...pulumi.InvokeOption) (*GetIpamIpsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpamIpsResult
@@ -127,7 +123,7 @@ type GetIpamIpsArgs struct {
 	Resource *GetIpamIpsResource `pulumi:"resource"`
 	// The tags used as filter.
 	Tags []string `pulumi:"tags"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of IP used as filter (ipv4, ipv6).
 	Type *string `pulumi:"type"`
 	// Only IPs that are zonal, and in this zone, will be returned.
 	Zonal *string `pulumi:"zonal"`
@@ -186,7 +182,7 @@ type GetIpamIpsOutputArgs struct {
 	Resource GetIpamIpsResourcePtrInput `pulumi:"resource"`
 	// The tags used as filter.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of IP used as filter (ipv4, ipv6).
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Only IPs that are zonal, and in this zone, will be returned.
 	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
