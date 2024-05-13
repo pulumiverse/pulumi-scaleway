@@ -108,7 +108,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      */
     public readonly healthCheckMaxRetries!: pulumi.Output<number | undefined>;
     /**
-     * Port the HC requests will be send to. Default to `forward_port`
+     * Port the HC requests will be send to. Default to `forwardPort`
      */
     public readonly healthCheckPort!: pulumi.Output<number>;
     /**
@@ -183,7 +183,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      */
     public readonly timeoutConnect!: pulumi.Output<string | undefined>;
     /**
-     * Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+     * Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
      */
     public readonly timeoutQueue!: pulumi.Output<string | undefined>;
     /**
@@ -318,7 +318,7 @@ export interface LoadbalancerBackendState {
      */
     healthCheckMaxRetries?: pulumi.Input<number>;
     /**
-     * Port the HC requests will be send to. Default to `forward_port`
+     * Port the HC requests will be send to. Default to `forwardPort`
      */
     healthCheckPort?: pulumi.Input<number>;
     /**
@@ -393,7 +393,7 @@ export interface LoadbalancerBackendState {
      */
     timeoutConnect?: pulumi.Input<string>;
     /**
-     * Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+     * Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
      */
     timeoutQueue?: pulumi.Input<string>;
     /**
@@ -439,7 +439,7 @@ export interface LoadbalancerBackendArgs {
      */
     healthCheckMaxRetries?: pulumi.Input<number>;
     /**
-     * Port the HC requests will be send to. Default to `forward_port`
+     * Port the HC requests will be send to. Default to `forwardPort`
      */
     healthCheckPort?: pulumi.Input<number>;
     /**
@@ -514,7 +514,7 @@ export interface LoadbalancerBackendArgs {
      */
     timeoutConnect?: pulumi.Input<string>;
     /**
-     * Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+     * Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
      */
     timeoutQueue?: pulumi.Input<string>;
     /**

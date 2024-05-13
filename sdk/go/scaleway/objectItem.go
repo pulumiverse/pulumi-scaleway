@@ -51,7 +51,7 @@ type ObjectItem struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -113,7 +113,7 @@ type objectItemState struct {
 	Key *string `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata map[string]string `pulumi:"metadata"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -140,7 +140,7 @@ type ObjectItemState struct {
 	Key pulumi.StringPtrInput
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -171,7 +171,7 @@ type objectItemArgs struct {
 	Key string `pulumi:"key"`
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata map[string]string `pulumi:"metadata"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -199,7 +199,7 @@ type ObjectItemArgs struct {
 	Key pulumi.StringInput
 	// Map of metadata used for the object, keys must be lowercase
 	Metadata pulumi.StringMapInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -333,7 +333,7 @@ func (o ObjectItemOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o ObjectItemOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

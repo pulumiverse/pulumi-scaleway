@@ -109,7 +109,7 @@ export class IotHub extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -256,7 +256,7 @@ export interface IotHubState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**

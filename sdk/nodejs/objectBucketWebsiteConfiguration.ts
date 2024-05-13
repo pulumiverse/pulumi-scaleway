@@ -115,7 +115,7 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      */
     public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -189,7 +189,7 @@ export interface ObjectBucketWebsiteConfigurationState {
      */
     indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -223,7 +223,7 @@ export interface ObjectBucketWebsiteConfigurationArgs {
      */
     indexDocument: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

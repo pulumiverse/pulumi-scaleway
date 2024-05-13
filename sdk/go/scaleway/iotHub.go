@@ -80,7 +80,7 @@ type IotHub struct {
 	MqttCaUrl pulumi.StringOutput `pulumi:"mqttCaUrl"`
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
 	//
@@ -157,7 +157,7 @@ type iotHubState struct {
 	MqttCaUrl *string `pulumi:"mqttCaUrl"`
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
 	//
@@ -202,7 +202,7 @@ type IotHubState struct {
 	MqttCaUrl pulumi.StringPtrInput
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
 	//
@@ -431,7 +431,7 @@ func (o IotHubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organizationId you want to attach the resource to
 func (o IotHubOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
