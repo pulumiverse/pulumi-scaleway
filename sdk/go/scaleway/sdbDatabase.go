@@ -64,7 +64,7 @@ type SdbDatabase struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -110,7 +110,7 @@ type sdbDatabaseState struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -127,7 +127,7 @@ type SdbDatabaseState struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
@@ -146,7 +146,7 @@ type sdbDatabaseArgs struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database.
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -162,7 +162,7 @@ type SdbDatabaseArgs struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database.
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
@@ -277,7 +277,7 @@ func (o SdbDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o SdbDatabaseOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
