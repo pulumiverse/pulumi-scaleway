@@ -85,7 +85,7 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -189,7 +189,7 @@ export interface ObjectItemState {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -243,7 +243,7 @@ export interface ObjectItemArgs {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

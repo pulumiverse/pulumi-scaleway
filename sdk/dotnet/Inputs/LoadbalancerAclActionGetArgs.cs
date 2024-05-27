@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// The redirect type. Possible values are: `location` or `scheme`.
+        /// The action type. Possible values are: `allow` or `deny` or `redirect`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

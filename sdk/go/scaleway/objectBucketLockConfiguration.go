@@ -86,7 +86,7 @@ type ObjectBucketLockConfiguration struct {
 
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -132,7 +132,7 @@ func GetObjectBucketLockConfiguration(ctx *pulumi.Context,
 type objectBucketLockConfigurationState struct {
 	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -143,7 +143,7 @@ type objectBucketLockConfigurationState struct {
 type ObjectBucketLockConfigurationState struct {
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -158,7 +158,7 @@ func (ObjectBucketLockConfigurationState) ElementType() reflect.Type {
 type objectBucketLockConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -170,7 +170,7 @@ type objectBucketLockConfigurationArgs struct {
 type ObjectBucketLockConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -270,7 +270,7 @@ func (o ObjectBucketLockConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o ObjectBucketLockConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

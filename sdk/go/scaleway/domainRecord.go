@@ -290,7 +290,7 @@ type DomainRecord struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record)
 	Priority pulumi.IntOutput `pulumi:"priority"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Does the DNS zone is the root zone or not
 	RootZone pulumi.BoolOutput `pulumi:"rootZone"`
@@ -359,7 +359,7 @@ type domainRecordState struct {
 	Name *string `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record)
 	Priority *int `pulumi:"priority"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// Does the DNS zone is the root zone or not
 	RootZone *bool `pulumi:"rootZone"`
@@ -390,7 +390,7 @@ type DomainRecordState struct {
 	Name pulumi.StringPtrInput
 	// The priority of the record (mostly used with an `MX` record)
 	Priority pulumi.IntPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// Does the DNS zone is the root zone or not
 	RootZone pulumi.BoolPtrInput
@@ -423,7 +423,7 @@ type domainRecordArgs struct {
 	Name *string `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record)
 	Priority *int `pulumi:"priority"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// Time To Live of the record in seconds.
 	Ttl *int `pulumi:"ttl"`
@@ -451,7 +451,7 @@ type DomainRecordArgs struct {
 	Name pulumi.StringPtrInput
 	// The priority of the record (mostly used with an `MX` record)
 	Priority pulumi.IntPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// Time To Live of the record in seconds.
 	Ttl pulumi.IntPtrInput
@@ -590,7 +590,7 @@ func (o DomainRecordOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o DomainRecordOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

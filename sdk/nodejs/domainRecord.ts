@@ -242,7 +242,7 @@ export class DomainRecord extends pulumi.CustomResource {
      */
     public readonly priority!: pulumi.Output<number>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -361,7 +361,7 @@ export interface DomainRecordState {
      */
     priority?: pulumi.Input<number>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -419,7 +419,7 @@ export interface DomainRecordArgs {
      */
     priority?: pulumi.Input<number>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
