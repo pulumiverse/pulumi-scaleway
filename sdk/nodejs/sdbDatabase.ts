@@ -78,7 +78,7 @@ export class SdbDatabase extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -142,7 +142,7 @@ export interface SdbDatabaseState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -170,7 +170,7 @@ export interface SdbDatabaseArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

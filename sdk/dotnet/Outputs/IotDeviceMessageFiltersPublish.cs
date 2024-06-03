@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IotDeviceMessageFiltersPublish
     {
         /// <summary>
-        /// Publish message filter policy
+        /// Filtering policy (eg `accept` or `reject`)
         /// </summary>
         public readonly string? Policy;
         /// <summary>
-        /// List of topics in the set
+        /// List of topics to match (eg `foo/bar/+/baz/#`)
         /// </summary>
         public readonly ImmutableArray<string> Topics;
 

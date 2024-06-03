@@ -58,7 +58,7 @@ type LoadbalancerIp struct {
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The associated load-balance ID if any
 	LbId pulumi.StringOutput `pulumi:"lbId"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -104,7 +104,7 @@ type loadbalancerIpState struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// The associated load-balance ID if any
 	LbId *string `pulumi:"lbId"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -121,7 +121,7 @@ type LoadbalancerIpState struct {
 	IpAddress pulumi.StringPtrInput
 	// The associated load-balance ID if any
 	LbId pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -253,7 +253,7 @@ func (o LoadbalancerIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerIp) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organizationId you want to attach the resource to
 func (o LoadbalancerIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerIp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

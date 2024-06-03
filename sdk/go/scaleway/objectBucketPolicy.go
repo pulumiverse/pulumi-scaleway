@@ -415,7 +415,7 @@ type ObjectBucketPolicy struct {
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The text of the policy.
 	Policy pulumi.StringOutput `pulumi:"policy"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -461,7 +461,7 @@ type objectBucketPolicyState struct {
 	Bucket *string `pulumi:"bucket"`
 	// The text of the policy.
 	Policy *string `pulumi:"policy"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -472,7 +472,7 @@ type ObjectBucketPolicyState struct {
 	Bucket pulumi.StringPtrInput
 	// The text of the policy.
 	Policy pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -487,7 +487,7 @@ type objectBucketPolicyArgs struct {
 	Bucket string `pulumi:"bucket"`
 	// The text of the policy.
 	Policy string `pulumi:"policy"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -499,7 +499,7 @@ type ObjectBucketPolicyArgs struct {
 	Bucket pulumi.StringInput
 	// The text of the policy.
 	Policy pulumi.StringInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -602,7 +602,7 @@ func (o ObjectBucketPolicyOutput) Policy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o ObjectBucketPolicyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

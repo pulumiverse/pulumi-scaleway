@@ -104,7 +104,7 @@ type LoadbalancerBackend struct {
 	HealthCheckHttps LoadbalancerBackendHealthCheckHttpsPtrOutput `pulumi:"healthCheckHttps"`
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries pulumi.IntPtrOutput `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort pulumi.IntOutput `pulumi:"healthCheckPort"`
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy pulumi.BoolPtrOutput                    `pulumi:"healthCheckSendProxy"`
@@ -143,7 +143,7 @@ type LoadbalancerBackend struct {
 	StickySessionsCookieName pulumi.StringPtrOutput `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time
 	TimeoutConnect pulumi.StringPtrOutput `pulumi:"timeoutConnect"`
-	// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+	// Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
 	TimeoutQueue pulumi.StringPtrOutput `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time
 	TimeoutServer pulumi.StringPtrOutput `pulumi:"timeoutServer"`
@@ -206,7 +206,7 @@ type loadbalancerBackendState struct {
 	HealthCheckHttps *LoadbalancerBackendHealthCheckHttps `pulumi:"healthCheckHttps"`
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy *bool                              `pulumi:"healthCheckSendProxy"`
@@ -245,7 +245,7 @@ type loadbalancerBackendState struct {
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
-	// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+	// Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
 	TimeoutQueue *string `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time
 	TimeoutServer *string `pulumi:"timeoutServer"`
@@ -270,7 +270,7 @@ type LoadbalancerBackendState struct {
 	HealthCheckHttps LoadbalancerBackendHealthCheckHttpsPtrInput
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries pulumi.IntPtrInput
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort pulumi.IntPtrInput
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy pulumi.BoolPtrInput
@@ -309,7 +309,7 @@ type LoadbalancerBackendState struct {
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time
 	TimeoutConnect pulumi.StringPtrInput
-	// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+	// Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
 	TimeoutQueue pulumi.StringPtrInput
 	// Maximum server connection inactivity time
 	TimeoutServer pulumi.StringPtrInput
@@ -338,7 +338,7 @@ type loadbalancerBackendArgs struct {
 	HealthCheckHttps *LoadbalancerBackendHealthCheckHttps `pulumi:"healthCheckHttps"`
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy *bool                              `pulumi:"healthCheckSendProxy"`
@@ -377,7 +377,7 @@ type loadbalancerBackendArgs struct {
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
-	// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+	// Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
 	TimeoutQueue *string `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time
 	TimeoutServer *string `pulumi:"timeoutServer"`
@@ -403,7 +403,7 @@ type LoadbalancerBackendArgs struct {
 	HealthCheckHttps LoadbalancerBackendHealthCheckHttpsPtrInput
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries pulumi.IntPtrInput
-	// Port the HC requests will be send to. Default to `forward_port`
+	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort pulumi.IntPtrInput
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy pulumi.BoolPtrInput
@@ -442,7 +442,7 @@ type LoadbalancerBackendArgs struct {
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time
 	TimeoutConnect pulumi.StringPtrInput
-	// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+	// Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
 	TimeoutQueue pulumi.StringPtrInput
 	// Maximum server connection inactivity time
 	TimeoutServer pulumi.StringPtrInput
@@ -577,7 +577,7 @@ func (o LoadbalancerBackendOutput) HealthCheckMaxRetries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.IntPtrOutput { return v.HealthCheckMaxRetries }).(pulumi.IntPtrOutput)
 }
 
-// Port the HC requests will be send to. Default to `forward_port`
+// Port the HC requests will be send to. Default to `forwardPort`
 func (o LoadbalancerBackendOutput) HealthCheckPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.IntOutput { return v.HealthCheckPort }).(pulumi.IntOutput)
 }
@@ -673,7 +673,7 @@ func (o LoadbalancerBackendOutput) TimeoutConnect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.TimeoutConnect }).(pulumi.StringPtrOutput)
 }
 
-// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+// Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
 func (o LoadbalancerBackendOutput) TimeoutQueue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.TimeoutQueue }).(pulumi.StringPtrOutput)
 }
