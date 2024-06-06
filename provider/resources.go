@@ -129,6 +129,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_block_snapshot":                      {Tok: scalewayResource(scalewayMod, "BlockSnapshot")},
 			"scaleway_block_volume":                        {Tok: scalewayResource(scalewayMod, "BlockVolume")},
 			"scaleway_cockpit":                             {Tok: scalewayResource(scalewayMod, "Cockpit")},
+			"scaleway_cockpit_alert_manager":               {Tok: scalewayResource(scalewayMod, "CockpitAlertManager")},
 			"scaleway_cockpit_grafana_user":                {Tok: scalewayResource(scalewayMod, "CockpitGrafanaUser")},
 			"scaleway_cockpit_source":                      {Tok: scalewayResource(scalewayMod, "CockpitSource")},
 			"scaleway_cockpit_token":                       {Tok: scalewayResource(scalewayMod, "CockpitToken")},
