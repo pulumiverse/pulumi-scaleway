@@ -1,8 +1,8 @@
 module github.com/pulumiverse/pulumi-scaleway/provider
 
-go 1.21
+go 1.22
 
-toolchain go1.21.11
+toolchain go1.22.4
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.81.0
@@ -203,7 +203,7 @@ require (
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.0.0 // indirect
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26.0.20240503144623-358f61d22470 // indirect
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.39.0 // indirect
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.40.0 // indirect
 	github.com/segmentio/asm v1.1.3 // indirect
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
