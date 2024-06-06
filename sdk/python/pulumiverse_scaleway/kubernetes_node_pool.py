@@ -53,7 +53,7 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[str] name: The name for the pool.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
@@ -233,7 +233,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
@@ -389,7 +389,7 @@ class _KubernetesNodePoolState:
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]] nodes: (List of) The nodes in the default pool.
-        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
@@ -612,7 +612,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
@@ -822,7 +822,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
@@ -988,7 +988,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolNodeArgs']]]] nodes: (List of) The nodes in the default pool.
-        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
@@ -1143,7 +1143,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")

@@ -10,6 +10,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -62,7 +64,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
     }
 
     /**
-     * Enable SSH bastion on the gateway
+     * Enable SSH bastion on the gateway.
      */
     public readonly bastionEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -74,11 +76,11 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Enable SMTP on the gateway
+     * Enable SMTP on the gateway.
      */
     public readonly enableSmtp!: pulumi.Output<boolean>;
     /**
-     * attach an existing flexible IP to the gateway
+     * attach an existing flexible IP to the gateway.
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
@@ -93,6 +95,10 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      * `projectId`) The ID of the project the public gateway is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+     */
+    public readonly refreshSshKeys!: pulumi.Output<string | undefined>;
     /**
      * The status of the public gateway.
      */
@@ -139,6 +145,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["refreshSshKeys"] = state ? state.refreshSshKeys : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -156,6 +163,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
             resourceInputs["ipId"] = args ? args.ipId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["refreshSshKeys"] = args ? args.refreshSshKeys : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["upstreamDnsServers"] = args ? args.upstreamDnsServers : undefined;
@@ -175,7 +183,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayState {
     /**
-     * Enable SSH bastion on the gateway
+     * Enable SSH bastion on the gateway.
      */
     bastionEnabled?: pulumi.Input<boolean>;
     /**
@@ -187,11 +195,11 @@ export interface VpcPublicGatewayState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Enable SMTP on the gateway
+     * Enable SMTP on the gateway.
      */
     enableSmtp?: pulumi.Input<boolean>;
     /**
-     * attach an existing flexible IP to the gateway
+     * attach an existing flexible IP to the gateway.
      */
     ipId?: pulumi.Input<string>;
     /**
@@ -206,6 +214,10 @@ export interface VpcPublicGatewayState {
      * `projectId`) The ID of the project the public gateway is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+     */
+    refreshSshKeys?: pulumi.Input<string>;
     /**
      * The status of the public gateway.
      */
@@ -237,7 +249,7 @@ export interface VpcPublicGatewayState {
  */
 export interface VpcPublicGatewayArgs {
     /**
-     * Enable SSH bastion on the gateway
+     * Enable SSH bastion on the gateway.
      */
     bastionEnabled?: pulumi.Input<boolean>;
     /**
@@ -245,11 +257,11 @@ export interface VpcPublicGatewayArgs {
      */
     bastionPort?: pulumi.Input<number>;
     /**
-     * Enable SMTP on the gateway
+     * Enable SMTP on the gateway.
      */
     enableSmtp?: pulumi.Input<boolean>;
     /**
-     * attach an existing flexible IP to the gateway
+     * attach an existing flexible IP to the gateway.
      */
     ipId?: pulumi.Input<string>;
     /**
@@ -260,6 +272,10 @@ export interface VpcPublicGatewayArgs {
      * `projectId`) The ID of the project the public gateway is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+     */
+    refreshSshKeys?: pulumi.Input<string>;
     /**
      * The tags associated with the public gateway.
      */

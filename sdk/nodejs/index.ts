@@ -40,6 +40,11 @@ export type Cockpit = import("./cockpit").Cockpit;
 export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
 utilities.lazyLoad(exports, ["Cockpit"], () => require("./cockpit"));
 
+export { CockpitAlertManagerArgs, CockpitAlertManagerState } from "./cockpitAlertManager";
+export type CockpitAlertManager = import("./cockpitAlertManager").CockpitAlertManager;
+export const CockpitAlertManager: typeof import("./cockpitAlertManager").CockpitAlertManager = null as any;
+utilities.lazyLoad(exports, ["CockpitAlertManager"], () => require("./cockpitAlertManager"));
+
 export { CockpitGrafanaUserArgs, CockpitGrafanaUserState } from "./cockpitGrafanaUser";
 export type CockpitGrafanaUser = import("./cockpitGrafanaUser").CockpitGrafanaUser;
 export const CockpitGrafanaUser: typeof import("./cockpitGrafanaUser").CockpitGrafanaUser = null as any;
@@ -973,6 +978,8 @@ const _module = {
                 return new BlockVolume(name, <any>undefined, { urn })
             case "scaleway:index/cockpit:Cockpit":
                 return new Cockpit(name, <any>undefined, { urn })
+            case "scaleway:index/cockpitAlertManager:CockpitAlertManager":
+                return new CockpitAlertManager(name, <any>undefined, { urn })
             case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
                 return new CockpitGrafanaUser(name, <any>undefined, { urn })
             case "scaleway:index/cockpitSource:CockpitSource":
@@ -1181,6 +1188,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _modu
 pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/cockpitAlertManager", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitSource", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)

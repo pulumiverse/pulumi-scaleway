@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+     * The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
      */
     id: pulumi.Input<string>;
     /**
@@ -98,6 +98,13 @@ export interface BaremetalServerPrivateNetwork {
      * The VLAN ID associated to the private network.
      */
     vlan?: pulumi.Input<number>;
+}
+
+export interface CockpitAlertManagerContactPoint {
+    /**
+     * Email addresses for the alert receivers
+     */
+    email?: pulumi.Input<string>;
 }
 
 export interface CockpitEndpoint {
@@ -848,7 +855,7 @@ export interface InstanceServerRootVolume {
     name?: pulumi.Input<string>;
     /**
      * Size of the root volume in gigabytes.
-     * To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+     * To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
      * check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
      * Updates to this field will recreate a new resource.
      */

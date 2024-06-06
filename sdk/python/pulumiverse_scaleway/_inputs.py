@@ -15,6 +15,7 @@ __all__ = [
     'BaremetalServerIpv6Args',
     'BaremetalServerOptionArgs',
     'BaremetalServerPrivateNetworkArgs',
+    'CockpitAlertManagerContactPointArgs',
     'CockpitEndpointArgs',
     'CockpitPushUrlArgs',
     'CockpitTokenScopesArgs',
@@ -324,7 +325,7 @@ class BaremetalServerOptionArgs:
                  expires_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
         :param pulumi.Input[str] expires_at: The auto expiration date for compatible options
         :param pulumi.Input[str] name: The name of the server.
         """
@@ -338,7 +339,7 @@ class BaremetalServerOptionArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -455,6 +456,29 @@ class BaremetalServerPrivateNetworkArgs:
     @vlan.setter
     def vlan(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vlan", value)
+
+
+@pulumi.input_type
+class CockpitAlertManagerContactPointArgs:
+    def __init__(__self__, *,
+                 email: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] email: Email addresses for the alert receivers
+        """
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Email addresses for the alert receivers
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email", value)
 
 
 @pulumi.input_type
@@ -2952,7 +2976,7 @@ class InstanceServerRootVolumeArgs:
                > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[int] size_in_gb: Size of the root volume in gigabytes.
-               To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+               To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
                check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
                Updates to this field will recreate a new resource.
         :param pulumi.Input[str] volume_id: The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
@@ -3014,7 +3038,7 @@ class InstanceServerRootVolumeArgs:
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
         Size of the root volume in gigabytes.
-        To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+        To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
         check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
         Updates to this field will recreate a new resource.
         """

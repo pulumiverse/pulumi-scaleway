@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal).
+// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 //
 // ## Example Usage
 //
@@ -117,7 +117,7 @@ type BaremetalServer struct {
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
 	Offer pulumi.StringOutput `pulumi:"offer"`
@@ -131,7 +131,7 @@ type BaremetalServer struct {
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrOutput `pulumi:"os"`
 	// The name of the os.
@@ -220,7 +220,7 @@ type baremetalServerState struct {
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
 	Offer *string `pulumi:"offer"`
@@ -234,7 +234,7 @@ type baremetalServerState struct {
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The UUID of the os to install on the server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os *string `pulumi:"os"`
 	// The name of the os.
@@ -280,7 +280,7 @@ type BaremetalServerState struct {
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
 	Offer pulumi.StringPtrInput
@@ -294,7 +294,7 @@ type BaremetalServerState struct {
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The UUID of the os to install on the server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrInput
 	// The name of the os.
@@ -336,7 +336,7 @@ type baremetalServerArgs struct {
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
 	Offer string `pulumi:"offer"`
@@ -344,7 +344,7 @@ type baremetalServerArgs struct {
 	// > The `options` block supports:
 	Options []BaremetalServerOption `pulumi:"options"`
 	// The UUID of the os to install on the server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os *string `pulumi:"os"`
 	// Password used for the installation. May be required depending on used os.
@@ -381,7 +381,7 @@ type BaremetalServerArgs struct {
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
 	Offer pulumi.StringInput
@@ -389,7 +389,7 @@ type BaremetalServerArgs struct {
 	// > The `options` block supports:
 	Options BaremetalServerOptionArrayInput
 	// The UUID of the os to install on the server.
-	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
@@ -543,7 +543,7 @@ func (o BaremetalServerOutput) Name() pulumi.StringOutput {
 }
 
 // The offer name or UUID of the baremetal server.
-// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 //
 // > **Important:** Updates to `offer` will recreate the server.
 func (o BaremetalServerOutput) Offer() pulumi.StringOutput {
@@ -572,7 +572,7 @@ func (o BaremetalServerOutput) OrganizationId() pulumi.StringOutput {
 }
 
 // The UUID of the os to install on the server.
-// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 // > **Important:** Updates to `os` will reinstall the server.
 func (o BaremetalServerOutput) Os() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Os }).(pulumi.StringPtrOutput)

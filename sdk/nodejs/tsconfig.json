@@ -20,6 +20,7 @@
         "blockSnapshot.ts",
         "blockVolume.ts",
         "cockpit.ts",
+        "cockpitAlertManager.ts",
         "cockpitGrafanaUser.ts",
         "cockpitSource.ts",
         "cockpitToken.ts",

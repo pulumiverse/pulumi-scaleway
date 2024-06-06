@@ -388,7 +388,7 @@ func (o BaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) BaremetalServer
 type BaremetalServerOption struct {
 	// The auto expiration date for compatible options
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
 	Id string `pulumi:"id"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -408,7 +408,7 @@ type BaremetalServerOptionInput interface {
 type BaremetalServerOptionArgs struct {
 	// The auto expiration date for compatible options
 	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -470,7 +470,7 @@ func (o BaremetalServerOptionOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerOption) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
 func (o BaremetalServerOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -631,6 +631,103 @@ func (o BaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Barem
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerPrivateNetwork {
 		return vs[0].([]BaremetalServerPrivateNetwork)[vs[1].(int)]
 	}).(BaremetalServerPrivateNetworkOutput)
+}
+
+type CockpitAlertManagerContactPoint struct {
+	// Email addresses for the alert receivers
+	Email *string `pulumi:"email"`
+}
+
+// CockpitAlertManagerContactPointInput is an input type that accepts CockpitAlertManagerContactPointArgs and CockpitAlertManagerContactPointOutput values.
+// You can construct a concrete instance of `CockpitAlertManagerContactPointInput` via:
+//
+//	CockpitAlertManagerContactPointArgs{...}
+type CockpitAlertManagerContactPointInput interface {
+	pulumi.Input
+
+	ToCockpitAlertManagerContactPointOutput() CockpitAlertManagerContactPointOutput
+	ToCockpitAlertManagerContactPointOutputWithContext(context.Context) CockpitAlertManagerContactPointOutput
+}
+
+type CockpitAlertManagerContactPointArgs struct {
+	// Email addresses for the alert receivers
+	Email pulumi.StringPtrInput `pulumi:"email"`
+}
+
+func (CockpitAlertManagerContactPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (i CockpitAlertManagerContactPointArgs) ToCockpitAlertManagerContactPointOutput() CockpitAlertManagerContactPointOutput {
+	return i.ToCockpitAlertManagerContactPointOutputWithContext(context.Background())
+}
+
+func (i CockpitAlertManagerContactPointArgs) ToCockpitAlertManagerContactPointOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitAlertManagerContactPointOutput)
+}
+
+// CockpitAlertManagerContactPointArrayInput is an input type that accepts CockpitAlertManagerContactPointArray and CockpitAlertManagerContactPointArrayOutput values.
+// You can construct a concrete instance of `CockpitAlertManagerContactPointArrayInput` via:
+//
+//	CockpitAlertManagerContactPointArray{ CockpitAlertManagerContactPointArgs{...} }
+type CockpitAlertManagerContactPointArrayInput interface {
+	pulumi.Input
+
+	ToCockpitAlertManagerContactPointArrayOutput() CockpitAlertManagerContactPointArrayOutput
+	ToCockpitAlertManagerContactPointArrayOutputWithContext(context.Context) CockpitAlertManagerContactPointArrayOutput
+}
+
+type CockpitAlertManagerContactPointArray []CockpitAlertManagerContactPointInput
+
+func (CockpitAlertManagerContactPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (i CockpitAlertManagerContactPointArray) ToCockpitAlertManagerContactPointArrayOutput() CockpitAlertManagerContactPointArrayOutput {
+	return i.ToCockpitAlertManagerContactPointArrayOutputWithContext(context.Background())
+}
+
+func (i CockpitAlertManagerContactPointArray) ToCockpitAlertManagerContactPointArrayOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitAlertManagerContactPointArrayOutput)
+}
+
+type CockpitAlertManagerContactPointOutput struct{ *pulumi.OutputState }
+
+func (CockpitAlertManagerContactPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (o CockpitAlertManagerContactPointOutput) ToCockpitAlertManagerContactPointOutput() CockpitAlertManagerContactPointOutput {
+	return o
+}
+
+func (o CockpitAlertManagerContactPointOutput) ToCockpitAlertManagerContactPointOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointOutput {
+	return o
+}
+
+// Email addresses for the alert receivers
+func (o CockpitAlertManagerContactPointOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitAlertManagerContactPoint) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+type CockpitAlertManagerContactPointArrayOutput struct{ *pulumi.OutputState }
+
+func (CockpitAlertManagerContactPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (o CockpitAlertManagerContactPointArrayOutput) ToCockpitAlertManagerContactPointArrayOutput() CockpitAlertManagerContactPointArrayOutput {
+	return o
+}
+
+func (o CockpitAlertManagerContactPointArrayOutput) ToCockpitAlertManagerContactPointArrayOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointArrayOutput {
+	return o
+}
+
+func (o CockpitAlertManagerContactPointArrayOutput) Index(i pulumi.IntInput) CockpitAlertManagerContactPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CockpitAlertManagerContactPoint {
+		return vs[0].([]CockpitAlertManagerContactPoint)[vs[1].(int)]
+	}).(CockpitAlertManagerContactPointOutput)
 }
 
 type CockpitEndpoint struct {
@@ -5603,7 +5700,7 @@ type InstanceServerRootVolume struct {
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// Size of the root volume in gigabytes.
-	// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 	// Updates to this field will recreate a new resource.
 	SizeInGb *int `pulumi:"sizeInGb"`
@@ -5634,7 +5731,7 @@ type InstanceServerRootVolumeArgs struct {
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Size of the root volume in gigabytes.
-	// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 	// Updates to this field will recreate a new resource.
 	SizeInGb pulumi.IntPtrInput `pulumi:"sizeInGb"`
@@ -5739,7 +5836,7 @@ func (o InstanceServerRootVolumeOutput) Name() pulumi.StringPtrOutput {
 }
 
 // Size of the root volume in gigabytes.
-// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 // check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 // Updates to this field will recreate a new resource.
 func (o InstanceServerRootVolumeOutput) SizeInGb() pulumi.IntPtrOutput {
@@ -5813,7 +5910,7 @@ func (o InstanceServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 }
 
 // Size of the root volume in gigabytes.
-// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 // check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 // Updates to this field will recreate a new resource.
 func (o InstanceServerRootVolumePtrOutput) SizeInGb() pulumi.IntPtrOutput {
@@ -25649,6 +25746,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionArrayInput)(nil)).Elem(), BaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointInput)(nil)).Elem(), CockpitAlertManagerContactPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointArrayInput)(nil)).Elem(), CockpitAlertManagerContactPointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointInput)(nil)).Elem(), CockpitEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlInput)(nil)).Elem(), CockpitPushUrlArgs{})
@@ -25994,6 +26093,8 @@ func init() {
 	pulumi.RegisterOutputType(BaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(CockpitAlertManagerContactPointOutput{})
+	pulumi.RegisterOutputType(CockpitAlertManagerContactPointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitPushUrlOutput{})

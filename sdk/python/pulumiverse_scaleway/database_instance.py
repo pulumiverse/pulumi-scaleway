@@ -73,7 +73,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "node_type", node_type)
@@ -362,7 +362,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -441,7 +441,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         if backup_same_region is not None:
             pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -808,7 +808,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -857,11 +857,28 @@ class DatabaseInstance(pulumi.CustomResource):
 
         main = scaleway.DatabaseInstance("main",
             disable_backup=True,
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             is_ha_cluster=True,
             node_type="DB-DEV-S",
             password="thiZ_is_v&ry_s3cret",
             user_name="my_initial_user")
+        ```
+
+        ### Example Block Storage Low Latency
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            disable_backup=True,
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            node_type="db-play2-pico",
+            password="thiZ_is_v&ry_s3cret",
+            user_name="my_initial_user",
+            volume_size_in_gb=10,
+            volume_type="sbs_15k")
         ```
 
         ### Example with Settings
@@ -894,7 +911,7 @@ class DatabaseInstance(pulumi.CustomResource):
             backup_schedule_frequency=24,
             backup_schedule_retention=7,
             disable_backup=False,
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             is_ha_cluster=True,
             node_type="DB-DEV-S",
             password="thiZ_is_v&ry_s3cret",
@@ -916,7 +933,7 @@ class DatabaseInstance(pulumi.CustomResource):
         ))
         main = scaleway.DatabaseInstance("main",
             node_type="db-dev-s",
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
                 pn_id=pn.id,
                 ip_net="172.16.20.4/22",
@@ -932,7 +949,7 @@ class DatabaseInstance(pulumi.CustomResource):
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.DatabaseInstance("main",
             node_type="DB-DEV-S",
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
                 pn_id=pn.id,
                 enable_ipam=True,
@@ -947,7 +964,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             node_type="db-dev-s")
         ```
 
@@ -1006,7 +1023,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         ...
     @overload
@@ -1028,11 +1045,28 @@ class DatabaseInstance(pulumi.CustomResource):
 
         main = scaleway.DatabaseInstance("main",
             disable_backup=True,
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             is_ha_cluster=True,
             node_type="DB-DEV-S",
             password="thiZ_is_v&ry_s3cret",
             user_name="my_initial_user")
+        ```
+
+        ### Example Block Storage Low Latency
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.DatabaseInstance("main",
+            disable_backup=True,
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            node_type="db-play2-pico",
+            password="thiZ_is_v&ry_s3cret",
+            user_name="my_initial_user",
+            volume_size_in_gb=10,
+            volume_type="sbs_15k")
         ```
 
         ### Example with Settings
@@ -1065,7 +1099,7 @@ class DatabaseInstance(pulumi.CustomResource):
             backup_schedule_frequency=24,
             backup_schedule_retention=7,
             disable_backup=False,
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             is_ha_cluster=True,
             node_type="DB-DEV-S",
             password="thiZ_is_v&ry_s3cret",
@@ -1087,7 +1121,7 @@ class DatabaseInstance(pulumi.CustomResource):
         ))
         main = scaleway.DatabaseInstance("main",
             node_type="db-dev-s",
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
                 pn_id=pn.id,
                 ip_net="172.16.20.4/22",
@@ -1103,7 +1137,7 @@ class DatabaseInstance(pulumi.CustomResource):
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.DatabaseInstance("main",
             node_type="DB-DEV-S",
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
                 pn_id=pn.id,
                 enable_ipam=True,
@@ -1118,7 +1152,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            engine="PostgreSQL-11",
+            engine="PostgreSQL-15",
             node_type="db-dev-s")
         ```
 
@@ -1297,7 +1331,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1545,7 +1579,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 

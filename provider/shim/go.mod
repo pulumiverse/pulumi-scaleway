@@ -6,7 +6,7 @@ toolchain go1.22.4
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.40.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.41.1
 )
 
 require (

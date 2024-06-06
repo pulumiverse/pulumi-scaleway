@@ -21,10 +21,13 @@ class GetVpcResult:
     """
     A collection of values returned by getVpc.
     """
-    def __init__(__self__, created_at=None, id=None, is_default=None, name=None, organization_id=None, project_id=None, region=None, tags=None, updated_at=None, vpc_id=None):
+    def __init__(__self__, created_at=None, enable_routing=None, id=None, is_default=None, name=None, organization_id=None, project_id=None, region=None, tags=None, updated_at=None, vpc_id=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if enable_routing and not isinstance(enable_routing, bool):
+            raise TypeError("Expected argument 'enable_routing' to be a bool")
+        pulumi.set(__self__, "enable_routing", enable_routing)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -57,6 +60,11 @@ class GetVpcResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableRouting")
+    def enable_routing(self) -> bool:
+        return pulumi.get(self, "enable_routing")
 
     @property
     @pulumi.getter
@@ -114,6 +122,7 @@ class AwaitableGetVpcResult(GetVpcResult):
             yield self
         return GetVpcResult(
             created_at=self.created_at,
+            enable_routing=self.enable_routing,
             id=self.id,
             is_default=self.is_default,
             name=self.name,
@@ -165,6 +174,7 @@ def get_vpc(is_default: Optional[bool] = None,
 
     return AwaitableGetVpcResult(
         created_at=pulumi.get(__ret__, 'created_at'),
+        enable_routing=pulumi.get(__ret__, 'enable_routing'),
         id=pulumi.get(__ret__, 'id'),
         is_default=pulumi.get(__ret__, 'is_default'),
         name=pulumi.get(__ret__, 'name'),

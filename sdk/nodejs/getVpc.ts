@@ -70,6 +70,7 @@ export interface GetVpcArgs {
  */
 export interface GetVpcResult {
     readonly createdAt: string;
+    readonly enableRouting: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

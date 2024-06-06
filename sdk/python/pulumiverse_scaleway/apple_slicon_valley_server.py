@@ -21,7 +21,7 @@ class AppleSliconValleyServerArgs:
         """
         The set of arguments for constructing a AppleSliconValleyServer resource.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
-               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
@@ -42,7 +42,7 @@ class AppleSliconValleyServerArgs:
     def type(self) -> pulumi.Input[str]:
         """
         The commercial type of the server. You find all the available types on
-        the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
         resource.
         """
         return pulumi.get(self, "type")
@@ -115,7 +115,7 @@ class _AppleSliconValleyServerState:
                associated with.
         :param pulumi.Input[str] state: The state of the server.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
-               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
         :param pulumi.Input[str] vnc_url: URL of the VNC.
@@ -235,7 +235,7 @@ class _AppleSliconValleyServerState:
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The commercial type of the server. You find all the available types on
-        the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
         resource.
         """
         return pulumi.get(self, "type")
@@ -293,8 +293,8 @@ class AppleSliconValleyServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Apple silicon M1. For more information,
-        see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+        Creates and manages Scaleway Apple silicon. For more information,
+        see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 
         ## Example Usage
 
@@ -323,7 +323,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
-               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the server should be created.
@@ -335,8 +335,8 @@ class AppleSliconValleyServer(pulumi.CustomResource):
                  args: AppleSliconValleyServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Apple silicon M1. For more information,
-        see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+        Creates and manages Scaleway Apple silicon. For more information,
+        see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 
         ## Example Usage
 
@@ -437,7 +437,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
                associated with.
         :param pulumi.Input[str] state: The state of the server.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
-               the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+               the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
         :param pulumi.Input[str] vnc_url: URL of the VNC.
@@ -523,7 +523,7 @@ class AppleSliconValleyServer(pulumi.CustomResource):
     def type(self) -> pulumi.Output[str]:
         """
         The commercial type of the server. You find all the available types on
-        the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+        the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
         resource.
         """
         return pulumi.get(self, "type")

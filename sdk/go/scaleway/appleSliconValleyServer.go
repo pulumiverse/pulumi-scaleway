@@ -12,8 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Apple silicon M1. For more information,
-// see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+// Creates and manages Scaleway Apple silicon. For more information,
+// see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 //
 // ## Example Usage
 //
@@ -71,7 +71,7 @@ type AppleSliconValleyServer struct {
 	// The state of the server.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
-	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date and time of the last update of the Apple Silicon server.
@@ -132,7 +132,7 @@ type appleSliconValleyServerState struct {
 	// The state of the server.
 	State *string `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
-	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type *string `pulumi:"type"`
 	// The date and time of the last update of the Apple Silicon server.
@@ -161,7 +161,7 @@ type AppleSliconValleyServerState struct {
 	// The state of the server.
 	State pulumi.StringPtrInput
 	// The commercial type of the server. You find all the available types on
-	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type pulumi.StringPtrInput
 	// The date and time of the last update of the Apple Silicon server.
@@ -184,7 +184,7 @@ type appleSliconValleyServerArgs struct {
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The commercial type of the server. You find all the available types on
-	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type string `pulumi:"type"`
 	// `zone`) The zone in which
@@ -200,7 +200,7 @@ type AppleSliconValleyServerArgs struct {
 	// associated with.
 	ProjectId pulumi.StringPtrInput
 	// The commercial type of the server. You find all the available types on
-	// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type pulumi.StringInput
 	// `zone`) The zone in which
@@ -332,7 +332,7 @@ func (o AppleSliconValleyServerOutput) State() pulumi.StringOutput {
 }
 
 // The commercial type of the server. You find all the available types on
-// the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 // resource.
 func (o AppleSliconValleyServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSliconValleyServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)

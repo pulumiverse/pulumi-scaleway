@@ -36,7 +36,7 @@ class BaremetalServerArgs:
         """
         The set of arguments for constructing a BaremetalServer resource.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] description: A description for the server.
@@ -46,7 +46,7 @@ class BaremetalServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -99,7 +99,7 @@ class BaremetalServerArgs:
     def offer(self) -> pulumi.Input[str]:
         """
         The offer name or UUID of the baremetal server.
-        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
         """
@@ -175,7 +175,7 @@ class BaremetalServerArgs:
     def os(self) -> Optional[pulumi.Input[str]]:
         """
         The UUID of the os to install on the server.
-        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
         > **Important:** Updates to `os` will reinstall the server.
         """
         return pulumi.get(self, "os")
@@ -345,7 +345,7 @@ class _BaremetalServerState:
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] offer_id: The ID of the offer.
@@ -354,7 +354,7 @@ class _BaremetalServerState:
                > The `options` block supports:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
@@ -521,7 +521,7 @@ class _BaremetalServerState:
     def offer(self) -> Optional[pulumi.Input[str]]:
         """
         The offer name or UUID of the baremetal server.
-        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
         """
@@ -585,7 +585,7 @@ class _BaremetalServerState:
     def os(self) -> Optional[pulumi.Input[str]]:
         """
         The UUID of the os to install on the server.
-        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
         > **Important:** Updates to `os` will reinstall the server.
         """
         return pulumi.get(self, "os")
@@ -752,7 +752,7 @@ class BaremetalServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal).
+        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 
         ## Example Usage
 
@@ -803,13 +803,13 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -830,7 +830,7 @@ class BaremetalServer(pulumi.CustomResource):
                  args: BaremetalServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal).
+        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 
         ## Example Usage
 
@@ -995,7 +995,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] offer_id: The ID of the offer.
@@ -1004,7 +1004,7 @@ class BaremetalServer(pulumi.CustomResource):
                > The `options` block supports:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
-               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+               Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
@@ -1119,7 +1119,7 @@ class BaremetalServer(pulumi.CustomResource):
     def offer(self) -> pulumi.Output[str]:
         """
         The offer name or UUID of the baremetal server.
-        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
         """
@@ -1163,7 +1163,7 @@ class BaremetalServer(pulumi.CustomResource):
     def os(self) -> pulumi.Output[Optional[str]]:
         """
         The UUID of the os to install on the server.
-        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+        Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
         > **Important:** Updates to `os` will reinstall the server.
         """
         return pulumi.get(self, "os")

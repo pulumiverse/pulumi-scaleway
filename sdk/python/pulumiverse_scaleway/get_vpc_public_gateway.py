@@ -21,7 +21,7 @@ class GetVpcPublicGatewayResult:
     """
     A collection of values returned by getVpcPublicGateway.
     """
-    def __init__(__self__, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, status=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
+    def __init__(__self__, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, refresh_ssh_keys=None, status=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
         if bastion_enabled and not isinstance(bastion_enabled, bool):
             raise TypeError("Expected argument 'bastion_enabled' to be a bool")
         pulumi.set(__self__, "bastion_enabled", bastion_enabled)
@@ -52,6 +52,9 @@ class GetVpcPublicGatewayResult:
         if public_gateway_id and not isinstance(public_gateway_id, str):
             raise TypeError("Expected argument 'public_gateway_id' to be a str")
         pulumi.set(__self__, "public_gateway_id", public_gateway_id)
+        if refresh_ssh_keys and not isinstance(refresh_ssh_keys, str):
+            raise TypeError("Expected argument 'refresh_ssh_keys' to be a str")
+        pulumi.set(__self__, "refresh_ssh_keys", refresh_ssh_keys)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -125,6 +128,11 @@ class GetVpcPublicGatewayResult:
         return pulumi.get(self, "public_gateway_id")
 
     @property
+    @pulumi.getter(name="refreshSshKeys")
+    def refresh_ssh_keys(self) -> str:
+        return pulumi.get(self, "refresh_ssh_keys")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         return pulumi.get(self, "status")
@@ -171,6 +179,7 @@ class AwaitableGetVpcPublicGatewayResult(GetVpcPublicGatewayResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             public_gateway_id=self.public_gateway_id,
+            refresh_ssh_keys=self.refresh_ssh_keys,
             status=self.status,
             tags=self.tags,
             type=self.type,
@@ -227,6 +236,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_gateway_id=pulumi.get(__ret__, 'public_gateway_id'),
+        refresh_ssh_keys=pulumi.get(__ret__, 'refresh_ssh_keys'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
