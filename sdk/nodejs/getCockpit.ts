@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * > **Note:**
+ * As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
+ * If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+ *
  * Gets information about the Scaleway Cockpit.
  *
  * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
@@ -68,6 +72,10 @@ export interface GetCockpitResult {
     readonly pushUrls: outputs.GetCockpitPushUrl[];
 }
 /**
+ * > **Note:**
+ * As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
+ * If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+ *
  * Gets information about the Scaleway Cockpit.
  *
  * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).

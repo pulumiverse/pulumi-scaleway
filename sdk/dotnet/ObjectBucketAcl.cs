@@ -174,7 +174,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        /// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -257,7 +257,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        /// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -301,7 +301,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        /// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

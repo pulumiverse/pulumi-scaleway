@@ -22,6 +22,7 @@ __all__ = [
     'ContainerTriggerSqsArgs',
     'DatabaseAclAclRuleArgs',
     'DatabaseInstanceLoadBalancerArgs',
+    'DatabaseInstanceLogsPolicyArgs',
     'DatabaseInstancePrivateNetworkArgs',
     'DatabaseInstanceReadReplicaArgs',
     'DatabaseReadReplicaDirectAccessArgs',
@@ -323,7 +324,7 @@ class BaremetalServerOptionArgs:
                  expires_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         :param pulumi.Input[str] expires_at: The auto expiration date for compatible options
         :param pulumi.Input[str] name: The name of the server.
         """
@@ -337,7 +338,7 @@ class BaremetalServerOptionArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -818,6 +819,9 @@ class ContainerTriggerSqsArgs:
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
+            warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+            pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+        if namespace_id is not None:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -842,6 +846,9 @@ class ContainerTriggerSqsArgs:
         """
         ID of the mnq namespace. Deprecated.
         """
+        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
@@ -996,6 +1003,45 @@ class DatabaseInstanceLoadBalancerArgs:
     @port.setter
     def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
+
+
+@pulumi.input_type
+class DatabaseInstanceLogsPolicyArgs:
+    def __init__(__self__, *,
+                 max_age_retention: Optional[pulumi.Input[int]] = None,
+                 total_disk_retention: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
+        :param pulumi.Input[int] total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        """
+        if max_age_retention is not None:
+            pulumi.set(__self__, "max_age_retention", max_age_retention)
+        if total_disk_retention is not None:
+            pulumi.set(__self__, "total_disk_retention", total_disk_retention)
+
+    @property
+    @pulumi.getter(name="maxAgeRetention")
+    def max_age_retention(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max age (in days) of remote logs to keep on the Database Instance
+        """
+        return pulumi.get(self, "max_age_retention")
+
+    @max_age_retention.setter
+    def max_age_retention(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_age_retention", value)
+
+    @property
+    @pulumi.getter(name="totalDiskRetention")
+    def total_disk_retention(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max disk size of remote logs to keep on the Database Instance.
+        """
+        return pulumi.get(self, "total_disk_retention")
+
+    @total_disk_retention.setter
+    def total_disk_retention(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "total_disk_retention", value)
 
 
 @pulumi.input_type
@@ -1305,6 +1351,8 @@ class DatabaseReadReplicaPrivateNetworkArgs:
         """
         :param pulumi.Input[str] private_network_id: UUID of the private network to be connected to the read replica.
         :param pulumi.Input[bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               
+               > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
         :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
@@ -1348,6 +1396,8 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     def enable_ipam(self) -> Optional[pulumi.Input[bool]]:
         """
         If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+
+        > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         """
         return pulumi.get(self, "enable_ipam")
 
@@ -1983,6 +2033,9 @@ class FunctionTriggerSqsArgs:
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
+            warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+            pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+        if namespace_id is not None:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -2007,6 +2060,9 @@ class FunctionTriggerSqsArgs:
         """
         ID of the mnq namespace. Deprecated.
         """
+        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
@@ -2760,17 +2816,21 @@ class InstanceServerPrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[str],
                  mac_address: Optional[pulumi.Input[str]] = None,
+                 pnic_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] pn_id: The Private Network ID
         :param pulumi.Input[str] mac_address: MAC address of the NIC
+        :param pulumi.Input[str] pnic_id: The ID of the NIC
         :param pulumi.Input[str] status: The private NIC state
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "pn_id", pn_id)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if pnic_id is not None:
+            pulumi.set(__self__, "pnic_id", pnic_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -2799,6 +2859,18 @@ class InstanceServerPrivateNetworkArgs:
     @mac_address.setter
     def mac_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac_address", value)
+
+    @property
+    @pulumi.getter(name="pnicId")
+    def pnic_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the NIC
+        """
+        return pulumi.get(self, "pnic_id")
+
+    @pnic_id.setter
+    def pnic_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pnic_id", value)
 
     @property
     @pulumi.getter
@@ -3468,7 +3540,7 @@ class IpamIpReverseArgs:
                  address: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] address: The IP corresponding to the hostname
         :param pulumi.Input[str] hostname: The reverse domain name.
         """
         if address is not None:
@@ -3480,7 +3552,7 @@ class IpamIpReverseArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Request a specific IP in the requested source pool.
+        The IP corresponding to the hostname
         """
         return pulumi.get(self, "address")
 
@@ -3561,12 +3633,19 @@ class JobDefinitionCronArgs:
     def __init__(__self__, *,
                  schedule: pulumi.Input[str],
                  timezone: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] schedule: Cron format string.
+        :param pulumi.Input[str] timezone: The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "timezone", timezone)
 
     @property
     @pulumi.getter
     def schedule(self) -> pulumi.Input[str]:
+        """
+        Cron format string.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -3576,6 +3655,9 @@ class JobDefinitionCronArgs:
     @property
     @pulumi.getter
     def timezone(self) -> pulumi.Input[str]:
+        """
+        The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
@@ -4524,10 +4606,10 @@ class LoadbalancerFrontendAclArgs:
         """
         :param pulumi.Input['LoadbalancerFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
-        :param pulumi.Input[str] created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: Description of the ACL
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
-        :param pulumi.Input[str] updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -4568,7 +4650,7 @@ class LoadbalancerFrontendAclArgs:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -4604,7 +4686,7 @@ class LoadbalancerFrontendAclArgs:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 

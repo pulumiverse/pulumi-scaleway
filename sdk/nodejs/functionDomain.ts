@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Function Domain bindings.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+ * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
  *
  * ## Example Usage
  *

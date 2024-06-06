@@ -13,6 +13,10 @@ namespace Pulumiverse.Scaleway
     public static class GetCockpit
     {
         /// <summary>
+        /// &gt; **Note:**
+        /// As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
+        /// If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+        /// 
         /// Gets information about the Scaleway Cockpit.
         /// 
         /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
@@ -52,6 +56,10 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCockpitResult>("scaleway:index/getCockpit:getCockpit", args ?? new GetCockpitArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Note:**
+        /// As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
+        /// If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+        /// 
         /// Gets information about the Scaleway Cockpit.
         /// 
         /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).

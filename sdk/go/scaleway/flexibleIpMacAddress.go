@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Flexible IP Mac Addresses.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip/).
 //
 // ## Example Usage
 //

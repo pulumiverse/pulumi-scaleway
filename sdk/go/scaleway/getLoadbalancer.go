@@ -68,13 +68,16 @@ type LookupLoadbalancerArgs struct {
 
 // A collection of values returned by getLoadbalancer.
 type LookupLoadbalancerResult struct {
-	AssignFlexibleIp bool   `pulumi:"assignFlexibleIp"`
-	Description      string `pulumi:"description"`
+	AssignFlexibleIp   bool   `pulumi:"assignFlexibleIp"`
+	AssignFlexibleIpv6 bool   `pulumi:"assignFlexibleIpv6"`
+	Description        string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The load-balancer public IP Address.
 	IpAddress             string                          `pulumi:"ipAddress"`
 	IpId                  string                          `pulumi:"ipId"`
+	IpIds                 []string                        `pulumi:"ipIds"`
+	Ipv6Address           string                          `pulumi:"ipv6Address"`
 	LbId                  *string                         `pulumi:"lbId"`
 	Name                  *string                         `pulumi:"name"`
 	OrganizationId        string                          `pulumi:"organizationId"`
@@ -139,6 +142,10 @@ func (o LookupLoadbalancerResultOutput) AssignFlexibleIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) bool { return v.AssignFlexibleIp }).(pulumi.BoolOutput)
 }
 
+func (o LookupLoadbalancerResultOutput) AssignFlexibleIpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) bool { return v.AssignFlexibleIpv6 }).(pulumi.BoolOutput)
+}
+
 func (o LookupLoadbalancerResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -155,6 +162,14 @@ func (o LookupLoadbalancerResultOutput) IpAddress() pulumi.StringOutput {
 
 func (o LookupLoadbalancerResultOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.IpId }).(pulumi.StringOutput)
+}
+
+func (o LookupLoadbalancerResultOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupLoadbalancerResultOutput) Ipv6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
 func (o LookupLoadbalancerResultOutput) LbId() pulumi.StringPtrOutput {

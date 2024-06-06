@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway flexible IPs.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
  *
  * ## Example Usage
  *

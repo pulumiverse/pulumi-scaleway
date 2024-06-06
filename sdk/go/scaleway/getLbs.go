@@ -34,6 +34,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = scaleway.GetLbs(ctx, &scaleway.GetLbsArgs{
+//				Tags: []string{
+//					"a tag",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -55,6 +63,8 @@ type GetLbsArgs struct {
 	Name *string `pulumi:"name"`
 	// The ID of the project the load-balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// List of tags used as filter. LBs with these exact tags are listed.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which LBs exist.
 	Zone *string `pulumi:"zone"`
 }
@@ -71,6 +81,8 @@ type GetLbsResult struct {
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the project the load-balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
+	// The tags associated with the load-balancer.
+	Tags []string `pulumi:"tags"`
 	// The zone in which the load-balancer is.
 	Zone string `pulumi:"zone"`
 }
@@ -94,6 +106,8 @@ type GetLbsOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The ID of the project the load-balancer is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// List of tags used as filter. LBs with these exact tags are listed.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// `zone`) The zone in which LBs exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -140,6 +154,11 @@ func (o GetLbsResultOutput) OrganizationId() pulumi.StringOutput {
 // The ID of the project the load-balancer is associated with.
 func (o GetLbsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The tags associated with the load-balancer.
+func (o GetLbsResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The zone in which the load-balancer is.

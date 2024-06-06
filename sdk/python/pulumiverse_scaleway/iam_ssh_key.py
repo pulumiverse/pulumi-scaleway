@@ -235,7 +235,7 @@ class IamSshKey(pulumi.CustomResource):
         """
         Creates and manages Scaleway IAM SSH Keys.
         For more information,
-        see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#ssh-keys-d8ccd4).
+        see [the documentation](https://www.scaleway.com/en/developers/api/iam/#ssh-keys-d8ccd4).
 
         ## Example Usage
 
@@ -273,7 +273,7 @@ class IamSshKey(pulumi.CustomResource):
         """
         Creates and manages Scaleway IAM SSH Keys.
         For more information,
-        see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#ssh-keys-d8ccd4).
+        see [the documentation](https://www.scaleway.com/en/developers/api/iam/#ssh-keys-d8ccd4).
 
         ## Example Usage
 

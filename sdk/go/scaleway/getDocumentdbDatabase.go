@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+// Gets information about DocumentDB database.
 //
 // ## Example Usage
 //

@@ -94,6 +94,8 @@ class _TemDomainState:
                  accept_tos: Optional[pulumi.Input[bool]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  dkim_config: Optional[pulumi.Input[str]] = None,
+                 dmarc_config: Optional[pulumi.Input[str]] = None,
+                 dmarc_name: Optional[pulumi.Input[str]] = None,
                  last_error: Optional[pulumi.Input[str]] = None,
                  last_valid_at: Optional[pulumi.Input[str]] = None,
                  mx_blackhole: Optional[pulumi.Input[str]] = None,
@@ -118,6 +120,8 @@ class _TemDomainState:
                > **Important:**  This attribute must be set to `true`.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
+        :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
+        :param pulumi.Input[str] dmarc_name: DMARC name for the domain, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
@@ -144,6 +148,10 @@ class _TemDomainState:
             pulumi.set(__self__, "created_at", created_at)
         if dkim_config is not None:
             pulumi.set(__self__, "dkim_config", dkim_config)
+        if dmarc_config is not None:
+            pulumi.set(__self__, "dmarc_config", dmarc_config)
+        if dmarc_name is not None:
+            pulumi.set(__self__, "dmarc_name", dmarc_name)
         if last_error is not None:
             pulumi.set(__self__, "last_error", last_error)
         if last_valid_at is not None:
@@ -217,6 +225,30 @@ class _TemDomainState:
     @dkim_config.setter
     def dkim_config(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dkim_config", value)
+
+    @property
+    @pulumi.getter(name="dmarcConfig")
+    def dmarc_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        DMARC record for the domain, as should be recorded in the DNS zone.
+        """
+        return pulumi.get(self, "dmarc_config")
+
+    @dmarc_config.setter
+    def dmarc_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dmarc_config", value)
+
+    @property
+    @pulumi.getter(name="dmarcName")
+    def dmarc_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        DMARC name for the domain, as should be recorded in the DNS zone.
+        """
+        return pulumi.get(self, "dmarc_name")
+
+    @dmarc_name.setter
+    def dmarc_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dmarc_name", value)
 
     @property
     @pulumi.getter(name="lastError")
@@ -448,7 +480,7 @@ class TemDomain(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Transactional Email Domains.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 
@@ -482,6 +514,10 @@ class TemDomain(pulumi.CustomResource):
             dns_zone=domain_name,
             type="MX",
             data=".")
+        dmarc = scaleway.DomainRecord("dmarc",
+            dns_zone=domain_name,
+            type="TXT",
+            data=main.dmarc_config)
         ```
 
         ## Import
@@ -511,7 +547,7 @@ class TemDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Transactional Email Domains.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 
@@ -545,6 +581,10 @@ class TemDomain(pulumi.CustomResource):
             dns_zone=domain_name,
             type="MX",
             data=".")
+        dmarc = scaleway.DomainRecord("dmarc",
+            dns_zone=domain_name,
+            type="TXT",
+            data=main.dmarc_config)
         ```
 
         ## Import
@@ -593,6 +633,8 @@ class TemDomain(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dkim_config"] = None
+            __props__.__dict__["dmarc_config"] = None
+            __props__.__dict__["dmarc_name"] = None
             __props__.__dict__["last_error"] = None
             __props__.__dict__["last_valid_at"] = None
             __props__.__dict__["mx_blackhole"] = None
@@ -621,6 +663,8 @@ class TemDomain(pulumi.CustomResource):
             accept_tos: Optional[pulumi.Input[bool]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dkim_config: Optional[pulumi.Input[str]] = None,
+            dmarc_config: Optional[pulumi.Input[str]] = None,
+            dmarc_name: Optional[pulumi.Input[str]] = None,
             last_error: Optional[pulumi.Input[str]] = None,
             last_valid_at: Optional[pulumi.Input[str]] = None,
             mx_blackhole: Optional[pulumi.Input[str]] = None,
@@ -650,6 +694,8 @@ class TemDomain(pulumi.CustomResource):
                > **Important:**  This attribute must be set to `true`.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
+        :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
+        :param pulumi.Input[str] dmarc_name: DMARC name for the domain, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
@@ -677,6 +723,8 @@ class TemDomain(pulumi.CustomResource):
         __props__.__dict__["accept_tos"] = accept_tos
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dkim_config"] = dkim_config
+        __props__.__dict__["dmarc_config"] = dmarc_config
+        __props__.__dict__["dmarc_name"] = dmarc_name
         __props__.__dict__["last_error"] = last_error
         __props__.__dict__["last_valid_at"] = last_valid_at
         __props__.__dict__["mx_blackhole"] = mx_blackhole
@@ -721,6 +769,22 @@ class TemDomain(pulumi.CustomResource):
         The DKIM public key, as should be recorded in the DNS zone.
         """
         return pulumi.get(self, "dkim_config")
+
+    @property
+    @pulumi.getter(name="dmarcConfig")
+    def dmarc_config(self) -> pulumi.Output[str]:
+        """
+        DMARC record for the domain, as should be recorded in the DNS zone.
+        """
+        return pulumi.get(self, "dmarc_config")
+
+    @property
+    @pulumi.getter(name="dmarcName")
+    def dmarc_name(self) -> pulumi.Output[str]:
+        """
+        DMARC name for the domain, as should be recorded in the DNS zone.
+        """
+        return pulumi.get(self, "dmarc_name")
 
     @property
     @pulumi.getter(name="lastError")

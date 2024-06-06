@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Functions.
-// For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
 //
 // ## Example Usage
 //
@@ -64,7 +64,7 @@ import (
 type Function struct {
 	pulumi.CustomResourceState
 
-	// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+	// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
 	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
@@ -74,7 +74,7 @@ type Function struct {
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// The environment variables of the function.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
-	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+	// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
 	Handler pulumi.StringOutput `pulumi:"handler"`
 	// HTTP traffic configuration
 	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
@@ -92,13 +92,13 @@ type Function struct {
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The organization ID the function is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
 	Privacy pulumi.StringOutput `pulumi:"privacy"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime pulumi.StringOutput `pulumi:"runtime"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
@@ -159,7 +159,7 @@ func GetFunction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Function resources.
 type functionState struct {
-	// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+	// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy *bool `pulumi:"deploy"`
@@ -169,7 +169,7 @@ type functionState struct {
 	DomainName *string `pulumi:"domainName"`
 	// The environment variables of the function.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+	// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
 	Handler *string `pulumi:"handler"`
 	// HTTP traffic configuration
 	HttpOption *string `pulumi:"httpOption"`
@@ -187,13 +187,13 @@ type functionState struct {
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The organization ID the function is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
 	Privacy *string `pulumi:"privacy"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
-	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime *string `pulumi:"runtime"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
@@ -206,7 +206,7 @@ type functionState struct {
 }
 
 type FunctionState struct {
-	// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+	// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
 	CpuLimit pulumi.IntPtrInput
 	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy pulumi.BoolPtrInput
@@ -216,7 +216,7 @@ type FunctionState struct {
 	DomainName pulumi.StringPtrInput
 	// The environment variables of the function.
 	EnvironmentVariables pulumi.StringMapInput
-	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+	// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
 	Handler pulumi.StringPtrInput
 	// HTTP traffic configuration
 	HttpOption pulumi.StringPtrInput
@@ -234,13 +234,13 @@ type FunctionState struct {
 	NamespaceId pulumi.StringPtrInput
 	// The organization ID the function is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
 	Privacy pulumi.StringPtrInput
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
-	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables pulumi.StringMapInput
@@ -263,7 +263,7 @@ type functionArgs struct {
 	Description *string `pulumi:"description"`
 	// The environment variables of the function.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+	// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
 	Handler string `pulumi:"handler"`
 	// HTTP traffic configuration
 	HttpOption *string `pulumi:"httpOption"`
@@ -279,13 +279,13 @@ type functionArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace ID the function is associated with.
 	NamespaceId string `pulumi:"namespaceId"`
-	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
 	Privacy string `pulumi:"privacy"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
-	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime string `pulumi:"runtime"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
@@ -305,7 +305,7 @@ type FunctionArgs struct {
 	Description pulumi.StringPtrInput
 	// The environment variables of the function.
 	EnvironmentVariables pulumi.StringMapInput
-	// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+	// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
 	Handler pulumi.StringInput
 	// HTTP traffic configuration
 	HttpOption pulumi.StringPtrInput
@@ -321,13 +321,13 @@ type FunctionArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringInput
-	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
 	Privacy pulumi.StringInput
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
-	// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime pulumi.StringInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables pulumi.StringMapInput
@@ -426,7 +426,7 @@ func (o FunctionOutput) ToFunctionOutputWithContext(ctx context.Context) Functio
 	return o
 }
 
-// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
 func (o FunctionOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
@@ -451,7 +451,7 @@ func (o FunctionOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
-// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
 func (o FunctionOutput) Handler() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Handler }).(pulumi.StringOutput)
 }
@@ -493,7 +493,7 @@ func (o FunctionOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
 func (o FunctionOutput) Privacy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Privacy }).(pulumi.StringOutput)
 }
@@ -508,7 +508,7 @@ func (o FunctionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 func (o FunctionOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Runtime }).(pulumi.StringOutput)
 }

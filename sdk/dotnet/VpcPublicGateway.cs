@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway VPC Public Gateway.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
     /// 
     /// ## Example Usage
     /// 

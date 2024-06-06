@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Secret Versions.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/#secret-versions-079501).
 //
 // ## Example Usage
 //

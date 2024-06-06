@@ -167,7 +167,7 @@ def get_documentdb_instance(instance_id: Optional[str] = None,
                             region: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentdbInstanceResult:
     """
-    Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+    Gets information about an DocumentDB instance.
 
     ## Example Usage
 
@@ -218,7 +218,7 @@ def get_documentdb_instance_output(instance_id: Optional[pulumi.Input[Optional[s
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentdbInstanceResult]:
     """
-    Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+    Gets information about an DocumentDB instance.
 
     ## Example Usage
 

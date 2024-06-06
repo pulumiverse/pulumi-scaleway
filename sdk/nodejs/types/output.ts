@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt: string;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
      */
     id: string;
     /**
@@ -195,6 +195,8 @@ export interface ContainerTriggerNats {
 export interface ContainerTriggerSqs {
     /**
      * ID of the mnq namespace. Deprecated.
+     *
+     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: string;
     /**
@@ -243,6 +245,17 @@ export interface DatabaseInstanceLoadBalancer {
      * Port in the Private Network.
      */
     port: number;
+}
+
+export interface DatabaseInstanceLogsPolicy {
+    /**
+     * The max age (in days) of remote logs to keep on the Database Instance
+     */
+    maxAgeRetention: number;
+    /**
+     * The max disk size of remote logs to keep on the Database Instance.
+     */
+    totalDiskRetention: number;
 }
 
 export interface DatabaseInstancePrivateNetwork {
@@ -325,6 +338,8 @@ export interface DatabaseReadReplicaDirectAccess {
 export interface DatabaseReadReplicaPrivateNetwork {
     /**
      * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     *
+     * > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
      */
     enableIpam: boolean;
     /**
@@ -510,6 +525,8 @@ export interface FunctionTriggerNats {
 export interface FunctionTriggerSqs {
     /**
      * ID of the mnq namespace. Deprecated.
+     *
+     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: string;
     /**
@@ -837,6 +854,17 @@ export interface GetDatabaseInstanceLoadBalancer {
     port: number;
 }
 
+export interface GetDatabaseInstanceLogsPolicy {
+    /**
+     * The max age (in days) of remote logs to keep on the Database Instance
+     */
+    maxAgeRetention: number;
+    /**
+     * The max disk size of remote logs to keep on the Database Instance.
+     */
+    totalDiskRetention: number;
+}
+
 export interface GetDatabaseInstancePrivateNetwork {
     /**
      * Whether or not the private network endpoint should be configured with IPAM
@@ -1059,7 +1087,9 @@ export interface GetInstanceSecurityGroupInboundRule {
      */
     port: number;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange: string;
     /**
@@ -1086,7 +1116,9 @@ export interface GetInstanceSecurityGroupOutboundRule {
      */
     port: number;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange: string;
     /**
@@ -1104,6 +1136,10 @@ export interface GetInstanceServerPrivateNetwork {
      * The Private Network ID
      */
     pnId: string;
+    /**
+     * The ID of the NIC
+     */
+    pnicId: string;
     /**
      * The private NIC state
      */
@@ -1791,7 +1827,7 @@ export interface GetLbFrontendAcl {
      */
     actions: outputs.GetLbFrontendAclAction[];
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt: string;
     /**
@@ -1808,7 +1844,7 @@ export interface GetLbFrontendAcl {
      */
     name: string;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt: string;
 }
@@ -2031,7 +2067,7 @@ export interface GetLbsLb {
      */
     subscriber: string;
     /**
-     * The tags associated with the load-balancer.
+     * List of tags used as filter. LBs with these exact tags are listed.
      */
     tags: string[];
     /**
@@ -2631,6 +2667,10 @@ export interface InstanceServerPrivateNetwork {
      */
     pnId: string;
     /**
+     * The ID of the NIC
+     */
+    pnicId: string;
+    /**
      * The private NIC state
      */
     status: string;
@@ -2822,7 +2862,7 @@ export interface IpamIpResource {
 
 export interface IpamIpReverse {
     /**
-     * Request a specific IP in the requested source pool.
+     * The IP corresponding to the hostname
      */
     address: string;
     /**
@@ -2847,7 +2887,13 @@ export interface IpamIpSource {
 }
 
 export interface JobDefinitionCron {
+    /**
+     * Cron format string.
+     */
     schedule: string;
+    /**
+     * The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     */
     timezone: string;
 }
 
@@ -3112,7 +3158,7 @@ export interface LoadbalancerFrontendAcl {
      */
     action: outputs.LoadbalancerFrontendAclAction;
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt: string;
     /**
@@ -3128,7 +3174,7 @@ export interface LoadbalancerFrontendAcl {
      */
     name: string;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt: string;
 }

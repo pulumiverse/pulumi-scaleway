@@ -161,7 +161,7 @@ import (
 type IpamIp struct {
 	pulumi.CustomResourceState
 
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address pulumi.StringOutput `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -218,7 +218,7 @@ func GetIpamIp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpamIp resources.
 type ipamIpState struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
@@ -243,7 +243,7 @@ type ipamIpState struct {
 }
 
 type IpamIpState struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
@@ -272,7 +272,7 @@ func (IpamIpState) ElementType() reflect.Type {
 }
 
 type ipamIpArgs struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
 	// Defines whether to request an IPv6 instead of an IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
@@ -288,7 +288,7 @@ type ipamIpArgs struct {
 
 // The set of arguments for constructing a IpamIp resource.
 type IpamIpArgs struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
 	// Defines whether to request an IPv6 instead of an IPv4.
 	IsIpv6 pulumi.BoolPtrInput
@@ -389,7 +389,7 @@ func (o IpamIpOutput) ToIpamIpOutputWithContext(ctx context.Context) IpamIpOutpu
 	return o
 }
 
-// Request a specific IP in the requested source pool.
+// Request a specific IP in the requested source pool
 func (o IpamIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }

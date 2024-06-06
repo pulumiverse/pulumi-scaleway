@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway RDB database.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 

@@ -99,7 +99,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public /*out*/ readonly nodes!: pulumi.Output<outputs.KubernetesNodePoolNode[]>;
     /**
-     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+     * The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
      * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
@@ -294,7 +294,7 @@ export interface KubernetesNodePoolState {
      */
     nodes?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolNode>[]>;
     /**
-     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+     * The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string>;
@@ -398,7 +398,7 @@ export interface KubernetesNodePoolArgs {
      */
     nodeType: pulumi.Input<string>;
     /**
-     * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+     * The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string>;

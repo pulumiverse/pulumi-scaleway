@@ -13,9 +13,15 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class JobDefinitionCronGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Cron format string.
+        /// </summary>
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;
 
+        /// <summary>
+        /// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        /// </summary>
         [Input("timezone", required: true)]
         public Input<string> Timezone { get; set; } = null!;
 

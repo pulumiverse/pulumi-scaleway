@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.LoadbalancerAclAction> Action { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of ACL's creation (RFC 3339 format)
+        /// IsDate and time of ACL's creation (RFC 3339 format)
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of ACL's update (RFC 3339 format)
+        /// IsDate and time of ACL's update (RFC 3339 format)
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -207,7 +207,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.LoadbalancerAclActionGetArgs>? Action { get; set; }
 
         /// <summary>
-        /// Date and time of ACL's creation (RFC 3339 format)
+        /// IsDate and time of ACL's creation (RFC 3339 format)
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -243,7 +243,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Date and time of ACL's update (RFC 3339 format)
+        /// IsDate and time of ACL's update (RFC 3339 format)
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

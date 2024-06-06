@@ -388,7 +388,7 @@ func (o BaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) BaremetalServer
 type BaremetalServerOption struct {
 	// The auto expiration date for compatible options
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
 	Id string `pulumi:"id"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -408,7 +408,7 @@ type BaremetalServerOptionInput interface {
 type BaremetalServerOptionArgs struct {
 	// The auto expiration date for compatible options
 	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -470,7 +470,7 @@ func (o BaremetalServerOptionOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerOption) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
 func (o BaremetalServerOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1357,6 +1357,8 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 
 type ContainerTriggerSqs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
 	// ID of the project where sqs is enabled, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
@@ -1379,6 +1381,8 @@ type ContainerTriggerSqsInput interface {
 
 type ContainerTriggerSqsArgs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
 	// ID of the project where sqs is enabled, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -1466,6 +1470,8 @@ func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
@@ -1510,6 +1516,8 @@ func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1786,6 +1794,162 @@ func (o DatabaseInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) Databa
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseInstanceLoadBalancer {
 		return vs[0].([]DatabaseInstanceLoadBalancer)[vs[1].(int)]
 	}).(DatabaseInstanceLoadBalancerOutput)
+}
+
+type DatabaseInstanceLogsPolicy struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention *int `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention *int `pulumi:"totalDiskRetention"`
+}
+
+// DatabaseInstanceLogsPolicyInput is an input type that accepts DatabaseInstanceLogsPolicyArgs and DatabaseInstanceLogsPolicyOutput values.
+// You can construct a concrete instance of `DatabaseInstanceLogsPolicyInput` via:
+//
+//	DatabaseInstanceLogsPolicyArgs{...}
+type DatabaseInstanceLogsPolicyInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceLogsPolicyOutput() DatabaseInstanceLogsPolicyOutput
+	ToDatabaseInstanceLogsPolicyOutputWithContext(context.Context) DatabaseInstanceLogsPolicyOutput
+}
+
+type DatabaseInstanceLogsPolicyArgs struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention pulumi.IntPtrInput `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention pulumi.IntPtrInput `pulumi:"totalDiskRetention"`
+}
+
+func (DatabaseInstanceLogsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i DatabaseInstanceLogsPolicyArgs) ToDatabaseInstanceLogsPolicyOutput() DatabaseInstanceLogsPolicyOutput {
+	return i.ToDatabaseInstanceLogsPolicyOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceLogsPolicyArgs) ToDatabaseInstanceLogsPolicyOutputWithContext(ctx context.Context) DatabaseInstanceLogsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLogsPolicyOutput)
+}
+
+func (i DatabaseInstanceLogsPolicyArgs) ToDatabaseInstanceLogsPolicyPtrOutput() DatabaseInstanceLogsPolicyPtrOutput {
+	return i.ToDatabaseInstanceLogsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceLogsPolicyArgs) ToDatabaseInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) DatabaseInstanceLogsPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLogsPolicyOutput).ToDatabaseInstanceLogsPolicyPtrOutputWithContext(ctx)
+}
+
+// DatabaseInstanceLogsPolicyPtrInput is an input type that accepts DatabaseInstanceLogsPolicyArgs, DatabaseInstanceLogsPolicyPtr and DatabaseInstanceLogsPolicyPtrOutput values.
+// You can construct a concrete instance of `DatabaseInstanceLogsPolicyPtrInput` via:
+//
+//	        DatabaseInstanceLogsPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatabaseInstanceLogsPolicyPtrInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceLogsPolicyPtrOutput() DatabaseInstanceLogsPolicyPtrOutput
+	ToDatabaseInstanceLogsPolicyPtrOutputWithContext(context.Context) DatabaseInstanceLogsPolicyPtrOutput
+}
+
+type databaseInstanceLogsPolicyPtrType DatabaseInstanceLogsPolicyArgs
+
+func DatabaseInstanceLogsPolicyPtr(v *DatabaseInstanceLogsPolicyArgs) DatabaseInstanceLogsPolicyPtrInput {
+	return (*databaseInstanceLogsPolicyPtrType)(v)
+}
+
+func (*databaseInstanceLogsPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i *databaseInstanceLogsPolicyPtrType) ToDatabaseInstanceLogsPolicyPtrOutput() DatabaseInstanceLogsPolicyPtrOutput {
+	return i.ToDatabaseInstanceLogsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *databaseInstanceLogsPolicyPtrType) ToDatabaseInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) DatabaseInstanceLogsPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLogsPolicyPtrOutput)
+}
+
+type DatabaseInstanceLogsPolicyOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstanceLogsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o DatabaseInstanceLogsPolicyOutput) ToDatabaseInstanceLogsPolicyOutput() DatabaseInstanceLogsPolicyOutput {
+	return o
+}
+
+func (o DatabaseInstanceLogsPolicyOutput) ToDatabaseInstanceLogsPolicyOutputWithContext(ctx context.Context) DatabaseInstanceLogsPolicyOutput {
+	return o
+}
+
+func (o DatabaseInstanceLogsPolicyOutput) ToDatabaseInstanceLogsPolicyPtrOutput() DatabaseInstanceLogsPolicyPtrOutput {
+	return o.ToDatabaseInstanceLogsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o DatabaseInstanceLogsPolicyOutput) ToDatabaseInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) DatabaseInstanceLogsPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatabaseInstanceLogsPolicy) *DatabaseInstanceLogsPolicy {
+		return &v
+	}).(DatabaseInstanceLogsPolicyPtrOutput)
+}
+
+// The max age (in days) of remote logs to keep on the Database Instance
+func (o DatabaseInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceLogsPolicy) *int { return v.MaxAgeRetention }).(pulumi.IntPtrOutput)
+}
+
+// The max disk size of remote logs to keep on the Database Instance.
+func (o DatabaseInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceLogsPolicy) *int { return v.TotalDiskRetention }).(pulumi.IntPtrOutput)
+}
+
+type DatabaseInstanceLogsPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstanceLogsPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o DatabaseInstanceLogsPolicyPtrOutput) ToDatabaseInstanceLogsPolicyPtrOutput() DatabaseInstanceLogsPolicyPtrOutput {
+	return o
+}
+
+func (o DatabaseInstanceLogsPolicyPtrOutput) ToDatabaseInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) DatabaseInstanceLogsPolicyPtrOutput {
+	return o
+}
+
+func (o DatabaseInstanceLogsPolicyPtrOutput) Elem() DatabaseInstanceLogsPolicyOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLogsPolicy) DatabaseInstanceLogsPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret DatabaseInstanceLogsPolicy
+		return ret
+	}).(DatabaseInstanceLogsPolicyOutput)
+}
+
+// The max age (in days) of remote logs to keep on the Database Instance
+func (o DatabaseInstanceLogsPolicyPtrOutput) MaxAgeRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLogsPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAgeRetention
+	}).(pulumi.IntPtrOutput)
+}
+
+// The max disk size of remote logs to keep on the Database Instance.
+func (o DatabaseInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLogsPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TotalDiskRetention
+	}).(pulumi.IntPtrOutput)
 }
 
 type DatabaseInstancePrivateNetwork struct {
@@ -2407,6 +2571,8 @@ func (o DatabaseReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
 
 type DatabaseReadReplicaPrivateNetwork struct {
 	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	//
+	// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 	EnableIpam *bool `pulumi:"enableIpam"`
 	// The ID of the endpoint of the read replica.
 	EndpointId *string `pulumi:"endpointId"`
@@ -2439,6 +2605,8 @@ type DatabaseReadReplicaPrivateNetworkInput interface {
 
 type DatabaseReadReplicaPrivateNetworkArgs struct {
 	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	//
+	// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 	EnableIpam pulumi.BoolPtrInput `pulumi:"enableIpam"`
 	// The ID of the endpoint of the read replica.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
@@ -2536,6 +2704,8 @@ func (o DatabaseReadReplicaPrivateNetworkOutput) ToDatabaseReadReplicaPrivateNet
 }
 
 // If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+//
+// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 func (o DatabaseReadReplicaPrivateNetworkOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DatabaseReadReplicaPrivateNetwork) *bool { return v.EnableIpam }).(pulumi.BoolPtrOutput)
 }
@@ -2605,6 +2775,8 @@ func (o DatabaseReadReplicaPrivateNetworkPtrOutput) Elem() DatabaseReadReplicaPr
 }
 
 // If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+//
+// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 func (o DatabaseReadReplicaPrivateNetworkPtrOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseReadReplicaPrivateNetwork) *bool {
 		if v == nil {
@@ -4058,6 +4230,8 @@ func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 
 type FunctionTriggerSqs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
 	// ID of the project that contain the mnq namespace, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
@@ -4080,6 +4254,8 @@ type FunctionTriggerSqsInput interface {
 
 type FunctionTriggerSqsArgs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
 	// ID of the project that contain the mnq namespace, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -4167,6 +4343,8 @@ func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsPtrOutputWithContext(ctx c
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
@@ -4211,6 +4389,8 @@ func (o FunctionTriggerSqsPtrOutput) Elem() FunctionTriggerSqsOutput {
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -5179,6 +5359,8 @@ type InstanceServerPrivateNetwork struct {
 	MacAddress *string `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId string `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId *string `pulumi:"pnicId"`
 	// The private NIC state
 	Status *string `pulumi:"status"`
 	// `zone`) The zone in which the server should be created.
@@ -5201,6 +5383,8 @@ type InstanceServerPrivateNetworkArgs struct {
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId pulumi.StringInput `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId pulumi.StringPtrInput `pulumi:"pnicId"`
 	// The private NIC state
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// `zone`) The zone in which the server should be created.
@@ -5266,6 +5450,11 @@ func (o InstanceServerPrivateNetworkOutput) MacAddress() pulumi.StringPtrOutput 
 // The Private Network ID
 func (o InstanceServerPrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceServerPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// The ID of the NIC
+func (o InstanceServerPrivateNetworkOutput) PnicId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPrivateNetwork) *string { return v.PnicId }).(pulumi.StringPtrOutput)
 }
 
 // The private NIC state
@@ -7170,7 +7359,7 @@ func (o IpamIpResourceArrayOutput) Index(i pulumi.IntInput) IpamIpResourceOutput
 }
 
 type IpamIpReverse struct {
-	// Request a specific IP in the requested source pool.
+	// The IP corresponding to the hostname
 	Address *string `pulumi:"address"`
 	// The reverse domain name.
 	Hostname *string `pulumi:"hostname"`
@@ -7188,7 +7377,7 @@ type IpamIpReverseInput interface {
 }
 
 type IpamIpReverseArgs struct {
-	// Request a specific IP in the requested source pool.
+	// The IP corresponding to the hostname
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The reverse domain name.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
@@ -7245,7 +7434,7 @@ func (o IpamIpReverseOutput) ToIpamIpReverseOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Request a specific IP in the requested source pool.
+// The IP corresponding to the hostname
 func (o IpamIpReverseOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpReverse) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
@@ -7391,7 +7580,9 @@ func (o IpamIpSourceArrayOutput) Index(i pulumi.IntInput) IpamIpSourceOutput {
 }
 
 type JobDefinitionCron struct {
+	// Cron format string.
 	Schedule string `pulumi:"schedule"`
+	// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 	Timezone string `pulumi:"timezone"`
 }
 
@@ -7407,7 +7598,9 @@ type JobDefinitionCronInput interface {
 }
 
 type JobDefinitionCronArgs struct {
+	// Cron format string.
 	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 	Timezone pulumi.StringInput `pulumi:"timezone"`
 }
 
@@ -7488,10 +7681,12 @@ func (o JobDefinitionCronOutput) ToJobDefinitionCronPtrOutputWithContext(ctx con
 	}).(JobDefinitionCronPtrOutput)
 }
 
+// Cron format string.
 func (o JobDefinitionCronOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v JobDefinitionCron) string { return v.Schedule }).(pulumi.StringOutput)
 }
 
+// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 func (o JobDefinitionCronOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v JobDefinitionCron) string { return v.Timezone }).(pulumi.StringOutput)
 }
@@ -7520,6 +7715,7 @@ func (o JobDefinitionCronPtrOutput) Elem() JobDefinitionCronOutput {
 	}).(JobDefinitionCronOutput)
 }
 
+// Cron format string.
 func (o JobDefinitionCronPtrOutput) Schedule() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *JobDefinitionCron) *string {
 		if v == nil {
@@ -7529,6 +7725,7 @@ func (o JobDefinitionCronPtrOutput) Schedule() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 func (o JobDefinitionCronPtrOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *JobDefinitionCron) *string {
 		if v == nil {
@@ -10000,7 +10197,7 @@ func (o LoadbalancerCertificateLetsencryptPtrOutput) SubjectAlternativeNames() p
 type LoadbalancerFrontendAcl struct {
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerFrontendAclAction `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description *string `pulumi:"description"`
@@ -10008,7 +10205,7 @@ type LoadbalancerFrontendAcl struct {
 	Match LoadbalancerFrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -10026,7 +10223,7 @@ type LoadbalancerFrontendAclInput interface {
 type LoadbalancerFrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerFrontendAclActionInput `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringPtrInput `pulumi:"description"`
@@ -10034,7 +10231,7 @@ type LoadbalancerFrontendAclArgs struct {
 	Match LoadbalancerFrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
@@ -10094,7 +10291,7 @@ func (o LoadbalancerFrontendAclOutput) Action() LoadbalancerFrontendAclActionOut
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) LoadbalancerFrontendAclAction { return v.Action }).(LoadbalancerFrontendAclActionOutput)
 }
 
-// Date and time of ACL's creation (RFC 3339 format)
+// IsDate and time of ACL's creation (RFC 3339 format)
 func (o LoadbalancerFrontendAclOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
@@ -10114,7 +10311,7 @@ func (o LoadbalancerFrontendAclOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Date and time of ACL's update (RFC 3339 format)
+// IsDate and time of ACL's update (RFC 3339 format)
 func (o LoadbalancerFrontendAclOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
@@ -15939,6 +16136,112 @@ func (o GetDatabaseInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetDatabaseInstanceLoadBalancerOutput)
 }
 
+type GetDatabaseInstanceLogsPolicy struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention int `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention int `pulumi:"totalDiskRetention"`
+}
+
+// GetDatabaseInstanceLogsPolicyInput is an input type that accepts GetDatabaseInstanceLogsPolicyArgs and GetDatabaseInstanceLogsPolicyOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceLogsPolicyInput` via:
+//
+//	GetDatabaseInstanceLogsPolicyArgs{...}
+type GetDatabaseInstanceLogsPolicyInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceLogsPolicyOutput() GetDatabaseInstanceLogsPolicyOutput
+	ToGetDatabaseInstanceLogsPolicyOutputWithContext(context.Context) GetDatabaseInstanceLogsPolicyOutput
+}
+
+type GetDatabaseInstanceLogsPolicyArgs struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention pulumi.IntInput `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention pulumi.IntInput `pulumi:"totalDiskRetention"`
+}
+
+func (GetDatabaseInstanceLogsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceLogsPolicyArgs) ToGetDatabaseInstanceLogsPolicyOutput() GetDatabaseInstanceLogsPolicyOutput {
+	return i.ToGetDatabaseInstanceLogsPolicyOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceLogsPolicyArgs) ToGetDatabaseInstanceLogsPolicyOutputWithContext(ctx context.Context) GetDatabaseInstanceLogsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceLogsPolicyOutput)
+}
+
+// GetDatabaseInstanceLogsPolicyArrayInput is an input type that accepts GetDatabaseInstanceLogsPolicyArray and GetDatabaseInstanceLogsPolicyArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceLogsPolicyArrayInput` via:
+//
+//	GetDatabaseInstanceLogsPolicyArray{ GetDatabaseInstanceLogsPolicyArgs{...} }
+type GetDatabaseInstanceLogsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceLogsPolicyArrayOutput() GetDatabaseInstanceLogsPolicyArrayOutput
+	ToGetDatabaseInstanceLogsPolicyArrayOutputWithContext(context.Context) GetDatabaseInstanceLogsPolicyArrayOutput
+}
+
+type GetDatabaseInstanceLogsPolicyArray []GetDatabaseInstanceLogsPolicyInput
+
+func (GetDatabaseInstanceLogsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceLogsPolicyArray) ToGetDatabaseInstanceLogsPolicyArrayOutput() GetDatabaseInstanceLogsPolicyArrayOutput {
+	return i.ToGetDatabaseInstanceLogsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceLogsPolicyArray) ToGetDatabaseInstanceLogsPolicyArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceLogsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceLogsPolicyArrayOutput)
+}
+
+type GetDatabaseInstanceLogsPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstanceLogsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o GetDatabaseInstanceLogsPolicyOutput) ToGetDatabaseInstanceLogsPolicyOutput() GetDatabaseInstanceLogsPolicyOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceLogsPolicyOutput) ToGetDatabaseInstanceLogsPolicyOutputWithContext(ctx context.Context) GetDatabaseInstanceLogsPolicyOutput {
+	return o
+}
+
+// The max age (in days) of remote logs to keep on the Database Instance
+func (o GetDatabaseInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceLogsPolicy) int { return v.MaxAgeRetention }).(pulumi.IntOutput)
+}
+
+// The max disk size of remote logs to keep on the Database Instance.
+func (o GetDatabaseInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceLogsPolicy) int { return v.TotalDiskRetention }).(pulumi.IntOutput)
+}
+
+type GetDatabaseInstanceLogsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstanceLogsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o GetDatabaseInstanceLogsPolicyArrayOutput) ToGetDatabaseInstanceLogsPolicyArrayOutput() GetDatabaseInstanceLogsPolicyArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceLogsPolicyArrayOutput) ToGetDatabaseInstanceLogsPolicyArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceLogsPolicyArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceLogsPolicyArrayOutput) Index(i pulumi.IntInput) GetDatabaseInstanceLogsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseInstanceLogsPolicy {
+		return vs[0].([]GetDatabaseInstanceLogsPolicy)[vs[1].(int)]
+	}).(GetDatabaseInstanceLogsPolicyOutput)
+}
+
 type GetDatabaseInstancePrivateNetwork struct {
 	// Whether or not the private network endpoint should be configured with IPAM
 	EnableIpam bool `pulumi:"enableIpam"`
@@ -17145,7 +17448,9 @@ type GetInstanceSecurityGroupInboundRule struct {
 	IpRange string `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol string `pulumi:"protocol"`
@@ -17171,7 +17476,9 @@ type GetInstanceSecurityGroupInboundRuleArgs struct {
 	IpRange pulumi.StringInput `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port pulumi.IntInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
@@ -17248,7 +17555,9 @@ func (o GetInstanceSecurityGroupInboundRuleOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupInboundRule) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o GetInstanceSecurityGroupInboundRuleOutput) PortRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupInboundRule) string { return v.PortRange }).(pulumi.StringOutput)
 }
@@ -17287,7 +17596,9 @@ type GetInstanceSecurityGroupOutboundRule struct {
 	IpRange string `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol string `pulumi:"protocol"`
@@ -17313,7 +17624,9 @@ type GetInstanceSecurityGroupOutboundRuleArgs struct {
 	IpRange pulumi.StringInput `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port pulumi.IntInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
@@ -17390,7 +17703,9 @@ func (o GetInstanceSecurityGroupOutboundRuleOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupOutboundRule) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o GetInstanceSecurityGroupOutboundRuleOutput) PortRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupOutboundRule) string { return v.PortRange }).(pulumi.StringOutput)
 }
@@ -17425,6 +17740,8 @@ type GetInstanceServerPrivateNetwork struct {
 	MacAddress string `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId string `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId string `pulumi:"pnicId"`
 	// The private NIC state
 	Status string `pulumi:"status"`
 	// `zone`) The zone in which the server exists.
@@ -17447,6 +17764,8 @@ type GetInstanceServerPrivateNetworkArgs struct {
 	MacAddress pulumi.StringInput `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId pulumi.StringInput `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId pulumi.StringInput `pulumi:"pnicId"`
 	// The private NIC state
 	Status pulumi.StringInput `pulumi:"status"`
 	// `zone`) The zone in which the server exists.
@@ -17512,6 +17831,11 @@ func (o GetInstanceServerPrivateNetworkOutput) MacAddress() pulumi.StringOutput 
 // The Private Network ID
 func (o GetInstanceServerPrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// The ID of the NIC
+func (o GetInstanceServerPrivateNetworkOutput) PnicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPrivateNetwork) string { return v.PnicId }).(pulumi.StringOutput)
 }
 
 // The private NIC state
@@ -21457,7 +21781,7 @@ func (o GetLbBackendsBackendHealthCheckTcpArrayOutput) Index(i pulumi.IntInput) 
 type GetLbFrontendAcl struct {
 	// Action to undertake when an ACL filter matches
 	Actions []GetLbFrontendAclAction `pulumi:"actions"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description string `pulumi:"description"`
@@ -21466,7 +21790,7 @@ type GetLbFrontendAcl struct {
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
 	Name string `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
@@ -21484,7 +21808,7 @@ type GetLbFrontendAclInput interface {
 type GetLbFrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches
 	Actions GetLbFrontendAclActionArrayInput `pulumi:"actions"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringInput `pulumi:"description"`
@@ -21493,7 +21817,7 @@ type GetLbFrontendAclArgs struct {
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
 	Name pulumi.StringInput `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
@@ -21553,7 +21877,7 @@ func (o GetLbFrontendAclOutput) Actions() GetLbFrontendAclActionArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) []GetLbFrontendAclAction { return v.Actions }).(GetLbFrontendAclActionArrayOutput)
 }
 
-// Date and time of ACL's creation (RFC 3339 format)
+// IsDate and time of ACL's creation (RFC 3339 format)
 func (o GetLbFrontendAclOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -21574,7 +21898,7 @@ func (o GetLbFrontendAclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Date and time of ACL's update (RFC 3339 format)
+// IsDate and time of ACL's update (RFC 3339 format)
 func (o GetLbFrontendAclOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
@@ -22470,7 +22794,7 @@ type GetLbsLb struct {
 	Status string `pulumi:"status"`
 	// The subscriber information.
 	Subscriber string `pulumi:"subscriber"`
-	// The tags associated with the load-balancer.
+	// List of tags used as filter. LBs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// The offer type of the load-balancer.
 	Type string `pulumi:"type"`
@@ -22522,7 +22846,7 @@ type GetLbsLbArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The subscriber information.
 	Subscriber pulumi.StringInput `pulumi:"subscriber"`
-	// The tags associated with the load-balancer.
+	// List of tags used as filter. LBs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The offer type of the load-balancer.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -22658,7 +22982,7 @@ func (o GetLbsLbOutput) Subscriber() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Subscriber }).(pulumi.StringOutput)
 }
 
-// The tags associated with the load-balancer.
+// List of tags used as filter. LBs with these exact tags are listed.
 func (o GetLbsLbOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbsLb) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -25339,6 +25663,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleArrayInput)(nil)).Elem(), DatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyPtrInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkPtrInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceReadReplicaInput)(nil)).Elem(), DatabaseInstanceReadReplicaArgs{})
@@ -25518,6 +25844,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleArrayInput)(nil)).Elem(), GetDatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLogsPolicyInput)(nil)).Elem(), GetDatabaseInstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLogsPolicyArrayInput)(nil)).Elem(), GetDatabaseInstanceLogsPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkArrayInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArgs{})
@@ -25680,6 +26008,8 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceReadReplicaOutput{})
@@ -25859,6 +26189,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstanceLogsPolicyOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstanceLogsPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceReadReplicaOutput{})

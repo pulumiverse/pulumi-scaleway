@@ -35,6 +35,7 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
         "name": args.name,
         "privateNetworkId": args.privateNetworkId,
         "projectId": args.projectId,
+        "region": args.region,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -55,6 +56,7 @@ export interface GetVpcPrivateNetworkArgs {
      * The ID of the project the private network is associated with.
      */
     projectId?: string;
+    region?: string;
     /**
      * ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
      */
@@ -83,7 +85,7 @@ export interface GetVpcPrivateNetworkResult {
     readonly organizationId: string;
     readonly privateNetworkId?: string;
     readonly projectId?: string;
-    readonly region: string;
+    readonly region?: string;
     readonly tags: string[];
     readonly updatedAt: string;
     readonly vpcId?: string;
@@ -130,6 +132,7 @@ export interface GetVpcPrivateNetworkOutputArgs {
      * The ID of the project the private network is associated with.
      */
     projectId?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
      */

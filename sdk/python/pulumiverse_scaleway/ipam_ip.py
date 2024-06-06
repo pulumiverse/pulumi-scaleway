@@ -25,7 +25,7 @@ class IpamIpArgs:
         """
         The set of arguments for constructing a IpamIp resource.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]] sources: The source in which to book the IP.
-        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
@@ -59,7 +59,7 @@ class IpamIpArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Request a specific IP in the requested source pool.
+        Request a specific IP in the requested source pool
         """
         return pulumi.get(self, "address")
 
@@ -132,7 +132,7 @@ class _IpamIpState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IpamIp resources.
-        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[str] created_at: Date and time of IP's creation (RFC 3339 format).
         :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
@@ -171,7 +171,7 @@ class _IpamIpState:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Request a specific IP in the requested source pool.
+        Request a specific IP in the requested source pool
         """
         return pulumi.get(self, "address")
 
@@ -384,7 +384,7 @@ class IpamIp(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
@@ -538,7 +538,7 @@ class IpamIp(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[str] created_at: Date and time of IP's creation (RFC 3339 format).
         :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
@@ -571,7 +571,7 @@ class IpamIp(pulumi.CustomResource):
     @pulumi.getter
     def address(self) -> pulumi.Output[str]:
         """
-        Request a specific IP in the requested source pool.
+        Request a specific IP in the requested source pool
         """
         return pulumi.get(self, "address")
 

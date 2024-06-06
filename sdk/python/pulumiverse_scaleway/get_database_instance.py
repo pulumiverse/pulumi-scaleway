@@ -22,7 +22,7 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -62,6 +62,9 @@ class GetDatabaseInstanceResult:
         if load_balancers and not isinstance(load_balancers, list):
             raise TypeError("Expected argument 'load_balancers' to be a list")
         pulumi.set(__self__, "load_balancers", load_balancers)
+        if logs_policies and not isinstance(logs_policies, list):
+            raise TypeError("Expected argument 'logs_policies' to be a list")
+        pulumi.set(__self__, "logs_policies", logs_policies)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -171,6 +174,11 @@ class GetDatabaseInstanceResult:
         return pulumi.get(self, "load_balancers")
 
     @property
+    @pulumi.getter(name="logsPolicies")
+    def logs_policies(self) -> Sequence['outputs.GetDatabaseInstanceLogsPolicyResult']:
+        return pulumi.get(self, "logs_policies")
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
@@ -255,6 +263,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             instance_id=self.instance_id,
             is_ha_cluster=self.is_ha_cluster,
             load_balancers=self.load_balancers,
+            logs_policies=self.logs_policies,
             name=self.name,
             node_type=self.node_type,
             organization_id=self.organization_id,
@@ -308,6 +317,7 @@ def get_database_instance(instance_id: Optional[str] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         is_ha_cluster=pulumi.get(__ret__, 'is_ha_cluster'),
         load_balancers=pulumi.get(__ret__, 'load_balancers'),
+        logs_policies=pulumi.get(__ret__, 'logs_policies'),
         name=pulumi.get(__ret__, 'name'),
         node_type=pulumi.get(__ret__, 'node_type'),
         organization_id=pulumi.get(__ret__, 'organization_id'),

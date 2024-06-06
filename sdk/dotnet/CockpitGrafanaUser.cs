@@ -21,17 +21,15 @@ namespace Pulumiverse.Scaleway
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainCockpit = Scaleway.GetCockpit.Invoke();
+    ///     var project = new Scaleway.AccountProject("project");
     /// 
-    ///     // Create an editor grafana user for the cockpit
-    ///     var mainCockpitGrafanaUser = new Scaleway.CockpitGrafanaUser("mainCockpitGrafanaUser", new()
+    ///     var main = new Scaleway.CockpitGrafanaUser("main", new()
     ///     {
-    ///         ProjectId = mainCockpit.Apply(getCockpitResult =&gt; getCockpitResult.ProjectId),
+    ///         ProjectId = project.Id,
     ///         Login = "my-awesome-user",
     ///         Role = "editor",
     ///     });

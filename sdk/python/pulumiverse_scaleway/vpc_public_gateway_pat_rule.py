@@ -277,7 +277,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1#pat-rules-e75d10).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
 
         ## Example Usage
 
@@ -352,7 +352,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1#pat-rules-e75d10).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
 
         ## Example Usage
 

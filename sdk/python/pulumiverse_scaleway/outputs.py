@@ -23,6 +23,7 @@ __all__ = [
     'ContainerTriggerSqs',
     'DatabaseAclAclRule',
     'DatabaseInstanceLoadBalancer',
+    'DatabaseInstanceLogsPolicy',
     'DatabaseInstancePrivateNetwork',
     'DatabaseInstanceReadReplica',
     'DatabaseReadReplicaDirectAccess',
@@ -114,6 +115,7 @@ __all__ = [
     'GetCockpitPushUrlResult',
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
+    'GetDatabaseInstanceLogsPolicyResult',
     'GetDatabaseInstancePrivateNetworkResult',
     'GetDatabaseInstanceReadReplicaResult',
     'GetDomainRecordGeoIpResult',
@@ -374,7 +376,7 @@ class BaremetalServerOption(dict):
                  expires_at: Optional[str] = None,
                  name: Optional[str] = None):
         """
-        :param str id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param str id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         :param str expires_at: The auto expiration date for compatible options
         :param str name: The name of the server.
         """
@@ -388,7 +390,7 @@ class BaremetalServerOption(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -911,6 +913,9 @@ class ContainerTriggerSqs(dict):
         """
         ID of the mnq namespace. Deprecated.
         """
+        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+
         return pulumi.get(self, "namespace_id")
 
     @property
@@ -1042,6 +1047,56 @@ class DatabaseInstanceLoadBalancer(dict):
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class DatabaseInstanceLogsPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxAgeRetention":
+            suggest = "max_age_retention"
+        elif key == "totalDiskRetention":
+            suggest = "total_disk_retention"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseInstanceLogsPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseInstanceLogsPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseInstanceLogsPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_age_retention: Optional[int] = None,
+                 total_disk_retention: Optional[int] = None):
+        """
+        :param int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
+        :param int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        """
+        if max_age_retention is not None:
+            pulumi.set(__self__, "max_age_retention", max_age_retention)
+        if total_disk_retention is not None:
+            pulumi.set(__self__, "total_disk_retention", total_disk_retention)
+
+    @property
+    @pulumi.getter(name="maxAgeRetention")
+    def max_age_retention(self) -> Optional[int]:
+        """
+        The max age (in days) of remote logs to keep on the Database Instance
+        """
+        return pulumi.get(self, "max_age_retention")
+
+    @property
+    @pulumi.getter(name="totalDiskRetention")
+    def total_disk_retention(self) -> Optional[int]:
+        """
+        The max disk size of remote logs to keep on the Database Instance.
+        """
+        return pulumi.get(self, "total_disk_retention")
 
 
 @pulumi.output_type
@@ -1346,6 +1401,8 @@ class DatabaseReadReplicaPrivateNetwork(dict):
         """
         :param str private_network_id: UUID of the private network to be connected to the read replica.
         :param bool enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               
+               > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         :param str endpoint_id: The ID of the endpoint of the read replica.
         :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
@@ -1385,6 +1442,8 @@ class DatabaseReadReplicaPrivateNetwork(dict):
     def enable_ipam(self) -> Optional[bool]:
         """
         If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+
+        > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         """
         return pulumi.get(self, "enable_ipam")
 
@@ -1983,6 +2042,9 @@ class FunctionTriggerSqs(dict):
         """
         ID of the mnq namespace. Deprecated.
         """
+        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+
         return pulumi.get(self, "namespace_id")
 
     @property
@@ -2676,6 +2738,8 @@ class InstanceServerPrivateNetwork(dict):
             suggest = "pn_id"
         elif key == "macAddress":
             suggest = "mac_address"
+        elif key == "pnicId":
+            suggest = "pnic_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceServerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
@@ -2691,17 +2755,21 @@ class InstanceServerPrivateNetwork(dict):
     def __init__(__self__, *,
                  pn_id: str,
                  mac_address: Optional[str] = None,
+                 pnic_id: Optional[str] = None,
                  status: Optional[str] = None,
                  zone: Optional[str] = None):
         """
         :param str pn_id: The Private Network ID
         :param str mac_address: MAC address of the NIC
+        :param str pnic_id: The ID of the NIC
         :param str status: The private NIC state
         :param str zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "pn_id", pn_id)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if pnic_id is not None:
+            pulumi.set(__self__, "pnic_id", pnic_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -2722,6 +2790,14 @@ class InstanceServerPrivateNetwork(dict):
         MAC address of the NIC
         """
         return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="pnicId")
+    def pnic_id(self) -> Optional[str]:
+        """
+        The ID of the NIC
+        """
+        return pulumi.get(self, "pnic_id")
 
     @property
     @pulumi.getter
@@ -3304,7 +3380,7 @@ class IpamIpReverse(dict):
                  address: Optional[str] = None,
                  hostname: Optional[str] = None):
         """
-        :param str address: Request a specific IP in the requested source pool.
+        :param str address: The IP corresponding to the hostname
         :param str hostname: The reverse domain name.
         """
         if address is not None:
@@ -3316,7 +3392,7 @@ class IpamIpReverse(dict):
     @pulumi.getter
     def address(self) -> Optional[str]:
         """
-        Request a specific IP in the requested source pool.
+        The IP corresponding to the hostname
         """
         return pulumi.get(self, "address")
 
@@ -3396,17 +3472,27 @@ class JobDefinitionCron(dict):
     def __init__(__self__, *,
                  schedule: str,
                  timezone: str):
+        """
+        :param str schedule: Cron format string.
+        :param str timezone: The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "timezone", timezone)
 
     @property
     @pulumi.getter
     def schedule(self) -> str:
+        """
+        Cron format string.
+        """
         return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter
     def timezone(self) -> str:
+        """
+        The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
         return pulumi.get(self, "timezone")
 
 
@@ -4391,10 +4477,10 @@ class LoadbalancerFrontendAcl(dict):
         """
         :param 'LoadbalancerFrontendAclActionArgs' action: Action to undertake when an ACL filter matches.
         :param 'LoadbalancerFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
-        :param str created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param str created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param str description: Description of the ACL
         :param str name: The ACL name. If not provided it will be randomly generated.
-        :param str updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param str updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -4427,7 +4513,7 @@ class LoadbalancerFrontendAcl(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[str]:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -4451,7 +4537,7 @@ class LoadbalancerFrontendAcl(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[str]:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 
@@ -6887,6 +6973,35 @@ class GetDatabaseInstanceLoadBalancerResult(dict):
 
 
 @pulumi.output_type
+class GetDatabaseInstanceLogsPolicyResult(dict):
+    def __init__(__self__, *,
+                 max_age_retention: int,
+                 total_disk_retention: int):
+        """
+        :param int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
+        :param int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        """
+        pulumi.set(__self__, "max_age_retention", max_age_retention)
+        pulumi.set(__self__, "total_disk_retention", total_disk_retention)
+
+    @property
+    @pulumi.getter(name="maxAgeRetention")
+    def max_age_retention(self) -> int:
+        """
+        The max age (in days) of remote logs to keep on the Database Instance
+        """
+        return pulumi.get(self, "max_age_retention")
+
+    @property
+    @pulumi.getter(name="totalDiskRetention")
+    def total_disk_retention(self) -> int:
+        """
+        The max disk size of remote logs to keep on the Database Instance.
+        """
+        return pulumi.get(self, "total_disk_retention")
+
+
+@pulumi.output_type
 class GetDatabaseInstancePrivateNetworkResult(dict):
     def __init__(__self__, *,
                  enable_ipam: bool,
@@ -7451,7 +7566,9 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
         :param str ip: The ip this rule apply to.
         :param str ip_range: The ip range (e.g `192.168.1.0/24`) this rule apply to.
         :param int port: The port this rule apply to. If no port is specified, rule will apply to all port.
-        :param str port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param str port_range: The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param str protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -7497,7 +7614,9 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
     @pulumi.getter(name="portRange")
     def port_range(self) -> str:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -7524,7 +7643,9 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
         :param str ip: The ip this rule apply to.
         :param str ip_range: The ip range (e.g `192.168.1.0/24`) this rule apply to.
         :param int port: The port this rule apply to. If no port is specified, rule will apply to all port.
-        :param str port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param str port_range: The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param str protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -7570,7 +7691,9 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
     @pulumi.getter(name="portRange")
     def port_range(self) -> str:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -7588,16 +7711,19 @@ class GetInstanceServerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  mac_address: str,
                  pn_id: str,
+                 pnic_id: str,
                  status: str,
                  zone: str):
         """
         :param str mac_address: MAC address of the NIC
         :param str pn_id: The Private Network ID
+        :param str pnic_id: The ID of the NIC
         :param str status: The private NIC state
         :param str zone: `zone`) The zone in which the server exists.
         """
         pulumi.set(__self__, "mac_address", mac_address)
         pulumi.set(__self__, "pn_id", pn_id)
+        pulumi.set(__self__, "pnic_id", pnic_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "zone", zone)
 
@@ -7616,6 +7742,14 @@ class GetInstanceServerPrivateNetworkResult(dict):
         The Private Network ID
         """
         return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter(name="pnicId")
+    def pnic_id(self) -> str:
+        """
+        The ID of the NIC
+        """
+        return pulumi.get(self, "pnic_id")
 
     @property
     @pulumi.getter
@@ -9460,12 +9594,12 @@ class GetLbFrontendAclResult(dict):
                  updated_at: str):
         """
         :param Sequence['GetLbFrontendAclActionArgs'] actions: Action to undertake when an ACL filter matches
-        :param str created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param str created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param str description: Description of the ACL
         :param Sequence['GetLbFrontendAclMatchArgs'] matches: The ACL match rule
         :param str name: The name of the frontend.
                - When using the `name` you should specify the `lb-id`
-        :param str updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param str updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "created_at", created_at)
@@ -9486,7 +9620,7 @@ class GetLbFrontendAclResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -9519,7 +9653,7 @@ class GetLbFrontendAclResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 
@@ -9982,7 +10116,7 @@ class GetLbsLbResult(dict):
         :param str ssl_compatibility_level: Determines the minimal SSL version which needs to be supported on client side.
         :param str status: The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         :param str subscriber: The subscriber information.
-        :param Sequence[str] tags: The tags associated with the load-balancer.
+        :param Sequence[str] tags: List of tags used as filter. LBs with these exact tags are listed.
         :param str type: The offer type of the load-balancer.
         :param str updated_at: Date at which the Load balancer was updated.
         :param str zone: `zone`) The zone in which LBs exist.
@@ -10131,7 +10265,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        The tags associated with the load-balancer.
+        List of tags used as filter. LBs with these exact tags are listed.
         """
         return pulumi.get(self, "tags")
 

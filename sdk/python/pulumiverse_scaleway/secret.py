@@ -301,7 +301,7 @@ class Secret(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Secrets.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
 
         ## Example Usage
 
@@ -347,7 +347,7 @@ class Secret(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Secrets.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
 
         ## Example Usage
 

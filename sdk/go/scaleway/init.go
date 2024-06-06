@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Cockpit{}
 	case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
 		r = &CockpitGrafanaUser{}
+	case "scaleway:index/cockpitSource:CockpitSource":
+		r = &CockpitSource{}
 	case "scaleway:index/cockpitToken:CockpitToken":
 		r = &CockpitToken{}
 	case "scaleway:index/container:Container":
@@ -207,6 +209,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretVersion{}
 	case "scaleway:index/temDomain:TemDomain":
 		r = &TemDomain{}
+	case "scaleway:index/temDomainValidation:TemDomainValidation":
+		r = &TemDomainValidation{}
 	case "scaleway:index/vpc:Vpc":
 		r = &Vpc{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -296,6 +300,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/cockpitGrafanaUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/cockpitSource",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -721,6 +730,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/temDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/temDomainValidation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

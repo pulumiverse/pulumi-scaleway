@@ -36,6 +36,11 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             { "foo", "bar" },
     ///         },
+    ///         Cron = new Scaleway.Inputs.JobDefinitionCronArgs
+    ///         {
+    ///             Schedule = "5 4 1 * *",
+    ///             Timezone = "Europe/Paris",
+    ///         },
     ///     });
     /// 
     /// });
@@ -66,6 +71,9 @@ namespace Pulumiverse.Scaleway
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
 
+        /// <summary>
+        /// The cron configuration
+        /// </summary>
         [Output("cron")]
         public Output<Outputs.JobDefinitionCron?> Cron { get; private set; } = null!;
 
@@ -176,6 +184,9 @@ namespace Pulumiverse.Scaleway
         [Input("cpuLimit", required: true)]
         public Input<int> CpuLimit { get; set; } = null!;
 
+        /// <summary>
+        /// The cron configuration
+        /// </summary>
         [Input("cron")]
         public Input<Inputs.JobDefinitionCronArgs>? Cron { get; set; }
 
@@ -253,6 +264,9 @@ namespace Pulumiverse.Scaleway
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
 
+        /// <summary>
+        /// The cron configuration
+        /// </summary>
         [Input("cron")]
         public Input<Inputs.JobDefinitionCronGetArgs>? Cron { get; set; }
 

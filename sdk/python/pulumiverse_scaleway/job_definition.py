@@ -32,6 +32,7 @@ class JobDefinitionArgs:
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container running the job.
         :param pulumi.Input[str] command: The command that will be run in the container if specified.
+        :param pulumi.Input['JobDefinitionCronArgs'] cron: The cron configuration
         :param pulumi.Input[str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] env: The environment variables of the container.
         :param pulumi.Input[str] image_uri: The uri of the container image that will be used for the job run.
@@ -100,6 +101,9 @@ class JobDefinitionArgs:
     @property
     @pulumi.getter
     def cron(self) -> Optional[pulumi.Input['JobDefinitionCronArgs']]:
+        """
+        The cron configuration
+        """
         return pulumi.get(self, "cron")
 
     @cron.setter
@@ -209,6 +213,7 @@ class _JobDefinitionState:
         Input properties used for looking up and filtering JobDefinition resources.
         :param pulumi.Input[str] command: The command that will be run in the container if specified.
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
+        :param pulumi.Input['JobDefinitionCronArgs'] cron: The cron configuration
         :param pulumi.Input[str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] env: The environment variables of the container.
         :param pulumi.Input[str] image_uri: The uri of the container image that will be used for the job run.
@@ -268,6 +273,9 @@ class _JobDefinitionState:
     @property
     @pulumi.getter
     def cron(self) -> Optional[pulumi.Input['JobDefinitionCronArgs']]:
+        """
+        The cron configuration
+        """
         return pulumi.get(self, "cron")
 
     @cron.setter
@@ -407,7 +415,11 @@ class JobDefinition(pulumi.CustomResource):
             timeout="10m",
             env={
                 "foo": "bar",
-            })
+            },
+            cron=scaleway.JobDefinitionCronArgs(
+                schedule="5 4 1 * *",
+                timezone="Europe/Paris",
+            ))
         ```
 
         ## Import
@@ -424,6 +436,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] command: The command that will be run in the container if specified.
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
+        :param pulumi.Input[pulumi.InputType['JobDefinitionCronArgs']] cron: The cron configuration
         :param pulumi.Input[str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] env: The environment variables of the container.
         :param pulumi.Input[str] image_uri: The uri of the container image that will be used for the job run.
@@ -458,7 +471,11 @@ class JobDefinition(pulumi.CustomResource):
             timeout="10m",
             env={
                 "foo": "bar",
-            })
+            },
+            cron=scaleway.JobDefinitionCronArgs(
+                schedule="5 4 1 * *",
+                timezone="Europe/Paris",
+            ))
         ```
 
         ## Import
@@ -551,6 +568,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] command: The command that will be run in the container if specified.
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
+        :param pulumi.Input[pulumi.InputType['JobDefinitionCronArgs']] cron: The cron configuration
         :param pulumi.Input[str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] env: The environment variables of the container.
         :param pulumi.Input[str] image_uri: The uri of the container image that will be used for the job run.
@@ -596,6 +614,9 @@ class JobDefinition(pulumi.CustomResource):
     @property
     @pulumi.getter
     def cron(self) -> pulumi.Output[Optional['outputs.JobDefinitionCron']]:
+        """
+        The cron configuration
+        """
         return pulumi.get(self, "cron")
 
     @property

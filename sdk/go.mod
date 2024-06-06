@@ -2,6 +2,8 @@ module github.com/pulumiverse/pulumi-scaleway/sdk
 
 go 1.21
 
+toolchain go1.21.11
+
 require (
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/pulumi/pulumi/sdk/v3 v3.113.0

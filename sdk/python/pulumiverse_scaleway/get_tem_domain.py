@@ -22,7 +22,7 @@ class GetTemDomainResult:
     """
     A collection of values returned by getTemDomain.
     """
-    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_auth_user=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, status=None):
+    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, dmarc_config=None, dmarc_name=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_auth_user=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, status=None):
         if accept_tos and not isinstance(accept_tos, bool):
             raise TypeError("Expected argument 'accept_tos' to be a bool")
         pulumi.set(__self__, "accept_tos", accept_tos)
@@ -32,6 +32,12 @@ class GetTemDomainResult:
         if dkim_config and not isinstance(dkim_config, str):
             raise TypeError("Expected argument 'dkim_config' to be a str")
         pulumi.set(__self__, "dkim_config", dkim_config)
+        if dmarc_config and not isinstance(dmarc_config, str):
+            raise TypeError("Expected argument 'dmarc_config' to be a str")
+        pulumi.set(__self__, "dmarc_config", dmarc_config)
+        if dmarc_name and not isinstance(dmarc_name, str):
+            raise TypeError("Expected argument 'dmarc_name' to be a str")
+        pulumi.set(__self__, "dmarc_name", dmarc_name)
         if domain_id and not isinstance(domain_id, str):
             raise TypeError("Expected argument 'domain_id' to be a str")
         pulumi.set(__self__, "domain_id", domain_id)
@@ -107,6 +113,16 @@ class GetTemDomainResult:
     @pulumi.getter(name="dkimConfig")
     def dkim_config(self) -> str:
         return pulumi.get(self, "dkim_config")
+
+    @property
+    @pulumi.getter(name="dmarcConfig")
+    def dmarc_config(self) -> str:
+        return pulumi.get(self, "dmarc_config")
+
+    @property
+    @pulumi.getter(name="dmarcName")
+    def dmarc_name(self) -> str:
+        return pulumi.get(self, "dmarc_name")
 
     @property
     @pulumi.getter(name="domainId")
@@ -221,6 +237,8 @@ class AwaitableGetTemDomainResult(GetTemDomainResult):
             accept_tos=self.accept_tos,
             created_at=self.created_at,
             dkim_config=self.dkim_config,
+            dmarc_config=self.dmarc_config,
+            dmarc_name=self.dmarc_name,
             domain_id=self.domain_id,
             id=self.id,
             last_error=self.last_error,
@@ -280,6 +298,8 @@ def get_tem_domain(domain_id: Optional[str] = None,
         accept_tos=pulumi.get(__ret__, 'accept_tos'),
         created_at=pulumi.get(__ret__, 'created_at'),
         dkim_config=pulumi.get(__ret__, 'dkim_config'),
+        dmarc_config=pulumi.get(__ret__, 'dmarc_config'),
+        dmarc_name=pulumi.get(__ret__, 'dmarc_name'),
         domain_id=pulumi.get(__ret__, 'domain_id'),
         id=pulumi.get(__ret__, 'id'),
         last_error=pulumi.get(__ret__, 'last_error'),

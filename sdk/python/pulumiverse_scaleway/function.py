@@ -34,10 +34,10 @@ class FunctionArgs:
                  zip_hash: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Function resource.
-        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
-        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
-        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
@@ -92,7 +92,7 @@ class FunctionArgs:
     @pulumi.getter
     def handler(self) -> pulumi.Input[str]:
         """
-        Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         """
         return pulumi.get(self, "handler")
 
@@ -116,7 +116,7 @@ class FunctionArgs:
     @pulumi.getter
     def privacy(self) -> pulumi.Input[str]:
         """
-        Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         """
         return pulumi.get(self, "privacy")
 
@@ -128,7 +128,7 @@ class FunctionArgs:
     @pulumi.getter
     def runtime(self) -> pulumi.Input[str]:
         """
-        Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         """
         return pulumi.get(self, "runtime")
 
@@ -333,12 +333,12 @@ class _FunctionState:
                  zip_hash: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Function resources.
-        :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+        :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
         :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
-        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
@@ -348,10 +348,10 @@ class _FunctionState:
                > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
-        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -404,7 +404,7 @@ class _FunctionState:
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+        The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -464,7 +464,7 @@ class _FunctionState:
     @pulumi.getter
     def handler(self) -> Optional[pulumi.Input[str]]:
         """
-        Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         """
         return pulumi.get(self, "handler")
 
@@ -562,7 +562,7 @@ class _FunctionState:
     @pulumi.getter
     def privacy(self) -> Optional[pulumi.Input[str]]:
         """
-        Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         """
         return pulumi.get(self, "privacy")
 
@@ -598,7 +598,7 @@ class _FunctionState:
     @pulumi.getter
     def runtime(self) -> Optional[pulumi.Input[str]]:
         """
-        Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         """
         return pulumi.get(self, "runtime")
 
@@ -681,7 +681,7 @@ class Function(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Functions.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
 
         ## Example Usage
 
@@ -714,7 +714,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
-        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
@@ -723,10 +723,10 @@ class Function(pulumi.CustomResource):
                
                > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
-        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -740,7 +740,7 @@ class Function(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Functions.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
 
         ## Example Usage
 
@@ -879,12 +879,12 @@ class Function(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+        :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
         :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
-        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_scale: Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
         :param pulumi.Input[int] memory_limit: Memory limit in MB for your function, defaults to 128MB
@@ -894,10 +894,10 @@ class Function(pulumi.CustomResource):
                > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
-        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -934,7 +934,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> pulumi.Output[int]:
         """
-        The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+        The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -974,7 +974,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter
     def handler(self) -> pulumi.Output[str]:
         """
-        Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         """
         return pulumi.get(self, "handler")
 
@@ -1040,7 +1040,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter
     def privacy(self) -> pulumi.Output[str]:
         """
-        Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         """
         return pulumi.get(self, "privacy")
 
@@ -1064,7 +1064,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter
     def runtime(self) -> pulumi.Output[str]:
         """
-        Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         """
         return pulumi.get(self, "runtime")
 

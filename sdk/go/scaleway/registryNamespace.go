@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway Container Registry.
-// For more information see [the documentation](https://developers.scaleway.com/en/products/registry/api/).
+// For more information see [the documentation](https://www.scaleway.com/en/developers/api/registry).
 //
 // ## Example Usage
 //

@@ -190,7 +190,7 @@ type ObjectBucket struct {
 	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
 	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
 	//
@@ -254,7 +254,7 @@ type objectBucketState struct {
 	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
 	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId *string `pulumi:"projectId"`
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
 	//
@@ -289,7 +289,7 @@ type ObjectBucketState struct {
 	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
 	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId pulumi.StringPtrInput
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
 	//
@@ -324,7 +324,7 @@ type objectBucketArgs struct {
 	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
 	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId *string `pulumi:"projectId"`
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
 	//
@@ -356,7 +356,7 @@ type ObjectBucketArgs struct {
 	// The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
 	// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
 	ProjectId pulumi.StringPtrInput
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
 	//
@@ -504,7 +504,7 @@ func (o ObjectBucketOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
 func (o ObjectBucketOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

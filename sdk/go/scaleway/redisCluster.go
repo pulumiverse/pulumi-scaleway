@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Redis Clusters.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
 //
 // ## Example Usage
 //
@@ -47,7 +47,7 @@ import (
 //				},
 //				TlsEnabled: pulumi.Bool(true),
 //				UserName:   pulumi.String("my_initial_user"),
-//				Version:    pulumi.String("6.2.6"),
+//				Version:    pulumi.String("6.2.7"),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +80,7 @@ import (
 //					"tcp-keepalive": pulumi.String("120"),
 //				},
 //				UserName: pulumi.String("my_initial_user"),
-//				Version:  pulumi.String("6.2.6"),
+//				Version:  pulumi.String("6.2.7"),
 //			})
 //			if err != nil {
 //				return err
@@ -110,7 +110,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
-//				Version:     pulumi.String("6.2.6"),
+//				Version:     pulumi.String("6.2.7"),
 //				NodeType:    pulumi.String("RED1-MICRO"),
 //				UserName:    pulumi.String("my_initial_user"),
 //				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
@@ -196,7 +196,7 @@ type RedisCluster struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Identifier for the first user of the Redis Cluster.
 	UserName pulumi.StringOutput `pulumi:"userName"`
-	// Redis's Cluster version (e.g. `6.2.6`).
+	// Redis's Cluster version (e.g. `6.2.7`).
 	//
 	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
 	// cannot downgrade a Redis Cluster.
@@ -304,7 +304,7 @@ type redisClusterState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Identifier for the first user of the Redis Cluster.
 	UserName *string `pulumi:"userName"`
-	// Redis's Cluster version (e.g. `6.2.6`).
+	// Redis's Cluster version (e.g. `6.2.7`).
 	//
 	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
 	// cannot downgrade a Redis Cluster.
@@ -364,7 +364,7 @@ type RedisClusterState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// Identifier for the first user of the Redis Cluster.
 	UserName pulumi.StringPtrInput
-	// Redis's Cluster version (e.g. `6.2.6`).
+	// Redis's Cluster version (e.g. `6.2.7`).
 	//
 	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
 	// cannot downgrade a Redis Cluster.
@@ -422,7 +422,7 @@ type redisClusterArgs struct {
 	TlsEnabled *bool `pulumi:"tlsEnabled"`
 	// Identifier for the first user of the Redis Cluster.
 	UserName string `pulumi:"userName"`
-	// Redis's Cluster version (e.g. `6.2.6`).
+	// Redis's Cluster version (e.g. `6.2.7`).
 	//
 	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
 	// cannot downgrade a Redis Cluster.
@@ -477,7 +477,7 @@ type RedisClusterArgs struct {
 	TlsEnabled pulumi.BoolPtrInput
 	// Identifier for the first user of the Redis Cluster.
 	UserName pulumi.StringInput
-	// Redis's Cluster version (e.g. `6.2.6`).
+	// Redis's Cluster version (e.g. `6.2.7`).
 	//
 	// > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
 	// cannot downgrade a Redis Cluster.
@@ -668,7 +668,7 @@ func (o RedisClusterOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
-// Redis's Cluster version (e.g. `6.2.6`).
+// Redis's Cluster version (e.g. `6.2.7`).
 //
 // > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
 // cannot downgrade a Redis Cluster.

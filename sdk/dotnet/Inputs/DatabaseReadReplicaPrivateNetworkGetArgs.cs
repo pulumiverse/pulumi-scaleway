@@ -15,6 +15,8 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         /// <summary>
         /// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        /// 
+        /// &gt; **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         /// </summary>
         [Input("enableIpam")]
         public Input<bool>? EnableIpam { get; set; }

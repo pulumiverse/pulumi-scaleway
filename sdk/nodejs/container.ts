@@ -57,7 +57,7 @@ import * as utilities from "./utilities";
  * By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
  * A container can be made `private` with the privacy parameter.
  *
- * Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+ * Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
  *
  * ## Memory and vCPUs configuration
  *
@@ -148,7 +148,7 @@ export class Container extends pulumi.CustomResource {
      */
     public /*out*/ readonly errorMessage!: pulumi.Output<string>;
     /**
-     * HTTP traffic configuration
+     * Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
      */
     public readonly httpOption!: pulumi.Output<string | undefined>;
     /**
@@ -184,11 +184,11 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly port!: pulumi.Output<number>;
     /**
-     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
     public readonly privacy!: pulumi.Output<string | undefined>;
     /**
-     * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+     * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
      */
     public readonly protocol!: pulumi.Output<string | undefined>;
     /**
@@ -323,7 +323,7 @@ export interface ContainerState {
      */
     errorMessage?: pulumi.Input<string>;
     /**
-     * HTTP traffic configuration
+     * Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
      */
     httpOption?: pulumi.Input<string>;
     /**
@@ -359,11 +359,11 @@ export interface ContainerState {
      */
     port?: pulumi.Input<number>;
     /**
-     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
     privacy?: pulumi.Input<string>;
     /**
-     * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+     * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
      */
     protocol?: pulumi.Input<string>;
     /**
@@ -415,7 +415,7 @@ export interface ContainerArgs {
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * HTTP traffic configuration
+     * Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
      */
     httpOption?: pulumi.Input<string>;
     /**
@@ -451,11 +451,11 @@ export interface ContainerArgs {
      */
     port?: pulumi.Input<number>;
     /**
-     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
     privacy?: pulumi.Input<string>;
     /**
-     * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+     * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
      */
     protocol?: pulumi.Input<string>;
     /**

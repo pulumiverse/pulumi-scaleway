@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+ * Gets information about DocumentDB database.
  *
  * ## Example Usage
  *
@@ -70,7 +70,7 @@ export interface GetDocumentdbDatabaseResult {
     readonly size: string;
 }
 /**
- * Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+ * Gets information about DocumentDB database.
  *
  * ## Example Usage
  *

@@ -69,6 +69,7 @@ type LookupVpcPrivateNetworkArgs struct {
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The ID of the project the private network is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	Region    *string `pulumi:"region"`
 	// ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -87,7 +88,7 @@ type LookupVpcPrivateNetworkResult struct {
 	OrganizationId   string                           `pulumi:"organizationId"`
 	PrivateNetworkId *string                          `pulumi:"privateNetworkId"`
 	ProjectId        *string                          `pulumi:"projectId"`
-	Region           string                           `pulumi:"region"`
+	Region           *string                          `pulumi:"region"`
 	Tags             []string                         `pulumi:"tags"`
 	UpdatedAt        string                           `pulumi:"updatedAt"`
 	VpcId            *string                          `pulumi:"vpcId"`
@@ -115,6 +116,7 @@ type LookupVpcPrivateNetworkOutputArgs struct {
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
 	// The ID of the project the private network is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	Region    pulumi.StringPtrInput `pulumi:"region"`
 	// ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -177,8 +179,8 @@ func (o LookupVpcPrivateNetworkResultOutput) ProjectId() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupVpcPrivateNetworkResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupVpcPrivateNetworkResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) Tags() pulumi.StringArrayOutput {

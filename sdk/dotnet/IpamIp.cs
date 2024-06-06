@@ -139,7 +139,7 @@ namespace Pulumiverse.Scaleway
     public partial class IpamIp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// Request a specific IP in the requested source pool
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
@@ -252,7 +252,7 @@ namespace Pulumiverse.Scaleway
     public sealed class IpamIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// Request a specific IP in the requested source pool
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -308,7 +308,7 @@ namespace Pulumiverse.Scaleway
     public sealed class IpamIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// Request a specific IP in the requested source pool
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }

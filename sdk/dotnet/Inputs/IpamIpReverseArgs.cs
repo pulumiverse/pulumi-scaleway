@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IpamIpReverseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// The IP corresponding to the hostname
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }

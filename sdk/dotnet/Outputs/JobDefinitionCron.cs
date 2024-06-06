@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class JobDefinitionCron
     {
+        /// <summary>
+        /// Cron format string.
+        /// </summary>
         public readonly string Schedule;
+        /// <summary>
+        /// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        /// </summary>
         public readonly string Timezone;
 
         [OutputConstructor]

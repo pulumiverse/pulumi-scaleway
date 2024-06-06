@@ -38,7 +38,7 @@ class ObjectBucketArgs:
                
                The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
                
                * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
@@ -163,7 +163,7 @@ class ObjectBucketArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -228,7 +228,7 @@ class _ObjectBucketState:
                
                The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
                
                * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
@@ -381,7 +381,7 @@ class _ObjectBucketState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -546,7 +546,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
                
                * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
@@ -747,7 +747,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation.
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
                
                * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
@@ -854,7 +854,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 

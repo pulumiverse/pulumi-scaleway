@@ -233,7 +233,7 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Flexible IP Mac Addresses.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip/).
 
         ## Example Usage
 
@@ -298,7 +298,7 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Flexible IP Mac Addresses.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip/).
 
         ## Example Usage
 

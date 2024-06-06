@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Subscriber;
         /// <summary>
-        /// The tags associated with the load-balancer.
+        /// List of tags used as filter. LBs with these exact tags are listed.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>

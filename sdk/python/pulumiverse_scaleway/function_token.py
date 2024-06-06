@@ -232,7 +232,7 @@ class FunctionToken(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Function Token.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/#tokens-26b085).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
 
         ## Example Usage
 
@@ -286,7 +286,7 @@ class FunctionToken(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Function Token.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/#tokens-26b085).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
 
         ## Example Usage
 

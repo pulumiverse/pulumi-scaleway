@@ -128,13 +128,13 @@ class _LoadbalancerAclState:
         """
         Input properties used for looking up and filtering LoadbalancerAcl resources.
         :param pulumi.Input['LoadbalancerAclActionArgs'] action: Action to undertake when an ACL filter matches.
-        :param pulumi.Input[str] created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: The ACL description.
         :param pulumi.Input[str] frontend_id: The load-balancer Frontend ID to attach the ACL to.
         :param pulumi.Input[int] index: The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input['LoadbalancerAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
-        :param pulumi.Input[str] updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -169,7 +169,7 @@ class _LoadbalancerAclState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -241,7 +241,7 @@ class _LoadbalancerAclState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 
@@ -421,13 +421,13 @@ class LoadbalancerAcl(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['LoadbalancerAclActionArgs']] action: Action to undertake when an ACL filter matches.
-        :param pulumi.Input[str] created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: The ACL description.
         :param pulumi.Input[str] frontend_id: The load-balancer Frontend ID to attach the ACL to.
         :param pulumi.Input[int] index: The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input[pulumi.InputType['LoadbalancerAclMatchArgs']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
-        :param pulumi.Input[str] updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -455,7 +455,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -503,7 +503,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 

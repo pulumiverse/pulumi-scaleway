@@ -13,7 +13,6 @@ import (
 )
 
 // Creates and manages Scaleway Database Instances.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 //
 // ## Example Usage
 //

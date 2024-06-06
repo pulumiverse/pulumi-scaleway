@@ -38,7 +38,9 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewLoadbalancer(ctx, "base", &scaleway.LoadbalancerArgs{
-//				IpId: main.ID(),
+//				IpIds: pulumi.StringArray{
+//					main.ID(),
+//				},
 //				Zone: main.Zone,
 //				Type: pulumi.String("LB-S"),
 //			})
@@ -66,10 +68,48 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewLoadbalancer(ctx, "base", &scaleway.LoadbalancerArgs{
-//				IpId:             pulumi.Any(scaleway_lb_ip.Main.Id),
-//				Zone:             pulumi.Any(scaleway_lb_ip.Main.Zone),
-//				Type:             pulumi.String("LB-S"),
 //				AssignFlexibleIp: pulumi.Bool(false),
+//				Type:             pulumi.String("LB-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With IPv6
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			v4, err := scaleway.NewLoadbalancerIp(ctx, "v4", nil)
+//			if err != nil {
+//				return err
+//			}
+//			v6, err := scaleway.NewLoadbalancerIp(ctx, "v6", &scaleway.LoadbalancerIpArgs{
+//				IsIpv6: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//				IpIds: pulumi.StringArray{
+//					v4.ID(),
+//					v6.ID(),
+//				},
+//				Type: pulumi.String("LB-S"),
 //			})
 //			if err != nil {
 //				return err
@@ -162,14 +202,22 @@ type Loadbalancer struct {
 
 	// Defines whether to automatically assign a flexible public IP to the load-balancer.
 	AssignFlexibleIp pulumi.BoolPtrOutput `pulumi:"assignFlexibleIp"`
+	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	AssignFlexibleIpv6 pulumi.BoolPtrOutput `pulumi:"assignFlexibleIpv6"`
 	// The description of the load-balancer.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The load-balance public IP Address
+	// The load-balancer public IPv4 Address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the load-balancer.
-	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
+	//
+	// Deprecated: Please use ip_ids
+	IpId pulumi.StringOutput `pulumi:"ipId"`
+	// The List of IP IDs to attach to the Load Balancer.
+	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
+	// The load-balancer public IPv6 Address.
+	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
 	// The name of the load-balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the load-balancer is associated with.
@@ -229,14 +277,22 @@ func GetLoadbalancer(ctx *pulumi.Context,
 type loadbalancerState struct {
 	// Defines whether to automatically assign a flexible public IP to the load-balancer.
 	AssignFlexibleIp *bool `pulumi:"assignFlexibleIp"`
+	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
 	// The description of the load-balancer.
 	Description *string `pulumi:"description"`
-	// The load-balance public IP Address
+	// The load-balancer public IPv4 Address.
 	IpAddress *string `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	//
+	// Deprecated: Please use ip_ids
 	IpId *string `pulumi:"ipId"`
+	// The List of IP IDs to attach to the Load Balancer.
+	IpIds []string `pulumi:"ipIds"`
+	// The load-balancer public IPv6 Address.
+	Ipv6Address *string `pulumi:"ipv6Address"`
 	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
 	// The organization ID the load-balancer is associated with.
@@ -264,14 +320,22 @@ type loadbalancerState struct {
 type LoadbalancerState struct {
 	// Defines whether to automatically assign a flexible public IP to the load-balancer.
 	AssignFlexibleIp pulumi.BoolPtrInput
+	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	AssignFlexibleIpv6 pulumi.BoolPtrInput
 	// The description of the load-balancer.
 	Description pulumi.StringPtrInput
-	// The load-balance public IP Address
+	// The load-balancer public IPv4 Address.
 	IpAddress pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	//
+	// Deprecated: Please use ip_ids
 	IpId pulumi.StringPtrInput
+	// The List of IP IDs to attach to the Load Balancer.
+	IpIds pulumi.StringArrayInput
+	// The load-balancer public IPv6 Address.
+	Ipv6Address pulumi.StringPtrInput
 	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
 	// The organization ID the load-balancer is associated with.
@@ -303,12 +367,18 @@ func (LoadbalancerState) ElementType() reflect.Type {
 type loadbalancerArgs struct {
 	// Defines whether to automatically assign a flexible public IP to the load-balancer.
 	AssignFlexibleIp *bool `pulumi:"assignFlexibleIp"`
+	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
 	// The description of the load-balancer.
 	Description *string `pulumi:"description"`
 	// The ID of the associated LB IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	//
+	// Deprecated: Please use ip_ids
 	IpId *string `pulumi:"ipId"`
+	// The List of IP IDs to attach to the Load Balancer.
+	IpIds []string `pulumi:"ipIds"`
 	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
 	// List of private network to connect with your load balancer
@@ -333,12 +403,18 @@ type loadbalancerArgs struct {
 type LoadbalancerArgs struct {
 	// Defines whether to automatically assign a flexible public IP to the load-balancer.
 	AssignFlexibleIp pulumi.BoolPtrInput
+	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	AssignFlexibleIpv6 pulumi.BoolPtrInput
 	// The description of the load-balancer.
 	Description pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	//
+	// Deprecated: Please use ip_ids
 	IpId pulumi.StringPtrInput
+	// The List of IP IDs to attach to the Load Balancer.
+	IpIds pulumi.StringArrayInput
 	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
 	// List of private network to connect with your load balancer
@@ -451,12 +527,17 @@ func (o LoadbalancerOutput) AssignFlexibleIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.AssignFlexibleIp }).(pulumi.BoolPtrOutput)
 }
 
+// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+func (o LoadbalancerOutput) AssignFlexibleIpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.AssignFlexibleIpv6 }).(pulumi.BoolPtrOutput)
+}
+
 // The description of the load-balancer.
 func (o LoadbalancerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The load-balance public IP Address
+// The load-balancer public IPv4 Address.
 func (o LoadbalancerOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -464,8 +545,20 @@ func (o LoadbalancerOutput) IpAddress() pulumi.StringOutput {
 // The ID of the associated LB IP. See below.
 //
 // > **Important:** Updates to `ipId` will recreate the load-balancer.
-func (o LoadbalancerOutput) IpId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.IpId }).(pulumi.StringPtrOutput)
+//
+// Deprecated: Please use ip_ids
+func (o LoadbalancerOutput) IpId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.IpId }).(pulumi.StringOutput)
+}
+
+// The List of IP IDs to attach to the Load Balancer.
+func (o LoadbalancerOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
+}
+
+// The load-balancer public IPv6 Address.
+func (o LoadbalancerOutput) Ipv6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
 // The name of the load-balancer.

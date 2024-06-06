@@ -88,7 +88,7 @@ import (
 // By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
 // A container can be made `private` with the privacy parameter.
 //
-// Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+// Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
 //
 // ## Memory and vCPUs configuration
 //
@@ -138,7 +138,7 @@ type Container struct {
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
-	// HTTP traffic configuration
+	// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
 	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
@@ -158,9 +158,9 @@ type Container struct {
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntOutput `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrOutput `pulumi:"privacy"`
-	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -232,7 +232,7 @@ type containerState struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage *string `pulumi:"errorMessage"`
-	// HTTP traffic configuration
+	// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
 	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
@@ -252,9 +252,9 @@ type containerState struct {
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
-	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol *string `pulumi:"protocol"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
@@ -287,7 +287,7 @@ type ContainerState struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// The error message of the container.
 	ErrorMessage pulumi.StringPtrInput
-	// HTTP traffic configuration
+	// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
 	HttpOption pulumi.StringPtrInput
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntPtrInput
@@ -307,9 +307,9 @@ type ContainerState struct {
 	NamespaceId pulumi.StringPtrInput
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
-	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
-	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
@@ -340,7 +340,7 @@ type containerArgs struct {
 	Description *string `pulumi:"description"`
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// HTTP traffic configuration
+	// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
 	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
@@ -360,9 +360,9 @@ type containerArgs struct {
 	NamespaceId string `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
-	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol *string `pulumi:"protocol"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
@@ -390,7 +390,7 @@ type ContainerArgs struct {
 	Description pulumi.StringPtrInput
 	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables pulumi.StringMapInput
-	// HTTP traffic configuration
+	// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
 	HttpOption pulumi.StringPtrInput
 	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
 	MaxConcurrency pulumi.IntPtrInput
@@ -410,9 +410,9 @@ type ContainerArgs struct {
 	NamespaceId pulumi.StringInput
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
-	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
-	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
@@ -552,7 +552,7 @@ func (o ContainerOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
-// HTTP traffic configuration
+// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
 func (o ContainerOutput) HttpOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
 }
@@ -596,12 +596,12 @@ func (o ContainerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 func (o ContainerOutput) Privacy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Privacy }).(pulumi.StringPtrOutput)
 }
 
-// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 func (o ContainerOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }

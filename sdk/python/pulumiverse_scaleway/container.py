@@ -47,15 +47,15 @@ class ContainerArgs:
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
         :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
         :param pulumi.Input[str] name: The unique name of the container name.
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
@@ -173,7 +173,7 @@ class ContainerArgs:
     @pulumi.getter(name="httpOption")
     def http_option(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP traffic configuration
+        Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         """
         return pulumi.get(self, "http_option")
 
@@ -257,7 +257,7 @@ class ContainerArgs:
     @pulumi.getter
     def privacy(self) -> Optional[pulumi.Input[str]]:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
@@ -269,7 +269,7 @@ class ContainerArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         """
         return pulumi.get(self, "protocol")
 
@@ -387,7 +387,7 @@ class _ContainerState:
         :param pulumi.Input[str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
@@ -399,8 +399,8 @@ class _ContainerState:
                
                The following arguments are optional:
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
@@ -545,7 +545,7 @@ class _ContainerState:
     @pulumi.getter(name="httpOption")
     def http_option(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP traffic configuration
+        Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         """
         return pulumi.get(self, "http_option")
 
@@ -645,7 +645,7 @@ class _ContainerState:
     @pulumi.getter
     def privacy(self) -> Optional[pulumi.Input[str]]:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
@@ -657,7 +657,7 @@ class _ContainerState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         """
         return pulumi.get(self, "protocol")
 
@@ -816,7 +816,7 @@ class Container(pulumi.CustomResource):
         By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
         A container can be made `private` with the privacy parameter.
 
-        Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+        Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
 
         ## Memory and vCPUs configuration
 
@@ -856,7 +856,7 @@ class Container(pulumi.CustomResource):
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
@@ -868,8 +868,8 @@ class Container(pulumi.CustomResource):
                
                The following arguments are optional:
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
@@ -935,7 +935,7 @@ class Container(pulumi.CustomResource):
         By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
         A container can be made `private` with the privacy parameter.
 
-        Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+        Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
 
         ## Memory and vCPUs configuration
 
@@ -1087,7 +1087,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
         :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
@@ -1099,8 +1099,8 @@ class Container(pulumi.CustomResource):
                
                The following arguments are optional:
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
@@ -1199,7 +1199,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="httpOption")
     def http_option(self) -> pulumi.Output[Optional[str]]:
         """
-        HTTP traffic configuration
+        Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         """
         return pulumi.get(self, "http_option")
 
@@ -1267,7 +1267,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def privacy(self) -> pulumi.Output[Optional[str]]:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
@@ -1275,7 +1275,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[Optional[str]]:
         """
-        The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         """
         return pulumi.get(self, "protocol")
 

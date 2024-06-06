@@ -104,6 +104,9 @@ namespace Pulumiverse.Scaleway
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
+        [Input("region")]
+        public string? Region { get; set; }
+
         /// <summary>
         /// ID of the VPC in which the private network is. Cannot be used with `private_network_id`.
         /// </summary>
@@ -135,6 +138,9 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// ID of the VPC in which the private network is. Cannot be used with `private_network_id`.
@@ -170,7 +176,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
         public readonly string? ProjectId;
-        public readonly string Region;
+        public readonly string? Region;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly string? VpcId;
@@ -196,7 +202,7 @@ namespace Pulumiverse.Scaleway
 
             string? projectId,
 
-            string region,
+            string? region,
 
             ImmutableArray<string> tags,
 

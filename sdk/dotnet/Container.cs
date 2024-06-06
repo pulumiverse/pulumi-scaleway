@@ -76,7 +76,7 @@ namespace Pulumiverse.Scaleway
     /// By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
     /// A container can be made `private` with the privacy parameter.
     /// 
-    /// Please check our [authentication](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) section
+    /// Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
     /// 
     /// ## Memory and vCPUs configuration
     /// 
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
-        /// HTTP traffic configuration
+        /// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         /// </summary>
         [Output("httpOption")]
         public Output<string?> HttpOption { get; private set; } = null!;
@@ -208,13 +208,13 @@ namespace Pulumiverse.Scaleway
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         [Output("privacy")]
         public Output<string?> Privacy { get; private set; } = null!;
 
         /// <summary>
-        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
@@ -339,7 +339,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// HTTP traffic configuration
+        /// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
@@ -391,13 +391,13 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -507,7 +507,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ErrorMessage { get; set; }
 
         /// <summary>
-        /// HTTP traffic configuration
+        /// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
@@ -559,13 +559,13 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

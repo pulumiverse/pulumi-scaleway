@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Database Instances.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -217,6 +217,10 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly loadBalancers!: pulumi.Output<outputs.DatabaseInstanceLoadBalancer[]>;
     /**
+     * Logs policy configuration
+     */
+    public readonly logsPolicy!: pulumi.Output<outputs.DatabaseInstanceLogsPolicy>;
+    /**
      * The name of the Database Instance.
      */
     public readonly name!: pulumi.Output<string>;
@@ -224,7 +228,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * interruption.
      *
      * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
      * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -305,6 +309,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["initSettings"] = state ? state.initSettings : undefined;
             resourceInputs["isHaCluster"] = state ? state.isHaCluster : undefined;
             resourceInputs["loadBalancers"] = state ? state.loadBalancers : undefined;
+            resourceInputs["logsPolicy"] = state ? state.logsPolicy : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -334,6 +339,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["initSettings"] = args ? args.initSettings : undefined;
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
             resourceInputs["loadBalancers"] = args ? args.loadBalancers : undefined;
+            resourceInputs["logsPolicy"] = args ? args.logsPolicy : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -413,6 +419,10 @@ export interface DatabaseInstanceState {
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceLoadBalancer>[]>;
     /**
+     * Logs policy configuration
+     */
+    logsPolicy?: pulumi.Input<inputs.DatabaseInstanceLogsPolicy>;
+    /**
      * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
@@ -420,7 +430,7 @@ export interface DatabaseInstanceState {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * interruption.
      *
      * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
      * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -519,6 +529,10 @@ export interface DatabaseInstanceArgs {
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceLoadBalancer>[]>;
     /**
+     * Logs policy configuration
+     */
+    logsPolicy?: pulumi.Input<inputs.DatabaseInstanceLogsPolicy>;
+    /**
      * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
@@ -526,7 +540,7 @@ export interface DatabaseInstanceArgs {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * interruption.
      *
      * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
      * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.

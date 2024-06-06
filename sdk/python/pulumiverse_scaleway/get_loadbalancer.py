@@ -22,10 +22,13 @@ class GetLoadbalancerResult:
     """
     A collection of values returned by getLoadbalancer.
     """
-    def __init__(__self__, assign_flexible_ip=None, description=None, id=None, ip_address=None, ip_id=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+    def __init__(__self__, assign_flexible_ip=None, assign_flexible_ipv6=None, description=None, id=None, ip_address=None, ip_id=None, ip_ids=None, ipv6_address=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
         if assign_flexible_ip and not isinstance(assign_flexible_ip, bool):
             raise TypeError("Expected argument 'assign_flexible_ip' to be a bool")
         pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
+        if assign_flexible_ipv6 and not isinstance(assign_flexible_ipv6, bool):
+            raise TypeError("Expected argument 'assign_flexible_ipv6' to be a bool")
+        pulumi.set(__self__, "assign_flexible_ipv6", assign_flexible_ipv6)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -38,6 +41,12 @@ class GetLoadbalancerResult:
         if ip_id and not isinstance(ip_id, str):
             raise TypeError("Expected argument 'ip_id' to be a str")
         pulumi.set(__self__, "ip_id", ip_id)
+        if ip_ids and not isinstance(ip_ids, list):
+            raise TypeError("Expected argument 'ip_ids' to be a list")
+        pulumi.set(__self__, "ip_ids", ip_ids)
+        if ipv6_address and not isinstance(ipv6_address, str):
+            raise TypeError("Expected argument 'ipv6_address' to be a str")
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
         if lb_id and not isinstance(lb_id, str):
             raise TypeError("Expected argument 'lb_id' to be a str")
         pulumi.set(__self__, "lb_id", lb_id)
@@ -78,6 +87,11 @@ class GetLoadbalancerResult:
         return pulumi.get(self, "assign_flexible_ip")
 
     @property
+    @pulumi.getter(name="assignFlexibleIpv6")
+    def assign_flexible_ipv6(self) -> bool:
+        return pulumi.get(self, "assign_flexible_ipv6")
+
+    @property
     @pulumi.getter
     def description(self) -> str:
         return pulumi.get(self, "description")
@@ -102,6 +116,16 @@ class GetLoadbalancerResult:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> str:
         return pulumi.get(self, "ip_id")
+
+    @property
+    @pulumi.getter(name="ipIds")
+    def ip_ids(self) -> Sequence[str]:
+        return pulumi.get(self, "ip_ids")
+
+    @property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> str:
+        return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="lbId")
@@ -175,10 +199,13 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
             yield self
         return GetLoadbalancerResult(
             assign_flexible_ip=self.assign_flexible_ip,
+            assign_flexible_ipv6=self.assign_flexible_ipv6,
             description=self.description,
             id=self.id,
             ip_address=self.ip_address,
             ip_id=self.ip_id,
+            ip_ids=self.ip_ids,
+            ipv6_address=self.ipv6_address,
             lb_id=self.lb_id,
             name=self.name,
             organization_id=self.organization_id,
@@ -227,10 +254,13 @@ def get_loadbalancer(lb_id: Optional[str] = None,
 
     return AwaitableGetLoadbalancerResult(
         assign_flexible_ip=pulumi.get(__ret__, 'assign_flexible_ip'),
+        assign_flexible_ipv6=pulumi.get(__ret__, 'assign_flexible_ipv6'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
         ip_id=pulumi.get(__ret__, 'ip_id'),
+        ip_ids=pulumi.get(__ret__, 'ip_ids'),
+        ipv6_address=pulumi.get(__ret__, 'ipv6_address'),
         lb_id=pulumi.get(__ret__, 'lb_id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),

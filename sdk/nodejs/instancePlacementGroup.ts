@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653).
+ * Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653).
  *
  * ## Example Usage
  *
@@ -63,7 +63,7 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+     * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
     public readonly policyMode!: pulumi.Output<string | undefined>;
     /**
@@ -71,7 +71,7 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly policyRespected!: pulumi.Output<boolean>;
     /**
-     * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+     * The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     public readonly policyType!: pulumi.Output<string | undefined>;
     /**
@@ -137,7 +137,7 @@ export interface InstancePlacementGroupState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+     * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
     policyMode?: pulumi.Input<string>;
     /**
@@ -145,7 +145,7 @@ export interface InstancePlacementGroupState {
      */
     policyRespected?: pulumi.Input<boolean>;
     /**
-     * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+     * The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     policyType?: pulumi.Input<string>;
     /**
@@ -171,11 +171,11 @@ export interface InstancePlacementGroupArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+     * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
      */
     policyMode?: pulumi.Input<string>;
     /**
-     * The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+     * The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
     policyType?: pulumi.Input<string>;
     /**

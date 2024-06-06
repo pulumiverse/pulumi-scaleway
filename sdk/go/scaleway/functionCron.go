@@ -18,7 +18,7 @@ import (
 // check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
 //
 // You can check also
-// our [functions cron api documentation](https://developers.scaleway.com/en/products/functions/api/#crons-942bf4).
+// our [functions cron api documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#crons-942bf4).
 //
 // ## Example Usage
 //

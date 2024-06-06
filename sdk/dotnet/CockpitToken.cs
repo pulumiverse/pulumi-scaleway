@@ -21,17 +21,15 @@ namespace Pulumiverse.Scaleway
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainCockpit = Scaleway.GetCockpit.Invoke();
+    ///     var project = new Scaleway.AccountProject("project");
     /// 
-    ///     // Create a token for the cockpit that can write metrics and logs
-    ///     var mainCockpitToken = new Scaleway.CockpitToken("mainCockpitToken", new()
+    ///     var main = new Scaleway.CockpitToken("main", new()
     ///     {
-    ///         ProjectId = mainCockpit.Apply(getCockpitResult =&gt; getCockpitResult.ProjectId),
+    ///         ProjectId = project.Id,
     ///     });
     /// 
     /// });
@@ -41,17 +39,16 @@ namespace Pulumiverse.Scaleway
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainCockpit = Scaleway.GetCockpit.Invoke();
+    ///     var project = new Scaleway.AccountProject("project");
     /// 
-    ///     // Create a token for the cockpit that can read metrics and logs but not write
-    ///     var mainCockpitToken = new Scaleway.CockpitToken("mainCockpitToken", new()
+    ///     // Create a token that can read metrics and logs but not write
+    ///     var main = new Scaleway.CockpitToken("main", new()
     ///     {
-    ///         ProjectId = mainCockpit.Apply(getCockpitResult =&gt; getCockpitResult.ProjectId),
+    ///         ProjectId = project.Id,
     ///         Scopes = new Scaleway.Inputs.CockpitTokenScopesArgs
     ///         {
     ///             QueryMetrics = true,
@@ -66,17 +63,23 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Cockpits can be imported using the token ID, e.g.
+    /// Cockpits tokens can be imported using the `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/cockpitToken:CockpitToken main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/cockpitToken:CockpitToken")]
     public partial class CockpitToken : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The date and time of the creation of the Cockpit Token (Format ISO 8601)
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
         /// <summary>
         /// The name of the token.
         /// </summary>
@@ -90,6 +93,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// `region`) The region of the cockpit token.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// Allowed scopes.
         /// </summary>
         [Output("scopes")]
@@ -100,6 +109,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The date and time of the last update of the Cockpit Token (Format ISO 8601)
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
@@ -165,6 +180,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// `region`) The region of the cockpit token.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// Allowed scopes.
         /// </summary>
         [Input("scopes")]
@@ -179,6 +200,12 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitTokenState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The date and time of the creation of the Cockpit Token (Format ISO 8601)
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
         /// The name of the token.
         /// </summary>
         [Input("name")]
@@ -189,6 +216,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region of the cockpit token.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// Allowed scopes.
@@ -211,6 +244,12 @@ namespace Pulumiverse.Scaleway
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The date and time of the last update of the Cockpit Token (Format ISO 8601)
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         public CockpitTokenState()
         {
