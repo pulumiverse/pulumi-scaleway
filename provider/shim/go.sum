@@ -184,6 +184,8 @@ github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26.0.20240503144623-358f61d22470
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26.0.20240503144623-358f61d22470/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.40.0 h1:+C6+niFS0uldcAEyTHD/jVmxs6tp5+yO6yZ2dQdEks4=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.40.0/go.mod h1:uWwDKyvBGnBt5MntVotSpBPmtmf8mq+YhJhe1BYqOA0=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.41.1 h1:aU1i9YW3dafA0SXwr+tlvKsTX2/CaWqN2aKoUQi4SVs=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.41.1/go.mod h1:sLsWaKcVE6AkX0aL6mUCPIzXT9aqXf4i8UGjCwbq+WQ=
 github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 h1:n661drycOFuPLCN3Uc8sB6B/s6Z4t2xvBgU1htSHuq8=
 github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3/go.mod h1:A0bzQcvG0E7Rwjx0REVgAGH58e96+X0MeOfepqsbeW4=
 github.com/skeema/knownhosts v1.2.2 h1:Iug2P4fLmDw9f41PB6thxUkNUkJzB5i+1/exaj40L3A=
