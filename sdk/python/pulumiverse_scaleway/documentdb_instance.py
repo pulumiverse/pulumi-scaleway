@@ -473,7 +473,6 @@ class DocumentdbInstance(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 
@@ -540,7 +539,6 @@ class DocumentdbInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 

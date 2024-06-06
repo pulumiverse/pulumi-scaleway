@@ -63,6 +63,8 @@ export interface GetTemDomainResult {
     readonly acceptTos: boolean;
     readonly createdAt: string;
     readonly dkimConfig: string;
+    readonly dmarcConfig: string;
+    readonly dmarcName: string;
     readonly domainId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.

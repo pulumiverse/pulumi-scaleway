@@ -61,6 +61,7 @@ export interface GetLoadbalancerArgs {
  */
 export interface GetLoadbalancerResult {
     readonly assignFlexibleIp: boolean;
+    readonly assignFlexibleIpv6: boolean;
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -71,6 +72,8 @@ export interface GetLoadbalancerResult {
      */
     readonly ipAddress: string;
     readonly ipId: string;
+    readonly ipIds: string[];
+    readonly ipv6Address: string;
     readonly lbId?: string;
     readonly name?: string;
     readonly organizationId: string;

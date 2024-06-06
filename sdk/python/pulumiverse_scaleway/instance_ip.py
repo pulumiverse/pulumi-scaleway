@@ -254,7 +254,7 @@ class InstanceIp(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
+        Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#ips-268151).
 
         ## Example Usage
 
@@ -291,7 +291,7 @@ class InstanceIp(pulumi.CustomResource):
                  args: Optional[InstanceIpArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
+        Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#ips-268151).
 
         ## Example Usage
 

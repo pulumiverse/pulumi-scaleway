@@ -65,6 +65,7 @@ export interface GetDatabaseInstanceResult {
     readonly instanceId?: string;
     readonly isHaCluster: boolean;
     readonly loadBalancers: outputs.GetDatabaseInstanceLoadBalancer[];
+    readonly logsPolicies: outputs.GetDatabaseInstanceLogsPolicy[];
     readonly name?: string;
     readonly nodeType: string;
     readonly organizationId: string;

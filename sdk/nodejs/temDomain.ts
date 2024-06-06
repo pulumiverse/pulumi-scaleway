@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Transactional Email Domains.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+ * For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
  *
  * ## Example Usage
  *
@@ -44,6 +44,11 @@ import * as utilities from "./utilities";
  *     dnsZone: domainName,
  *     type: "MX",
  *     data: ".",
+ * });
+ * const dmarc = new scaleway.DomainRecord("dmarc", {
+ *     dnsZone: domainName,
+ *     type: "TXT",
+ *     data: main.dmarcConfig,
  * });
  * ```
  *
@@ -98,6 +103,14 @@ export class TemDomain extends pulumi.CustomResource {
      * The DKIM public key, as should be recorded in the DNS zone.
      */
     public /*out*/ readonly dkimConfig!: pulumi.Output<string>;
+    /**
+     * DMARC record for the domain, as should be recorded in the DNS zone.
+     */
+    public /*out*/ readonly dmarcConfig!: pulumi.Output<string>;
+    /**
+     * DMARC name for the domain, as should be recorded in the DNS zone.
+     */
+    public /*out*/ readonly dmarcName!: pulumi.Output<string>;
     /**
      * The error message if the last check failed.
      */
@@ -188,6 +201,8 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["acceptTos"] = state ? state.acceptTos : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dkimConfig"] = state ? state.dkimConfig : undefined;
+            resourceInputs["dmarcConfig"] = state ? state.dmarcConfig : undefined;
+            resourceInputs["dmarcName"] = state ? state.dmarcName : undefined;
             resourceInputs["lastError"] = state ? state.lastError : undefined;
             resourceInputs["lastValidAt"] = state ? state.lastValidAt : undefined;
             resourceInputs["mxBlackhole"] = state ? state.mxBlackhole : undefined;
@@ -217,6 +232,8 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dkimConfig"] = undefined /*out*/;
+            resourceInputs["dmarcConfig"] = undefined /*out*/;
+            resourceInputs["dmarcName"] = undefined /*out*/;
             resourceInputs["lastError"] = undefined /*out*/;
             resourceInputs["lastValidAt"] = undefined /*out*/;
             resourceInputs["mxBlackhole"] = undefined /*out*/;
@@ -255,6 +272,14 @@ export interface TemDomainState {
      * The DKIM public key, as should be recorded in the DNS zone.
      */
     dkimConfig?: pulumi.Input<string>;
+    /**
+     * DMARC record for the domain, as should be recorded in the DNS zone.
+     */
+    dmarcConfig?: pulumi.Input<string>;
+    /**
+     * DMARC name for the domain, as should be recorded in the DNS zone.
+     */
+    dmarcName?: pulumi.Input<string>;
     /**
      * The error message if the last check failed.
      */

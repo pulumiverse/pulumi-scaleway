@@ -162,7 +162,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+     * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -227,7 +227,7 @@ export interface ObjectBucketAclState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+     * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
     region?: pulumi.Input<string>;
 }
@@ -257,7 +257,7 @@ export interface ObjectBucketAclArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+     * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
     region?: pulumi.Input<string>;
 }

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#ips-268151).
+// Creates and manages Scaleway Compute Instance IPs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#ips-268151).
 //
 // ## Example Usage
 //

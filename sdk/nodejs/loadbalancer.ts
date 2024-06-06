@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *
  * const main = new scaleway.LoadbalancerIp("main", {zone: "fr-par-1"});
  * const base = new scaleway.Loadbalancer("base", {
- *     ipId: main.id,
+ *     ipIds: [main.id],
  *     zone: main.zone,
  *     type: "LB-S",
  * });
@@ -33,10 +33,25 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const base = new scaleway.Loadbalancer("base", {
- *     ipId: scaleway_lb_ip.main.id,
- *     zone: scaleway_lb_ip.main.zone,
- *     type: "LB-S",
  *     assignFlexibleIp: false,
+ *     type: "LB-S",
+ * });
+ * ```
+ *
+ * ### With IPv6
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const v4 = new scaleway.LoadbalancerIp("v4", {});
+ * const v6 = new scaleway.LoadbalancerIp("v6", {isIpv6: true});
+ * const main = new scaleway.Loadbalancer("main", {
+ *     ipIds: [
+ *         v4.id,
+ *         v6.id,
+ *     ],
+ *     type: "LB-S",
  * });
  * ```
  *
@@ -118,19 +133,33 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly assignFlexibleIp!: pulumi.Output<boolean | undefined>;
     /**
+     * Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+     */
+    public readonly assignFlexibleIpv6!: pulumi.Output<boolean | undefined>;
+    /**
      * The description of the load-balancer.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The load-balance public IP Address
+     * The load-balancer public IPv4 Address.
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
      * The ID of the associated LB IP. See below.
      *
      * > **Important:** Updates to `ipId` will recreate the load-balancer.
+     *
+     * @deprecated Please use ip_ids
      */
-    public readonly ipId!: pulumi.Output<string | undefined>;
+    public readonly ipId!: pulumi.Output<string>;
+    /**
+     * The List of IP IDs to attach to the Load Balancer.
+     */
+    public readonly ipIds!: pulumi.Output<string[]>;
+    /**
+     * The load-balancer public IPv6 Address.
+     */
+    public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
     /**
      * The name of the load-balancer.
      */
@@ -188,9 +217,12 @@ export class Loadbalancer extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as LoadbalancerState | undefined;
             resourceInputs["assignFlexibleIp"] = state ? state.assignFlexibleIp : undefined;
+            resourceInputs["assignFlexibleIpv6"] = state ? state.assignFlexibleIpv6 : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
             resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["ipIds"] = state ? state.ipIds : undefined;
+            resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
@@ -207,8 +239,10 @@ export class Loadbalancer extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["assignFlexibleIp"] = args ? args.assignFlexibleIp : undefined;
+            resourceInputs["assignFlexibleIpv6"] = args ? args.assignFlexibleIpv6 : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["ipIds"] = args ? args.ipIds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -218,6 +252,7 @@ export class Loadbalancer extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["ipAddress"] = undefined /*out*/;
+            resourceInputs["ipv6Address"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
         }
@@ -235,19 +270,33 @@ export interface LoadbalancerState {
      */
     assignFlexibleIp?: pulumi.Input<boolean>;
     /**
+     * Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+     */
+    assignFlexibleIpv6?: pulumi.Input<boolean>;
+    /**
      * The description of the load-balancer.
      */
     description?: pulumi.Input<string>;
     /**
-     * The load-balance public IP Address
+     * The load-balancer public IPv4 Address.
      */
     ipAddress?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
      *
      * > **Important:** Updates to `ipId` will recreate the load-balancer.
+     *
+     * @deprecated Please use ip_ids
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * The List of IP IDs to attach to the Load Balancer.
+     */
+    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The load-balancer public IPv6 Address.
+     */
+    ipv6Address?: pulumi.Input<string>;
     /**
      * The name of the load-balancer.
      */
@@ -301,6 +350,10 @@ export interface LoadbalancerArgs {
      */
     assignFlexibleIp?: pulumi.Input<boolean>;
     /**
+     * Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+     */
+    assignFlexibleIpv6?: pulumi.Input<boolean>;
+    /**
      * The description of the load-balancer.
      */
     description?: pulumi.Input<string>;
@@ -308,8 +361,14 @@ export interface LoadbalancerArgs {
      * The ID of the associated LB IP. See below.
      *
      * > **Important:** Updates to `ipId` will recreate the load-balancer.
+     *
+     * @deprecated Please use ip_ids
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * The List of IP IDs to attach to the Load Balancer.
+     */
+    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the load-balancer.
      */

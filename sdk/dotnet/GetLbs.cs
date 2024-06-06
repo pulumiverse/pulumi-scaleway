@@ -31,6 +31,14 @@ namespace Pulumiverse.Scaleway
         ///         Zone = "fr-par-2",
         ///     });
         /// 
+        ///     var lbsByTags = Scaleway.GetLbs.Invoke(new()
+        ///     {
+        ///         Tags = new[]
+        ///         {
+        ///             "a tag",
+        ///         },
+        ///     });
+        /// 
         /// });
         /// ```
         /// </summary>
@@ -56,6 +64,14 @@ namespace Pulumiverse.Scaleway
         ///         Zone = "fr-par-2",
         ///     });
         /// 
+        ///     var lbsByTags = Scaleway.GetLbs.Invoke(new()
+        ///     {
+        ///         Tags = new[]
+        ///         {
+        ///             "a tag",
+        ///         },
+        ///     });
+        /// 
         /// });
         /// ```
         /// </summary>
@@ -77,6 +93,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
+
+        [Input("tags")]
+        private List<string>? _tags;
+
+        /// <summary>
+        /// List of tags used as filter. LBs with these exact tags are listed.
+        /// </summary>
+        public List<string> Tags
+        {
+            get => _tags ?? (_tags = new List<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// `zone`) The zone in which LBs exist.
@@ -103,6 +131,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// List of tags used as filter. LBs with these exact tags are listed.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// `zone`) The zone in which LBs exist.
@@ -141,6 +181,10 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
+        /// The tags associated with the load-balancer.
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
+        /// <summary>
         /// The zone in which the load-balancer is.
         /// </summary>
         public readonly string Zone;
@@ -157,6 +201,8 @@ namespace Pulumiverse.Scaleway
 
             string projectId,
 
+            ImmutableArray<string> tags,
+
             string zone)
         {
             Id = id;
@@ -164,6 +210,7 @@ namespace Pulumiverse.Scaleway
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;
+            Tags = tags;
             Zone = zone;
         }
     }

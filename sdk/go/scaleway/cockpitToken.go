@@ -29,13 +29,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainCockpit, err := scaleway.LookupCockpit(ctx, nil, nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
 //			if err != nil {
 //				return err
 //			}
-//			// Create a token for the cockpit that can write metrics and logs
-//			_, err = scaleway.NewCockpitToken(ctx, "mainCockpitToken", &scaleway.CockpitTokenArgs{
-//				ProjectId: pulumi.String(mainCockpit.ProjectId),
+//			_, err = scaleway.NewCockpitToken(ctx, "main", &scaleway.CockpitTokenArgs{
+//				ProjectId: project.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -58,13 +57,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainCockpit, err := scaleway.LookupCockpit(ctx, nil, nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
 //			if err != nil {
 //				return err
 //			}
-//			// Create a token for the cockpit that can read metrics and logs but not write
-//			_, err = scaleway.NewCockpitToken(ctx, "mainCockpitToken", &scaleway.CockpitTokenArgs{
-//				ProjectId: pulumi.String(mainCockpit.ProjectId),
+//			// Create a token that can read metrics and logs but not write
+//			_, err = scaleway.NewCockpitToken(ctx, "main", &scaleway.CockpitTokenArgs{
+//				ProjectId: project.ID(),
 //				Scopes: &scaleway.CockpitTokenScopesArgs{
 //					QueryMetrics: pulumi.Bool(true),
 //					WriteMetrics: pulumi.Bool(false),
@@ -83,24 +82,30 @@ import (
 //
 // ## Import
 //
-// Cockpits can be imported using the token ID, e.g.
+// Cockpits tokens can be imported using the `{region}/{id}`, e.g.
 //
 // bash
 //
 // ```sh
-// $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+// $ pulumi import scaleway:index/cockpitToken:CockpitToken main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type CockpitToken struct {
 	pulumi.CustomResourceState
 
+	// The date and time of the creation of the Cockpit Token (Format ISO 8601)
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The name of the token.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// `region`) The region of the cockpit token.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Allowed scopes.
 	Scopes CockpitTokenScopesOutput `pulumi:"scopes"`
 	// The secret key of the token.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
+	// The date and time of the last update of the Cockpit Token (Format ISO 8601)
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
 // NewCockpitToken registers a new resource with the given unique name, arguments, and options.
@@ -137,25 +142,37 @@ func GetCockpitToken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitToken resources.
 type cockpitTokenState struct {
+	// The date and time of the creation of the Cockpit Token (Format ISO 8601)
+	CreatedAt *string `pulumi:"createdAt"`
 	// The name of the token.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region of the cockpit token.
+	Region *string `pulumi:"region"`
 	// Allowed scopes.
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
 	// The secret key of the token.
 	SecretKey *string `pulumi:"secretKey"`
+	// The date and time of the last update of the Cockpit Token (Format ISO 8601)
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type CockpitTokenState struct {
+	// The date and time of the creation of the Cockpit Token (Format ISO 8601)
+	CreatedAt pulumi.StringPtrInput
 	// The name of the token.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
+	// `region`) The region of the cockpit token.
+	Region pulumi.StringPtrInput
 	// Allowed scopes.
 	Scopes CockpitTokenScopesPtrInput
 	// The secret key of the token.
 	SecretKey pulumi.StringPtrInput
+	// The date and time of the last update of the Cockpit Token (Format ISO 8601)
+	UpdatedAt pulumi.StringPtrInput
 }
 
 func (CockpitTokenState) ElementType() reflect.Type {
@@ -167,6 +184,8 @@ type cockpitTokenArgs struct {
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region of the cockpit token.
+	Region *string `pulumi:"region"`
 	// Allowed scopes.
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
 }
@@ -177,6 +196,8 @@ type CockpitTokenArgs struct {
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
+	// `region`) The region of the cockpit token.
+	Region pulumi.StringPtrInput
 	// Allowed scopes.
 	Scopes CockpitTokenScopesPtrInput
 }
@@ -268,6 +289,11 @@ func (o CockpitTokenOutput) ToCockpitTokenOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The date and time of the creation of the Cockpit Token (Format ISO 8601)
+func (o CockpitTokenOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // The name of the token.
 func (o CockpitTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -278,6 +304,11 @@ func (o CockpitTokenOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// `region`) The region of the cockpit token.
+func (o CockpitTokenOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
 // Allowed scopes.
 func (o CockpitTokenOutput) Scopes() CockpitTokenScopesOutput {
 	return o.ApplyT(func(v *CockpitToken) CockpitTokenScopesOutput { return v.Scopes }).(CockpitTokenScopesOutput)
@@ -286,6 +317,11 @@ func (o CockpitTokenOutput) Scopes() CockpitTokenScopesOutput {
 // The secret key of the token.
 func (o CockpitTokenOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The date and time of the last update of the Cockpit Token (Format ISO 8601)
+func (o CockpitTokenOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type CockpitTokenArrayOutput struct{ *pulumi.OutputState }

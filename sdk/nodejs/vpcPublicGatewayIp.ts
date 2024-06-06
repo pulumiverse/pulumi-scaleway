@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway VPC Public Gateway IP.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
  *
  * ## Example Usage
  *

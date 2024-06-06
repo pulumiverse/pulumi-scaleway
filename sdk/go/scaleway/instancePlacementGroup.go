@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653).
+// Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653).
 //
 // ## Example Usage
 //
@@ -53,11 +53,11 @@ type InstancePlacementGroup struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the placement group is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
 	PolicyMode pulumi.StringPtrOutput `pulumi:"policyMode"`
 	// Is true when the policy is respected.
 	PolicyRespected pulumi.BoolOutput `pulumi:"policyRespected"`
-	// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType pulumi.StringPtrOutput `pulumi:"policyType"`
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -101,11 +101,11 @@ type instancePlacementGroupState struct {
 	Name *string `pulumi:"name"`
 	// The organization ID the placement group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
 	PolicyMode *string `pulumi:"policyMode"`
 	// Is true when the policy is respected.
 	PolicyRespected *bool `pulumi:"policyRespected"`
-	// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType *string `pulumi:"policyType"`
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -120,11 +120,11 @@ type InstancePlacementGroupState struct {
 	Name pulumi.StringPtrInput
 	// The organization ID the placement group is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
 	PolicyMode pulumi.StringPtrInput
 	// Is true when the policy is respected.
 	PolicyRespected pulumi.BoolPtrInput
-	// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType pulumi.StringPtrInput
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -141,9 +141,9 @@ func (InstancePlacementGroupState) ElementType() reflect.Type {
 type instancePlacementGroupArgs struct {
 	// The name of the placement group.
 	Name *string `pulumi:"name"`
-	// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
 	PolicyMode *string `pulumi:"policyMode"`
-	// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType *string `pulumi:"policyType"`
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -157,9 +157,9 @@ type instancePlacementGroupArgs struct {
 type InstancePlacementGroupArgs struct {
 	// The name of the placement group.
 	Name pulumi.StringPtrInput
-	// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
 	PolicyMode pulumi.StringPtrInput
-	// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType pulumi.StringPtrInput
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -266,7 +266,7 @@ func (o InstancePlacementGroupOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
 func (o InstancePlacementGroupOutput) PolicyMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringPtrOutput { return v.PolicyMode }).(pulumi.StringPtrOutput)
 }
@@ -276,7 +276,7 @@ func (o InstancePlacementGroupOutput) PolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.BoolOutput { return v.PolicyRespected }).(pulumi.BoolOutput)
 }
 
-// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
+// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 func (o InstancePlacementGroupOutput) PolicyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringPtrOutput { return v.PolicyType }).(pulumi.StringPtrOutput)
 }

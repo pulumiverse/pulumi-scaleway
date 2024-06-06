@@ -13,7 +13,7 @@ import (
 
 // Creates and manages Scaleway Compute Snapshots.
 // For more information,
-// see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
+// see [the documentation](https://www.scaleway.com/en/developers/api/instance/#snapshots-756fae).
 //
 // ## Example Usage
 //

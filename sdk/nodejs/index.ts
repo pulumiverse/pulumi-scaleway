@@ -45,6 +45,11 @@ export type CockpitGrafanaUser = import("./cockpitGrafanaUser").CockpitGrafanaUs
 export const CockpitGrafanaUser: typeof import("./cockpitGrafanaUser").CockpitGrafanaUser = null as any;
 utilities.lazyLoad(exports, ["CockpitGrafanaUser"], () => require("./cockpitGrafanaUser"));
 
+export { CockpitSourceArgs, CockpitSourceState } from "./cockpitSource";
+export type CockpitSource = import("./cockpitSource").CockpitSource;
+export const CockpitSource: typeof import("./cockpitSource").CockpitSource = null as any;
+utilities.lazyLoad(exports, ["CockpitSource"], () => require("./cockpitSource"));
+
 export { CockpitTokenArgs, CockpitTokenState } from "./cockpitToken";
 export type CockpitToken = import("./cockpitToken").CockpitToken;
 export const CockpitToken: typeof import("./cockpitToken").CockpitToken = null as any;
@@ -885,6 +890,11 @@ export type TemDomain = import("./temDomain").TemDomain;
 export const TemDomain: typeof import("./temDomain").TemDomain = null as any;
 utilities.lazyLoad(exports, ["TemDomain"], () => require("./temDomain"));
 
+export { TemDomainValidationArgs, TemDomainValidationState } from "./temDomainValidation";
+export type TemDomainValidation = import("./temDomainValidation").TemDomainValidation;
+export const TemDomainValidation: typeof import("./temDomainValidation").TemDomainValidation = null as any;
+utilities.lazyLoad(exports, ["TemDomainValidation"], () => require("./temDomainValidation"));
+
 export { VpcArgs, VpcState } from "./vpc";
 export type Vpc = import("./vpc").Vpc;
 export const Vpc: typeof import("./vpc").Vpc = null as any;
@@ -965,6 +975,8 @@ const _module = {
                 return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
                 return new CockpitGrafanaUser(name, <any>undefined, { urn })
+            case "scaleway:index/cockpitSource:CockpitSource":
+                return new CockpitSource(name, <any>undefined, { urn })
             case "scaleway:index/cockpitToken:CockpitToken":
                 return new CockpitToken(name, <any>undefined, { urn })
             case "scaleway:index/container:Container":
@@ -1135,6 +1147,8 @@ const _module = {
                 return new SecretVersion(name, <any>undefined, { urn })
             case "scaleway:index/temDomain:TemDomain":
                 return new TemDomain(name, <any>undefined, { urn })
+            case "scaleway:index/temDomainValidation:TemDomainValidation":
+                return new TemDomainValidation(name, <any>undefined, { urn })
             case "scaleway:index/vpc:Vpc":
                 return new Vpc(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -1168,6 +1182,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/cockpitSource", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module)
@@ -1253,6 +1268,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/sdbDatabase", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/temDomainValidation", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)

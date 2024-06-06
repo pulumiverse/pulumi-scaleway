@@ -23,6 +23,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string PnId;
         /// <summary>
+        /// The ID of the NIC
+        /// </summary>
+        public readonly string? PnicId;
+        /// <summary>
         /// The private NIC state
         /// </summary>
         public readonly string? Status;
@@ -37,12 +41,15 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string pnId,
 
+            string? pnicId,
+
             string? status,
 
             string? zone)
         {
             MacAddress = macAddress;
             PnId = pnId;
+            PnicId = pnicId;
             Status = status;
             Zone = zone;
         }

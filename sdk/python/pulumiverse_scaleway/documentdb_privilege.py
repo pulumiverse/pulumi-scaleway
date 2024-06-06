@@ -196,7 +196,6 @@ class DocumentdbPrivilege(pulumi.CustomResource):
                  __props__=None):
         """
         Create and manage Scaleway DocumentDB database privilege.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 
@@ -237,7 +236,6 @@ class DocumentdbPrivilege(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create and manage Scaleway DocumentDB database privilege.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 

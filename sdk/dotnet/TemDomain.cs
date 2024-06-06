@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Transactional Email Domains.
-    /// For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
     /// 
     /// ## Example Usage
     /// 
@@ -72,6 +72,13 @@ namespace Pulumiverse.Scaleway
     ///         Data = ".",
     ///     });
     /// 
+    ///     var dmarc = new Scaleway.DomainRecord("dmarc", new()
+    ///     {
+    ///         DnsZone = domainName,
+    ///         Type = "TXT",
+    ///         Data = main.DmarcConfig,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -106,6 +113,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("dkimConfig")]
         public Output<string> DkimConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// DMARC record for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Output("dmarcConfig")]
+        public Output<string> DmarcConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// DMARC name for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Output("dmarcName")]
+        public Output<string> DmarcName { get; private set; } = null!;
 
         /// <summary>
         /// The error message if the last check failed.
@@ -315,6 +334,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("dkimConfig")]
         public Input<string>? DkimConfig { get; set; }
+
+        /// <summary>
+        /// DMARC record for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Input("dmarcConfig")]
+        public Input<string>? DmarcConfig { get; set; }
+
+        /// <summary>
+        /// DMARC name for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Input("dmarcName")]
+        public Input<string>? DmarcName { get; set; }
 
         /// <summary>
         /// The error message if the last check failed.

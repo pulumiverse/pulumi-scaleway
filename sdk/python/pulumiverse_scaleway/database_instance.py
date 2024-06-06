@@ -25,6 +25,7 @@ class DatabaseInstanceArgs:
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]] = None,
+                 logs_policy: Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input['DatabaseInstancePrivateNetworkArgs']] = None,
@@ -43,7 +44,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -56,6 +57,7 @@ class DatabaseInstanceArgs:
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
@@ -89,6 +91,8 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if load_balancers is not None:
             pulumi.set(__self__, "load_balancers", load_balancers)
+        if logs_policy is not None:
+            pulumi.set(__self__, "logs_policy", logs_policy)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -131,7 +135,7 @@ class DatabaseInstanceArgs:
         The type of database instance you want to create (e.g. `db-dev-s`).
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        interruption. Keep in mind that you cannot downgrade a Database Instance.
+        interruption.
 
         > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -227,6 +231,18 @@ class DatabaseInstanceArgs:
     @load_balancers.setter
     def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]):
         pulumi.set(self, "load_balancers", value)
+
+    @property
+    @pulumi.getter(name="logsPolicy")
+    def logs_policy(self) -> Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']]:
+        """
+        Logs policy configuration
+        """
+        return pulumi.get(self, "logs_policy")
+
+    @logs_policy.setter
+    def logs_policy(self, value: Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']]):
+        pulumi.set(self, "logs_policy", value)
 
     @property
     @pulumi.getter
@@ -369,6 +385,7 @@ class _DatabaseInstanceState:
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]] = None,
+                 logs_policy: Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
@@ -399,11 +416,12 @@ class _DatabaseInstanceState:
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -450,6 +468,8 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if load_balancers is not None:
             pulumi.set(__self__, "load_balancers", load_balancers)
+        if logs_policy is not None:
+            pulumi.set(__self__, "logs_policy", logs_policy)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_type is not None:
@@ -617,6 +637,18 @@ class _DatabaseInstanceState:
         pulumi.set(self, "load_balancers", value)
 
     @property
+    @pulumi.getter(name="logsPolicy")
+    def logs_policy(self) -> Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']]:
+        """
+        Logs policy configuration
+        """
+        return pulumi.get(self, "logs_policy")
+
+    @logs_policy.setter
+    def logs_policy(self, value: Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']]):
+        pulumi.set(self, "logs_policy", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -635,7 +667,7 @@ class _DatabaseInstanceState:
         The type of database instance you want to create (e.g. `db-dev-s`).
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        interruption. Keep in mind that you cannot downgrade a Database Instance.
+        interruption.
 
         > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -798,6 +830,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -812,7 +845,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -950,11 +983,12 @@ class DatabaseInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -982,7 +1016,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -1129,6 +1163,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -1159,6 +1194,7 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["init_settings"] = init_settings
             __props__.__dict__["is_ha_cluster"] = is_ha_cluster
             __props__.__dict__["load_balancers"] = load_balancers
+            __props__.__dict__["logs_policy"] = logs_policy
             __props__.__dict__["name"] = name
             if node_type is None and not opts.urn:
                 raise TypeError("Missing required property 'node_type'")
@@ -1200,6 +1236,7 @@ class DatabaseInstance(pulumi.CustomResource):
             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
             load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]]] = None,
+            logs_policy: Optional[pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -1235,11 +1272,12 @@ class DatabaseInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -1276,6 +1314,7 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["init_settings"] = init_settings
         __props__.__dict__["is_ha_cluster"] = is_ha_cluster
         __props__.__dict__["load_balancers"] = load_balancers
+        __props__.__dict__["logs_policy"] = logs_policy
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["organization_id"] = organization_id
@@ -1387,6 +1426,14 @@ class DatabaseInstance(pulumi.CustomResource):
         return pulumi.get(self, "load_balancers")
 
     @property
+    @pulumi.getter(name="logsPolicy")
+    def logs_policy(self) -> pulumi.Output['outputs.DatabaseInstanceLogsPolicy']:
+        """
+        Logs policy configuration
+        """
+        return pulumi.get(self, "logs_policy")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -1401,7 +1448,7 @@ class DatabaseInstance(pulumi.CustomResource):
         The type of database instance you want to create (e.g. `db-dev-s`).
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        interruption. Keep in mind that you cannot downgrade a Database Instance.
+        interruption.
 
         > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.

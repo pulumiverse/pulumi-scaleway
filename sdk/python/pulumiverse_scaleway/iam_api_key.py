@@ -308,7 +308,7 @@ class IamApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway IAM API Keys. For more information, please
-        check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#api-keys-3665ae)
+        check [the documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae)
 
         ## Example Usage
 
@@ -351,7 +351,7 @@ class IamApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway IAM API Keys. For more information, please
-        check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#api-keys-3665ae)
+        check [the documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae)
 
         ## Example Usage
 

@@ -122,7 +122,7 @@ class GetVpcPrivateNetworkResult:
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
     @property
@@ -171,6 +171,7 @@ class AwaitableGetVpcPrivateNetworkResult(GetVpcPrivateNetworkResult):
 def get_vpc_private_network(name: Optional[str] = None,
                             private_network_id: Optional[str] = None,
                             project_id: Optional[str] = None,
+                            region: Optional[str] = None,
                             vpc_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPrivateNetworkResult:
     """
@@ -198,6 +199,7 @@ def get_vpc_private_network(name: Optional[str] = None,
     __args__['name'] = name
     __args__['privateNetworkId'] = private_network_id
     __args__['projectId'] = project_id
+    __args__['region'] = region
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork', __args__, opts=opts, typ=GetVpcPrivateNetworkResult).value
@@ -223,6 +225,7 @@ def get_vpc_private_network(name: Optional[str] = None,
 def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                    private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                    vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
     """

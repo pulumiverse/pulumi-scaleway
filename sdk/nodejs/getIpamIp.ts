@@ -10,6 +10,73 @@ import * as utilities from "./utilities";
  * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
  *
  * ## Examples
+ *
+ * ### IPAM IP ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byId = scaleway.getIpamIp({
+ *     ipamIpId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ### Instance Private Network IP
+ *
+ * Get Instance IP in a private network.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Connect your instance to a private network using a private nic.
+ * const nic = new scaleway.InstancePrivateNic("nic", {
+ *     serverId: scaleway_instance_server.server.id,
+ *     privateNetworkId: scaleway_vpc_private_network.pn.id,
+ * });
+ * const byMac = scaleway.getIpamIpOutput({
+ *     macAddress: nic.macAddress,
+ *     type: "ipv4",
+ * });
+ * const byId = scaleway.getIpamIpOutput({
+ *     resource: {
+ *         id: nic.id,
+ *         type: "instance_private_nic",
+ *     },
+ *     type: "ipv4",
+ * });
+ * ```
+ *
+ * ### RDB instance
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Find the private IPv4 using resource name
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * const byName = scaleway.getIpamIpOutput({
+ *     resource: {
+ *         name: main.name,
+ *         type: "rdb_instance",
+ *     },
+ *     type: "ipv4",
+ * });
+ * ```
  */
 export function getIpamIp(args?: GetIpamIpArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpResult> {
     args = args || {};
@@ -109,6 +176,73 @@ export interface GetIpamIpResult {
  * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
  *
  * ## Examples
+ *
+ * ### IPAM IP ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const byId = scaleway.getIpamIp({
+ *     ipamIpId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ### Instance Private Network IP
+ *
+ * Get Instance IP in a private network.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Connect your instance to a private network using a private nic.
+ * const nic = new scaleway.InstancePrivateNic("nic", {
+ *     serverId: scaleway_instance_server.server.id,
+ *     privateNetworkId: scaleway_vpc_private_network.pn.id,
+ * });
+ * const byMac = scaleway.getIpamIpOutput({
+ *     macAddress: nic.macAddress,
+ *     type: "ipv4",
+ * });
+ * const byId = scaleway.getIpamIpOutput({
+ *     resource: {
+ *         id: nic.id,
+ *         type: "instance_private_nic",
+ *     },
+ *     type: "ipv4",
+ * });
+ * ```
+ *
+ * ### RDB instance
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Find the private IPv4 using resource name
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * const byName = scaleway.getIpamIpOutput({
+ *     resource: {
+ *         name: main.name,
+ *         type: "rdb_instance",
+ *     },
+ *     type: "ipv4",
+ * });
+ * ```
  */
 export function getIpamIpOutput(args?: GetIpamIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpamIpResult> {
     return pulumi.output(args).apply((a: any) => getIpamIp(a, opts))

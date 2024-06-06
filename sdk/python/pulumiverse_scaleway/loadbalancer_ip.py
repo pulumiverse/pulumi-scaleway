@@ -14,21 +14,37 @@ __all__ = ['LoadbalancerIpArgs', 'LoadbalancerIp']
 @pulumi.input_type
 class LoadbalancerIpArgs:
     def __init__(__self__, *,
+                 is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerIp resource.
+        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
+        if is_ipv6 is not None:
+            pulumi.set(__self__, "is_ipv6", is_ipv6)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if reverse is not None:
             pulumi.set(__self__, "reverse", reverse)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="isIpv6")
+    def is_ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, creates a Flexible IP with an IPv6 address.
+        """
+        return pulumi.get(self, "is_ipv6")
+
+    @is_ipv6.setter
+    def is_ipv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_ipv6", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -71,6 +87,7 @@ class LoadbalancerIpArgs:
 class _LoadbalancerIpState:
     def __init__(__self__, *,
                  ip_address: Optional[pulumi.Input[str]] = None,
+                 is_ipv6: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -80,6 +97,7 @@ class _LoadbalancerIpState:
         """
         Input properties used for looking up and filtering LoadbalancerIp resources.
         :param pulumi.Input[str] ip_address: The IP Address
+        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
         :param pulumi.Input[str] lb_id: The associated load-balance ID if any
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
@@ -89,6 +107,8 @@ class _LoadbalancerIpState:
         """
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
+        if is_ipv6 is not None:
+            pulumi.set(__self__, "is_ipv6", is_ipv6)
         if lb_id is not None:
             pulumi.set(__self__, "lb_id", lb_id)
         if organization_id is not None:
@@ -113,6 +133,18 @@ class _LoadbalancerIpState:
     @ip_address.setter
     def ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_address", value)
+
+    @property
+    @pulumi.getter(name="isIpv6")
+    def is_ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, creates a Flexible IP with an IPv6 address.
+        """
+        return pulumi.get(self, "is_ipv6")
+
+    @is_ipv6.setter
+    def is_ipv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_ipv6", value)
 
     @property
     @pulumi.getter(name="lbId")
@@ -192,6 +224,7 @@ class LoadbalancerIp(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -211,6 +244,15 @@ class LoadbalancerIp(pulumi.CustomResource):
         ip = scaleway.LoadbalancerIp("ip", reverse="my-reverse.com")
         ```
 
+        ### With IPv6
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ipv6 = scaleway.LoadbalancerIp("ipv6", is_ipv6=True)
+        ```
+
         ## Import
 
         IPs can be imported using the `{zone}/{id}`, e.g.
@@ -223,6 +265,7 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
@@ -246,6 +289,15 @@ class LoadbalancerIp(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         ip = scaleway.LoadbalancerIp("ip", reverse="my-reverse.com")
+        ```
+
+        ### With IPv6
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ipv6 = scaleway.LoadbalancerIp("ipv6", is_ipv6=True)
         ```
 
         ## Import
@@ -273,6 +325,7 @@ class LoadbalancerIp(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -285,6 +338,7 @@ class LoadbalancerIp(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LoadbalancerIpArgs.__new__(LoadbalancerIpArgs)
 
+            __props__.__dict__["is_ipv6"] = is_ipv6
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["reverse"] = reverse
             __props__.__dict__["zone"] = zone
@@ -303,6 +357,7 @@ class LoadbalancerIp(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
+            is_ipv6: Optional[pulumi.Input[bool]] = None,
             lb_id: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -317,6 +372,7 @@ class LoadbalancerIp(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ip_address: The IP Address
+        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
         :param pulumi.Input[str] lb_id: The associated load-balance ID if any
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
@@ -329,6 +385,7 @@ class LoadbalancerIp(pulumi.CustomResource):
         __props__ = _LoadbalancerIpState.__new__(_LoadbalancerIpState)
 
         __props__.__dict__["ip_address"] = ip_address
+        __props__.__dict__["is_ipv6"] = is_ipv6
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
@@ -344,6 +401,14 @@ class LoadbalancerIp(pulumi.CustomResource):
         The IP Address
         """
         return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="isIpv6")
+    def is_ipv6(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, creates a Flexible IP with an IPv6 address.
+        """
+        return pulumi.get(self, "is_ipv6")
 
     @property
     @pulumi.getter(name="lbId")

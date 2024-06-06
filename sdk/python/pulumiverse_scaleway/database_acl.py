@@ -142,7 +142,7 @@ class DatabaseAcl(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database instance authorized IPs.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#acl-rules-allowed-ips).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
 
         ## Example Usage
 
@@ -186,7 +186,7 @@ class DatabaseAcl(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database instance authorized IPs.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#acl-rules-allowed-ips).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
 
         ## Example Usage
 

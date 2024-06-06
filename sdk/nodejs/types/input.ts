@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
      */
     id: pulumi.Input<string>;
     /**
@@ -195,6 +195,8 @@ export interface ContainerTriggerNats {
 export interface ContainerTriggerSqs {
     /**
      * ID of the mnq namespace. Deprecated.
+     *
+     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -243,6 +245,17 @@ export interface DatabaseInstanceLoadBalancer {
      * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
+}
+
+export interface DatabaseInstanceLogsPolicy {
+    /**
+     * The max age (in days) of remote logs to keep on the Database Instance
+     */
+    maxAgeRetention?: pulumi.Input<number>;
+    /**
+     * The max disk size of remote logs to keep on the Database Instance.
+     */
+    totalDiskRetention?: pulumi.Input<number>;
 }
 
 export interface DatabaseInstancePrivateNetwork {
@@ -325,6 +338,8 @@ export interface DatabaseReadReplicaDirectAccess {
 export interface DatabaseReadReplicaPrivateNetwork {
     /**
      * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     *
+     * > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
      */
     enableIpam?: pulumi.Input<boolean>;
     /**
@@ -510,6 +525,8 @@ export interface FunctionTriggerNats {
 export interface FunctionTriggerSqs {
     /**
      * ID of the mnq namespace. Deprecated.
+     *
+     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -790,6 +807,10 @@ export interface InstanceServerPrivateNetwork {
      */
     pnId: pulumi.Input<string>;
     /**
+     * The ID of the NIC
+     */
+    pnicId?: pulumi.Input<string>;
+    /**
      * The private NIC state
      */
     status?: pulumi.Input<string>;
@@ -981,7 +1002,7 @@ export interface IpamIpResource {
 
 export interface IpamIpReverse {
     /**
-     * Request a specific IP in the requested source pool.
+     * The IP corresponding to the hostname
      */
     address?: pulumi.Input<string>;
     /**
@@ -1006,7 +1027,13 @@ export interface IpamIpSource {
 }
 
 export interface JobDefinitionCron {
+    /**
+     * Cron format string.
+     */
     schedule: pulumi.Input<string>;
+    /**
+     * The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     */
     timezone: pulumi.Input<string>;
 }
 
@@ -1271,7 +1298,7 @@ export interface LoadbalancerFrontendAcl {
      */
     action: pulumi.Input<inputs.LoadbalancerFrontendAclAction>;
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -1287,7 +1314,7 @@ export interface LoadbalancerFrontendAcl {
      */
     name?: pulumi.Input<string>;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt?: pulumi.Input<string>;
 }

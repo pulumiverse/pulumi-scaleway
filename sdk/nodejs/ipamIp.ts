@@ -110,7 +110,7 @@ export class IpamIp extends pulumi.CustomResource {
     }
 
     /**
-     * Request a specific IP in the requested source pool.
+     * Request a specific IP in the requested source pool
      */
     public readonly address!: pulumi.Output<string>;
     /**
@@ -205,7 +205,7 @@ export class IpamIp extends pulumi.CustomResource {
  */
 export interface IpamIpState {
     /**
-     * Request a specific IP in the requested source pool.
+     * Request a specific IP in the requested source pool
      */
     address?: pulumi.Input<string>;
     /**
@@ -255,7 +255,7 @@ export interface IpamIpState {
  */
 export interface IpamIpArgs {
     /**
-     * Request a specific IP in the requested source pool.
+     * Request a specific IP in the requested source pool
      */
     address?: pulumi.Input<string>;
     /**

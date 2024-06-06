@@ -26,6 +26,12 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> PnId { get; set; } = null!;
 
         /// <summary>
+        /// The ID of the NIC
+        /// </summary>
+        [Input("pnicId")]
+        public Input<string>? PnicId { get; set; }
+
+        /// <summary>
         /// The private NIC state
         /// </summary>
         [Input("status")]

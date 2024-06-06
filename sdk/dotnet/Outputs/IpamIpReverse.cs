@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IpamIpReverse
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// The IP corresponding to the hostname
         /// </summary>
         public readonly string? Address;
         /// <summary>

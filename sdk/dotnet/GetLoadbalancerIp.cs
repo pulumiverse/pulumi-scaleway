@@ -128,6 +128,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string? IpAddress;
         public readonly string? IpId;
+        public readonly bool IsIpv6;
         /// <summary>
         /// The associated load-balancer ID if any
         /// </summary>
@@ -152,6 +153,8 @@ namespace Pulumiverse.Scaleway
 
             string? ipId,
 
+            bool isIpv6,
+
             string lbId,
 
             string organizationId,
@@ -167,6 +170,7 @@ namespace Pulumiverse.Scaleway
             Id = id;
             IpAddress = ipAddress;
             IpId = ipId;
+            IsIpv6 = isIpv6;
             LbId = lbId;
             OrganizationId = organizationId;
             ProjectId = projectId;

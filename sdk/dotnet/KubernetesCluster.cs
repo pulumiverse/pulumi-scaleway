@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+    /// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
     /// 
     /// ## Example Usage
     /// 

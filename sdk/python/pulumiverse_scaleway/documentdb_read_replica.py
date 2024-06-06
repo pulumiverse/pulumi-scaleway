@@ -180,7 +180,6 @@ class DocumentdbReadReplica(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway DocumentDB Database read replicas.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 
@@ -238,7 +237,6 @@ class DocumentdbReadReplica(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway DocumentDB Database read replicas.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 

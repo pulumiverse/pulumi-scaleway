@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Functions.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+ * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
  *
  * ## Example Usage
  *
@@ -64,7 +64,7 @@ export class Function extends pulumi.CustomResource {
     }
 
     /**
-     * The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+     * The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
      */
     public /*out*/ readonly cpuLimit!: pulumi.Output<number>;
     /**
@@ -84,7 +84,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+     * Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
      */
     public readonly handler!: pulumi.Output<string>;
     /**
@@ -118,7 +118,7 @@ export class Function extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
      */
     public readonly privacy!: pulumi.Output<string>;
     /**
@@ -130,7 +130,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
      */
     public readonly runtime!: pulumi.Output<string>;
     /**
@@ -232,7 +232,7 @@ export class Function extends pulumi.CustomResource {
  */
 export interface FunctionState {
     /**
-     * The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+     * The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
      */
     cpuLimit?: pulumi.Input<number>;
     /**
@@ -252,7 +252,7 @@ export interface FunctionState {
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+     * Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
      */
     handler?: pulumi.Input<string>;
     /**
@@ -286,7 +286,7 @@ export interface FunctionState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
      */
     privacy?: pulumi.Input<string>;
     /**
@@ -298,7 +298,7 @@ export interface FunctionState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
      */
     runtime?: pulumi.Input<string>;
     /**
@@ -336,7 +336,7 @@ export interface FunctionArgs {
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+     * Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
      */
     handler: pulumi.Input<string>;
     /**
@@ -366,7 +366,7 @@ export interface FunctionArgs {
      */
     namespaceId: pulumi.Input<string>;
     /**
-     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
      */
     privacy: pulumi.Input<string>;
     /**
@@ -378,7 +378,7 @@ export interface FunctionArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
      */
     runtime: pulumi.Input<string>;
     /**

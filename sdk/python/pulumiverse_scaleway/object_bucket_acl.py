@@ -29,7 +29,7 @@ class ObjectBucketAclArgs:
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         pulumi.set(__self__, "bucket", bucket)
         if access_control_policy is not None:
@@ -107,7 +107,7 @@ class ObjectBucketAclArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -132,7 +132,7 @@ class _ObjectBucketAclState:
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         if access_control_policy is not None:
             pulumi.set(__self__, "access_control_policy", access_control_policy)
@@ -211,7 +211,7 @@ class _ObjectBucketAclState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 
@@ -344,7 +344,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         ...
     @overload
@@ -523,7 +523,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -581,7 +581,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+        The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         return pulumi.get(self, "region")
 

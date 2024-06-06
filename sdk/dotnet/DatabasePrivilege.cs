@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Create and manage Scaleway RDB database privilege.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#user-and-permissions).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
     /// 
     /// ## Example Usage
     /// 

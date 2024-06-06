@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Transactional Email Domains.
-// For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+// For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 //
 // ## Example Usage
 //
@@ -94,6 +94,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = scaleway.NewDomainRecord(ctx, "dmarc", &scaleway.DomainRecordArgs{
+//				DnsZone: pulumi.String(domainName),
+//				Type:    pulumi.String("TXT"),
+//				Data:    main.DmarcConfig,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -119,6 +127,10 @@ type TemDomain struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig pulumi.StringOutput `pulumi:"dkimConfig"`
+	// DMARC record for the domain, as should be recorded in the DNS zone.
+	DmarcConfig pulumi.StringOutput `pulumi:"dmarcConfig"`
+	// DMARC name for the domain, as should be recorded in the DNS zone.
+	DmarcName pulumi.StringOutput `pulumi:"dmarcName"`
 	// The error message if the last check failed.
 	LastError pulumi.StringOutput `pulumi:"lastError"`
 	// The date and time the domain was last found to be valid (RFC 3339 format).
@@ -198,6 +210,10 @@ type temDomainState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig *string `pulumi:"dkimConfig"`
+	// DMARC record for the domain, as should be recorded in the DNS zone.
+	DmarcConfig *string `pulumi:"dmarcConfig"`
+	// DMARC name for the domain, as should be recorded in the DNS zone.
+	DmarcName *string `pulumi:"dmarcName"`
 	// The error message if the last check failed.
 	LastError *string `pulumi:"lastError"`
 	// The date and time the domain was last found to be valid (RFC 3339 format).
@@ -245,6 +261,10 @@ type TemDomainState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig pulumi.StringPtrInput
+	// DMARC record for the domain, as should be recorded in the DNS zone.
+	DmarcConfig pulumi.StringPtrInput
+	// DMARC name for the domain, as should be recorded in the DNS zone.
+	DmarcName pulumi.StringPtrInput
 	// The error message if the last check failed.
 	LastError pulumi.StringPtrInput
 	// The date and time the domain was last found to be valid (RFC 3339 format).
@@ -416,6 +436,16 @@ func (o TemDomainOutput) CreatedAt() pulumi.StringOutput {
 // The DKIM public key, as should be recorded in the DNS zone.
 func (o TemDomainOutput) DkimConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DkimConfig }).(pulumi.StringOutput)
+}
+
+// DMARC record for the domain, as should be recorded in the DNS zone.
+func (o TemDomainOutput) DmarcConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DmarcConfig }).(pulumi.StringOutput)
+}
+
+// DMARC name for the domain, as should be recorded in the DNS zone.
+func (o TemDomainOutput) DmarcName() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DmarcName }).(pulumi.StringOutput)
 }
 
 // The error message if the last check failed.

@@ -19,6 +19,9 @@ import * as utilities from "./utilities";
  *     name: "foobar",
  *     zone: "fr-par-2",
  * });
+ * const lbsByTags = scaleway.getLbs({
+ *     tags: ["a tag"],
+ * });
  * ```
  */
 export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbsResult> {
@@ -28,6 +31,7 @@ export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<
     return pulumi.runtime.invoke("scaleway:index/getLbs:getLbs", {
         "name": args.name,
         "projectId": args.projectId,
+        "tags": args.tags,
         "zone": args.zone,
     }, opts);
 }
@@ -44,6 +48,10 @@ export interface GetLbsArgs {
      * The ID of the project the load-balancer is associated with.
      */
     projectId?: string;
+    /**
+     * List of tags used as filter. LBs with these exact tags are listed.
+     */
+    tags?: string[];
     /**
      * `zone`) The zone in which LBs exist.
      */
@@ -75,6 +83,10 @@ export interface GetLbsResult {
      */
     readonly projectId: string;
     /**
+     * The tags associated with the load-balancer.
+     */
+    readonly tags?: string[];
+    /**
      * The zone in which the load-balancer is.
      */
     readonly zone: string;
@@ -91,6 +103,9 @@ export interface GetLbsResult {
  * const myKey = scaleway.getLbs({
  *     name: "foobar",
  *     zone: "fr-par-2",
+ * });
+ * const lbsByTags = scaleway.getLbs({
+ *     tags: ["a tag"],
  * });
  * ```
  */
@@ -110,6 +125,10 @@ export interface GetLbsOutputArgs {
      * The ID of the project the load-balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * List of tags used as filter. LBs with these exact tags are listed.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which LBs exist.
      */

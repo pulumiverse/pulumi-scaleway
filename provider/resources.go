@@ -24,7 +24,7 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumiverse/pulumi-scaleway/provider/pkg/version"
-	"github.com/scaleway/terraform-provider-scaleway/v2/scaleway"
+	shim "github.com/scaleway/terraform-provider-scaleway/v2/shim"
 )
 
 // all of the token components used below.
@@ -72,9 +72,7 @@ func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProvider
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
-	// Instantiate the Terraform provider
-	providerConfig := scaleway.ProviderConfig{}
-	p := shimv2.NewProvider(scaleway.Provider(&providerConfig)())
+	p := shimv2.NewProvider(shim.NewProvider()())
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:                       p,
@@ -132,6 +130,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_block_volume":                        {Tok: scalewayResource(scalewayMod, "BlockVolume")},
 			"scaleway_cockpit":                             {Tok: scalewayResource(scalewayMod, "Cockpit")},
 			"scaleway_cockpit_grafana_user":                {Tok: scalewayResource(scalewayMod, "CockpitGrafanaUser")},
+			"scaleway_cockpit_source":                      {Tok: scalewayResource(scalewayMod, "CockpitSource")},
 			"scaleway_cockpit_token":                       {Tok: scalewayResource(scalewayMod, "CockpitToken")},
 			"scaleway_container":                           {Tok: scalewayResource(scalewayMod, "Container")},
 			"scaleway_container_namespace":                 {Tok: scalewayResource(scalewayMod, "ContainerNamespace")},
@@ -215,6 +214,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_secret":                              {Tok: scalewayResource(scalewayMod, "Secret")},
 			"scaleway_secret_version":                      {Tok: scalewayResource(scalewayMod, "SecretVersion")},
 			"scaleway_tem_domain":                          {Tok: scalewayResource(scalewayMod, "TemDomain")},
+			"scaleway_tem_domain_validation":               {Tok: scalewayResource(scalewayMod, "TemDomainValidation")},
 			"scaleway_vpc_gateway_network":                 {Tok: scalewayResource(scalewayMod, "VpcGatewayNetwork")},
 			"scaleway_vpc_private_network":                 {Tok: scalewayResource(scalewayMod, "VpcPrivateNetwork")},
 			"scaleway_vpc_public_gateway":                  {Tok: scalewayResource(scalewayMod, "VpcPublicGateway")},

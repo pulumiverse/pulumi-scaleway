@@ -185,6 +185,63 @@ def get_ipam_ip(attached: Optional[bool] = None,
 
     ## Examples
 
+    ### IPAM IP ID
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_id = scaleway.get_ipam_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ### Instance Private Network IP
+
+    Get Instance IP in a private network.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    # Connect your instance to a private network using a private nic.
+    nic = scaleway.InstancePrivateNic("nic",
+        server_id=scaleway_instance_server["server"]["id"],
+        private_network_id=scaleway_vpc_private_network["pn"]["id"])
+    by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
+        type="ipv4")
+    by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
+            id=nic.id,
+            type="instance_private_nic",
+        ),
+        type="ipv4")
+    ```
+
+    ### RDB instance
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    # Find the private IPv4 using resource name
+    pn = scaleway.VpcPrivateNetwork("pn")
+    main = scaleway.DatabaseInstance("main",
+        node_type="DB-DEV-S",
+        engine="PostgreSQL-15",
+        is_ha_cluster=True,
+        disable_backup=True,
+        user_name="my_initial_user",
+        password="thiZ_is_v&ry_s3cret",
+        private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+            pn_id=pn.id,
+        ))
+    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
+            name=main.name,
+            type="rdb_instance",
+        ),
+        type="ipv4")
+    ```
+
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipam_ip_id`.
     :param str ipam_ip_id: The IPAM IP ID. Cannot be used with the rest of the arguments.
@@ -246,6 +303,63 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
 
     ## Examples
+
+    ### IPAM IP ID
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    by_id = scaleway.get_ipam_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ### Instance Private Network IP
+
+    Get Instance IP in a private network.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    # Connect your instance to a private network using a private nic.
+    nic = scaleway.InstancePrivateNic("nic",
+        server_id=scaleway_instance_server["server"]["id"],
+        private_network_id=scaleway_vpc_private_network["pn"]["id"])
+    by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
+        type="ipv4")
+    by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
+            id=nic.id,
+            type="instance_private_nic",
+        ),
+        type="ipv4")
+    ```
+
+    ### RDB instance
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    # Find the private IPv4 using resource name
+    pn = scaleway.VpcPrivateNetwork("pn")
+    main = scaleway.DatabaseInstance("main",
+        node_type="DB-DEV-S",
+        engine="PostgreSQL-15",
+        is_ha_cluster=True,
+        disable_backup=True,
+        user_name="my_initial_user",
+        password="thiZ_is_v&ry_s3cret",
+        private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
+            pn_id=pn.id,
+        ))
+    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
+            name=main.name,
+            type="rdb_instance",
+        ),
+        type="ipv4")
+    ```
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipam_ip_id`.

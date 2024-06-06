@@ -38,7 +38,7 @@ class RedisClusterArgs:
                you cannot downgrade a Redis Cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis Cluster.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
-        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.7`).
                
                > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
                cannot downgrade a Redis Cluster.
@@ -138,7 +138,7 @@ class RedisClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        Redis's Cluster version (e.g. `6.2.6`).
+        Redis's Cluster version (e.g. `6.2.7`).
 
         > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
         cannot downgrade a Redis Cluster.
@@ -343,7 +343,7 @@ class _RedisClusterState:
                > The changes on `tls_enabled` will force the resource creation.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis Cluster.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
-        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.7`).
                
                > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
                cannot downgrade a Redis Cluster.
@@ -588,7 +588,7 @@ class _RedisClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Redis's Cluster version (e.g. `6.2.6`).
+        Redis's Cluster version (e.g. `6.2.7`).
 
         > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
         cannot downgrade a Redis Cluster.
@@ -635,7 +635,7 @@ class RedisCluster(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Redis Clusters.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
 
         ## Example Usage
 
@@ -659,7 +659,7 @@ class RedisCluster(pulumi.CustomResource):
             ],
             tls_enabled=True,
             user_name="my_initial_user",
-            version="6.2.6")
+            version="6.2.7")
         ```
 
         ### With settings
@@ -676,7 +676,7 @@ class RedisCluster(pulumi.CustomResource):
                 "tcp-keepalive": "120",
             },
             user_name="my_initial_user",
-            version="6.2.6")
+            version="6.2.7")
         ```
 
         ### With a private network
@@ -687,7 +687,7 @@ class RedisCluster(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.RedisCluster("main",
-            version="6.2.6",
+            version="6.2.7",
             node_type="RED1-MICRO",
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
@@ -742,7 +742,7 @@ class RedisCluster(pulumi.CustomResource):
                
                > The changes on `tls_enabled` will force the resource creation.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
-        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.7`).
                
                > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
                cannot downgrade a Redis Cluster.
@@ -757,7 +757,7 @@ class RedisCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Redis Clusters.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
 
         ## Example Usage
 
@@ -781,7 +781,7 @@ class RedisCluster(pulumi.CustomResource):
             ],
             tls_enabled=True,
             user_name="my_initial_user",
-            version="6.2.6")
+            version="6.2.7")
         ```
 
         ### With settings
@@ -798,7 +798,7 @@ class RedisCluster(pulumi.CustomResource):
                 "tcp-keepalive": "120",
             },
             user_name="my_initial_user",
-            version="6.2.6")
+            version="6.2.7")
         ```
 
         ### With a private network
@@ -809,7 +809,7 @@ class RedisCluster(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.RedisCluster("main",
-            version="6.2.6",
+            version="6.2.7",
             node_type="RED1-MICRO",
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
@@ -964,7 +964,7 @@ class RedisCluster(pulumi.CustomResource):
                > The changes on `tls_enabled` will force the resource creation.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Redis Cluster.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Redis Cluster.
-        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.6`).
+        :param pulumi.Input[str] version: Redis's Cluster version (e.g. `6.2.7`).
                
                > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
                cannot downgrade a Redis Cluster.
@@ -1137,7 +1137,7 @@ class RedisCluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        Redis's Cluster version (e.g. `6.2.6`).
+        Redis's Cluster version (e.g. `6.2.7`).
 
         > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
         cannot downgrade a Redis Cluster.

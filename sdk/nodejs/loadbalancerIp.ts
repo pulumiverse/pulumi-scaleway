@@ -19,6 +19,15 @@ import * as utilities from "./utilities";
  * const ip = new scaleway.LoadbalancerIp("ip", {reverse: "my-reverse.com"});
  * ```
  *
+ * ### With IPv6
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const ipv6 = new scaleway.LoadbalancerIp("ipv6", {isIpv6: true});
+ * ```
+ *
  * ## Import
  *
  * IPs can be imported using the `{zone}/{id}`, e.g.
@@ -62,6 +71,10 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
+     * If true, creates a Flexible IP with an IPv6 address.
+     */
+    public readonly isIpv6!: pulumi.Output<boolean | undefined>;
+    /**
      * The associated load-balance ID if any
      */
     public /*out*/ readonly lbId!: pulumi.Output<string>;
@@ -100,6 +113,7 @@ export class LoadbalancerIp extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as LoadbalancerIpState | undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -108,6 +122,7 @@ export class LoadbalancerIp extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as LoadbalancerIpArgs | undefined;
+            resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reverse"] = args ? args.reverse : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
@@ -129,6 +144,10 @@ export interface LoadbalancerIpState {
      * The IP Address
      */
     ipAddress?: pulumi.Input<string>;
+    /**
+     * If true, creates a Flexible IP with an IPv6 address.
+     */
+    isIpv6?: pulumi.Input<boolean>;
     /**
      * The associated load-balance ID if any
      */
@@ -159,6 +178,10 @@ export interface LoadbalancerIpState {
  * The set of arguments for constructing a LoadbalancerIp resource.
  */
 export interface LoadbalancerIpArgs {
+    /**
+     * If true, creates a Flexible IP with an IPv6 address.
+     */
+    isIpv6?: pulumi.Input<boolean>;
     /**
      * `projectId`) The ID of the project the IP is associated with.
      */

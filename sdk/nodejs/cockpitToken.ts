@@ -15,23 +15,20 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainCockpit = scaleway.getCockpit({});
- * // Create a token for the cockpit that can write metrics and logs
- * const mainCockpitToken = new scaleway.CockpitToken("mainCockpitToken", {projectId: mainCockpit.then(mainCockpit => mainCockpit.projectId)});
+ * const project = new scaleway.AccountProject("project", {});
+ * const main = new scaleway.CockpitToken("main", {projectId: project.id});
  * ```
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainCockpit = scaleway.getCockpit({});
- * // Create a token for the cockpit that can read metrics and logs but not write
- * const mainCockpitToken = new scaleway.CockpitToken("mainCockpitToken", {
- *     projectId: mainCockpit.then(mainCockpit => mainCockpit.projectId),
+ * const project = new scaleway.AccountProject("project", {});
+ * // Create a token that can read metrics and logs but not write
+ * const main = new scaleway.CockpitToken("main", {
+ *     projectId: project.id,
  *     scopes: {
  *         queryMetrics: true,
  *         writeMetrics: false,
@@ -43,12 +40,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Cockpits can be imported using the token ID, e.g.
+ * Cockpits tokens can be imported using the `{region}/{id}`, e.g.
  *
  * bash
  *
  * ```sh
- * $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/cockpitToken:CockpitToken main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class CockpitToken extends pulumi.CustomResource {
@@ -80,6 +77,10 @@ export class CockpitToken extends pulumi.CustomResource {
     }
 
     /**
+     * The date and time of the creation of the Cockpit Token (Format ISO 8601)
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
      * The name of the token.
      */
     public readonly name!: pulumi.Output<string>;
@@ -88,6 +89,10 @@ export class CockpitToken extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * `region`) The region of the cockpit token.
+     */
+    public readonly region!: pulumi.Output<string>;
+    /**
      * Allowed scopes.
      */
     public readonly scopes!: pulumi.Output<outputs.CockpitTokenScopes>;
@@ -95,6 +100,10 @@ export class CockpitToken extends pulumi.CustomResource {
      * The secret key of the token.
      */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    /**
+     * The date and time of the last update of the Cockpit Token (Format ISO 8601)
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a CockpitToken resource with the given unique name, arguments, and options.
@@ -109,16 +118,22 @@ export class CockpitToken extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CockpitTokenState | undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["scopes"] = state ? state.scopes : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as CockpitTokenArgs | undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["secretKey"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["secretKey"] };
@@ -132,6 +147,10 @@ export class CockpitToken extends pulumi.CustomResource {
  */
 export interface CockpitTokenState {
     /**
+     * The date and time of the creation of the Cockpit Token (Format ISO 8601)
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
      * The name of the token.
      */
     name?: pulumi.Input<string>;
@@ -140,6 +159,10 @@ export interface CockpitTokenState {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * `region`) The region of the cockpit token.
+     */
+    region?: pulumi.Input<string>;
+    /**
      * Allowed scopes.
      */
     scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
@@ -147,6 +170,10 @@ export interface CockpitTokenState {
      * The secret key of the token.
      */
     secretKey?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the Cockpit Token (Format ISO 8601)
+     */
+    updatedAt?: pulumi.Input<string>;
 }
 
 /**
@@ -161,6 +188,10 @@ export interface CockpitTokenArgs {
      * `projectId`) The ID of the project the cockpit is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * `region`) The region of the cockpit token.
+     */
+    region?: pulumi.Input<string>;
     /**
      * Allowed scopes.
      */

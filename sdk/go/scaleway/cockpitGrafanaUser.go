@@ -30,13 +30,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainCockpit, err := scaleway.LookupCockpit(ctx, nil, nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
 //			if err != nil {
 //				return err
 //			}
-//			// Create an editor grafana user for the cockpit
-//			_, err = scaleway.NewCockpitGrafanaUser(ctx, "mainCockpitGrafanaUser", &scaleway.CockpitGrafanaUserArgs{
-//				ProjectId: pulumi.String(mainCockpit.ProjectId),
+//			_, err = scaleway.NewCockpitGrafanaUser(ctx, "main", &scaleway.CockpitGrafanaUserArgs{
+//				ProjectId: project.ID(),
 //				Login:     pulumi.String("my-awesome-user"),
 //				Role:      pulumi.String("editor"),
 //			})

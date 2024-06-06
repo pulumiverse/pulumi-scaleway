@@ -33,7 +33,10 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var @base = new Scaleway.Loadbalancer("base", new()
     ///     {
-    ///         IpId = main.Id,
+    ///         IpIds = new[]
+    ///         {
+    ///             main.Id,
+    ///         },
     ///         Zone = main.Zone,
     ///         Type = "LB-S",
     ///     });
@@ -53,10 +56,38 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var @base = new Scaleway.Loadbalancer("base", new()
     ///     {
-    ///         IpId = scaleway_lb_ip.Main.Id,
-    ///         Zone = scaleway_lb_ip.Main.Zone,
-    ///         Type = "LB-S",
     ///         AssignFlexibleIp = false,
+    ///         Type = "LB-S",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With IPv6
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var v4 = new Scaleway.LoadbalancerIp("v4");
+    /// 
+    ///     var v6 = new Scaleway.LoadbalancerIp("v6", new()
+    ///     {
+    ///         IsIpv6 = true,
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Loadbalancer("main", new()
+    ///     {
+    ///         IpIds = new[]
+    ///         {
+    ///             v4.Id,
+    ///             v6.Id,
+    ///         },
+    ///         Type = "LB-S",
     ///     });
     /// 
     /// });
@@ -132,13 +163,19 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> AssignFlexibleIp { get; private set; } = null!;
 
         /// <summary>
+        /// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+        /// </summary>
+        [Output("assignFlexibleIpv6")]
+        public Output<bool?> AssignFlexibleIpv6 { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the load-balancer.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balance public IP Address
+        /// The load-balancer public IPv4 Address.
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
@@ -149,7 +186,19 @@ namespace Pulumiverse.Scaleway
         /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
         /// </summary>
         [Output("ipId")]
-        public Output<string?> IpId { get; private set; } = null!;
+        public Output<string> IpId { get; private set; } = null!;
+
+        /// <summary>
+        /// The List of IP IDs to attach to the Load Balancer.
+        /// </summary>
+        [Output("ipIds")]
+        public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
+
+        /// <summary>
+        /// The load-balancer public IPv6 Address.
+        /// </summary>
+        [Output("ipv6Address")]
+        public Output<string> Ipv6Address { get; private set; } = null!;
 
         /// <summary>
         /// The name of the load-balancer.
@@ -265,6 +314,12 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? AssignFlexibleIp { get; set; }
 
         /// <summary>
+        /// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+        /// </summary>
+        [Input("assignFlexibleIpv6")]
+        public Input<bool>? AssignFlexibleIpv6 { get; set; }
+
+        /// <summary>
         /// The description of the load-balancer.
         /// </summary>
         [Input("description")]
@@ -277,6 +332,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        [Input("ipIds")]
+        private InputList<string>? _ipIds;
+
+        /// <summary>
+        /// The List of IP IDs to attach to the Load Balancer.
+        /// </summary>
+        public InputList<string> IpIds
+        {
+            get => _ipIds ?? (_ipIds = new InputList<string>());
+            set => _ipIds = value;
+        }
 
         /// <summary>
         /// The name of the load-balancer.
@@ -353,13 +420,19 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? AssignFlexibleIp { get; set; }
 
         /// <summary>
+        /// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+        /// </summary>
+        [Input("assignFlexibleIpv6")]
+        public Input<bool>? AssignFlexibleIpv6 { get; set; }
+
+        /// <summary>
         /// The description of the load-balancer.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The load-balance public IP Address
+        /// The load-balancer public IPv4 Address.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
@@ -371,6 +444,24 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        [Input("ipIds")]
+        private InputList<string>? _ipIds;
+
+        /// <summary>
+        /// The List of IP IDs to attach to the Load Balancer.
+        /// </summary>
+        public InputList<string> IpIds
+        {
+            get => _ipIds ?? (_ipIds = new InputList<string>());
+            set => _ipIds = value;
+        }
+
+        /// <summary>
+        /// The load-balancer public IPv6 Address.
+        /// </summary>
+        [Input("ipv6Address")]
+        public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
         /// The name of the load-balancer.

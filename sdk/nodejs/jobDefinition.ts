@@ -26,6 +26,10 @@ import * as utilities from "./utilities";
  *     env: {
  *         foo: "bar",
  *     },
+ *     cron: {
+ *         schedule: "5 4 1 * *",
+ *         timezone: "Europe/Paris",
+ *     },
  * });
  * ```
  *
@@ -75,6 +79,9 @@ export class JobDefinition extends pulumi.CustomResource {
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
     public readonly cpuLimit!: pulumi.Output<number>;
+    /**
+     * The cron configuration
+     */
     public readonly cron!: pulumi.Output<outputs.JobDefinitionCron | undefined>;
     /**
      * The description of the job
@@ -170,6 +177,9 @@ export interface JobDefinitionState {
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
     cpuLimit?: pulumi.Input<number>;
+    /**
+     * The cron configuration
+     */
     cron?: pulumi.Input<inputs.JobDefinitionCron>;
     /**
      * The description of the job
@@ -217,6 +227,9 @@ export interface JobDefinitionArgs {
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
     cpuLimit: pulumi.Input<number>;
+    /**
+     * The cron configuration
+     */
     cron?: pulumi.Input<inputs.JobDefinitionCron>;
     /**
      * The description of the job

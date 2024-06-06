@@ -137,6 +137,8 @@ namespace Pulumiverse.Scaleway
         public readonly bool AcceptTos;
         public readonly string CreatedAt;
         public readonly string DkimConfig;
+        public readonly string DmarcConfig;
+        public readonly string DmarcName;
         public readonly string? DomainId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -168,6 +170,10 @@ namespace Pulumiverse.Scaleway
             string createdAt,
 
             string dkimConfig,
+
+            string dmarcConfig,
+
+            string dmarcName,
 
             string? domainId,
 
@@ -212,6 +218,8 @@ namespace Pulumiverse.Scaleway
             AcceptTos = acceptTos;
             CreatedAt = createdAt;
             DkimConfig = dkimConfig;
+            DmarcConfig = dmarcConfig;
+            DmarcName = dmarcName;
             DomainId = domainId;
             Id = id;
             LastError = lastError;

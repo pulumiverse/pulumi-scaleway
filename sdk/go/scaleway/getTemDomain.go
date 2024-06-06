@@ -64,10 +64,12 @@ type LookupTemDomainArgs struct {
 
 // A collection of values returned by getTemDomain.
 type LookupTemDomainResult struct {
-	AcceptTos  bool    `pulumi:"acceptTos"`
-	CreatedAt  string  `pulumi:"createdAt"`
-	DkimConfig string  `pulumi:"dkimConfig"`
-	DomainId   *string `pulumi:"domainId"`
+	AcceptTos   bool    `pulumi:"acceptTos"`
+	CreatedAt   string  `pulumi:"createdAt"`
+	DkimConfig  string  `pulumi:"dkimConfig"`
+	DmarcConfig string  `pulumi:"dmarcConfig"`
+	DmarcName   string  `pulumi:"dmarcName"`
+	DomainId    *string `pulumi:"domainId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                   string                   `pulumi:"id"`
 	LastError            string                   `pulumi:"lastError"`
@@ -146,6 +148,14 @@ func (o LookupTemDomainResultOutput) CreatedAt() pulumi.StringOutput {
 
 func (o LookupTemDomainResultOutput) DkimConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DkimConfig }).(pulumi.StringOutput)
+}
+
+func (o LookupTemDomainResultOutput) DmarcConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DmarcConfig }).(pulumi.StringOutput)
+}
+
+func (o LookupTemDomainResultOutput) DmarcName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DmarcName }).(pulumi.StringOutput)
 }
 
 func (o LookupTemDomainResultOutput) DomainId() pulumi.StringPtrOutput {

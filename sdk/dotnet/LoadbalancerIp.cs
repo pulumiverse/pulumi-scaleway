@@ -34,6 +34,24 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With IPv6
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ipv6 = new Scaleway.LoadbalancerIp("ipv6", new()
+    ///     {
+    ///         IsIpv6 = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IPs can be imported using the `{zone}/{id}`, e.g.
@@ -52,6 +70,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// If true, creates a Flexible IP with an IPv6 address.
+        /// </summary>
+        [Output("isIpv6")]
+        public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
         /// The associated load-balance ID if any
@@ -137,6 +161,12 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If true, creates a Flexible IP with an IPv6 address.
+        /// </summary>
+        [Input("isIpv6")]
+        public Input<bool>? IsIpv6 { get; set; }
+
+        /// <summary>
         /// `project_id`) The ID of the project the IP is associated with.
         /// </summary>
         [Input("projectId")]
@@ -167,6 +197,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
+
+        /// <summary>
+        /// If true, creates a Flexible IP with an IPv6 address.
+        /// </summary>
+        [Input("isIpv6")]
+        public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
         /// The associated load-balance ID if any

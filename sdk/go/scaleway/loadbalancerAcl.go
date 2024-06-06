@@ -68,7 +68,7 @@ type LoadbalancerAcl struct {
 
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerAclActionOutput `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ACL description.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -80,7 +80,7 @@ type LoadbalancerAcl struct {
 	Match LoadbalancerAclMatchPtrOutput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -125,7 +125,7 @@ func GetLoadbalancerAcl(ctx *pulumi.Context,
 type loadbalancerAclState struct {
 	// Action to undertake when an ACL filter matches.
 	Action *LoadbalancerAclAction `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ACL description.
 	Description *string `pulumi:"description"`
@@ -137,14 +137,14 @@ type loadbalancerAclState struct {
 	Match *LoadbalancerAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type LoadbalancerAclState struct {
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerAclActionPtrInput
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringPtrInput
 	// The ACL description.
 	Description pulumi.StringPtrInput
@@ -156,7 +156,7 @@ type LoadbalancerAclState struct {
 	Match LoadbalancerAclMatchPtrInput
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -287,7 +287,7 @@ func (o LoadbalancerAclOutput) Action() LoadbalancerAclActionOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) LoadbalancerAclActionOutput { return v.Action }).(LoadbalancerAclActionOutput)
 }
 
-// Date and time of ACL's creation (RFC 3339 format)
+// IsDate and time of ACL's creation (RFC 3339 format)
 func (o LoadbalancerAclOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -317,7 +317,7 @@ func (o LoadbalancerAclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Date and time of ACL's update (RFC 3339 format)
+// IsDate and time of ACL's update (RFC 3339 format)
 func (o LoadbalancerAclOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

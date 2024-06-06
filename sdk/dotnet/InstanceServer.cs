@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#servers-8bf7d7).
+    /// Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#servers-8bf7d7).
     /// 
     /// Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
     /// 
@@ -298,7 +298,7 @@ namespace Pulumiverse.Scaleway
     public partial class InstanceServer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        /// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
         /// attached to the server. Updates to this field will trigger a stop/start of the server.
         /// 
         /// &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -333,7 +333,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> EnableDynamicIp { get; private set; } = null!;
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         /// </summary>
         [Output("enableIpv6")]
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
@@ -394,7 +394,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
         /// 
         /// 
         /// &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
@@ -416,7 +416,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.InstanceServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
@@ -446,7 +446,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> ReplaceOnTypeChange { get; private set; } = null!;
 
         /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
         /// </summary>
         [Output("rootVolume")]
         public Output<Outputs.InstanceServerRootVolume> RootVolume { get; private set; } = null!;
@@ -460,7 +460,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool> RoutedIpEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
@@ -556,7 +556,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _additionalVolumeIds;
 
         /// <summary>
-        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        /// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
         /// attached to the server. Updates to this field will trigger a stop/start of the server.
         /// 
         /// &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -594,7 +594,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -637,7 +637,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
         /// 
         /// 
         /// &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
@@ -650,7 +650,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
         /// </summary>
         public InputList<Inputs.InstanceServerPrivateNetworkArgs> PrivateNetworks
         {
@@ -683,7 +683,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ReplaceOnTypeChange { get; set; }
 
         /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeArgs>? RootVolume { get; set; }
@@ -697,7 +697,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
-        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
@@ -766,7 +766,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _additionalVolumeIds;
 
         /// <summary>
-        /// The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
+        /// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
         /// attached to the server. Updates to this field will trigger a stop/start of the server.
         /// 
         /// &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -804,7 +804,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -871,7 +871,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
         /// 
         /// 
         /// &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
@@ -896,7 +896,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
+        /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
         /// </summary>
         public InputList<Inputs.InstanceServerPrivateNetworkGetArgs> PrivateNetworks
         {
@@ -935,7 +935,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ReplaceOnTypeChange { get; set; }
 
         /// <summary>
-        /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
+        /// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeGetArgs>? RootVolume { get; set; }
@@ -949,7 +949,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
-        /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
+        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }

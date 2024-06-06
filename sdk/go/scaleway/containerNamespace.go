@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway Serverless Container Namespace.
-// For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
+// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#namespaces-cdce79).
 //
 // ## Example Usage
 //

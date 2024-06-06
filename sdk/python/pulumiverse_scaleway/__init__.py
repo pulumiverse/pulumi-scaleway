@@ -13,6 +13,7 @@ from .block_snapshot import *
 from .block_volume import *
 from .cockpit import *
 from .cockpit_grafana_user import *
+from .cockpit_source import *
 from .cockpit_token import *
 from .container import *
 from .container_cron import *
@@ -181,6 +182,7 @@ from .sdb_database import *
 from .secret import *
 from .secret_version import *
 from .tem_domain import *
+from .tem_domain_validation import *
 from .vpc import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
@@ -266,6 +268,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser": "CockpitGrafanaUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/cockpitSource",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/cockpitSource:CockpitSource": "CockpitSource"
   }
  },
  {
@@ -946,6 +956,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/temDomain:TemDomain": "TemDomain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/temDomainValidation",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/temDomainValidation:TemDomainValidation": "TemDomainValidation"
   }
  },
  {

@@ -77,7 +77,7 @@ export class LoadbalancerAcl extends pulumi.CustomResource {
      */
     public readonly action!: pulumi.Output<outputs.LoadbalancerAclAction>;
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -101,7 +101,7 @@ export class LoadbalancerAcl extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -160,7 +160,7 @@ export interface LoadbalancerAclState {
      */
     action?: pulumi.Input<inputs.LoadbalancerAclAction>;
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -184,7 +184,7 @@ export interface LoadbalancerAclState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt?: pulumi.Input<string>;
 }

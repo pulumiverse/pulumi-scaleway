@@ -14,6 +14,119 @@ import (
 // Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
 //
 // ## Examples
+//
+// ### IPAM IP ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupIpamIp(ctx, &scaleway.LookupIpamIpArgs{
+//				IpamIpId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Instance Private Network IP
+//
+// Get Instance IP in a private network.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Connect your instance to a private network using a private nic.
+//			nic, err := scaleway.NewInstancePrivateNic(ctx, "nic", &scaleway.InstancePrivateNicArgs{
+//				ServerId:         pulumi.Any(scaleway_instance_server.Server.Id),
+//				PrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//				MacAddress: nic.MacAddress,
+//				Type:       pulumi.String("ipv4"),
+//			}, nil)
+//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//				Resource: &scaleway.GetIpamIpResourceArgs{
+//					Id:   nic.ID(),
+//					Type: pulumi.String("instance_private_nic"),
+//				},
+//				Type: pulumi.String("ipv4"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### RDB instance
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Find the private IPv4 using resource name
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
+//					PnId: pn.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//				Resource: &scaleway.GetIpamIpResourceArgs{
+//					Name: main.Name,
+//					Type: pulumi.String("rdb_instance"),
+//				},
+//				Type: pulumi.String("ipv4"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupIpamIp(ctx *pulumi.Context, args *LookupIpamIpArgs, opts ...pulumi.InvokeOption) (*LookupIpamIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpamIpResult

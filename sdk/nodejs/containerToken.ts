@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Container Token.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#tokens-26b085).
+ * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#tokens-26b085).
  *
  * ## Example Usage
  *

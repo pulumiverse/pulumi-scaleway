@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Secrets.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
  *
  * ## Example Usage
  *

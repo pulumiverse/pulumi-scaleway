@@ -214,7 +214,6 @@ class DocumentdbUser(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database DocumentDB Users.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 
@@ -264,7 +263,6 @@ class DocumentdbUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database DocumentDB Users.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
         ## Example Usage
 

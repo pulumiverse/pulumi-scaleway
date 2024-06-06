@@ -166,7 +166,7 @@ type ObjectBucketAcl struct {
 	ExpectedBucketOwner pulumi.StringPtrOutput `pulumi:"expectedBucketOwner"`
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -213,7 +213,7 @@ type objectBucketAclState struct {
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 }
 
@@ -228,7 +228,7 @@ type ObjectBucketAclState struct {
 	ExpectedBucketOwner pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -247,7 +247,7 @@ type objectBucketAclArgs struct {
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 }
 
@@ -263,7 +263,7 @@ type ObjectBucketAclArgs struct {
 	ExpectedBucketOwner pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -379,7 +379,7 @@ func (o ObjectBucketAclOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
+// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
 func (o ObjectBucketAclOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

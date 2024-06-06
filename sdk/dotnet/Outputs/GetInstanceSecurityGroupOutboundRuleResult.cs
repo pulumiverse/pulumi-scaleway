@@ -31,7 +31,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// Computed port range for this rule (e.g: 1-1024, 22-22)
+        /// The port range (e.g `22-23`) this rule applies to.
+        /// If no `port` nor `port_range` are specified, rule will apply to all port.
+        /// Only one of `port` and `port_range` should be specified.
         /// </summary>
         public readonly string PortRange;
         /// <summary>

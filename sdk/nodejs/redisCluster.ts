@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Redis Clusters.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
  *
  * ## Example Usage
  *
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *     ],
  *     tlsEnabled: true,
  *     userName: "my_initial_user",
- *     version: "6.2.6",
+ *     version: "6.2.7",
  * });
  * ```
  *
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  *         "tcp-keepalive": "120",
  *     },
  *     userName: "my_initial_user",
- *     version: "6.2.6",
+ *     version: "6.2.7",
  * });
  * ```
  *
@@ -62,7 +62,7 @@ import * as utilities from "./utilities";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const main = new scaleway.RedisCluster("main", {
- *     version: "6.2.6",
+ *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
@@ -194,7 +194,7 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public readonly userName!: pulumi.Output<string>;
     /**
-     * Redis's Cluster version (e.g. `6.2.6`).
+     * Redis's Cluster version (e.g. `6.2.7`).
      *
      * > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
      * cannot downgrade a Redis Cluster.
@@ -359,7 +359,7 @@ export interface RedisClusterState {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Redis's Cluster version (e.g. `6.2.6`).
+     * Redis's Cluster version (e.g. `6.2.7`).
      *
      * > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
      * cannot downgrade a Redis Cluster.
@@ -444,7 +444,7 @@ export interface RedisClusterArgs {
      */
     userName: pulumi.Input<string>;
     /**
-     * Redis's Cluster version (e.g. `6.2.6`).
+     * Redis's Cluster version (e.g. `6.2.7`).
      *
      * > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
      * cannot downgrade a Redis Cluster.

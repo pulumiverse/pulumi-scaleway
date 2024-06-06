@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Database Instances.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 //
 // ## Example Usage
 //
@@ -273,12 +273,14 @@ type DatabaseInstance struct {
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
+	// Logs policy configuration
+	LogsPolicy DatabaseInstanceLogsPolicyOutput `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	// interruption.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
 	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -384,12 +386,14 @@ type databaseInstanceState struct {
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers []DatabaseInstanceLoadBalancer `pulumi:"loadBalancers"`
+	// Logs policy configuration
+	LogsPolicy *DatabaseInstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	// interruption.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
 	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -453,12 +457,14 @@ type DatabaseInstanceState struct {
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayInput
+	// Logs policy configuration
+	LogsPolicy DatabaseInstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	// interruption.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
 	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -518,12 +524,14 @@ type databaseInstanceArgs struct {
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers []DatabaseInstanceLoadBalancer `pulumi:"loadBalancers"`
+	// Logs policy configuration
+	LogsPolicy *DatabaseInstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	// interruption.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
 	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -576,12 +584,14 @@ type DatabaseInstanceArgs struct {
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers DatabaseInstanceLoadBalancerArrayInput
+	// Logs policy configuration
+	LogsPolicy DatabaseInstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	// interruption.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
 	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -760,6 +770,11 @@ func (o DatabaseInstanceOutput) LoadBalancers() DatabaseInstanceLoadBalancerArra
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(DatabaseInstanceLoadBalancerArrayOutput)
 }
 
+// Logs policy configuration
+func (o DatabaseInstanceOutput) LogsPolicy() DatabaseInstanceLogsPolicyOutput {
+	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceLogsPolicyOutput { return v.LogsPolicy }).(DatabaseInstanceLogsPolicyOutput)
+}
+
 // The name of the Database Instance.
 func (o DatabaseInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -768,7 +783,7 @@ func (o DatabaseInstanceOutput) Name() pulumi.StringOutput {
 // The type of database instance you want to create (e.g. `db-dev-s`).
 //
 // > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-// interruption. Keep in mind that you cannot downgrade a Database Instance.
+// interruption.
 //
 // > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
 // and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.

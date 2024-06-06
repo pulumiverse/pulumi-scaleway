@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetDocumentdbDatabase
     {
         /// <summary>
-        /// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+        /// Gets information about DocumentDB database.
         /// 
         /// ## Example Usage
         /// 
@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbDatabaseResult>("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", args ?? new GetDocumentdbDatabaseArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+        /// Gets information about DocumentDB database.
         /// 
         /// ## Example Usage
         /// 

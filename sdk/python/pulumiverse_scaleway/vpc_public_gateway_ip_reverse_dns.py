@@ -132,7 +132,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
                  __props__=None):
         """
         Manages Scaleway VPC Public Gateways IPs reverse DNS.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
 
         ## Example Usage
 
@@ -176,7 +176,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Scaleway VPC Public Gateways IPs reverse DNS.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#ips-268151).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
 
         ## Example Usage
 
