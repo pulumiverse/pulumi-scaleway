@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal).
+    /// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
     /// 
     /// ## Example Usage
     /// 
@@ -135,7 +135,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The offer name or UUID of the baremetal server.
-        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `offer` will recreate the server.
         /// </summary>
@@ -169,7 +169,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The UUID of the os to install on the server.
-        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
         /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Output("os")]
@@ -320,7 +320,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The offer name or UUID of the baremetal server.
-        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `offer` will recreate the server.
         /// </summary>
@@ -342,7 +342,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The UUID of the os to install on the server.
-        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
         /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Input("os")]
@@ -523,7 +523,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The offer name or UUID of the baremetal server.
-        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `offer` will recreate the server.
         /// </summary>
@@ -563,7 +563,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The UUID of the os to install on the server.
-        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+        /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
         /// &gt; **Important:** Updates to `os` will reinstall the server.
         /// </summary>
         [Input("os")]

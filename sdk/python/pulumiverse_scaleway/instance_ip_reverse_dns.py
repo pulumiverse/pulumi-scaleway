@@ -131,7 +131,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages Scaleway Compute Instance IPs Reverse DNS.
+        Manages Scaleway compute Instance IPs Reverse DNS.
 
         Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
 
@@ -176,7 +176,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
                  args: InstanceIpReverseDnsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Scaleway Compute Instance IPs Reverse DNS.
+        Manages Scaleway compute Instance IPs Reverse DNS.
 
         Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
 

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653).
+    /// Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
     /// 
     /// ## Example Usage
     /// 
@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
         /// </summary>
         [Output("policyMode")]
         public Output<string?> PolicyMode { get; private set; } = null!;
@@ -66,7 +66,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool> PolicyRespected { get; private set; } = null!;
 
         /// <summary>
-        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
         /// </summary>
         [Output("policyType")]
         public Output<string?> PolicyType { get; private set; } = null!;
@@ -143,13 +143,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
         /// </summary>
         [Input("policyMode")]
         public Input<string>? PolicyMode { get; set; }
 
         /// <summary>
-        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `optional` or `enforced`.
+        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
         /// </summary>
         [Input("policyMode")]
         public Input<string>? PolicyMode { get; set; }
@@ -211,7 +211,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? PolicyRespected { get; set; }
 
         /// <summary>
-        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }

@@ -16,6 +16,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -51,7 +53,7 @@ namespace Pulumiverse.Scaleway
     public partial class VpcPublicGateway : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Enable SSH bastion on the gateway
+        /// Enable SSH bastion on the gateway.
         /// </summary>
         [Output("bastionEnabled")]
         public Output<bool?> BastionEnabled { get; private set; } = null!;
@@ -69,13 +71,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Enable SMTP on the gateway
+        /// Enable SMTP on the gateway.
         /// </summary>
         [Output("enableSmtp")]
         public Output<bool> EnableSmtp { get; private set; } = null!;
 
         /// <summary>
-        /// attach an existing flexible IP to the gateway
+        /// attach an existing flexible IP to the gateway.
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
@@ -97,6 +99,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        /// </summary>
+        [Output("refreshSshKeys")]
+        public Output<string?> RefreshSshKeys { get; private set; } = null!;
 
         /// <summary>
         /// The status of the public gateway.
@@ -182,7 +190,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable SSH bastion on the gateway
+        /// Enable SSH bastion on the gateway.
         /// </summary>
         [Input("bastionEnabled")]
         public Input<bool>? BastionEnabled { get; set; }
@@ -194,13 +202,13 @@ namespace Pulumiverse.Scaleway
         public Input<int>? BastionPort { get; set; }
 
         /// <summary>
-        /// Enable SMTP on the gateway
+        /// Enable SMTP on the gateway.
         /// </summary>
         [Input("enableSmtp")]
         public Input<bool>? EnableSmtp { get; set; }
 
         /// <summary>
-        /// attach an existing flexible IP to the gateway
+        /// attach an existing flexible IP to the gateway.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -216,6 +224,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        /// </summary>
+        [Input("refreshSshKeys")]
+        public Input<string>? RefreshSshKeys { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -262,7 +276,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable SSH bastion on the gateway
+        /// Enable SSH bastion on the gateway.
         /// </summary>
         [Input("bastionEnabled")]
         public Input<bool>? BastionEnabled { get; set; }
@@ -280,13 +294,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Enable SMTP on the gateway
+        /// Enable SMTP on the gateway.
         /// </summary>
         [Input("enableSmtp")]
         public Input<bool>? EnableSmtp { get; set; }
 
         /// <summary>
-        /// attach an existing flexible IP to the gateway
+        /// attach an existing flexible IP to the gateway.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -308,6 +322,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        /// </summary>
+        [Input("refreshSshKeys")]
+        public Input<string>? RefreshSshKeys { get; set; }
 
         /// <summary>
         /// The status of the public gateway.

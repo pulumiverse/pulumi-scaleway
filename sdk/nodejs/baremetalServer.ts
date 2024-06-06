@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal).
+ * Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
  *
  * ## Example Usage
  *
@@ -119,7 +119,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The offer name or UUID of the baremetal server.
-     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
      */
@@ -143,7 +143,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
      * The UUID of the os to install on the server.
-     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
     public readonly os!: pulumi.Output<string | undefined>;
@@ -307,7 +307,7 @@ export interface BaremetalServerState {
     name?: pulumi.Input<string>;
     /**
      * The offer name or UUID of the baremetal server.
-     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
      */
@@ -331,7 +331,7 @@ export interface BaremetalServerState {
     organizationId?: pulumi.Input<string>;
     /**
      * The UUID of the os to install on the server.
-     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
     os?: pulumi.Input<string>;
@@ -404,7 +404,7 @@ export interface BaremetalServerArgs {
     name?: pulumi.Input<string>;
     /**
      * The offer name or UUID of the baremetal server.
-     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-334154) to find the right offer.
+     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
      */
@@ -416,7 +416,7 @@ export interface BaremetalServerArgs {
     options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[]>;
     /**
      * The UUID of the os to install on the server.
-     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-87598a) to find the right OS ID.
+     * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
     os?: pulumi.Input<string>;

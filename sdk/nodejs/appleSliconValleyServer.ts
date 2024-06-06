@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Apple silicon M1. For more information,
- * see [the documentation](https://www.scaleway.com/en/docs/compute/apple-silicon/concepts).
+ * Creates and manages Scaleway Apple silicon. For more information,
+ * see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
  *
  * ## Example Usage
  *
@@ -88,7 +88,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
      * The commercial type of the server. You find all the available types on
-     * the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+     * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
      * resource.
      */
     public readonly type!: pulumi.Output<string>;
@@ -187,7 +187,7 @@ export interface AppleSliconValleyServerState {
     state?: pulumi.Input<string>;
     /**
      * The commercial type of the server. You find all the available types on
-     * the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+     * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
      * resource.
      */
     type?: pulumi.Input<string>;
@@ -221,7 +221,7 @@ export interface AppleSliconValleyServerArgs {
     projectId?: pulumi.Input<string>;
     /**
      * The commercial type of the server. You find all the available types on
-     * the [pricing page](https://www.scaleway.com/en/pricing/#apple-silicon). Updates to this field will recreate a new
+     * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
      * resource.
      */
     type: pulumi.Input<string>;

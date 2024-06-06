@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+        /// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;

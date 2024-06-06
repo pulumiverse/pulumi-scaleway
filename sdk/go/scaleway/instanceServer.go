@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Compute Instance servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#servers-8bf7d7).
+// Creates and manages Scaleway compute Instances. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
 //
 // Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 //
@@ -365,7 +365,7 @@ import (
 type InstanceServer struct {
 	pulumi.CustomResourceState
 
-	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
+	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	//
 	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -405,7 +405,7 @@ type InstanceServer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
@@ -414,7 +414,7 @@ type InstanceServer struct {
 	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
 	// The private network associated with the server.
-	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
+	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -424,13 +424,13 @@ type InstanceServer struct {
 	PublicIps InstanceServerPublicIpArrayOutput `pulumi:"publicIps"`
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
 	ReplaceOnTypeChange pulumi.BoolPtrOutput `pulumi:"replaceOnTypeChange"`
-	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
+	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume InstanceServerRootVolumeOutput `pulumi:"rootVolume"`
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
 	RoutedIpEnabled pulumi.BoolOutput `pulumi:"routedIpEnabled"`
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrOutput `pulumi:"state"`
@@ -487,7 +487,7 @@ func GetInstanceServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceServer resources.
 type instanceServerState struct {
-	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
+	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	//
 	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -527,7 +527,7 @@ type instanceServerState struct {
 	Name *string `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
@@ -536,7 +536,7 @@ type instanceServerState struct {
 	// The Scaleway internal IP address of the server.
 	PrivateIp *string `pulumi:"privateIp"`
 	// The private network associated with the server.
-	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
+	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -546,13 +546,13 @@ type instanceServerState struct {
 	PublicIps []InstanceServerPublicIp `pulumi:"publicIps"`
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
 	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
-	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
+	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
 	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
@@ -577,7 +577,7 @@ type instanceServerState struct {
 }
 
 type InstanceServerState struct {
-	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
+	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	//
 	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -617,7 +617,7 @@ type InstanceServerState struct {
 	Name pulumi.StringPtrInput
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
@@ -626,7 +626,7 @@ type InstanceServerState struct {
 	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringPtrInput
 	// The private network associated with the server.
-	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
+	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -636,13 +636,13 @@ type InstanceServerState struct {
 	PublicIps InstanceServerPublicIpArrayInput
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
 	ReplaceOnTypeChange pulumi.BoolPtrInput
-	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
+	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
 	RoutedIpEnabled pulumi.BoolPtrInput
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
@@ -671,7 +671,7 @@ func (InstanceServerState) ElementType() reflect.Type {
 }
 
 type instanceServerArgs struct {
-	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
+	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	//
 	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -703,12 +703,12 @@ type instanceServerArgs struct {
 	IpIds []string `pulumi:"ipIds"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// The private network associated with the server.
-	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
+	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -716,13 +716,13 @@ type instanceServerArgs struct {
 	PublicIps []InstanceServerPublicIp `pulumi:"publicIps"`
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
 	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
-	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
+	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
 	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
@@ -748,7 +748,7 @@ type instanceServerArgs struct {
 
 // The set of arguments for constructing a InstanceServer resource.
 type InstanceServerArgs struct {
-	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
+	// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
 	// attached to the server. Updates to this field will trigger a stop/start of the server.
 	//
 	// > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -780,12 +780,12 @@ type InstanceServerArgs struct {
 	IpIds pulumi.StringArrayInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
 	// The private network associated with the server.
-	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
+	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -793,13 +793,13 @@ type InstanceServerArgs struct {
 	PublicIps InstanceServerPublicIpArrayInput
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
 	ReplaceOnTypeChange pulumi.BoolPtrInput
-	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
+	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
 	RoutedIpEnabled pulumi.BoolPtrInput
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
@@ -910,7 +910,7 @@ func (o InstanceServerOutput) ToInstanceServerOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39)
+// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
 // attached to the server. Updates to this field will trigger a stop/start of the server.
 //
 // > **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
@@ -992,7 +992,7 @@ func (o InstanceServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the server is attached to.
+// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
 //
 // > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 func (o InstanceServerOutput) PlacementGroupId() pulumi.StringPtrOutput {
@@ -1010,7 +1010,7 @@ func (o InstanceServerOutput) PrivateIp() pulumi.StringOutput {
 }
 
 // The private network associated with the server.
-// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#private-nics-a42eea) on your instance.
+// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 func (o InstanceServerOutput) PrivateNetworks() InstanceServerPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(InstanceServerPrivateNetworkArrayOutput)
 }
@@ -1035,7 +1035,7 @@ func (o InstanceServerOutput) ReplaceOnTypeChange() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.ReplaceOnTypeChange }).(pulumi.BoolPtrOutput)
 }
 
-// Root [volume](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39) attached to the server on creation.
+// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerRootVolumeOutput { return v.RootVolume }).(InstanceServerRootVolumeOutput)
 }
@@ -1047,7 +1047,7 @@ func (o InstanceServerOutput) RoutedIpEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
-// The [security group](https://www.scaleway.com/en/developers/api/instance/#security-groups-8d7f89) the server is attached to.
+// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 func (o InstanceServerOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }

@@ -21,18 +21,20 @@ class VpcPublicGatewayArgs:
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 refresh_ssh_keys: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGateway resource.
         :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
-        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
         :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
@@ -50,6 +52,8 @@ class VpcPublicGatewayArgs:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if refresh_ssh_keys is not None:
+            pulumi.set(__self__, "refresh_ssh_keys", refresh_ssh_keys)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if upstream_dns_servers is not None:
@@ -73,7 +77,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="bastionEnabled")
     def bastion_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable SSH bastion on the gateway
+        Enable SSH bastion on the gateway.
         """
         return pulumi.get(self, "bastion_enabled")
 
@@ -97,7 +101,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="enableSmtp")
     def enable_smtp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable SMTP on the gateway
+        Enable SMTP on the gateway.
         """
         return pulumi.get(self, "enable_smtp")
 
@@ -109,7 +113,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing flexible IP to the gateway
+        attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
@@ -140,6 +144,18 @@ class VpcPublicGatewayArgs:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="refreshSshKeys")
+    def refresh_ssh_keys(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        """
+        return pulumi.get(self, "refresh_ssh_keys")
+
+    @refresh_ssh_keys.setter
+    def refresh_ssh_keys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "refresh_ssh_keys", value)
 
     @property
     @pulumi.getter
@@ -189,6 +205,7 @@ class _VpcPublicGatewayState:
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 refresh_ssh_keys: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -197,14 +214,15 @@ class _VpcPublicGatewayState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGateway resources.
-        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
         :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
-        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
         :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
         :param pulumi.Input[str] status: The status of the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
         :param pulumi.Input[str] type: The gateway type.
@@ -228,6 +246,8 @@ class _VpcPublicGatewayState:
             pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if refresh_ssh_keys is not None:
+            pulumi.set(__self__, "refresh_ssh_keys", refresh_ssh_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -245,7 +265,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="bastionEnabled")
     def bastion_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable SSH bastion on the gateway
+        Enable SSH bastion on the gateway.
         """
         return pulumi.get(self, "bastion_enabled")
 
@@ -281,7 +301,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="enableSmtp")
     def enable_smtp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable SMTP on the gateway
+        Enable SMTP on the gateway.
         """
         return pulumi.get(self, "enable_smtp")
 
@@ -293,7 +313,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing flexible IP to the gateway
+        attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
@@ -336,6 +356,18 @@ class _VpcPublicGatewayState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="refreshSshKeys")
+    def refresh_ssh_keys(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        """
+        return pulumi.get(self, "refresh_ssh_keys")
+
+    @refresh_ssh_keys.setter
+    def refresh_ssh_keys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "refresh_ssh_keys", value)
 
     @property
     @pulumi.getter
@@ -421,6 +453,7 @@ class VpcPublicGateway(pulumi.CustomResource):
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 refresh_ssh_keys: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -431,6 +464,8 @@ class VpcPublicGateway(pulumi.CustomResource):
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
 
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -456,12 +491,13 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
-        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
         :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
         :param pulumi.Input[str] type: The gateway type.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
@@ -478,6 +514,8 @@ class VpcPublicGateway(pulumi.CustomResource):
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
 
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -522,6 +560,7 @@ class VpcPublicGateway(pulumi.CustomResource):
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 refresh_ssh_keys: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -541,6 +580,7 @@ class VpcPublicGateway(pulumi.CustomResource):
             __props__.__dict__["ip_id"] = ip_id
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["refresh_ssh_keys"] = refresh_ssh_keys
             __props__.__dict__["tags"] = tags
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -569,6 +609,7 @@ class VpcPublicGateway(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            refresh_ssh_keys: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -582,14 +623,15 @@ class VpcPublicGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway
+        :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
         :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
-        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway
+        :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
+        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
         :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
         :param pulumi.Input[str] status: The status of the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
         :param pulumi.Input[str] type: The gateway type.
@@ -609,6 +651,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["refresh_ssh_keys"] = refresh_ssh_keys
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -621,7 +664,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="bastionEnabled")
     def bastion_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable SSH bastion on the gateway
+        Enable SSH bastion on the gateway.
         """
         return pulumi.get(self, "bastion_enabled")
 
@@ -645,7 +688,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="enableSmtp")
     def enable_smtp(self) -> pulumi.Output[bool]:
         """
-        Enable SMTP on the gateway
+        Enable SMTP on the gateway.
         """
         return pulumi.get(self, "enable_smtp")
 
@@ -653,7 +696,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[str]:
         """
-        attach an existing flexible IP to the gateway
+        attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
@@ -680,6 +723,14 @@ class VpcPublicGateway(pulumi.CustomResource):
         `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="refreshSshKeys")
+    def refresh_ssh_keys(self) -> pulumi.Output[Optional[str]]:
+        """
+        Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        """
+        return pulumi.get(self, "refresh_ssh_keys")
 
     @property
     @pulumi.getter

@@ -16,6 +16,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,6 +32,30 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             "demo",
     ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Enable routing
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         EnableRouting = true,
+    ///         Tags = new[]
+    ///         {
+    ///             "demo",
+    ///             "terraform",
+    ///             "routing",
     ///         },
     ///     });
     /// 
@@ -54,6 +80,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        /// </summary>
+        [Output("enableRouting")]
+        public Output<bool> EnableRouting { get; private set; } = null!;
 
         /// <summary>
         /// Defines whether the VPC is the default one for its Project.
@@ -145,6 +177,12 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        /// </summary>
+        [Input("enableRouting")]
+        public Input<bool>? EnableRouting { get; set; }
+
+        /// <summary>
         /// The name of the VPC. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -187,6 +225,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        /// </summary>
+        [Input("enableRouting")]
+        public Input<bool>? EnableRouting { get; set; }
 
         /// <summary>
         /// Defines whether the VPC is the default one for its Project.

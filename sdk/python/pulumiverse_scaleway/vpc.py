@@ -14,17 +14,21 @@ __all__ = ['VpcArgs', 'Vpc']
 @pulumi.input_type
 class VpcArgs:
     def __init__(__self__, *,
+                 enable_routing: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Vpc resource.
+        :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
         :param pulumi.Input[str] region: `region`) The region of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the VPC.
         """
+        if enable_routing is not None:
+            pulumi.set(__self__, "enable_routing", enable_routing)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -33,6 +37,18 @@ class VpcArgs:
             pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="enableRouting")
+    def enable_routing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        """
+        return pulumi.get(self, "enable_routing")
+
+    @enable_routing.setter
+    def enable_routing(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_routing", value)
 
     @property
     @pulumi.getter
@@ -87,6 +103,7 @@ class VpcArgs:
 class _VpcState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 enable_routing: Optional[pulumi.Input[bool]] = None,
                  is_default: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
@@ -97,6 +114,7 @@ class _VpcState:
         """
         Input properties used for looking up and filtering Vpc resources.
         :param pulumi.Input[str] created_at: Date and time of VPC's creation (RFC 3339 format).
+        :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[bool] is_default: Defines whether the VPC is the default one for its Project.
         :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the VPC is associated with.
@@ -107,6 +125,8 @@ class _VpcState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if enable_routing is not None:
+            pulumi.set(__self__, "enable_routing", enable_routing)
         if is_default is not None:
             pulumi.set(__self__, "is_default", is_default)
         if name is not None:
@@ -133,6 +153,18 @@ class _VpcState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="enableRouting")
+    def enable_routing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        """
+        return pulumi.get(self, "enable_routing")
+
+    @enable_routing.setter
+    def enable_routing(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_routing", value)
 
     @property
     @pulumi.getter(name="isDefault")
@@ -224,6 +256,7 @@ class Vpc(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_routing: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -235,6 +268,8 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -243,6 +278,21 @@ class Vpc(pulumi.CustomResource):
             "demo",
             "terraform",
         ])
+        ```
+
+        ### Enable routing
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.Vpc("vpc01",
+            enable_routing=True,
+            tags=[
+                "demo",
+                "terraform",
+                "routing",
+            ])
         ```
 
         ## Import
@@ -257,6 +307,7 @@ class Vpc(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
         :param pulumi.Input[str] region: `region`) The region of the VPC.
@@ -274,6 +325,8 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -282,6 +335,21 @@ class Vpc(pulumi.CustomResource):
             "demo",
             "terraform",
         ])
+        ```
+
+        ### Enable routing
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.Vpc("vpc01",
+            enable_routing=True,
+            tags=[
+                "demo",
+                "terraform",
+                "routing",
+            ])
         ```
 
         ## Import
@@ -309,6 +377,7 @@ class Vpc(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_routing: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -322,6 +391,7 @@ class Vpc(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcArgs.__new__(VpcArgs)
 
+            __props__.__dict__["enable_routing"] = enable_routing
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -341,6 +411,7 @@ class Vpc(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            enable_routing: Optional[pulumi.Input[bool]] = None,
             is_default: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -356,6 +427,7 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: Date and time of VPC's creation (RFC 3339 format).
+        :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[bool] is_default: Defines whether the VPC is the default one for its Project.
         :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the VPC is associated with.
@@ -369,6 +441,7 @@ class Vpc(pulumi.CustomResource):
         __props__ = _VpcState.__new__(_VpcState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enable_routing"] = enable_routing
         __props__.__dict__["is_default"] = is_default
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
@@ -385,6 +458,14 @@ class Vpc(pulumi.CustomResource):
         Date and time of VPC's creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableRouting")
+    def enable_routing(self) -> pulumi.Output[bool]:
+        """
+        Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        """
+        return pulumi.get(self, "enable_routing")
 
     @property
     @pulumi.getter(name="isDefault")

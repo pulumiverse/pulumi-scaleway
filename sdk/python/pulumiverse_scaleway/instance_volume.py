@@ -296,8 +296,8 @@ class InstanceVolume(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Instance Volumes.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39).
+        Creates and manages Scaleway compute Instance Volumes.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-volumes-list-volumes).
 
         ## Example Usage
 
@@ -337,8 +337,8 @@ class InstanceVolume(pulumi.CustomResource):
                  args: InstanceVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Instance Volumes.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39).
+        Creates and manages Scaleway compute Instance Volumes.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-volumes-list-volumes).
 
         ## Example Usage
 

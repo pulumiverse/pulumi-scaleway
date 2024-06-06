@@ -165,6 +165,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string? ProjectId;
         public readonly string? PublicGatewayId;
+        public readonly string RefreshSshKeys;
         public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string Type;
@@ -194,6 +195,8 @@ namespace Pulumiverse.Scaleway
 
             string? publicGatewayId,
 
+            string refreshSshKeys,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -216,6 +219,7 @@ namespace Pulumiverse.Scaleway
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicGatewayId = publicGatewayId;
+            RefreshSshKeys = refreshSshKeys;
             Status = status;
             Tags = tags;
             Type = type;

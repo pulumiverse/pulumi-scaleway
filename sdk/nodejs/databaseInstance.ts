@@ -20,11 +20,29 @@ import * as utilities from "./utilities";
  *
  * const main = new scaleway.DatabaseInstance("main", {
  *     disableBackup: true,
- *     engine: "PostgreSQL-11",
+ *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
  *     nodeType: "DB-DEV-S",
  *     password: "thiZ_is_v&ry_s3cret",
  *     userName: "my_initial_user",
+ * });
+ * ```
+ *
+ * ### Example Block Storage Low Latency
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     disableBackup: true,
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     nodeType: "db-play2-pico",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     userName: "my_initial_user",
+ *     volumeSizeInGb: 10,
+ *     volumeType: "sbs_15k",
  * });
  * ```
  *
@@ -59,7 +77,7 @@ import * as utilities from "./utilities";
  *     backupScheduleFrequency: 24,
  *     backupScheduleRetention: 7,
  *     disableBackup: false,
- *     engine: "PostgreSQL-11",
+ *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
  *     nodeType: "DB-DEV-S",
  *     password: "thiZ_is_v&ry_s3cret",
@@ -82,7 +100,7 @@ import * as utilities from "./utilities";
  * }});
  * const main = new scaleway.DatabaseInstance("main", {
  *     nodeType: "db-dev-s",
- *     engine: "PostgreSQL-11",
+ *     engine: "PostgreSQL-15",
  *     privateNetwork: {
  *         pnId: pn.id,
  *         ipNet: "172.16.20.4/22",
@@ -99,7 +117,7 @@ import * as utilities from "./utilities";
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const main = new scaleway.DatabaseInstance("main", {
  *     nodeType: "DB-DEV-S",
- *     engine: "PostgreSQL-11",
+ *     engine: "PostgreSQL-15",
  *     privateNetwork: {
  *         pnId: pn.id,
  *         enableIpam: true,
@@ -115,7 +133,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
- *     engine: "PostgreSQL-11",
+ *     engine: "PostgreSQL-15",
  *     nodeType: "db-dev-s",
  * });
  * ```
@@ -281,7 +299,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
-     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+     * Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
      */
     public readonly volumeType!: pulumi.Output<string | undefined>;
 
@@ -483,7 +501,7 @@ export interface DatabaseInstanceState {
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+     * Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
      */
     volumeType?: pulumi.Input<string>;
 }
@@ -585,7 +603,7 @@ export interface DatabaseInstanceArgs {
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+     * Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
      */
     volumeType?: pulumi.Input<string>;
 }

@@ -16,6 +16,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic
+//
 // ```go
 // package main
 //
@@ -43,6 +45,37 @@ import (
 //
 // ```
 //
+// ### Enable routing
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				EnableRouting: pulumi.Bool(true),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("demo"),
+//					pulumi.String("terraform"),
+//					pulumi.String("routing"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // VPCs can be imported using the `{region}/{id}`, e.g.
@@ -57,6 +90,8 @@ type Vpc struct {
 
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	EnableRouting pulumi.BoolOutput `pulumi:"enableRouting"`
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault pulumi.BoolOutput `pulumi:"isDefault"`
 	// The name of the VPC. If not provided it will be randomly generated.
@@ -105,6 +140,8 @@ func GetVpc(ctx *pulumi.Context,
 type vpcState struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
+	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	EnableRouting *bool `pulumi:"enableRouting"`
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault *bool `pulumi:"isDefault"`
 	// The name of the VPC. If not provided it will be randomly generated.
@@ -124,6 +161,8 @@ type vpcState struct {
 type VpcState struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
+	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	EnableRouting pulumi.BoolPtrInput
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault pulumi.BoolPtrInput
 	// The name of the VPC. If not provided it will be randomly generated.
@@ -145,6 +184,8 @@ func (VpcState) ElementType() reflect.Type {
 }
 
 type vpcArgs struct {
+	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	EnableRouting *bool `pulumi:"enableRouting"`
 	// The name of the VPC. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the VPC is associated with.
@@ -157,6 +198,8 @@ type vpcArgs struct {
 
 // The set of arguments for constructing a Vpc resource.
 type VpcArgs struct {
+	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	EnableRouting pulumi.BoolPtrInput
 	// The name of the VPC. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the VPC is associated with.
@@ -257,6 +300,11 @@ func (o VpcOutput) ToVpcOutputWithContext(ctx context.Context) VpcOutput {
 // Date and time of VPC's creation (RFC 3339 format).
 func (o VpcOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+func (o VpcOutput) EnableRouting() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableRouting }).(pulumi.BoolOutput)
 }
 
 // Defines whether the VPC is the default one for its Project.

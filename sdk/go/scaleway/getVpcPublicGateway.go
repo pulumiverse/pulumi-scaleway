@@ -81,6 +81,7 @@ type LookupVpcPublicGatewayResult struct {
 	OrganizationId     string   `pulumi:"organizationId"`
 	ProjectId          *string  `pulumi:"projectId"`
 	PublicGatewayId    *string  `pulumi:"publicGatewayId"`
+	RefreshSshKeys     string   `pulumi:"refreshSshKeys"`
 	Status             string   `pulumi:"status"`
 	Tags               []string `pulumi:"tags"`
 	Type               string   `pulumi:"type"`
@@ -172,6 +173,10 @@ func (o LookupVpcPublicGatewayResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupVpcPublicGatewayResultOutput) PublicGatewayId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) *string { return v.PublicGatewayId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupVpcPublicGatewayResultOutput) RefreshSshKeys() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.RefreshSshKeys }).(pulumi.StringOutput)
 }
 
 func (o LookupVpcPublicGatewayResultOutput) Status() pulumi.StringOutput {

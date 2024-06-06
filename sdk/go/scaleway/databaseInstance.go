@@ -33,11 +33,44 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
 //				DisableBackup: pulumi.Bool(true),
-//				Engine:        pulumi.String("PostgreSQL-11"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:   pulumi.Bool(true),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
 //				UserName:      pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Block Storage Low Latency
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				DisableBackup:  pulumi.Bool(true),
+//				Engine:         pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:    pulumi.Bool(true),
+//				NodeType:       pulumi.String("db-play2-pico"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:       pulumi.String("my_initial_user"),
+//				VolumeSizeInGb: pulumi.Int(10),
+//				VolumeType:     pulumi.String("sbs_15k"),
 //			})
 //			if err != nil {
 //				return err
@@ -102,7 +135,7 @@ import (
 //				BackupScheduleFrequency: pulumi.Int(24),
 //				BackupScheduleRetention: pulumi.Int(7),
 //				DisableBackup:           pulumi.Bool(false),
-//				Engine:                  pulumi.String("PostgreSQL-11"),
+//				Engine:                  pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:             pulumi.Bool(true),
 //				NodeType:                pulumi.String("DB-DEV-S"),
 //				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
@@ -145,7 +178,7 @@ import (
 //			}
 //			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
 //				NodeType: pulumi.String("db-dev-s"),
-//				Engine:   pulumi.String("PostgreSQL-11"),
+//				Engine:   pulumi.String("PostgreSQL-15"),
 //				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
 //					PnId:  pn.ID(),
 //					IpNet: pulumi.String("172.16.20.4/22"),
@@ -180,7 +213,7 @@ import (
 //			}
 //			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
 //				NodeType: pulumi.String("DB-DEV-S"),
-//				Engine:   pulumi.String("PostgreSQL-11"),
+//				Engine:   pulumi.String("PostgreSQL-15"),
 //				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
 //					PnId:       pn.ID(),
 //					EnableIpam: pulumi.Bool(true),
@@ -213,7 +246,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				Engine:   pulumi.String("PostgreSQL-11"),
+//				Engine:   pulumi.String("PostgreSQL-15"),
 //				NodeType: pulumi.String("db-dev-s"),
 //			})
 //			if err != nil {
@@ -311,7 +344,7 @@ type DatabaseInstance struct {
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
@@ -424,7 +457,7 @@ type databaseInstanceState struct {
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -495,7 +528,7 @@ type DatabaseInstanceState struct {
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -558,7 +591,7 @@ type databaseInstanceArgs struct {
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -618,7 +651,7 @@ type DatabaseInstanceArgs struct {
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -847,7 +880,7 @@ func (o DatabaseInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
-// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
+// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
 func (o DatabaseInstanceOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }

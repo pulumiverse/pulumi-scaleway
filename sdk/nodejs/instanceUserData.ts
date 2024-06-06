@@ -5,13 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Compute Instance User Data values.
+ * Creates and manages Scaleway compute Instance User Data values.
  *
  * User data is a key value store API you can use to provide data from and to your server without authentication. It is the mechanism by which a user can pass information contained in a local file to an Instance at launch time.
  *
  * The typical use case is to pass something like a shell script or a configuration file as user data.
  *
- * For more information about [userData](https://www.scaleway.com/en/developers/api/instance/#patch-9ef3ec)  check our documentation guide [here](https://www.scaleway.com/en/docs/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init).
+ * For more information about [userData](https://www.scaleway.com/en/developers/api/instance/#path-user-data-list-user-data)  check our documentation guide [here](https://www.scaleway.com/en/docs/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init).
  *
  * About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
  *

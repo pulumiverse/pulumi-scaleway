@@ -29,11 +29,36 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
     ///         DisableBackup = true,
-    ///         Engine = "PostgreSQL-11",
+    ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
     ///         NodeType = "DB-DEV-S",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example Block Storage Low Latency
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = true,
+    ///         NodeType = "db-play2-pico",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///         VolumeSizeInGb = 10,
+    ///         VolumeType = "sbs_15k",
     ///     });
     /// 
     /// });
@@ -84,7 +109,7 @@ namespace Pulumiverse.Scaleway
     ///         BackupScheduleFrequency = 24,
     ///         BackupScheduleRetention = 7,
     ///         DisableBackup = false,
-    ///         Engine = "PostgreSQL-11",
+    ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
     ///         NodeType = "DB-DEV-S",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
@@ -119,7 +144,7 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
     ///         NodeType = "db-dev-s",
-    ///         Engine = "PostgreSQL-11",
+    ///         Engine = "PostgreSQL-15",
     ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
     ///         {
     ///             PnId = pn.Id,
@@ -145,7 +170,7 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
     ///         NodeType = "DB-DEV-S",
-    ///         Engine = "PostgreSQL-11",
+    ///         Engine = "PostgreSQL-15",
     ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
     ///         {
     ///             PnId = pn.Id,
@@ -172,7 +197,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         Engine = "PostgreSQL-11",
+    ///         Engine = "PostgreSQL-15",
     ///         NodeType = "db-dev-s",
     ///     });
     /// 
@@ -361,7 +386,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        /// Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         /// </summary>
         [Output("volumeType")]
         public Output<string?> VolumeType { get; private set; } = null!;
@@ -582,7 +607,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        /// Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
@@ -796,7 +821,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
+        /// Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

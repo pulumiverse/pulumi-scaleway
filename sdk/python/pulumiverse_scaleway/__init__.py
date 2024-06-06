@@ -12,6 +12,7 @@ from .baremetal_server import *
 from .block_snapshot import *
 from .block_volume import *
 from .cockpit import *
+from .cockpit_alert_manager import *
 from .cockpit_grafana_user import *
 from .cockpit_source import *
 from .cockpit_token import *
@@ -260,6 +261,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/cockpit:Cockpit": "Cockpit"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/cockpitAlertManager",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/cockpitAlertManager:CockpitAlertManager": "CockpitAlertManager"
   }
  },
  {

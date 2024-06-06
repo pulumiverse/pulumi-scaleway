@@ -10,6 +10,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -18,6 +20,22 @@ import * as utilities from "./utilities";
  *     "demo",
  *     "terraform",
  * ]});
+ * ```
+ *
+ * ### Enable routing
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {
+ *     enableRouting: true,
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *         "routing",
+ *     ],
+ * });
  * ```
  *
  * ## Import
@@ -63,6 +81,10 @@ export class Vpc extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+     */
+    public readonly enableRouting!: pulumi.Output<boolean>;
+    /**
      * Defines whether the VPC is the default one for its Project.
      */
     public /*out*/ readonly isDefault!: pulumi.Output<boolean>;
@@ -105,6 +127,7 @@ export class Vpc extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpcState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["enableRouting"] = state ? state.enableRouting : undefined;
             resourceInputs["isDefault"] = state ? state.isDefault : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -114,6 +137,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as VpcArgs | undefined;
+            resourceInputs["enableRouting"] = args ? args.enableRouting : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -136,6 +160,10 @@ export interface VpcState {
      * Date and time of VPC's creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+     */
+    enableRouting?: pulumi.Input<boolean>;
     /**
      * Defines whether the VPC is the default one for its Project.
      */
@@ -170,6 +198,10 @@ export interface VpcState {
  * The set of arguments for constructing a Vpc resource.
  */
 export interface VpcArgs {
+    /**
+     * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+     */
+    enableRouting?: pulumi.Input<boolean>;
     /**
      * The name of the VPC. If not provided it will be randomly generated.
      */
