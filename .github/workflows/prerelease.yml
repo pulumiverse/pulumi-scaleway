@@ -188,7 +188,7 @@ jobs:
       with:
         args: -f .goreleaser.prerelease.yml --clean --skip-validate --timeout
           60m0s
-        version: latest
+        version: '~> v1'
     strategy:
       fail-fast: true
       matrix:
