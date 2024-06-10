@@ -64,7 +64,7 @@ type DocumentdbDatabase struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The name of the owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -115,7 +115,7 @@ type documentdbDatabaseState struct {
 	Name *string `pulumi:"name"`
 	// The name of the owner of the database.
 	Owner *string `pulumi:"owner"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -134,7 +134,7 @@ type DocumentdbDatabaseState struct {
 	Name pulumi.StringPtrInput
 	// The name of the owner of the database.
 	Owner pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
@@ -153,7 +153,7 @@ type documentdbDatabaseArgs struct {
 	InstanceId string `pulumi:"instanceId"`
 	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -167,7 +167,7 @@ type DocumentdbDatabaseArgs struct {
 	InstanceId pulumi.StringInput
 	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
@@ -282,7 +282,7 @@ func (o DocumentdbDatabaseOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o DocumentdbDatabaseOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

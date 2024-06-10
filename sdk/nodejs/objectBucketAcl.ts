@@ -158,7 +158,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly expectedBucketOwner!: pulumi.Output<string | undefined>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -223,7 +223,7 @@ export interface ObjectBucketAclState {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -253,7 +253,7 @@ export interface ObjectBucketAclArgs {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

@@ -61,9 +61,6 @@ namespace Pulumiverse.Scaleway
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
 
-        /// <summary>
-        /// Define if the function should be deployed, terraform will wait for function to be deployed
-        /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
 
@@ -234,9 +231,6 @@ namespace Pulumiverse.Scaleway
 
     public sealed class FunctionArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Define if the function should be deployed, terraform will wait for function to be deployed
-        /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
@@ -374,9 +368,6 @@ namespace Pulumiverse.Scaleway
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
 
-        /// <summary>
-        /// Define if the function should be deployed, terraform will wait for function to be deployed
-        /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 

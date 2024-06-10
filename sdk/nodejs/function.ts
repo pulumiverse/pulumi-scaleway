@@ -67,9 +67,6 @@ export class Function extends pulumi.CustomResource {
      * The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
      */
     public /*out*/ readonly cpuLimit!: pulumi.Output<number>;
-    /**
-     * Define if the function should be deployed, terraform will wait for function to be deployed
-     */
     public readonly deploy!: pulumi.Output<boolean | undefined>;
     /**
      * The description of the function.
@@ -235,9 +232,6 @@ export interface FunctionState {
      * The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
      */
     cpuLimit?: pulumi.Input<number>;
-    /**
-     * Define if the function should be deployed, terraform will wait for function to be deployed
-     */
     deploy?: pulumi.Input<boolean>;
     /**
      * The description of the function.
@@ -323,9 +317,6 @@ export interface FunctionState {
  * The set of arguments for constructing a Function resource.
  */
 export interface FunctionArgs {
-    /**
-     * Define if the function should be deployed, terraform will wait for function to be deployed
-     */
     deploy?: pulumi.Input<boolean>;
     /**
      * The description of the function.

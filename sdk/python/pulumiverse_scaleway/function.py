@@ -38,7 +38,6 @@ class FunctionArgs:
         :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] http_option: HTTP traffic configuration
@@ -139,9 +138,6 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Define if the function should be deployed, terraform will wait for function to be deployed
-        """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
@@ -334,7 +330,6 @@ class _FunctionState:
         """
         Input properties used for looking up and filtering Function resources.
         :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
@@ -415,9 +410,6 @@ class _FunctionState:
     @property
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Define if the function should be deployed, terraform will wait for function to be deployed
-        """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
@@ -711,7 +703,6 @@ class Function(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
@@ -880,7 +871,6 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
@@ -941,9 +931,6 @@ class Function(pulumi.CustomResource):
     @property
     @pulumi.getter
     def deploy(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Define if the function should be deployed, terraform will wait for function to be deployed
-        """
         return pulumi.get(self, "deploy")
 
     @property
