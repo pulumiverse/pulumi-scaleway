@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IotDeviceMessageFiltersPublishArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Publish message filter policy
+        /// Filtering policy (eg `accept` or `reject`)
         /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _topics;
 
         /// <summary>
-        /// List of topics in the set
+        /// List of topics to match (eg `foo/bar/+/baz/#`)
         /// </summary>
         public InputList<string> Topics
         {

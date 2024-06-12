@@ -79,7 +79,7 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly lbId!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -153,7 +153,7 @@ export interface LoadbalancerIpState {
      */
     lbId?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**

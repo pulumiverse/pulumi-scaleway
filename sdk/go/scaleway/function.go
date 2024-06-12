@@ -65,9 +65,8 @@ type Function struct {
 	pulumi.CustomResourceState
 
 	// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
-	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
-	// Define if the function should be deployed, terraform will wait for function to be deployed
-	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
+	CpuLimit pulumi.IntOutput     `pulumi:"cpuLimit"`
+	Deploy   pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the function.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The native domain name of the function
@@ -160,9 +159,8 @@ func GetFunction(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Function resources.
 type functionState struct {
 	// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
-	CpuLimit *int `pulumi:"cpuLimit"`
-	// Define if the function should be deployed, terraform will wait for function to be deployed
-	Deploy *bool `pulumi:"deploy"`
+	CpuLimit *int  `pulumi:"cpuLimit"`
+	Deploy   *bool `pulumi:"deploy"`
 	// The description of the function.
 	Description *string `pulumi:"description"`
 	// The native domain name of the function
@@ -208,8 +206,7 @@ type functionState struct {
 type FunctionState struct {
 	// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
 	CpuLimit pulumi.IntPtrInput
-	// Define if the function should be deployed, terraform will wait for function to be deployed
-	Deploy pulumi.BoolPtrInput
+	Deploy   pulumi.BoolPtrInput
 	// The description of the function.
 	Description pulumi.StringPtrInput
 	// The native domain name of the function
@@ -257,7 +254,6 @@ func (FunctionState) ElementType() reflect.Type {
 }
 
 type functionArgs struct {
-	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the function.
 	Description *string `pulumi:"description"`
@@ -299,7 +295,6 @@ type functionArgs struct {
 
 // The set of arguments for constructing a Function resource.
 type FunctionArgs struct {
-	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy pulumi.BoolPtrInput
 	// The description of the function.
 	Description pulumi.StringPtrInput
@@ -431,7 +426,6 @@ func (o FunctionOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
 
-// Define if the function should be deployed, terraform will wait for function to be deployed
 func (o FunctionOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
