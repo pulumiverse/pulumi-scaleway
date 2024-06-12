@@ -179,4 +179,4 @@ require (
 	lukechampine.com/frand v1.4.2 // indirect
 )
 
-replace github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.9.0
+replace github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.9.3
