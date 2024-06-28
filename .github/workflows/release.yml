@@ -183,10 +183,10 @@ jobs:
     - name: Set Release Version
       run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
     - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@v4
+      uses: goreleaser/goreleaser-action@v6
       with:
         args: release --clean --timeout 60m0s
-        version: '~> v1'
+        version: '~> v2'
     strategy:
       fail-fast: true
       matrix:

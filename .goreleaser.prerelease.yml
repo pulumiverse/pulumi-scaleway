@@ -1,3 +1,4 @@
+version: 2
 archives:
 - id: archive
   name_template: '{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}'
@@ -22,8 +23,6 @@ builds:
   - -w
   - -X github.com/pulumiverse/pulumi-scaleway/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-scaleway/
-changelog:
-  skip: true
 release:
   disable: true
 snapshot:
