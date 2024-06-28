@@ -20,7 +20,8 @@
                 "github.com/hashicorp/terraform-plugin-sdk",
                 "github.com/pulumi/pulumi",
                 "github.com/scaleway/terraform-provider-scaleway"
-            ]
+            ],
+            "enabled": true
         },
         {
             "matchFileNames": [
