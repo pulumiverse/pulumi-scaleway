@@ -117,121 +117,656 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"scaleway_account_ssh_key": {Tok: scalewayResource(scalewayMod, "AccountSshKey")},
-			"scaleway_account_project": {Tok: scalewayResource(scalewayMod, "AccountProject")},
+			"scaleway_account_ssh_key": {
+				Tok: scalewayResource(scalewayMod, "AccountSshKey"),
+				Docs: &tfbridge.DocInfo{
+					Source: "account_ssh_key.md",
+				},
+			},
+			"scaleway_account_project": {
+				Tok: scalewayResource(scalewayMod, "AccountProject"),
+				Docs: &tfbridge.DocInfo{
+					Source: "account_project.md",
+				},
+			},
 			"scaleway_apple_silicon_server": {
-				Tok: scalewayResource(scalewayMod, "AppleSliconValleyServer"),
+				Tok: scalewayResource(scalewayMod, "AppleSiliconServer"),
 				Docs: &tfbridge.DocInfo{
 					Source: "apple_silicon.md",
 				},
 			},
-			"scaleway_baremetal_server":                    {Tok: scalewayResource(scalewayMod, "BaremetalServer")},
-			"scaleway_block_snapshot":                      {Tok: scalewayResource(scalewayMod, "BlockSnapshot")},
-			"scaleway_block_volume":                        {Tok: scalewayResource(scalewayMod, "BlockVolume")},
-			"scaleway_cockpit":                             {Tok: scalewayResource(scalewayMod, "Cockpit")},
-			"scaleway_cockpit_alert_manager":               {Tok: scalewayResource(scalewayMod, "CockpitAlertManager")},
-			"scaleway_cockpit_grafana_user":                {Tok: scalewayResource(scalewayMod, "CockpitGrafanaUser")},
-			"scaleway_cockpit_source":                      {Tok: scalewayResource(scalewayMod, "CockpitSource")},
-			"scaleway_cockpit_token":                       {Tok: scalewayResource(scalewayMod, "CockpitToken")},
-			"scaleway_container":                           {Tok: scalewayResource(scalewayMod, "Container")},
-			"scaleway_container_namespace":                 {Tok: scalewayResource(scalewayMod, "ContainerNamespace")},
-			"scaleway_container_cron":                      {Tok: scalewayResource(scalewayMod, "ContainerCron")},
-			"scaleway_container_domain":                    {Tok: scalewayResource(scalewayMod, "ContainerDomain")},
-			"scaleway_container_token":                     {Tok: scalewayResource(scalewayMod, "ContainerToken")},
-			"scaleway_container_trigger":                   {Tok: scalewayResource(scalewayMod, "ContainerTrigger")},
-			"scaleway_domain_record":                       {Tok: scalewayResource(scalewayMod, "DomainRecord")},
-			"scaleway_domain_zone":                         {Tok: scalewayResource(scalewayMod, "DomainZone")},
-			"scaleway_documentdb_database":                 {Tok: scalewayResource(scalewayMod, "DocumentdbDatabase")},
-			"scaleway_documentdb_instance":                 {Tok: scalewayResource(scalewayMod, "DocumentdbInstance")},
-			"scaleway_documentdb_private_network_endpoint": {Tok: scalewayResource(scalewayMod, "DocumentdbPrivateNetworkEndpoint")}, //nolint:golint,lll
-			"scaleway_documentdb_privilege":                {Tok: scalewayResource(scalewayMod, "DocumentdbPrivilege")},
-			"scaleway_documentdb_read_replica":             {Tok: scalewayResource(scalewayMod, "DocumentdbReadReplica")},
-			"scaleway_documentdb_user":                     {Tok: scalewayResource(scalewayMod, "DocumentdbUser")},
-			"scaleway_flexible_ip_mac_address":             {Tok: scalewayResource(scalewayMod, "FlexibleIpMacAddress")},
-			"scaleway_flexible_ip":                         {Tok: scalewayResource(scalewayMod, "FlexibleIp")},
-			"scaleway_function":                            {Tok: scalewayResource(scalewayMod, "Function")},
-			"scaleway_function_cron":                       {Tok: scalewayResource(scalewayMod, "FunctionCron")},
-			"scaleway_function_domain":                     {Tok: scalewayResource(scalewayMod, "FunctionDomain")},
-			"scaleway_function_namespace":                  {Tok: scalewayResource(scalewayMod, "FunctionNamespace")},
-			"scaleway_function_token":                      {Tok: scalewayResource(scalewayMod, "FunctionToken")},
-			"scaleway_iam_api_key":                         {Tok: scalewayResource(scalewayMod, "IamApiKey")},
-			"scaleway_iam_application":                     {Tok: scalewayResource(scalewayMod, "IamApplication")},
-			"scaleway_iam_group":                           {Tok: scalewayResource(scalewayMod, "IamGroup")},
-			"scaleway_iam_policy":                          {Tok: scalewayResource(scalewayMod, "IamPolicy")},
-			"scaleway_iam_ssh_key":                         {Tok: scalewayResource(scalewayMod, "IamSshKey")},
-			"scaleway_iam_group_membership":                {Tok: scalewayResource(scalewayMod, "IamGroupMembership")},
-			"scaleway_iam_user":                            {Tok: scalewayResource(scalewayMod, "IamUser")},
-			"scaleway_instance_image":                      {Tok: scalewayResource(scalewayMod, "InstanceImage")},
-			"scaleway_instance_ip":                         {Tok: scalewayResource(scalewayMod, "InstanceIp")},
-			"scaleway_instance_ip_reverse_dns":             {Tok: scalewayResource(scalewayMod, "InstanceIpReverseDns")},
-			"scaleway_instance_placement_group":            {Tok: scalewayResource(scalewayMod, "InstancePlacementGroup")},
-			"scaleway_instance_private_nic":                {Tok: scalewayResource(scalewayMod, "InstancePrivateNic")},
-			"scaleway_instance_security_group":             {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroup")},
-			"scaleway_instance_security_group_rules":       {Tok: scalewayResource(scalewayMod, "InstanceSecurityGroupRules")},
-			"scaleway_instance_server":                     {Tok: scalewayResource(scalewayMod, "InstanceServer")},
-			"scaleway_instance_snapshot":                   {Tok: scalewayResource(scalewayMod, "InstanceSnapshot")},
-			"scaleway_instance_user_data":                  {Tok: scalewayResource(scalewayMod, "InstanceUserData")},
-			"scaleway_instance_volume":                     {Tok: scalewayResource(scalewayMod, "InstanceVolume")},
-			"scaleway_iot_device":                          {Tok: scalewayResource(scalewayMod, "IotDevice")},
-			"scaleway_iot_hub":                             {Tok: scalewayResource(scalewayMod, "IotHub")},
-			"scaleway_iot_network":                         {Tok: scalewayResource(scalewayMod, "IotNetwork")},
-			"scaleway_iot_route":                           {Tok: scalewayResource(scalewayMod, "IotRoute")},
-			"scaleway_ipam_ip":                             {Tok: scalewayResource(scalewayMod, "IpamIp")},
-			"scaleway_ipam_ip_reverse_dns":                 {Tok: scalewayResource(scalewayMod, "IpamIpReverseDns")},
-			"scaleway_job_definition":                      {Tok: scalewayResource(scalewayMod, "JobDefinition")},
-			"scaleway_k8s_cluster":                         {Tok: scalewayResource(scalewayMod, "KubernetesCluster")},
-			"scaleway_k8s_pool":                            {Tok: scalewayResource(scalewayMod, "KubernetesNodePool")},
-			"scaleway_lb":                                  {Tok: scalewayResource(scalewayMod, "Loadbalancer")},
-			"scaleway_lb_backend":                          {Tok: scalewayResource(scalewayMod, "LoadbalancerBackend")},
-			"scaleway_lb_certificate":                      {Tok: scalewayResource(scalewayMod, "LoadbalancerCertificate")},
-			"scaleway_lb_frontend":                         {Tok: scalewayResource(scalewayMod, "LoadbalancerFrontend")},
-			"scaleway_lb_ip":                               {Tok: scalewayResource(scalewayMod, "LoadbalancerIp")},
-			"scaleway_lb_route":                            {Tok: scalewayResource(scalewayMod, "LoadbalancerRoute")},
-			"scaleway_mnq_nats_account":                    {Tok: scalewayResource(scalewayMod, "MnqNatsAccount")},
-			"scaleway_mnq_nats_credentials":                {Tok: scalewayResource(scalewayMod, "MnqNatsCredentials")},
-			"scaleway_mnq_sns":                             {Tok: scalewayResource(scalewayMod, "MnqSns")},
-			"scaleway_mnq_sns_credentials":                 {Tok: scalewayResource(scalewayMod, "MnqSnsCredentials")},
-			"scaleway_mnq_sns_topic":                       {Tok: scalewayResource(scalewayMod, "MnqSnsTopic")},
-			"scaleway_mnq_sns_topic_subscription":          {Tok: scalewayResource(scalewayMod, "MnqSnsTopicSubscription")},
-			"scaleway_mnq_sqs":                             {Tok: scalewayResource(scalewayMod, "MnqSqs")},
-			"scaleway_mnq_sqs_credentials":                 {Tok: scalewayResource(scalewayMod, "MnqSqsCredentials")},
-			"scaleway_mnq_sqs_queue":                       {Tok: scalewayResource(scalewayMod, "MnqSqsQueue")},
-			"scaleway_object":                              {Tok: scalewayResource(scalewayMod, "ObjectItem")},
-			"scaleway_object_bucket":                       {Tok: scalewayResource(scalewayMod, "ObjectBucket")},
-			"scaleway_object_bucket_acl":                   {Tok: scalewayResource(scalewayMod, "ObjectBucketAcl")},
-			"scaleway_object_bucket_policy":                {Tok: scalewayResource(scalewayMod, "ObjectBucketPolicy")},
-			"scaleway_object_bucket_website_configuration": {Tok: scalewayResource(scalewayMod, "ObjectBucketWebsiteConfiguration")}, //nolint:golint,lll
-			"scaleway_object_bucket_lock_configuration":    {Tok: scalewayResource(scalewayMod, "ObjectBucketLockConfiguration")},    //nolint:golint,lll
-			"scaleway_rdb_acl":                             {Tok: scalewayResource(scalewayMod, "DatabaseAcl")},
-			"scaleway_redis_cluster":                       {Tok: scalewayResource(scalewayMod, "RedisCluster")},
-			"scaleway_rdb_database":                        {Tok: scalewayResource(scalewayMod, "Database")},
-			"scaleway_rdb_database_backup":                 {Tok: scalewayResource(scalewayMod, "DatabaseBackup")},
-			"scaleway_rdb_instance":                        {Tok: scalewayResource(scalewayMod, "DatabaseInstance")},
-			"scaleway_rdb_privilege":                       {Tok: scalewayResource(scalewayMod, "DatabasePrivilege")},
-			"scaleway_rdb_read_replica":                    {Tok: scalewayResource(scalewayMod, "DatabaseReadReplica")},
-			"scaleway_rdb_user":                            {Tok: scalewayResource(scalewayMod, "DatabaseUser")},
-			"scaleway_registry_namespace":                  {Tok: scalewayResource(scalewayMod, "RegistryNamespace")},
-			"scaleway_sdb_sql_database":                    {Tok: scalewayResource(scalewayMod, "SdbDatabase")},
-			"scaleway_secret":                              {Tok: scalewayResource(scalewayMod, "Secret")},
-			"scaleway_secret_version":                      {Tok: scalewayResource(scalewayMod, "SecretVersion")},
-			"scaleway_tem_domain":                          {Tok: scalewayResource(scalewayMod, "TemDomain")},
-			"scaleway_tem_domain_validation":               {Tok: scalewayResource(scalewayMod, "TemDomainValidation")},
-			"scaleway_vpc_gateway_network":                 {Tok: scalewayResource(scalewayMod, "VpcGatewayNetwork")},
-			"scaleway_vpc_private_network":                 {Tok: scalewayResource(scalewayMod, "VpcPrivateNetwork")},
-			"scaleway_vpc_public_gateway":                  {Tok: scalewayResource(scalewayMod, "VpcPublicGateway")},
-			"scaleway_vpc_public_gateway_dhcp":             {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcp")},
-			"scaleway_vpc_public_gateway_ip":               {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIp")},
-			"scaleway_vpc_public_gateway_ip_reverse_dns":   {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIpReverseDns")},
-			"scaleway_vpc_public_gateway_pat_rule":         {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayPatRule")},
-			"scaleway_vpc_public_gateway_dhcp_reservation": {Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcpReservation")}, //nolint:golint,lll
-			"scaleway_function_trigger":                    {Tok: scalewayResource(scalewayMod, "FunctionTrigger")},
-			"scaleway_lb_acl":                              {Tok: scalewayResource(scalewayMod, "LoadbalancerAcl")},
-			"scaleway_webhosting":                          {Tok: scalewayResource(scalewayMod, "Webhosting")},
-			"scaleway_vpc":                                 {Tok: scalewayResource(scalewayMod, "Vpc")},
+			"scaleway_baremetal_server": {
+				Tok: scalewayResource(scalewayMod, "BaremetalServer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "baremetal_server.md",
+				},
+			},
+			"scaleway_block_snapshot": {
+				Tok: scalewayResource(scalewayMod, "BlockSnapshot"),
+				Docs: &tfbridge.DocInfo{
+					Source: "block_snapshot.md",
+				},
+			},
+			"scaleway_block_volume": {
+				Tok: scalewayResource(scalewayMod, "BlockVolume"),
+				Docs: &tfbridge.DocInfo{
+					Source: "block_volume.md",
+				},
+			},
+			"scaleway_cockpit": {
+				Tok: scalewayResource(scalewayMod, "Cockpit"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit.md",
+				},
+			},
+			"scaleway_cockpit_alert_manager": {
+				Tok: scalewayResource(scalewayMod, "CockpitAlertManager"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit_alert_manager.md",
+				},
+			},
+			"scaleway_cockpit_grafana_user": {
+				Tok: scalewayResource(scalewayMod, "CockpitGrafanaUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit_grafana_user.md",
+				},
+			},
+			"scaleway_cockpit_source": {
+				Tok: scalewayResource(scalewayMod, "CockpitSource"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit_source.md",
+				},
+			},
+			"scaleway_cockpit_token": {
+				Tok: scalewayResource(scalewayMod, "CockpitToken"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit_token.md",
+				},
+			},
+			"scaleway_container": {
+				Tok: scalewayResource(scalewayMod, "Container"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container.md",
+				},
+			},
+			"scaleway_container_namespace": {
+				Tok: scalewayResource(scalewayMod, "ContainerNamespace"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container_namespace.md",
+				},
+			},
+			"scaleway_container_cron": {
+				Tok: scalewayResource(scalewayMod, "ContainerCron"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container_cron.md",
+				},
+			},
+			"scaleway_container_domain": {
+				Tok: scalewayResource(scalewayMod, "ContainerDomain"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container_domain.md",
+				},
+			},
+			"scaleway_container_token": {
+				Tok: scalewayResource(scalewayMod, "ContainerToken"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container_token.md",
+				},
+			},
+			"scaleway_container_trigger": {
+				Tok: scalewayResource(scalewayMod, "ContainerTrigger"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container_trigger.md",
+				},
+			},
+			"scaleway_domain_record": {
+				Tok: scalewayResource(scalewayMod, "DomainRecord"),
+				Docs: &tfbridge.DocInfo{
+					Source: "domain_record.md",
+				},
+			},
+			"scaleway_domain_zone": {
+				Tok: scalewayResource(scalewayMod, "DomainZone"),
+				Docs: &tfbridge.DocInfo{
+					Source: "domain_zone.md",
+				},
+			},
+			"scaleway_documentdb_database": {
+				Tok: scalewayResource(scalewayMod, "DocumentdbDatabase"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_database.md",
+				},
+			},
+			"scaleway_documentdb_instance": {
+				Tok: scalewayResource(scalewayMod, "DocumentdbInstance"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_instance.md",
+				},
+			},
+			"scaleway_documentdb_private_network_endpoint": {
+				Tok: scalewayResource(scalewayMod, "DocumentdbPrivateNetworkEndpoint"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_private_network_endpoint.md",
+				},
+			},
+			"scaleway_documentdb_privilege": {
+				Tok: scalewayResource(scalewayMod, "DocumentdbPrivilege"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_privilege.md",
+				},
+			},
+			"scaleway_documentdb_read_replica": {
+				Tok: scalewayResource(scalewayMod, "DocumentdbReadReplica"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_read_replica.md",
+				},
+			},
+			"scaleway_documentdb_user": {
+				Tok: scalewayResource(scalewayMod, "DocumentdbUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_user.md",
+				},
+			},
+			"scaleway_flexible_ip_mac_address": {
+				Tok: scalewayResource(scalewayMod, "FlexibleIpMacAddress"),
+				Docs: &tfbridge.DocInfo{
+					Source: "flexible_ip_mac_address.md",
+				},
+			},
+			"scaleway_flexible_ip": {
+				Tok: scalewayResource(scalewayMod, "FlexibleIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "flexible_ip.md",
+				},
+			},
+			"scaleway_function": {
+				Tok: scalewayResource(scalewayMod, "Function"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function.md",
+				},
+			},
+			"scaleway_function_cron": {
+				Tok: scalewayResource(scalewayMod, "FunctionCron"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function_cron.md",
+				},
+			},
+			"scaleway_function_domain": {
+				Tok: scalewayResource(scalewayMod, "FunctionDomain"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function_domain.md",
+				},
+			},
+			"scaleway_function_namespace": {
+				Tok: scalewayResource(scalewayMod, "FunctionNamespace"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function_namespace.md",
+				},
+			},
+			"scaleway_function_token": {
+				Tok: scalewayResource(scalewayMod, "FunctionToken"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function_token.md",
+				},
+			},
+			"scaleway_iam_api_key": {
+				Tok: scalewayResource(scalewayMod, "IamApiKey"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_api_key.md",
+				},
+			},
+			"scaleway_iam_application": {
+				Tok: scalewayResource(scalewayMod, "IamApplication"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_application.md",
+				},
+			},
+			"scaleway_iam_group": {
+				Tok: scalewayResource(scalewayMod, "IamGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_group.md",
+				},
+			},
+			"scaleway_iam_policy": {
+				Tok: scalewayResource(scalewayMod, "IamPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_policy.md",
+				},
+			},
+			"scaleway_iam_ssh_key": {
+				Tok: scalewayResource(scalewayMod, "IamSshKey"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_ssh_key.md",
+				},
+			},
+			"scaleway_iam_group_membership": {
+				Tok: scalewayResource(scalewayMod, "IamGroupMembership"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_group_membership.md",
+				},
+			},
+			"scaleway_iam_user": {
+				Tok: scalewayResource(scalewayMod, "IamUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_user.md",
+				},
+			},
+			"scaleway_instance_image": {
+				Tok: scalewayResource(scalewayMod, "InstanceImage"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_image.md",
+				},
+			},
+			"scaleway_instance_ip": {
+				Tok: scalewayResource(scalewayMod, "InstanceIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_ip.md",
+				},
+			},
+			"scaleway_instance_ip_reverse_dns": {
+				Tok: scalewayResource(scalewayMod, "InstanceIpReverseDns"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_ip_reverse_dns.md",
+				},
+			},
+			"scaleway_instance_placement_group": {
+				Tok: scalewayResource(scalewayMod, "InstancePlacementGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_placement_group.md",
+				},
+			},
+			"scaleway_instance_private_nic": {
+				Tok: scalewayResource(scalewayMod, "InstancePrivateNic"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_private_nic.md",
+				},
+			},
+			"scaleway_instance_security_group": {
+				Tok: scalewayResource(scalewayMod, "InstanceSecurityGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_security_group.md",
+				},
+			},
+			"scaleway_instance_security_group_rules": {
+				Tok: scalewayResource(scalewayMod, "InstanceSecurityGroupRules"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_security_group_rules.md",
+				},
+			},
+			"scaleway_instance_server": {
+				Tok: scalewayResource(scalewayMod, "InstanceServer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_server.md",
+				},
+			},
+			"scaleway_instance_snapshot": {
+				Tok: scalewayResource(scalewayMod, "InstanceSnapshot"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_snapshot.md",
+				},
+			},
+			"scaleway_instance_user_data": {
+				Tok: scalewayResource(scalewayMod, "InstanceUserData"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_user_data.md",
+				},
+			},
+			"scaleway_instance_volume": {
+				Tok: scalewayResource(scalewayMod, "InstanceVolume"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_volume.md",
+				},
+			},
+			"scaleway_iot_device": {
+				Tok: scalewayResource(scalewayMod, "IotDevice"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iot_device.md",
+				},
+			},
+			"scaleway_iot_hub": {
+				Tok: scalewayResource(scalewayMod, "IotHub"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iot_hub.md",
+				},
+			},
+			"scaleway_iot_network": {
+				Tok: scalewayResource(scalewayMod, "IotNetwork"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iot_network.md",
+				},
+			},
+			"scaleway_iot_route": {
+				Tok: scalewayResource(scalewayMod, "IotRoute"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iot_route.md",
+				},
+			},
+			"scaleway_ipam_ip": {
+				Tok: scalewayResource(scalewayMod, "IpamIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "ipam_ip.md",
+				},
+			},
+			"scaleway_ipam_ip_reverse_dns": {
+				Tok: scalewayResource(scalewayMod, "IpamIpReverseDns"),
+				Docs: &tfbridge.DocInfo{
+					Source: "ipam_ip_reverse_dns.md",
+				},
+			},
+			"scaleway_job_definition": {
+				Tok: scalewayResource(scalewayMod, "JobDefinition"),
+				Docs: &tfbridge.DocInfo{
+					Source: "job_definition.md",
+				},
+			},
+			"scaleway_k8s_cluster": {
+				Tok: scalewayResource(scalewayMod, "KubernetesCluster"),
+				Docs: &tfbridge.DocInfo{
+					Source: "k8s_cluster.md",
+				},
+			},
+			"scaleway_k8s_pool": {
+				Tok: scalewayResource(scalewayMod, "KubernetesNodePool"),
+				Docs: &tfbridge.DocInfo{
+					Source: "k8s_pool.md",
+				},
+			},
+			"scaleway_lb": {
+				Tok: scalewayResource(scalewayMod, "Loadbalancer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb.md",
+				},
+			},
+			"scaleway_lb_backend": {
+				Tok: scalewayResource(scalewayMod, "LoadbalancerBackend"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_backend.md",
+				},
+			},
+			"scaleway_lb_certificate": {
+				Tok: scalewayResource(scalewayMod, "LoadbalancerCertificate"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_certificate.md",
+				},
+			},
+			"scaleway_lb_frontend": {
+				Tok: scalewayResource(scalewayMod, "LoadbalancerFrontend"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_frontend.md",
+				},
+			},
+			"scaleway_lb_ip": {
+				Tok: scalewayResource(scalewayMod, "LoadbalancerIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_ip.md",
+				},
+			},
+			"scaleway_lb_route": {
+				Tok: scalewayResource(scalewayMod, "LoadbalancerRoute"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_route.md",
+				},
+			},
+			"scaleway_mnq_nats_account": {
+				Tok: scalewayResource(scalewayMod, "MnqNatsAccount"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_nats_account.md",
+				},
+			},
+			"scaleway_mnq_nats_credentials": {
+				Tok: scalewayResource(scalewayMod, "MnqNatsCredentials"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_nats_credentials.md",
+				},
+			},
+			"scaleway_mnq_sns": {
+				Tok: scalewayResource(scalewayMod, "MnqSns"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sns.md",
+				},
+			},
+			"scaleway_mnq_sns_credentials": {
+				Tok: scalewayResource(scalewayMod, "MnqSnsCredentials"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sns_credentials.md",
+				},
+			},
+			"scaleway_mnq_sns_topic": {
+				Tok: scalewayResource(scalewayMod, "MnqSnsTopic"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sns_topic.md",
+				},
+			},
+			"scaleway_mnq_sns_topic_subscription": {
+				Tok: scalewayResource(scalewayMod, "MnqSnsTopicSubscription"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sns_topic_subscriptioin.md",
+				},
+			},
+			"scaleway_mnq_sqs": {
+				Tok: scalewayResource(scalewayMod, "MnqSqs"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sqs.md",
+				},
+			},
+			"scaleway_mnq_sqs_credentials": {
+				Tok: scalewayResource(scalewayMod, "MnqSqsCredentials"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sqs_credentials.md",
+				},
+			},
+			"scaleway_mnq_sqs_queue": {
+				Tok: scalewayResource(scalewayMod, "MnqSqsQueue"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sqs_queue.md",
+				},
+			},
+			"scaleway_object": {
+				Tok: scalewayResource(scalewayMod, "ObjectItem"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object.md",
+				},
+			},
+			"scaleway_object_bucket": {
+				Tok: scalewayResource(scalewayMod, "ObjectBucket"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket.md",
+				},
+			},
+			"scaleway_object_bucket_acl": {
+				Tok: scalewayResource(scalewayMod, "ObjectBucketAcl"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket_acl.md",
+				},
+			},
+			"scaleway_object_bucket_policy": {
+				Tok: scalewayResource(scalewayMod, "ObjectBucketPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket_policy.md",
+				},
+			},
+			"scaleway_object_bucket_website_configuration": {
+				Tok: scalewayResource(scalewayMod, "ObjectBucketWebsiteConfiguration"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket_website_configuration.md",
+				},
+			},
+			"scaleway_object_bucket_lock_configuration": {
+				Tok: scalewayResource(scalewayMod, "ObjectBucketLockConfiguration"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket_lock_configuration.md",
+				},
+			},
+			"scaleway_rdb_acl": {
+				Tok: scalewayResource(scalewayMod, "DatabaseAcl"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_acl.md",
+				},
+			},
+			"scaleway_redis_cluster": {
+				Tok: scalewayResource(scalewayMod, "RedisCluster"),
+				Docs: &tfbridge.DocInfo{
+					Source: "redis_cluster.md",
+				},
+			},
+			"scaleway_rdb_database": {
+				Tok: scalewayResource(scalewayMod, "Database"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_database.md",
+				},
+			},
+			"scaleway_rdb_database_backup": {
+				Tok: scalewayResource(scalewayMod, "DatabaseBackup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_database_backup.md",
+				},
+			},
+			"scaleway_rdb_instance": {
+				Tok: scalewayResource(scalewayMod, "DatabaseInstance"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_instance.md",
+				},
+			},
+			"scaleway_rdb_privilege": {
+				Tok: scalewayResource(scalewayMod, "DatabasePrivilege"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_privilege.md",
+				},
+			},
+			"scaleway_rdb_read_replica": {
+				Tok: scalewayResource(scalewayMod, "DatabaseReadReplica"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_read_replica.md",
+				},
+			},
+			"scaleway_rdb_user": {
+				Tok: scalewayResource(scalewayMod, "DatabaseUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_user.md",
+				},
+			},
+			"scaleway_registry_namespace": {
+				Tok: scalewayResource(scalewayMod, "RegistryNamespace"),
+				Docs: &tfbridge.DocInfo{
+					Source: "registry_namespace.md",
+				},
+			},
+			"scaleway_sdb_sql_database": {
+				Tok: scalewayResource(scalewayMod, "SdbDatabase"),
+				Docs: &tfbridge.DocInfo{
+					Source: "sdb_sql_database.md",
+				},
+			},
+			"scaleway_secret": {
+				Tok: scalewayResource(scalewayMod, "Secret"),
+				Docs: &tfbridge.DocInfo{
+					Source: "secret.md",
+				},
+			},
+			"scaleway_secret_version": {
+				Tok: scalewayResource(scalewayMod, "SecretVersion"),
+				Docs: &tfbridge.DocInfo{
+					Source: "secret_version.md",
+				},
+			},
+			"scaleway_tem_domain": {
+				Tok: scalewayResource(scalewayMod, "TemDomain"),
+				Docs: &tfbridge.DocInfo{
+					Source: "tem_domain.md",
+				},
+			},
+			"scaleway_tem_domain_validation": {
+				Tok: scalewayResource(scalewayMod, "TemDomainValidation"),
+				Docs: &tfbridge.DocInfo{
+					Source: "tem_domain_validation.md",
+				},
+			},
+			"scaleway_vpc_gateway_network": {
+				Tok: scalewayResource(scalewayMod, "VpcGatewayNetwork"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_gateway_network.md",
+				},
+			},
+			"scaleway_vpc_private_network": {
+				Tok: scalewayResource(scalewayMod, "VpcPrivateNetwork"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_private_network.md",
+				},
+			},
+			"scaleway_vpc_public_gateway": {
+				Tok: scalewayResource(scalewayMod, "VpcPublicGateway"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_dhcp": {
+				Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_dhcp.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_ip": {
+				Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_ip.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_ip_reverse_dns": {
+				Tok: scalewayResource(scalewayMod, "VpcPublicGatewayIpReverseDns"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_ip_reverse_dns.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_pat_rule": {
+				Tok: scalewayResource(scalewayMod, "VpcPublicGatewayPatRule"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_pat_rule.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_dhcp_reservation": {
+				Tok: scalewayResource(scalewayMod, "VpcPublicGatewayDhcpReservation"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_dhcp_reservation.md",
+				},
+			},
+			"scaleway_function_trigger": {
+				Tok: scalewayResource(scalewayMod, "FunctionTrigger"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function_trigger.md",
+				},
+			},
+			"scaleway_lb_acl": {
+				Tok: scalewayResource(scalewayMod, "LoadbalancerAcl"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_acl.md",
+				},
+			},
+			"scaleway_webhosting": {
+				Tok: scalewayResource(scalewayMod, "Webhosting"),
+				Docs: &tfbridge.DocInfo{
+					Source: "webhosting.md",
+				},
+			},
+			"scaleway_vpc": {
+				Tok: scalewayResource(scalewayMod, "Vpc"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc.md",
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"scaleway_account_ssh_key": {Tok: scalewayDataSource(scalewayMod, "getAccountSshKey")},
-			"scaleway_account_project": {Tok: scalewayDataSource(scalewayMod, "getAccountProject")},
+			"scaleway_account_ssh_key": {
+				Tok: scalewayDataSource(scalewayMod, "getAccountSshKey"),
+				Docs: &tfbridge.DocInfo{
+					Source: "account_ssh_key.md",
+				},
+			},
+			"scaleway_account_project": {
+				Tok: scalewayDataSource(scalewayMod, "getAccountProject"),
+				Docs: &tfbridge.DocInfo{
+					Source: "account_project.md",
+				},
+			},
 			"scaleway_baremetal_offer": {
 				Tok: scalewayDataSource(scalewayMod, "getBaremetalOffer"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -239,86 +774,491 @@ func Provider() tfbridge.ProviderInfo {
 						MaxItemsOne: boolRef(true),
 					},
 				},
+				Docs: &tfbridge.DocInfo{
+					Source: "baremetal_offer.md",
+				},
 			},
-			"scaleway_baremetal_os":                        {Tok: scalewayDataSource(scalewayMod, "getBaremetalOs")},
-			"scaleway_baremetal_option":                    {Tok: scalewayDataSource(scalewayMod, "getBaremetalOption")},
-			"scaleway_baremetal_server":                    {Tok: scalewayDataSource(scalewayMod, "getBaremetalServer")},
-			"scaleway_block_snapshot":                      {Tok: scalewayDataSource(scalewayMod, "getBlockSnapshot")},
-			"scaleway_block_volume":                        {Tok: scalewayDataSource(scalewayMod, "getBlockVolume")},
-			"scaleway_billing_consumptions":                {Tok: scalewayDataSource(scalewayMod, "getBillingConsumptions")},
-			"scaleway_billing_invoices":                    {Tok: scalewayDataSource(scalewayMod, "getBillingInvoices")},
-			"scaleway_cockpit":                             {Tok: scalewayDataSource(scalewayMod, "getCockpit")},
-			"scaleway_container":                           {Tok: scalewayDataSource(scalewayMod, "getContainer")},
-			"scaleway_container_namespace":                 {Tok: scalewayDataSource(scalewayMod, "getContainerNamespace")},
-			"scaleway_domain_record":                       {Tok: scalewayDataSource(scalewayMod, "getDomainRecord")},
-			"scaleway_domain_zone":                         {Tok: scalewayDataSource(scalewayMod, "getDomainZone")},
-			"scaleway_documentdb_database":                 {Tok: scalewayDataSource(scalewayMod, "getDocumentdbDatabase")},
-			"scaleway_documentdb_instance":                 {Tok: scalewayDataSource(scalewayMod, "getDocumentdbInstance")},
-			"scaleway_documentdb_load_balancer_endpoint":   {Tok: scalewayDataSource(scalewayMod, "getDocumentdbLoadBalancerEndpoint")}, //nolint:golint,lll
-			"scaleway_flexible_ip":                         {Tok: scalewayDataSource(scalewayMod, "getFlexibleIp")},
-			"scaleway_flexible_ips":                        {Tok: scalewayDataSource(scalewayMod, "getFlexibleIps")},
-			"scaleway_function":                            {Tok: scalewayDataSource(scalewayMod, "getFunction")},
-			"scaleway_function_namespace":                  {Tok: scalewayDataSource(scalewayMod, "getFunctionNamespace")},
-			"scaleway_instance_image":                      {Tok: scalewayDataSource(scalewayMod, "getInstanceImage")},
-			"scaleway_instance_placement_group":            {Tok: scalewayDataSource(scalewayMod, "getInstancePlacementGroup")},
-			"scaleway_iam_application":                     {Tok: scalewayDataSource(scalewayMod, "getIamApplication")},
-			"scaleway_iam_group":                           {Tok: scalewayDataSource(scalewayMod, "getIamGroup")},
-			"scaleway_iam_ssh_key":                         {Tok: scalewayDataSource(scalewayMod, "getIamSshKey")},
-			"scaleway_iam_user":                            {Tok: scalewayDataSource(scalewayMod, "getIamUser")},
-			"scaleway_ipam_ip":                             {Tok: scalewayDataSource(scalewayMod, "getIpamIp")},
-			"scaleway_ipam_ips":                            {Tok: scalewayDataSource(scalewayMod, "getIpamIps")},
-			"scaleway_instance_ip":                         {Tok: scalewayDataSource(scalewayMod, "getInstanceIp")},
-			"scaleway_instance_private_nic":                {Tok: scalewayDataSource(scalewayMod, "getInstancePrivateNic")},
-			"scaleway_instance_security_group":             {Tok: scalewayDataSource(scalewayMod, "getInstanceSecurityGroup")},
-			"scaleway_instance_server":                     {Tok: scalewayDataSource(scalewayMod, "getInstanceServer")},
-			"scaleway_instance_servers":                    {Tok: scalewayDataSource(scalewayMod, "getInstanceServers")},
-			"scaleway_instance_snapshot":                   {Tok: scalewayDataSource(scalewayMod, "getInstanceSnapshot")},
-			"scaleway_instance_volume":                     {Tok: scalewayDataSource(scalewayMod, "getInstanceVolume")},
-			"scaleway_iot_device":                          {Tok: scalewayDataSource(scalewayMod, "getIotDevice")},
-			"scaleway_iot_hub":                             {Tok: scalewayDataSource(scalewayMod, "getIotHub")},
-			"scaleway_k8s_cluster":                         {Tok: scalewayDataSource(scalewayMod, "getKubernetesCluster")},
-			"scaleway_k8s_pool":                            {Tok: scalewayDataSource(scalewayMod, "getKubernetesNodePool")},
-			"scaleway_k8s_version":                         {Tok: scalewayDataSource(scalewayMod, "getK8sVersion")},
-			"scaleway_lb":                                  {Tok: scalewayDataSource(scalewayMod, "getLoadbalancer")},
-			"scaleway_lb_acls":                             {Tok: scalewayDataSource(scalewayMod, "getLbAcls")},
-			"scaleway_lb_backend":                          {Tok: scalewayDataSource(scalewayMod, "getLbBackend")},
-			"scaleway_lb_backends":                         {Tok: scalewayDataSource(scalewayMod, "getLbBackends")},
-			"scaleway_lb_certificate":                      {Tok: scalewayDataSource(scalewayMod, "getLoadbalancerCertificate")},
-			"scaleway_lb_frontend":                         {Tok: scalewayDataSource(scalewayMod, "getLbFrontend")},
-			"scaleway_lb_frontends":                        {Tok: scalewayDataSource(scalewayMod, "getLbFrontends")},
-			"scaleway_lb_ip":                               {Tok: scalewayDataSource(scalewayMod, "getLoadbalancerIp")},
-			"scaleway_lb_ips":                              {Tok: scalewayDataSource(scalewayMod, "getLbIps")},
-			"scaleway_lb_route":                            {Tok: scalewayDataSource(scalewayMod, "getLbRoute")},
-			"scaleway_lb_routes":                           {Tok: scalewayDataSource(scalewayMod, "getLbRoutes")},
-			"scaleway_lbs":                                 {Tok: scalewayDataSource(scalewayMod, "getLbs")},
-			"scaleway_object_bucket":                       {Tok: scalewayDataSource(scalewayMod, "getObjectBucket")},
-			"scaleway_marketplace_image":                   {Tok: scalewayDataSource(scalewayMod, "getMarketplaceImage")},
-			"scaleway_mnq_sqs":                             {Tok: scalewayDataSource(scalewayMod, "getMnqSqs")},
-			"scaleway_rdb_acl":                             {Tok: scalewayDataSource(scalewayMod, "getDatabaseAcl")},
-			"scaleway_rdb_database":                        {Tok: scalewayDataSource(scalewayMod, "getDatabase")},
-			"scaleway_rdb_database_backup":                 {Tok: scalewayDataSource(scalewayMod, "getDatabaseBackup")},
-			"scaleway_rdb_instance":                        {Tok: scalewayDataSource(scalewayMod, "getDatabaseInstance")},
-			"scaleway_rdb_privilege":                       {Tok: scalewayDataSource(scalewayMod, "getDatabasePrivilege")},
-			"scaleway_redis_cluster":                       {Tok: scalewayDataSource(scalewayMod, "getRedisCluster")},
-			"scaleway_registry_image":                      {Tok: scalewayDataSource(scalewayMod, "getRegistryImage")},
-			"scaleway_registry_namespace":                  {Tok: scalewayDataSource(scalewayMod, "getRegistryNamespace")},
-			"scaleway_secret":                              {Tok: scalewayDataSource(scalewayMod, "getSecret")},
-			"scaleway_secret_version":                      {Tok: scalewayDataSource(scalewayMod, "getSecretVersion")},
-			"scaleway_tem_domain":                          {Tok: scalewayDataSource(scalewayMod, "getTemDomain")},
-			"scaleway_vpc_gateway_network":                 {Tok: scalewayDataSource(scalewayMod, "getVpcGatewayNetwork")},
-			"scaleway_vpc_private_network":                 {Tok: scalewayDataSource(scalewayMod, "getVpcPrivateNetwork")},
-			"scaleway_vpc_public_gateway":                  {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGateway")},
-			"scaleway_vpc_public_gateway_dhcp":             {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayDhcp")},
-			"scaleway_vpc_public_gateway_dhcp_reservation": {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayDhcpReservation")}, //nolint:golint,lll
-			"scaleway_vpc_public_gateway_ip":               {Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayIp")},
-			"scaleway_availability_zones":                  {Tok: scalewayDataSource(scalewayMod, "getAvailabilityZones")},
-			"scaleway_cockpit_plan":                        {Tok: scalewayDataSource(scalewayMod, "getCockpitPlan")},
-			"scaleway_object_bucket_policy":                {Tok: scalewayDataSource(scalewayMod, "getObjectBucketPolicy")},
-			"scaleway_vpc":                                 {Tok: scalewayDataSource(scalewayMod, "getVpc")},
-			"scaleway_vpcs":                                {Tok: scalewayDataSource(scalewayMod, "getVpcs")},
-			"scaleway_vpc_public_gateway_pat_rule":         {Tok: scalewayDataSource(scalewayMod, "getVpcPublicPatRule")},
-			"scaleway_webhosting_offer":                    {Tok: scalewayDataSource(scalewayMod, "getWebHostOffer")},
-			"scaleway_webhosting":                          {Tok: scalewayDataSource(scalewayMod, "getWebhosting")},
+			"scaleway_baremetal_os": {
+				Tok: scalewayDataSource(scalewayMod, "getBaremetalOs"),
+				Docs: &tfbridge.DocInfo{
+					Source: "baremetal_os.md",
+				},
+			},
+			"scaleway_baremetal_option": {
+				Tok: scalewayDataSource(scalewayMod, "getBaremetalOption"),
+				Docs: &tfbridge.DocInfo{
+					Source: "baremetal_option.md",
+				},
+			},
+			"scaleway_baremetal_server": {
+				Tok: scalewayDataSource(scalewayMod, "getBaremetalServer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "barmetal_server.md",
+				},
+			},
+			"scaleway_block_snapshot": {
+				Tok: scalewayDataSource(scalewayMod, "getBlockSnapshot"),
+				Docs: &tfbridge.DocInfo{
+					Source: "bloc_snapshot.md",
+				},
+			},
+			"scaleway_block_volume": {
+				Tok: scalewayDataSource(scalewayMod, "getBlockVolume"),
+				Docs: &tfbridge.DocInfo{
+					Source: "block_volume.md",
+				},
+			},
+			"scaleway_billing_consumptions": {
+				Tok: scalewayDataSource(scalewayMod, "getBillingConsumptions"),
+				Docs: &tfbridge.DocInfo{
+					Source: "billing_consumption.md",
+				},
+			},
+			"scaleway_billing_invoices": {
+				Tok: scalewayDataSource(scalewayMod, "getBillingInvoices"),
+				Docs: &tfbridge.DocInfo{
+					Source: "billing_invoices.md",
+				},
+			},
+			"scaleway_cockpit": {
+				Tok: scalewayDataSource(scalewayMod, "getCockpit"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit.md",
+				},
+			},
+			"scaleway_config": {
+				Tok: scalewayDataSource(scalewayMod, "getConfig"),
+				Docs: &tfbridge.DocInfo{
+					// Source: "config.md", // File doesn't exist in upstream TF provider repo
+					AllowMissing: true,
+				},
+			},
+			"scaleway_container": {
+				Tok: scalewayDataSource(scalewayMod, "getContainer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container.md",
+				},
+			},
+			"scaleway_container_namespace": {
+				Tok: scalewayDataSource(scalewayMod, "getContainerNamespace"),
+				Docs: &tfbridge.DocInfo{
+					Source: "container_namespace.md",
+				},
+			},
+			"scaleway_domain_record": {
+				Tok: scalewayDataSource(scalewayMod, "getDomainRecord"),
+				Docs: &tfbridge.DocInfo{
+					Source: "domain_record.md",
+				},
+			},
+			"scaleway_domain_zone": {
+				Tok: scalewayDataSource(scalewayMod, "getDomainZone"),
+				Docs: &tfbridge.DocInfo{
+					Source: "domain_zone.md",
+				},
+			},
+			"scaleway_documentdb_database": {
+				Tok: scalewayDataSource(scalewayMod, "getDocumentdbDatabase"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_database.md",
+				},
+			},
+			"scaleway_documentdb_instance": {
+				Tok: scalewayDataSource(scalewayMod, "getDocumentdbInstance"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_instance.md",
+				},
+			},
+			"scaleway_documentdb_load_balancer_endpoint": {
+				Tok: scalewayDataSource(scalewayMod, "getDocumentdbLoadBalancerEndpoint"),
+				Docs: &tfbridge.DocInfo{
+					Source: "documentdb_load_balancer_endpoint.md",
+				},
+			},
+			"scaleway_flexible_ip": {
+				Tok: scalewayDataSource(scalewayMod, "getFlexibleIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "flexible_ip.md",
+				},
+			},
+			"scaleway_flexible_ips": {
+				Tok: scalewayDataSource(scalewayMod, "getFlexibleIps"),
+				Docs: &tfbridge.DocInfo{
+					Source: "flexible_ips.md",
+				},
+			},
+			"scaleway_function": {
+				Tok: scalewayDataSource(scalewayMod, "getFunction"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function.md",
+				},
+			},
+			"scaleway_function_namespace": {
+				Tok: scalewayDataSource(scalewayMod, "getFunctionNamespace"),
+				Docs: &tfbridge.DocInfo{
+					Source: "function_namespace.md",
+				},
+			},
+			"scaleway_instance_image": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceImage"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_image.md",
+				},
+			},
+			"scaleway_instance_placement_group": {
+				Tok: scalewayDataSource(scalewayMod, "getInstancePlacementGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_placement_group.md",
+				},
+			},
+			"scaleway_iam_application": {
+				Tok: scalewayDataSource(scalewayMod, "getIamApplication"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_application.md",
+				},
+			},
+			"scaleway_iam_group": {
+				Tok: scalewayDataSource(scalewayMod, "getIamGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_group.md",
+				},
+			},
+			"scaleway_iam_ssh_key": {
+				Tok: scalewayDataSource(scalewayMod, "getIamSshKey"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_ssh_key.md",
+				},
+			},
+			"scaleway_iam_user": {
+				Tok: scalewayDataSource(scalewayMod, "getIamUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_user.md",
+				},
+			},
+			"scaleway_ipam_ip": {
+				Tok: scalewayDataSource(scalewayMod, "getIpamIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "ipam_ip.md",
+				},
+			},
+			"scaleway_ipam_ips": {
+				Tok: scalewayDataSource(scalewayMod, "getIpamIps"),
+				Docs: &tfbridge.DocInfo{
+					Source: "ipam_ips.md",
+				},
+			},
+			"scaleway_instance_ip": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_ip.md",
+				},
+			},
+			"scaleway_instance_private_nic": {
+				Tok: scalewayDataSource(scalewayMod, "getInstancePrivateNic"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_private_nic.md",
+				},
+			},
+			"scaleway_instance_security_group": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceSecurityGroup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_security_group.md",
+				},
+			},
+			"scaleway_instance_server": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceServer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_server.md",
+				},
+			},
+			"scaleway_instance_servers": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceServers"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_servers.md",
+				},
+			},
+			"scaleway_instance_snapshot": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceSnapshot"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_snapshot.md",
+				},
+			},
+			"scaleway_instance_volume": {
+				Tok: scalewayDataSource(scalewayMod, "getInstanceVolume"),
+				Docs: &tfbridge.DocInfo{
+					Source: "instance_volume.md",
+				},
+			},
+			"scaleway_iot_device": {
+				Tok: scalewayDataSource(scalewayMod, "getIotDevice"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iot_device.md",
+				},
+			},
+			"scaleway_iot_hub": {
+				Tok: scalewayDataSource(scalewayMod, "getIotHub"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iot_hub.md",
+				},
+			},
+			"scaleway_k8s_cluster": {
+				Tok: scalewayDataSource(scalewayMod, "getKubernetesCluster"),
+				Docs: &tfbridge.DocInfo{
+					Source: "k8s_cluster.md",
+				},
+			},
+			"scaleway_k8s_pool": {
+				Tok: scalewayDataSource(scalewayMod, "getKubernetesNodePool"),
+				Docs: &tfbridge.DocInfo{
+					Source: "k8s_pool.md",
+				},
+			},
+			"scaleway_k8s_version": {
+				Tok: scalewayDataSource(scalewayMod, "getK8sVersion"),
+				Docs: &tfbridge.DocInfo{
+					Source: "k8s_version.md",
+				},
+			},
+			"scaleway_lb": {
+				Tok: scalewayDataSource(scalewayMod, "getLoadbalancer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb.md",
+				},
+			},
+			"scaleway_lb_acls": {
+				Tok: scalewayDataSource(scalewayMod, "getLbAcls"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_acls.md",
+				},
+			},
+			"scaleway_lb_backend": {
+				Tok: scalewayDataSource(scalewayMod, "getLbBackend"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_backend.md",
+				},
+			},
+			"scaleway_lb_backends": {
+				Tok: scalewayDataSource(scalewayMod, "getLbBackends"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_backends.md",
+				},
+			},
+			"scaleway_lb_certificate": {
+				Tok: scalewayDataSource(scalewayMod, "getLoadbalancerCertificate"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_certificate.md",
+				},
+			},
+			"scaleway_lb_frontend": {
+				Tok: scalewayDataSource(scalewayMod, "getLbFrontend"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_frontend.md",
+				},
+			},
+			"scaleway_lb_frontends": {
+				Tok: scalewayDataSource(scalewayMod, "getLbFrontends"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_frontends.md",
+				},
+			},
+			"scaleway_lb_ip": {
+				Tok: scalewayDataSource(scalewayMod, "getLoadbalancerIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_ip.md",
+				},
+			},
+			"scaleway_lb_ips": {
+				Tok: scalewayDataSource(scalewayMod, "getLbIps"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_ips.md",
+				},
+			},
+			"scaleway_lb_route": {
+				Tok: scalewayDataSource(scalewayMod, "getLbRoute"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_route.md",
+				},
+			},
+			"scaleway_lb_routes": {
+				Tok: scalewayDataSource(scalewayMod, "getLbRoutes"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lb_routes.md",
+				},
+			},
+			"scaleway_lbs": {
+				Tok: scalewayDataSource(scalewayMod, "getLbs"),
+				Docs: &tfbridge.DocInfo{
+					Source: "lbs.md",
+				},
+			},
+			"scaleway_object_bucket": {
+				Tok: scalewayDataSource(scalewayMod, "getObjectBucket"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket.md",
+				},
+			},
+			"scaleway_marketplace_image": {
+				Tok: scalewayDataSource(scalewayMod, "getMarketplaceImage"),
+				Docs: &tfbridge.DocInfo{
+					Source: "marketplace_image.md",
+				},
+			},
+			"scaleway_mnq_sqs": {
+				Tok: scalewayDataSource(scalewayMod, "getMnqSqs"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sqs.md",
+				},
+			},
+			"scaleway_rdb_acl": {
+				Tok: scalewayDataSource(scalewayMod, "getDatabaseAcl"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_acl.md",
+				},
+			},
+			"scaleway_rdb_database": {
+				Tok: scalewayDataSource(scalewayMod, "getDatabase"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_database.md",
+				},
+			},
+			"scaleway_rdb_database_backup": {
+				Tok: scalewayDataSource(scalewayMod, "getDatabaseBackup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_database_backup.md",
+				},
+			},
+			"scaleway_rdb_instance": {
+				Tok: scalewayDataSource(scalewayMod, "getDatabaseInstance"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_instance.md",
+				},
+			},
+			"scaleway_rdb_privilege": {
+				Tok: scalewayDataSource(scalewayMod, "getDatabasePrivilege"),
+				Docs: &tfbridge.DocInfo{
+					Source: "rdb_privilege.md",
+				},
+			},
+			"scaleway_redis_cluster": {
+				Tok: scalewayDataSource(scalewayMod, "getRedisCluster"),
+				Docs: &tfbridge.DocInfo{
+					Source: "redis_cluster.md",
+				},
+			},
+			"scaleway_registry_image": {
+				Tok: scalewayDataSource(scalewayMod, "getRegistryImage"),
+				Docs: &tfbridge.DocInfo{
+					Source: "registry_image.md",
+				},
+			},
+			"scaleway_registry_namespace": {
+				Tok: scalewayDataSource(scalewayMod, "getRegistryNamespace"),
+				Docs: &tfbridge.DocInfo{
+					Source: "registry_namespace.md",
+				},
+			},
+			"scaleway_secret": {
+				Tok: scalewayDataSource(scalewayMod, "getSecret"),
+				Docs: &tfbridge.DocInfo{
+					Source: "secret.md",
+				},
+			},
+			"scaleway_secret_version": {
+				Tok: scalewayDataSource(scalewayMod, "getSecretVersion"),
+				Docs: &tfbridge.DocInfo{
+					Source: "secret_version.md",
+				},
+			},
+			"scaleway_tem_domain": {
+				Tok: scalewayDataSource(scalewayMod, "getTemDomain"),
+				Docs: &tfbridge.DocInfo{
+					Source: "tem_domain.md",
+				},
+			},
+			"scaleway_vpc_gateway_network": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcGatewayNetwork"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_gateway_network.md",
+				},
+			},
+			"scaleway_vpc_private_network": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcPrivateNetwork"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_private_network.md",
+				},
+			},
+			"scaleway_vpc_public_gateway": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcPublicGateway"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_dhcp": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayDhcp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_dhcp.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_dhcp_reservation": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayDhcpReservation"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_dhcp_reservation.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_ip": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcPublicGatewayIp"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_ip.md",
+				},
+			},
+			"scaleway_availability_zones": {
+				Tok: scalewayDataSource(scalewayMod, "getAvailabilityZones"),
+				Docs: &tfbridge.DocInfo{
+					Source: "availability_zones.md",
+				},
+			},
+			"scaleway_cockpit_plan": {
+				Tok: scalewayDataSource(scalewayMod, "getCockpitPlan"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cockpit_plan.md",
+				},
+			},
+			"scaleway_object_bucket_policy": {
+				Tok: scalewayDataSource(scalewayMod, "getObjectBucketPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Source: "object_bucket_policy.md",
+				},
+			},
+			"scaleway_vpc": {
+				Tok: scalewayDataSource(scalewayMod, "getVpc"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc.md",
+				},
+			},
+			"scaleway_vpcs": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcs"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpcs.md",
+				},
+			},
+			"scaleway_vpc_public_gateway_pat_rule": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcPublicPatRule"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_public_gateway_pat_rule.md",
+				},
+			},
+			"scaleway_webhosting_offer": {
+				Tok: scalewayDataSource(scalewayMod, "getWebHostOffer"),
+				Docs: &tfbridge.DocInfo{
+					Source: "webhosting_offer.md",
+				},
+			},
+			"scaleway_webhosting": {
+				Tok: scalewayDataSource(scalewayMod, "getWebhosting"),
+				Docs: &tfbridge.DocInfo{
+					Source: "webhosting.md",
+				},
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

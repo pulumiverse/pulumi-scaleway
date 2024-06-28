@@ -1,2 +1,2 @@
 upstream-provider-name: terraform-provider-scaleway
-allow-missing-docs: true
+allow-missing-docs: false
