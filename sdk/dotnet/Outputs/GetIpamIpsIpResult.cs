@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetIpamIpsIpResult
     {
         /// <summary>
-        /// The Scaleway internal IP address of the server.
+        /// The Scaleway internal IP address of the resource.
         /// </summary>
         public readonly string Address;
         /// <summary>
@@ -27,19 +27,19 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The ID of the project used as filter.
+        /// The ID of the Project to filter for.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The region used as filter.
+        /// The region to filter for.
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// Filter by resource ID, type or name.
+        /// Filter for a resource attached to the IP, using resource ID, type or name.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIpamIpsIpResourceResult> Resources;
         /// <summary>
-        /// The tags used as filter.
+        /// The IP tags to filter for.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
-        /// The zone in which the IP is.
+        /// The zone of the IP.
         /// </summary>
         public readonly string Zone;
 

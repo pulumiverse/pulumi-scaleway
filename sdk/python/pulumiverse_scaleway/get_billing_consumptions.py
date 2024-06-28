@@ -42,6 +42,9 @@ class GetBillingConsumptionsResult:
     @property
     @pulumi.getter
     def consumptions(self) -> Sequence['outputs.GetBillingConsumptionsConsumptionResult']:
+        """
+        List of found consumptions
+        """
         return pulumi.get(self, "consumptions")
 
     @property
@@ -60,11 +63,17 @@ class GetBillingConsumptionsResult:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        The project ID of the consumption.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
+        """
+        The last consumption update date.
+        """
         return pulumi.get(self, "updated_at")
 
 
@@ -84,7 +93,10 @@ class AwaitableGetBillingConsumptionsResult(GetBillingConsumptionsResult):
 def get_billing_consumptions(project_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBillingConsumptionsResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about your Consumptions.
+
+
+    :param str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -103,6 +115,9 @@ def get_billing_consumptions(project_id: Optional[str] = None,
 def get_billing_consumptions_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBillingConsumptionsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about your Consumptions.
+
+
+    :param str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
     ...

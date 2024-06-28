@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Container Registry.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/registry).
+    /// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
     /// 
     /// ## Example Usage
     /// 
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the namespace is associated with.
+        /// The Organization ID the namespace is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -206,7 +206,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the namespace is associated with.
+        /// The Organization ID the namespace is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

@@ -12,8 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Load-Balancer Routes.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+// Creates and manages Scaleway Load Balancer routes.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 //
 // ## Example Usage
 //
@@ -131,7 +132,7 @@ import (
 //
 // ## Import
 //
-// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+// Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -141,11 +142,11 @@ import (
 type LoadbalancerRoute struct {
 	pulumi.CustomResourceState
 
-	// The ID of the backend to which the route is associated.
+	// The ID of the backend the route is associated with.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
-	// The date at which the route was created.
+	// The date on which the route was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The ID of the frontend to which the route is associated.
+	// The ID of the frontend the route is associated with.
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
@@ -157,7 +158,7 @@ type LoadbalancerRoute struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
-	// The date at which the route was last updated.
+	// The date on which the route was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -197,11 +198,11 @@ func GetLoadbalancerRoute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerRoute resources.
 type loadbalancerRouteState struct {
-	// The ID of the backend to which the route is associated.
+	// The ID of the backend the route is associated with.
 	BackendId *string `pulumi:"backendId"`
-	// The date at which the route was created.
+	// The date on which the route was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the frontend to which the route is associated.
+	// The ID of the frontend the route is associated with.
 	FrontendId *string `pulumi:"frontendId"`
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
@@ -213,16 +214,16 @@ type loadbalancerRouteState struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
-	// The date at which the route was last updated.
+	// The date on which the route was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type LoadbalancerRouteState struct {
-	// The ID of the backend to which the route is associated.
+	// The ID of the backend the route is associated with.
 	BackendId pulumi.StringPtrInput
-	// The date at which the route was created.
+	// The date on which the route was created.
 	CreatedAt pulumi.StringPtrInput
-	// The ID of the frontend to which the route is associated.
+	// The ID of the frontend the route is associated with.
 	FrontendId pulumi.StringPtrInput
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
@@ -234,7 +235,7 @@ type LoadbalancerRouteState struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
-	// The date at which the route was last updated.
+	// The date on which the route was last updated.
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -243,9 +244,9 @@ func (LoadbalancerRouteState) ElementType() reflect.Type {
 }
 
 type loadbalancerRouteArgs struct {
-	// The ID of the backend to which the route is associated.
+	// The ID of the backend the route is associated with.
 	BackendId string `pulumi:"backendId"`
-	// The ID of the frontend to which the route is associated.
+	// The ID of the frontend the route is associated with.
 	FrontendId string `pulumi:"frontendId"`
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
@@ -261,9 +262,9 @@ type loadbalancerRouteArgs struct {
 
 // The set of arguments for constructing a LoadbalancerRoute resource.
 type LoadbalancerRouteArgs struct {
-	// The ID of the backend to which the route is associated.
+	// The ID of the backend the route is associated with.
 	BackendId pulumi.StringInput
-	// The ID of the frontend to which the route is associated.
+	// The ID of the frontend the route is associated with.
 	FrontendId pulumi.StringInput
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
 	// Only one of `matchSni` and `matchHostHeader` should be specified.
@@ -364,17 +365,17 @@ func (o LoadbalancerRouteOutput) ToLoadbalancerRouteOutputWithContext(ctx contex
 	return o
 }
 
-// The ID of the backend to which the route is associated.
+// The ID of the backend the route is associated with.
 func (o LoadbalancerRouteOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
 
-// The date at which the route was created.
+// The date on which the route was created.
 func (o LoadbalancerRouteOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the frontend to which the route is associated.
+// The ID of the frontend the route is associated with.
 func (o LoadbalancerRouteOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.FrontendId }).(pulumi.StringOutput)
 }
@@ -395,7 +396,7 @@ func (o LoadbalancerRouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
 }
 
-// The date at which the route was last updated.
+// The date on which the route was last updated.
 func (o LoadbalancerRouteOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

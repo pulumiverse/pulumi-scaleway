@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetDatabasePrivilege
     {
         /// <summary>
-        /// Gets information about the privilege on RDB database.
+        /// Gets information about the privileges in a database.
         /// 
         /// ## Example Usage
         /// 
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the privilege on RDB database.
+        /// Gets information about the privileges in a database.
         /// 
         /// ## Example Usage
         /// 
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway
         public string DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// The RDB instance ID.
+        /// The Database Instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public string InstanceId { get; set; } = null!;
@@ -107,7 +107,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// The RDB instance ID.
+        /// The Database Instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;

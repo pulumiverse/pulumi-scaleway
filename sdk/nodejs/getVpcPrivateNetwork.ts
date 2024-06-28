@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a private network.
+ * Gets information about a Private Network.
  *
  * ## Example Usage
  *
@@ -45,20 +45,20 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
  */
 export interface GetVpcPrivateNetworkArgs {
     /**
-     * Name of the private network. Cannot be used with `privateNetworkId`.
+     * Name of the Private Network. Cannot be used with `privateNetworkId`.
      */
     name?: string;
     /**
-     * ID of the private network. Cannot be used with `name` and `vpcId`.
+     * ID of the Private Network. Cannot be used with `name` or `vpcId`.
      */
     privateNetworkId?: string;
     /**
-     * The ID of the project the private network is associated with.
+     * The ID of the Project the Private Network is associated with.
      */
     projectId?: string;
     region?: string;
     /**
-     * ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
+     * ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.
      */
     vpcId?: string;
 }
@@ -73,11 +73,11 @@ export interface GetVpcPrivateNetworkResult {
      */
     readonly id: string;
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet associated with the Private Network.
      */
     readonly ipv4Subnets: outputs.GetVpcPrivateNetworkIpv4Subnet[];
     /**
-     * The IPv6 subnets associated with the private network.
+     * The IPv6 subnets associated with the Private Network.
      */
     readonly ipv6Subnets: outputs.GetVpcPrivateNetworkIpv6Subnet[];
     readonly isRegional: boolean;
@@ -92,7 +92,7 @@ export interface GetVpcPrivateNetworkResult {
     readonly zone: string;
 }
 /**
- * Gets information about a private network.
+ * Gets information about a Private Network.
  *
  * ## Example Usage
  *
@@ -121,20 +121,20 @@ export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs
  */
 export interface GetVpcPrivateNetworkOutputArgs {
     /**
-     * Name of the private network. Cannot be used with `privateNetworkId`.
+     * Name of the Private Network. Cannot be used with `privateNetworkId`.
      */
     name?: pulumi.Input<string>;
     /**
-     * ID of the private network. Cannot be used with `name` and `vpcId`.
+     * ID of the Private Network. Cannot be used with `name` or `vpcId`.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * The ID of the project the private network is associated with.
+     * The ID of the Project the Private Network is associated with.
      */
     projectId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     /**
-     * ID of the VPC in which the private network is. Cannot be used with `privateNetworkId`.
+     * ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.
      */
     vpcId?: pulumi.Input<string>;
 }

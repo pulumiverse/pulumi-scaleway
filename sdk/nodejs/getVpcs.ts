@@ -38,19 +38,19 @@ export function getVpcs(args?: GetVpcsArgs, opts?: pulumi.InvokeOptions): Promis
  */
 export interface GetVpcsArgs {
     /**
-     * The VPC name used as filter. VPCs with a name like it are listed.
+     * The VPC name to filter for. VPCs with a similar name are listed.
      */
     name?: string;
     /**
-     * The ID of the project the VPC is associated with.
+     * The ID of the Project the VPC is associated with.
      */
     projectId?: string;
     /**
-     * `region`). The region in which vpcs exist.
+     * `region`). The region in which the VPCs exist.
      */
     region?: string;
     /**
-     * List of tags used as filter. VPCs with these exact tags are listed.
+     * List of tags to filter for. VPCs with these exact tags are listed.
      */
     tags?: string[];
 }
@@ -65,17 +65,17 @@ export interface GetVpcsResult {
     readonly id: string;
     readonly name?: string;
     /**
-     * The organization ID the VPC is associated with.
+     * The Organization ID the VPC is associated with.
      */
     readonly organizationId: string;
     /**
-     * The ID of the project the VPC is associated with.
+     * The ID of the Project the VPC is associated with.
      */
     readonly projectId: string;
     readonly region: string;
     readonly tags?: string[];
     /**
-     * List of found vpcs
+     * List of retrieved VPCs
      */
     readonly vpcs: outputs.GetVpcsVpc[];
 }
@@ -103,19 +103,19 @@ export function getVpcsOutput(args?: GetVpcsOutputArgs, opts?: pulumi.InvokeOpti
  */
 export interface GetVpcsOutputArgs {
     /**
-     * The VPC name used as filter. VPCs with a name like it are listed.
+     * The VPC name to filter for. VPCs with a similar name are listed.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the VPC is associated with.
+     * The ID of the Project the VPC is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which vpcs exist.
+     * `region`). The region in which the VPCs exist.
      */
     region?: pulumi.Input<string>;
     /**
-     * List of tags used as filter. VPCs with these exact tags are listed.
+     * List of tags to filter for. VPCs with these exact tags are listed.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

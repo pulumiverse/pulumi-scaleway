@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The ID of the private network.
+        /// The ID of the Private Network.
         /// </summary>
         public readonly string Id;
         /// <summary>

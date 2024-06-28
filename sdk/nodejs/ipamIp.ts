@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Books and manages Scaleway IPAM IPs.
+ * Books and manages IPAM IPs.
+ *
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
  *
  * ## Example Usage
  *
@@ -29,7 +31,7 @@ import * as utilities from "./utilities";
  * }]});
  * ```
  *
- * ### Request a specific IPv4
+ * ### Request a specific IPv4 address
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,7 +52,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Request an IPv6
+ * ### Request an IPv6 address
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -73,7 +75,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * IPAM IPs can be imported using the `{region}/{id}`, e.g.
+ * IPAM IPs can be imported using `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -118,11 +120,11 @@ export class IpamIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Defines whether to request an IPv6 instead of an IPv4.
+     * Defines whether to request an IPv6 address instead of IPv4.
      */
     public readonly isIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -134,7 +136,7 @@ export class IpamIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly resources!: pulumi.Output<outputs.IpamIpResource[]>;
     /**
-     * The reverses DNS for this IP.
+     * The reverse DNS for this IP.
      */
     public /*out*/ readonly reverses!: pulumi.Output<outputs.IpamIpReverse[]>;
     /**
@@ -213,11 +215,11 @@ export interface IpamIpState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Defines whether to request an IPv6 instead of an IPv4.
+     * Defines whether to request an IPv6 address instead of IPv4.
      */
     isIpv6?: pulumi.Input<boolean>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -229,7 +231,7 @@ export interface IpamIpState {
      */
     resources?: pulumi.Input<pulumi.Input<inputs.IpamIpResource>[]>;
     /**
-     * The reverses DNS for this IP.
+     * The reverse DNS for this IP.
      */
     reverses?: pulumi.Input<pulumi.Input<inputs.IpamIpReverse>[]>;
     /**
@@ -259,11 +261,11 @@ export interface IpamIpArgs {
      */
     address?: pulumi.Input<string>;
     /**
-     * Defines whether to request an IPv6 instead of an IPv4.
+     * Defines whether to request an IPv6 address instead of IPv4.
      */
     isIpv6?: pulumi.Input<boolean>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**

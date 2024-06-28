@@ -12,7 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+// Creates and manages Scaleway Load Balancer frontends.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 //
 // ## Example Usage
 //
@@ -159,7 +161,7 @@ import (
 //
 // ## Import
 //
-// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+// Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -169,32 +171,32 @@ import (
 type LoadbalancerFrontend struct {
 	pulumi.CustomResourceState
 
-	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
 	Acls LoadbalancerFrontendAclArrayOutput `pulumi:"acls"`
-	// The load-balancer backend ID this frontend is attached to.
+	// The ID of the Load Balancer backend this frontend is attached to.
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
-	// (Deprecated) first certificate ID used by the frontend.
+	// (Deprecated) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
-	// List of Certificate IDs that should be used by the frontend.
+	// List of certificate IDs that should be used by the frontend.
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayOutput `pulumi:"certificateIds"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrOutput `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
-	// If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+	// If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
 	ExternalAcls pulumi.BoolPtrOutput `pulumi:"externalAcls"`
-	// TCP port to listen on the front side.
+	// TCP port to listen to on the front side.
 	InboundPort pulumi.IntOutput `pulumi:"inboundPort"`
-	// The load-balancer ID this frontend is attached to.
+	// The ID of the Load Balancer this frontend is attached to.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Maximum inactivity time on the client side. (e.g.: `1s`)
+	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient pulumi.StringPtrOutput `pulumi:"timeoutClient"`
 }
 
@@ -237,62 +239,62 @@ func GetLoadbalancerFrontend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerFrontend resources.
 type loadbalancerFrontendState struct {
-	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
 	Acls []LoadbalancerFrontendAcl `pulumi:"acls"`
-	// The load-balancer backend ID this frontend is attached to.
+	// The ID of the Load Balancer backend this frontend is attached to.
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId *string `pulumi:"backendId"`
-	// (Deprecated) first certificate ID used by the frontend.
+	// (Deprecated) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId *string `pulumi:"certificateId"`
-	// List of Certificate IDs that should be used by the frontend.
+	// List of certificate IDs that should be used by the frontend.
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds []string `pulumi:"certificateIds"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
-	// If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+	// If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
 	ExternalAcls *bool `pulumi:"externalAcls"`
-	// TCP port to listen on the front side.
+	// TCP port to listen to on the front side.
 	InboundPort *int `pulumi:"inboundPort"`
-	// The load-balancer ID this frontend is attached to.
+	// The ID of the Load Balancer this frontend is attached to.
 	LbId *string `pulumi:"lbId"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// Maximum inactivity time on the client side. (e.g.: `1s`)
+	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient *string `pulumi:"timeoutClient"`
 }
 
 type LoadbalancerFrontendState struct {
-	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
 	Acls LoadbalancerFrontendAclArrayInput
-	// The load-balancer backend ID this frontend is attached to.
+	// The ID of the Load Balancer backend this frontend is attached to.
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringPtrInput
-	// (Deprecated) first certificate ID used by the frontend.
+	// (Deprecated) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringPtrInput
-	// List of Certificate IDs that should be used by the frontend.
+	// List of certificate IDs that should be used by the frontend.
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
 	// A boolean to specify whether to use lb_acl.
-	// If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+	// If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
 	ExternalAcls pulumi.BoolPtrInput
-	// TCP port to listen on the front side.
+	// TCP port to listen to on the front side.
 	InboundPort pulumi.IntPtrInput
-	// The load-balancer ID this frontend is attached to.
+	// The ID of the Load Balancer this frontend is attached to.
 	LbId pulumi.StringPtrInput
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// Maximum inactivity time on the client side. (e.g.: `1s`)
+	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient pulumi.StringPtrInput
 }
 
@@ -301,55 +303,55 @@ func (LoadbalancerFrontendState) ElementType() reflect.Type {
 }
 
 type loadbalancerFrontendArgs struct {
-	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
 	Acls []LoadbalancerFrontendAcl `pulumi:"acls"`
-	// The load-balancer backend ID this frontend is attached to.
+	// The ID of the Load Balancer backend this frontend is attached to.
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId string `pulumi:"backendId"`
-	// List of Certificate IDs that should be used by the frontend.
+	// List of certificate IDs that should be used by the frontend.
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds []string `pulumi:"certificateIds"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
-	// If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+	// If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
 	ExternalAcls *bool `pulumi:"externalAcls"`
-	// TCP port to listen on the front side.
+	// TCP port to listen to on the front side.
 	InboundPort int `pulumi:"inboundPort"`
-	// The load-balancer ID this frontend is attached to.
+	// The ID of the Load Balancer this frontend is attached to.
 	LbId string `pulumi:"lbId"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// Maximum inactivity time on the client side. (e.g.: `1s`)
+	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient *string `pulumi:"timeoutClient"`
 }
 
 // The set of arguments for constructing a LoadbalancerFrontend resource.
 type LoadbalancerFrontendArgs struct {
-	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
 	Acls LoadbalancerFrontendAclArrayInput
-	// The load-balancer backend ID this frontend is attached to.
+	// The ID of the Load Balancer backend this frontend is attached to.
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringInput
-	// List of Certificate IDs that should be used by the frontend.
+	// List of certificate IDs that should be used by the frontend.
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
 	// A boolean to specify whether to use lb_acl.
-	// If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+	// If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
 	ExternalAcls pulumi.BoolPtrInput
-	// TCP port to listen on the front side.
+	// TCP port to listen to on the front side.
 	InboundPort pulumi.IntInput
-	// The load-balancer ID this frontend is attached to.
+	// The ID of the Load Balancer this frontend is attached to.
 	LbId pulumi.StringInput
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// Maximum inactivity time on the client side. (e.g.: `1s`)
+	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient pulumi.StringPtrInput
 }
 
@@ -440,26 +442,26 @@ func (o LoadbalancerFrontendOutput) ToLoadbalancerFrontendOutputWithContext(ctx 
 	return o
 }
 
-// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
 func (o LoadbalancerFrontendOutput) Acls() LoadbalancerFrontendAclArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendAclArrayOutput { return v.Acls }).(LoadbalancerFrontendAclArrayOutput)
 }
 
-// The load-balancer backend ID this frontend is attached to.
+// The ID of the Load Balancer backend this frontend is attached to.
 //
 // > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 func (o LoadbalancerFrontendOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
 
-// (Deprecated) first certificate ID used by the frontend.
+// (Deprecated) First certificate ID used by the frontend.
 //
 // Deprecated: Please use certificate_ids
 func (o LoadbalancerFrontendOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.CertificateId }).(pulumi.StringOutput)
 }
 
-// List of Certificate IDs that should be used by the frontend.
+// List of certificate IDs that should be used by the frontend.
 //
 // > **Important:** Certificates are not allowed on port 80.
 func (o LoadbalancerFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
@@ -472,17 +474,17 @@ func (o LoadbalancerFrontendOutput) EnableHttp3() pulumi.BoolPtrOutput {
 }
 
 // A boolean to specify whether to use lb_acl.
-// If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+// If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
 func (o LoadbalancerFrontendOutput) ExternalAcls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.BoolPtrOutput { return v.ExternalAcls }).(pulumi.BoolPtrOutput)
 }
 
-// TCP port to listen on the front side.
+// TCP port to listen to on the front side.
 func (o LoadbalancerFrontendOutput) InboundPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.IntOutput { return v.InboundPort }).(pulumi.IntOutput)
 }
 
-// The load-balancer ID this frontend is attached to.
+// The ID of the Load Balancer this frontend is attached to.
 func (o LoadbalancerFrontendOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
 }
@@ -492,7 +494,7 @@ func (o LoadbalancerFrontendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Maximum inactivity time on the client side. (e.g.: `1s`)
+// Maximum inactivity time on the client side. (e.g. `1s`)
 func (o LoadbalancerFrontendOutput) TimeoutClient() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringPtrOutput { return v.TimeoutClient }).(pulumi.StringPtrOutput)
 }

@@ -12,15 +12,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+// Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
 //
-// The static associations are used to assign IP addresses based on the MAC addresses of the Instance.
+// These static associations are used to assign IP addresses based on the MAC addresses of the resource.
 //
 // Statically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.
 //
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).
+// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
 //
-// [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.
+// [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to resources) and static user-created DHCP reservations.
 //
 // ## Example Usage
 //
@@ -101,7 +101,7 @@ import (
 //
 // ## Import
 //
-// Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.
+// Public Gateway DHCP reservation configurations can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -111,19 +111,19 @@ import (
 type VpcPublicGatewayDhcpReservation struct {
 	pulumi.CustomResourceState
 
-	// The date and time of the creation of the public gateway DHCP config.
+	// The date and time of the creation of the Public Gateway DHCP configuration.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the owning GatewayNetwork.
 	GatewayNetworkId pulumi.StringOutput `pulumi:"gatewayNetworkId"`
-	// The Hostname of the client machine.
+	// The hostname of the client machine.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// The IP address to give to the machine (IP address).
+	// The IP address to give to the machine.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// The MAC address to give a static entry to.
+	// The MAC address for the static entry.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
-	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The date and time of the last update of the public gateway DHCP config.
+	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the public gateway DHCP config should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -168,38 +168,38 @@ func GetVpcPublicGatewayDhcpReservation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPublicGatewayDhcpReservation resources.
 type vpcPublicGatewayDhcpReservationState struct {
-	// The date and time of the creation of the public gateway DHCP config.
+	// The date and time of the creation of the Public Gateway DHCP configuration.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the owning GatewayNetwork.
 	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
-	// The Hostname of the client machine.
+	// The hostname of the client machine.
 	Hostname *string `pulumi:"hostname"`
-	// The IP address to give to the machine (IP address).
+	// The IP address to give to the machine.
 	IpAddress *string `pulumi:"ipAddress"`
-	// The MAC address to give a static entry to.
+	// The MAC address for the static entry.
 	MacAddress *string `pulumi:"macAddress"`
-	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
 	Type *string `pulumi:"type"`
-	// The date and time of the last update of the public gateway DHCP config.
+	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// `zone`) The zone in which the public gateway DHCP config should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPublicGatewayDhcpReservationState struct {
-	// The date and time of the creation of the public gateway DHCP config.
+	// The date and time of the creation of the Public Gateway DHCP configuration.
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the owning GatewayNetwork.
 	GatewayNetworkId pulumi.StringPtrInput
-	// The Hostname of the client machine.
+	// The hostname of the client machine.
 	Hostname pulumi.StringPtrInput
-	// The IP address to give to the machine (IP address).
+	// The IP address to give to the machine.
 	IpAddress pulumi.StringPtrInput
-	// The MAC address to give a static entry to.
+	// The MAC address for the static entry.
 	MacAddress pulumi.StringPtrInput
-	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+	// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
 	Type pulumi.StringPtrInput
-	// The date and time of the last update of the public gateway DHCP config.
+	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringPtrInput
 	// `zone`) The zone in which the public gateway DHCP config should be created.
 	Zone pulumi.StringPtrInput
@@ -212,9 +212,9 @@ func (VpcPublicGatewayDhcpReservationState) ElementType() reflect.Type {
 type vpcPublicGatewayDhcpReservationArgs struct {
 	// The ID of the owning GatewayNetwork.
 	GatewayNetworkId string `pulumi:"gatewayNetworkId"`
-	// The IP address to give to the machine (IP address).
+	// The IP address to give to the machine.
 	IpAddress string `pulumi:"ipAddress"`
-	// The MAC address to give a static entry to.
+	// The MAC address for the static entry.
 	MacAddress string `pulumi:"macAddress"`
 	// `zone`) The zone in which the public gateway DHCP config should be created.
 	Zone *string `pulumi:"zone"`
@@ -224,9 +224,9 @@ type vpcPublicGatewayDhcpReservationArgs struct {
 type VpcPublicGatewayDhcpReservationArgs struct {
 	// The ID of the owning GatewayNetwork.
 	GatewayNetworkId pulumi.StringInput
-	// The IP address to give to the machine (IP address).
+	// The IP address to give to the machine.
 	IpAddress pulumi.StringInput
-	// The MAC address to give a static entry to.
+	// The MAC address for the static entry.
 	MacAddress pulumi.StringInput
 	// `zone`) The zone in which the public gateway DHCP config should be created.
 	Zone pulumi.StringPtrInput
@@ -319,7 +319,7 @@ func (o VpcPublicGatewayDhcpReservationOutput) ToVpcPublicGatewayDhcpReservation
 	return o
 }
 
-// The date and time of the creation of the public gateway DHCP config.
+// The date and time of the creation of the Public Gateway DHCP configuration.
 func (o VpcPublicGatewayDhcpReservationOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -329,27 +329,27 @@ func (o VpcPublicGatewayDhcpReservationOutput) GatewayNetworkId() pulumi.StringO
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.GatewayNetworkId }).(pulumi.StringOutput)
 }
 
-// The Hostname of the client machine.
+// The hostname of the client machine.
 func (o VpcPublicGatewayDhcpReservationOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The IP address to give to the machine (IP address).
+// The IP address to give to the machine.
 func (o VpcPublicGatewayDhcpReservationOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The MAC address to give a static entry to.
+// The MAC address for the static entry.
 func (o VpcPublicGatewayDhcpReservationOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
 }
 
-// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
 func (o VpcPublicGatewayDhcpReservationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the public gateway DHCP config.
+// The date and time of the last update of the Public Gateway DHCP configuration.
 func (o VpcPublicGatewayDhcpReservationOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

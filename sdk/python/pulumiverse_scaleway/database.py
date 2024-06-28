@@ -19,9 +19,9 @@ class DatabaseArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Database resource.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Database.
+               > **Important:** Updates to `instance_id` will recreate the database.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -35,9 +35,9 @@ class DatabaseArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
-        > **Important:** Updates to `instance_id` will recreate the Database.
+        > **Important:** Updates to `instance_id` will recreate the database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -81,9 +81,9 @@ class _DatabaseState:
                  size: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Database.
+               > **Important:** Updates to `instance_id` will recreate the database.
         :param pulumi.Input[bool] managed: Whether the database is managed or not.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] owner: The name of the owner of the database.
@@ -107,9 +107,9 @@ class _DatabaseState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
-        > **Important:** Updates to `instance_id` will recreate the Database.
+        > **Important:** Updates to `instance_id` will recreate the database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -188,8 +188,8 @@ class Database(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway RDB database.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        Creates and manages databases.
+        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -199,7 +199,14 @@ class Database(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Database("main", instance_id=scaleway_rdb_instance["main"]["id"])
+        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
         ```
 
         ## Import
@@ -214,9 +221,9 @@ class Database(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Database.
+               > **Important:** Updates to `instance_id` will recreate the database.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -227,8 +234,8 @@ class Database(pulumi.CustomResource):
                  args: DatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway RDB database.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        Creates and manages databases.
+        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -238,7 +245,14 @@ class Database(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Database("main", instance_id=scaleway_rdb_instance["main"]["id"])
+        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
         ```
 
         ## Import
@@ -309,9 +323,9 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Database.
+               > **Important:** Updates to `instance_id` will recreate the database.
         :param pulumi.Input[bool] managed: Whether the database is managed or not.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] owner: The name of the owner of the database.
@@ -334,9 +348,9 @@ class Database(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
-        > **Important:** Updates to `instance_id` will recreate the Database.
+        > **Important:** Updates to `instance_id` will recreate the database.
         """
         return pulumi.get(self, "instance_id")
 

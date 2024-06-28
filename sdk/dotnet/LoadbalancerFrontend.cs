@@ -11,7 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+    /// Creates and manages Scaleway Load Balancer frontends.
+    /// 
+    /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
     /// 
     /// ## Example Usage
     /// 
@@ -170,7 +172,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+    /// Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -182,13 +184,13 @@ namespace Pulumiverse.Scaleway
     public partial class LoadbalancerFrontend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        /// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.LoadbalancerFrontendAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
+        /// The ID of the Load Balancer backend this frontend is attached to.
         /// 
         /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
@@ -196,13 +198,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) first certificate ID used by the frontend.
+        /// (Deprecated) First certificate ID used by the frontend.
         /// </summary>
         [Output("certificateId")]
         public Output<string> CertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// List of Certificate IDs that should be used by the frontend.
+        /// List of certificate IDs that should be used by the frontend.
         /// 
         /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
@@ -217,19 +219,19 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A boolean to specify whether to use lb_acl.
-        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
         /// </summary>
         [Output("externalAcls")]
         public Output<bool?> ExternalAcls { get; private set; } = null!;
 
         /// <summary>
-        /// TCP port to listen on the front side.
+        /// TCP port to listen to on the front side.
         /// </summary>
         [Output("inboundPort")]
         public Output<int> InboundPort { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The ID of the Load Balancer this frontend is attached to.
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
@@ -241,7 +243,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum inactivity time on the client side. (e.g.: `1s`)
+        /// Maximum inactivity time on the client side. (e.g. `1s`)
         /// </summary>
         [Output("timeoutClient")]
         public Output<string?> TimeoutClient { get; private set; } = null!;
@@ -297,7 +299,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.LoadbalancerFrontendAclArgs>? _acls;
 
         /// <summary>
-        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        /// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendAclArgs> Acls
         {
@@ -306,7 +308,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
+        /// The ID of the Load Balancer backend this frontend is attached to.
         /// 
         /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
@@ -317,7 +319,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _certificateIds;
 
         /// <summary>
-        /// List of Certificate IDs that should be used by the frontend.
+        /// List of certificate IDs that should be used by the frontend.
         /// 
         /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
@@ -335,19 +337,19 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A boolean to specify whether to use lb_acl.
-        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
         /// </summary>
         [Input("externalAcls")]
         public Input<bool>? ExternalAcls { get; set; }
 
         /// <summary>
-        /// TCP port to listen on the front side.
+        /// TCP port to listen to on the front side.
         /// </summary>
         [Input("inboundPort", required: true)]
         public Input<int> InboundPort { get; set; } = null!;
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The ID of the Load Balancer this frontend is attached to.
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
@@ -359,7 +361,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Maximum inactivity time on the client side. (e.g.: `1s`)
+        /// Maximum inactivity time on the client side. (e.g. `1s`)
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }
@@ -376,7 +378,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.LoadbalancerFrontendAclGetArgs>? _acls;
 
         /// <summary>
-        /// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
+        /// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         /// </summary>
         public InputList<Inputs.LoadbalancerFrontendAclGetArgs> Acls
         {
@@ -385,7 +387,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
+        /// The ID of the Load Balancer backend this frontend is attached to.
         /// 
         /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
@@ -393,7 +395,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// (Deprecated) first certificate ID used by the frontend.
+        /// (Deprecated) First certificate ID used by the frontend.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
@@ -402,7 +404,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _certificateIds;
 
         /// <summary>
-        /// List of Certificate IDs that should be used by the frontend.
+        /// List of certificate IDs that should be used by the frontend.
         /// 
         /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
@@ -420,19 +422,19 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A boolean to specify whether to use lb_acl.
-        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
         /// </summary>
         [Input("externalAcls")]
         public Input<bool>? ExternalAcls { get; set; }
 
         /// <summary>
-        /// TCP port to listen on the front side.
+        /// TCP port to listen to on the front side.
         /// </summary>
         [Input("inboundPort")]
         public Input<int>? InboundPort { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The ID of the Load Balancer this frontend is attached to.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
@@ -444,7 +446,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Maximum inactivity time on the client side. (e.g.: `1s`)
+        /// Maximum inactivity time on the client side. (e.g. `1s`)
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }

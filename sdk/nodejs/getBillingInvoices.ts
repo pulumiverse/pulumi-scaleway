@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about your Invoices.
+ * Gets information about your Scaleway invoices.
  *
  * ## Example Usage
  *
@@ -70,7 +70,7 @@ export interface GetBillingInvoicesResult {
     readonly startedBefore?: string;
 }
 /**
- * Gets information about your Invoices.
+ * Gets information about your Scaleway invoices.
  *
  * ## Example Usage
  *

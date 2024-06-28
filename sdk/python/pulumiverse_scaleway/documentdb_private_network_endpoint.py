@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['DocumentdbPrivateNetworkEndpointArgs', 'DocumentdbPrivateNetworkEndpoint']
 
@@ -15,32 +17,24 @@ __all__ = ['DocumentdbPrivateNetworkEndpointArgs', 'DocumentdbPrivateNetworkEndp
 class DocumentdbPrivateNetworkEndpointArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
-                 private_network_id: pulumi.Input[str],
-                 ip_net: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 region: Optional[pulumi.Input[str]] = None,
-                 zone: Optional[pulumi.Input[str]] = None):
+                 private_network: Optional[pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DocumentdbPrivateNetworkEndpoint resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
-        :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
-               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
-        :param pulumi.Input[int] port: Port in the Private Network.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs'] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
+        :param pulumi.Input[str] region: The region of the endpoint.
+               
+               
+               > **NOTE:** Please calculate your host IP.
+               using cirhost. Otherwise, lets IPAM service
+               handle the host IP on the network.
         """
         pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "private_network_id", private_network_id)
-        if ip_net is not None:
-            pulumi.set(__self__, "ip_net", ip_net)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
+        if private_network is not None:
+            pulumi.set(__self__, "private_network", private_network)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -55,48 +49,27 @@ class DocumentdbPrivateNetworkEndpointArgs:
         pulumi.set(self, "instance_id", value)
 
     @property
-    @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> Optional[pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]:
         """
-        The ID of the private network.
+        The private network specs details. This is a list with maximum one element and supports the following attributes:
         """
-        return pulumi.get(self, "private_network_id")
+        return pulumi.get(self, "private_network")
 
-    @private_network_id.setter
-    def private_network_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "private_network_id", value)
-
-    @property
-    @pulumi.getter(name="ipNet")
-    def ip_net(self) -> Optional[pulumi.Input[str]]:
-        """
-        The IP network address within the private subnet. This must be an IPv4 address with a
-        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
-        """
-        return pulumi.get(self, "ip_net")
-
-    @ip_net.setter
-    def ip_net(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ip_net", value)
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[int]]:
-        """
-        Port in the Private Network.
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port", value)
+    @private_network.setter
+    def private_network(self, value: Optional[pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]):
+        pulumi.set(self, "private_network", value)
 
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The region of the endpoint.
+
+
+        > **NOTE:** Please calculate your host IP.
+        using cirhost. Otherwise, lets IPAM service
+        handle the host IP on the network.
         """
         return pulumi.get(self, "region")
 
@@ -104,75 +77,30 @@ class DocumentdbPrivateNetworkEndpointArgs:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
-    @property
-    @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[str]]:
-        """
-        The zone you want to attach the resource to
-        """
-        return pulumi.get(self, "zone")
-
-    @zone.setter
-    def zone(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "zone", value)
-
 
 @pulumi.input_type
 class _DocumentdbPrivateNetworkEndpointState:
     def __init__(__self__, *,
-                 hostname: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 ip: Optional[pulumi.Input[str]] = None,
-                 ip_net: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 private_network_id: Optional[pulumi.Input[str]] = None,
-                 region: Optional[pulumi.Input[str]] = None,
-                 zone: Optional[pulumi.Input[str]] = None):
+                 private_network: Optional[pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DocumentdbPrivateNetworkEndpoint resources.
-        :param pulumi.Input[str] hostname: Hostname of the endpoint.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
-        :param pulumi.Input[str] ip: IPv4 address on the network.
-        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
-               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
-        :param pulumi.Input[str] name: Name of the endpoint.
-        :param pulumi.Input[int] port: Port in the Private Network.
-        :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs'] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
+        :param pulumi.Input[str] region: The region of the endpoint.
+               
+               
+               > **NOTE:** Please calculate your host IP.
+               using cirhost. Otherwise, lets IPAM service
+               handle the host IP on the network.
         """
-        if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
-        if ip is not None:
-            pulumi.set(__self__, "ip", ip)
-        if ip_net is not None:
-            pulumi.set(__self__, "ip_net", ip_net)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if private_network_id is not None:
-            pulumi.set(__self__, "private_network_id", private_network_id)
+        if private_network is not None:
+            pulumi.set(__self__, "private_network", private_network)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
-
-    @property
-    @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        Hostname of the endpoint.
-        """
-        return pulumi.get(self, "hostname")
-
-    @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "hostname", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -187,90 +115,33 @@ class _DocumentdbPrivateNetworkEndpointState:
         pulumi.set(self, "instance_id", value)
 
     @property
-    @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> Optional[pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]:
         """
-        IPv4 address on the network.
+        The private network specs details. This is a list with maximum one element and supports the following attributes:
         """
-        return pulumi.get(self, "ip")
+        return pulumi.get(self, "private_network")
 
-    @ip.setter
-    def ip(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ip", value)
-
-    @property
-    @pulumi.getter(name="ipNet")
-    def ip_net(self) -> Optional[pulumi.Input[str]]:
-        """
-        The IP network address within the private subnet. This must be an IPv4 address with a
-        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
-        """
-        return pulumi.get(self, "ip_net")
-
-    @ip_net.setter
-    def ip_net(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ip_net", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the endpoint.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[int]]:
-        """
-        Port in the Private Network.
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the private network.
-        """
-        return pulumi.get(self, "private_network_id")
-
-    @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "private_network_id", value)
+    @private_network.setter
+    def private_network(self, value: Optional[pulumi.Input['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]):
+        pulumi.set(self, "private_network", value)
 
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The region of the endpoint.
+
+
+        > **NOTE:** Please calculate your host IP.
+        using cirhost. Otherwise, lets IPAM service
+        handle the host IP on the network.
         """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
-
-    @property
-    @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[str]]:
-        """
-        The zone you want to attach the resource to
-        """
-        return pulumi.get(self, "zone")
-
-    @zone.setter
-    def zone(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "zone", value)
 
 
 class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
@@ -279,16 +150,35 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 ip_net: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 private_network_id: Optional[pulumi.Input[str]] = None,
+                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Database Private Network Endpoint.
 
         ## Example Usage
+
+        ### Example Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        instance = scaleway.DocumentdbInstance("instance",
+            node_type="docdb-play2-pico",
+            engine="FerretDB-1",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=20)
+        main = scaleway.DocumentdbPrivateNetworkEndpoint("main",
+            instance_id=instance.id,
+            private_network=scaleway.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs(
+                ip_net="172.16.32.3/22",
+                id=pn.id,
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[pn]))
+        ```
 
         ## Import
 
@@ -303,13 +193,13 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
-        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
-               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
-        :param pulumi.Input[int] port: Port in the Private Network.
-        :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
+        :param pulumi.Input[str] region: The region of the endpoint.
+               
+               
+               > **NOTE:** Please calculate your host IP.
+               using cirhost. Otherwise, lets IPAM service
+               handle the host IP on the network.
         """
         ...
     @overload
@@ -321,6 +211,28 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         Creates and manages Scaleway Database Private Network Endpoint.
 
         ## Example Usage
+
+        ### Example Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        instance = scaleway.DocumentdbInstance("instance",
+            node_type="docdb-play2-pico",
+            engine="FerretDB-1",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=20)
+        main = scaleway.DocumentdbPrivateNetworkEndpoint("main",
+            instance_id=instance.id,
+            private_network=scaleway.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs(
+                ip_net="172.16.32.3/22",
+                id=pn.id,
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[pn]))
+        ```
 
         ## Import
 
@@ -348,11 +260,8 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 ip_net: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 private_network_id: Optional[pulumi.Input[str]] = None,
+                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -365,16 +274,8 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-            __props__.__dict__["ip_net"] = ip_net
-            __props__.__dict__["port"] = port
-            if private_network_id is None and not opts.urn:
-                raise TypeError("Missing required property 'private_network_id'")
-            __props__.__dict__["private_network_id"] = private_network_id
+            __props__.__dict__["private_network"] = private_network
             __props__.__dict__["region"] = region
-            __props__.__dict__["zone"] = zone
-            __props__.__dict__["hostname"] = None
-            __props__.__dict__["ip"] = None
-            __props__.__dict__["name"] = None
         super(DocumentdbPrivateNetworkEndpoint, __self__).__init__(
             'scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint',
             resource_name,
@@ -385,15 +286,9 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            hostname: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            ip: Optional[pulumi.Input[str]] = None,
-            ip_net: Optional[pulumi.Input[str]] = None,
-            name: Optional[pulumi.Input[str]] = None,
-            port: Optional[pulumi.Input[int]] = None,
-            private_network_id: Optional[pulumi.Input[str]] = None,
-            region: Optional[pulumi.Input[str]] = None,
-            zone: Optional[pulumi.Input[str]] = None) -> 'DocumentdbPrivateNetworkEndpoint':
+            private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]] = None,
+            region: Optional[pulumi.Input[str]] = None) -> 'DocumentdbPrivateNetworkEndpoint':
         """
         Get an existing DocumentdbPrivateNetworkEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -401,40 +296,23 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] hostname: Hostname of the endpoint.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
-        :param pulumi.Input[str] ip: IPv4 address on the network.
-        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
-               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
-        :param pulumi.Input[str] name: Name of the endpoint.
-        :param pulumi.Input[int] port: Port in the Private Network.
-        :param pulumi.Input[str] private_network_id: The ID of the private network.
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] zone: The zone you want to attach the resource to
+        :param pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
+        :param pulumi.Input[str] region: The region of the endpoint.
+               
+               
+               > **NOTE:** Please calculate your host IP.
+               using cirhost. Otherwise, lets IPAM service
+               handle the host IP on the network.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _DocumentdbPrivateNetworkEndpointState.__new__(_DocumentdbPrivateNetworkEndpointState)
 
-        __props__.__dict__["hostname"] = hostname
         __props__.__dict__["instance_id"] = instance_id
-        __props__.__dict__["ip"] = ip
-        __props__.__dict__["ip_net"] = ip_net
-        __props__.__dict__["name"] = name
-        __props__.__dict__["port"] = port
-        __props__.__dict__["private_network_id"] = private_network_id
+        __props__.__dict__["private_network"] = private_network
         __props__.__dict__["region"] = region
-        __props__.__dict__["zone"] = zone
         return DocumentdbPrivateNetworkEndpoint(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def hostname(self) -> pulumi.Output[str]:
-        """
-        Hostname of the endpoint.
-        """
-        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -445,60 +323,23 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         return pulumi.get(self, "instance_id")
 
     @property
-    @pulumi.getter
-    def ip(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> pulumi.Output[Optional['outputs.DocumentdbPrivateNetworkEndpointPrivateNetwork']]:
         """
-        IPv4 address on the network.
+        The private network specs details. This is a list with maximum one element and supports the following attributes:
         """
-        return pulumi.get(self, "ip")
-
-    @property
-    @pulumi.getter(name="ipNet")
-    def ip_net(self) -> pulumi.Output[str]:
-        """
-        The IP network address within the private subnet. This must be an IPv4 address with a
-        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
-        """
-        return pulumi.get(self, "ip_net")
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Output[str]:
-        """
-        Name of the endpoint.
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def port(self) -> pulumi.Output[int]:
-        """
-        Port in the Private Network.
-        """
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> pulumi.Output[str]:
-        """
-        The ID of the private network.
-        """
-        return pulumi.get(self, "private_network_id")
+        return pulumi.get(self, "private_network")
 
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        The region of the endpoint.
+
+
+        > **NOTE:** Please calculate your host IP.
+        using cirhost. Otherwise, lets IPAM service
+        handle the host IP on the network.
         """
         return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter
-    def zone(self) -> pulumi.Output[str]:
-        """
-        The zone you want to attach the resource to
-        """
-        return pulumi.get(self, "zone")
 

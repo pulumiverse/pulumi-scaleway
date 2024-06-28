@@ -11,6 +11,33 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about a Block Snapshot.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupBlockSnapshot(ctx, &scaleway.LookupBlockSnapshotArgs{
+//				SnapshotId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupBlockSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockSnapshotResult
@@ -23,11 +50,16 @@ func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opt
 
 // A collection of arguments for invoking getBlockSnapshot.
 type LookupBlockSnapshotArgs struct {
-	Name       *string `pulumi:"name"`
-	ProjectId  *string `pulumi:"projectId"`
+	// The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+	Name *string `pulumi:"name"`
+	// The ID of the project the snapshot is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
 	SnapshotId *string `pulumi:"snapshotId"`
-	VolumeId   *string `pulumi:"volumeId"`
-	Zone       *string `pulumi:"zone"`
+	// The ID of the volume from which the snapshot has been created.
+	VolumeId *string `pulumi:"volumeId"`
+	// `zone`) The zone in which the snapshot exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getBlockSnapshot.
@@ -57,11 +89,16 @@ func LookupBlockSnapshotOutput(ctx *pulumi.Context, args LookupBlockSnapshotOutp
 
 // A collection of arguments for invoking getBlockSnapshot.
 type LookupBlockSnapshotOutputArgs struct {
-	Name       pulumi.StringPtrInput `pulumi:"name"`
-	ProjectId  pulumi.StringPtrInput `pulumi:"projectId"`
+	// The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the snapshot is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
 	SnapshotId pulumi.StringPtrInput `pulumi:"snapshotId"`
-	VolumeId   pulumi.StringPtrInput `pulumi:"volumeId"`
-	Zone       pulumi.StringPtrInput `pulumi:"zone"`
+	// The ID of the volume from which the snapshot has been created.
+	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
+	// `zone`) The zone in which the snapshot exists.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupBlockSnapshotOutputArgs) ElementType() reflect.Type {

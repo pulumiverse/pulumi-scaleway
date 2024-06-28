@@ -80,7 +80,7 @@ class GetLoadbalancerIpResult:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> str:
         """
-        The associated load-balancer ID if any
+        The ID of the associated Load Balancer, if any
         """
         return pulumi.get(self, "lb_id")
 
@@ -88,7 +88,7 @@ class GetLoadbalancerIpResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        (Defaults to provider `organization_id`) The ID of the organization the LB IP is associated with.
+        (Defaults to provider `organization_id`) The ID of the Organization the Load Balancer IP is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -139,7 +139,9 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerIpResult:
     """
-    Gets information about a Load Balancer IP.
+    Gets information about a Load Balancer IP address.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
     ## Example Usage
 
@@ -155,7 +157,7 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
            Only one of `ip_address` and `ip_id` should be specified.
     :param str ip_id: The IP ID.
            Only one of `ip_address` and `ip_id` should be specified.
-    :param str project_id: The ID of the project the LB IP associated with.
+    :param str project_id: The ID of the Project the Load Balancer IP is associated with.
     """
     __args__ = dict()
     __args__['ipAddress'] = ip_address
@@ -183,7 +185,9 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
     """
-    Gets information about a Load Balancer IP.
+    Gets information about a Load Balancer IP address.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
     ## Example Usage
 
@@ -199,6 +203,6 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
            Only one of `ip_address` and `ip_id` should be specified.
     :param str ip_id: The IP ID.
            Only one of `ip_address` and `ip_id` should be specified.
-    :param str project_id: The ID of the project the LB IP associated with.
+    :param str project_id: The ID of the Project the Load Balancer IP is associated with.
     """
     ...

@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly string? HttpFilterOption;
         /// <summary>
         /// A list of possible values to match for the given HTTP filter.
-        /// Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        /// Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         /// </summary>
         public readonly ImmutableArray<string> HttpFilterValues;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool? Invert;
         /// <summary>
-        /// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         /// </summary>
         public readonly ImmutableArray<string> IpSubnets;
 

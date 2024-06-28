@@ -54,13 +54,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> AccountRootUserId { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the iam user.
+        /// The date and time of the creation of the IAM user.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the iam user is deletable.
+        /// Whether the IAM user is deletable.
         /// </summary>
         [Output("deletable")]
         public Output<bool> Deletable { get; private set; } = null!;
@@ -90,19 +90,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        /// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        /// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the iam user.
+        /// The date and time of the last update of the IAM user.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -181,13 +181,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? AccountRootUserId { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the iam user.
+        /// The date and time of the creation of the IAM user.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Whether the iam user is deletable.
+        /// Whether the IAM user is deletable.
         /// </summary>
         [Input("deletable")]
         public Input<bool>? Deletable { get; set; }
@@ -217,19 +217,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        /// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        /// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the iam user.
+        /// The date and time of the last update of the IAM user.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

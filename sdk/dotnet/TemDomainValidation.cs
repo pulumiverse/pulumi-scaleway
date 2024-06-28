@@ -23,9 +23,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     {
+    ///         AcceptTos = true,
+    ///     });
+    /// 
     ///     var example = new Scaleway.TemDomainValidation("example", new()
     ///     {
-    ///         DomainId = "your-domain-id",
+    ///         DomainId = main.Id,
     ///         Region = "fr-par",
     ///         Timeout = 300,
     ///     });

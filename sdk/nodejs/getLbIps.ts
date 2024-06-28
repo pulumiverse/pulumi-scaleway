@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about multiple Load Balancer IPs.
+ * Gets information about multiple Load Balancer IP addresses.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  *
  * ## Example Usage
  *
@@ -37,15 +39,15 @@ export function getLbIps(args?: GetLbIpsArgs, opts?: pulumi.InvokeOptions): Prom
  */
 export interface GetLbIpsArgs {
     /**
-     * The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
+     * The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
      */
     ipCidrRange?: string;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: string;
     /**
-     * `zone`) The zone in which IPs exist.
+     * `zone`) The zone in which the IPs exist.
      */
     zone?: string;
 }
@@ -60,24 +62,26 @@ export interface GetLbIpsResult {
     readonly id: string;
     readonly ipCidrRange?: string;
     /**
-     * List of found IPs
+     * List of retrieved IPs
      */
     readonly ips: outputs.GetLbIpsIp[];
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization the Load Balancer is associated with.
      */
     readonly organizationId: string;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     readonly projectId: string;
     /**
-     * The zone in which the load-balancer is.
+     * The zone of the Load Balancer.
      */
     readonly zone: string;
 }
 /**
- * Gets information about multiple Load Balancer IPs.
+ * Gets information about multiple Load Balancer IP addresses.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  *
  * ## Example Usage
  *
@@ -100,15 +104,15 @@ export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOp
  */
 export interface GetLbIpsOutputArgs {
     /**
-     * The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
+     * The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
      */
     ipCidrRange?: pulumi.Input<string>;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which IPs exist.
+     * `zone`) The zone in which the IPs exist.
      */
     zone?: pulumi.Input<string>;
 }

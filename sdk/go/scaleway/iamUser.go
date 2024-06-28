@@ -57,9 +57,9 @@ type IamUser struct {
 
 	// The ID of the account root user associated with the user.
 	AccountRootUserId pulumi.StringOutput `pulumi:"accountRootUserId"`
-	// The date and time of the creation of the iam user.
+	// The date and time of the creation of the IAM user.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Whether the iam user is deletable.
+	// Whether the IAM user is deletable.
 	Deletable pulumi.BoolOutput `pulumi:"deletable"`
 	// The email of the IAM user.
 	Email pulumi.StringOutput `pulumi:"email"`
@@ -69,11 +69,11 @@ type IamUser struct {
 	Mfa pulumi.BoolOutput `pulumi:"mfa"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+	// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The date and time of the last update of the iam user.
+	// The date and time of the last update of the IAM user.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -112,9 +112,9 @@ func GetIamUser(ctx *pulumi.Context,
 type iamUserState struct {
 	// The ID of the account root user associated with the user.
 	AccountRootUserId *string `pulumi:"accountRootUserId"`
-	// The date and time of the creation of the iam user.
+	// The date and time of the creation of the IAM user.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Whether the iam user is deletable.
+	// Whether the IAM user is deletable.
 	Deletable *bool `pulumi:"deletable"`
 	// The email of the IAM user.
 	Email *string `pulumi:"email"`
@@ -124,20 +124,20 @@ type iamUserState struct {
 	Mfa *bool `pulumi:"mfa"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status *string `pulumi:"status"`
-	// The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+	// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Type *string `pulumi:"type"`
-	// The date and time of the last update of the iam user.
+	// The date and time of the last update of the IAM user.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type IamUserState struct {
 	// The ID of the account root user associated with the user.
 	AccountRootUserId pulumi.StringPtrInput
-	// The date and time of the creation of the iam user.
+	// The date and time of the creation of the IAM user.
 	CreatedAt pulumi.StringPtrInput
-	// Whether the iam user is deletable.
+	// Whether the IAM user is deletable.
 	Deletable pulumi.BoolPtrInput
 	// The email of the IAM user.
 	Email pulumi.StringPtrInput
@@ -147,11 +147,11 @@ type IamUserState struct {
 	Mfa pulumi.BoolPtrInput
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringPtrInput
-	// The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+	// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Type pulumi.StringPtrInput
-	// The date and time of the last update of the iam user.
+	// The date and time of the last update of the IAM user.
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -266,12 +266,12 @@ func (o IamUserOutput) AccountRootUserId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.AccountRootUserId }).(pulumi.StringOutput)
 }
 
-// The date and time of the creation of the iam user.
+// The date and time of the creation of the IAM user.
 func (o IamUserOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Whether the iam user is deletable.
+// Whether the IAM user is deletable.
 func (o IamUserOutput) Deletable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.BoolOutput { return v.Deletable }).(pulumi.BoolOutput)
 }
@@ -296,17 +296,17 @@ func (o IamUserOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 func (o IamUserOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 func (o IamUserOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the iam user.
+// The date and time of the last update of the IAM user.
 func (o IamUserOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

@@ -28,8 +28,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewTemDomainValidation(ctx, "example", &scaleway.TemDomainValidationArgs{
-//				DomainId: pulumi.String("your-domain-id"),
+//			main, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//				AcceptTos: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewTemDomainValidation(ctx, "example", &scaleway.TemDomainValidationArgs{
+//				DomainId: main.ID(),
 //				Region:   pulumi.String("fr-par"),
 //				Timeout:  pulumi.Int(300),
 //			})

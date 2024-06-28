@@ -25,11 +25,11 @@ class DatabaseReadReplicaArgs:
         The set of arguments for constructing a DatabaseReadReplica resource.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
                
-               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+               > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         :param pulumi.Input['DatabaseReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
-        :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
+        :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[str] region: `region`) The region
-               in which the Database read replica should be created.
+               in which the Read Replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -48,7 +48,7 @@ class DatabaseReadReplicaArgs:
         """
         UUID of the rdb instance.
 
-        > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+        > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         """
         return pulumi.get(self, "instance_id")
 
@@ -72,7 +72,7 @@ class DatabaseReadReplicaArgs:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs']]:
         """
-        Create an endpoint in a private network.
+        Create an endpoint in a Private Netork.
         """
         return pulumi.get(self, "private_network")
 
@@ -85,7 +85,7 @@ class DatabaseReadReplicaArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region
-        in which the Database read replica should be created.
+        in which the Read Replica should be created.
         """
         return pulumi.get(self, "region")
 
@@ -119,10 +119,10 @@ class _DatabaseReadReplicaState:
         :param pulumi.Input['DatabaseReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
                
-               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
+               > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
+        :param pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[str] region: `region`) The region
-               in which the Database read replica should be created.
+               in which the Read Replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         if direct_access is not None:
@@ -154,7 +154,7 @@ class _DatabaseReadReplicaState:
         """
         UUID of the rdb instance.
 
-        > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+        > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         """
         return pulumi.get(self, "instance_id")
 
@@ -166,7 +166,7 @@ class _DatabaseReadReplicaState:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['DatabaseReadReplicaPrivateNetworkArgs']]:
         """
-        Create an endpoint in a private network.
+        Create an endpoint in a Private Netork.
         """
         return pulumi.get(self, "private_network")
 
@@ -179,7 +179,7 @@ class _DatabaseReadReplicaState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region
-        in which the Database read replica should be created.
+        in which the Read Replica should be created.
         """
         return pulumi.get(self, "region")
 
@@ -212,8 +212,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Database read replicas.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        Creates and manages Read Replicas.
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -286,7 +286,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g.
+        Read Replicas can be imported using the `{region}/{id}`, e.g.
 
         bash
 
@@ -299,10 +299,10 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
                
-               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
+               > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
+        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[str] region: `region`) The region
-               in which the Database read replica should be created.
+               in which the Read Replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         ...
@@ -312,8 +312,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  args: DatabaseReadReplicaArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Database read replicas.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        Creates and manages Read Replicas.
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -386,7 +386,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g.
+        Read Replicas can be imported using the `{region}/{id}`, e.g.
 
         bash
 
@@ -455,10 +455,10 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
                
-               > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
+               > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
+        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[str] region: `region`) The region
-               in which the Database read replica should be created.
+               in which the Read Replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -486,7 +486,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         """
         UUID of the rdb instance.
 
-        > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+        > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         """
         return pulumi.get(self, "instance_id")
 
@@ -494,7 +494,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Output[Optional['outputs.DatabaseReadReplicaPrivateNetwork']]:
         """
-        Create an endpoint in a private network.
+        Create an endpoint in a Private Netork.
         """
         return pulumi.get(self, "private_network")
 
@@ -503,7 +503,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`) The region
-        in which the Database read replica should be created.
+        in which the Read Replica should be created.
         """
         return pulumi.get(self, "region")
 

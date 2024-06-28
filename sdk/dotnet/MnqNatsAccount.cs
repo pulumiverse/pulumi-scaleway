@@ -11,10 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Messaging and queuing Nats Accounts.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
-    /// To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
+    /// Creates and manages Scaleway Messaging and Queuing NATS accounts.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+    /// To use the Scaleway provider with the official NATS JetStream provider, check out the corresponding guide.
     /// 
     /// ## Example Usage
     /// 
@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using the `{region}/{id}`, e.g.
+    /// Namespaces can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -53,13 +53,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the nats account.
+        /// The unique name of the NATS account.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the
+        /// `project_id`) The ID of the Project the
         /// account is associated with.
         /// </summary>
         [Output("projectId")]
@@ -120,13 +120,13 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqNatsAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the nats account.
+        /// The unique name of the NATS account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the
+        /// `project_id`) The ID of the Project the
         /// account is associated with.
         /// </summary>
         [Input("projectId")]
@@ -154,13 +154,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// The unique name of the nats account.
+        /// The unique name of the NATS account.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the
+        /// `project_id`) The ID of the Project the
         /// account is associated with.
         /// </summary>
         [Input("projectId")]

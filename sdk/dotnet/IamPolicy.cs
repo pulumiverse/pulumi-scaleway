@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#policies-54b8a7).
+    /// Creates and manages Scaleway IAM Policies. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#path-policies-create-a-new-policy).
     /// 
     /// &gt; You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
     /// 
@@ -104,7 +104,7 @@ namespace Pulumiverse.Scaleway
     public partial class IamPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the Application the policy will be linked to
+        /// ID of the application the policy will be linked to
         /// </summary>
         [Output("applicationId")]
         public Output<string?> ApplicationId { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The description of the iam policy.
+        /// The description of the IAM policy.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -128,13 +128,13 @@ namespace Pulumiverse.Scaleway
         public Output<bool> Editable { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the Group the policy will be linked to
+        /// ID of the group the policy will be linked to
         /// </summary>
         [Output("groupId")]
         public Output<string?> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the iam policy.
+        /// The name of the IAM policy.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// If the policy doesn't apply to a principal.
         /// 
-        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         /// </summary>
         [Output("noPrincipal")]
         public Output<bool?> NoPrincipal { get; private set; } = null!;
@@ -160,7 +160,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.IamPolicyRule>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the iam policy.
+        /// The tags associated with the IAM policy.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -172,7 +172,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the User the policy will be linked to
+        /// ID of the user the policy will be linked to
         /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
@@ -225,25 +225,25 @@ namespace Pulumiverse.Scaleway
     public sealed class IamPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the Application the policy will be linked to
+        /// ID of the application the policy will be linked to
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
 
         /// <summary>
-        /// The description of the iam policy.
+        /// The description of the IAM policy.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// ID of the Group the policy will be linked to
+        /// ID of the group the policy will be linked to
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// The name of the iam policy.
+        /// The name of the IAM policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -251,7 +251,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// If the policy doesn't apply to a principal.
         /// 
-        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         /// </summary>
         [Input("noPrincipal")]
         public Input<bool>? NoPrincipal { get; set; }
@@ -278,7 +278,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the iam policy.
+        /// The tags associated with the IAM policy.
         /// </summary>
         public InputList<string> Tags
         {
@@ -287,7 +287,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// ID of the User the policy will be linked to
+        /// ID of the user the policy will be linked to
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
@@ -301,7 +301,7 @@ namespace Pulumiverse.Scaleway
     public sealed class IamPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the Application the policy will be linked to
+        /// ID of the application the policy will be linked to
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
@@ -313,7 +313,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The description of the iam policy.
+        /// The description of the IAM policy.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -325,13 +325,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Editable { get; set; }
 
         /// <summary>
-        /// ID of the Group the policy will be linked to
+        /// ID of the group the policy will be linked to
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// The name of the iam policy.
+        /// The name of the IAM policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -339,7 +339,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// If the policy doesn't apply to a principal.
         /// 
-        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         /// </summary>
         [Input("noPrincipal")]
         public Input<bool>? NoPrincipal { get; set; }
@@ -366,7 +366,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the iam policy.
+        /// The tags associated with the IAM policy.
         /// </summary>
         public InputList<string> Tags
         {
@@ -381,7 +381,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// ID of the User the policy will be linked to
+        /// ID of the user the policy will be linked to
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

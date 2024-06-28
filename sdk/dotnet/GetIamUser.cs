@@ -14,8 +14,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Use this data source to get information on an existing IAM user based on its ID or email address.
-        /// For more information,
-        /// see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+        /// For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
         /// 
         /// ## Example Usage
         /// 
@@ -45,8 +44,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Use this data source to get information on an existing IAM user based on its ID or email address.
-        /// For more information,
-        /// see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+        /// For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
         /// 
         /// ## Example Usage
         /// 
@@ -79,7 +77,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetIamUserArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
+        /// The email address of the IAM user.
         /// </summary>
         [Input("email")]
         public string? Email { get; set; }
@@ -92,7 +90,9 @@ namespace Pulumiverse.Scaleway
         public string? OrganizationId { get; set; }
 
         /// <summary>
-        /// The ID of the IAM user. Only one of the `email` and `user_id` should be specified.
+        /// The ID of the IAM user.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public string? UserId { get; set; }
@@ -106,7 +106,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetIamUserInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
+        /// The email address of the IAM user.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
@@ -119,7 +119,9 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The ID of the IAM user. Only one of the `email` and `user_id` should be specified.
+        /// The ID of the IAM user.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

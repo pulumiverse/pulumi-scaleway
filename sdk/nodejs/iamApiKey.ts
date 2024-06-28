@@ -5,10 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway IAM API Keys. For more information, please
- * check [the documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae)
+ * Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).
  *
  * ## Example Usage
+ *
+ * ### With application
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -17,6 +18,19 @@ import * as utilities from "./utilities";
  * const ciCd = new scaleway.IamApplication("ciCd", {});
  * const main = new scaleway.IamApiKey("main", {
  *     applicationId: scaleway_iam_application.main.id,
+ *     description: "a description",
+ * });
+ * ```
+ *
+ * ### With user
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIamUser = new scaleway.IamUser("mainIamUser", {email: "test@test.com"});
+ * const mainIamApiKey = new scaleway.IamApiKey("mainIamApiKey", {
+ *     userId: mainIamUser.id,
  *     description: "a description",
  * });
  * ```
@@ -60,16 +74,15 @@ export class IamApiKey extends pulumi.CustomResource {
     }
 
     /**
-     * The access key of the iam api key.
+     * The access key of the IAM API key.
      */
     public /*out*/ readonly accessKey!: pulumi.Output<string>;
     /**
-     * ID of the application attached to the api key.
-     * Only one of the `applicationId` and `userId` should be specified.
+     * ID of the application attached to the API key.
      */
     public readonly applicationId!: pulumi.Output<string | undefined>;
     /**
-     * The date and time of the creation of the iam api key.
+     * The date and time of the creation of the IAM API key.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -77,33 +90,33 @@ export class IamApiKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationIp!: pulumi.Output<string>;
     /**
-     * The default project ID to use with object storage.
+     * The default Project ID to use with Object Storage.
      */
     public readonly defaultProjectId!: pulumi.Output<string>;
     /**
-     * The description of the iam api key.
+     * The description of the API key.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Whether the iam api key is editable.
+     * Whether the IAM API key is editable.
      */
     public /*out*/ readonly editable!: pulumi.Output<boolean>;
     /**
-     * The date and time of the expiration of the iam api key. Please note that in case of change,
+     * The date and time of the expiration of the IAM API key. Please note that in case of any changes,
      * the resource will be recreated.
      */
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
-     * The secret Key of the iam api key.
+     * The secret Key of the IAM API key.
      */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the iam api key.
+     * The date and time of the last update of the IAM API key.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * ID of the user attached to the api key.
-     * Only one of the `applicationId` and `userId` should be specified.
+     * ID of the user attached to the API key.
+     * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
     public readonly userId!: pulumi.Output<string | undefined>;
 
@@ -157,16 +170,15 @@ export class IamApiKey extends pulumi.CustomResource {
  */
 export interface IamApiKeyState {
     /**
-     * The access key of the iam api key.
+     * The access key of the IAM API key.
      */
     accessKey?: pulumi.Input<string>;
     /**
-     * ID of the application attached to the api key.
-     * Only one of the `applicationId` and `userId` should be specified.
+     * ID of the application attached to the API key.
      */
     applicationId?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the iam api key.
+     * The date and time of the creation of the IAM API key.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -174,33 +186,33 @@ export interface IamApiKeyState {
      */
     creationIp?: pulumi.Input<string>;
     /**
-     * The default project ID to use with object storage.
+     * The default Project ID to use with Object Storage.
      */
     defaultProjectId?: pulumi.Input<string>;
     /**
-     * The description of the iam api key.
+     * The description of the API key.
      */
     description?: pulumi.Input<string>;
     /**
-     * Whether the iam api key is editable.
+     * Whether the IAM API key is editable.
      */
     editable?: pulumi.Input<boolean>;
     /**
-     * The date and time of the expiration of the iam api key. Please note that in case of change,
+     * The date and time of the expiration of the IAM API key. Please note that in case of any changes,
      * the resource will be recreated.
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The secret Key of the iam api key.
+     * The secret Key of the IAM API key.
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the iam api key.
+     * The date and time of the last update of the IAM API key.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * ID of the user attached to the api key.
-     * Only one of the `applicationId` and `userId` should be specified.
+     * ID of the user attached to the API key.
+     * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
     userId?: pulumi.Input<string>;
 }
@@ -210,26 +222,25 @@ export interface IamApiKeyState {
  */
 export interface IamApiKeyArgs {
     /**
-     * ID of the application attached to the api key.
-     * Only one of the `applicationId` and `userId` should be specified.
+     * ID of the application attached to the API key.
      */
     applicationId?: pulumi.Input<string>;
     /**
-     * The default project ID to use with object storage.
+     * The default Project ID to use with Object Storage.
      */
     defaultProjectId?: pulumi.Input<string>;
     /**
-     * The description of the iam api key.
+     * The description of the API key.
      */
     description?: pulumi.Input<string>;
     /**
-     * The date and time of the expiration of the iam api key. Please note that in case of change,
+     * The date and time of the expiration of the IAM API key. Please note that in case of any changes,
      * the resource will be recreated.
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * ID of the user attached to the api key.
-     * Only one of the `applicationId` and `userId` should be specified.
+     * ID of the user attached to the API key.
+     * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
     userId?: pulumi.Input<string>;
 }

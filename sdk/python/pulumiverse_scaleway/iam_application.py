@@ -214,7 +214,7 @@ class IamApplication(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway IAM Applications. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#applications-83ce5e).
+        Creates and manages Scaleway IAM Applications. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#applications-83ce5e).
 
         ## Example Usage
 
@@ -249,7 +249,7 @@ class IamApplication(pulumi.CustomResource):
                  args: Optional[IamApplicationArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway IAM Applications. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#applications-83ce5e).
+        Creates and manages Scaleway IAM Applications. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#applications-83ce5e).
 
         ## Example Usage
 

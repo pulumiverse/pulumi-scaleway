@@ -18,9 +18,9 @@ class MnqSnsArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MnqSns resource.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns will be enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project in which SNS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns will be enabled.
+               in which SNS will be enabled.
         """
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -31,7 +31,7 @@ class MnqSnsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns will be enabled for.
+        `project_id`) The ID of the project in which SNS will be enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -44,7 +44,7 @@ class MnqSnsArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sns will be enabled.
+        in which SNS will be enabled.
         """
         return pulumi.get(self, "region")
 
@@ -61,10 +61,10 @@ class _MnqSnsState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MnqSns resources.
-        :param pulumi.Input[str] endpoint: The endpoint of the SNS service for this project.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns will be enabled for.
+        :param pulumi.Input[str] endpoint: The endpoint of the SNS service for this Project.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project in which SNS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns will be enabled.
+               in which SNS will be enabled.
         """
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
@@ -77,7 +77,7 @@ class _MnqSnsState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        The endpoint of the SNS service for this project.
+        The endpoint of the SNS service for this Project.
         """
         return pulumi.get(self, "endpoint")
 
@@ -89,7 +89,7 @@ class _MnqSnsState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns will be enabled for.
+        `project_id`) The ID of the project in which SNS will be enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -102,7 +102,7 @@ class _MnqSnsState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sns will be enabled.
+        in which SNS will be enabled.
         """
         return pulumi.get(self, "region")
 
@@ -120,15 +120,15 @@ class MnqSns(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Activate Scaleway Messaging and queuing SNS for a project.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Activates Scaleway Messaging and Queuing SNS in a Project.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
 
         ## Example Usage
 
         ### Basic
 
-        Activate SNS for default project
+        Activate SNS in the default Project
 
         ```python
         import pulumi
@@ -137,7 +137,7 @@ class MnqSns(pulumi.CustomResource):
         main = scaleway.MnqSns("main")
         ```
 
-        Activate SNS for a specific project
+        Activate SNS in a specific Project
 
         ```python
         import pulumi
@@ -145,13 +145,13 @@ class MnqSns(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.get_account_project(name="default")
-        # For specific project in default region
+        # For specific Project in default region
         for_project = scaleway.MnqSns("forProject", project_id=project.id)
         ```
 
         ## Import
 
-        SNS status can be imported using the `{region}/{project_id}`, e.g.
+        SNS status can be imported using `{region}/{project_id}`, e.g.
 
         bash
 
@@ -161,9 +161,9 @@ class MnqSns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns will be enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project in which SNS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns will be enabled.
+               in which SNS will be enabled.
         """
         ...
     @overload
@@ -172,15 +172,15 @@ class MnqSns(pulumi.CustomResource):
                  args: Optional[MnqSnsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Activate Scaleway Messaging and queuing SNS for a project.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Activates Scaleway Messaging and Queuing SNS in a Project.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
 
         ## Example Usage
 
         ### Basic
 
-        Activate SNS for default project
+        Activate SNS in the default Project
 
         ```python
         import pulumi
@@ -189,7 +189,7 @@ class MnqSns(pulumi.CustomResource):
         main = scaleway.MnqSns("main")
         ```
 
-        Activate SNS for a specific project
+        Activate SNS in a specific Project
 
         ```python
         import pulumi
@@ -197,13 +197,13 @@ class MnqSns(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.get_account_project(name="default")
-        # For specific project in default region
+        # For specific Project in default region
         for_project = scaleway.MnqSns("forProject", project_id=project.id)
         ```
 
         ## Import
 
-        SNS status can be imported using the `{region}/{project_id}`, e.g.
+        SNS status can be imported using `{region}/{project_id}`, e.g.
 
         bash
 
@@ -260,10 +260,10 @@ class MnqSns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] endpoint: The endpoint of the SNS service for this project.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns will be enabled for.
+        :param pulumi.Input[str] endpoint: The endpoint of the SNS service for this Project.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project in which SNS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns will be enabled.
+               in which SNS will be enabled.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -278,7 +278,7 @@ class MnqSns(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[str]:
         """
-        The endpoint of the SNS service for this project.
+        The endpoint of the SNS service for this Project.
         """
         return pulumi.get(self, "endpoint")
 
@@ -286,7 +286,7 @@ class MnqSns(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sns will be enabled for.
+        `project_id`) The ID of the project in which SNS will be enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -295,7 +295,7 @@ class MnqSns(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`). The region
-        in which sns will be enabled.
+        in which SNS will be enabled.
         """
         return pulumi.get(self, "region")
 

@@ -12,9 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Messaging and queuing Nats Credentials.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+// Creates and manages Scaleway Messaging and Queuing NATS credentials.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/).
 //
 // ## Example Usage
 //
@@ -50,7 +50,7 @@ import (
 //
 // ## Import
 //
-// Namespaces can be imported using the `{region}/{id}`, e.g.
+// Namespaces can be imported using `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -60,11 +60,11 @@ import (
 type MnqNatsCredentials struct {
 	pulumi.CustomResourceState
 
-	// The ID of the nats account the credentials are generated from
+	// The ID of the NATS account the credentials are generated from
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
 	// The content of the credentials file.
 	File pulumi.StringOutput `pulumi:"file"`
-	// The unique name of the nats credentials.
+	// The unique name of the NATS credentials.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`). The region
 	// in which the account exists.
@@ -104,11 +104,11 @@ func GetMnqNatsCredentials(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MnqNatsCredentials resources.
 type mnqNatsCredentialsState struct {
-	// The ID of the nats account the credentials are generated from
+	// The ID of the NATS account the credentials are generated from
 	AccountId *string `pulumi:"accountId"`
 	// The content of the credentials file.
 	File *string `pulumi:"file"`
-	// The unique name of the nats credentials.
+	// The unique name of the NATS credentials.
 	Name *string `pulumi:"name"`
 	// `region`). The region
 	// in which the account exists.
@@ -116,11 +116,11 @@ type mnqNatsCredentialsState struct {
 }
 
 type MnqNatsCredentialsState struct {
-	// The ID of the nats account the credentials are generated from
+	// The ID of the NATS account the credentials are generated from
 	AccountId pulumi.StringPtrInput
 	// The content of the credentials file.
 	File pulumi.StringPtrInput
-	// The unique name of the nats credentials.
+	// The unique name of the NATS credentials.
 	Name pulumi.StringPtrInput
 	// `region`). The region
 	// in which the account exists.
@@ -132,9 +132,9 @@ func (MnqNatsCredentialsState) ElementType() reflect.Type {
 }
 
 type mnqNatsCredentialsArgs struct {
-	// The ID of the nats account the credentials are generated from
+	// The ID of the NATS account the credentials are generated from
 	AccountId string `pulumi:"accountId"`
-	// The unique name of the nats credentials.
+	// The unique name of the NATS credentials.
 	Name *string `pulumi:"name"`
 	// `region`). The region
 	// in which the account exists.
@@ -143,9 +143,9 @@ type mnqNatsCredentialsArgs struct {
 
 // The set of arguments for constructing a MnqNatsCredentials resource.
 type MnqNatsCredentialsArgs struct {
-	// The ID of the nats account the credentials are generated from
+	// The ID of the NATS account the credentials are generated from
 	AccountId pulumi.StringInput
-	// The unique name of the nats credentials.
+	// The unique name of the NATS credentials.
 	Name pulumi.StringPtrInput
 	// `region`). The region
 	// in which the account exists.
@@ -239,7 +239,7 @@ func (o MnqNatsCredentialsOutput) ToMnqNatsCredentialsOutputWithContext(ctx cont
 	return o
 }
 
-// The ID of the nats account the credentials are generated from
+// The ID of the NATS account the credentials are generated from
 func (o MnqNatsCredentialsOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqNatsCredentials) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
 }
@@ -249,7 +249,7 @@ func (o MnqNatsCredentialsOutput) File() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqNatsCredentials) pulumi.StringOutput { return v.File }).(pulumi.StringOutput)
 }
 
-// The unique name of the nats credentials.
+// The unique name of the NATS credentials.
 func (o MnqNatsCredentialsOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqNatsCredentials) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

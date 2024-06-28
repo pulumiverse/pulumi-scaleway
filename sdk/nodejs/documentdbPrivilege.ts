@@ -13,11 +13,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * const instance = new scaleway.DocumentdbInstance("instance", {
+ *     nodeType: "docdb-play2-pico",
+ *     engine: "FerretDB-1",
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     volumeSizeInGb: 20,
+ * });
  * const main = new scaleway.DocumentdbPrivilege("main", {
- *     databaseName: "my-db-name",
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- *     permission: "all",
+ *     instanceId: instance.id,
  *     userName: "my-db-user",
+ *     databaseName: "my-db-name",
+ *     permission: "all",
  * });
  * ```
  *

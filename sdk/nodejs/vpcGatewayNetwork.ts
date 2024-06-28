@@ -7,13 +7,14 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway VPC Public Gateway Network.
- * It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+ * Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
+ *
+ * It allows the attachment of Private Networks to Public Gateways and DHCP configurations.
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
  *
  * ## Example Usage
  *
- * ### Create a gateway network with IPAM config
+ * ### Create a GatewayNetwork with IPAM configuration
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,7 +38,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Create a gateway network with a booked IPAM IP
+ * ### Create a GatewayNetwork with a booked IPAM IP
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -68,7 +69,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Create a gateway network with DHCP
+ * ### Create a GatewayNetwork with DHCP
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -93,7 +94,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Create a gateway network with a static IP address
+ * ### Create a GatewayNetwork with a static IP address
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -112,7 +113,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Gateway network can be imported using the `{zone}/{id}`, e.g.
+ * GatewayNetwork can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -149,43 +150,43 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
     }
 
     /**
-     * Remove DHCP config on this network on destroy. It requires DHCP id.
+     * Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
      */
     public readonly cleanupDhcp!: pulumi.Output<boolean | undefined>;
     /**
-     * The date and time of the creation of the gateway network.
+     * The date and time of the creation of the GatewayNetwork.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     public readonly dhcpId!: pulumi.Output<string | undefined>;
     /**
-     * Enable DHCP config on this network. It requires DHCP id.
+     * WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      */
     public readonly enableDhcp!: pulumi.Output<boolean | undefined>;
     /**
-     * Enable masquerade on this network
+     * Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
      */
     public readonly enableMasquerade!: pulumi.Output<boolean | undefined>;
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
-     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     public readonly ipamConfigs!: pulumi.Output<outputs.VpcGatewayNetworkIpamConfig[]>;
     /**
-     * The mac address of the creation of the gateway network.
+     * The MAC address of the GatewayNetwork.
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
     /**
-     * The ID of the private network.
+     * The ID of the Private Network.
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
     /**
-     * Enable DHCP config on this network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     public readonly staticAddress!: pulumi.Output<string>;
     /**
@@ -193,7 +194,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the gateway network.
+     * The date and time of the last update of the GatewayNetwork.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -259,43 +260,43 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
  */
 export interface VpcGatewayNetworkState {
     /**
-     * Remove DHCP config on this network on destroy. It requires DHCP id.
+     * Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
      */
     cleanupDhcp?: pulumi.Input<boolean>;
     /**
-     * The date and time of the creation of the gateway network.
+     * The date and time of the creation of the GatewayNetwork.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     dhcpId?: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network. It requires DHCP id.
+     * WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      */
     enableDhcp?: pulumi.Input<boolean>;
     /**
-     * Enable masquerade on this network
+     * Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
      */
     enableMasquerade?: pulumi.Input<boolean>;
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     ipamConfigs?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkIpamConfig>[]>;
     /**
-     * The mac address of the creation of the gateway network.
+     * The MAC address of the GatewayNetwork.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The ID of the private network.
+     * The ID of the Private Network.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     staticAddress?: pulumi.Input<string>;
     /**
@@ -303,7 +304,7 @@ export interface VpcGatewayNetworkState {
      */
     status?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the gateway network.
+     * The date and time of the last update of the GatewayNetwork.
      */
     updatedAt?: pulumi.Input<string>;
     /**
@@ -317,35 +318,35 @@ export interface VpcGatewayNetworkState {
  */
 export interface VpcGatewayNetworkArgs {
     /**
-     * Remove DHCP config on this network on destroy. It requires DHCP id.
+     * Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
      */
     cleanupDhcp?: pulumi.Input<boolean>;
     /**
-     * The ID of the public gateway DHCP config. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     dhcpId?: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network. It requires DHCP id.
+     * WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      */
     enableDhcp?: pulumi.Input<boolean>;
     /**
-     * Enable masquerade on this network
+     * Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
      */
     enableMasquerade?: pulumi.Input<boolean>;
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * Auto-configure the Gateway Network using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     ipamConfigs?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkIpamConfig>[]>;
     /**
-     * The ID of the private network.
+     * The ID of the Private Network.
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Enable DHCP config on this network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     staticAddress?: pulumi.Input<string>;
     /**

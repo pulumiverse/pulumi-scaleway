@@ -12,8 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manages Scaleway VPC Public Gateways IPs reverse DNS.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+// Manages Scaleway Public Gateway public (flexible) IPs' reverse DNS.
+// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
 //
 // ## Example Usage
 //
@@ -58,7 +58,7 @@ import (
 //
 // ## Import
 //
-// Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+// Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -68,7 +68,7 @@ import (
 type VpcPublicGatewayIpReverseDns struct {
 	pulumi.CustomResourceState
 
-	// The public gateway IP ID
+	// The Public Gateway IP ID
 	GatewayIpId pulumi.StringOutput `pulumi:"gatewayIpId"`
 	// The reverse domain name for this IP address
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
@@ -112,7 +112,7 @@ func GetVpcPublicGatewayIpReverseDns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPublicGatewayIpReverseDns resources.
 type vpcPublicGatewayIpReverseDnsState struct {
-	// The public gateway IP ID
+	// The Public Gateway IP ID
 	GatewayIpId *string `pulumi:"gatewayIpId"`
 	// The reverse domain name for this IP address
 	Reverse *string `pulumi:"reverse"`
@@ -121,7 +121,7 @@ type vpcPublicGatewayIpReverseDnsState struct {
 }
 
 type VpcPublicGatewayIpReverseDnsState struct {
-	// The public gateway IP ID
+	// The Public Gateway IP ID
 	GatewayIpId pulumi.StringPtrInput
 	// The reverse domain name for this IP address
 	Reverse pulumi.StringPtrInput
@@ -134,7 +134,7 @@ func (VpcPublicGatewayIpReverseDnsState) ElementType() reflect.Type {
 }
 
 type vpcPublicGatewayIpReverseDnsArgs struct {
-	// The public gateway IP ID
+	// The Public Gateway IP ID
 	GatewayIpId string `pulumi:"gatewayIpId"`
 	// The reverse domain name for this IP address
 	Reverse string `pulumi:"reverse"`
@@ -144,7 +144,7 @@ type vpcPublicGatewayIpReverseDnsArgs struct {
 
 // The set of arguments for constructing a VpcPublicGatewayIpReverseDns resource.
 type VpcPublicGatewayIpReverseDnsArgs struct {
-	// The public gateway IP ID
+	// The Public Gateway IP ID
 	GatewayIpId pulumi.StringInput
 	// The reverse domain name for this IP address
 	Reverse pulumi.StringInput
@@ -239,7 +239,7 @@ func (o VpcPublicGatewayIpReverseDnsOutput) ToVpcPublicGatewayIpReverseDnsOutput
 	return o
 }
 
-// The public gateway IP ID
+// The Public Gateway IP ID
 func (o VpcPublicGatewayIpReverseDnsOutput) GatewayIpId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIpReverseDns) pulumi.StringOutput { return v.GatewayIpId }).(pulumi.StringOutput)
 }

@@ -69,7 +69,7 @@ class GetLbRoutesResult:
     @pulumi.getter
     def routes(self) -> Sequence['outputs.GetLbRoutesRouteResult']:
         """
-        List of found routes
+        List of retrieved routes
         """
         return pulumi.get(self, "routes")
 
@@ -98,7 +98,9 @@ def get_lb_routes(frontend_id: Optional[str] = None,
                   zone: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbRoutesResult:
     """
-    Gets information about multiple Load Balancer Routes.
+    Gets information about multiple Load Balancer routes.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
     ## Example Usage
 
@@ -112,8 +114,8 @@ def get_lb_routes(frontend_id: Optional[str] = None,
     ```
 
 
-    :param str frontend_id: The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
-    :param str zone: `zone`) The zone in which routes exist.
+    :param str frontend_id: The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
+    :param str zone: `zone`) The zone in which the routes exist.
     """
     __args__ = dict()
     __args__['frontendId'] = frontend_id
@@ -137,7 +139,9 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
                          zone: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbRoutesResult]:
     """
-    Gets information about multiple Load Balancer Routes.
+    Gets information about multiple Load Balancer routes.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
     ## Example Usage
 
@@ -151,7 +155,7 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     ```
 
 
-    :param str frontend_id: The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
-    :param str zone: `zone`) The zone in which routes exist.
+    :param str frontend_id: The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
+    :param str zone: `zone`) The zone in which the routes exist.
     """
     ...

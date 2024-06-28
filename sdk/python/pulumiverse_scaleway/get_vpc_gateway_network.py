@@ -178,7 +178,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
                             private_network_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcGatewayNetworkResult:
     """
-    Gets information about a gateway network.
+    Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
 
     ## Example Usage
 
@@ -199,13 +199,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     ```
 
 
-    :param str dhcp_id: ID of the public gateway DHCP config
-    :param bool enable_masquerade: If masquerade is enabled on requested network
-    :param str gateway_id: ID of the public gateway the gateway network is linked to
-    :param str gateway_network_id: ID of the gateway network.
-           
-           > Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
-    :param str private_network_id: ID of the private network the gateway network is linked to
+    :param str gateway_network_id: ID of the GatewayNetwork.
     """
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
@@ -242,7 +236,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
                                    private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcGatewayNetworkResult]:
     """
-    Gets information about a gateway network.
+    Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
 
     ## Example Usage
 
@@ -263,12 +257,6 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     ```
 
 
-    :param str dhcp_id: ID of the public gateway DHCP config
-    :param bool enable_masquerade: If masquerade is enabled on requested network
-    :param str gateway_id: ID of the public gateway the gateway network is linked to
-    :param str gateway_network_id: ID of the gateway network.
-           
-           > Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
-    :param str private_network_id: ID of the private network the gateway network is linked to
+    :param str gateway_network_id: ID of the GatewayNetwork.
     """
     ...

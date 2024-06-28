@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class DatabaseReadReplicaDirectAccess
     {
         /// <summary>
-        /// The ID of the endpoint of the read replica.
+        /// The ID of the endpoint of the Read Replica.
         /// </summary>
         public readonly string? EndpointId;
         /// <summary>
-        /// Hostname of the endpoint. Only one of ip and hostname may be set.
+        /// Hostname of the endpoint. Only one of IP and hostname may be set.
         /// </summary>
         public readonly string? Hostname;
         /// <summary>
-        /// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        /// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         /// </summary>
         public readonly string? Ip;
         /// <summary>

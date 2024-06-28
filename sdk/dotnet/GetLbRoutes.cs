@@ -13,7 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetLbRoutes
     {
         /// <summary>
-        /// Gets information about multiple Load Balancer Routes.
+        /// Gets information about multiple Load Balancer routes.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 
@@ -43,7 +45,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbRoutesResult>("scaleway:index/getLbRoutes:getLbRoutes", args ?? new GetLbRoutesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about multiple Load Balancer Routes.
+        /// Gets information about multiple Load Balancer routes.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 
@@ -77,7 +81,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbRoutesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+        /// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
         /// </summary>
         [Input("frontendId")]
         public string? FrontendId { get; set; }
@@ -86,7 +90,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which routes exist.
+        /// `zone`) The zone in which the routes exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -100,7 +104,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbRoutesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+        /// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }
@@ -109,7 +113,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which routes exist.
+        /// `zone`) The zone in which the routes exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -132,7 +136,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string ProjectId;
         /// <summary>
-        /// List of found routes
+        /// List of retrieved routes
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbRoutesRouteResult> Routes;
         public readonly string Zone;

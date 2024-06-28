@@ -11,8 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway VPC Public Gateway IP.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+// Creates and manages Scaleway VPC Public Gateway public (flexible) IP addresses.
+// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
 //
 // ## Example Usage
 //
@@ -52,7 +52,7 @@ import (
 //
 // ## Import
 //
-// Public gateway can be imported using the `{zone}/{id}`, e.g.
+// Public Gateway IPs can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -64,19 +64,19 @@ type VpcPublicGatewayIp struct {
 
 	// The IP address itself.
 	Address pulumi.StringOutput `pulumi:"address"`
-	// The date and time of the creation of the public gateway ip.
+	// The date and time of the creation of the Public Gateway IP.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The organization ID the public gateway ip is associated with.
+	// The Organization ID the Public Gateway IP is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the public gateway ip is associated with.
+	// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The reverse domain name for the IP address
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
-	// The tags associated with the public gateway IP.
+	// The tags associated with the Public Gateway IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The date and time of the last update of the public gateway ip.
+	// The date and time of the last update of the Public Gateway IP.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// `zone`) The zone in which the public gateway ip should be created.
+	// `zone`) The zone in which the Public Gateway IP should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -112,38 +112,38 @@ func GetVpcPublicGatewayIp(ctx *pulumi.Context,
 type vpcPublicGatewayIpState struct {
 	// The IP address itself.
 	Address *string `pulumi:"address"`
-	// The date and time of the creation of the public gateway ip.
+	// The date and time of the creation of the Public Gateway IP.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The organization ID the public gateway ip is associated with.
+	// The Organization ID the Public Gateway IP is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the public gateway ip is associated with.
+	// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain name for the IP address
 	Reverse *string `pulumi:"reverse"`
-	// The tags associated with the public gateway IP.
+	// The tags associated with the Public Gateway IP.
 	Tags []string `pulumi:"tags"`
-	// The date and time of the last update of the public gateway ip.
+	// The date and time of the last update of the Public Gateway IP.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// `zone`) The zone in which the public gateway ip should be created.
+	// `zone`) The zone in which the Public Gateway IP should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPublicGatewayIpState struct {
 	// The IP address itself.
 	Address pulumi.StringPtrInput
-	// The date and time of the creation of the public gateway ip.
+	// The date and time of the creation of the Public Gateway IP.
 	CreatedAt pulumi.StringPtrInput
-	// The organization ID the public gateway ip is associated with.
+	// The Organization ID the Public Gateway IP is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the public gateway ip is associated with.
+	// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain name for the IP address
 	Reverse pulumi.StringPtrInput
-	// The tags associated with the public gateway IP.
+	// The tags associated with the Public Gateway IP.
 	Tags pulumi.StringArrayInput
-	// The date and time of the last update of the public gateway ip.
+	// The date and time of the last update of the Public Gateway IP.
 	UpdatedAt pulumi.StringPtrInput
-	// `zone`) The zone in which the public gateway ip should be created.
+	// `zone`) The zone in which the Public Gateway IP should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -152,25 +152,25 @@ func (VpcPublicGatewayIpState) ElementType() reflect.Type {
 }
 
 type vpcPublicGatewayIpArgs struct {
-	// `projectId`) The ID of the project the public gateway ip is associated with.
+	// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain name for the IP address
 	Reverse *string `pulumi:"reverse"`
-	// The tags associated with the public gateway IP.
+	// The tags associated with the Public Gateway IP.
 	Tags []string `pulumi:"tags"`
-	// `zone`) The zone in which the public gateway ip should be created.
+	// `zone`) The zone in which the Public Gateway IP should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcPublicGatewayIp resource.
 type VpcPublicGatewayIpArgs struct {
-	// `projectId`) The ID of the project the public gateway ip is associated with.
+	// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain name for the IP address
 	Reverse pulumi.StringPtrInput
-	// The tags associated with the public gateway IP.
+	// The tags associated with the Public Gateway IP.
 	Tags pulumi.StringArrayInput
-	// `zone`) The zone in which the public gateway ip should be created.
+	// `zone`) The zone in which the Public Gateway IP should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -266,17 +266,17 @@ func (o VpcPublicGatewayIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
-// The date and time of the creation of the public gateway ip.
+// The date and time of the creation of the Public Gateway IP.
 func (o VpcPublicGatewayIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The organization ID the public gateway ip is associated with.
+// The Organization ID the Public Gateway IP is associated with.
 func (o VpcPublicGatewayIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the public gateway ip is associated with.
+// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 func (o VpcPublicGatewayIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -286,17 +286,17 @@ func (o VpcPublicGatewayIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.Reverse }).(pulumi.StringOutput)
 }
 
-// The tags associated with the public gateway IP.
+// The tags associated with the Public Gateway IP.
 func (o VpcPublicGatewayIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The date and time of the last update of the public gateway ip.
+// The date and time of the last update of the Public Gateway IP.
 func (o VpcPublicGatewayIpOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which the public gateway ip should be created.
+// `zone`) The zone in which the Public Gateway IP should be created.
 func (o VpcPublicGatewayIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

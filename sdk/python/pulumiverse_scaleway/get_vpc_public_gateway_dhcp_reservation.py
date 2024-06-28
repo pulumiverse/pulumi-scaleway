@@ -141,8 +141,8 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
                                             zone: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpReservationResult:
     """
-    Gets information about a dhcp entries. For further information please check the
-    API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+    Gets information about a DHCP entry. For further information, please see the
+    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
 
     ## Example Dynamic
 
@@ -175,7 +175,7 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
         gateway_network_id=main_vpc_gateway_network.id)
     ```
 
-    ## Example Static and PAT rule
+    ## Example Static and PAT Rule
 
     ```python
     import pulumi
@@ -228,9 +228,9 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
            
            > Only one of `reservation_id` or `mac_address` with `gateway_network_id` should be specified.
     :param str mac_address: The MAC address of the reservation to retrieve.
-    :param str reservation_id: The ID of the Reservation to retrieve.
-    :param bool wait_for_dhcp: Boolean to wait for mac_address to exist in dhcp.
-    :param str zone: `zone`) The zone in which the image exists.
+    :param str reservation_id: The ID of the reservation (DHCP entry) to retrieve.
+    :param bool wait_for_dhcp: Whether to wait for `mac_address` to exist in DHCP.
+    :param str zone: `zone`). The zone in which the reservation exists.
     """
     __args__ = dict()
     __args__['gatewayNetworkId'] = gateway_network_id
@@ -263,8 +263,8 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
                                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
-    Gets information about a dhcp entries. For further information please check the
-    API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+    Gets information about a DHCP entry. For further information, please see the
+    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
 
     ## Example Dynamic
 
@@ -297,7 +297,7 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
         gateway_network_id=main_vpc_gateway_network.id)
     ```
 
-    ## Example Static and PAT rule
+    ## Example Static and PAT Rule
 
     ```python
     import pulumi
@@ -350,8 +350,8 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
            
            > Only one of `reservation_id` or `mac_address` with `gateway_network_id` should be specified.
     :param str mac_address: The MAC address of the reservation to retrieve.
-    :param str reservation_id: The ID of the Reservation to retrieve.
-    :param bool wait_for_dhcp: Boolean to wait for mac_address to exist in dhcp.
-    :param str zone: `zone`) The zone in which the image exists.
+    :param str reservation_id: The ID of the reservation (DHCP entry) to retrieve.
+    :param bool wait_for_dhcp: Whether to wait for `mac_address` to exist in DHCP.
+    :param str zone: `zone`). The zone in which the reservation exists.
     """
     ...

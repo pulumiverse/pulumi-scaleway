@@ -13,13 +13,17 @@ namespace Pulumiverse.Scaleway
     public static class GetDatabaseInstance
     {
         /// <summary>
-        /// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+        /// Gets information about an Database Instance.
+        /// 
+        /// For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
         /// </summary>
         public static Task<GetDatabaseInstanceResult> InvokeAsync(GetDatabaseInstanceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+        /// Gets information about an Database Instance.
+        /// 
+        /// For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
         /// </summary>
         public static Output<GetDatabaseInstanceResult> Invoke(GetDatabaseInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseInstanceResult>("scaleway:index/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceInvokeArgs(), options.WithDefaults());
@@ -30,26 +34,26 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The RDB instance ID.
-        /// Only one of `name` and `instance_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `instance_id`.
         /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
 
         /// <summary>
         /// The name of the RDB instance.
-        /// Only one of `name` and `instance_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the RDB instance exists.
+        /// `region`) The region in which the Database Instance exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -64,26 +68,26 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The RDB instance ID.
-        /// Only one of `name` and `instance_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `instance_id`.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
         /// The name of the RDB instance.
-        /// Only one of `name` and `instance_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the RDB instance exists.
+        /// `region`) The region in which the Database Instance exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -16,6 +16,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -28,6 +30,36 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Iops = 5000,
     ///         SizeInGb = 20,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With snapshot
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @base = new Scaleway.BlockVolume("base", new()
+    ///     {
+    ///         Iops = 5000,
+    ///         SizeInGb = 20,
+    ///     });
+    /// 
+    ///     var mainBlockSnapshot = new Scaleway.BlockSnapshot("mainBlockSnapshot", new()
+    ///     {
+    ///         VolumeId = @base.Id,
+    ///     });
+    /// 
+    ///     var mainBlockVolume = new Scaleway.BlockVolume("mainBlockVolume", new()
+    ///     {
+    ///         Iops = 5000,
+    ///         SnapshotId = mainBlockSnapshot.Id,
     ///     });
     /// 
     /// });

@@ -84,11 +84,17 @@ class GetRedisClusterResult:
     @property
     @pulumi.getter
     def acls(self) -> Sequence['outputs.GetRedisClusterAclResult']:
+        """
+        List of acl rules.
+        """
         return pulumi.get(self, "acls")
 
     @property
     @pulumi.getter
     def certificate(self) -> str:
+        """
+        The PEM of the certificate used by redis, only when `tls_enabled` is true.
+        """
         return pulumi.get(self, "certificate")
 
     @property
@@ -99,11 +105,17 @@ class GetRedisClusterResult:
     @property
     @pulumi.getter(name="clusterSize")
     def cluster_size(self) -> int:
+        """
+        The number of nodes in the Redis Cluster.
+        """
         return pulumi.get(self, "cluster_size")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The date and time of creation of the Redis Cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -122,16 +134,25 @@ class GetRedisClusterResult:
     @property
     @pulumi.getter(name="nodeType")
     def node_type(self) -> str:
+        """
+        The type of Redis Cluster (e.g. `RED1-M`).
+        """
         return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter
     def password(self) -> str:
+        """
+        Password of the first user of the Redis Cluster.
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Sequence['outputs.GetRedisClusterPrivateNetworkResult']:
+        """
+        List of private networks endpoints of the Redis Cluster.
+        """
         return pulumi.get(self, "private_networks")
 
     @property
@@ -142,36 +163,57 @@ class GetRedisClusterResult:
     @property
     @pulumi.getter(name="publicNetworks")
     def public_networks(self) -> Sequence['outputs.GetRedisClusterPublicNetworkResult']:
+        """
+        Public network details.
+        """
         return pulumi.get(self, "public_networks")
 
     @property
     @pulumi.getter
     def settings(self) -> Mapping[str, str]:
+        """
+        Map of settings for redis cluster.
+        """
         return pulumi.get(self, "settings")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        The tags associated with the Redis Cluster.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> bool:
+        """
+        Whether TLS is enabled or not.
+        """
         return pulumi.get(self, "tls_enabled")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
+        """
+        The date and time of the last update of the Redis Cluster.
+        """
         return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> str:
+        """
+        The first user of the Redis Cluster.
+        """
         return pulumi.get(self, "user_name")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        Redis's Cluster version (e.g. `6.2.7`).
+        """
         return pulumi.get(self, "version")
 
     @property
@@ -213,7 +255,9 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
                       zone: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisClusterResult:
     """
-    Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+    Gets information about a Redis™ cluster.
+
+    For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
 
     ## Example Usage
 
@@ -226,9 +270,9 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
 
 
     :param str cluster_id: The Redis cluster ID.
-           Only one of the `name` and `cluster_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `cluster_id`.
     :param str name: The name of the Redis cluster.
-           Only one of the `name` and `cluster_id` should be specified.
     :param str project_id: The ID of the project the Redis cluster is associated with.
     :param str zone: `region`) The zone in which the server exists.
     """
@@ -269,7 +313,9 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
                              zone: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRedisClusterResult]:
     """
-    Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+    Gets information about a Redis™ cluster.
+
+    For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
 
     ## Example Usage
 
@@ -282,9 +328,9 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
 
 
     :param str cluster_id: The Redis cluster ID.
-           Only one of the `name` and `cluster_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `cluster_id`.
     :param str name: The name of the Redis cluster.
-           Only one of the `name` and `cluster_id` should be specified.
     :param str project_id: The ID of the project the Redis cluster is associated with.
     :param str zone: `region`) The zone in which the server exists.
     """

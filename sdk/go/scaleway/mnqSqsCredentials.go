@@ -11,9 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Messaging and queuing SQS Credentials.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+// Creates and manages Scaleway Messaging and Queuing SQS credentials.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 //
 // ## Example Usage
 //
@@ -54,7 +54,7 @@ import (
 //
 // ## Import
 //
-// SQS credentials can be imported using the `{region}/{id}`, e.g.
+// SQS credentials can be imported using `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -66,13 +66,13 @@ type MnqSqsCredentials struct {
 
 	// The ID of the key.
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
-	// The unique name of the sqs credentials.
+	// The unique name of the SQS credentials.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions MnqSqsCredentialsPermissionsOutput `pulumi:"permissions"`
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret value of the key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
@@ -115,13 +115,13 @@ func GetMnqSqsCredentials(ctx *pulumi.Context,
 type mnqSqsCredentialsState struct {
 	// The ID of the key.
 	AccessKey *string `pulumi:"accessKey"`
-	// The unique name of the sqs credentials.
+	// The unique name of the SQS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions *MnqSqsCredentialsPermissions `pulumi:"permissions"`
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret value of the key.
 	SecretKey *string `pulumi:"secretKey"`
@@ -130,13 +130,13 @@ type mnqSqsCredentialsState struct {
 type MnqSqsCredentialsState struct {
 	// The ID of the key.
 	AccessKey pulumi.StringPtrInput
-	// The unique name of the sqs credentials.
+	// The unique name of the SQS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions MnqSqsCredentialsPermissionsPtrInput
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret value of the key.
 	SecretKey pulumi.StringPtrInput
@@ -147,25 +147,25 @@ func (MnqSqsCredentialsState) ElementType() reflect.Type {
 }
 
 type mnqSqsCredentialsArgs struct {
-	// The unique name of the sqs credentials.
+	// The unique name of the SQS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions *MnqSqsCredentialsPermissions `pulumi:"permissions"`
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a MnqSqsCredentials resource.
 type MnqSqsCredentialsArgs struct {
-	// The unique name of the sqs credentials.
+	// The unique name of the SQS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions MnqSqsCredentialsPermissionsPtrInput
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -261,22 +261,22 @@ func (o MnqSqsCredentialsOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The unique name of the sqs credentials.
+// The unique name of the SQS credentials.
 func (o MnqSqsCredentialsOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// . List of permissions associated to these credentials. Only one of permissions may be set.
+// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 func (o MnqSqsCredentialsOutput) Permissions() MnqSqsCredentialsPermissionsOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) MnqSqsCredentialsPermissionsOutput { return v.Permissions }).(MnqSqsCredentialsPermissionsOutput)
 }
 
-// `projectId`) The ID of the project the sqs is enabled for.
+// `projectId`) The ID of the Project in which SQS is enabled.
 func (o MnqSqsCredentialsOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which sqs is enabled.
+// `region`). The region in which SQS is enabled.
 func (o MnqSqsCredentialsOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

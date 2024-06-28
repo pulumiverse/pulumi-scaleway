@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Load Balancer.
  *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -42,16 +44,16 @@ export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.Invoke
 export interface GetLoadbalancerArgs {
     lbId?: string;
     /**
-     * The load balancer name.
+     * The Load Balancer name.
      */
     name?: string;
     /**
-     * The ID of the project the LB is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: string;
     releaseIp?: boolean;
     /**
-     * (Defaults to provider `zone`) The zone in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone?: string;
 }
@@ -68,7 +70,7 @@ export interface GetLoadbalancerResult {
      */
     readonly id: string;
     /**
-     * The load-balancer public IP Address.
+     * The Load Balancer public IP address.
      */
     readonly ipAddress: string;
     readonly ipId: string;
@@ -83,20 +85,22 @@ export interface GetLoadbalancerResult {
     readonly releaseIp?: boolean;
     readonly sslCompatibilityLevel: string;
     /**
-     * The tags associated with the load-balancer.
+     * The tags associated with the Load Balancer.
      */
     readonly tags: string[];
     /**
-     * The type of the load-balancer.
+     * The Load Balancer type.
      */
     readonly type: string;
     /**
-     * (Defaults to provider `zone`) The zone in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     readonly zone?: string;
 }
 /**
  * Gets information about a Load Balancer.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  *
  * ## Example Usage
  *
@@ -122,16 +126,16 @@ export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: p
 export interface GetLoadbalancerOutputArgs {
     lbId?: pulumi.Input<string>;
     /**
-     * The load balancer name.
+     * The Load Balancer name.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the LB is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     releaseIp?: pulumi.Input<boolean>;
     /**
-     * (Defaults to provider `zone`) The zone in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone?: pulumi.Input<string>;
 }

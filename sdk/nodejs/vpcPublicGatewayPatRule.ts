@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
+ * Creates and manages Scaleway Public Gateway PAT (Port Address Translation).
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
  *
  * ## Example Usage
  *
@@ -63,7 +63,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g.
+ * Public Gateway PAT rule configurations can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -100,39 +100,39 @@ export class VpcPublicGatewayPatRule extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the pat rule config.
+     * The date and time of the creation of the PAT rule configuration.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
-     * The organization ID the pat rule config is associated with.
+     * The Organization ID the PAT rule configuration is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The Private IP to forward data to (IP address).
+     * The private IP address to forward data to.
      */
     public readonly privateIp!: pulumi.Output<string>;
     /**
-     * The Private port to translate to.
+     * The private port to translate to.
      */
     public readonly privatePort!: pulumi.Output<number>;
     /**
-     * The Protocol the rule should apply to. Possible values are both, tcp and udp.
+     * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
     public readonly protocol!: pulumi.Output<string | undefined>;
     /**
-     * The Public port to listen on.
+     * The public port to listen on.
      */
     public readonly publicPort!: pulumi.Output<number>;
     /**
-     * The date and time of the last update of the pat rule config.
+     * The date and time of the last update of the PAT rule configuration.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -192,39 +192,39 @@ export class VpcPublicGatewayPatRule extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayPatRuleState {
     /**
-     * The date and time of the creation of the pat rule config.
+     * The date and time of the creation of the PAT rule configuration.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * The organization ID the pat rule config is associated with.
+     * The Organization ID the PAT rule configuration is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The Private IP to forward data to (IP address).
+     * The private IP address to forward data to.
      */
     privateIp?: pulumi.Input<string>;
     /**
-     * The Private port to translate to.
+     * The private port to translate to.
      */
     privatePort?: pulumi.Input<number>;
     /**
-     * The Protocol the rule should apply to. Possible values are both, tcp and udp.
+     * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * The Public port to listen on.
+     * The public port to listen on.
      */
     publicPort?: pulumi.Input<number>;
     /**
-     * The date and time of the last update of the pat rule config.
+     * The date and time of the last update of the PAT rule configuration.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -234,27 +234,27 @@ export interface VpcPublicGatewayPatRuleState {
  */
 export interface VpcPublicGatewayPatRuleArgs {
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * The Private IP to forward data to (IP address).
+     * The private IP address to forward data to.
      */
     privateIp: pulumi.Input<string>;
     /**
-     * The Private port to translate to.
+     * The private port to translate to.
      */
     privatePort: pulumi.Input<number>;
     /**
-     * The Protocol the rule should apply to. Possible values are both, tcp and udp.
+     * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * The Public port to listen on.
+     * The public port to listen on.
      */
     publicPort: pulumi.Input<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
     zone?: pulumi.Input<string>;
 }

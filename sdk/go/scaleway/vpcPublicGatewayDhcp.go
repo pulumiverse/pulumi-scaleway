@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway VPC Public Gateway DHCP.
+// Creates and manages Scaleway VPC Public Gateway DHCP configurations.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
 //
 // ## Example Usage
@@ -43,7 +43,7 @@ import (
 //
 // ## Import
 //
-// Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g.
+// Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -53,25 +53,25 @@ import (
 type VpcPublicGatewayDhcp struct {
 	pulumi.CustomResourceState
 
-	// The IP address of the public gateway DHCP config.
+	// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 	Address pulumi.StringOutput `pulumi:"address"`
-	// The date and time of the creation of the public gateway DHCP config.
+	// The date and time of the creation of the Public Gateway DHCP configuration.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
 	DnsLocalName pulumi.StringOutput `pulumi:"dnsLocalName"`
 	// Additional DNS search paths
 	DnsSearches pulumi.StringArrayOutput `pulumi:"dnsSearches"`
-	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
 	DnsServersOverrides pulumi.StringArrayOutput `pulumi:"dnsServersOverrides"`
 	// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
 	EnableDynamic pulumi.BoolOutput `pulumi:"enableDynamic"`
-	// The organization ID the public gateway DHCP config is associated with.
+	// The Organization ID the Public Gateway DHCP config is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
 	PoolHigh pulumi.StringOutput `pulumi:"poolHigh"`
 	// Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
 	PoolLow pulumi.StringOutput `pulumi:"poolLow"`
-	// `projectId`) The ID of the project the public gateway DHCP config is associated with.
+	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 	PushDefaultRoute pulumi.BoolOutput `pulumi:"pushDefaultRoute"`
@@ -81,13 +81,13 @@ type VpcPublicGatewayDhcp struct {
 	RebindTimer pulumi.IntOutput `pulumi:"rebindTimer"`
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer pulumi.IntOutput `pulumi:"renewTimer"`
-	// The subnet to associate with the public gateway DHCP config.
+	// The subnet to associate with the Public Gateway DHCP configuration.
 	Subnet pulumi.StringOutput `pulumi:"subnet"`
-	// The date and time of the last update of the public gateway DHCP config.
+	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime pulumi.IntOutput `pulumi:"validLifetime"`
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -124,25 +124,25 @@ func GetVpcPublicGatewayDhcp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPublicGatewayDhcp resources.
 type vpcPublicGatewayDhcpState struct {
-	// The IP address of the public gateway DHCP config.
+	// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 	Address *string `pulumi:"address"`
-	// The date and time of the creation of the public gateway DHCP config.
+	// The date and time of the creation of the Public Gateway DHCP configuration.
 	CreatedAt *string `pulumi:"createdAt"`
 	// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
 	DnsLocalName *string `pulumi:"dnsLocalName"`
 	// Additional DNS search paths
 	DnsSearches []string `pulumi:"dnsSearches"`
-	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
 	DnsServersOverrides []string `pulumi:"dnsServersOverrides"`
 	// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
 	EnableDynamic *bool `pulumi:"enableDynamic"`
-	// The organization ID the public gateway DHCP config is associated with.
+	// The Organization ID the Public Gateway DHCP config is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
 	PoolHigh *string `pulumi:"poolHigh"`
 	// Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
 	PoolLow *string `pulumi:"poolLow"`
-	// `projectId`) The ID of the project the public gateway DHCP config is associated with.
+	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 	PushDefaultRoute *bool `pulumi:"pushDefaultRoute"`
@@ -152,36 +152,36 @@ type vpcPublicGatewayDhcpState struct {
 	RebindTimer *int `pulumi:"rebindTimer"`
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer *int `pulumi:"renewTimer"`
-	// The subnet to associate with the public gateway DHCP config.
+	// The subnet to associate with the Public Gateway DHCP configuration.
 	Subnet *string `pulumi:"subnet"`
-	// The date and time of the last update of the public gateway DHCP config.
+	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime *int `pulumi:"validLifetime"`
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPublicGatewayDhcpState struct {
-	// The IP address of the public gateway DHCP config.
+	// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 	Address pulumi.StringPtrInput
-	// The date and time of the creation of the public gateway DHCP config.
+	// The date and time of the creation of the Public Gateway DHCP configuration.
 	CreatedAt pulumi.StringPtrInput
 	// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
 	DnsLocalName pulumi.StringPtrInput
 	// Additional DNS search paths
 	DnsSearches pulumi.StringArrayInput
-	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
 	DnsServersOverrides pulumi.StringArrayInput
 	// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
 	EnableDynamic pulumi.BoolPtrInput
-	// The organization ID the public gateway DHCP config is associated with.
+	// The Organization ID the Public Gateway DHCP config is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
 	PoolHigh pulumi.StringPtrInput
 	// Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
 	PoolLow pulumi.StringPtrInput
-	// `projectId`) The ID of the project the public gateway DHCP config is associated with.
+	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId pulumi.StringPtrInput
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 	PushDefaultRoute pulumi.BoolPtrInput
@@ -191,13 +191,13 @@ type VpcPublicGatewayDhcpState struct {
 	RebindTimer pulumi.IntPtrInput
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer pulumi.IntPtrInput
-	// The subnet to associate with the public gateway DHCP config.
+	// The subnet to associate with the Public Gateway DHCP configuration.
 	Subnet pulumi.StringPtrInput
-	// The date and time of the last update of the public gateway DHCP config.
+	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringPtrInput
-	// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime pulumi.IntPtrInput
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -206,13 +206,13 @@ func (VpcPublicGatewayDhcpState) ElementType() reflect.Type {
 }
 
 type vpcPublicGatewayDhcpArgs struct {
-	// The IP address of the public gateway DHCP config.
+	// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 	Address *string `pulumi:"address"`
 	// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
 	DnsLocalName *string `pulumi:"dnsLocalName"`
 	// Additional DNS search paths
 	DnsSearches []string `pulumi:"dnsSearches"`
-	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
 	DnsServersOverrides []string `pulumi:"dnsServersOverrides"`
 	// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
 	EnableDynamic *bool `pulumi:"enableDynamic"`
@@ -220,7 +220,7 @@ type vpcPublicGatewayDhcpArgs struct {
 	PoolHigh *string `pulumi:"poolHigh"`
 	// Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
 	PoolLow *string `pulumi:"poolLow"`
-	// `projectId`) The ID of the project the public gateway DHCP config is associated with.
+	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 	PushDefaultRoute *bool `pulumi:"pushDefaultRoute"`
@@ -230,23 +230,23 @@ type vpcPublicGatewayDhcpArgs struct {
 	RebindTimer *int `pulumi:"rebindTimer"`
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer *int `pulumi:"renewTimer"`
-	// The subnet to associate with the public gateway DHCP config.
+	// The subnet to associate with the Public Gateway DHCP configuration.
 	Subnet string `pulumi:"subnet"`
-	// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime *int `pulumi:"validLifetime"`
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcPublicGatewayDhcp resource.
 type VpcPublicGatewayDhcpArgs struct {
-	// The IP address of the public gateway DHCP config.
+	// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 	Address pulumi.StringPtrInput
 	// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
 	DnsLocalName pulumi.StringPtrInput
 	// Additional DNS search paths
 	DnsSearches pulumi.StringArrayInput
-	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+	// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
 	DnsServersOverrides pulumi.StringArrayInput
 	// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
 	EnableDynamic pulumi.BoolPtrInput
@@ -254,7 +254,7 @@ type VpcPublicGatewayDhcpArgs struct {
 	PoolHigh pulumi.StringPtrInput
 	// Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
 	PoolLow pulumi.StringPtrInput
-	// `projectId`) The ID of the project the public gateway DHCP config is associated with.
+	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId pulumi.StringPtrInput
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 	PushDefaultRoute pulumi.BoolPtrInput
@@ -264,11 +264,11 @@ type VpcPublicGatewayDhcpArgs struct {
 	RebindTimer pulumi.IntPtrInput
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer pulumi.IntPtrInput
-	// The subnet to associate with the public gateway DHCP config.
+	// The subnet to associate with the Public Gateway DHCP configuration.
 	Subnet pulumi.StringInput
-	// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime pulumi.IntPtrInput
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -359,12 +359,12 @@ func (o VpcPublicGatewayDhcpOutput) ToVpcPublicGatewayDhcpOutputWithContext(ctx 
 	return o
 }
 
-// The IP address of the public gateway DHCP config.
+// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 func (o VpcPublicGatewayDhcpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
-// The date and time of the creation of the public gateway DHCP config.
+// The date and time of the creation of the Public Gateway DHCP configuration.
 func (o VpcPublicGatewayDhcpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -379,7 +379,7 @@ func (o VpcPublicGatewayDhcpOutput) DnsSearches() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringArrayOutput { return v.DnsSearches }).(pulumi.StringArrayOutput)
 }
 
-// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
 func (o VpcPublicGatewayDhcpOutput) DnsServersOverrides() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringArrayOutput { return v.DnsServersOverrides }).(pulumi.StringArrayOutput)
 }
@@ -389,7 +389,7 @@ func (o VpcPublicGatewayDhcpOutput) EnableDynamic() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.BoolOutput { return v.EnableDynamic }).(pulumi.BoolOutput)
 }
 
-// The organization ID the public gateway DHCP config is associated with.
+// The Organization ID the Public Gateway DHCP config is associated with.
 func (o VpcPublicGatewayDhcpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -404,7 +404,7 @@ func (o VpcPublicGatewayDhcpOutput) PoolLow() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.PoolLow }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the public gateway DHCP config is associated with.
+// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 func (o VpcPublicGatewayDhcpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -429,22 +429,22 @@ func (o VpcPublicGatewayDhcpOutput) RenewTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.IntOutput { return v.RenewTimer }).(pulumi.IntOutput)
 }
 
-// The subnet to associate with the public gateway DHCP config.
+// The subnet to associate with the Public Gateway DHCP configuration.
 func (o VpcPublicGatewayDhcpOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the public gateway DHCP config.
+// The date and time of the last update of the Public Gateway DHCP configuration.
 func (o VpcPublicGatewayDhcpOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 func (o VpcPublicGatewayDhcpOutput) ValidLifetime() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.IntOutput { return v.ValidLifetime }).(pulumi.IntOutput)
 }
 
-// `zone`) The zone in which the public gateway DHCP config should be created.
+// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 func (o VpcPublicGatewayDhcpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

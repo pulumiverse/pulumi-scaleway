@@ -21,15 +21,15 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool? EnableIpam;
         /// <summary>
-        /// The ID of the endpoint of the read replica.
+        /// The ID of the endpoint of the Read Replica.
         /// </summary>
         public readonly string? EndpointId;
         /// <summary>
-        /// Hostname of the endpoint. Only one of ip and hostname may be set.
+        /// Hostname of the endpoint. Only one of IP and hostname may be set.
         /// </summary>
         public readonly string? Hostname;
         /// <summary>
-        /// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        /// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         /// </summary>
         public readonly string? Ip;
         /// <summary>
@@ -41,7 +41,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// UUID of the private network to be connected to the read replica.
+        /// UUID of the Private Netork to be connected to the Read Replica.
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>

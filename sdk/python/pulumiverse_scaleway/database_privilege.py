@@ -22,7 +22,7 @@ class DatabasePrivilegeArgs:
         """
         The set of arguments for constructing a DatabasePrivilege resource.
         :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
         :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
@@ -50,7 +50,7 @@ class DatabasePrivilegeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -106,7 +106,7 @@ class _DatabasePrivilegeState:
         """
         Input properties used for looking up and filtering DatabasePrivilege resources.
         :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
         :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
@@ -138,7 +138,7 @@ class _DatabasePrivilegeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -195,8 +195,8 @@ class DatabasePrivilege(pulumi.CustomResource):
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create and manage Scaleway RDB database privilege.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+        Create and manage Scaleway database privileges.
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
 
         ## Example Usage
 
@@ -236,7 +236,7 @@ class DatabasePrivilege(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
         :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
@@ -248,8 +248,8 @@ class DatabasePrivilege(pulumi.CustomResource):
                  args: DatabasePrivilegeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create and manage Scaleway RDB database privilege.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+        Create and manage Scaleway database privileges.
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
 
         ## Example Usage
 
@@ -351,7 +351,7 @@ class DatabasePrivilege(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
         :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
@@ -379,7 +379,7 @@ class DatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
         """
         return pulumi.get(self, "instance_id")
 

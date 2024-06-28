@@ -121,7 +121,7 @@ class _RegistryNamespaceState:
         :param pulumi.Input[str] name: The unique name of the namespace.
                
                > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] organization_id: The Organization ID the namespace is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
@@ -194,7 +194,7 @@ class _RegistryNamespaceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the namespace is associated with.
+        The Organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -240,7 +240,7 @@ class RegistryNamespace(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Container Registry.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/registry).
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
 
         ## Example Usage
 
@@ -283,7 +283,7 @@ class RegistryNamespace(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Container Registry.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/registry).
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
 
         ## Example Usage
 
@@ -374,7 +374,7 @@ class RegistryNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique name of the namespace.
                
                > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
+        :param pulumi.Input[str] organization_id: The Organization ID the namespace is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         """
@@ -429,7 +429,7 @@ class RegistryNamespace(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the namespace is associated with.
+        The Organization ID the namespace is associated with.
         """
         return pulumi.get(self, "organization_id")
 

@@ -78,7 +78,7 @@ class GetIpamIpsResult:
     @pulumi.getter
     def ips(self) -> Sequence['outputs.GetIpamIpsIpResult']:
         """
-        List of found IPs
+        List of found IPs.
         """
         return pulumi.get(self, "ips")
 
@@ -86,7 +86,7 @@ class GetIpamIpsResult:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[str]:
         """
-        The mac address.
+        The associated MAC address.
         """
         return pulumi.get(self, "mac_address")
 
@@ -104,7 +104,7 @@ class GetIpamIpsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the server is associated with.
+        The ID of the Project the resource is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -112,7 +112,7 @@ class GetIpamIpsResult:
     @pulumi.getter
     def region(self) -> str:
         """
-        The region in which the IP is.
+        The region of the IP.
         """
         return pulumi.get(self, "region")
 
@@ -120,7 +120,7 @@ class GetIpamIpsResult:
     @pulumi.getter
     def resource(self) -> Optional['outputs.GetIpamIpsResourceResult']:
         """
-        The list of public IPs of the server.
+        The list of public IPs attached to the resource.
         """
         return pulumi.get(self, "resource")
 
@@ -177,7 +177,9 @@ def get_ipam_ips(attached: Optional[bool] = None,
                  zonal: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpamIpsResult:
     """
-    Gets information about multiple IPs managed by IPAM service.
+    Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+
+    For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 
     ## Examples
 
@@ -221,13 +223,13 @@ def get_ipam_ips(attached: Optional[bool] = None,
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource.
-    :param str mac_address: The Mac Address used as filter.
-    :param str private_network_id: The ID of the private network used as filter.
-    :param str project_id: The ID of the project used as filter.
-    :param str region: The region used as filter.
-    :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter by resource ID, type or name.
-    :param Sequence[str] tags: The tags used as filter.
-    :param str type: The type of IP used as filter (ipv4, ipv6).
+    :param str mac_address: The linked MAC address to filter for.
+    :param str private_network_id: The ID of the Private Network to filter for.
+    :param str project_id: The ID of the Project to filter for.
+    :param str region: The region to filter for.
+    :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
+    :param Sequence[str] tags: The IP tags to filter for.
+    :param str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     __args__ = dict()
@@ -270,7 +272,9 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                         zonal: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpamIpsResult]:
     """
-    Gets information about multiple IPs managed by IPAM service.
+    Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+
+    For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 
     ## Examples
 
@@ -314,13 +318,13 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource.
-    :param str mac_address: The Mac Address used as filter.
-    :param str private_network_id: The ID of the private network used as filter.
-    :param str project_id: The ID of the project used as filter.
-    :param str region: The region used as filter.
-    :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter by resource ID, type or name.
-    :param Sequence[str] tags: The tags used as filter.
-    :param str type: The type of IP used as filter (ipv4, ipv6).
+    :param str mac_address: The linked MAC address to filter for.
+    :param str private_network_id: The ID of the Private Network to filter for.
+    :param str project_id: The ID of the Project to filter for.
+    :param str region: The region to filter for.
+    :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
+    :param Sequence[str] tags: The IP tags to filter for.
+    :param str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     ...

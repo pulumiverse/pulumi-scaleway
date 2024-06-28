@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about multiple Load Balancer Routes.
+// Gets information about multiple Load Balancer routes.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 //
 // ## Example Usage
 //
@@ -57,10 +59,10 @@ func GetLbRoutes(ctx *pulumi.Context, args *GetLbRoutesArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getLbRoutes.
 type GetLbRoutesArgs struct {
-	// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+	// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
 	FrontendId *string `pulumi:"frontendId"`
 	ProjectId  *string `pulumi:"projectId"`
-	// `zone`) The zone in which routes exist.
+	// `zone`) The zone in which the routes exist.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -71,7 +73,7 @@ type GetLbRoutesResult struct {
 	Id             string `pulumi:"id"`
 	OrganizationId string `pulumi:"organizationId"`
 	ProjectId      string `pulumi:"projectId"`
-	// List of found routes
+	// List of retrieved routes
 	Routes []GetLbRoutesRoute `pulumi:"routes"`
 	Zone   string             `pulumi:"zone"`
 }
@@ -91,10 +93,10 @@ func GetLbRoutesOutput(ctx *pulumi.Context, args GetLbRoutesOutputArgs, opts ...
 
 // A collection of arguments for invoking getLbRoutes.
 type GetLbRoutesOutputArgs struct {
-	// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+	// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
 	FrontendId pulumi.StringPtrInput `pulumi:"frontendId"`
 	ProjectId  pulumi.StringPtrInput `pulumi:"projectId"`
-	// `zone`) The zone in which routes exist.
+	// `zone`) The zone in which the routes exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -134,7 +136,7 @@ func (o GetLbRoutesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// List of found routes
+// List of retrieved routes
 func (o GetLbRoutesResultOutput) Routes() GetLbRoutesRouteArrayOutput {
 	return o.ApplyT(func(v GetLbRoutesResult) []GetLbRoutesRoute { return v.Routes }).(GetLbRoutesRouteArrayOutput)
 }

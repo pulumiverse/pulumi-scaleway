@@ -285,15 +285,17 @@ def get_database_instance(instance_id: Optional[str] = None,
                           region: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
-    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+    Gets information about an Database Instance.
+
+    For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
-           Only one of `name` and `instance_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `instance_id`.
     :param str name: The name of the RDB instance.
-           Only one of `name` and `instance_id` should be specified.
-    :param str project_id: The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
-    :param str region: `region`) The region in which the RDB instance exists.
+    :param str project_id: The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
+    :param str region: `region`) The region in which the Database Instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -340,14 +342,16 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
                                  region: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
-    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+    Gets information about an Database Instance.
+
+    For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
-           Only one of `name` and `instance_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `instance_id`.
     :param str name: The name of the RDB instance.
-           Only one of `name` and `instance_id` should be specified.
-    :param str project_id: The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
-    :param str region: `region`) The region in which the RDB instance exists.
+    :param str project_id: The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
+    :param str region: `region`) The region in which the Database Instance exists.
     """
     ...

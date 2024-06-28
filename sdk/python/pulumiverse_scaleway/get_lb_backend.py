@@ -329,8 +329,9 @@ def get_lb_backend(backend_id: Optional[str] = None,
                    name: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbBackendResult:
     """
-    Get information about Scaleway Load-Balancer Backends.
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+    Get information about Scaleway Load Balancer backends.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
     ## Example Usage
 
@@ -353,11 +354,11 @@ def get_lb_backend(backend_id: Optional[str] = None,
     ```
 
 
-    :param str backend_id: The backend id.
+    :param str backend_id: The backend ID.
            - Only one of `name` and `backend_id` should be specified.
-    :param str lb_id: The load-balancer ID this backend is attached to.
+    :param str lb_id: Load Balancer ID this backend is attached to.
     :param str name: The name of the backend.
-           - When using the `name` you should specify the `lb-id`
+           - When using `name` you should specify the `lb-id`
     """
     __args__ = dict()
     __args__['backendId'] = backend_id
@@ -407,8 +408,9 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbBackendResult]:
     """
-    Get information about Scaleway Load-Balancer Backends.
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+    Get information about Scaleway Load Balancer backends.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
     ## Example Usage
 
@@ -431,10 +433,10 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     ```
 
 
-    :param str backend_id: The backend id.
+    :param str backend_id: The backend ID.
            - Only one of `name` and `backend_id` should be specified.
-    :param str lb_id: The load-balancer ID this backend is attached to.
+    :param str lb_id: Load Balancer ID this backend is attached to.
     :param str name: The name of the backend.
-           - When using the `name` you should specify the `lb-id`
+           - When using `name` you should specify the `lb-id`
     """
     ...

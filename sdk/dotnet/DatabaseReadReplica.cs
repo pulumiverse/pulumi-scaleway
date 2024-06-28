@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Database read replicas.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+    /// Creates and manages Read Replicas.
+    /// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 
@@ -123,7 +123,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database Read replica can be imported using the `{region}/{id}`, e.g.
+    /// Read Replicas can be imported using the `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -143,20 +143,20 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the rdb instance.
         /// 
-        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+        /// &gt; **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Create an endpoint in a private network.
+        /// Create an endpoint in a Private Netork.
         /// </summary>
         [Output("privateNetwork")]
         public Output<Outputs.DatabaseReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
         /// `region`) The region
-        /// in which the Database read replica should be created.
+        /// in which the Read Replica should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -223,20 +223,20 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the rdb instance.
         /// 
-        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+        /// &gt; **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Create an endpoint in a private network.
+        /// Create an endpoint in a Private Netork.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DatabaseReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
         /// `region`) The region
-        /// in which the Database read replica should be created.
+        /// in which the Read Replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -264,20 +264,20 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the rdb instance.
         /// 
-        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+        /// &gt; **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Create an endpoint in a private network.
+        /// Create an endpoint in a Private Netork.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DatabaseReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
         /// `region`) The region
-        /// in which the Database read replica should be created.
+        /// in which the Read Replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

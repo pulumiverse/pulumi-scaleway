@@ -15,6 +15,46 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Example Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var instance = new Scaleway.DocumentdbInstance("instance", new()
+    ///     {
+    ///         NodeType = "docdb-play2-pico",
+    ///         Engine = "FerretDB-1",
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         VolumeSizeInGb = 20,
+    ///     });
+    /// 
+    ///     var main = new Scaleway.DocumentdbPrivateNetworkEndpoint("main", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PrivateNetwork = new Scaleway.Inputs.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs
+    ///         {
+    ///             IpNet = "172.16.32.3/22",
+    ///             Id = pn.Id,
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             pn,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
@@ -29,60 +69,27 @@ namespace Pulumiverse.Scaleway
     public partial class DocumentdbPrivateNetworkEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Hostname of the endpoint.
-        /// </summary>
-        [Output("hostname")]
-        public Output<string> Hostname { get; private set; } = null!;
-
-        /// <summary>
         /// UUID of the documentdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// IPv4 address on the network.
+        /// The private network specs details. This is a list with maximum one element and supports the following attributes:
         /// </summary>
-        [Output("ip")]
-        public Output<string> Ip { get; private set; } = null!;
+        [Output("privateNetwork")]
+        public Output<Outputs.DocumentdbPrivateNetworkEndpointPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// The IP network address within the private subnet. This must be an IPv4 address with a
-        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        /// service if not set.
-        /// </summary>
-        [Output("ipNet")]
-        public Output<string> IpNet { get; private set; } = null!;
-
-        /// <summary>
-        /// Name of the endpoint.
-        /// </summary>
-        [Output("name")]
-        public Output<string> Name { get; private set; } = null!;
-
-        /// <summary>
-        /// Port in the Private Network.
-        /// </summary>
-        [Output("port")]
-        public Output<int> Port { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of the private network.
-        /// </summary>
-        [Output("privateNetworkId")]
-        public Output<string> PrivateNetworkId { get; private set; } = null!;
-
-        /// <summary>
-        /// The region you want to attach the resource to
+        /// The region of the endpoint.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Please calculate your host IP.
+        /// using cirhost. Otherwise, lets IPAM service
+        /// handle the host IP on the network.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
-
-        /// <summary>
-        /// The zone you want to attach the resource to
-        /// </summary>
-        [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -138,36 +145,21 @@ namespace Pulumiverse.Scaleway
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The IP network address within the private subnet. This must be an IPv4 address with a
-        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        /// service if not set.
+        /// The private network specs details. This is a list with maximum one element and supports the following attributes:
         /// </summary>
-        [Input("ipNet")]
-        public Input<string>? IpNet { get; set; }
+        [Input("privateNetwork")]
+        public Input<Inputs.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// Port in the Private Network.
-        /// </summary>
-        [Input("port")]
-        public Input<int>? Port { get; set; }
-
-        /// <summary>
-        /// The ID of the private network.
-        /// </summary>
-        [Input("privateNetworkId", required: true)]
-        public Input<string> PrivateNetworkId { get; set; } = null!;
-
-        /// <summary>
-        /// The region you want to attach the resource to
+        /// The region of the endpoint.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Please calculate your host IP.
+        /// using cirhost. Otherwise, lets IPAM service
+        /// handle the host IP on the network.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
-
-        /// <summary>
-        /// The zone you want to attach the resource to
-        /// </summary>
-        [Input("zone")]
-        public Input<string>? Zone { get; set; }
 
         public DocumentdbPrivateNetworkEndpointArgs()
         {
@@ -178,60 +170,27 @@ namespace Pulumiverse.Scaleway
     public sealed class DocumentdbPrivateNetworkEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Hostname of the endpoint.
-        /// </summary>
-        [Input("hostname")]
-        public Input<string>? Hostname { get; set; }
-
-        /// <summary>
         /// UUID of the documentdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// IPv4 address on the network.
+        /// The private network specs details. This is a list with maximum one element and supports the following attributes:
         /// </summary>
-        [Input("ip")]
-        public Input<string>? Ip { get; set; }
+        [Input("privateNetwork")]
+        public Input<Inputs.DocumentdbPrivateNetworkEndpointPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// The IP network address within the private subnet. This must be an IPv4 address with a
-        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        /// service if not set.
-        /// </summary>
-        [Input("ipNet")]
-        public Input<string>? IpNet { get; set; }
-
-        /// <summary>
-        /// Name of the endpoint.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// Port in the Private Network.
-        /// </summary>
-        [Input("port")]
-        public Input<int>? Port { get; set; }
-
-        /// <summary>
-        /// The ID of the private network.
-        /// </summary>
-        [Input("privateNetworkId")]
-        public Input<string>? PrivateNetworkId { get; set; }
-
-        /// <summary>
-        /// The region you want to attach the resource to
+        /// The region of the endpoint.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Please calculate your host IP.
+        /// using cirhost. Otherwise, lets IPAM service
+        /// handle the host IP on the network.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
-
-        /// <summary>
-        /// The zone you want to attach the resource to
-        /// </summary>
-        [Input("zone")]
-        public Input<string>? Zone { get; set; }
 
         public DocumentdbPrivateNetworkEndpointState()
         {

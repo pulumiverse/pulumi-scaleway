@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a public gateway.
+ * Gets information about a Public Gateway.
  *
  * ## Example Usage
  *
@@ -44,17 +44,16 @@ export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulum
  */
 export interface GetVpcPublicGatewayArgs {
     /**
-     * Exact name of the public gateway.
+     * Exact name of the Public Gateway.
      */
     name?: string;
     /**
-     * The ID of the project the public gateway is associated with.
+     * The ID of the Project the Public Gateway is associated with.
      */
     projectId?: string;
     publicGatewayId?: string;
     /**
-     * `zone`) The zone in which
-     * the public gateway should be created.
+     * `zone`) The Public Gateway's zone.
      */
     zone?: string;
 }
@@ -85,7 +84,7 @@ export interface GetVpcPublicGatewayResult {
     readonly zone?: string;
 }
 /**
- * Gets information about a public gateway.
+ * Gets information about a Public Gateway.
  *
  * ## Example Usage
  *
@@ -116,17 +115,16 @@ export function getVpcPublicGatewayOutput(args?: GetVpcPublicGatewayOutputArgs, 
  */
 export interface GetVpcPublicGatewayOutputArgs {
     /**
-     * Exact name of the public gateway.
+     * Exact name of the Public Gateway.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the public gateway is associated with.
+     * The ID of the Project the Public Gateway is associated with.
      */
     projectId?: pulumi.Input<string>;
     publicGatewayId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which
-     * the public gateway should be created.
+     * `zone`) The Public Gateway's zone.
      */
     zone?: pulumi.Input<string>;
 }

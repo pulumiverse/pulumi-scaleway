@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#policies-54b8a7).
+ * Creates and manages Scaleway IAM Policies. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#path-policies-create-a-new-policy).
  *
  * > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
  *
@@ -90,7 +90,7 @@ export class IamPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the Application the policy will be linked to
+     * ID of the application the policy will be linked to
      */
     public readonly applicationId!: pulumi.Output<string | undefined>;
     /**
@@ -98,7 +98,7 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The description of the iam policy.
+     * The description of the IAM policy.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -106,17 +106,17 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public /*out*/ readonly editable!: pulumi.Output<boolean>;
     /**
-     * ID of the Group the policy will be linked to
+     * ID of the group the policy will be linked to
      */
     public readonly groupId!: pulumi.Output<string | undefined>;
     /**
-     * The name of the iam policy.
+     * The name of the IAM policy.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * If the policy doesn't apply to a principal.
      *
-     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
      */
     public readonly noPrincipal!: pulumi.Output<boolean | undefined>;
     /**
@@ -128,7 +128,7 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public readonly rules!: pulumi.Output<outputs.IamPolicyRule[]>;
     /**
-     * The tags associated with the iam policy.
+     * The tags associated with the IAM policy.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -136,7 +136,7 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * ID of the User the policy will be linked to
+     * ID of the user the policy will be linked to
      */
     public readonly userId!: pulumi.Output<string | undefined>;
 
@@ -193,7 +193,7 @@ export class IamPolicy extends pulumi.CustomResource {
  */
 export interface IamPolicyState {
     /**
-     * ID of the Application the policy will be linked to
+     * ID of the application the policy will be linked to
      */
     applicationId?: pulumi.Input<string>;
     /**
@@ -201,7 +201,7 @@ export interface IamPolicyState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The description of the iam policy.
+     * The description of the IAM policy.
      */
     description?: pulumi.Input<string>;
     /**
@@ -209,17 +209,17 @@ export interface IamPolicyState {
      */
     editable?: pulumi.Input<boolean>;
     /**
-     * ID of the Group the policy will be linked to
+     * ID of the group the policy will be linked to
      */
     groupId?: pulumi.Input<string>;
     /**
-     * The name of the iam policy.
+     * The name of the IAM policy.
      */
     name?: pulumi.Input<string>;
     /**
      * If the policy doesn't apply to a principal.
      *
-     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
@@ -231,7 +231,7 @@ export interface IamPolicyState {
      */
     rules?: pulumi.Input<pulumi.Input<inputs.IamPolicyRule>[]>;
     /**
-     * The tags associated with the iam policy.
+     * The tags associated with the IAM policy.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -239,7 +239,7 @@ export interface IamPolicyState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * ID of the User the policy will be linked to
+     * ID of the user the policy will be linked to
      */
     userId?: pulumi.Input<string>;
 }
@@ -249,25 +249,25 @@ export interface IamPolicyState {
  */
 export interface IamPolicyArgs {
     /**
-     * ID of the Application the policy will be linked to
+     * ID of the application the policy will be linked to
      */
     applicationId?: pulumi.Input<string>;
     /**
-     * The description of the iam policy.
+     * The description of the IAM policy.
      */
     description?: pulumi.Input<string>;
     /**
-     * ID of the Group the policy will be linked to
+     * ID of the group the policy will be linked to
      */
     groupId?: pulumi.Input<string>;
     /**
-     * The name of the iam policy.
+     * The name of the IAM policy.
      */
     name?: pulumi.Input<string>;
     /**
      * If the policy doesn't apply to a principal.
      *
-     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+     * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
@@ -279,11 +279,11 @@ export interface IamPolicyArgs {
      */
     rules: pulumi.Input<pulumi.Input<inputs.IamPolicyRule>[]>;
     /**
-     * The tags associated with the iam policy.
+     * The tags associated with the IAM policy.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * ID of the User the policy will be linked to
+     * ID of the user the policy will be linked to
      */
     userId?: pulumi.Input<string>;
 }

@@ -22,9 +22,9 @@ class DatabaseBackupArgs:
         """
         The set of arguments for constructing a DatabaseBackup resource.
         :param pulumi.Input[str] database_name: Name of the database of this backup.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Backup.
+               > **Important:** Updates to `instance_id` will recreate the backup.
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
                
                > **Important:** `expires_at` cannot be removed after being set.
@@ -56,9 +56,9 @@ class DatabaseBackupArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
-        > **Important:** Updates to `instance_id` will recreate the Backup.
+        > **Important:** Updates to `instance_id` will recreate the backup.
         """
         return pulumi.get(self, "instance_id")
 
@@ -124,9 +124,9 @@ class _DatabaseBackupState:
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
                
                > **Important:** `expires_at` cannot be removed after being set.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Backup.
+               > **Important:** Updates to `instance_id` will recreate the backup.
         :param pulumi.Input[str] instance_name: Name of the instance of the backup.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
@@ -194,9 +194,9 @@ class _DatabaseBackupState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
-        > **Important:** Updates to `instance_id` will recreate the Backup.
+        > **Important:** Updates to `instance_id` will recreate the backup.
         """
         return pulumi.get(self, "instance_id")
 
@@ -277,8 +277,8 @@ class DatabaseBackup(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway RDB database backup.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        Creates and manages database backups.
+        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -288,9 +288,17 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseBackup("main",
-            instance_id=data["scaleway_rdb_instance"]["main"]["id"],
-            database_name=data["scaleway_rdb_database"]["main"]["name"])
+        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
+        main_database_backup = scaleway.DatabaseBackup("mainDatabaseBackup",
+            instance_id=main_database_instance.id,
+            database_name=main_database.name)
         ```
 
         ### With expiration
@@ -307,7 +315,7 @@ class DatabaseBackup(pulumi.CustomResource):
 
         ## Import
 
-        RDB Database can be imported using the `{region}/{id}`, e.g.
+        Databases can be imported using the `{region}/{id}`, e.g.
 
         bash
 
@@ -321,9 +329,9 @@ class DatabaseBackup(pulumi.CustomResource):
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
                
                > **Important:** `expires_at` cannot be removed after being set.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Backup.
+               > **Important:** Updates to `instance_id` will recreate the backup.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -334,8 +342,8 @@ class DatabaseBackup(pulumi.CustomResource):
                  args: DatabaseBackupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway RDB database backup.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        Creates and manages database backups.
+        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -345,9 +353,17 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseBackup("main",
-            instance_id=data["scaleway_rdb_instance"]["main"]["id"],
-            database_name=data["scaleway_rdb_database"]["main"]["name"])
+        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
+        main_database_backup = scaleway.DatabaseBackup("mainDatabaseBackup",
+            instance_id=main_database_instance.id,
+            database_name=main_database.name)
         ```
 
         ### With expiration
@@ -364,7 +380,7 @@ class DatabaseBackup(pulumi.CustomResource):
 
         ## Import
 
-        RDB Database can be imported using the `{region}/{id}`, e.g.
+        Databases can be imported using the `{region}/{id}`, e.g.
 
         bash
 
@@ -445,9 +461,9 @@ class DatabaseBackup(pulumi.CustomResource):
         :param pulumi.Input[str] expires_at: Expiration date (Format ISO 8601).
                
                > **Important:** `expires_at` cannot be removed after being set.
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
-               > **Important:** Updates to `instance_id` will recreate the Backup.
+               > **Important:** Updates to `instance_id` will recreate the backup.
         :param pulumi.Input[str] instance_name: Name of the instance of the backup.
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
@@ -499,9 +515,9 @@ class DatabaseBackup(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
-        > **Important:** Updates to `instance_id` will recreate the Backup.
+        > **Important:** Updates to `instance_id` will recreate the backup.
         """
         return pulumi.get(self, "instance_id")
 

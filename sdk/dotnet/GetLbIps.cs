@@ -13,7 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetLbIps
     {
         /// <summary>
-        /// Gets information about multiple Load Balancer IPs.
+        /// Gets information about multiple Load Balancer IP addresses.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
         /// 
         /// ## Example Usage
         /// 
@@ -38,7 +40,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about multiple Load Balancer IPs.
+        /// Gets information about multiple Load Balancer IP addresses.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
         /// 
         /// ## Example Usage
         /// 
@@ -67,19 +71,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbIpsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
+        /// The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
         /// </summary>
         [Input("ipCidrRange")]
         public string? IpCidrRange { get; set; }
 
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `zone`) The zone in which the IPs exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -93,19 +97,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbIpsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
+        /// The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
         /// </summary>
         [Input("ipCidrRange")]
         public Input<string>? IpCidrRange { get; set; }
 
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `zone`) The zone in which the IPs exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -126,19 +130,19 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string? IpCidrRange;
         /// <summary>
-        /// List of found IPs
+        /// List of retrieved IPs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbIpsIpResult> Ips;
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization the Load Balancer is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The zone in which the load-balancer is.
+        /// The zone of the Load Balancer.
         /// </summary>
         public readonly string Zone;
 

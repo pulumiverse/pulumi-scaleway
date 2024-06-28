@@ -5,15 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Activate Scaleway Messaging and queuing SNS for a project.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+ * Activates Scaleway Messaging and Queuing SNS in a Project.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
  *
  * ## Example Usage
  *
  * ### Basic
  *
- * Activate SNS for default project
+ * Activate SNS in the default Project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * const main = new scaleway.MnqSns("main", {});
  * ```
  *
- * Activate SNS for a specific project
+ * Activate SNS in a specific Project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,13 +32,13 @@ import * as utilities from "./utilities";
  * const project = scaleway.getAccountProject({
  *     name: "default",
  * });
- * // For specific project in default region
+ * // For specific Project in default region
  * const forProject = new scaleway.MnqSns("forProject", {projectId: project.then(project => project.id)});
  * ```
  *
  * ## Import
  *
- * SNS status can be imported using the `{region}/{project_id}`, e.g.
+ * SNS status can be imported using `{region}/{project_id}`, e.g.
  *
  * bash
  *
@@ -75,16 +75,16 @@ export class MnqSns extends pulumi.CustomResource {
     }
 
     /**
-     * The endpoint of the SNS service for this project.
+     * The endpoint of the SNS service for this Project.
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the sns will be enabled for.
+     * `projectId`) The ID of the project in which SNS will be enabled.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
      * `region`). The region
-     * in which sns will be enabled.
+     * in which SNS will be enabled.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -120,16 +120,16 @@ export class MnqSns extends pulumi.CustomResource {
  */
 export interface MnqSnsState {
     /**
-     * The endpoint of the SNS service for this project.
+     * The endpoint of the SNS service for this Project.
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sns will be enabled for.
+     * `projectId`) The ID of the project in which SNS will be enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region
-     * in which sns will be enabled.
+     * in which SNS will be enabled.
      */
     region?: pulumi.Input<string>;
 }
@@ -139,12 +139,12 @@ export interface MnqSnsState {
  */
 export interface MnqSnsArgs {
     /**
-     * `projectId`) The ID of the project the sns will be enabled for.
+     * `projectId`) The ID of the project in which SNS will be enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region
-     * in which sns will be enabled.
+     * in which SNS will be enabled.
      */
     region?: pulumi.Input<string>;
 }

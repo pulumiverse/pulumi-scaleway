@@ -101,7 +101,7 @@ def get_billing_invoices(invoice_type: Optional[str] = None,
                          started_before: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBillingInvoicesResult:
     """
-    Gets information about your Invoices.
+    Gets information about your Scaleway invoices.
 
     ## Example Usage
 
@@ -139,7 +139,7 @@ def get_billing_invoices_output(invoice_type: Optional[pulumi.Input[Optional[str
                                 started_before: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBillingInvoicesResult]:
     """
-    Gets information about your Invoices.
+    Gets information about your Scaleway invoices.
 
     ## Example Usage
 

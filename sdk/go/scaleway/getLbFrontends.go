@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about multiple Load Balancer Frontends.
+// Gets information about multiple Load Balancer frontends.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 //
 // ## Example Usage
 //
@@ -57,18 +59,18 @@ func GetLbFrontends(ctx *pulumi.Context, args *GetLbFrontendsArgs, opts ...pulum
 
 // A collection of arguments for invoking getLbFrontends.
 type GetLbFrontendsArgs struct {
-	// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+	// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
 	LbId string `pulumi:"lbId"`
-	// The frontend name used as filter. Frontends with a name like it are listed.
+	// The frontend name to filter for. Frontends with a matching name are listed.
 	Name      *string `pulumi:"name"`
 	ProjectId *string `pulumi:"projectId"`
-	// `zone`) The zone in which frontends exist.
+	// `zone`) The zone in which the frontends exist.
 	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getLbFrontends.
 type GetLbFrontendsResult struct {
-	// List of found frontends
+	// List of retrieved frontends
 	Frontends []GetLbFrontendsFrontend `pulumi:"frontends"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
@@ -94,12 +96,12 @@ func GetLbFrontendsOutput(ctx *pulumi.Context, args GetLbFrontendsOutputArgs, op
 
 // A collection of arguments for invoking getLbFrontends.
 type GetLbFrontendsOutputArgs struct {
-	// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+	// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
 	LbId pulumi.StringInput `pulumi:"lbId"`
-	// The frontend name used as filter. Frontends with a name like it are listed.
+	// The frontend name to filter for. Frontends with a matching name are listed.
 	Name      pulumi.StringPtrInput `pulumi:"name"`
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `zone`) The zone in which frontends exist.
+	// `zone`) The zone in which the frontends exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -122,7 +124,7 @@ func (o GetLbFrontendsResultOutput) ToGetLbFrontendsResultOutputWithContext(ctx 
 	return o
 }
 
-// List of found frontends
+// List of retrieved frontends
 func (o GetLbFrontendsResultOutput) Frontends() GetLbFrontendsFrontendArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendsResult) []GetLbFrontendsFrontend { return v.Frontends }).(GetLbFrontendsFrontendArrayOutput)
 }

@@ -12,8 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Database read replicas.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+// Creates and manages Read Replicas.
+// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 //
 // ## Example Usage
 //
@@ -152,7 +152,7 @@ import (
 //
 // ## Import
 //
-// Database Read replica can be imported using the `{region}/{id}`, e.g.
+// Read Replicas can be imported using the `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -166,12 +166,12 @@ type DatabaseReadReplica struct {
 	DirectAccess DatabaseReadReplicaDirectAccessPtrOutput `pulumi:"directAccess"`
 	// UUID of the rdb instance.
 	//
-	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+	// > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Create an endpoint in a private network.
+	// Create an endpoint in a Private Netork.
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `region`) The region
-	// in which the Database read replica should be created.
+	// in which the Read Replica should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone pulumi.BoolPtrOutput `pulumi:"sameZone"`
@@ -214,12 +214,12 @@ type databaseReadReplicaState struct {
 	DirectAccess *DatabaseReadReplicaDirectAccess `pulumi:"directAccess"`
 	// UUID of the rdb instance.
 	//
-	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+	// > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId *string `pulumi:"instanceId"`
-	// Create an endpoint in a private network.
+	// Create an endpoint in a Private Netork.
 	PrivateNetwork *DatabaseReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
 	// `region`) The region
-	// in which the Database read replica should be created.
+	// in which the Read Replica should be created.
 	Region *string `pulumi:"region"`
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone *bool `pulumi:"sameZone"`
@@ -230,12 +230,12 @@ type DatabaseReadReplicaState struct {
 	DirectAccess DatabaseReadReplicaDirectAccessPtrInput
 	// UUID of the rdb instance.
 	//
-	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+	// > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringPtrInput
-	// Create an endpoint in a private network.
+	// Create an endpoint in a Private Netork.
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrInput
 	// `region`) The region
-	// in which the Database read replica should be created.
+	// in which the Read Replica should be created.
 	Region pulumi.StringPtrInput
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone pulumi.BoolPtrInput
@@ -250,12 +250,12 @@ type databaseReadReplicaArgs struct {
 	DirectAccess *DatabaseReadReplicaDirectAccess `pulumi:"directAccess"`
 	// UUID of the rdb instance.
 	//
-	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+	// > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId string `pulumi:"instanceId"`
-	// Create an endpoint in a private network.
+	// Create an endpoint in a Private Netork.
 	PrivateNetwork *DatabaseReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
 	// `region`) The region
-	// in which the Database read replica should be created.
+	// in which the Read Replica should be created.
 	Region *string `pulumi:"region"`
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone *bool `pulumi:"sameZone"`
@@ -267,12 +267,12 @@ type DatabaseReadReplicaArgs struct {
 	DirectAccess DatabaseReadReplicaDirectAccessPtrInput
 	// UUID of the rdb instance.
 	//
-	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+	// > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringInput
-	// Create an endpoint in a private network.
+	// Create an endpoint in a Private Netork.
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrInput
 	// `region`) The region
-	// in which the Database read replica should be created.
+	// in which the Read Replica should be created.
 	Region pulumi.StringPtrInput
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone pulumi.BoolPtrInput
@@ -372,18 +372,18 @@ func (o DatabaseReadReplicaOutput) DirectAccess() DatabaseReadReplicaDirectAcces
 
 // UUID of the rdb instance.
 //
-// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+// > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
 func (o DatabaseReadReplicaOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Create an endpoint in a private network.
+// Create an endpoint in a Private Netork.
 func (o DatabaseReadReplicaOutput) PrivateNetwork() DatabaseReadReplicaPrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *DatabaseReadReplica) DatabaseReadReplicaPrivateNetworkPtrOutput { return v.PrivateNetwork }).(DatabaseReadReplicaPrivateNetworkPtrOutput)
 }
 
 // `region`) The region
-// in which the Database read replica should be created.
+// in which the Read Replica should be created.
 func (o DatabaseReadReplicaOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

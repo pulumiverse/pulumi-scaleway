@@ -11,11 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Manages Scaleway IPAM IP Reverse DNS.
+    /// Manage the reverse DNS of IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+    /// 
+    /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
     /// 
     /// ## Import
     /// 
-    /// IPAM IP reverse DNS can be imported using the `{region}/{id}`, e.g.
+    /// IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 

@@ -13,8 +13,8 @@ namespace Pulumiverse.Scaleway
     public static class GetVpcPublicGatewayDhcpReservation
     {
         /// <summary>
-        /// Gets information about a dhcp entries. For further information please check the
-        /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+        /// Gets information about a DHCP entry. For further information, please see the
+        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
         /// 
         /// ## Example Dynamic
         /// 
@@ -74,7 +74,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Example Static and PAT rule
+        /// ## Example Static and PAT Rule
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -166,8 +166,8 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a dhcp entries. For further information please check the
-        /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+        /// Gets information about a DHCP entry. For further information, please see the
+        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
         /// 
         /// ## Example Dynamic
         /// 
@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Example Static and PAT rule
+        /// ## Example Static and PAT Rule
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -337,19 +337,19 @@ namespace Pulumiverse.Scaleway
         public string? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the Reservation to retrieve.
+        /// The ID of the reservation (DHCP entry) to retrieve.
         /// </summary>
         [Input("reservationId")]
         public string? ReservationId { get; set; }
 
         /// <summary>
-        /// Boolean to wait for mac_address to exist in dhcp.
+        /// Whether to wait for `mac_address` to exist in DHCP.
         /// </summary>
         [Input("waitForDhcp")]
         public bool? WaitForDhcp { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the image exists.
+        /// `zone`). The zone in which the reservation exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -377,19 +377,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the Reservation to retrieve.
+        /// The ID of the reservation (DHCP entry) to retrieve.
         /// </summary>
         [Input("reservationId")]
         public Input<string>? ReservationId { get; set; }
 
         /// <summary>
-        /// Boolean to wait for mac_address to exist in dhcp.
+        /// Whether to wait for `mac_address` to exist in DHCP.
         /// </summary>
         [Input("waitForDhcp")]
         public Input<bool>? WaitForDhcp { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the image exists.
+        /// `zone`). The zone in which the reservation exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

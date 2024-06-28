@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Virtual Private Clouds.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
+ * For more information, see [the main documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
  *
  * ## Example Usage
  *
@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * VPCs can be imported using the `{region}/{id}`, e.g.
+ * VPCs can be imported using `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -89,15 +89,15 @@ export class Vpc extends pulumi.CustomResource {
      */
     public /*out*/ readonly isDefault!: pulumi.Output<boolean>;
     /**
-     * The name of the VPC. If not provided it will be randomly generated.
+     * The name for the VPC. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the VPC is associated with.
+     * The Organization ID the VPC is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the VPC is associated with.
+     * `projectId`) The ID of the Project the VPC is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -105,7 +105,7 @@ export class Vpc extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The tags associated with the VPC.
+     * The tags to associate with the VPC.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -169,15 +169,15 @@ export interface VpcState {
      */
     isDefault?: pulumi.Input<boolean>;
     /**
-     * The name of the VPC. If not provided it will be randomly generated.
+     * The name for the VPC. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the VPC is associated with.
+     * The Organization ID the VPC is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the VPC is associated with.
+     * `projectId`) The ID of the Project the VPC is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -185,7 +185,7 @@ export interface VpcState {
      */
     region?: pulumi.Input<string>;
     /**
-     * The tags associated with the VPC.
+     * The tags to associate with the VPC.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -203,11 +203,11 @@ export interface VpcArgs {
      */
     enableRouting?: pulumi.Input<boolean>;
     /**
-     * The name of the VPC. If not provided it will be randomly generated.
+     * The name for the VPC. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the VPC is associated with.
+     * `projectId`) The ID of the Project the VPC is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -215,7 +215,7 @@ export interface VpcArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * The tags associated with the VPC.
+     * The tags to associate with the VPC.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

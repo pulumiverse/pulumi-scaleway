@@ -7,11 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Get information about Scaleway Load-Balancer Certificates.
+ * Get information about Scaleway Load Balancer certificates.
  *
- * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+ * This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
  *
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
  *
  * ## Examples
  */
@@ -31,16 +31,16 @@ export function getLoadbalancerCertificate(args?: GetLoadbalancerCertificateArgs
  */
 export interface GetLoadbalancerCertificateArgs {
     /**
-     * The certificate id.
+     * The certificate ID.
      * - Only one of `name` and `certificateId` should be specified.
      */
     certificateId?: string;
     /**
-     * The load-balancer ID this certificate is attached to.
+     * The Load Balancer ID this certificate is attached to.
      */
     lbId?: string;
     /**
-     * The name of the certificate backend.
+     * The name of the Load Balancer certificate.
      * - When using a certificate `name` you should specify the `lb-id`
      */
     name?: string;
@@ -67,11 +67,11 @@ export interface GetLoadbalancerCertificateResult {
     readonly subjectAlternativeNames: string[];
 }
 /**
- * Get information about Scaleway Load-Balancer Certificates.
+ * Get information about Scaleway Load Balancer certificates.
  *
- * This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+ * This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
  *
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
  *
  * ## Examples
  */
@@ -84,16 +84,16 @@ export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertifica
  */
 export interface GetLoadbalancerCertificateOutputArgs {
     /**
-     * The certificate id.
+     * The certificate ID.
      * - Only one of `name` and `certificateId` should be specified.
      */
     certificateId?: pulumi.Input<string>;
     /**
-     * The load-balancer ID this certificate is attached to.
+     * The Load Balancer ID this certificate is attached to.
      */
     lbId?: pulumi.Input<string>;
     /**
-     * The name of the certificate backend.
+     * The name of the Load Balancer certificate.
      * - When using a certificate `name` you should specify the `lb-id`
      */
     name?: pulumi.Input<string>;

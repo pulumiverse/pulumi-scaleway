@@ -15,6 +15,8 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer ACLs.
         /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -44,6 +46,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about multiple Load Balancer ACLs.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
         /// 
         /// ## Example Usage
         /// 
@@ -77,14 +81,14 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbAclsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-        /// &gt; **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        /// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+        /// &gt; **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         /// </summary>
         [Input("frontendId", required: true)]
         public string FrontendId { get; set; } = null!;
 
         /// <summary>
-        /// The ACL name used as filter. ACLs with a name like it are listed.
+        /// The ACL name to filter for. ACLs with a matching name are listed.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -93,7 +97,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which ACLs exist.
+        /// `zone`) The zone in which the ACLs exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -107,14 +111,14 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbAclsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-        /// &gt; **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        /// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+        /// &gt; **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         /// </summary>
         [Input("frontendId", required: true)]
         public Input<string> FrontendId { get; set; } = null!;
 
         /// <summary>
-        /// The ACL name used as filter. ACLs with a name like it are listed.
+        /// The ACL name to filter for. ACLs with a matching name are listed.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -123,7 +127,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which ACLs exist.
+        /// `zone`) The zone in which the ACLs exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -139,7 +143,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbAclsResult
     {
         /// <summary>
-        /// List of found ACLs
+        /// List of retrieved ACLs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbAclsAclResult> Acls;
         public readonly string FrontendId;

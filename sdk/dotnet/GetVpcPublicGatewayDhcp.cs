@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetVpcPublicGatewayDhcp
     {
         /// <summary>
-        /// Gets information about a public gateway DHCP.
+        /// Gets information about a Public Gateway DHCP configuration.
         /// 
         /// ## Example Usage
         /// 
@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpResult>("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args ?? new GetVpcPublicGatewayDhcpArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a public gateway DHCP.
+        /// Gets information about a Public Gateway DHCP configuration.
         /// 
         /// ## Example Usage
         /// 

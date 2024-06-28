@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetBillingInvoices
     {
         /// <summary>
-        /// Gets information about your Invoices.
+        /// Gets information about your Scaleway invoices.
         /// 
         /// ## Example Usage
         /// 
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBillingInvoicesResult>("scaleway:index/getBillingInvoices:getBillingInvoices", args ?? new GetBillingInvoicesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about your Invoices.
+        /// Gets information about your Scaleway invoices.
         /// 
         /// ## Example Usage
         /// 

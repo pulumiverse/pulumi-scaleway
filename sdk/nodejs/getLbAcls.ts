@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Load Balancer ACLs.
  *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -40,17 +42,17 @@ export function getLbAcls(args: GetLbAclsArgs, opts?: pulumi.InvokeOptions): Pro
  */
 export interface GetLbAclsArgs {
     /**
-     * The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-     * > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     * The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+     * > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
      */
     frontendId: string;
     /**
-     * The ACL name used as filter. ACLs with a name like it are listed.
+     * The ACL name to filter for. ACLs with a matching name are listed.
      */
     name?: string;
     projectId?: string;
     /**
-     * `zone`) The zone in which ACLs exist.
+     * `zone`) The zone in which the ACLs exist.
      */
     zone?: string;
 }
@@ -60,7 +62,7 @@ export interface GetLbAclsArgs {
  */
 export interface GetLbAclsResult {
     /**
-     * List of found ACLs
+     * List of retrieved ACLs
      */
     readonly acls: outputs.GetLbAclsAcl[];
     readonly frontendId: string;
@@ -75,6 +77,8 @@ export interface GetLbAclsResult {
 }
 /**
  * Gets information about multiple Load Balancer ACLs.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
  *
  * ## Example Usage
  *
@@ -100,17 +104,17 @@ export function getLbAclsOutput(args: GetLbAclsOutputArgs, opts?: pulumi.InvokeO
  */
 export interface GetLbAclsOutputArgs {
     /**
-     * The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-     * > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     * The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+     * > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
      */
     frontendId: pulumi.Input<string>;
     /**
-     * The ACL name used as filter. ACLs with a name like it are listed.
+     * The ACL name to filter for. ACLs with a matching name are listed.
      */
     name?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which ACLs exist.
+     * `zone`) The zone in which the ACLs exist.
      */
     zone?: pulumi.Input<string>;
 }

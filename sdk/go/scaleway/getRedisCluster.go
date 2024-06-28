@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+// Gets information about a Redis™ cluster.
+//
+// For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
 //
 // ## Example Usage
 //
@@ -51,10 +53,10 @@ func LookupRedisCluster(ctx *pulumi.Context, args *LookupRedisClusterArgs, opts 
 // A collection of arguments for invoking getRedisCluster.
 type LookupRedisClusterArgs struct {
 	// The Redis cluster ID.
-	// Only one of the `name` and `clusterId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `clusterId`.
 	ClusterId *string `pulumi:"clusterId"`
 	// The name of the Redis cluster.
-	// Only one of the `name` and `clusterId` should be specified.
 	Name *string `pulumi:"name"`
 	// The ID of the project the Redis cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -64,26 +66,40 @@ type LookupRedisClusterArgs struct {
 
 // A collection of values returned by getRedisCluster.
 type LookupRedisClusterResult struct {
-	Acls        []GetRedisClusterAcl `pulumi:"acls"`
-	Certificate string               `pulumi:"certificate"`
-	ClusterId   *string              `pulumi:"clusterId"`
-	ClusterSize int                  `pulumi:"clusterSize"`
-	CreatedAt   string               `pulumi:"createdAt"`
+	// List of acl rules.
+	Acls []GetRedisClusterAcl `pulumi:"acls"`
+	// The PEM of the certificate used by redis, only when `tlsEnabled` is true.
+	Certificate string  `pulumi:"certificate"`
+	ClusterId   *string `pulumi:"clusterId"`
+	// The number of nodes in the Redis Cluster.
+	ClusterSize int `pulumi:"clusterSize"`
+	// The date and time of creation of the Redis Cluster.
+	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string                          `pulumi:"id"`
-	Name            *string                         `pulumi:"name"`
-	NodeType        string                          `pulumi:"nodeType"`
-	Password        string                          `pulumi:"password"`
+	Id   string  `pulumi:"id"`
+	Name *string `pulumi:"name"`
+	// The type of Redis Cluster (e.g. `RED1-M`).
+	NodeType string `pulumi:"nodeType"`
+	// Password of the first user of the Redis Cluster.
+	Password string `pulumi:"password"`
+	// List of private networks endpoints of the Redis Cluster.
 	PrivateNetworks []GetRedisClusterPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       *string                         `pulumi:"projectId"`
-	PublicNetworks  []GetRedisClusterPublicNetwork  `pulumi:"publicNetworks"`
-	Settings        map[string]string               `pulumi:"settings"`
-	Tags            []string                        `pulumi:"tags"`
-	TlsEnabled      bool                            `pulumi:"tlsEnabled"`
-	UpdatedAt       string                          `pulumi:"updatedAt"`
-	UserName        string                          `pulumi:"userName"`
-	Version         string                          `pulumi:"version"`
-	Zone            *string                         `pulumi:"zone"`
+	// Public network details.
+	PublicNetworks []GetRedisClusterPublicNetwork `pulumi:"publicNetworks"`
+	// Map of settings for redis cluster.
+	Settings map[string]string `pulumi:"settings"`
+	// The tags associated with the Redis Cluster.
+	Tags []string `pulumi:"tags"`
+	// Whether TLS is enabled or not.
+	TlsEnabled bool `pulumi:"tlsEnabled"`
+	// The date and time of the last update of the Redis Cluster.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The first user of the Redis Cluster.
+	UserName string `pulumi:"userName"`
+	// Redis's Cluster version (e.g. `6.2.7`).
+	Version string  `pulumi:"version"`
+	Zone    *string `pulumi:"zone"`
 }
 
 func LookupRedisClusterOutput(ctx *pulumi.Context, args LookupRedisClusterOutputArgs, opts ...pulumi.InvokeOption) LookupRedisClusterResultOutput {
@@ -102,10 +118,10 @@ func LookupRedisClusterOutput(ctx *pulumi.Context, args LookupRedisClusterOutput
 // A collection of arguments for invoking getRedisCluster.
 type LookupRedisClusterOutputArgs struct {
 	// The Redis cluster ID.
-	// Only one of the `name` and `clusterId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `clusterId`.
 	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
 	// The name of the Redis cluster.
-	// Only one of the `name` and `clusterId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The ID of the project the Redis cluster is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -132,10 +148,12 @@ func (o LookupRedisClusterResultOutput) ToLookupRedisClusterResultOutputWithCont
 	return o
 }
 
+// List of acl rules.
 func (o LookupRedisClusterResultOutput) Acls() GetRedisClusterAclArrayOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) []GetRedisClusterAcl { return v.Acls }).(GetRedisClusterAclArrayOutput)
 }
 
+// The PEM of the certificate used by redis, only when `tlsEnabled` is true.
 func (o LookupRedisClusterResultOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.Certificate }).(pulumi.StringOutput)
 }
@@ -144,10 +162,12 @@ func (o LookupRedisClusterResultOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
 }
 
+// The number of nodes in the Redis Cluster.
 func (o LookupRedisClusterResultOutput) ClusterSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) int { return v.ClusterSize }).(pulumi.IntOutput)
 }
 
+// The date and time of creation of the Redis Cluster.
 func (o LookupRedisClusterResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -161,14 +181,17 @@ func (o LookupRedisClusterResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The type of Redis Cluster (e.g. `RED1-M`).
 func (o LookupRedisClusterResultOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.NodeType }).(pulumi.StringOutput)
 }
 
+// Password of the first user of the Redis Cluster.
 func (o LookupRedisClusterResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// List of private networks endpoints of the Redis Cluster.
 func (o LookupRedisClusterResultOutput) PrivateNetworks() GetRedisClusterPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) []GetRedisClusterPrivateNetwork { return v.PrivateNetworks }).(GetRedisClusterPrivateNetworkArrayOutput)
 }
@@ -177,30 +200,37 @@ func (o LookupRedisClusterResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
+// Public network details.
 func (o LookupRedisClusterResultOutput) PublicNetworks() GetRedisClusterPublicNetworkArrayOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) []GetRedisClusterPublicNetwork { return v.PublicNetworks }).(GetRedisClusterPublicNetworkArrayOutput)
 }
 
+// Map of settings for redis cluster.
 func (o LookupRedisClusterResultOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
 
+// The tags associated with the Redis Cluster.
 func (o LookupRedisClusterResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// Whether TLS is enabled or not.
 func (o LookupRedisClusterResultOutput) TlsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) bool { return v.TlsEnabled }).(pulumi.BoolOutput)
 }
 
+// The date and time of the last update of the Redis Cluster.
 func (o LookupRedisClusterResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// The first user of the Redis Cluster.
 func (o LookupRedisClusterResultOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.UserName }).(pulumi.StringOutput)
 }
 
+// Redis's Cluster version (e.g. `6.2.7`).
 func (o LookupRedisClusterResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.Version }).(pulumi.StringOutput)
 }

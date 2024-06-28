@@ -13,8 +13,8 @@ namespace Pulumiverse.Scaleway
     public static class GetVpcPublicPatRule
     {
         /// <summary>
-        /// Gets information about a public gateway PAT rule. For further information please check the
-        /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+        /// Gets information about a Public Gateway PAT rule. For further information, please see the
+        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
         /// 
         /// ## Example Usage
         /// 
@@ -107,8 +107,8 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a public gateway PAT rule. For further information please check the
-        /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+        /// Gets information about a Public Gateway PAT rule. For further information, please see the
+        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
         /// 
         /// ## Example Usage
         /// 
@@ -212,7 +212,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which
-        /// the image exists.
+        /// the rule exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -233,7 +233,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which
-        /// the image exists.
+        /// the rule exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -250,7 +250,7 @@ namespace Pulumiverse.Scaleway
     {
         public readonly string CreatedAt;
         /// <summary>
-        /// The ID of the public gateway.
+        /// The ID of the Public Gateway.
         /// </summary>
         public readonly string GatewayId;
         /// <summary>
@@ -260,19 +260,19 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string PatRuleId;
         /// <summary>
-        /// The Private IP to forward data to (IP address).
+        /// The private IP address to forward data to.
         /// </summary>
         public readonly string PrivateIp;
         /// <summary>
-        /// The Private port to translate to.
+        /// The private port to translate to.
         /// </summary>
         public readonly int PrivatePort;
         /// <summary>
-        /// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         /// </summary>
         public readonly string Protocol;
         /// <summary>
-        /// The Public port to listen on.
+        /// The public port to listen on.
         /// </summary>
         public readonly int PublicPort;
         public readonly string UpdatedAt;

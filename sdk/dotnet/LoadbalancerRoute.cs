@@ -11,8 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancer Routes.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+    /// Creates and manages Scaleway Load Balancer routes.
+    /// 
+    /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
     /// 
     /// ## Example Usage
     /// 
@@ -104,7 +105,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+    /// Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -116,19 +117,19 @@ namespace Pulumiverse.Scaleway
     public partial class LoadbalancerRoute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the backend to which the route is associated.
+        /// The ID of the backend the route is associated with.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// The date at which the route was created.
+        /// The date on which the route was created.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the frontend to which the route is associated.
+        /// The ID of the frontend the route is associated with.
         /// </summary>
         [Output("frontendId")]
         public Output<string> FrontendId { get; private set; } = null!;
@@ -152,7 +153,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> MatchSni { get; private set; } = null!;
 
         /// <summary>
-        /// The date at which the route was last updated.
+        /// The date on which the route was last updated.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -205,13 +206,13 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the backend to which the route is associated.
+        /// The ID of the backend the route is associated with.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the frontend to which the route is associated.
+        /// The ID of the frontend the route is associated with.
         /// </summary>
         [Input("frontendId", required: true)]
         public Input<string> FrontendId { get; set; } = null!;
@@ -243,19 +244,19 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerRouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the backend to which the route is associated.
+        /// The ID of the backend the route is associated with.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// The date at which the route was created.
+        /// The date on which the route was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the frontend to which the route is associated.
+        /// The ID of the frontend the route is associated with.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }
@@ -279,7 +280,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? MatchSni { get; set; }
 
         /// <summary>
-        /// The date at which the route was last updated.
+        /// The date on which the route was last updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

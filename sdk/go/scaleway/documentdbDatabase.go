@@ -30,8 +30,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDocumentdbDatabase(ctx, "main", &scaleway.DocumentdbDatabaseArgs{
-//				InstanceId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//			instance, err := scaleway.NewDocumentdbInstance(ctx, "instance", &scaleway.DocumentdbInstanceArgs{
+//				NodeType:       pulumi.String("docdb-play2-pico"),
+//				Engine:         pulumi.String("FerretDB-1"),
+//				UserName:       pulumi.String("my_initial_user"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				VolumeSizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDocumentdbDatabase(ctx, "main", &scaleway.DocumentdbDatabaseArgs{
+//				InstanceId: instance.ID(),
 //			})
 //			if err != nil {
 //				return err

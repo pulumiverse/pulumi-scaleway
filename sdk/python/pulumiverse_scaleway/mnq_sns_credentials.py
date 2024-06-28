@@ -22,10 +22,10 @@ class MnqSnsCredentialsArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MnqSnsCredentials resource.
-        :param pulumi.Input[str] name: The unique name of the sns credentials.
-        :param pulumi.Input['MnqSnsCredentialsPermissionsArgs'] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sns is enabled.
+        :param pulumi.Input[str] name: The unique name of the SNS credentials.
+        :param pulumi.Input['MnqSnsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SNS is enabled.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -40,7 +40,7 @@ class MnqSnsCredentialsArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sns credentials.
+        The unique name of the SNS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -52,7 +52,7 @@ class MnqSnsCredentialsArgs:
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['MnqSnsCredentialsPermissionsArgs']]:
         """
-        . List of permissions associated to these credentials. Only one of permissions may be set.
+        . List of permissions associated with these credentials. Only one of the following permissions may be set:
         """
         return pulumi.get(self, "permissions")
 
@@ -64,7 +64,7 @@ class MnqSnsCredentialsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -76,7 +76,7 @@ class MnqSnsCredentialsArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which sns is enabled.
+        `region`). The region in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -97,10 +97,10 @@ class _MnqSnsCredentialsState:
         """
         Input properties used for looking up and filtering MnqSnsCredentials resources.
         :param pulumi.Input[str] access_key: The ID of the key.
-        :param pulumi.Input[str] name: The unique name of the sns credentials.
-        :param pulumi.Input['MnqSnsCredentialsPermissionsArgs'] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sns is enabled.
+        :param pulumi.Input[str] name: The unique name of the SNS credentials.
+        :param pulumi.Input['MnqSnsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
         """
         if access_key is not None:
@@ -132,7 +132,7 @@ class _MnqSnsCredentialsState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sns credentials.
+        The unique name of the SNS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -144,7 +144,7 @@ class _MnqSnsCredentialsState:
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['MnqSnsCredentialsPermissionsArgs']]:
         """
-        . List of permissions associated to these credentials. Only one of permissions may be set.
+        . List of permissions associated with these credentials. Only one of the following permissions may be set:
         """
         return pulumi.get(self, "permissions")
 
@@ -156,7 +156,7 @@ class _MnqSnsCredentialsState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -168,7 +168,7 @@ class _MnqSnsCredentialsState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which sns is enabled.
+        `region`). The region in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -200,9 +200,9 @@ class MnqSnsCredentials(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Messaging and queuing SNS Credentials.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Creates and manages Scaleway Messaging and Queuing SNS credentials.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 
         ## Example Usage
 
@@ -224,7 +224,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
 
         ## Import
 
-        SNS credentials can be imported using the `{region}/{id}`, e.g.
+        SNS credentials can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -234,10 +234,10 @@ class MnqSnsCredentials(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The unique name of the sns credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sns is enabled.
+        :param pulumi.Input[str] name: The unique name of the SNS credentials.
+        :param pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SNS is enabled.
         """
         ...
     @overload
@@ -246,9 +246,9 @@ class MnqSnsCredentials(pulumi.CustomResource):
                  args: Optional[MnqSnsCredentialsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Messaging and queuing SNS Credentials.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Creates and manages Scaleway Messaging and Queuing SNS credentials.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 
         ## Example Usage
 
@@ -270,7 +270,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
 
         ## Import
 
-        SNS credentials can be imported using the `{region}/{id}`, e.g.
+        SNS credentials can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -338,10 +338,10 @@ class MnqSnsCredentials(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The ID of the key.
-        :param pulumi.Input[str] name: The unique name of the sns credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sns is enabled.
+        :param pulumi.Input[str] name: The unique name of the SNS credentials.
+        :param pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -368,7 +368,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the sns credentials.
+        The unique name of the SNS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -376,7 +376,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def permissions(self) -> pulumi.Output['outputs.MnqSnsCredentialsPermissions']:
         """
-        . List of permissions associated to these credentials. Only one of permissions may be set.
+        . List of permissions associated with these credentials. Only one of the following permissions may be set:
         """
         return pulumi.get(self, "permissions")
 
@@ -384,7 +384,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -392,7 +392,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which sns is enabled.
+        `region`). The region in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 

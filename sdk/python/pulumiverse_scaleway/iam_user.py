@@ -66,15 +66,15 @@ class _IamUserState:
         """
         Input properties used for looking up and filtering IamUser resources.
         :param pulumi.Input[str] account_root_user_id: The ID of the account root user associated with the user.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the iam user.
-        :param pulumi.Input[bool] deletable: Whether the iam user is deletable.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the IAM user.
+        :param pulumi.Input[bool] deletable: Whether the IAM user is deletable.
         :param pulumi.Input[str] email: The email of the IAM user.
         :param pulumi.Input[str] last_login_at: The date of the last login.
         :param pulumi.Input[bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
-        :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
-        :param pulumi.Input[str] type: The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the iam user.
+        :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        :param pulumi.Input[str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the IAM user.
         """
         if account_root_user_id is not None:
             pulumi.set(__self__, "account_root_user_id", account_root_user_id)
@@ -113,7 +113,7 @@ class _IamUserState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the iam user.
+        The date and time of the creation of the IAM user.
         """
         return pulumi.get(self, "created_at")
 
@@ -125,7 +125,7 @@ class _IamUserState:
     @pulumi.getter
     def deletable(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the iam user is deletable.
+        Whether the IAM user is deletable.
         """
         return pulumi.get(self, "deletable")
 
@@ -185,7 +185,7 @@ class _IamUserState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         """
         return pulumi.get(self, "status")
 
@@ -197,7 +197,7 @@ class _IamUserState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         """
         return pulumi.get(self, "type")
 
@@ -209,7 +209,7 @@ class _IamUserState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the iam user.
+        The date and time of the last update of the IAM user.
         """
         return pulumi.get(self, "updated_at")
 
@@ -353,15 +353,15 @@ class IamUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_root_user_id: The ID of the account root user associated with the user.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the iam user.
-        :param pulumi.Input[bool] deletable: Whether the iam user is deletable.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the IAM user.
+        :param pulumi.Input[bool] deletable: Whether the IAM user is deletable.
         :param pulumi.Input[str] email: The email of the IAM user.
         :param pulumi.Input[str] last_login_at: The date of the last login.
         :param pulumi.Input[bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
-        :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
-        :param pulumi.Input[str] type: The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the iam user.
+        :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        :param pulumi.Input[str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the IAM user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -391,7 +391,7 @@ class IamUser(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the iam user.
+        The date and time of the creation of the IAM user.
         """
         return pulumi.get(self, "created_at")
 
@@ -399,7 +399,7 @@ class IamUser(pulumi.CustomResource):
     @pulumi.getter
     def deletable(self) -> pulumi.Output[bool]:
         """
-        Whether the iam user is deletable.
+        Whether the IAM user is deletable.
         """
         return pulumi.get(self, "deletable")
 
@@ -439,7 +439,7 @@ class IamUser(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         """
         return pulumi.get(self, "status")
 
@@ -447,7 +447,7 @@ class IamUser(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         """
         return pulumi.get(self, "type")
 
@@ -455,7 +455,7 @@ class IamUser(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the iam user.
+        The date and time of the last update of the IAM user.
         """
         return pulumi.get(self, "updated_at")
 

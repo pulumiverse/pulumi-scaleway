@@ -13,6 +13,8 @@ import (
 
 // Gets information about multiple Load Balancers.
 //
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+//
 // ## Example Usage
 //
 // ```go
@@ -59,13 +61,13 @@ func GetLbs(ctx *pulumi.Context, args *GetLbsArgs, opts ...pulumi.InvokeOption) 
 
 // A collection of arguments for invoking getLbs.
 type GetLbsArgs struct {
-	// The load balancer name used as a filter. LBs with a name like it are listed.
+	// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
 	Name *string `pulumi:"name"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// List of tags used as filter. LBs with these exact tags are listed.
+	// List of tags to filter for. Load Balancers with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -73,17 +75,17 @@ type GetLbsArgs struct {
 type GetLbsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// List of found LBs
+	// List of retrieved Load Balancers
 	Lbs []GetLbsLb `pulumi:"lbs"`
-	// The name of the load-balancer.
+	// The name of the Load Balancer.
 	Name *string `pulumi:"name"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
-	// The tags associated with the load-balancer.
+	// The tags associated with the Load Balancer.
 	Tags []string `pulumi:"tags"`
-	// The zone in which the load-balancer is.
+	// The zone of the Load Balancer.
 	Zone string `pulumi:"zone"`
 }
 
@@ -102,13 +104,13 @@ func GetLbsOutput(ctx *pulumi.Context, args GetLbsOutputArgs, opts ...pulumi.Inv
 
 // A collection of arguments for invoking getLbs.
 type GetLbsOutputArgs struct {
-	// The load balancer name used as a filter. LBs with a name like it are listed.
+	// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// List of tags used as filter. LBs with these exact tags are listed.
+	// List of tags to filter for. Load Balancers with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -136,32 +138,32 @@ func (o GetLbsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// List of found LBs
+// List of retrieved Load Balancers
 func (o GetLbsResultOutput) Lbs() GetLbsLbArrayOutput {
 	return o.ApplyT(func(v GetLbsResult) []GetLbsLb { return v.Lbs }).(GetLbsLbArrayOutput)
 }
 
-// The name of the load-balancer.
+// The name of the Load Balancer.
 func (o GetLbsResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLbsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The organization ID the load-balancer is associated with.
+// The ID of the Organization the Load Balancer is associated with.
 func (o GetLbsResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the load-balancer is associated with.
+// The ID of the Project the Load Balancer is associated with.
 func (o GetLbsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The tags associated with the load-balancer.
+// The tags associated with the Load Balancer.
 func (o GetLbsResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The zone in which the load-balancer is.
+// The zone of the Load Balancer.
 func (o GetLbsResultOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsResult) string { return v.Zone }).(pulumi.StringOutput)
 }

@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetVpcPublicGateway
     {
         /// <summary>
-        /// Gets information about a public gateway.
+        /// Gets information about a Public Gateway.
         /// 
         /// ## Example Usage
         /// 
@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a public gateway.
+        /// Gets information about a Public Gateway.
         /// 
         /// ## Example Usage
         /// 
@@ -91,13 +91,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcPublicGatewayArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Exact name of the public gateway.
+        /// Exact name of the Public Gateway.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the public gateway is associated with.
+        /// The ID of the Project the Public Gateway is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -106,8 +106,7 @@ namespace Pulumiverse.Scaleway
         public string? PublicGatewayId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which
-        /// the public gateway should be created.
+        /// `zone`) The Public Gateway's zone.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -121,13 +120,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcPublicGatewayInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Exact name of the public gateway.
+        /// Exact name of the Public Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the public gateway is associated with.
+        /// The ID of the Project the Public Gateway is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -136,8 +135,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PublicGatewayId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which
-        /// the public gateway should be created.
+        /// `zone`) The Public Gateway's zone.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

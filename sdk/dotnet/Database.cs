@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway RDB database.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+    /// Creates and manages databases.
+    /// For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 
@@ -26,9 +26,19 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Database("main", new()
+    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     var mainDatabase = new Scaleway.Database("mainDatabase", new()
+    ///     {
+    ///         InstanceId = mainDatabaseInstance.Id,
     ///     });
     /// 
     /// });
@@ -48,9 +58,9 @@ namespace Pulumiverse.Scaleway
     public partial class Database : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the database.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -133,9 +143,9 @@ namespace Pulumiverse.Scaleway
     public sealed class DatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the database.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -161,9 +171,9 @@ namespace Pulumiverse.Scaleway
     public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the database.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

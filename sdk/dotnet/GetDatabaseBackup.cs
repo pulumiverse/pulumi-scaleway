@@ -87,21 +87,21 @@ namespace Pulumiverse.Scaleway
     public sealed class GetDatabaseBackupArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The RDB backup ID.
-        /// Only one of the `name` and `backup_id` should be specified.
+        /// The backup ID.
         /// </summary>
         [Input("backupId")]
         public string? BackupId { get; set; }
 
         /// <summary>
-        /// The RDB instance ID.
+        /// The Database Instance ID.
         /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
 
         /// <summary>
         /// The name of the RDB instance.
-        /// Only one of the `name` and `backup_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `backup_id`.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -127,21 +127,21 @@ namespace Pulumiverse.Scaleway
     public sealed class GetDatabaseBackupInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The RDB backup ID.
-        /// Only one of the `name` and `backup_id` should be specified.
+        /// The backup ID.
         /// </summary>
         [Input("backupId")]
         public Input<string>? BackupId { get; set; }
 
         /// <summary>
-        /// The RDB instance ID.
+        /// The Database Instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
         /// The name of the RDB instance.
-        /// Only one of the `name` and `backup_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `backup_id`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

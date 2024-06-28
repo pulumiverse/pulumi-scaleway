@@ -40,39 +40,38 @@ class DatabaseInstanceArgs:
         The set of arguments for constructing a DatabaseInstance resource.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
-               > **Important:** Updates to `engine` will recreate the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
+               > **Important** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
-               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption.
                
-               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
-               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
+               > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
+        :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
-               > **Important:** Updates to `user_name` will recreate the Database Instance.
+               > **Important** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
-               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         pulumi.set(__self__, "engine", engine)
@@ -120,7 +119,7 @@ class DatabaseInstanceArgs:
         """
         Database Instance's engine version (e.g. `PostgreSQL-11`).
 
-        > **Important:** Updates to `engine` will recreate the Database Instance.
+        > **Important** Updates to `engine` will recreate the Database Instance.
         """
         return pulumi.get(self, "engine")
 
@@ -132,13 +131,12 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Input[str]:
         """
-        The type of database instance you want to create (e.g. `db-dev-s`).
+        The type of Database Instance you want to create (e.g. `db-dev-s`).
 
-        > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         interruption.
 
-        > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-        and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+        > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -210,9 +208,9 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable high availability for the database instance.
+        Enable or disable high availability for the Database Instance.
 
-        > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -224,7 +222,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]:
         """
-        List of load balancer endpoints of the database instance.
+        List of Load Balancer endpoints of the Database Instance.
         """
         return pulumi.get(self, "load_balancers")
 
@@ -260,7 +258,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the first user of the database instance.
+        Password for the first user of the Database Instance.
         """
         return pulumi.get(self, "password")
 
@@ -272,7 +270,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['DatabaseInstancePrivateNetworkArgs']]:
         """
-        List of private networks endpoints of the database instance.
+        List of Private Networks endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
@@ -334,9 +332,9 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Identifier for the first user of the database instance.
+        Identifier for the first user of the Database Instance.
 
-        > **Important:** Updates to `user_name` will recreate the Database Instance.
+        > **Important** Updates to `user_name` will recreate the Database Instance.
         """
         return pulumi.get(self, "user_name")
 
@@ -350,7 +348,7 @@ class DatabaseInstanceArgs:
         """
         Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
-        > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+        > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -404,43 +402,42 @@ class _DatabaseInstanceState:
         :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
-        :param pulumi.Input[str] certificate: Certificate of the database instance.
+        :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
-               > **Important:** Updates to `engine` will recreate the Database Instance.
+               > **Important** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
-               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
+               > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
+        :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
-               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption.
                
-               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
+        :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]] read_replicas: List of read replicas of the database instance.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]] read_replicas: List of read replicas of the Database Instance.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
-               > **Important:** Updates to `user_name` will recreate the Database Instance.
+               > **Important** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
-               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         if backup_same_region is not None:
@@ -537,7 +534,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        Certificate of the database instance.
+        Certificate of the Database Instance.
         """
         return pulumi.get(self, "certificate")
 
@@ -590,7 +587,7 @@ class _DatabaseInstanceState:
         """
         Database Instance's engine version (e.g. `PostgreSQL-11`).
 
-        > **Important:** Updates to `engine` will recreate the Database Instance.
+        > **Important** Updates to `engine` will recreate the Database Instance.
         """
         return pulumi.get(self, "engine")
 
@@ -614,9 +611,9 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable high availability for the database instance.
+        Enable or disable high availability for the Database Instance.
 
-        > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -628,7 +625,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]:
         """
-        List of load balancer endpoints of the database instance.
+        List of Load Balancer endpoints of the Database Instance.
         """
         return pulumi.get(self, "load_balancers")
 
@@ -664,13 +661,12 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of database instance you want to create (e.g. `db-dev-s`).
+        The type of Database Instance you want to create (e.g. `db-dev-s`).
 
-        > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         interruption.
 
-        > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-        and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+        > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -694,7 +690,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the first user of the database instance.
+        Password for the first user of the Database Instance.
         """
         return pulumi.get(self, "password")
 
@@ -706,7 +702,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['DatabaseInstancePrivateNetworkArgs']]:
         """
-        List of private networks endpoints of the database instance.
+        List of Private Networks endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
@@ -731,7 +727,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="readReplicas")
     def read_replicas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]]]:
         """
-        List of read replicas of the database instance.
+        List of read replicas of the Database Instance.
         """
         return pulumi.get(self, "read_replicas")
 
@@ -780,9 +776,9 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Identifier for the first user of the database instance.
+        Identifier for the first user of the Database Instance.
 
-        > **Important:** Updates to `user_name` will recreate the Database Instance.
+        > **Important** Updates to `user_name` will recreate the Database Instance.
         """
         return pulumi.get(self, "user_name")
 
@@ -796,7 +792,7 @@ class _DatabaseInstanceState:
         """
         Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
-        > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+        > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -845,7 +841,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information, see refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -918,11 +914,11 @@ class DatabaseInstance(pulumi.CustomResource):
             user_name="my_initial_user")
         ```
 
-        ### Examples of endpoints configuration
+        ### Examples of endpoint configuration
 
-        RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+        Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
 
-        ### 1 static private network endpoint
+        ### 1 static Private Network endpoint
 
         ```python
         import pulumi
@@ -940,7 +936,7 @@ class DatabaseInstance(pulumi.CustomResource):
             ))
         ```
 
-        ### 1 IPAM private network endpoint + 1 public endpoint
+        ### 1 IPAM Private Network endpoint + 1 public endpoint
 
         ```python
         import pulumi
@@ -968,11 +964,11 @@ class DatabaseInstance(pulumi.CustomResource):
             node_type="db-dev-s")
         ```
 
-        > If nothing is defined, your instance will have a default public load-balancer endpoint
+        > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
 
         ## Limitations
 
-        The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+        The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
         i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
         section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
@@ -994,35 +990,34 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
-               > **Important:** Updates to `engine` will recreate the Database Instance.
+               > **Important** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
-               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
+               > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
+        :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
-               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption.
                
-               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
+        :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
-               > **Important:** Updates to `user_name` will recreate the Database Instance.
+               > **Important** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
-               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         ...
@@ -1033,7 +1028,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information, see refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -1106,11 +1101,11 @@ class DatabaseInstance(pulumi.CustomResource):
             user_name="my_initial_user")
         ```
 
-        ### Examples of endpoints configuration
+        ### Examples of endpoint configuration
 
-        RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+        Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
 
-        ### 1 static private network endpoint
+        ### 1 static Private Network endpoint
 
         ```python
         import pulumi
@@ -1128,7 +1123,7 @@ class DatabaseInstance(pulumi.CustomResource):
             ))
         ```
 
-        ### 1 IPAM private network endpoint + 1 public endpoint
+        ### 1 IPAM Private Network endpoint + 1 public endpoint
 
         ```python
         import pulumi
@@ -1156,11 +1151,11 @@ class DatabaseInstance(pulumi.CustomResource):
             node_type="db-dev-s")
         ```
 
-        > If nothing is defined, your instance will have a default public load-balancer endpoint
+        > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
 
         ## Limitations
 
-        The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+        The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
         i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
         section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
@@ -1294,43 +1289,42 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
-        :param pulumi.Input[str] certificate: Certificate of the database instance.
+        :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
-               > **Important:** Updates to `engine` will recreate the Database Instance.
+               > **Important** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
-               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
+               > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
-        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
+        :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
-               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption.
                
-               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
-        :param pulumi.Input[str] password: Password for the first user of the database instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
+        :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the database instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the Database Instance.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
-               > **Important:** Updates to `user_name` will recreate the Database Instance.
+               > **Important** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
-               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+               > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1392,7 +1386,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        Certificate of the database instance.
+        Certificate of the Database Instance.
         """
         return pulumi.get(self, "certificate")
 
@@ -1429,7 +1423,7 @@ class DatabaseInstance(pulumi.CustomResource):
         """
         Database Instance's engine version (e.g. `PostgreSQL-11`).
 
-        > **Important:** Updates to `engine` will recreate the Database Instance.
+        > **Important** Updates to `engine` will recreate the Database Instance.
         """
         return pulumi.get(self, "engine")
 
@@ -1445,9 +1439,9 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable or disable high availability for the database instance.
+        Enable or disable high availability for the Database Instance.
 
-        > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -1455,7 +1449,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> pulumi.Output[Sequence['outputs.DatabaseInstanceLoadBalancer']]:
         """
-        List of load balancer endpoints of the database instance.
+        List of Load Balancer endpoints of the Database Instance.
         """
         return pulumi.get(self, "load_balancers")
 
@@ -1479,13 +1473,12 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Output[str]:
         """
-        The type of database instance you want to create (e.g. `db-dev-s`).
+        The type of Database Instance you want to create (e.g. `db-dev-s`).
 
-        > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         interruption.
 
-        > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-        and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+        > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -1501,7 +1494,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[str]]:
         """
-        Password for the first user of the database instance.
+        Password for the first user of the Database Instance.
         """
         return pulumi.get(self, "password")
 
@@ -1509,7 +1502,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Output[Optional['outputs.DatabaseInstancePrivateNetwork']]:
         """
-        List of private networks endpoints of the database instance.
+        List of Private Networks endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
@@ -1526,7 +1519,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="readReplicas")
     def read_replicas(self) -> pulumi.Output[Sequence['outputs.DatabaseInstanceReadReplica']]:
         """
-        List of read replicas of the database instance.
+        List of read replicas of the Database Instance.
         """
         return pulumi.get(self, "read_replicas")
 
@@ -1559,9 +1552,9 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
         """
-        Identifier for the first user of the database instance.
+        Identifier for the first user of the Database Instance.
 
-        > **Important:** Updates to `user_name` will recreate the Database Instance.
+        > **Important** Updates to `user_name` will recreate the Database Instance.
         """
         return pulumi.get(self, "user_name")
 
@@ -1571,7 +1564,7 @@ class DatabaseInstance(pulumi.CustomResource):
         """
         Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
-        > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+        > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         """
         return pulumi.get(self, "volume_size_in_gb")
 

@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Redis Clusters.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+    /// Creates and manages Scaleway Redis™ clusters.
+    /// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
     /// 
     /// ## Example Usage
     /// 
@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With a private network
+    /// ### With a Private Network
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -121,7 +121,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+    /// Redis™ cluster can be imported using the `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -145,57 +145,57 @@ namespace Pulumiverse.Scaleway
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// The number of nodes in the Redis Cluster.
+        /// The number of nodes in the Redis™ cluster.
         /// 
-        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
         /// which is minimum 3 (1 main node + 2 secondary nodes)
         /// 
-        /// &gt; **Important:** If you are using the Cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
-        /// did, it will migrate the Redis Cluster but keep in mind that you cannot downgrade a Redis Cluster, so setting a smaller
-        /// `cluster_size` will destroy and recreate your Cluster.
+        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
+        /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
+        /// `cluster_size` will destroy and recreate your cluster.
         /// 
         /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
-        /// recreate your Cluster as you will be switching to the Cluster mode.
+        /// recreate your cluster as you will be switching to the cluster mode.
         /// </summary>
         [Output("clusterSize")]
         public Output<int> ClusterSize { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of creation of the Redis Cluster.
+        /// The date and time of creation of the Redis™ cluster.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the Redis Cluster.
+        /// The name of the Redis™ cluster.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        /// The type of Redis™ cluster you want to create (e.g. `RED1-M`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
-        /// you cannot downgrade a Redis Cluster.
+        /// &gt; **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
+        /// you cannot downgrade a Redis™ cluster.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the Redis Cluster.
+        /// Password for the first user of the Redis™ cluster.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Describes the private network you want to connect to your cluster. If not set, a public
+        /// Describes the Private Network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.RedisClusterPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis Cluster is
+        /// `project_id`) The ID of the project the Redis™ cluster is
         /// associated with.
         /// </summary>
         [Output("projectId")]
@@ -209,14 +209,14 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.RedisClusterPublicNetwork> PublicNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// Map of settings for redis cluster. Available settings can be found by listing redis versions
+        /// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
         /// with scaleway API or CLI
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>?> Settings { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the Redis Cluster.
+        /// The tags associated with the Redis™ cluster.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -230,29 +230,29 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> TlsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the Redis Cluster.
+        /// The date and time of the last update of the Redis™ cluster.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Identifier for the first user of the Redis Cluster.
+        /// Identifier for the first user of the Redis™ cluster.
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Redis's Cluster version (e.g. `6.2.7`).
+        /// Redis™ cluster's version (e.g. `6.2.7`).
         /// 
-        /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
-        /// cannot downgrade a Redis Cluster.
+        /// &gt; **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+        /// cannot downgrade a Redis™ cluster.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the
-        /// Redis Cluster should be created.
+        /// Redis™ cluster should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -321,32 +321,32 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The number of nodes in the Redis Cluster.
+        /// The number of nodes in the Redis™ cluster.
         /// 
-        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
         /// which is minimum 3 (1 main node + 2 secondary nodes)
         /// 
-        /// &gt; **Important:** If you are using the Cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
-        /// did, it will migrate the Redis Cluster but keep in mind that you cannot downgrade a Redis Cluster, so setting a smaller
-        /// `cluster_size` will destroy and recreate your Cluster.
+        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
+        /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
+        /// `cluster_size` will destroy and recreate your cluster.
         /// 
         /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
-        /// recreate your Cluster as you will be switching to the Cluster mode.
+        /// recreate your cluster as you will be switching to the cluster mode.
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
 
         /// <summary>
-        /// The name of the Redis Cluster.
+        /// The name of the Redis™ cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        /// The type of Redis™ cluster you want to create (e.g. `RED1-M`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
-        /// you cannot downgrade a Redis Cluster.
+        /// &gt; **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
+        /// you cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -355,7 +355,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the Redis Cluster.
+        /// Password for the first user of the Redis™ cluster.
         /// </summary>
         public Input<string>? Password
         {
@@ -371,7 +371,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.RedisClusterPrivateNetworkArgs>? _privateNetworks;
 
         /// <summary>
-        /// Describes the private network you want to connect to your cluster. If not set, a public
+        /// Describes the Private Network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkArgs> PrivateNetworks
@@ -381,7 +381,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis Cluster is
+        /// `project_id`) The ID of the project the Redis™ cluster is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -398,7 +398,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings for redis cluster. Available settings can be found by listing redis versions
+        /// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
         /// with scaleway API or CLI
         /// </summary>
         public InputMap<string> Settings
@@ -411,7 +411,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the Redis Cluster.
+        /// The tags associated with the Redis™ cluster.
         /// </summary>
         public InputList<string> Tags
         {
@@ -428,23 +428,23 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? TlsEnabled { get; set; }
 
         /// <summary>
-        /// Identifier for the first user of the Redis Cluster.
+        /// Identifier for the first user of the Redis™ cluster.
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
 
         /// <summary>
-        /// Redis's Cluster version (e.g. `6.2.7`).
+        /// Redis™ cluster's version (e.g. `6.2.7`).
         /// 
-        /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
-        /// cannot downgrade a Redis Cluster.
+        /// &gt; **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+        /// cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which the
-        /// Redis Cluster should be created.
+        /// Redis™ cluster should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -476,38 +476,38 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// The number of nodes in the Redis Cluster.
+        /// The number of nodes in the Redis™ cluster.
         /// 
-        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
         /// which is minimum 3 (1 main node + 2 secondary nodes)
         /// 
-        /// &gt; **Important:** If you are using the Cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
-        /// did, it will migrate the Redis Cluster but keep in mind that you cannot downgrade a Redis Cluster, so setting a smaller
-        /// `cluster_size` will destroy and recreate your Cluster.
+        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
+        /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
+        /// `cluster_size` will destroy and recreate your cluster.
         /// 
         /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
-        /// recreate your Cluster as you will be switching to the Cluster mode.
+        /// recreate your cluster as you will be switching to the cluster mode.
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
 
         /// <summary>
-        /// The date and time of creation of the Redis Cluster.
+        /// The date and time of creation of the Redis™ cluster.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The name of the Redis Cluster.
+        /// The name of the Redis™ cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of Redis Cluster you want to create (e.g. `RED1-M`).
+        /// The type of Redis™ cluster you want to create (e.g. `RED1-M`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will migrate the Redis Cluster to the desired `node_type`. Keep in mind that
-        /// you cannot downgrade a Redis Cluster.
+        /// &gt; **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
+        /// you cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -516,7 +516,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the Redis Cluster.
+        /// Password for the first user of the Redis™ cluster.
         /// </summary>
         public Input<string>? Password
         {
@@ -532,7 +532,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.RedisClusterPrivateNetworkGetArgs>? _privateNetworks;
 
         /// <summary>
-        /// Describes the private network you want to connect to your cluster. If not set, a public
+        /// Describes the Private Network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
         /// </summary>
         public InputList<Inputs.RedisClusterPrivateNetworkGetArgs> PrivateNetworks
@@ -542,7 +542,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis Cluster is
+        /// `project_id`) The ID of the project the Redis™ cluster is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -559,7 +559,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings for redis cluster. Available settings can be found by listing redis versions
+        /// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
         /// with scaleway API or CLI
         /// </summary>
         public InputMap<string> Settings
@@ -572,7 +572,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the Redis Cluster.
+        /// The tags associated with the Redis™ cluster.
         /// </summary>
         public InputList<string> Tags
         {
@@ -589,29 +589,29 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? TlsEnabled { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the Redis Cluster.
+        /// The date and time of the last update of the Redis™ cluster.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Identifier for the first user of the Redis Cluster.
+        /// Identifier for the first user of the Redis™ cluster.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Redis's Cluster version (e.g. `6.2.7`).
+        /// Redis™ cluster's version (e.g. `6.2.7`).
         /// 
-        /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
-        /// cannot downgrade a Redis Cluster.
+        /// &gt; **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+        /// cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the
-        /// Redis Cluster should be created.
+        /// Redis™ cluster should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

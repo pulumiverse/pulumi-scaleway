@@ -5,8 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Get information about Scaleway Load-Balancer Routes.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+ * Get information about Scaleway Load Balancer routes.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
  *
  * ## Example Usage
  *
@@ -54,7 +55,7 @@ export function getLbRoute(args: GetLbRouteArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetLbRouteArgs {
     /**
-     * The route id.
+     * The route ID.
      */
     routeId: string;
 }
@@ -76,8 +77,9 @@ export interface GetLbRouteResult {
     readonly updatedAt: string;
 }
 /**
- * Get information about Scaleway Load-Balancer Routes.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+ * Get information about Scaleway Load Balancer routes.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
  *
  * ## Example Usage
  *
@@ -121,7 +123,7 @@ export function getLbRouteOutput(args: GetLbRouteOutputArgs, opts?: pulumi.Invok
  */
 export interface GetLbRouteOutputArgs {
     /**
-     * The route id.
+     * The route ID.
      */
     routeId: pulumi.Input<string>;
 }

@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Manage Scaleway Messaging and queuing SNS Topics.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+    /// Manage Scaleway Messaging and queuing SNS topics.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-topics/).
     /// 
     /// ## Example Usage
     /// 
@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+    /// SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
     /// 
     /// bash
     /// 
@@ -80,13 +80,13 @@ namespace Pulumiverse.Scaleway
         public Output<bool> ContentBasedDeduplication { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+        /// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         /// </summary>
         [Output("fifoTopic")]
         public Output<bool> FifoTopic { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -104,14 +104,14 @@ namespace Pulumiverse.Scaleway
         public Output<string> Owner { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// `region`). The region
-        /// in which sns is enabled.
+        /// in which SNS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -203,13 +203,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
         /// <summary>
-        /// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+        /// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         /// </summary>
         [Input("fifoTopic")]
         public Input<bool>? FifoTopic { get; set; }
 
         /// <summary>
-        /// The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -221,14 +221,14 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`). The region
-        /// in which sns is enabled.
+        /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -292,13 +292,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
         /// <summary>
-        /// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+        /// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         /// </summary>
         [Input("fifoTopic")]
         public Input<bool>? FifoTopic { get; set; }
 
         /// <summary>
-        /// The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -316,14 +316,14 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Owner { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`). The region
-        /// in which sns is enabled.
+        /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Messaging and queuing SNS Credentials.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+    /// Creates and manages Scaleway Messaging and Queuing SNS credentials.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
     /// 
     /// ## Example Usage
     /// 
@@ -45,7 +45,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// SNS credentials can be imported using the `{region}/{id}`, e.g.
+    /// SNS credentials can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -63,25 +63,25 @@ namespace Pulumiverse.Scaleway
         public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the sns credentials.
+        /// The unique name of the SNS credentials.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// . List of permissions associated to these credentials. Only one of permissions may be set.
+        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
         /// </summary>
         [Output("permissions")]
         public Output<Outputs.MnqSnsCredentialsPermissions> Permissions { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which sns is enabled.
+        /// `region`). The region in which SNS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -145,25 +145,25 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqSnsCredentialsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the sns credentials.
+        /// The unique name of the SNS credentials.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// . List of permissions associated to these credentials. Only one of permissions may be set.
+        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
         /// </summary>
         [Input("permissions")]
         public Input<Inputs.MnqSnsCredentialsPermissionsArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sns is enabled.
+        /// `region`). The region in which SNS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -193,25 +193,25 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The unique name of the sns credentials.
+        /// The unique name of the SNS credentials.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// . List of permissions associated to these credentials. Only one of permissions may be set.
+        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
         /// </summary>
         [Input("permissions")]
         public Input<Inputs.MnqSnsCredentialsPermissionsGetArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sns is enabled.
+        /// `region`). The region in which SNS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

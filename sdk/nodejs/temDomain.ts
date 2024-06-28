@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Transactional Email Domains.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+ * For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
  *
  * ## Example Usage
  *
@@ -92,7 +92,7 @@ export class TemDomain extends pulumi.CustomResource {
 
     /**
      * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-     * > **Important:**  This attribute must be set to `true`.
+     * > **Important:** This attribute must be set to `true`.
      */
     public readonly acceptTos!: pulumi.Output<boolean>;
     /**
@@ -261,7 +261,7 @@ export class TemDomain extends pulumi.CustomResource {
 export interface TemDomainState {
     /**
      * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-     * > **Important:**  This attribute must be set to `true`.
+     * > **Important:** This attribute must be set to `true`.
      */
     acceptTos?: pulumi.Input<boolean>;
     /**
@@ -361,7 +361,7 @@ export interface TemDomainState {
 export interface TemDomainArgs {
     /**
      * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-     * > **Important:**  This attribute must be set to `true`.
+     * > **Important:** This attribute must be set to `true`.
      */
     acceptTos: pulumi.Input<boolean>;
     /**

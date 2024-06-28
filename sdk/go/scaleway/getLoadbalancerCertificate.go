@@ -11,11 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Get information about Scaleway Load-Balancer Certificates.
+// Get information about Scaleway Load Balancer certificates.
 //
-// This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+// This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
 //
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
 //
 // ## Examples
 func LookupLoadbalancerCertificate(ctx *pulumi.Context, args *LookupLoadbalancerCertificateArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerCertificateResult, error) {
@@ -30,12 +30,12 @@ func LookupLoadbalancerCertificate(ctx *pulumi.Context, args *LookupLoadbalancer
 
 // A collection of arguments for invoking getLoadbalancerCertificate.
 type LookupLoadbalancerCertificateArgs struct {
-	// The certificate id.
+	// The certificate ID.
 	// - Only one of `name` and `certificateId` should be specified.
 	CertificateId *string `pulumi:"certificateId"`
-	// The load-balancer ID this certificate is attached to.
+	// The Load Balancer ID this certificate is attached to.
 	LbId *string `pulumi:"lbId"`
-	// The name of the certificate backend.
+	// The name of the Load Balancer certificate.
 	// - When using a certificate `name` you should specify the `lb-id`
 	Name *string `pulumi:"name"`
 }
@@ -72,12 +72,12 @@ func LookupLoadbalancerCertificateOutput(ctx *pulumi.Context, args LookupLoadbal
 
 // A collection of arguments for invoking getLoadbalancerCertificate.
 type LookupLoadbalancerCertificateOutputArgs struct {
-	// The certificate id.
+	// The certificate ID.
 	// - Only one of `name` and `certificateId` should be specified.
 	CertificateId pulumi.StringPtrInput `pulumi:"certificateId"`
-	// The load-balancer ID this certificate is attached to.
+	// The Load Balancer ID this certificate is attached to.
 	LbId pulumi.StringPtrInput `pulumi:"lbId"`
-	// The name of the certificate backend.
+	// The name of the Load Balancer certificate.
 	// - When using a certificate `name` you should specify the `lb-id`
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }

@@ -27,13 +27,13 @@ class MnqSnsTopicSubscriptionArgs:
         """
         The set of arguments for constructing a MnqSnsTopicSubscription resource.
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
-        :param pulumi.Input[str] protocol: Protocol of the SNS Topic Subscription.
+        :param pulumi.Input[str] protocol: Protocol of the SNS topic subscription.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] endpoint: Endpoint of the subscription
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[bool] redrive_policy: Activate JSON Redrive Policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[bool] redrive_policy: Activate JSON redrive policy.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] topic_arn: The ARN of the topic. Either `topic_id` or `topic_arn` is required.
         :param pulumi.Input[str] topic_id: The ID of the topic. Either `topic_id` or `topic_arn` is required. Conflicts with `topic_arn`.
@@ -72,7 +72,7 @@ class MnqSnsTopicSubscriptionArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        Protocol of the SNS Topic Subscription.
+        Protocol of the SNS topic subscription.
         """
         return pulumi.get(self, "protocol")
 
@@ -108,7 +108,7 @@ class MnqSnsTopicSubscriptionArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -120,7 +120,7 @@ class MnqSnsTopicSubscriptionArgs:
     @pulumi.getter(name="redrivePolicy")
     def redrive_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Activate JSON Redrive Policy.
+        Activate JSON redrive policy.
         """
         return pulumi.get(self, "redrive_policy")
 
@@ -133,7 +133,7 @@ class MnqSnsTopicSubscriptionArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sns is enabled.
+        in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -197,11 +197,11 @@ class _MnqSnsTopicSubscriptionState:
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[str] arn: The ARN of the topic subscription
         :param pulumi.Input[str] endpoint: Endpoint of the subscription
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] protocol: Protocol of the SNS Topic Subscription.
-        :param pulumi.Input[bool] redrive_policy: Activate JSON Redrive Policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] protocol: Protocol of the SNS topic subscription.
+        :param pulumi.Input[bool] redrive_policy: Activate JSON redrive policy.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] topic_arn: The ARN of the topic. Either `topic_id` or `topic_arn` is required.
@@ -270,7 +270,7 @@ class _MnqSnsTopicSubscriptionState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -282,7 +282,7 @@ class _MnqSnsTopicSubscriptionState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Protocol of the SNS Topic Subscription.
+        Protocol of the SNS topic subscription.
         """
         return pulumi.get(self, "protocol")
 
@@ -294,7 +294,7 @@ class _MnqSnsTopicSubscriptionState:
     @pulumi.getter(name="redrivePolicy")
     def redrive_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Activate JSON Redrive Policy.
+        Activate JSON redrive policy.
         """
         return pulumi.get(self, "redrive_policy")
 
@@ -307,7 +307,7 @@ class _MnqSnsTopicSubscriptionState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sns is enabled.
+        in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -381,9 +381,9 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
                  topic_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manage Scaleway Messaging and queuing SNS Topic Subscriptions.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Manages Scaleway Messaging and Queuing SNS topic subscriptions.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
 
         ## Example Usage
 
@@ -417,7 +417,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
 
         ## Import
 
-        SNS topic subscriptions can be imported using the `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
+        SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
 
         bash
 
@@ -429,11 +429,11 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[str] endpoint: Endpoint of the subscription
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] protocol: Protocol of the SNS Topic Subscription.
-        :param pulumi.Input[bool] redrive_policy: Activate JSON Redrive Policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] protocol: Protocol of the SNS topic subscription.
+        :param pulumi.Input[bool] redrive_policy: Activate JSON redrive policy.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] topic_arn: The ARN of the topic. Either `topic_id` or `topic_arn` is required.
@@ -446,9 +446,9 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
                  args: MnqSnsTopicSubscriptionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manage Scaleway Messaging and queuing SNS Topic Subscriptions.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Manages Scaleway Messaging and Queuing SNS topic subscriptions.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
 
         ## Example Usage
 
@@ -482,7 +482,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
 
         ## Import
 
-        SNS topic subscriptions can be imported using the `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
+        SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
 
         bash
 
@@ -574,11 +574,11 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[str] arn: The ARN of the topic subscription
         :param pulumi.Input[str] endpoint: Endpoint of the subscription
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
-        :param pulumi.Input[str] protocol: Protocol of the SNS Topic Subscription.
-        :param pulumi.Input[bool] redrive_policy: Activate JSON Redrive Policy.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
+        :param pulumi.Input[str] protocol: Protocol of the SNS topic subscription.
+        :param pulumi.Input[bool] redrive_policy: Activate JSON redrive policy.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] topic_arn: The ARN of the topic. Either `topic_id` or `topic_arn` is required.
@@ -629,7 +629,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -637,7 +637,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        Protocol of the SNS Topic Subscription.
+        Protocol of the SNS topic subscription.
         """
         return pulumi.get(self, "protocol")
 
@@ -645,7 +645,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     @pulumi.getter(name="redrivePolicy")
     def redrive_policy(self) -> pulumi.Output[bool]:
         """
-        Activate JSON Redrive Policy.
+        Activate JSON redrive policy.
         """
         return pulumi.get(self, "redrive_policy")
 
@@ -654,7 +654,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`). The region
-        in which sns is enabled.
+        in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 

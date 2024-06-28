@@ -62,7 +62,7 @@ class GetVpcsResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the VPC is associated with.
+        The Organization ID the VPC is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -70,7 +70,7 @@ class GetVpcsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the VPC is associated with.
+        The ID of the Project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -88,7 +88,7 @@ class GetVpcsResult:
     @pulumi.getter
     def vpcs(self) -> Sequence['outputs.GetVpcsVpcResult']:
         """
-        List of found vpcs
+        List of retrieved VPCs
         """
         return pulumi.get(self, "vpcs")
 
@@ -127,10 +127,10 @@ def get_vpcs(name: Optional[str] = None,
     ```
 
 
-    :param str name: The VPC name used as filter. VPCs with a name like it are listed.
-    :param str project_id: The ID of the project the VPC is associated with.
-    :param str region: `region`). The region in which vpcs exist.
-    :param Sequence[str] tags: List of tags used as filter. VPCs with these exact tags are listed.
+    :param str name: The VPC name to filter for. VPCs with a similar name are listed.
+    :param str project_id: The ID of the Project the VPC is associated with.
+    :param str region: `region`). The region in which the VPCs exist.
+    :param Sequence[str] tags: List of tags to filter for. VPCs with these exact tags are listed.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -170,9 +170,9 @@ def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The VPC name used as filter. VPCs with a name like it are listed.
-    :param str project_id: The ID of the project the VPC is associated with.
-    :param str region: `region`). The region in which vpcs exist.
-    :param Sequence[str] tags: List of tags used as filter. VPCs with these exact tags are listed.
+    :param str name: The VPC name to filter for. VPCs with a similar name are listed.
+    :param str project_id: The ID of the Project the VPC is associated with.
+    :param str region: `region`). The region in which the VPCs exist.
+    :param Sequence[str] tags: List of tags to filter for. VPCs with these exact tags are listed.
     """
     ...

@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Manages Scaleway VPC Public Gateways IPs reverse DNS.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+    /// Manages Scaleway Public Gateway public (flexible) IPs' reverse DNS.
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
     /// 
     /// ## Example Usage
     /// 
@@ -46,7 +46,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+    /// Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -58,7 +58,7 @@ namespace Pulumiverse.Scaleway
     public partial class VpcPublicGatewayIpReverseDns : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The public gateway IP ID
+        /// The Public Gateway IP ID
         /// </summary>
         [Output("gatewayIpId")]
         public Output<string> GatewayIpId { get; private set; } = null!;
@@ -123,7 +123,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayIpReverseDnsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The public gateway IP ID
+        /// The Public Gateway IP ID
         /// </summary>
         [Input("gatewayIpId", required: true)]
         public Input<string> GatewayIpId { get; set; } = null!;
@@ -149,7 +149,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayIpReverseDnsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The public gateway IP ID
+        /// The Public Gateway IP ID
         /// </summary>
         [Input("gatewayIpId")]
         public Input<string>? GatewayIpId { get; set; }

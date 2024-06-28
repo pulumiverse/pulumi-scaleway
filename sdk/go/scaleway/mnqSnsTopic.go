@@ -12,9 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manage Scaleway Messaging and queuing SNS Topics.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+// Manage Scaleway Messaging and queuing SNS topics.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-topics/).
 //
 // ## Example Usage
 //
@@ -61,7 +61,7 @@ import (
 //
 // ## Import
 //
-// SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+// SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 //
 // bash
 //
@@ -77,18 +77,18 @@ type MnqSnsTopic struct {
 	Arn pulumi.StringOutput `pulumi:"arn"`
 	// Specifies whether to enable content-based deduplication.
 	ContentBasedDeduplication pulumi.BoolOutput `pulumi:"contentBasedDeduplication"`
-	// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+	// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
 	FifoTopic pulumi.BoolOutput `pulumi:"fifoTopic"`
-	// The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringOutput `pulumi:"namePrefix"`
 	// Owner of the SNS topic, should have format 'project-${project_id}'
 	Owner pulumi.StringOutput `pulumi:"owner"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
@@ -149,18 +149,18 @@ type mnqSnsTopicState struct {
 	Arn *string `pulumi:"arn"`
 	// Specifies whether to enable content-based deduplication.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
-	// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+	// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
 	FifoTopic *bool `pulumi:"fifoTopic"`
-	// The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name *string `pulumi:"name"`
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix *string `pulumi:"namePrefix"`
 	// Owner of the SNS topic, should have format 'project-${project_id}'
 	Owner *string `pulumi:"owner"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey *string `pulumi:"secretKey"`
@@ -175,18 +175,18 @@ type MnqSnsTopicState struct {
 	Arn pulumi.StringPtrInput
 	// Specifies whether to enable content-based deduplication.
 	ContentBasedDeduplication pulumi.BoolPtrInput
-	// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+	// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
 	FifoTopic pulumi.BoolPtrInput
-	// The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name pulumi.StringPtrInput
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringPtrInput
 	// Owner of the SNS topic, should have format 'project-${project_id}'
 	Owner pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringPtrInput
@@ -203,16 +203,16 @@ type mnqSnsTopicArgs struct {
 	AccessKey string `pulumi:"accessKey"`
 	// Specifies whether to enable content-based deduplication.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
-	// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+	// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
 	FifoTopic *bool `pulumi:"fifoTopic"`
-	// The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name *string `pulumi:"name"`
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix *string `pulumi:"namePrefix"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey string `pulumi:"secretKey"`
@@ -226,16 +226,16 @@ type MnqSnsTopicArgs struct {
 	AccessKey pulumi.StringInput
 	// Specifies whether to enable content-based deduplication.
 	ContentBasedDeduplication pulumi.BoolPtrInput
-	// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+	// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
 	FifoTopic pulumi.BoolPtrInput
-	// The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name pulumi.StringPtrInput
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringInput
@@ -345,12 +345,12 @@ func (o MnqSnsTopicOutput) ContentBasedDeduplication() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MnqSnsTopic) pulumi.BoolOutput { return v.ContentBasedDeduplication }).(pulumi.BoolOutput)
 }
 
-// Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+// Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
 func (o MnqSnsTopicOutput) FifoTopic() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MnqSnsTopic) pulumi.BoolOutput { return v.FifoTopic }).(pulumi.BoolOutput)
 }
 
-// The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+// The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 func (o MnqSnsTopicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopic) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -365,13 +365,13 @@ func (o MnqSnsTopicOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopic) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the sns is enabled for.
+// `projectId`) The ID of the Project in which SNS is enabled.
 func (o MnqSnsTopicOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopic) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // `region`). The region
-// in which sns is enabled.
+// in which SNS is enabled.
 func (o MnqSnsTopicOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopic) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

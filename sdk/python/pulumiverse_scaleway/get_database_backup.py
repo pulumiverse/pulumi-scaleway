@@ -165,11 +165,11 @@ def get_database_backup(backup_id: Optional[str] = None,
     ```
 
 
-    :param str backup_id: The RDB backup ID.
-           Only one of the `name` and `backup_id` should be specified.
-    :param str instance_id: The RDB instance ID.
+    :param str backup_id: The backup ID.
+    :param str instance_id: The Database Instance ID.
     :param str name: The name of the RDB instance.
-           Only one of the `name` and `backup_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `backup_id`.
     :param str project_id: The ID of the project the Database Backup is associated with.
     :param str region: `region`) The region in which the Database Backup is associated with.
     """
@@ -220,11 +220,11 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     ```
 
 
-    :param str backup_id: The RDB backup ID.
-           Only one of the `name` and `backup_id` should be specified.
-    :param str instance_id: The RDB instance ID.
+    :param str backup_id: The backup ID.
+    :param str instance_id: The Database Instance ID.
     :param str name: The name of the RDB instance.
-           Only one of the `name` and `backup_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `backup_id`.
     :param str project_id: The ID of the project the Database Backup is associated with.
     :param str region: `region`) The region in which the Database Backup is associated with.
     """

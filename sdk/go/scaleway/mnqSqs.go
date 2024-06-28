@@ -11,15 +11,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Activate Scaleway Messaging and queuing SQS for a project.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+// Activate Scaleway Messaging and Queuing SQS in a Project.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/).
 //
 // ## Example Usage
 //
 // ### Basic
 //
-// # Activate SQS for default project
+// # Activate SQS in the default Project
 //
 // ```go
 // package main
@@ -87,12 +87,12 @@ import (
 type MnqSqs struct {
 	pulumi.CustomResourceState
 
-	// The endpoint of the SQS service for this project.
+	// The endpoint of the SQS service for this Project.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sqs will be enabled for.
+	// `projectId`) The ID of the Project in which SQS will be enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
-	// in which sqs will be enabled.
+	// in which SQS will be enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -126,22 +126,22 @@ func GetMnqSqs(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MnqSqs resources.
 type mnqSqsState struct {
-	// The endpoint of the SQS service for this project.
+	// The endpoint of the SQS service for this Project.
 	Endpoint *string `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sqs will be enabled for.
+	// `projectId`) The ID of the Project in which SQS will be enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
-	// in which sqs will be enabled.
+	// in which SQS will be enabled.
 	Region *string `pulumi:"region"`
 }
 
 type MnqSqsState struct {
-	// The endpoint of the SQS service for this project.
+	// The endpoint of the SQS service for this Project.
 	Endpoint pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sqs will be enabled for.
+	// `projectId`) The ID of the Project in which SQS will be enabled.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
-	// in which sqs will be enabled.
+	// in which SQS will be enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -150,19 +150,19 @@ func (MnqSqsState) ElementType() reflect.Type {
 }
 
 type mnqSqsArgs struct {
-	// `projectId`) The ID of the project the sqs will be enabled for.
+	// `projectId`) The ID of the Project in which SQS will be enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
-	// in which sqs will be enabled.
+	// in which SQS will be enabled.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a MnqSqs resource.
 type MnqSqsArgs struct {
-	// `projectId`) The ID of the project the sqs will be enabled for.
+	// `projectId`) The ID of the Project in which SQS will be enabled.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
-	// in which sqs will be enabled.
+	// in which SQS will be enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -253,18 +253,18 @@ func (o MnqSqsOutput) ToMnqSqsOutputWithContext(ctx context.Context) MnqSqsOutpu
 	return o
 }
 
-// The endpoint of the SQS service for this project.
+// The endpoint of the SQS service for this Project.
 func (o MnqSqsOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqs) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the sqs will be enabled for.
+// `projectId`) The ID of the Project in which SQS will be enabled.
 func (o MnqSqsOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqs) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // `region`). The region
-// in which sqs will be enabled.
+// in which SQS will be enabled.
 func (o MnqSqsOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqs) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

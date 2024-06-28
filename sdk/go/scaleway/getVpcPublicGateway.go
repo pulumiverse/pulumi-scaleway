@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a public gateway.
+// Gets information about a Public Gateway.
 //
 // ## Example Usage
 //
@@ -58,13 +58,12 @@ func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArg
 
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayArgs struct {
-	// Exact name of the public gateway.
+	// Exact name of the Public Gateway.
 	Name *string `pulumi:"name"`
-	// The ID of the project the public gateway is associated with.
+	// The ID of the Project the Public Gateway is associated with.
 	ProjectId       *string `pulumi:"projectId"`
 	PublicGatewayId *string `pulumi:"publicGatewayId"`
-	// `zone`) The zone in which
-	// the public gateway should be created.
+	// `zone`) The Public Gateway's zone.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -105,13 +104,12 @@ func LookupVpcPublicGatewayOutput(ctx *pulumi.Context, args LookupVpcPublicGatew
 
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayOutputArgs struct {
-	// Exact name of the public gateway.
+	// Exact name of the Public Gateway.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the public gateway is associated with.
+	// The ID of the Project the Public Gateway is associated with.
 	ProjectId       pulumi.StringPtrInput `pulumi:"projectId"`
 	PublicGatewayId pulumi.StringPtrInput `pulumi:"publicGatewayId"`
-	// `zone`) The zone in which
-	// the public gateway should be created.
+	// `zone`) The Public Gateway's zone.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 

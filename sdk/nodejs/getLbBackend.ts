@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Get information about Scaleway Load-Balancer Backends.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+ * Get information about Scaleway Load Balancer backends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Example Usage
  *
@@ -52,17 +53,17 @@ export function getLbBackend(args?: GetLbBackendArgs, opts?: pulumi.InvokeOption
  */
 export interface GetLbBackendArgs {
     /**
-     * The backend id.
+     * The backend ID.
      * - Only one of `name` and `backendId` should be specified.
      */
     backendId?: string;
     /**
-     * The load-balancer ID this backend is attached to.
+     * Load Balancer ID this backend is attached to.
      */
     lbId?: string;
     /**
      * The name of the backend.
-     * - When using the `name` you should specify the `lb-id`
+     * - When using `name` you should specify the `lb-id`
      */
     name?: string;
 }
@@ -108,8 +109,9 @@ export interface GetLbBackendResult {
     readonly timeoutTunnel: string;
 }
 /**
- * Get information about Scaleway Load-Balancer Backends.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+ * Get information about Scaleway Load Balancer backends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Example Usage
  *
@@ -146,17 +148,17 @@ export function getLbBackendOutput(args?: GetLbBackendOutputArgs, opts?: pulumi.
  */
 export interface GetLbBackendOutputArgs {
     /**
-     * The backend id.
+     * The backend ID.
      * - Only one of `name` and `backendId` should be specified.
      */
     backendId?: pulumi.Input<string>;
     /**
-     * The load-balancer ID this backend is attached to.
+     * Load Balancer ID this backend is attached to.
      */
     lbId?: pulumi.Input<string>;
     /**
      * The name of the backend.
-     * - When using the `name` you should specify the `lb-id`
+     * - When using `name` you should specify the `lb-id`
      */
     name?: pulumi.Input<string>;
 }

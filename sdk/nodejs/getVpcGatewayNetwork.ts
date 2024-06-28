@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a gateway network.
+ * Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
  *
  * ## Example Usage
  *
@@ -49,27 +49,13 @@ export function getVpcGatewayNetwork(args?: GetVpcGatewayNetworkArgs, opts?: pul
  * A collection of arguments for invoking getVpcGatewayNetwork.
  */
 export interface GetVpcGatewayNetworkArgs {
-    /**
-     * ID of the public gateway DHCP config
-     */
     dhcpId?: string;
-    /**
-     * If masquerade is enabled on requested network
-     */
     enableMasquerade?: boolean;
-    /**
-     * ID of the public gateway the gateway network is linked to
-     */
     gatewayId?: string;
     /**
-     * ID of the gateway network.
-     *
-     * > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
+     * ID of the GatewayNetwork.
      */
     gatewayNetworkId?: string;
-    /**
-     * ID of the private network the gateway network is linked to
-     */
     privateNetworkId?: string;
 }
 
@@ -97,7 +83,7 @@ export interface GetVpcGatewayNetworkResult {
     readonly zone: string;
 }
 /**
- * Gets information about a gateway network.
+ * Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
  *
  * ## Example Usage
  *
@@ -130,26 +116,12 @@ export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs
  * A collection of arguments for invoking getVpcGatewayNetwork.
  */
 export interface GetVpcGatewayNetworkOutputArgs {
-    /**
-     * ID of the public gateway DHCP config
-     */
     dhcpId?: pulumi.Input<string>;
-    /**
-     * If masquerade is enabled on requested network
-     */
     enableMasquerade?: pulumi.Input<boolean>;
-    /**
-     * ID of the public gateway the gateway network is linked to
-     */
     gatewayId?: pulumi.Input<string>;
     /**
-     * ID of the gateway network.
-     *
-     * > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
+     * ID of the GatewayNetwork.
      */
     gatewayNetworkId?: pulumi.Input<string>;
-    /**
-     * ID of the private network the gateway network is linked to
-     */
     privateNetworkId?: pulumi.Input<string>;
 }

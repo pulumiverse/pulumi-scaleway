@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class MnqSnsCredentialsPermissions
     {
         /// <summary>
-        /// . Defines if user can manage the associated resource(s).
+        /// . Defines whether the user can manage the associated resource(s).
         /// </summary>
         public readonly bool? CanManage;
         /// <summary>
-        /// . Defines if user can publish messages to the service.
+        /// . Defines whether the user can publish messages to the service.
         /// </summary>
         public readonly bool? CanPublish;
         /// <summary>
-        /// . Defines if user can receive messages from the service.
+        /// . Defines whether the user can receive messages from the service.
         /// </summary>
         public readonly bool? CanReceive;
 

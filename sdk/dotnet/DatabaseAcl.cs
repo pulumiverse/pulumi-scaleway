@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Database instance authorized IPs.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
+    /// For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
     /// 
     /// ## Example Usage
     /// 
@@ -26,9 +26,19 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseAcl("main", new()
+    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     var mainDatabaseAcl = new Scaleway.DatabaseAcl("mainDatabaseAcl", new()
+    ///     {
+    ///         InstanceId = mainDatabaseInstance.Id,
     ///         AclRules = new[]
     ///         {
     ///             new Scaleway.Inputs.DatabaseAclAclRuleArgs
@@ -62,7 +72,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.DatabaseAclAclRule>> AclRules { get; private set; } = null!;
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
         /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
         /// </summary>
@@ -135,7 +145,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
         /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
         /// </summary>
@@ -169,7 +179,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
         /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
         /// </summary>

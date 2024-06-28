@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about multiple Load Balancer Frontends.
+ * Gets information about multiple Load Balancer frontends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Example Usage
  *
@@ -40,16 +42,16 @@ export function getLbFrontends(args: GetLbFrontendsArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetLbFrontendsArgs {
     /**
-     * The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+     * The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
      */
     lbId: string;
     /**
-     * The frontend name used as filter. Frontends with a name like it are listed.
+     * The frontend name to filter for. Frontends with a matching name are listed.
      */
     name?: string;
     projectId?: string;
     /**
-     * `zone`) The zone in which frontends exist.
+     * `zone`) The zone in which the frontends exist.
      */
     zone?: string;
 }
@@ -59,7 +61,7 @@ export interface GetLbFrontendsArgs {
  */
 export interface GetLbFrontendsResult {
     /**
-     * List of found frontends
+     * List of retrieved frontends
      */
     readonly frontends: outputs.GetLbFrontendsFrontend[];
     /**
@@ -73,7 +75,9 @@ export interface GetLbFrontendsResult {
     readonly zone: string;
 }
 /**
- * Gets information about multiple Load Balancer Frontends.
+ * Gets information about multiple Load Balancer frontends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Example Usage
  *
@@ -99,16 +103,16 @@ export function getLbFrontendsOutput(args: GetLbFrontendsOutputArgs, opts?: pulu
  */
 export interface GetLbFrontendsOutputArgs {
     /**
-     * The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+     * The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
      */
     lbId: pulumi.Input<string>;
     /**
-     * The frontend name used as filter. Frontends with a name like it are listed.
+     * The frontend name to filter for. Frontends with a matching name are listed.
      */
     name?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which frontends exist.
+     * `zone`) The zone in which the frontends exist.
      */
     zone?: pulumi.Input<string>;
 }

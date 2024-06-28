@@ -11,10 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway IAM API Keys. For more information, please
-    /// check [the documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae)
+    /// Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).
     /// 
     /// ## Example Usage
+    /// 
+    /// ### With application
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -35,6 +36,30 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With user
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIamUser = new Scaleway.IamUser("mainIamUser", new()
+    ///     {
+    ///         Email = "test@test.com",
+    ///     });
+    /// 
+    ///     var mainIamApiKey = new Scaleway.IamApiKey("mainIamApiKey", new()
+    ///     {
+    ///         UserId = mainIamUser.Id,
+    ///         Description = "a description",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Api keys can be imported using the `{id}`, e.g.
@@ -49,20 +74,19 @@ namespace Pulumiverse.Scaleway
     public partial class IamApiKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The access key of the iam api key.
+        /// The access key of the IAM API key.
         /// </summary>
         [Output("accessKey")]
         public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the application attached to the api key.
-        /// Only one of the `application_id` and `user_id` should be specified.
+        /// ID of the application attached to the API key.
         /// </summary>
         [Output("applicationId")]
         public Output<string?> ApplicationId { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the iam api key.
+        /// The date and time of the creation of the IAM API key.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -74,45 +98,45 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreationIp { get; private set; } = null!;
 
         /// <summary>
-        /// The default project ID to use with object storage.
+        /// The default Project ID to use with Object Storage.
         /// </summary>
         [Output("defaultProjectId")]
         public Output<string> DefaultProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The description of the iam api key.
+        /// The description of the API key.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the iam api key is editable.
+        /// Whether the IAM API key is editable.
         /// </summary>
         [Output("editable")]
         public Output<bool> Editable { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the expiration of the iam api key. Please note that in case of change,
+        /// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
         /// the resource will be recreated.
         /// </summary>
         [Output("expiresAt")]
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// The secret Key of the iam api key.
+        /// The secret Key of the IAM API key.
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the iam api key.
+        /// The date and time of the last update of the IAM API key.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the user attached to the api key.
-        /// Only one of the `application_id` and `user_id` should be specified.
+        /// ID of the user attached to the API key.
+        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
         /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
@@ -169,34 +193,33 @@ namespace Pulumiverse.Scaleway
     public sealed class IamApiKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the application attached to the api key.
-        /// Only one of the `application_id` and `user_id` should be specified.
+        /// ID of the application attached to the API key.
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
 
         /// <summary>
-        /// The default project ID to use with object storage.
+        /// The default Project ID to use with Object Storage.
         /// </summary>
         [Input("defaultProjectId")]
         public Input<string>? DefaultProjectId { get; set; }
 
         /// <summary>
-        /// The description of the iam api key.
+        /// The description of the API key.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The date and time of the expiration of the iam api key. Please note that in case of change,
+        /// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
         /// the resource will be recreated.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// ID of the user attached to the api key.
-        /// Only one of the `application_id` and `user_id` should be specified.
+        /// ID of the user attached to the API key.
+        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
@@ -210,20 +233,19 @@ namespace Pulumiverse.Scaleway
     public sealed class IamApiKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The access key of the iam api key.
+        /// The access key of the IAM API key.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
         /// <summary>
-        /// ID of the application attached to the api key.
-        /// Only one of the `application_id` and `user_id` should be specified.
+        /// ID of the application attached to the API key.
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the iam api key.
+        /// The date and time of the creation of the IAM API key.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -235,25 +257,25 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreationIp { get; set; }
 
         /// <summary>
-        /// The default project ID to use with object storage.
+        /// The default Project ID to use with Object Storage.
         /// </summary>
         [Input("defaultProjectId")]
         public Input<string>? DefaultProjectId { get; set; }
 
         /// <summary>
-        /// The description of the iam api key.
+        /// The description of the API key.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Whether the iam api key is editable.
+        /// Whether the IAM API key is editable.
         /// </summary>
         [Input("editable")]
         public Input<bool>? Editable { get; set; }
 
         /// <summary>
-        /// The date and time of the expiration of the iam api key. Please note that in case of change,
+        /// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
         /// the resource will be recreated.
         /// </summary>
         [Input("expiresAt")]
@@ -263,7 +285,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The secret Key of the iam api key.
+        /// The secret Key of the IAM API key.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -276,14 +298,14 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The date and time of the last update of the iam api key.
+        /// The date and time of the last update of the IAM API key.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// ID of the user attached to the api key.
-        /// Only one of the `application_id` and `user_id` should be specified.
+        /// ID of the user attached to the API key.
+        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

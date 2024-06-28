@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Transactional Email Domains.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 //
 // ## Example Usage
 //
@@ -121,7 +121,7 @@ type TemDomain struct {
 	pulumi.CustomResourceState
 
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-	// > **Important:**  This attribute must be set to `true`.
+	// > **Important:** This attribute must be set to `true`.
 	AcceptTos pulumi.BoolOutput `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -204,7 +204,7 @@ func GetTemDomain(ctx *pulumi.Context,
 // Input properties used for looking up and filtering TemDomain resources.
 type temDomainState struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-	// > **Important:**  This attribute must be set to `true`.
+	// > **Important:** This attribute must be set to `true`.
 	AcceptTos *bool `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
@@ -255,7 +255,7 @@ type temDomainState struct {
 
 type TemDomainState struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-	// > **Important:**  This attribute must be set to `true`.
+	// > **Important:** This attribute must be set to `true`.
 	AcceptTos pulumi.BoolPtrInput
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
@@ -310,7 +310,7 @@ func (TemDomainState) ElementType() reflect.Type {
 
 type temDomainArgs struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-	// > **Important:**  This attribute must be set to `true`.
+	// > **Important:** This attribute must be set to `true`.
 	AcceptTos bool `pulumi:"acceptTos"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
@@ -324,7 +324,7 @@ type temDomainArgs struct {
 // The set of arguments for constructing a TemDomain resource.
 type TemDomainArgs struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-	// > **Important:**  This attribute must be set to `true`.
+	// > **Important:** This attribute must be set to `true`.
 	AcceptTos pulumi.BoolInput
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
@@ -423,7 +423,7 @@ func (o TemDomainOutput) ToTemDomainOutputWithContext(ctx context.Context) TemDo
 }
 
 // Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-// > **Important:**  This attribute must be set to `true`.
+// > **Important:** This attribute must be set to `true`.
 func (o TemDomainOutput) AcceptTos() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.BoolOutput { return v.AcceptTos }).(pulumi.BoolOutput)
 }

@@ -19,11 +19,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int Code;
         /// <summary>
-        /// The HTTP host header to use for HC requests.
+        /// The HTTP host header to use for health check requests.
         /// </summary>
         public readonly string HostHeader;
         /// <summary>
-        /// The HTTP method to use for HC requests.
+        /// The HTTP method to use for health check requests.
         /// </summary>
         public readonly string Method;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Sni;
         /// <summary>
-        /// The HTTPS endpoint URL to call for HC requests.
+        /// The HTTPS endpoint URL to call for health check requests.
         /// </summary>
         public readonly string Uri;
 

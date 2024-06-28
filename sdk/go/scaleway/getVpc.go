@@ -62,16 +62,16 @@ func LookupVpc(ctx *pulumi.Context, args *LookupVpcArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getVpc.
 type LookupVpcArgs struct {
-	// To get default VPC's information.
+	// Whether the targeted VPC is the default VPC.
 	IsDefault *bool `pulumi:"isDefault"`
-	// Name of the VPC. One of `name` and `vpcId` should be specified.
+	// Name of the VPC. A maximum of one of `name` and `vpcId` should be specified.
 	Name *string `pulumi:"name"`
-	// The ID of the organization the VPC is associated with.
+	// The ID of the Organization the VPC is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the VPC is associated with.
+	// `projectId`) The ID of the Project the VPC is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	Region    *string `pulumi:"region"`
-	// ID of the VPC. One of `name` and `vpcId` should be specified.
+	// ID of the VPC. A maximum of one of `name` and `vpcId` should be specified.
 	VpcId *string `pulumi:"vpcId"`
 }
 
@@ -106,16 +106,16 @@ func LookupVpcOutput(ctx *pulumi.Context, args LookupVpcOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getVpc.
 type LookupVpcOutputArgs struct {
-	// To get default VPC's information.
+	// Whether the targeted VPC is the default VPC.
 	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
-	// Name of the VPC. One of `name` and `vpcId` should be specified.
+	// Name of the VPC. A maximum of one of `name` and `vpcId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the organization the VPC is associated with.
+	// The ID of the Organization the VPC is associated with.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the VPC is associated with.
+	// `projectId`) The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	Region    pulumi.StringPtrInput `pulumi:"region"`
-	// ID of the VPC. One of `name` and `vpcId` should be specified.
+	// ID of the VPC. A maximum of one of `name` and `vpcId` should be specified.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 

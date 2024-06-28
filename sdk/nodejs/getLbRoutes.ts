@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about multiple Load Balancer Routes.
+ * Gets information about multiple Load Balancer routes.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
  *
  * ## Example Usage
  *
@@ -40,12 +42,12 @@ export function getLbRoutes(args?: GetLbRoutesArgs, opts?: pulumi.InvokeOptions)
  */
 export interface GetLbRoutesArgs {
     /**
-     * The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+     * The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
      */
     frontendId?: string;
     projectId?: string;
     /**
-     * `zone`) The zone in which routes exist.
+     * `zone`) The zone in which the routes exist.
      */
     zone?: string;
 }
@@ -62,13 +64,15 @@ export interface GetLbRoutesResult {
     readonly organizationId: string;
     readonly projectId: string;
     /**
-     * List of found routes
+     * List of retrieved routes
      */
     readonly routes: outputs.GetLbRoutesRoute[];
     readonly zone: string;
 }
 /**
- * Gets information about multiple Load Balancer Routes.
+ * Gets information about multiple Load Balancer routes.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
  *
  * ## Example Usage
  *
@@ -94,12 +98,12 @@ export function getLbRoutesOutput(args?: GetLbRoutesOutputArgs, opts?: pulumi.In
  */
 export interface GetLbRoutesOutputArgs {
     /**
-     * The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+     * The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
      */
     frontendId?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which routes exist.
+     * `zone`) The zone in which the routes exist.
      */
     zone?: pulumi.Input<string>;
 }

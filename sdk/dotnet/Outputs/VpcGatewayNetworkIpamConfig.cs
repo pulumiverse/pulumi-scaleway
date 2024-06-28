@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? IpamIpId;
         /// <summary>
-        /// Defines whether the default route is enabled on that Gateway Network.
+        /// Defines whether to enable the default route on the GatewayNetwork.
         /// </summary>
         public readonly bool? PushDefaultRoute;
 

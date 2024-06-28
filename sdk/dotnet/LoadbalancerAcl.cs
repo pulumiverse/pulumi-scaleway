@@ -11,7 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
+    /// Creates and manages Scaleway Load Balancer ACLs.
+    /// 
+    /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
     /// 
     /// ## Example Usage
     /// 
@@ -50,7 +52,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g.
+    /// Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -80,13 +82,13 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer Frontend ID to attach the ACL to.
+        /// The ID of the Load Balancer frontend to attach the ACL to.
         /// </summary>
         [Output("frontendId")]
         public Output<string> FrontendId { get; private set; } = null!;
 
         /// <summary>
-        /// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        /// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         /// </summary>
         [Output("index")]
         public Output<int> Index { get; private set; } = null!;
@@ -169,13 +171,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The load-balancer Frontend ID to attach the ACL to.
+        /// The ID of the Load Balancer frontend to attach the ACL to.
         /// </summary>
         [Input("frontendId", required: true)]
         public Input<string> FrontendId { get; set; } = null!;
 
         /// <summary>
-        /// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        /// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         /// </summary>
         [Input("index", required: true)]
         public Input<int> Index { get; set; } = null!;
@@ -219,13 +221,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The load-balancer Frontend ID to attach the ACL to.
+        /// The ID of the Load Balancer frontend to attach the ACL to.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }
 
         /// <summary>
-        /// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        /// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         /// </summary>
         [Input("index")]
         public Input<int>? Index { get; set; }

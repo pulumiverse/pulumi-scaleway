@@ -7,8 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Database read replicas.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+ * Creates and manages Read Replicas.
+ * For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -87,7 +87,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database Read replica can be imported using the `{region}/{id}`, e.g.
+ * Read Replicas can be imported using the `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -130,16 +130,16 @@ export class DatabaseReadReplica extends pulumi.CustomResource {
     /**
      * UUID of the rdb instance.
      *
-     * > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+     * > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Create an endpoint in a private network.
+     * Create an endpoint in a Private Netork.
      */
     public readonly privateNetwork!: pulumi.Output<outputs.DatabaseReadReplicaPrivateNetwork | undefined>;
     /**
      * `region`) The region
-     * in which the Database read replica should be created.
+     * in which the Read Replica should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -192,16 +192,16 @@ export interface DatabaseReadReplicaState {
     /**
      * UUID of the rdb instance.
      *
-     * > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+     * > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Create an endpoint in a private network.
+     * Create an endpoint in a Private Netork.
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork>;
     /**
      * `region`) The region
-     * in which the Database read replica should be created.
+     * in which the Read Replica should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -221,16 +221,16 @@ export interface DatabaseReadReplicaArgs {
     /**
      * UUID of the rdb instance.
      *
-     * > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
+     * > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Create an endpoint in a private network.
+     * Create an endpoint in a Private Netork.
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork>;
     /**
      * `region`) The region
-     * in which the Database read replica should be created.
+     * in which the Read Replica should be created.
      */
     region?: pulumi.Input<string>;
     /**

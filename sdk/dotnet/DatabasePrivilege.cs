@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Create and manage Scaleway RDB database privilege.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+    /// Create and manage Scaleway database privileges.
+    /// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
     /// 
     /// ## Example Usage
     /// 
@@ -77,7 +77,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -154,7 +154,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

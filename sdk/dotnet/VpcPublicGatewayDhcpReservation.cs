@@ -11,15 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+    /// Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
     /// 
-    /// The static associations are used to assign IP addresses based on the MAC addresses of the Instance.
+    /// These static associations are used to assign IP addresses based on the MAC addresses of the resource.
     /// 
     /// Statically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.
     /// 
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
     /// 
-    /// [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.
+    /// [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to resources) and static user-created DHCP reservations.
     /// 
     /// ## Example Usage
     /// 
@@ -88,7 +88,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.
+    /// Public Gateway DHCP reservation configurations can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -100,7 +100,7 @@ namespace Pulumiverse.Scaleway
     public partial class VpcPublicGatewayDhcpReservation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the public gateway DHCP config.
+        /// The date and time of the creation of the Public Gateway DHCP configuration.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -112,31 +112,31 @@ namespace Pulumiverse.Scaleway
         public Output<string> GatewayNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// The Hostname of the client machine.
+        /// The hostname of the client machine.
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// The IP address to give to the machine (IP address).
+        /// The IP address to give to the machine.
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The MAC address to give a static entry to.
+        /// The MAC address for the static entry.
         /// </summary>
         [Output("macAddress")]
         public Output<string> MacAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway DHCP config.
+        /// The date and time of the last update of the Public Gateway DHCP configuration.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -201,13 +201,13 @@ namespace Pulumiverse.Scaleway
         public Input<string> GatewayNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// The IP address to give to the machine (IP address).
+        /// The IP address to give to the machine.
         /// </summary>
         [Input("ipAddress", required: true)]
         public Input<string> IpAddress { get; set; } = null!;
 
         /// <summary>
-        /// The MAC address to give a static entry to.
+        /// The MAC address for the static entry.
         /// </summary>
         [Input("macAddress", required: true)]
         public Input<string> MacAddress { get; set; } = null!;
@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayDhcpReservationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the public gateway DHCP config.
+        /// The date and time of the creation of the Public Gateway DHCP configuration.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -239,31 +239,31 @@ namespace Pulumiverse.Scaleway
         public Input<string>? GatewayNetworkId { get; set; }
 
         /// <summary>
-        /// The Hostname of the client machine.
+        /// The hostname of the client machine.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// The IP address to give to the machine (IP address).
+        /// The IP address to give to the machine.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The MAC address to give a static entry to.
+        /// The MAC address for the static entry.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway DHCP config.
+        /// The date and time of the last update of the Public Gateway DHCP configuration.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

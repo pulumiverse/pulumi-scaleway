@@ -157,7 +157,7 @@ def get_registry_image(image_id: Optional[str] = None,
                        tags: Optional[Sequence[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryImageResult:
     """
-    Gets information about a registry image.
+    Gets information about a Container Registry image.
 
     ## Example Usage
 
@@ -171,9 +171,9 @@ def get_registry_image(image_id: Optional[str] = None,
 
 
     :param str image_id: The image ID.
-           Only one of `name` and `image_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `image_id`.
     :param str name: The image name.
-           Only one of `name` and `image_id` should be specified.
     :param str namespace_id: The namespace ID in which the image is.
     :param str project_id: `project_id`) The ID of the project the image is associated with.
     :param str region: `region`) The region in which the image exists.
@@ -212,7 +212,7 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
                               tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryImageResult]:
     """
-    Gets information about a registry image.
+    Gets information about a Container Registry image.
 
     ## Example Usage
 
@@ -226,9 +226,9 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
 
 
     :param str image_id: The image ID.
-           Only one of `name` and `image_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `image_id`.
     :param str name: The image name.
-           Only one of `name` and `image_id` should be specified.
     :param str namespace_id: The namespace ID in which the image is.
     :param str project_id: `project_id`) The ID of the project the image is associated with.
     :param str region: `region`) The region in which the image exists.

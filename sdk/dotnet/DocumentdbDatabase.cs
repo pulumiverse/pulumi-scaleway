@@ -25,9 +25,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var instance = new Scaleway.DocumentdbInstance("instance", new()
+    ///     {
+    ///         NodeType = "docdb-play2-pico",
+    ///         Engine = "FerretDB-1",
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         VolumeSizeInGb = 20,
+    ///     });
+    /// 
     ///     var main = new Scaleway.DocumentdbDatabase("main", new()
     ///     {
-    ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });

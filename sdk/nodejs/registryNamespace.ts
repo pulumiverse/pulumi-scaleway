@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Container Registry.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/registry).
+ * For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
  *
  * ## Example Usage
  *
@@ -79,7 +79,7 @@ export class RegistryNamespace extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the namespace is associated with.
+     * The Organization ID the namespace is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -149,7 +149,7 @@ export interface RegistryNamespaceState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the namespace is associated with.
+     * The Organization ID the namespace is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**

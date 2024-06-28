@@ -121,7 +121,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace ID the function is associated with.
+        /// The function namespace ID of the function.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -291,7 +291,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace ID the function is associated with.
+        /// The function namespace ID of the function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -434,7 +434,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace ID the function is associated with.
+        /// The function namespace ID of the function.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }

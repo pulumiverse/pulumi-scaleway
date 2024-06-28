@@ -269,6 +269,8 @@ class BlockVolume(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -276,6 +278,21 @@ class BlockVolume(pulumi.CustomResource):
         block_volume = scaleway.BlockVolume("blockVolume",
             iops=5000,
             size_in_gb=20)
+        ```
+
+        ### With snapshot
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        base = scaleway.BlockVolume("base",
+            iops=5000,
+            size_in_gb=20)
+        main_block_snapshot = scaleway.BlockSnapshot("mainBlockSnapshot", volume_id=base.id)
+        main_block_volume = scaleway.BlockVolume("mainBlockVolume",
+            iops=5000,
+            snapshot_id=main_block_snapshot.id)
         ```
 
         ## Import
@@ -310,6 +327,8 @@ class BlockVolume(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -317,6 +336,21 @@ class BlockVolume(pulumi.CustomResource):
         block_volume = scaleway.BlockVolume("blockVolume",
             iops=5000,
             size_in_gb=20)
+        ```
+
+        ### With snapshot
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        base = scaleway.BlockVolume("base",
+            iops=5000,
+            size_in_gb=20)
+        main_block_snapshot = scaleway.BlockSnapshot("mainBlockSnapshot", volume_id=base.id)
+        main_block_volume = scaleway.BlockVolume("mainBlockVolume",
+            iops=5000,
+            snapshot_id=main_block_snapshot.id)
         ```
 
         ## Import

@@ -39,7 +39,7 @@ class GetMnqSqsResult:
     @pulumi.getter
     def endpoint(self) -> str:
         """
-        The endpoint of the SQS service for this project.
+        The endpoint of the SQS service for this Project.
         """
         return pulumi.get(self, "endpoint")
 
@@ -78,7 +78,7 @@ def get_mnq_sqs(project_id: Optional[str] = None,
                 region: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMnqSqsResult:
     """
-    Gets information about SQS for a project
+    Gets information about SQS for a Project
 
     ## Examples
 
@@ -93,8 +93,8 @@ def get_mnq_sqs(project_id: Optional[str] = None,
     ```
 
 
-    :param str project_id: `project_id`) The ID of the project for which sqs is enabled.
-    :param str region: `region`). The region in which sqs is enabled.
+    :param str project_id: `project_id`) The ID of the Project in which SQS is enabled.
+    :param str region: `region`). The region in which SQS is enabled.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -114,7 +114,7 @@ def get_mnq_sqs_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMnqSqsResult]:
     """
-    Gets information about SQS for a project
+    Gets information about SQS for a Project
 
     ## Examples
 
@@ -129,7 +129,7 @@ def get_mnq_sqs_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str project_id: `project_id`) The ID of the project for which sqs is enabled.
-    :param str region: `region`). The region in which sqs is enabled.
+    :param str project_id: `project_id`) The ID of the Project in which SQS is enabled.
+    :param str region: `region`). The region in which SQS is enabled.
     """
     ...

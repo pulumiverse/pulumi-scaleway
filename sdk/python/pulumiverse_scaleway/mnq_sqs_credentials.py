@@ -22,10 +22,10 @@ class MnqSqsCredentialsArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MnqSqsCredentials resource.
-        :param pulumi.Input[str] name: The unique name of the sqs credentials.
-        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] name: The unique name of the SQS credentials.
+        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -40,7 +40,7 @@ class MnqSqsCredentialsArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sqs credentials.
+        The unique name of the SQS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -52,7 +52,7 @@ class MnqSqsCredentialsArgs:
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['MnqSqsCredentialsPermissionsArgs']]:
         """
-        . List of permissions associated to these credentials. Only one of permissions may be set.
+        . List of permissions associated with these credentials. Only one of the following permissions may be set:
         """
         return pulumi.get(self, "permissions")
 
@@ -64,7 +64,7 @@ class MnqSqsCredentialsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sqs is enabled for.
+        `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -76,7 +76,7 @@ class MnqSqsCredentialsArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which sqs is enabled.
+        `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -97,10 +97,10 @@ class _MnqSqsCredentialsState:
         """
         Input properties used for looking up and filtering MnqSqsCredentials resources.
         :param pulumi.Input[str] access_key: The ID of the key.
-        :param pulumi.Input[str] name: The unique name of the sqs credentials.
-        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] name: The unique name of the SQS credentials.
+        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
         """
         if access_key is not None:
@@ -132,7 +132,7 @@ class _MnqSqsCredentialsState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sqs credentials.
+        The unique name of the SQS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -144,7 +144,7 @@ class _MnqSqsCredentialsState:
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['MnqSqsCredentialsPermissionsArgs']]:
         """
-        . List of permissions associated to these credentials. Only one of permissions may be set.
+        . List of permissions associated with these credentials. Only one of the following permissions may be set:
         """
         return pulumi.get(self, "permissions")
 
@@ -156,7 +156,7 @@ class _MnqSqsCredentialsState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sqs is enabled for.
+        `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -168,7 +168,7 @@ class _MnqSqsCredentialsState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which sqs is enabled.
+        `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -200,9 +200,9 @@ class MnqSqsCredentials(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Messaging and queuing SQS Credentials.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+        Creates and manages Scaleway Messaging and Queuing SQS credentials.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
         ## Example Usage
 
@@ -224,7 +224,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
 
         ## Import
 
-        SQS credentials can be imported using the `{region}/{id}`, e.g.
+        SQS credentials can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -234,10 +234,10 @@ class MnqSqsCredentials(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The unique name of the sqs credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] name: The unique name of the SQS credentials.
+        :param pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         """
         ...
     @overload
@@ -246,9 +246,9 @@ class MnqSqsCredentials(pulumi.CustomResource):
                  args: Optional[MnqSqsCredentialsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Messaging and queuing SQS Credentials.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+        Creates and manages Scaleway Messaging and Queuing SQS credentials.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 
         ## Example Usage
 
@@ -270,7 +270,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
 
         ## Import
 
-        SQS credentials can be imported using the `{region}/{id}`, e.g.
+        SQS credentials can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -338,10 +338,10 @@ class MnqSqsCredentials(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The ID of the key.
-        :param pulumi.Input[str] name: The unique name of the sqs credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']] permissions: . List of permissions associated to these credentials. Only one of permissions may be set.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] name: The unique name of the SQS credentials.
+        :param pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -368,7 +368,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the sqs credentials.
+        The unique name of the SQS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -376,7 +376,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def permissions(self) -> pulumi.Output['outputs.MnqSqsCredentialsPermissions']:
         """
-        . List of permissions associated to these credentials. Only one of permissions may be set.
+        . List of permissions associated with these credentials. Only one of the following permissions may be set:
         """
         return pulumi.get(self, "permissions")
 
@@ -384,7 +384,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sqs is enabled for.
+        `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -392,7 +392,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which sqs is enabled.
+        `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a registry image.
+ * Gets information about a Container Registry image.
  *
  * ## Example Usage
  *
@@ -39,12 +39,12 @@ export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.Invo
 export interface GetRegistryImageArgs {
     /**
      * The image ID.
-     * Only one of `name` and `imageId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `imageId`.
      */
     imageId?: string;
     /**
      * The image name.
-     * Only one of `name` and `imageId` should be specified.
      */
     name?: string;
     /**
@@ -100,7 +100,7 @@ export interface GetRegistryImageResult {
     readonly visibility: string;
 }
 /**
- * Gets information about a registry image.
+ * Gets information about a Container Registry image.
  *
  * ## Example Usage
  *
@@ -124,12 +124,12 @@ export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?:
 export interface GetRegistryImageOutputArgs {
     /**
      * The image ID.
-     * Only one of `name` and `imageId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `imageId`.
      */
     imageId?: pulumi.Input<string>;
     /**
      * The image name.
-     * Only one of `name` and `imageId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**

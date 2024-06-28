@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetIamSshKeyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+        /// The SSH key name.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -78,7 +78,9 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+        /// The SSH key id.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `ssh_key_id`.
         /// </summary>
         [Input("sshKeyId")]
         public string? SshKeyId { get; set; }
@@ -92,7 +94,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetIamSshKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+        /// The SSH key name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -105,7 +107,9 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+        /// The SSH key id.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `ssh_key_id`.
         /// </summary>
         [Input("sshKeyId")]
         public Input<string>? SshKeyId { get; set; }

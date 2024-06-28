@@ -24,23 +24,23 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly string Id;
         /// <summary>
         /// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-        /// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-        /// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+        /// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+        /// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         /// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         /// 
         /// &gt; The `private_network` conflicts with `acl`. Only one should be specified.
         /// 
-        /// &gt; **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+        /// &gt; **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
         /// 
         /// - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-        /// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+        /// block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
         /// Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
         /// by side.
         /// 
-        /// - Cluster mode (`cluster_size` &gt; 2) : you can define a single Private Network as you create your Cluster, you won't be
-        /// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-        /// configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-        /// require updating the private network to add IPs.
+        /// - Cluster mode (`cluster_size` &gt; 2) : you can define a single Private Network as you create your cluster, you won't be
+        /// able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+        /// configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+        /// require updating the Private Network to add IPs.
         /// Your `service_ips` must be listed as follows:
         /// 
         /// ```csharp
@@ -56,7 +56,7 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>
         /// `zone`) The zone in which the
-        /// Redis Cluster should be created.
+        /// Redis™ cluster should be created.
         /// </summary>
         public readonly string? Zone;
 

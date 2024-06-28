@@ -19,7 +19,7 @@ class VpcPublicGatewayIpReverseDnsArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayIpReverseDns resource.
-        :param pulumi.Input[str] gateway_ip_id: The public gateway IP ID
+        :param pulumi.Input[str] gateway_ip_id: The Public Gateway IP ID
         :param pulumi.Input[str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
@@ -32,7 +32,7 @@ class VpcPublicGatewayIpReverseDnsArgs:
     @pulumi.getter(name="gatewayIpId")
     def gateway_ip_id(self) -> pulumi.Input[str]:
         """
-        The public gateway IP ID
+        The Public Gateway IP ID
         """
         return pulumi.get(self, "gateway_ip_id")
 
@@ -73,7 +73,7 @@ class _VpcPublicGatewayIpReverseDnsState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayIpReverseDns resources.
-        :param pulumi.Input[str] gateway_ip_id: The public gateway IP ID
+        :param pulumi.Input[str] gateway_ip_id: The Public Gateway IP ID
         :param pulumi.Input[str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
@@ -88,7 +88,7 @@ class _VpcPublicGatewayIpReverseDnsState:
     @pulumi.getter(name="gatewayIpId")
     def gateway_ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The public gateway IP ID
+        The Public Gateway IP ID
         """
         return pulumi.get(self, "gateway_ip_id")
 
@@ -131,8 +131,8 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages Scaleway VPC Public Gateways IPs reverse DNS.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+        Manages Scaleway Public Gateway public (flexible) IPs' reverse DNS.
+        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
 
         ## Example Usage
 
@@ -154,7 +154,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         ## Import
 
-        Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+        Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -164,7 +164,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] gateway_ip_id: The public gateway IP ID
+        :param pulumi.Input[str] gateway_ip_id: The Public Gateway IP ID
         :param pulumi.Input[str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
@@ -175,8 +175,8 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
                  args: VpcPublicGatewayIpReverseDnsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Scaleway VPC Public Gateways IPs reverse DNS.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+        Manages Scaleway Public Gateway public (flexible) IPs' reverse DNS.
+        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
 
         ## Example Usage
 
@@ -198,7 +198,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         ## Import
 
-        Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+        Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -260,7 +260,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] gateway_ip_id: The public gateway IP ID
+        :param pulumi.Input[str] gateway_ip_id: The Public Gateway IP ID
         :param pulumi.Input[str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
@@ -277,7 +277,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
     @pulumi.getter(name="gatewayIpId")
     def gateway_ip_id(self) -> pulumi.Output[str]:
         """
-        The public gateway IP ID
+        The Public Gateway IP ID
         """
         return pulumi.get(self, "gateway_ip_id")
 

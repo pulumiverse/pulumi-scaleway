@@ -15,19 +15,19 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetIpamIpsIpResourceResult
     {
         /// <summary>
-        /// The ID of the resource that the IP is bound to.
+        /// The ID of the attached resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The Mac Address used as filter.
+        /// The linked MAC address to filter for.
         /// </summary>
         public readonly string MacAddress;
         /// <summary>
-        /// The name of the resource to get the IP from.
+        /// The name of the attached resource.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        /// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         /// </summary>
         public readonly string Type;
 

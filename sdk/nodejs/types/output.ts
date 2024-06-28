@@ -226,7 +226,7 @@ export interface DatabaseAclAclRule {
      */
     description: string;
     /**
-     * The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      */
     ip: string;
 }
@@ -321,15 +321,15 @@ export interface DatabaseInstanceReadReplica {
 
 export interface DatabaseReadReplicaDirectAccess {
     /**
-     * The ID of the endpoint of the read replica.
+     * The ID of the endpoint of the Read Replica.
      */
     endpointId: string;
     /**
-     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     * Hostname of the endpoint. Only one of IP and hostname may be set.
      */
     hostname: string;
     /**
-     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     * IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
      */
     ip: string;
     /**
@@ -350,15 +350,15 @@ export interface DatabaseReadReplicaPrivateNetwork {
      */
     enableIpam: boolean;
     /**
-     * The ID of the endpoint of the read replica.
+     * The ID of the endpoint of the Read Replica.
      */
     endpointId: string;
     /**
-     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     * Hostname of the endpoint. Only one of IP and hostname may be set.
      */
     hostname: string;
     /**
-     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     * IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
      */
     ip: string;
     /**
@@ -370,7 +370,7 @@ export interface DatabaseReadReplicaPrivateNetwork {
      */
     port: number;
     /**
-     * UUID of the private network to be connected to the read replica.
+     * UUID of the Private Netork to be connected to the Read Replica.
      */
     privateNetworkId: string;
     /**
@@ -379,6 +379,37 @@ export interface DatabaseReadReplicaPrivateNetwork {
     serviceIp: string;
     /**
      * Private network zone
+     */
+    zone: string;
+}
+
+export interface DocumentdbPrivateNetworkEndpointPrivateNetwork {
+    /**
+     * The hostname of your endpoint.
+     */
+    hostname: string;
+    /**
+     * The private network ID.
+     */
+    id: string;
+    /**
+     * The IP of your private network service.
+     */
+    ip: string;
+    /**
+     * The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+     */
+    ipNet: string;
+    /**
+     * The name of your private service.
+     */
+    name: string;
+    /**
+     * The port of your private service.
+     */
+    port: number;
+    /**
+     * The zone of your endpoint.
      */
     zone: string;
 }
@@ -696,31 +727,31 @@ export interface GetBaremetalServerPrivateNetwork {
 
 export interface GetBillingConsumptionsConsumption {
     /**
-     * Consumed quantity
+     * The consumed quantity.
      */
     billedQuantity: string;
     /**
-     * Name of consumption category
+     * The name of the consumption category.
      */
     categoryName: string;
     /**
-     * The product name
+     * The product name.
      */
     productName: string;
     /**
-     * Project ID of the consumption
+     * `projectId`) The ID of the project the consumption list is associated with.
      */
     projectId: string;
     /**
-     * Unique identifier of the product
+     * The unique identifier of the product.
      */
     sku: string;
     /**
-     * Unit of consumed quantity
+     * The unit of consumed quantity.
      */
     unit: string;
     /**
-     * Monetary value of the consumption
+     * The monetary value of the consumption.
      */
     value: string;
 }
@@ -852,7 +883,6 @@ export interface GetDatabaseInstanceLoadBalancer {
     ip: string;
     /**
      * The name of the RDB instance.
-     * Only one of `name` and `instanceId` should be specified.
      */
     name: string;
     /**
@@ -895,7 +925,6 @@ export interface GetDatabaseInstancePrivateNetwork {
     ipNet: string;
     /**
      * The name of the RDB instance.
-     * Only one of `name` and `instanceId` should be specified.
      */
     name: string;
     /**
@@ -919,7 +948,6 @@ export interface GetDatabaseInstanceReadReplica {
     ip: string;
     /**
      * The name of the RDB instance.
-     * Only one of `name` and `instanceId` should be specified.
      */
     name: string;
     /**
@@ -1355,22 +1383,22 @@ export interface GetIotDeviceMessageFilterSubscribe {
 
 export interface GetIpamIpResource {
     /**
-     * The ID of the resource that the IP is bound to.
+     * The ID of the resource that the IP is attached to.
      */
     id?: string;
     /**
-     * The name of the resource to get the IP from.
+     * The name of the resource the IP is attached to.
      */
     name?: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      */
     type: string;
 }
 
 export interface GetIpamIpsIp {
     /**
-     * The Scaleway internal IP address of the server.
+     * The Scaleway internal IP address of the resource.
      */
     address: string;
     /**
@@ -1382,19 +1410,19 @@ export interface GetIpamIpsIp {
      */
     id: string;
     /**
-     * The ID of the project used as filter.
+     * The ID of the Project to filter for.
      */
     projectId: string;
     /**
-     * The region used as filter.
+     * The region to filter for.
      */
     region: string;
     /**
-     * Filter by resource ID, type or name.
+     * Filter for a resource attached to the IP, using resource ID, type or name.
      */
     resources: outputs.GetIpamIpsIpResource[];
     /**
-     * The tags used as filter.
+     * The IP tags to filter for.
      */
     tags: string[];
     /**
@@ -1402,41 +1430,41 @@ export interface GetIpamIpsIp {
      */
     updatedAt: string;
     /**
-     * The zone in which the IP is.
+     * The zone of the IP.
      */
     zone: string;
 }
 
 export interface GetIpamIpsIpResource {
     /**
-     * The ID of the resource that the IP is bound to.
+     * The ID of the attached resource.
      */
     id: string;
     /**
-     * The Mac Address used as filter.
+     * The linked MAC address to filter for.
      */
     macAddress: string;
     /**
-     * The name of the resource to get the IP from.
+     * The name of the attached resource.
      */
     name: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      */
     type: string;
 }
 
 export interface GetIpamIpsResource {
     /**
-     * The ID of the resource that the IP is bound to.
+     * The ID of the attached resource.
      */
     id?: string;
     /**
-     * The name of the resource to get the IP from.
+     * The name of the attached resource.
      */
     name?: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     * The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      */
     type: string;
 }
@@ -1581,11 +1609,11 @@ export interface GetKubernetesNodePoolUpgradePolicy {
 
 export interface GetLbAclsAcl {
     /**
-     * The action that has been undertaken when an ACL filter had matched.
+     * The action to be undertaken when an ACL filter matches.
      */
     actions: outputs.GetLbAclsAclAction[];
     /**
-     * The date at which the ACL was created (RFC 3339 format).
+     * The date on which the ACL was created (RFC 3339 format).
      */
     createdAt: string;
     /**
@@ -1593,8 +1621,8 @@ export interface GetLbAclsAcl {
      */
     description: string;
     /**
-     * The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-     * > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     * The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+     * > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
      */
     frontendId: string;
     /**
@@ -1603,7 +1631,7 @@ export interface GetLbAclsAcl {
      */
     id: string;
     /**
-     * The order between the ACLs.
+     * The priority of this ACL in the ordered list.
      */
     index: number;
     /**
@@ -1611,11 +1639,11 @@ export interface GetLbAclsAcl {
      */
     matches: outputs.GetLbAclsAclMatch[];
     /**
-     * The ACL name used as filter. ACLs with a name like it are listed.
+     * The ACL name to filter for. ACLs with a matching name are listed.
      */
     name: string;
     /**
-     * The date at which the ACL was last updated (RFC 3339 format).
+     * The date on which the ACL was last updated (RFC 3339 format).
      */
     updateAt: string;
 }
@@ -1633,11 +1661,11 @@ export interface GetLbAclsAclAction {
 
 export interface GetLbAclsAclActionRedirect {
     /**
-     * The HTTP redirect code used.
+     * The HTTP redirect code to use.
      */
     code: number;
     /**
-     * The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+     * The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
      */
     target: string;
     /**
@@ -1648,7 +1676,7 @@ export interface GetLbAclsAclActionRedirect {
 
 export interface GetLbAclsAclMatch {
     /**
-     * The matched HTTP filter.
+     * The HTTP filter to match.
      */
     httpFilter: string;
     /**
@@ -1656,7 +1684,7 @@ export interface GetLbAclsAclMatch {
      */
     httpFilterOption: string;
     /**
-     * The possible values matched for a given HTTP filter.
+     * The possible values to match for a given HTTP filter.
      */
     httpFilterValues: string[];
     /**
@@ -1664,7 +1692,7 @@ export interface GetLbAclsAclMatch {
      */
     invert: boolean;
     /**
-     * A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
      */
     ipSubnets: string[];
 }
@@ -1697,15 +1725,15 @@ export interface GetLbBackendHealthCheckTcp {
 
 export interface GetLbBackendsBackend {
     /**
-     * The date at which the backend was created (RFC 3339 format).
+     * The date on which the backend was created (RFC 3339 format).
      */
     createdAt: string;
     /**
-     * Scaleway S3 bucket website to be served in case all backend servers are down.
+     * Scaleway S3 bucket website to be served if all backend servers are down.
      */
     failoverHost: string;
     /**
-     * User sessions will be forwarded to this port of backend servers.
+     * User sessions will be forwarded to this backend server port.
      */
     forwardPort: number;
     /**
@@ -1717,31 +1745,31 @@ export interface GetLbBackendsBackend {
      */
     forwardProtocol: string;
     /**
-     * Interval between two HC requests.
+     * Interval between two health check requests.
      */
     healthCheckDelay: string;
     /**
-     * This block enable HTTP health check.
+     * This block enables HTTP health checks.
      */
     healthCheckHttp: outputs.GetLbBackendsBackendHealthCheckHttp[];
     /**
-     * This block enable HTTPS health check.
+     * This block enables HTTPS health checks.
      */
     healthCheckHttps: outputs.GetLbBackendsBackendHealthCheckHttp[];
     /**
-     * Number of allowed failed HC requests before the backend server is marked down.
+     * Number of allowed failed health check requests before the backend server is marked as down.
      */
     healthCheckMaxRetries: number;
     /**
-     * Port the HC requests will be sent to.
+     * Port the health check requests will be sent to.
      */
     healthCheckPort: number;
     /**
-     * This block enable TCP health check.
+     * This block enables TCP health checks.
      */
     healthCheckTcps: outputs.GetLbBackendsBackendHealthCheckTcp[];
     /**
-     * Timeout before we consider a HC request failed.
+     * Timeout before a health check request is considered failed.
      */
     healthCheckTimeout: string;
     /**
@@ -1753,11 +1781,11 @@ export interface GetLbBackendsBackend {
      */
     ignoreSslServerVerify: boolean;
     /**
-     * The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+     * The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
      */
     lbId: string;
     /**
-     * The backend name used as filter. Backends with a name like it are listed.
+     * The backend name to filter for. Backends with a matching name are listed.
      */
     name: string;
     /**
@@ -1773,7 +1801,7 @@ export interface GetLbBackendsBackend {
      */
     serverIps: string[];
     /**
-     * Enables SSL between load balancer and backend servers.
+     * Enables SSL between Load Balancer and backend servers.
      */
     sslBridging: boolean;
     /**
@@ -1797,7 +1825,7 @@ export interface GetLbBackendsBackend {
      */
     timeoutTunnel: string;
     /**
-     * The date at which the backend was last updated (RFC 3339 format).
+     * The date on which the backend was last updated (RFC 3339 format).
      */
     updateAt: string;
 }
@@ -1808,11 +1836,11 @@ export interface GetLbBackendsBackendHealthCheckHttp {
      */
     code: number;
     /**
-     * The HTTP host header to use for HC requests.
+     * The HTTP host header to use for health check requests.
      */
     hostHeader: string;
     /**
-     * The HTTP method to use for HC requests.
+     * The HTTP method to use for health check requests.
      */
     method: string;
     /**
@@ -1820,7 +1848,7 @@ export interface GetLbBackendsBackendHealthCheckHttp {
      */
     sni: string;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for health check requests.
      */
     uri: string;
 }
@@ -1907,37 +1935,37 @@ export interface GetLbFrontendAclMatch {
 
 export interface GetLbFrontendsFrontend {
     /**
-     * The load-balancer backend ID this frontend is attached to.
-     * > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     * The Load Balancer backend ID this frontend is attached to.
+     * > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
      */
     backendId: string;
     /**
-     * List of Certificate IDs that are used by the frontend.
+     * List of certificate IDs that are used by the frontend.
      */
     certificateIds: string[];
     /**
-     * The date at which the frontend was created (RFC 3339 format).
+     * The date on which the frontend was created (RFC 3339 format).
      */
     createdAt: string;
     /**
-     * If HTTP/3 protocol is activated.
+     * Whether HTTP/3 protocol is activated.
      */
     enableHttp3: boolean;
     /**
-     * The associated frontend ID.
-     * > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+     * The ID of the associated frontend.
+     * > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
      */
     id: string;
     /**
-     * TCP port the frontend listen to.
+     * TCP port the frontend listens to.
      */
     inboundPort: number;
     /**
-     * The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+     * The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
      */
     lbId: string;
     /**
-     * The frontend name used as filter. Frontends with a name like it are listed.
+     * The frontend name to filter for. Frontends with a matching name are listed.
      */
     name: string;
     /**
@@ -1945,30 +1973,30 @@ export interface GetLbFrontendsFrontend {
      */
     timeoutClient: string;
     /**
-     * The date at which the frontend was last updated (RFC 3339 format).
+     * The date aont which the frontend was last updated (RFC 3339 format).
      */
     updateAt: string;
 }
 
 export interface GetLbIpsIp {
     /**
-     * The associated IP ID.
+     * The ID of the associated IP.
      */
     id: string;
     /**
-     * The IP Address
+     * The IP address
      */
     ipAddress: string;
     /**
-     * The associated load-balancer ID if any
+     * The ID of the associated Load BalancerD, if any
      */
     lbId: string;
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization the Load Balancer is associated with.
      */
     organizationId: string;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId: string;
     /**
@@ -1976,22 +2004,22 @@ export interface GetLbIpsIp {
      */
     reverse: string;
     /**
-     * `zone`) The zone in which IPs exist.
+     * `zone`) The zone in which the IPs exist.
      */
     zone: string;
 }
 
 export interface GetLbRoutesRoute {
     /**
-     * The backend ID destination of redirection
+     * The backend ID to redirect to
      */
     backendId: string;
     /**
-     * The date at which the route was created (RFC 3339 format).
+     * The date on which the route was created (RFC 3339 format).
      */
     createdAt: string;
     /**
-     * The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+     * The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
      */
     frontendId: string;
     /**
@@ -2007,54 +2035,54 @@ export interface GetLbRoutesRoute {
      */
     matchSni: string;
     /**
-     * The date at which the route was last updated (RFC 3339 format).
+     * The date on which the route was last updated (RFC 3339 format).
      */
     updateAt: string;
 }
 
 export interface GetLbsLb {
     /**
-     * Number of backends the Load balancer has.
+     * Number of backends the Load Balancer has.
      */
     backendCount: number;
     /**
-     * Date at which the Load balancer was created.
+     * Date on which the Load Balancer was created.
      */
     createdAt: string;
     /**
-     * The description of the load-balancer.
+     * The description of the Load Balancer.
      */
     description: string;
     /**
-     * Number of frontends the Load balancer has.
+     * Number of frontends the Load Balancer has.
      */
     frontendCount: number;
     /**
-     * The ID of the load-balancer.
+     * The ID of the Load Balancer.
      */
     id: string;
     /**
-     * List of underlying instances.
+     * List of underlying Instances.
      */
     instances: outputs.GetLbsLbInstance[];
     /**
-     * List of IPs attached to the Load balancer.
+     * List of IPs attached to the Load Balancer.
      */
     ips: outputs.GetLbsLbIp[];
     /**
-     * The load balancer name used as a filter. LBs with a name like it are listed.
+     * The Load Balancer name to filter for. Load Balancers with a matching name are listed.
      */
     name: string;
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization the Load Balancer is associated with.
      */
     organizationId: string;
     /**
-     * Number of private networks attached to the Load balancer.
+     * Number of Private Networks attached to the Load balancer.
      */
     privateNetworkCount: number;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId: string;
     /**
@@ -2062,11 +2090,11 @@ export interface GetLbsLb {
      */
     routeCount: number;
     /**
-     * Determines the minimal SSL version which needs to be supported on client side.
+     * Determines the minimal SSL version which needs to be supported on the client side.
      */
     sslCompatibilityLevel: string;
     /**
-     * The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+     * The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
      */
     status: string;
     /**
@@ -2074,65 +2102,65 @@ export interface GetLbsLb {
      */
     subscriber: string;
     /**
-     * List of tags used as filter. LBs with these exact tags are listed.
+     * List of tags to filter for. Load Balancers with these exact tags are listed.
      */
     tags: string[];
     /**
-     * The offer type of the load-balancer.
+     * The offer type of the Load Balancer.
      */
     type: string;
     /**
-     * Date at which the Load balancer was updated.
+     * Date on which the Load Balancer was updated.
      */
     updatedAt: string;
     /**
-     * `zone`) The zone in which LBs exist.
+     * `zone`) The zone in which the Load Balancers exist.
      */
     zone: string;
 }
 
 export interface GetLbsLbInstance {
     /**
-     * Date at which the Load balancer was created.
+     * Date on which the Load Balancer was created.
      */
     createdAt: string;
     /**
-     * The ID of the load-balancer.
+     * The ID of the Load Balancer.
      */
     id: string;
     ipAddress: string;
     /**
-     * The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+     * The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
      */
     status: string;
     /**
-     * Date at which the Load balancer was updated.
+     * Date on which the Load Balancer was updated.
      */
     updatedAt: string;
     /**
-     * `zone`) The zone in which LBs exist.
+     * `zone`) The zone in which the Load Balancers exist.
      */
     zone: string;
 }
 
 export interface GetLbsLbIp {
     /**
-     * The ID of the load-balancer.
+     * The ID of the Load Balancer.
      */
     id: string;
     ipAddress: string;
     lbId: string;
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization the Load Balancer is associated with.
      */
     organizationId: string;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId: string;
     reverse: string;
     /**
-     * `zone`) The zone in which LBs exist.
+     * `zone`) The zone in which the Load Balancers exist.
      */
     zone: string;
 }
@@ -2173,7 +2201,7 @@ export interface GetLoadbalancerPrivateNetwork {
      */
     status: string;
     /**
-     * (Defaults to provider `zone`) The zone in which the LB exists.
+     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone: string;
 }
@@ -2259,7 +2287,7 @@ export interface GetRedisClusterAcl {
 
 export interface GetRedisClusterPrivateNetwork {
     /**
-     * UUID of the endpoint to be connected to the cluster
+     * The ID of the endpoint.
      */
     endpointId: string;
     /**
@@ -2332,7 +2360,7 @@ export interface GetVpcPrivateNetworkIpv4Subnet {
      */
     createdAt: string;
     /**
-     * The ID of the private network.
+     * The ID of the Private Network.
      */
     id: string;
     /**
@@ -2363,7 +2391,7 @@ export interface GetVpcPrivateNetworkIpv6Subnet {
      */
     createdAt: string;
     /**
-     * The ID of the private network.
+     * The ID of the Private Network.
      */
     id: string;
     /**
@@ -2391,7 +2419,7 @@ export interface GetVpcsVpc {
     createdAt: string;
     /**
      * The associated VPC ID.
-     * > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+     * > **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
      */
     id: string;
     /**
@@ -2399,23 +2427,23 @@ export interface GetVpcsVpc {
      */
     isDefault: boolean;
     /**
-     * The VPC name used as filter. VPCs with a name like it are listed.
+     * The VPC name to filter for. VPCs with a similar name are listed.
      */
     name: string;
     /**
-     * The organization ID the VPC is associated with.
+     * The Organization ID the VPC is associated with.
      */
     organizationId: string;
     /**
-     * The ID of the project the VPC is associated with.
+     * The ID of the Project the VPC is associated with.
      */
     projectId: string;
     /**
-     * `region`). The region in which vpcs exist.
+     * `region`). The region in which the VPCs exist.
      */
     region: string;
     /**
-     * List of tags used as filter. VPCs with these exact tags are listed.
+     * List of tags to filter for. VPCs with these exact tags are listed.
      */
     tags: string[];
     updateAt: string;
@@ -2476,19 +2504,19 @@ export interface IamPolicyRule {
      */
     organizationId?: string;
     /**
-     * Names of permission sets bound to the rule.
+     * Names of permission sets bind to the rule.
      *
-     * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+     * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
      *
      * ```shell
-     * $ scw iam permission-set list
+     * $ scw IAM permission-set list
      * ```
      */
     permissionSetNames: string[];
     /**
      * List of project IDs scoped to the rule.
      *
-     * > **Important** One of `organizationId` or `projectIds`  must be set per rule.
+     * > **Important** One `organizationId` or `projectIds` must be set per rule.
      */
     projectIds?: string[];
 }
@@ -2854,11 +2882,11 @@ export interface IotRouteS3 {
 
 export interface IpamIpResource {
     /**
-     * The ID of the resource that the IP is bound to.
+     * The ID of the resource that the IP is attached to.
      */
     id: string;
     /**
-     * The MAC Address of the resource the IP is attached to.
+     * The MAC address of the resource the IP is attached to.
      */
     macAddress: string;
     /**
@@ -2884,15 +2912,15 @@ export interface IpamIpReverse {
 
 export interface IpamIpSource {
     /**
-     * The private network the IP lives in if the IP is a private IP.
+     * The Private Network of the IP (if the IP is a private IP).
      */
     privateNetworkId: string;
     /**
-     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     * The Private Network subnet of the IP (if the IP is a private IP).
      */
     subnetId: string;
     /**
-     * The zone the IP lives in if the IP is a public zoned one
+     * The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
      */
     zonal: string;
 }
@@ -3087,7 +3115,7 @@ export interface LoadbalancerAclMatch {
     httpFilterOption?: string;
     /**
      * A list of possible values to match for the given HTTP filter.
-     * Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+     * Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
      */
     httpFilterValues?: string[];
     /**
@@ -3095,7 +3123,7 @@ export interface LoadbalancerAclMatch {
      */
     invert?: boolean;
     /**
-     * A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
      */
     ipSubnets?: string[];
 }
@@ -3207,7 +3235,7 @@ export interface LoadbalancerFrontendAclActionRedirect {
      */
     code?: number;
     /**
-     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     * A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
      */
     target?: string;
     /**
@@ -3229,7 +3257,7 @@ export interface LoadbalancerFrontendAclMatch {
     httpFilterOption?: string;
     /**
      * A list of possible values to match for the given HTTP filter.
-     * Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+     * Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
      */
     httpFilterValues?: string[];
     /**
@@ -3237,22 +3265,24 @@ export interface LoadbalancerFrontendAclMatch {
      */
     invert?: boolean;
     /**
-     * A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
      */
     ipSubnets?: string[];
 }
 
 export interface LoadbalancerPrivateNetwork {
     /**
-     * (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+     * (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
      */
     dhcpConfig: boolean;
     /**
-     * (Required) The ID of the Private Network to associate.
+     * (Required) The ID of the Private Network to attach to.
      */
     privateNetworkId: string;
     /**
-     * (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+     * (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+     *
+     * @deprecated static_config field is deprecated, please use dhcpConfig instead
      */
     staticConfig?: string;
     /**
@@ -3260,37 +3290,37 @@ export interface LoadbalancerPrivateNetwork {
      */
     status: string;
     /**
-     * `zone`) The zone of the load-balancer.
+     * `zone`) The zone of the Load Balancer.
      */
     zone: string;
 }
 
 export interface MnqSnsCredentialsPermissions {
     /**
-     * . Defines if user can manage the associated resource(s).
+     * . Defines whether the user can manage the associated resource(s).
      */
     canManage: boolean;
     /**
-     * . Defines if user can publish messages to the service.
+     * . Defines whether the user can publish messages to the service.
      */
     canPublish: boolean;
     /**
-     * . Defines if user can receive messages from the service.
+     * . Defines whether the user can receive messages from the service.
      */
     canReceive: boolean;
 }
 
 export interface MnqSqsCredentialsPermissions {
     /**
-     * . Defines if user can manage the associated resource(s).
+     * . Defines whether the user can manage the associated resource(s).
      */
     canManage: boolean;
     /**
-     * . Defines if user can publish messages to the service.
+     * . Defines whether the user can publish messages to the service.
      */
     canPublish: boolean;
     /**
-     * . Defines if user can receive messages from the service.
+     * . Defines whether the user can receive messages from the service.
      */
     canReceive: boolean;
 }
@@ -3474,7 +3504,7 @@ export interface RedisClusterAcl {
      */
     id: string;
     /**
-     * The ip range to whitelist
+     * The IP range to whitelist
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      */
     ip: string;
@@ -3491,23 +3521,23 @@ export interface RedisClusterPrivateNetwork {
     id: string;
     /**
      * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-     * Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-     * scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+     * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+     * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
      * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      *
      * > The `privateNetwork` conflicts with `acl`. Only one should be specified.
      *
-     * > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+     * > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
      *
      * - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
-     * block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+     * block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
      * Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
      * by side.
      *
-     * - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-     * able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-     * configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-     * require updating the private network to add IPs.
+     * - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your cluster, you won't be
+     * able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+     * configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+     * require updating the Private Network to add IPs.
      * Your `serviceIps` must be listed as follows:
      *
      * ```typescript
@@ -3517,7 +3547,7 @@ export interface RedisClusterPrivateNetwork {
     serviceIps: string[];
     /**
      * `zone`) The zone in which the
-     * Redis Cluster should be created.
+     * Redis™ cluster should be created.
      */
     zone: string;
 }
@@ -3566,14 +3596,14 @@ export interface VpcGatewayNetworkIpamConfig {
      */
     ipamIpId: string;
     /**
-     * Defines whether the default route is enabled on that Gateway Network.
+     * Defines whether to enable the default route on the GatewayNetwork.
      */
     pushDefaultRoute?: boolean;
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {
     /**
-     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     * The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
      */
     address: string;
     /**
@@ -3585,7 +3615,7 @@ export interface VpcPrivateNetworkIpv4Subnet {
      */
     id: string;
     /**
-     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     * The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
      */
     prefixLength: number;
     /**
@@ -3604,7 +3634,7 @@ export interface VpcPrivateNetworkIpv4Subnet {
 
 export interface VpcPrivateNetworkIpv6Subnet {
     /**
-     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     * The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
      */
     address: string;
     /**
@@ -3616,7 +3646,7 @@ export interface VpcPrivateNetworkIpv6Subnet {
      */
     id: string;
     /**
-     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     * The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
      */
     prefixLength: number;
     /**

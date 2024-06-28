@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about SQS for a project
+// Gets information about SQS for a Project
 //
 // ## Examples
 //
@@ -56,15 +56,15 @@ func LookupMnqSqs(ctx *pulumi.Context, args *LookupMnqSqsArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getMnqSqs.
 type LookupMnqSqsArgs struct {
-	// `projectId`) The ID of the project for which sqs is enabled.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getMnqSqs.
 type LookupMnqSqsResult struct {
-	// The endpoint of the SQS service for this project.
+	// The endpoint of the SQS service for this Project.
 	Endpoint string `pulumi:"endpoint"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
@@ -87,9 +87,9 @@ func LookupMnqSqsOutput(ctx *pulumi.Context, args LookupMnqSqsOutputArgs, opts .
 
 // A collection of arguments for invoking getMnqSqs.
 type LookupMnqSqsOutputArgs struct {
-	// `projectId`) The ID of the project for which sqs is enabled.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -112,7 +112,7 @@ func (o LookupMnqSqsResultOutput) ToLookupMnqSqsResultOutputWithContext(ctx cont
 	return o
 }
 
-// The endpoint of the SQS service for this project.
+// The endpoint of the SQS service for this Project.
 func (o LookupMnqSqsResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMnqSqsResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }

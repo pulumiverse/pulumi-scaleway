@@ -26,8 +26,8 @@ class IpamIpArgs:
         The set of arguments for constructing a IpamIp resource.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]] sources: The source in which to book the IP.
         :param pulumi.Input[str] address: Request a specific IP in the requested source pool
-        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         """
@@ -71,7 +71,7 @@ class IpamIpArgs:
     @pulumi.getter(name="isIpv6")
     def is_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defines whether to request an IPv6 instead of an IPv4.
+        Defines whether to request an IPv6 address instead of IPv4.
         """
         return pulumi.get(self, "is_ipv6")
 
@@ -83,7 +83,7 @@ class IpamIpArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -134,11 +134,11 @@ class _IpamIpState:
         Input properties used for looking up and filtering IpamIp resources.
         :param pulumi.Input[str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[str] created_at: Date and time of IP's creation (RFC 3339 format).
-        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpResourceArgs']]] resources: The IP resource.
-        :param pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]] reverses: The reverses DNS for this IP.
+        :param pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]] reverses: The reverse DNS for this IP.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         :param pulumi.Input[str] updated_at: Date and time of IP's last update (RFC 3339 format).
@@ -195,7 +195,7 @@ class _IpamIpState:
     @pulumi.getter(name="isIpv6")
     def is_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defines whether to request an IPv6 instead of an IPv4.
+        Defines whether to request an IPv6 address instead of IPv4.
         """
         return pulumi.get(self, "is_ipv6")
 
@@ -207,7 +207,7 @@ class _IpamIpState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -243,7 +243,7 @@ class _IpamIpState:
     @pulumi.getter
     def reverses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]]]:
         """
-        The reverses DNS for this IP.
+        The reverse DNS for this IP.
         """
         return pulumi.get(self, "reverses")
 
@@ -313,7 +313,9 @@ class IpamIp(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Books and manages Scaleway IPAM IPs.
+        Books and manages IPAM IPs.
+
+        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 
         ## Example Usage
 
@@ -334,7 +336,7 @@ class IpamIp(pulumi.CustomResource):
         )])
         ```
 
-        ### Request a specific IPv4
+        ### Request a specific IPv4 address
 
         ```python
         import pulumi
@@ -353,7 +355,7 @@ class IpamIp(pulumi.CustomResource):
             )])
         ```
 
-        ### Request an IPv6
+        ### Request an IPv6 address
 
         ```python
         import pulumi
@@ -374,7 +376,7 @@ class IpamIp(pulumi.CustomResource):
 
         ## Import
 
-        IPAM IPs can be imported using the `{region}/{id}`, e.g.
+        IPAM IPs can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -385,8 +387,8 @@ class IpamIp(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Request a specific IP in the requested source pool
-        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
@@ -398,7 +400,9 @@ class IpamIp(pulumi.CustomResource):
                  args: IpamIpArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Books and manages Scaleway IPAM IPs.
+        Books and manages IPAM IPs.
+
+        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 
         ## Example Usage
 
@@ -419,7 +423,7 @@ class IpamIp(pulumi.CustomResource):
         )])
         ```
 
-        ### Request a specific IPv4
+        ### Request a specific IPv4 address
 
         ```python
         import pulumi
@@ -438,7 +442,7 @@ class IpamIp(pulumi.CustomResource):
             )])
         ```
 
-        ### Request an IPv6
+        ### Request an IPv6 address
 
         ```python
         import pulumi
@@ -459,7 +463,7 @@ class IpamIp(pulumi.CustomResource):
 
         ## Import
 
-        IPAM IPs can be imported using the `{region}/{id}`, e.g.
+        IPAM IPs can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -540,11 +544,11 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[str] created_at: Date and time of IP's creation (RFC 3339 format).
-        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 instead of an IPv4.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpResourceArgs']]]] resources: The IP resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpReverseArgs']]]] reverses: The reverses DNS for this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpReverseArgs']]]] reverses: The reverse DNS for this IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         :param pulumi.Input[str] updated_at: Date and time of IP's last update (RFC 3339 format).
@@ -587,7 +591,7 @@ class IpamIp(pulumi.CustomResource):
     @pulumi.getter(name="isIpv6")
     def is_ipv6(self) -> pulumi.Output[Optional[bool]]:
         """
-        Defines whether to request an IPv6 instead of an IPv4.
+        Defines whether to request an IPv6 address instead of IPv4.
         """
         return pulumi.get(self, "is_ipv6")
 
@@ -595,7 +599,7 @@ class IpamIp(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -619,7 +623,7 @@ class IpamIp(pulumi.CustomResource):
     @pulumi.getter
     def reverses(self) -> pulumi.Output[Sequence['outputs.IpamIpReverse']]:
         """
-        The reverses DNS for this IP.
+        The reverse DNS for this IP.
         """
         return pulumi.get(self, "reverses")
 

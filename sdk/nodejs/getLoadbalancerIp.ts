@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Load Balancer IP.
+ * Gets information about a Load Balancer IP address.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  *
  * ## Example Usage
  *
@@ -44,7 +46,7 @@ export interface GetLoadbalancerIpArgs {
      */
     ipId?: string;
     /**
-     * The ID of the project the LB IP associated with.
+     * The ID of the Project the Load Balancer IP is associated with.
      */
     projectId?: string;
 }
@@ -61,11 +63,11 @@ export interface GetLoadbalancerIpResult {
     readonly ipId?: string;
     readonly isIpv6: boolean;
     /**
-     * The associated load-balancer ID if any
+     * The ID of the associated Load Balancer, if any
      */
     readonly lbId: string;
     /**
-     * (Defaults to provider `organizationId`) The ID of the organization the LB IP is associated with.
+     * (Defaults to provider `organizationId`) The ID of the Organization the Load Balancer IP is associated with.
      */
     readonly organizationId: string;
     readonly projectId: string;
@@ -77,7 +79,9 @@ export interface GetLoadbalancerIpResult {
     readonly zone: string;
 }
 /**
- * Gets information about a Load Balancer IP.
+ * Gets information about a Load Balancer IP address.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  *
  * ## Example Usage
  *
@@ -109,7 +113,7 @@ export interface GetLoadbalancerIpOutputArgs {
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The ID of the project the LB IP associated with.
+     * The ID of the Project the Load Balancer IP is associated with.
      */
     projectId?: pulumi.Input<string>;
 }

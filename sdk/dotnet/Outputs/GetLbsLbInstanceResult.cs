@@ -15,24 +15,24 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbsLbInstanceResult
     {
         /// <summary>
-        /// Date at which the Load balancer was created.
+        /// Date on which the Load Balancer was created.
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The ID of the load-balancer.
+        /// The ID of the Load Balancer.
         /// </summary>
         public readonly string Id;
         public readonly string IpAddress;
         /// <summary>
-        /// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        /// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// Date at which the Load balancer was updated.
+        /// Date on which the Load Balancer was updated.
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
-        /// `zone`) The zone in which LBs exist.
+        /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
         public readonly string Zone;
 

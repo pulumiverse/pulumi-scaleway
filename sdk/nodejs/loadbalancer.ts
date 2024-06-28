@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Load-Balancers.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
+ * Creates and manages Scaleway Load Balancers.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  *
  * ## Example Usage
  *
@@ -55,10 +56,68 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Multiple configurations
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * //## IP for Public Gateway
+ * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
+ * //## Scaleway Private Network
+ * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
+ * //## VPC Public Gateway Network
+ * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("mainVpcPublicGateway", {
+ *     type: "VPC-GW-S",
+ *     ipId: mainVpcPublicGatewayIp.id,
+ * });
+ * //## VPC Public Gateway Network DHCP config
+ * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", {subnet: "10.0.0.0/24"});
+ * //## VPC Gateway Network
+ * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", {
+ *     gatewayId: mainVpcPublicGateway.id,
+ *     privateNetworkId: mainVpcPrivateNetwork.id,
+ *     dhcpId: mainVpcPublicGatewayDhcp.id,
+ *     cleanupDhcp: true,
+ *     enableMasquerade: true,
+ * });
+ * //## Scaleway Instance
+ * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
+ *     type: "DEV1-S",
+ *     image: "debian_bullseye",
+ *     enableIpv6: false,
+ *     privateNetworks: [{
+ *         pnId: mainVpcPrivateNetwork.id,
+ *     }],
+ * });
+ * //## IP for LB IP
+ * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
+ * //## Scaleway Private Network
+ * const mainIndex_vpcPrivateNetworkVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork", {});
+ * //## Scaleway Load Balancer
+ * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
+ *     ipId: mainLoadbalancerIp.id,
+ *     type: "LB-S",
+ *     privateNetworks: [{
+ *         privateNetworkId: mainVpcPrivateNetwork.id,
+ *         dhcpConfig: true,
+ *     }],
+ * }, {
+ *     dependsOn: [mainVpcPublicGateway],
+ * });
+ * ```
+ *
+ * ## Migration
+ *
+ * In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
+ * This change will not recreate your Load Balancer.
+ *
+ * Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
+ *
  * ## IP ID
  *
  * Since v1.15.0, `ipId` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
- * When importing, the IP needs to be imported as well as the LB.
+ * When importing, the IP needs to be imported as well as the Load Balancer.
  * When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
  *
  * For instance, if you had the following:
@@ -90,7 +149,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Load-Balancer can be imported using the `{zone}/{id}`, e.g.
+ * Load Balancers can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -129,25 +188,25 @@ export class Loadbalancer extends pulumi.CustomResource {
     }
 
     /**
-     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
      */
     public readonly assignFlexibleIp!: pulumi.Output<boolean | undefined>;
     /**
-     * Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+     * Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
      */
     public readonly assignFlexibleIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * The description of the load-balancer.
+     * The description of the Load Balancer.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The load-balancer public IPv4 Address.
+     * The Load Balancer public IPv4 address.
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The ID of the associated LB IP. See below.
+     * The ID of the associated Load Balancer IP. See below.
      *
-     * > **Important:** Updates to `ipId` will recreate the load-balancer.
+     * > **Important:** Updates to `ipId` will recreate the Load Balancer.
      *
      * @deprecated Please use ip_ids
      */
@@ -157,15 +216,15 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly ipIds!: pulumi.Output<string[]>;
     /**
-     * The load-balancer public IPv6 Address.
+     * The Load Balancer public IPv6 address.
      */
     public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
     /**
-     * The name of the load-balancer.
+     * The name of the Load Balancer.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization ID the Load Balancer is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -173,7 +232,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly privateNetworks!: pulumi.Output<outputs.LoadbalancerPrivateNetwork[] | undefined>;
     /**
-     * `projectId`) The ID of the project the load-balancer is associated with.
+     * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -181,7 +240,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public /*out*/ readonly region!: pulumi.Output<string>;
     /**
-     * The releaseIp allow release the ip address associated with the load-balancers.
+     * The `releaseIp` allow the release of the IP address associated with the Load Balancer.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
@@ -191,15 +250,15 @@ export class Loadbalancer extends pulumi.CustomResource {
      */
     public readonly sslCompatibilityLevel!: pulumi.Output<string | undefined>;
     /**
-     * The tags associated with the load-balancers.
+     * The tags associated with the Load Balancer.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type.
+     * The type of the Load Balancer. Please check the migration section to upgrade the type.
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * `zone`) The zone of the load-balancer.
+     * `zone`) The zone of the Load Balancer.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -266,25 +325,25 @@ export class Loadbalancer extends pulumi.CustomResource {
  */
 export interface LoadbalancerState {
     /**
-     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
      */
     assignFlexibleIp?: pulumi.Input<boolean>;
     /**
-     * Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+     * Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
      */
     assignFlexibleIpv6?: pulumi.Input<boolean>;
     /**
-     * The description of the load-balancer.
+     * The description of the Load Balancer.
      */
     description?: pulumi.Input<string>;
     /**
-     * The load-balancer public IPv4 Address.
+     * The Load Balancer public IPv4 address.
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The ID of the associated LB IP. See below.
+     * The ID of the associated Load Balancer IP. See below.
      *
-     * > **Important:** Updates to `ipId` will recreate the load-balancer.
+     * > **Important:** Updates to `ipId` will recreate the Load Balancer.
      *
      * @deprecated Please use ip_ids
      */
@@ -294,15 +353,15 @@ export interface LoadbalancerState {
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The load-balancer public IPv6 Address.
+     * The Load Balancer public IPv6 address.
      */
     ipv6Address?: pulumi.Input<string>;
     /**
-     * The name of the load-balancer.
+     * The name of the Load Balancer.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization ID the Load Balancer is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -310,7 +369,7 @@ export interface LoadbalancerState {
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerPrivateNetwork>[]>;
     /**
-     * `projectId`) The ID of the project the load-balancer is associated with.
+     * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -318,7 +377,7 @@ export interface LoadbalancerState {
      */
     region?: pulumi.Input<string>;
     /**
-     * The releaseIp allow release the ip address associated with the load-balancers.
+     * The `releaseIp` allow the release of the IP address associated with the Load Balancer.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
@@ -328,15 +387,15 @@ export interface LoadbalancerState {
      */
     sslCompatibilityLevel?: pulumi.Input<string>;
     /**
-     * The tags associated with the load-balancers.
+     * The tags associated with the Load Balancer.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type.
+     * The type of the Load Balancer. Please check the migration section to upgrade the type.
      */
     type?: pulumi.Input<string>;
     /**
-     * `zone`) The zone of the load-balancer.
+     * `zone`) The zone of the Load Balancer.
      */
     zone?: pulumi.Input<string>;
 }
@@ -346,21 +405,21 @@ export interface LoadbalancerState {
  */
 export interface LoadbalancerArgs {
     /**
-     * Defines whether to automatically assign a flexible public IP to the load-balancer.
+     * Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
      */
     assignFlexibleIp?: pulumi.Input<boolean>;
     /**
-     * Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+     * Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
      */
     assignFlexibleIpv6?: pulumi.Input<boolean>;
     /**
-     * The description of the load-balancer.
+     * The description of the Load Balancer.
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of the associated LB IP. See below.
+     * The ID of the associated Load Balancer IP. See below.
      *
-     * > **Important:** Updates to `ipId` will recreate the load-balancer.
+     * > **Important:** Updates to `ipId` will recreate the Load Balancer.
      *
      * @deprecated Please use ip_ids
      */
@@ -370,7 +429,7 @@ export interface LoadbalancerArgs {
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The name of the load-balancer.
+     * The name of the Load Balancer.
      */
     name?: pulumi.Input<string>;
     /**
@@ -378,11 +437,11 @@ export interface LoadbalancerArgs {
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.LoadbalancerPrivateNetwork>[]>;
     /**
-     * `projectId`) The ID of the project the load-balancer is associated with.
+     * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The releaseIp allow release the ip address associated with the load-balancers.
+     * The `releaseIp` allow the release of the IP address associated with the Load Balancer.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
@@ -392,15 +451,15 @@ export interface LoadbalancerArgs {
      */
     sslCompatibilityLevel?: pulumi.Input<string>;
     /**
-     * The tags associated with the load-balancers.
+     * The tags associated with the Load Balancer.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the load-balancer. Please check the migration section to upgrade the type.
+     * The type of the Load Balancer. Please check the migration section to upgrade the type.
      */
     type: pulumi.Input<string>;
     /**
-     * `zone`) The zone of the load-balancer.
+     * `zone`) The zone of the Load Balancer.
      */
     zone?: pulumi.Input<string>;
 }

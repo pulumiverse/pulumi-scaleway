@@ -11,15 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Activate Scaleway Messaging and queuing SNS for a project.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+    /// Activates Scaleway Messaging and Queuing SNS in a Project.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
     /// 
     /// ## Example Usage
     /// 
     /// ### Basic
     /// 
-    /// Activate SNS for default project
+    /// Activate SNS in the default Project
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// Activate SNS for a specific project
+    /// Activate SNS in a specific Project
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway
     ///         Name = "default",
     ///     });
     /// 
-    ///     // For specific project in default region
+    ///     // For specific Project in default region
     ///     var forProject = new Scaleway.MnqSns("forProject", new()
     ///     {
     ///         ProjectId = project.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id),
@@ -61,7 +61,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// SNS status can be imported using the `{region}/{project_id}`, e.g.
+    /// SNS status can be imported using `{region}/{project_id}`, e.g.
     /// 
     /// bash
     /// 
@@ -73,20 +73,20 @@ namespace Pulumiverse.Scaleway
     public partial class MnqSns : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The endpoint of the SNS service for this project.
+        /// The endpoint of the SNS service for this Project.
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns will be enabled for.
+        /// `project_id`) The ID of the project in which SNS will be enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// `region`). The region
-        /// in which sns will be enabled.
+        /// in which SNS will be enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -139,14 +139,14 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqSnsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the sns will be enabled for.
+        /// `project_id`) The ID of the project in which SNS will be enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`). The region
-        /// in which sns will be enabled.
+        /// in which SNS will be enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -160,20 +160,20 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqSnsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The endpoint of the SNS service for this project.
+        /// The endpoint of the SNS service for this Project.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns will be enabled for.
+        /// `project_id`) The ID of the project in which SNS will be enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`). The region
-        /// in which sns will be enabled.
+        /// in which SNS will be enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

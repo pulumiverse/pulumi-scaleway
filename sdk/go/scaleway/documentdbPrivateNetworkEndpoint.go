@@ -16,6 +16,52 @@ import (
 //
 // ## Example Usage
 //
+// ### Example Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			instance, err := scaleway.NewDocumentdbInstance(ctx, "instance", &scaleway.DocumentdbInstanceArgs{
+//				NodeType:       pulumi.String("docdb-play2-pico"),
+//				Engine:         pulumi.String("FerretDB-1"),
+//				UserName:       pulumi.String("my_initial_user"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				VolumeSizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDocumentdbPrivateNetworkEndpoint(ctx, "main", &scaleway.DocumentdbPrivateNetworkEndpointArgs{
+//				InstanceId: instance.ID(),
+//				PrivateNetwork: &scaleway.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{
+//					IpNet: pulumi.String("172.16.32.3/22"),
+//					Id:    pn.ID(),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pn,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
@@ -28,26 +74,16 @@ import (
 type DocumentdbPrivateNetworkEndpoint struct {
 	pulumi.CustomResourceState
 
-	// Hostname of the endpoint.
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// UUID of the documentdb instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// IPv4 address on the network.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	IpNet pulumi.StringOutput `pulumi:"ipNet"`
-	// Name of the endpoint.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// Port in the Private Network.
-	Port pulumi.IntOutput `pulumi:"port"`
-	// The ID of the private network.
-	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
-	// The region you want to attach the resource to
+	// The private network specs details. This is a list with maximum one element and supports the following attributes:
+	PrivateNetwork DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
+	// The region of the endpoint.
+	//
+	// > **NOTE:** Please calculate your host IP.
+	// using cirhost. Otherwise, lets IPAM service
+	// handle the host IP on the network.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The zone you want to attach the resource to
-	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewDocumentdbPrivateNetworkEndpoint registers a new resource with the given unique name, arguments, and options.
@@ -59,9 +95,6 @@ func NewDocumentdbPrivateNetworkEndpoint(ctx *pulumi.Context,
 
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
-	}
-	if args.PrivateNetworkId == nil {
-		return nil, errors.New("invalid value for required argument 'PrivateNetworkId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DocumentdbPrivateNetworkEndpoint
@@ -86,49 +119,29 @@ func GetDocumentdbPrivateNetworkEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DocumentdbPrivateNetworkEndpoint resources.
 type documentdbPrivateNetworkEndpointState struct {
-	// Hostname of the endpoint.
-	Hostname *string `pulumi:"hostname"`
 	// UUID of the documentdb instance.
 	InstanceId *string `pulumi:"instanceId"`
-	// IPv4 address on the network.
-	Ip *string `pulumi:"ip"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	IpNet *string `pulumi:"ipNet"`
-	// Name of the endpoint.
-	Name *string `pulumi:"name"`
-	// Port in the Private Network.
-	Port *int `pulumi:"port"`
-	// The ID of the private network.
-	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// The region you want to attach the resource to
+	// The private network specs details. This is a list with maximum one element and supports the following attributes:
+	PrivateNetwork *DocumentdbPrivateNetworkEndpointPrivateNetwork `pulumi:"privateNetwork"`
+	// The region of the endpoint.
+	//
+	// > **NOTE:** Please calculate your host IP.
+	// using cirhost. Otherwise, lets IPAM service
+	// handle the host IP on the network.
 	Region *string `pulumi:"region"`
-	// The zone you want to attach the resource to
-	Zone *string `pulumi:"zone"`
 }
 
 type DocumentdbPrivateNetworkEndpointState struct {
-	// Hostname of the endpoint.
-	Hostname pulumi.StringPtrInput
 	// UUID of the documentdb instance.
 	InstanceId pulumi.StringPtrInput
-	// IPv4 address on the network.
-	Ip pulumi.StringPtrInput
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	IpNet pulumi.StringPtrInput
-	// Name of the endpoint.
-	Name pulumi.StringPtrInput
-	// Port in the Private Network.
-	Port pulumi.IntPtrInput
-	// The ID of the private network.
-	PrivateNetworkId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// The private network specs details. This is a list with maximum one element and supports the following attributes:
+	PrivateNetwork DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput
+	// The region of the endpoint.
+	//
+	// > **NOTE:** Please calculate your host IP.
+	// using cirhost. Otherwise, lets IPAM service
+	// handle the host IP on the network.
 	Region pulumi.StringPtrInput
-	// The zone you want to attach the resource to
-	Zone pulumi.StringPtrInput
 }
 
 func (DocumentdbPrivateNetworkEndpointState) ElementType() reflect.Type {
@@ -138,36 +151,28 @@ func (DocumentdbPrivateNetworkEndpointState) ElementType() reflect.Type {
 type documentdbPrivateNetworkEndpointArgs struct {
 	// UUID of the documentdb instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	IpNet *string `pulumi:"ipNet"`
-	// Port in the Private Network.
-	Port *int `pulumi:"port"`
-	// The ID of the private network.
-	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The region you want to attach the resource to
+	// The private network specs details. This is a list with maximum one element and supports the following attributes:
+	PrivateNetwork *DocumentdbPrivateNetworkEndpointPrivateNetwork `pulumi:"privateNetwork"`
+	// The region of the endpoint.
+	//
+	// > **NOTE:** Please calculate your host IP.
+	// using cirhost. Otherwise, lets IPAM service
+	// handle the host IP on the network.
 	Region *string `pulumi:"region"`
-	// The zone you want to attach the resource to
-	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a DocumentdbPrivateNetworkEndpoint resource.
 type DocumentdbPrivateNetworkEndpointArgs struct {
 	// UUID of the documentdb instance.
 	InstanceId pulumi.StringInput
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	IpNet pulumi.StringPtrInput
-	// Port in the Private Network.
-	Port pulumi.IntPtrInput
-	// The ID of the private network.
-	PrivateNetworkId pulumi.StringInput
-	// The region you want to attach the resource to
+	// The private network specs details. This is a list with maximum one element and supports the following attributes:
+	PrivateNetwork DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput
+	// The region of the endpoint.
+	//
+	// > **NOTE:** Please calculate your host IP.
+	// using cirhost. Otherwise, lets IPAM service
+	// handle the host IP on the network.
 	Region pulumi.StringPtrInput
-	// The zone you want to attach the resource to
-	Zone pulumi.StringPtrInput
 }
 
 func (DocumentdbPrivateNetworkEndpointArgs) ElementType() reflect.Type {
@@ -257,51 +262,25 @@ func (o DocumentdbPrivateNetworkEndpointOutput) ToDocumentdbPrivateNetworkEndpoi
 	return o
 }
 
-// Hostname of the endpoint.
-func (o DocumentdbPrivateNetworkEndpointOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
-}
-
 // UUID of the documentdb instance.
 func (o DocumentdbPrivateNetworkEndpointOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// IPv4 address on the network.
-func (o DocumentdbPrivateNetworkEndpointOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+// The private network specs details. This is a list with maximum one element and supports the following attributes:
+func (o DocumentdbPrivateNetworkEndpointOutput) PrivateNetwork() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+		return v.PrivateNetwork
+	}).(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput)
 }
 
-// The IP network address within the private subnet. This must be an IPv4 address with a
-// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-// service if not set.
-func (o DocumentdbPrivateNetworkEndpointOutput) IpNet() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.IpNet }).(pulumi.StringOutput)
-}
-
-// Name of the endpoint.
-func (o DocumentdbPrivateNetworkEndpointOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
-}
-
-// Port in the Private Network.
-func (o DocumentdbPrivateNetworkEndpointOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
-}
-
-// The ID of the private network.
-func (o DocumentdbPrivateNetworkEndpointOutput) PrivateNetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
-}
-
-// The region you want to attach the resource to
+// The region of the endpoint.
+//
+// > **NOTE:** Please calculate your host IP.
+// using cirhost. Otherwise, lets IPAM service
+// handle the host IP on the network.
 func (o DocumentdbPrivateNetworkEndpointOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
-}
-
-// The zone you want to attach the resource to
-func (o DocumentdbPrivateNetworkEndpointOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type DocumentdbPrivateNetworkEndpointArrayOutput struct{ *pulumi.OutputState }

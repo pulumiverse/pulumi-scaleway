@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manage Scaleway Messaging and queuing SNS Topic Subscriptions.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+ * Manages Scaleway Messaging and Queuing SNS topic subscriptions.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
  *
  * ## Example Usage
  *
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * SNS topic subscriptions can be imported using the `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
+ * SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
  *
  * bash
  *
@@ -93,20 +93,20 @@ export class MnqSnsTopicSubscription extends pulumi.CustomResource {
      */
     public readonly endpoint!: pulumi.Output<string | undefined>;
     /**
-     * `projectId`) The ID of the project the sns is enabled for.
+     * `projectId`) The ID of the Project in which SNS is enabled.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Protocol of the SNS Topic Subscription.
+     * Protocol of the SNS topic subscription.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
-     * Activate JSON Redrive Policy.
+     * Activate JSON redrive policy.
      */
     public readonly redrivePolicy!: pulumi.Output<boolean>;
     /**
      * `region`). The region
-     * in which sns is enabled.
+     * in which SNS is enabled.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -197,20 +197,20 @@ export interface MnqSnsTopicSubscriptionState {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sns is enabled for.
+     * `projectId`) The ID of the Project in which SNS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Protocol of the SNS Topic Subscription.
+     * Protocol of the SNS topic subscription.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * Activate JSON Redrive Policy.
+     * Activate JSON redrive policy.
      */
     redrivePolicy?: pulumi.Input<boolean>;
     /**
      * `region`). The region
-     * in which sns is enabled.
+     * in which SNS is enabled.
      */
     region?: pulumi.Input<string>;
     /**
@@ -244,20 +244,20 @@ export interface MnqSnsTopicSubscriptionArgs {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sns is enabled for.
+     * `projectId`) The ID of the Project in which SNS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Protocol of the SNS Topic Subscription.
+     * Protocol of the SNS topic subscription.
      */
     protocol: pulumi.Input<string>;
     /**
-     * Activate JSON Redrive Policy.
+     * Activate JSON redrive policy.
      */
     redrivePolicy?: pulumi.Input<boolean>;
     /**
      * `region`). The region
-     * in which sns is enabled.
+     * in which SNS is enabled.
      */
     region?: pulumi.Input<string>;
     /**

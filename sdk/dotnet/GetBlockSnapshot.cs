@@ -12,9 +12,51 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetBlockSnapshot
     {
+        /// <summary>
+        /// Gets information about a Block Snapshot.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mySnapshot = Scaleway.GetBlockSnapshot.Invoke(new()
+        ///     {
+        ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetBlockSnapshotResult> InvokeAsync(GetBlockSnapshotArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a Block Snapshot.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mySnapshot = Scaleway.GetBlockSnapshot.Invoke(new()
+        ///     {
+        ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());
     }
@@ -22,18 +64,33 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetBlockSnapshotArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the snapshot is associated with.
+        /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
+        /// <summary>
+        /// The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// </summary>
         [Input("snapshotId")]
         public string? SnapshotId { get; set; }
 
+        /// <summary>
+        /// The ID of the volume from which the snapshot has been created.
+        /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the snapshot exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -45,18 +102,33 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetBlockSnapshotInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the snapshot is associated with.
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 
+        /// <summary>
+        /// The ID of the volume from which the snapshot has been created.
+        /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the snapshot exists.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

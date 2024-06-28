@@ -108,7 +108,7 @@ class GetLoadbalancerResult:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
         """
-        The load-balancer public IP Address.
+        The Load Balancer public IP address.
         """
         return pulumi.get(self, "ip_address")
 
@@ -171,7 +171,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        The tags associated with the load-balancer.
+        The tags associated with the Load Balancer.
         """
         return pulumi.get(self, "tags")
 
@@ -179,7 +179,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of the load-balancer.
+        The Load Balancer type.
         """
         return pulumi.get(self, "type")
 
@@ -187,7 +187,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def zone(self) -> Optional[str]:
         """
-        (Defaults to provider `zone`) The zone in which the LB exists.
+        (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
 
@@ -228,6 +228,8 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     """
     Gets information about a Load Balancer.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+
     ## Example Usage
 
     ```python
@@ -239,9 +241,9 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     ```
 
 
-    :param str name: The load balancer name.
-    :param str project_id: The ID of the project the LB is associated with.
-    :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
+    :param str name: The Load Balancer name.
+    :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
@@ -284,6 +286,8 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     """
     Gets information about a Load Balancer.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+
     ## Example Usage
 
     ```python
@@ -295,8 +299,8 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The load balancer name.
-    :param str project_id: The ID of the project the LB is associated with.
-    :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
+    :param str name: The Load Balancer name.
+    :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
     ...

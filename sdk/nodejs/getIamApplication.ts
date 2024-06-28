@@ -38,17 +38,17 @@ export function getIamApplication(args?: GetIamApplicationArgs, opts?: pulumi.In
 export interface GetIamApplicationArgs {
     /**
      * The ID of the IAM application.
-     * Only one of the `name` and `applicationId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `applicationId`.
      */
     applicationId?: string;
     /**
      * The name of the IAM application.
-     * Only one of the `name` and `applicationId` should be specified.
      */
     name?: string;
     /**
      * `organizationId`) The ID of the
-     * organization the application is associated with.
+     * Organization the application is associated with.
      */
     organizationId?: string;
 }
@@ -97,17 +97,17 @@ export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts
 export interface GetIamApplicationOutputArgs {
     /**
      * The ID of the IAM application.
-     * Only one of the `name` and `applicationId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `applicationId`.
      */
     applicationId?: pulumi.Input<string>;
     /**
      * The name of the IAM application.
-     * Only one of the `name` and `applicationId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
      * `organizationId`) The ID of the
-     * organization the application is associated with.
+     * Organization the application is associated with.
      */
     organizationId?: pulumi.Input<string>;
 }

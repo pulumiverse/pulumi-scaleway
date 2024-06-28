@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about your Consumptions.
+ */
 export function getBillingConsumptions(args?: GetBillingConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingConsumptionsResult> {
     args = args || {};
 
@@ -19,6 +22,9 @@ export function getBillingConsumptions(args?: GetBillingConsumptionsArgs, opts?:
  * A collection of arguments for invoking getBillingConsumptions.
  */
 export interface GetBillingConsumptionsArgs {
+    /**
+     * `projectId`) The ID of the project the consumption list is associated with.
+     */
     projectId?: string;
 }
 
@@ -26,15 +32,27 @@ export interface GetBillingConsumptionsArgs {
  * A collection of values returned by getBillingConsumptions.
  */
 export interface GetBillingConsumptionsResult {
+    /**
+     * List of found consumptions
+     */
     readonly consumptions: outputs.GetBillingConsumptionsConsumption[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly organizationId: string;
+    /**
+     * The project ID of the consumption.
+     */
     readonly projectId: string;
+    /**
+     * The last consumption update date.
+     */
     readonly updatedAt: string;
 }
+/**
+ * Gets information about your Consumptions.
+ */
 export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingConsumptionsResult> {
     return pulumi.output(args).apply((a: any) => getBillingConsumptions(a, opts))
 }
@@ -43,5 +61,8 @@ export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutput
  * A collection of arguments for invoking getBillingConsumptions.
  */
 export interface GetBillingConsumptionsOutputArgs {
+    /**
+     * `projectId`) The ID of the project the consumption list is associated with.
+     */
     projectId?: pulumi.Input<string>;
 }

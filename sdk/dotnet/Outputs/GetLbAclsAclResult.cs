@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbAclsAclResult
     {
         /// <summary>
-        /// The action that has been undertaken when an ACL filter had matched.
+        /// The action to be undertaken when an ACL filter matches.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbAclsAclActionResult> Actions;
         /// <summary>
-        /// The date at which the ACL was created (RFC 3339 format).
+        /// The date on which the ACL was created (RFC 3339 format).
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
@@ -27,8 +27,8 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-        /// &gt; **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        /// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+        /// &gt; **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         /// </summary>
         public readonly string FrontendId;
         /// <summary>
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The order between the ACLs.
+        /// The priority of this ACL in the ordered list.
         /// </summary>
         public readonly int Index;
         /// <summary>
@@ -45,11 +45,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbAclsAclMatchResult> Matches;
         /// <summary>
-        /// The ACL name used as filter. ACLs with a name like it are listed.
+        /// The ACL name to filter for. ACLs with a matching name are listed.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The date at which the ACL was last updated (RFC 3339 format).
+        /// The date on which the ACL was last updated (RFC 3339 format).
         /// </summary>
         public readonly string UpdateAt;
 

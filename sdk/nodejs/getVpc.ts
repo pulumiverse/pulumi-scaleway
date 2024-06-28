@@ -43,24 +43,24 @@ export function getVpc(args?: GetVpcArgs, opts?: pulumi.InvokeOptions): Promise<
  */
 export interface GetVpcArgs {
     /**
-     * To get default VPC's information.
+     * Whether the targeted VPC is the default VPC.
      */
     isDefault?: boolean;
     /**
-     * Name of the VPC. One of `name` and `vpcId` should be specified.
+     * Name of the VPC. A maximum of one of `name` and `vpcId` should be specified.
      */
     name?: string;
     /**
-     * The ID of the organization the VPC is associated with.
+     * The ID of the Organization the VPC is associated with.
      */
     organizationId?: string;
     /**
-     * `projectId`) The ID of the project the VPC is associated with.
+     * `projectId`) The ID of the Project the VPC is associated with.
      */
     projectId?: string;
     region?: string;
     /**
-     * ID of the VPC. One of `name` and `vpcId` should be specified.
+     * ID of the VPC. A maximum of one of `name` and `vpcId` should be specified.
      */
     vpcId?: string;
 }
@@ -113,24 +113,24 @@ export function getVpcOutput(args?: GetVpcOutputArgs, opts?: pulumi.InvokeOption
  */
 export interface GetVpcOutputArgs {
     /**
-     * To get default VPC's information.
+     * Whether the targeted VPC is the default VPC.
      */
     isDefault?: pulumi.Input<boolean>;
     /**
-     * Name of the VPC. One of `name` and `vpcId` should be specified.
+     * Name of the VPC. A maximum of one of `name` and `vpcId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the organization the VPC is associated with.
+     * The ID of the Organization the VPC is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the VPC is associated with.
+     * `projectId`) The ID of the Project the VPC is associated with.
      */
     projectId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     /**
-     * ID of the VPC. One of `name` and `vpcId` should be specified.
+     * ID of the VPC. A maximum of one of `name` and `vpcId` should be specified.
      */
     vpcId?: pulumi.Input<string>;
 }

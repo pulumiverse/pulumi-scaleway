@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Load-Balancer Backends.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+ * Creates and manages Scaleway Load Balancer backends.
+ *
+ * or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Example Usage
  *
@@ -43,7 +44,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Load-Balancer backend can be imported using the `{zone}/{id}`, e.g.
+ * Load Balancer backends can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *

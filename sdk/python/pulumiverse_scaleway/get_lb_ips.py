@@ -59,7 +59,7 @@ class GetLbIpsResult:
     @pulumi.getter
     def ips(self) -> Sequence['outputs.GetLbIpsIpResult']:
         """
-        List of found IPs
+        List of retrieved IPs
         """
         return pulumi.get(self, "ips")
 
@@ -67,7 +67,7 @@ class GetLbIpsResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the load-balancer is associated with.
+        The ID of the Organization the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -75,7 +75,7 @@ class GetLbIpsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the load-balancer is associated with.
+        The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -83,7 +83,7 @@ class GetLbIpsResult:
     @pulumi.getter
     def zone(self) -> str:
         """
-        The zone in which the load-balancer is.
+        The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
@@ -107,7 +107,9 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
                zone: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbIpsResult:
     """
-    Gets information about multiple Load Balancer IPs.
+    Gets information about multiple Load Balancer IP addresses.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
     ## Example Usage
 
@@ -120,9 +122,9 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
     ```
 
 
-    :param str ip_cidr_range: The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
-    :param str project_id: The ID of the project the load-balancer is associated with.
-    :param str zone: `zone`) The zone in which IPs exist.
+    :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
+    :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param str zone: `zone`) The zone in which the IPs exist.
     """
     __args__ = dict()
     __args__['ipCidrRange'] = ip_cidr_range
@@ -146,7 +148,9 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
                       zone: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbIpsResult]:
     """
-    Gets information about multiple Load Balancer IPs.
+    Gets information about multiple Load Balancer IP addresses.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
     ## Example Usage
 
@@ -159,8 +163,8 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     ```
 
 
-    :param str ip_cidr_range: The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
-    :param str project_id: The ID of the project the load-balancer is associated with.
-    :param str zone: `zone`) The zone in which IPs exist.
+    :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
+    :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param str zone: `zone`) The zone in which the IPs exist.
     """
     ...

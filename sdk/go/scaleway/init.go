@@ -25,8 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccountProject{}
 	case "scaleway:index/accountSshKey:AccountSshKey":
 		r = &AccountSshKey{}
-	case "scaleway:index/appleSliconValleyServer:AppleSliconValleyServer":
-		r = &AppleSliconValleyServer{}
+	case "scaleway:index/appleSiliconServer:AppleSiliconServer":
+		r = &AppleSiliconServer{}
 	case "scaleway:index/baremetalServer:BaremetalServer":
 		r = &BaremetalServer{}
 	case "scaleway:index/blockSnapshot:BlockSnapshot":
@@ -276,7 +276,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/appleSliconValleyServer",
+		"index/appleSiliconServer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

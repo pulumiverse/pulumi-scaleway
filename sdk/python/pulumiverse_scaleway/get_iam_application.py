@@ -135,11 +135,11 @@ def get_iam_application(application_id: Optional[str] = None,
 
 
     :param str application_id: The ID of the IAM application.
-           Only one of the `name` and `application_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `application_id`.
     :param str name: The name of the IAM application.
-           Only one of the `name` and `application_id` should be specified.
     :param str organization_id: `organization_id`) The ID of the
-           organization the application is associated with.
+           Organization the application is associated with.
     """
     __args__ = dict()
     __args__['applicationId'] = application_id
@@ -180,10 +180,10 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
 
 
     :param str application_id: The ID of the IAM application.
-           Only one of the `name` and `application_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `application_id`.
     :param str name: The name of the IAM application.
-           Only one of the `name` and `application_id` should be specified.
     :param str organization_id: `organization_id`) The ID of the
-           organization the application is associated with.
+           Organization the application is associated with.
     """
     ...

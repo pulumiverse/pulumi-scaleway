@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Database instance authorized IPs.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
+ * For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
  *
  * ## Example Usage
  *
@@ -18,8 +18,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseAcl("main", {
- *     instanceId: scaleway_rdb_instance.main.id,
+ * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * const mainDatabaseAcl = new scaleway.DatabaseAcl("mainDatabaseAcl", {
+ *     instanceId: mainDatabaseInstance.id,
  *     aclRules: [{
  *         ip: "1.2.3.4/32",
  *         description: "foo",
@@ -70,7 +78,7 @@ export class DatabaseAcl extends pulumi.CustomResource {
      */
     public readonly aclRules!: pulumi.Output<outputs.DatabaseAclAclRule[]>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
@@ -122,7 +130,7 @@ export interface DatabaseAclState {
      */
     aclRules?: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
@@ -142,7 +150,7 @@ export interface DatabaseAclArgs {
      */
     aclRules: pulumi.Input<pulumi.Input<inputs.DatabaseAclAclRule>[]>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */

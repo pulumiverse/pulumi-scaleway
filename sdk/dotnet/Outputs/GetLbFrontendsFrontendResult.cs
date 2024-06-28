@@ -15,37 +15,37 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbFrontendsFrontendResult
     {
         /// <summary>
-        /// The load-balancer backend ID this frontend is attached to.
-        /// &gt; **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        /// The Load Balancer backend ID this frontend is attached to.
+        /// &gt; **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         /// </summary>
         public readonly string BackendId;
         /// <summary>
-        /// List of Certificate IDs that are used by the frontend.
+        /// List of certificate IDs that are used by the frontend.
         /// </summary>
         public readonly ImmutableArray<string> CertificateIds;
         /// <summary>
-        /// The date at which the frontend was created (RFC 3339 format).
+        /// The date on which the frontend was created (RFC 3339 format).
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// If HTTP/3 protocol is activated.
+        /// Whether HTTP/3 protocol is activated.
         /// </summary>
         public readonly bool EnableHttp3;
         /// <summary>
-        /// The associated frontend ID.
-        /// &gt; **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        /// The ID of the associated frontend.
+        /// &gt; **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// TCP port the frontend listen to.
+        /// TCP port the frontend listens to.
         /// </summary>
         public readonly int InboundPort;
         /// <summary>
-        /// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+        /// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
         /// </summary>
         public readonly string LbId;
         /// <summary>
-        /// The frontend name used as filter. Frontends with a name like it are listed.
+        /// The frontend name to filter for. Frontends with a matching name are listed.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string TimeoutClient;
         /// <summary>
-        /// The date at which the frontend was last updated (RFC 3339 format).
+        /// The date aont which the frontend was last updated (RFC 3339 format).
         /// </summary>
         public readonly string UpdateAt;
 

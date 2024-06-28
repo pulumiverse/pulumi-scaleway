@@ -85,25 +85,25 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// To get default VPC's information.
+        /// Whether the targeted VPC is the default VPC.
         /// </summary>
         [Input("isDefault")]
         public bool? IsDefault { get; set; }
 
         /// <summary>
-        /// Name of the VPC. One of `name` and `vpc_id` should be specified.
+        /// Name of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the organization the VPC is associated with.
+        /// The ID of the Organization the VPC is associated with.
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `project_id`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -112,7 +112,7 @@ namespace Pulumiverse.Scaleway
         public string? Region { get; set; }
 
         /// <summary>
-        /// ID of the VPC. One of `name` and `vpc_id` should be specified.
+        /// ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
@@ -126,25 +126,25 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// To get default VPC's information.
+        /// Whether the targeted VPC is the default VPC.
         /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// Name of the VPC. One of `name` and `vpc_id` should be specified.
+        /// Name of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the organization the VPC is associated with.
+        /// The ID of the Organization the VPC is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `project_id`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// ID of the VPC. One of `name` and `vpc_id` should be specified.
+        /// ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

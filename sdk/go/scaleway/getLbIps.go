@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about multiple Load Balancer IPs.
+// Gets information about multiple Load Balancer IP addresses.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 //
 // ## Example Usage
 //
@@ -51,11 +53,11 @@ func GetLbIps(ctx *pulumi.Context, args *GetLbIpsArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getLbIps.
 type GetLbIpsArgs struct {
-	// The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
+	// The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
 	IpCidrRange *string `pulumi:"ipCidrRange"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `zone`) The zone in which IPs exist.
+	// `zone`) The zone in which the IPs exist.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -64,13 +66,13 @@ type GetLbIpsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id          string  `pulumi:"id"`
 	IpCidrRange *string `pulumi:"ipCidrRange"`
-	// List of found IPs
+	// List of retrieved IPs
 	Ips []GetLbIpsIp `pulumi:"ips"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
-	// The zone in which the load-balancer is.
+	// The zone of the Load Balancer.
 	Zone string `pulumi:"zone"`
 }
 
@@ -89,11 +91,11 @@ func GetLbIpsOutput(ctx *pulumi.Context, args GetLbIpsOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getLbIps.
 type GetLbIpsOutputArgs struct {
-	// The IP CIDR range used as a filter. IPs within a CIDR block like it are listed.
+	// The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
 	IpCidrRange pulumi.StringPtrInput `pulumi:"ipCidrRange"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `zone`) The zone in which IPs exist.
+	// `zone`) The zone in which the IPs exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -125,22 +127,22 @@ func (o GetLbIpsResultOutput) IpCidrRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLbIpsResult) *string { return v.IpCidrRange }).(pulumi.StringPtrOutput)
 }
 
-// List of found IPs
+// List of retrieved IPs
 func (o GetLbIpsResultOutput) Ips() GetLbIpsIpArrayOutput {
 	return o.ApplyT(func(v GetLbIpsResult) []GetLbIpsIp { return v.Ips }).(GetLbIpsIpArrayOutput)
 }
 
-// The organization ID the load-balancer is associated with.
+// The ID of the Organization the Load Balancer is associated with.
 func (o GetLbIpsResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the load-balancer is associated with.
+// The ID of the Project the Load Balancer is associated with.
 func (o GetLbIpsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The zone in which the load-balancer is.
+// The zone of the Load Balancer.
 func (o GetLbIpsResultOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsResult) string { return v.Zone }).(pulumi.StringOutput)
 }

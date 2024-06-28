@@ -11,8 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancers.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
+    /// Creates and manages Scaleway Load Balancers.
+    /// 
+    /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
     /// 
     /// ## Example Usage
     /// 
@@ -93,10 +94,101 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Multiple configurations
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //## IP for Public Gateway
+    ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
+    /// 
+    ///     //## Scaleway Private Network
+    ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
+    /// 
+    ///     //## VPC Public Gateway Network
+    ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new()
+    ///     {
+    ///         Type = "VPC-GW-S",
+    ///         IpId = mainVpcPublicGatewayIp.Id,
+    ///     });
+    /// 
+    ///     //## VPC Public Gateway Network DHCP config
+    ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
+    ///     {
+    ///         Subnet = "10.0.0.0/24",
+    ///     });
+    /// 
+    ///     //## VPC Gateway Network
+    ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new()
+    ///     {
+    ///         GatewayId = mainVpcPublicGateway.Id,
+    ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
+    ///         DhcpId = mainVpcPublicGatewayDhcp.Id,
+    ///         CleanupDhcp = true,
+    ///         EnableMasquerade = true,
+    ///     });
+    /// 
+    ///     //## Scaleway Instance
+    ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
+    ///     {
+    ///         Type = "DEV1-S",
+    ///         Image = "debian_bullseye",
+    ///         EnableIpv6 = false,
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
+    ///             {
+    ///                 PnId = mainVpcPrivateNetwork.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     //## IP for LB IP
+    ///     var mainLoadbalancerIp = new Scaleway.LoadbalancerIp("mainLoadbalancerIp");
+    /// 
+    ///     //## Scaleway Private Network
+    ///     var mainIndex_vpcPrivateNetworkVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork");
+    /// 
+    ///     //## Scaleway Load Balancer
+    ///     var mainLoadbalancer = new Scaleway.Loadbalancer("mainLoadbalancer", new()
+    ///     {
+    ///         IpId = mainLoadbalancerIp.Id,
+    ///         Type = "LB-S",
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Inputs.LoadbalancerPrivateNetworkArgs
+    ///             {
+    ///                 PrivateNetworkId = mainVpcPrivateNetwork.Id,
+    ///                 DhcpConfig = true,
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             mainVpcPublicGateway,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Migration
+    /// 
+    /// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
+    /// This change will not recreate your Load Balancer.
+    /// 
+    /// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
+    /// 
     /// ## IP ID
     /// 
     /// Since v1.15.0, `ip_id` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
-    /// When importing, the IP needs to be imported as well as the LB.
+    /// When importing, the IP needs to be imported as well as the Load Balancer.
     /// When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
     /// 
     /// For instance, if you had the following:
@@ -143,7 +235,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Load-Balancer can be imported using the `{zone}/{id}`, e.g.
+    /// Load Balancers can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -157,33 +249,33 @@ namespace Pulumiverse.Scaleway
     public partial class Loadbalancer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Defines whether to automatically assign a flexible public IP to the load-balancer.
+        /// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         /// </summary>
         [Output("assignFlexibleIp")]
         public Output<bool?> AssignFlexibleIp { get; private set; } = null!;
 
         /// <summary>
-        /// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+        /// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         /// </summary>
         [Output("assignFlexibleIpv6")]
         public Output<bool?> AssignFlexibleIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// The description of the load-balancer.
+        /// The description of the Load Balancer.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer public IPv4 Address.
+        /// The Load Balancer public IPv4 address.
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the associated LB IP. See below.
+        /// The ID of the associated Load Balancer IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
+        /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
@@ -195,19 +287,19 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
 
         /// <summary>
-        /// The load-balancer public IPv6 Address.
+        /// The Load Balancer public IPv6 address.
         /// </summary>
         [Output("ipv6Address")]
         public Output<string> Ipv6Address { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the load-balancer.
+        /// The name of the Load Balancer.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization ID the Load Balancer is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -219,7 +311,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.LoadbalancerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the load-balancer is associated with.
+        /// `project_id`) The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -231,7 +323,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The release_ip allow release the ip address associated with the load-balancers.
+        /// The `release_ip` allow the release of the IP address associated with the Load Balancer.
         /// </summary>
         [Output("releaseIp")]
         public Output<bool?> ReleaseIp { get; private set; } = null!;
@@ -243,19 +335,19 @@ namespace Pulumiverse.Scaleway
         public Output<string?> SslCompatibilityLevel { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// The tags associated with the Load Balancer.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the load-balancer. Please check the migration section to upgrade the type.
+        /// The type of the Load Balancer. Please check the migration section to upgrade the type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the load-balancer.
+        /// `zone`) The zone of the Load Balancer.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -308,27 +400,27 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines whether to automatically assign a flexible public IP to the load-balancer.
+        /// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         /// </summary>
         [Input("assignFlexibleIp")]
         public Input<bool>? AssignFlexibleIp { get; set; }
 
         /// <summary>
-        /// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+        /// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         /// </summary>
         [Input("assignFlexibleIpv6")]
         public Input<bool>? AssignFlexibleIpv6 { get; set; }
 
         /// <summary>
-        /// The description of the load-balancer.
+        /// The description of the Load Balancer.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the associated LB IP. See below.
+        /// The ID of the associated Load Balancer IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
+        /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -346,7 +438,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The name of the load-balancer.
+        /// The name of the Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -364,13 +456,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the load-balancer is associated with.
+        /// `project_id`) The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The release_ip allow release the ip address associated with the load-balancers.
+        /// The `release_ip` allow the release of the IP address associated with the Load Balancer.
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -385,7 +477,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// The tags associated with the Load Balancer.
         /// </summary>
         public InputList<string> Tags
         {
@@ -394,13 +486,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the load-balancer. Please check the migration section to upgrade the type.
+        /// The type of the Load Balancer. Please check the migration section to upgrade the type.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the load-balancer.
+        /// `zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -414,33 +506,33 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines whether to automatically assign a flexible public IP to the load-balancer.
+        /// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         /// </summary>
         [Input("assignFlexibleIp")]
         public Input<bool>? AssignFlexibleIp { get; set; }
 
         /// <summary>
-        /// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+        /// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         /// </summary>
         [Input("assignFlexibleIpv6")]
         public Input<bool>? AssignFlexibleIpv6 { get; set; }
 
         /// <summary>
-        /// The description of the load-balancer.
+        /// The description of the Load Balancer.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The load-balancer public IPv4 Address.
+        /// The Load Balancer public IPv4 address.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The ID of the associated LB IP. See below.
+        /// The ID of the associated Load Balancer IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will recreate the load-balancer.
+        /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -458,19 +550,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The load-balancer public IPv6 Address.
+        /// The Load Balancer public IPv6 address.
         /// </summary>
         [Input("ipv6Address")]
         public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
-        /// The name of the load-balancer.
+        /// The name of the Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization ID the Load Balancer is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -488,7 +580,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the load-balancer is associated with.
+        /// `project_id`) The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -500,7 +592,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The release_ip allow release the ip address associated with the load-balancers.
+        /// The `release_ip` allow the release of the IP address associated with the Load Balancer.
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -515,7 +607,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the load-balancers.
+        /// The tags associated with the Load Balancer.
         /// </summary>
         public InputList<string> Tags
         {
@@ -524,13 +616,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the load-balancer. Please check the migration section to upgrade the type.
+        /// The type of the Load Balancer. Please check the migration section to upgrade the type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone of the load-balancer.
+        /// `zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

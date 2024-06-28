@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
+ * Creates and manages Scaleway Load Balancer ACLs.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
  *
  * ## Example Usage
  *
@@ -36,7 +38,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g.
+ * Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -85,11 +87,11 @@ export class LoadbalancerAcl extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The load-balancer Frontend ID to attach the ACL to.
+     * The ID of the Load Balancer frontend to attach the ACL to.
      */
     public readonly frontendId!: pulumi.Output<string>;
     /**
-     * The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+     * The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
      */
     public readonly index!: pulumi.Output<number>;
     /**
@@ -168,11 +170,11 @@ export interface LoadbalancerAclState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The load-balancer Frontend ID to attach the ACL to.
+     * The ID of the Load Balancer frontend to attach the ACL to.
      */
     frontendId?: pulumi.Input<string>;
     /**
-     * The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+     * The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
      */
     index?: pulumi.Input<number>;
     /**
@@ -202,11 +204,11 @@ export interface LoadbalancerAclArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The load-balancer Frontend ID to attach the ACL to.
+     * The ID of the Load Balancer frontend to attach the ACL to.
      */
     frontendId: pulumi.Input<string>;
     /**
-     * The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+     * The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
      */
     index: pulumi.Input<number>;
     /**

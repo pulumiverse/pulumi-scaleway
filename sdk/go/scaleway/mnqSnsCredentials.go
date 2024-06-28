@@ -11,9 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Messaging and queuing SNS Credentials.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+// Creates and manages Scaleway Messaging and Queuing SNS credentials.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 //
 // ## Example Usage
 //
@@ -54,7 +54,7 @@ import (
 //
 // ## Import
 //
-// SNS credentials can be imported using the `{region}/{id}`, e.g.
+// SNS credentials can be imported using `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -66,13 +66,13 @@ type MnqSnsCredentials struct {
 
 	// The ID of the key.
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
-	// The unique name of the sns credentials.
+	// The unique name of the SNS credentials.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions MnqSnsCredentialsPermissionsOutput `pulumi:"permissions"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`). The region in which sns is enabled.
+	// `region`). The region in which SNS is enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret value of the key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
@@ -115,13 +115,13 @@ func GetMnqSnsCredentials(ctx *pulumi.Context,
 type mnqSnsCredentialsState struct {
 	// The ID of the key.
 	AccessKey *string `pulumi:"accessKey"`
-	// The unique name of the sns credentials.
+	// The unique name of the SNS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions *MnqSnsCredentialsPermissions `pulumi:"permissions"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which sns is enabled.
+	// `region`). The region in which SNS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret value of the key.
 	SecretKey *string `pulumi:"secretKey"`
@@ -130,13 +130,13 @@ type mnqSnsCredentialsState struct {
 type MnqSnsCredentialsState struct {
 	// The ID of the key.
 	AccessKey pulumi.StringPtrInput
-	// The unique name of the sns credentials.
+	// The unique name of the SNS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions MnqSnsCredentialsPermissionsPtrInput
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which sns is enabled.
+	// `region`). The region in which SNS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret value of the key.
 	SecretKey pulumi.StringPtrInput
@@ -147,25 +147,25 @@ func (MnqSnsCredentialsState) ElementType() reflect.Type {
 }
 
 type mnqSnsCredentialsArgs struct {
-	// The unique name of the sns credentials.
+	// The unique name of the SNS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions *MnqSnsCredentialsPermissions `pulumi:"permissions"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which sns is enabled.
+	// `region`). The region in which SNS is enabled.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a MnqSnsCredentials resource.
 type MnqSnsCredentialsArgs struct {
-	// The unique name of the sns credentials.
+	// The unique name of the SNS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated to these credentials. Only one of permissions may be set.
+	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 	Permissions MnqSnsCredentialsPermissionsPtrInput
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which sns is enabled.
+	// `region`). The region in which SNS is enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -261,22 +261,22 @@ func (o MnqSnsCredentialsOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// The unique name of the sns credentials.
+// The unique name of the SNS credentials.
 func (o MnqSnsCredentialsOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// . List of permissions associated to these credentials. Only one of permissions may be set.
+// . List of permissions associated with these credentials. Only one of the following permissions may be set:
 func (o MnqSnsCredentialsOutput) Permissions() MnqSnsCredentialsPermissionsOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) MnqSnsCredentialsPermissionsOutput { return v.Permissions }).(MnqSnsCredentialsPermissionsOutput)
 }
 
-// `projectId`) The ID of the project the sns is enabled for.
+// `projectId`) The ID of the Project in which SNS is enabled.
 func (o MnqSnsCredentialsOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which sns is enabled.
+// `region`). The region in which SNS is enabled.
 func (o MnqSnsCredentialsOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

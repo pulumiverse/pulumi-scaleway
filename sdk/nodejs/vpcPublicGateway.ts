@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway VPC Public Gateway.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
+ * Creates and manages Scaleway Public Gateways.
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
  *
  * ## Example Usage
  *
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway can be imported using the `{zone}/{id}`, e.g.
+ * Public Gateways can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -72,7 +72,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public readonly bastionPort!: pulumi.Output<number>;
     /**
-     * The date and time of the creation of the public gateway.
+     * The date and time of the creation of the Public Gateway.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -80,15 +80,15 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public readonly enableSmtp!: pulumi.Output<boolean>;
     /**
-     * attach an existing flexible IP to the gateway.
+     * Attach an existing flexible IP to the gateway.
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
-     * The name of the public gateway. If not provided it will be randomly generated.
+     * The name for the Public Gateway. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the public gateway is associated with.
+     * The Organization ID the Public Gateway is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -96,7 +96,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+     * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
     public readonly refreshSshKeys!: pulumi.Output<string | undefined>;
     /**
@@ -104,7 +104,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The tags associated with the public gateway.
+     * The tags to associate with the Public Gateway.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -112,15 +112,15 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the public gateway.
+     * The date and time of the last update of the Public Gateway.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * override the gateway's default recursive DNS servers, if DNS features are enabled.
+     * Override the gateway's default recursive DNS servers, if DNS features are enabled.
      */
     public readonly upstreamDnsServers!: pulumi.Output<string[] | undefined>;
     /**
-     * `zone`) The zone in which the public gateway should be created.
+     * `zone`) The zone in which the Public Gateway should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -191,7 +191,7 @@ export interface VpcPublicGatewayState {
      */
     bastionPort?: pulumi.Input<number>;
     /**
-     * The date and time of the creation of the public gateway.
+     * The date and time of the creation of the Public Gateway.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -199,15 +199,15 @@ export interface VpcPublicGatewayState {
      */
     enableSmtp?: pulumi.Input<boolean>;
     /**
-     * attach an existing flexible IP to the gateway.
+     * Attach an existing flexible IP to the gateway.
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The name of the public gateway. If not provided it will be randomly generated.
+     * The name for the Public Gateway. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the public gateway is associated with.
+     * The Organization ID the Public Gateway is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -215,7 +215,7 @@ export interface VpcPublicGatewayState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+     * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
     refreshSshKeys?: pulumi.Input<string>;
     /**
@@ -223,7 +223,7 @@ export interface VpcPublicGatewayState {
      */
     status?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway.
+     * The tags to associate with the Public Gateway.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -231,15 +231,15 @@ export interface VpcPublicGatewayState {
      */
     type?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the public gateway.
+     * The date and time of the last update of the Public Gateway.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * override the gateway's default recursive DNS servers, if DNS features are enabled.
+     * Override the gateway's default recursive DNS servers, if DNS features are enabled.
      */
     upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the public gateway should be created.
+     * `zone`) The zone in which the Public Gateway should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -261,11 +261,11 @@ export interface VpcPublicGatewayArgs {
      */
     enableSmtp?: pulumi.Input<boolean>;
     /**
-     * attach an existing flexible IP to the gateway.
+     * Attach an existing flexible IP to the gateway.
      */
     ipId?: pulumi.Input<string>;
     /**
-     * The name of the public gateway. If not provided it will be randomly generated.
+     * The name for the Public Gateway. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
@@ -273,11 +273,11 @@ export interface VpcPublicGatewayArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+     * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
     refreshSshKeys?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway.
+     * The tags to associate with the Public Gateway.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -285,11 +285,11 @@ export interface VpcPublicGatewayArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * override the gateway's default recursive DNS servers, if DNS features are enabled.
+     * Override the gateway's default recursive DNS servers, if DNS features are enabled.
      */
     upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the public gateway should be created.
+     * `zone`) The zone in which the Public Gateway should be created.
      */
     zone?: pulumi.Input<string>;
 }

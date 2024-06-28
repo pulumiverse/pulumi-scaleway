@@ -66,14 +66,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The namespace name.
-        /// Only one of `name` and `namespace_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
         /// The namespace id.
-        /// Only one of `name` and `namespace_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
         /// </summary>
         [Input("namespaceId")]
         public string? NamespaceId { get; set; }
@@ -100,14 +100,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The namespace name.
-        /// Only one of `name` and `namespace_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The namespace id.
-        /// Only one of `name` and `namespace_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }

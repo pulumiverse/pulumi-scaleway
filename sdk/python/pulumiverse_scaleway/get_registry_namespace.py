@@ -144,9 +144,9 @@ def get_registry_namespace(name: Optional[str] = None,
 
 
     :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
     :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `image_id`.
     :param str project_id: `project_id`) The ID of the project the namespace is associated with.
     :param str region: `region`) The region in which the namespace exists.
     """
@@ -190,9 +190,9 @@ def get_registry_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
 
 
     :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
     :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `image_id`.
     :param str project_id: `project_id`) The ID of the project the namespace is associated with.
     :param str region: `region`) The region in which the namespace exists.
     """

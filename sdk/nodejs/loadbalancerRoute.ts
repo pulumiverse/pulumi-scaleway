@@ -5,8 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Load-Balancer Routes.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+ * Creates and manages Scaleway Load Balancer routes.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
  *
  * ## Example Usage
  *
@@ -70,7 +71,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+ * Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -107,15 +108,15 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the backend to which the route is associated.
+     * The ID of the backend the route is associated with.
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
-     * The date at which the route was created.
+     * The date on which the route was created.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The ID of the frontend to which the route is associated.
+     * The ID of the frontend the route is associated with.
      */
     public readonly frontendId!: pulumi.Output<string>;
     /**
@@ -133,7 +134,7 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      */
     public readonly matchSni!: pulumi.Output<string | undefined>;
     /**
-     * The date at which the route was last updated.
+     * The date on which the route was last updated.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -181,15 +182,15 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
  */
 export interface LoadbalancerRouteState {
     /**
-     * The ID of the backend to which the route is associated.
+     * The ID of the backend the route is associated with.
      */
     backendId?: pulumi.Input<string>;
     /**
-     * The date at which the route was created.
+     * The date on which the route was created.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the frontend to which the route is associated.
+     * The ID of the frontend the route is associated with.
      */
     frontendId?: pulumi.Input<string>;
     /**
@@ -207,7 +208,7 @@ export interface LoadbalancerRouteState {
      */
     matchSni?: pulumi.Input<string>;
     /**
-     * The date at which the route was last updated.
+     * The date on which the route was last updated.
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -217,11 +218,11 @@ export interface LoadbalancerRouteState {
  */
 export interface LoadbalancerRouteArgs {
     /**
-     * The ID of the backend to which the route is associated.
+     * The ID of the backend the route is associated with.
      */
     backendId: pulumi.Input<string>;
     /**
-     * The ID of the frontend to which the route is associated.
+     * The ID of the frontend the route is associated with.
      */
     frontendId: pulumi.Input<string>;
     /**

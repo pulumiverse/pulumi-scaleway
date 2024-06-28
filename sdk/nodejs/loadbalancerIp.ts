@@ -5,8 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Load-Balancers IPs.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
+ * Creates and manages Scaleway Load Balancer IP addresses.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  *
  * ## Example Usage
  *
@@ -30,7 +31,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * IPs can be imported using the `{zone}/{id}`, e.g.
+ * IPs can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -67,15 +68,15 @@ export class LoadbalancerIp extends pulumi.CustomResource {
     }
 
     /**
-     * The IP Address
+     * The IP address
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * If true, creates a Flexible IP with an IPv6 address.
+     * If true, creates a flexible IP with an IPv6 address.
      */
     public readonly isIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * The associated load-balance ID if any
+     * The associated Load Balancer ID if any
      */
     public /*out*/ readonly lbId!: pulumi.Output<string>;
     /**
@@ -83,7 +84,7 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -141,15 +142,15 @@ export class LoadbalancerIp extends pulumi.CustomResource {
  */
 export interface LoadbalancerIpState {
     /**
-     * The IP Address
+     * The IP address
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * If true, creates a Flexible IP with an IPv6 address.
+     * If true, creates a flexible IP with an IPv6 address.
      */
     isIpv6?: pulumi.Input<boolean>;
     /**
-     * The associated load-balance ID if any
+     * The associated Load Balancer ID if any
      */
     lbId?: pulumi.Input<string>;
     /**
@@ -157,7 +158,7 @@ export interface LoadbalancerIpState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -179,11 +180,11 @@ export interface LoadbalancerIpState {
  */
 export interface LoadbalancerIpArgs {
     /**
-     * If true, creates a Flexible IP with an IPv6 address.
+     * If true, creates a flexible IP with an IPv6 address.
      */
     isIpv6?: pulumi.Input<boolean>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**

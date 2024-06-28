@@ -12,8 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Load-Balancers.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
+// Creates and manages Scaleway Load Balancers.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
 //
 // ## Example Usage
 //
@@ -120,10 +121,113 @@ import (
 //
 // ```
 //
+// ### Multiple configurations
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## IP for Public Gateway
+//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			// ## Scaleway Private Network
+//			mainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, "mainVpcPrivateNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			// ## VPC Public Gateway Network
+//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//				IpId: mainVpcPublicGatewayIp.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// ## VPC Public Gateway Network DHCP config
+//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet: pulumi.String("10.0.0.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// ## VPC Gateway Network
+//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        mainVpcPublicGateway.ID(),
+//				PrivateNetworkId: mainVpcPrivateNetwork.ID(),
+//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// ## Scaleway Instance
+//			_, err = scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
+//				Type:       pulumi.String("DEV1-S"),
+//				Image:      pulumi.String("debian_bullseye"),
+//				EnableIpv6: pulumi.Bool(false),
+//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
+//					&scaleway.InstanceServerPrivateNetworkArgs{
+//						PnId: mainVpcPrivateNetwork.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// ## IP for LB IP
+//			mainLoadbalancerIp, err := scaleway.NewLoadbalancerIp(ctx, "mainLoadbalancerIp", nil)
+//			if err != nil {
+//				return err
+//			}
+//			// ## Scaleway Private Network
+//			_, err = scaleway.NewVpcPrivateNetwork(ctx, "mainIndex/vpcPrivateNetworkVpcPrivateNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			// ## Scaleway Load Balancer
+//			_, err = scaleway.NewLoadbalancer(ctx, "mainLoadbalancer", &scaleway.LoadbalancerArgs{
+//				IpId: mainLoadbalancerIp.ID(),
+//				Type: pulumi.String("LB-S"),
+//				PrivateNetworks: scaleway.LoadbalancerPrivateNetworkArray{
+//					&scaleway.LoadbalancerPrivateNetworkArgs{
+//						PrivateNetworkId: mainVpcPrivateNetwork.ID(),
+//						DhcpConfig:       pulumi.Bool(true),
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				mainVpcPublicGateway,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Migration
+//
+// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
+// This change will not recreate your Load Balancer.
+//
+// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
+//
 // ## IP ID
 //
 // Since v1.15.0, `ipId` is a required field. This means that now a separate `LoadbalancerIp` is required.
-// When importing, the IP needs to be imported as well as the LB.
+// When importing, the IP needs to be imported as well as the Load Balancer.
 // When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
 //
 // For instance, if you had the following:
@@ -188,7 +292,7 @@ import (
 //
 // ## Import
 //
-// Load-Balancer can be imported using the `{zone}/{id}`, e.g.
+// Load Balancers can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -200,45 +304,45 @@ import (
 type Loadbalancer struct {
 	pulumi.CustomResourceState
 
-	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
 	AssignFlexibleIp pulumi.BoolPtrOutput `pulumi:"assignFlexibleIp"`
-	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
 	AssignFlexibleIpv6 pulumi.BoolPtrOutput `pulumi:"assignFlexibleIpv6"`
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The load-balancer public IPv4 Address.
+	// The Load Balancer public IPv4 address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// The ID of the associated LB IP. See below.
+	// The ID of the associated Load Balancer IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId pulumi.StringOutput `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
-	// The load-balancer public IPv6 Address.
+	// The Load Balancer public IPv6 address.
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
-	// The name of the load-balancer.
+	// The name of the Load Balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// List of private network to connect with your load balancer
 	PrivateNetworks LoadbalancerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
-	// `projectId`) The ID of the project the load-balancer is associated with.
+	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region of the resource
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The releaseIp allow release the ip address associated with the load-balancers.
+	// The `releaseIp` allow the release of the IP address associated with the Load Balancer.
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrOutput `pulumi:"releaseIp"`
 	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel pulumi.StringPtrOutput `pulumi:"sslCompatibilityLevel"`
-	// The tags associated with the load-balancers.
+	// The tags associated with the Load Balancer.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of the load-balancer. Please check the migration section to upgrade the type.
+	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -275,88 +379,88 @@ func GetLoadbalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Loadbalancer resources.
 type loadbalancerState struct {
-	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
 	AssignFlexibleIp *bool `pulumi:"assignFlexibleIp"`
-	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
 	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description *string `pulumi:"description"`
-	// The load-balancer public IPv4 Address.
+	// The Load Balancer public IPv4 address.
 	IpAddress *string `pulumi:"ipAddress"`
-	// The ID of the associated LB IP. See below.
+	// The ID of the associated Load Balancer IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId *string `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
 	IpIds []string `pulumi:"ipIds"`
-	// The load-balancer public IPv6 Address.
+	// The Load Balancer public IPv6 address.
 	Ipv6Address *string `pulumi:"ipv6Address"`
-	// The name of the load-balancer.
+	// The name of the Load Balancer.
 	Name *string `pulumi:"name"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of private network to connect with your load balancer
 	PrivateNetworks []LoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
-	// `projectId`) The ID of the project the load-balancer is associated with.
+	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The region of the resource
 	Region *string `pulumi:"region"`
-	// The releaseIp allow release the ip address associated with the load-balancers.
+	// The `releaseIp` allow the release of the IP address associated with the Load Balancer.
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp *bool `pulumi:"releaseIp"`
 	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
-	// The tags associated with the load-balancers.
+	// The tags associated with the Load Balancer.
 	Tags []string `pulumi:"tags"`
-	// The type of the load-balancer. Please check the migration section to upgrade the type.
+	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type *string `pulumi:"type"`
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone *string `pulumi:"zone"`
 }
 
 type LoadbalancerState struct {
-	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
 	AssignFlexibleIp pulumi.BoolPtrInput
-	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
 	AssignFlexibleIpv6 pulumi.BoolPtrInput
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description pulumi.StringPtrInput
-	// The load-balancer public IPv4 Address.
+	// The Load Balancer public IPv4 address.
 	IpAddress pulumi.StringPtrInput
-	// The ID of the associated LB IP. See below.
+	// The ID of the associated Load Balancer IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId pulumi.StringPtrInput
 	// The List of IP IDs to attach to the Load Balancer.
 	IpIds pulumi.StringArrayInput
-	// The load-balancer public IPv6 Address.
+	// The Load Balancer public IPv6 address.
 	Ipv6Address pulumi.StringPtrInput
-	// The name of the load-balancer.
+	// The name of the Load Balancer.
 	Name pulumi.StringPtrInput
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of private network to connect with your load balancer
 	PrivateNetworks LoadbalancerPrivateNetworkArrayInput
-	// `projectId`) The ID of the project the load-balancer is associated with.
+	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The region of the resource
 	Region pulumi.StringPtrInput
-	// The releaseIp allow release the ip address associated with the load-balancers.
+	// The `releaseIp` allow the release of the IP address associated with the Load Balancer.
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrInput
 	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel pulumi.StringPtrInput
-	// The tags associated with the load-balancers.
+	// The tags associated with the Load Balancer.
 	Tags pulumi.StringArrayInput
-	// The type of the load-balancer. Please check the migration section to upgrade the type.
+	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringPtrInput
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone pulumi.StringPtrInput
 }
 
@@ -365,73 +469,73 @@ func (LoadbalancerState) ElementType() reflect.Type {
 }
 
 type loadbalancerArgs struct {
-	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
 	AssignFlexibleIp *bool `pulumi:"assignFlexibleIp"`
-	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
 	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description *string `pulumi:"description"`
-	// The ID of the associated LB IP. See below.
+	// The ID of the associated Load Balancer IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId *string `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
 	IpIds []string `pulumi:"ipIds"`
-	// The name of the load-balancer.
+	// The name of the Load Balancer.
 	Name *string `pulumi:"name"`
 	// List of private network to connect with your load balancer
 	PrivateNetworks []LoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
-	// `projectId`) The ID of the project the load-balancer is associated with.
+	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The releaseIp allow release the ip address associated with the load-balancers.
+	// The `releaseIp` allow the release of the IP address associated with the Load Balancer.
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp *bool `pulumi:"releaseIp"`
 	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
-	// The tags associated with the load-balancers.
+	// The tags associated with the Load Balancer.
 	Tags []string `pulumi:"tags"`
-	// The type of the load-balancer. Please check the migration section to upgrade the type.
+	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type string `pulumi:"type"`
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a Loadbalancer resource.
 type LoadbalancerArgs struct {
-	// Defines whether to automatically assign a flexible public IP to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
 	AssignFlexibleIp pulumi.BoolPtrInput
-	// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+	// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
 	AssignFlexibleIpv6 pulumi.BoolPtrInput
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description pulumi.StringPtrInput
-	// The ID of the associated LB IP. See below.
+	// The ID of the associated Load Balancer IP. See below.
 	//
-	// > **Important:** Updates to `ipId` will recreate the load-balancer.
+	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId pulumi.StringPtrInput
 	// The List of IP IDs to attach to the Load Balancer.
 	IpIds pulumi.StringArrayInput
-	// The name of the load-balancer.
+	// The name of the Load Balancer.
 	Name pulumi.StringPtrInput
 	// List of private network to connect with your load balancer
 	PrivateNetworks LoadbalancerPrivateNetworkArrayInput
-	// `projectId`) The ID of the project the load-balancer is associated with.
+	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The releaseIp allow release the ip address associated with the load-balancers.
+	// The `releaseIp` allow the release of the IP address associated with the Load Balancer.
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrInput
 	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel pulumi.StringPtrInput
-	// The tags associated with the load-balancers.
+	// The tags associated with the Load Balancer.
 	Tags pulumi.StringArrayInput
-	// The type of the load-balancer. Please check the migration section to upgrade the type.
+	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringInput
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone pulumi.StringPtrInput
 }
 
@@ -522,29 +626,29 @@ func (o LoadbalancerOutput) ToLoadbalancerOutputWithContext(ctx context.Context)
 	return o
 }
 
-// Defines whether to automatically assign a flexible public IP to the load-balancer.
+// Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
 func (o LoadbalancerOutput) AssignFlexibleIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.AssignFlexibleIp }).(pulumi.BoolPtrOutput)
 }
 
-// Defines whether to automatically assign a flexible public IPv6 to the load-balancer.
+// Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
 func (o LoadbalancerOutput) AssignFlexibleIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.AssignFlexibleIpv6 }).(pulumi.BoolPtrOutput)
 }
 
-// The description of the load-balancer.
+// The description of the Load Balancer.
 func (o LoadbalancerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The load-balancer public IPv4 Address.
+// The Load Balancer public IPv4 address.
 func (o LoadbalancerOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The ID of the associated LB IP. See below.
+// The ID of the associated Load Balancer IP. See below.
 //
-// > **Important:** Updates to `ipId` will recreate the load-balancer.
+// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 //
 // Deprecated: Please use ip_ids
 func (o LoadbalancerOutput) IpId() pulumi.StringOutput {
@@ -556,17 +660,17 @@ func (o LoadbalancerOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
 
-// The load-balancer public IPv6 Address.
+// The Load Balancer public IPv6 address.
 func (o LoadbalancerOutput) Ipv6Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
-// The name of the load-balancer.
+// The name of the Load Balancer.
 func (o LoadbalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the load-balancer is associated with.
+// The ID of the Organization ID the Load Balancer is associated with.
 func (o LoadbalancerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -576,7 +680,7 @@ func (o LoadbalancerOutput) PrivateNetworks() LoadbalancerPrivateNetworkArrayOut
 	return o.ApplyT(func(v *Loadbalancer) LoadbalancerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(LoadbalancerPrivateNetworkArrayOutput)
 }
 
-// `projectId`) The ID of the project the load-balancer is associated with.
+// `projectId`) The ID of the Project the Load Balancer is associated with.
 func (o LoadbalancerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -586,7 +690,7 @@ func (o LoadbalancerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The releaseIp allow release the ip address associated with the load-balancers.
+// The `releaseIp` allow the release of the IP address associated with the Load Balancer.
 //
 // Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 func (o LoadbalancerOutput) ReleaseIp() pulumi.BoolPtrOutput {
@@ -598,17 +702,17 @@ func (o LoadbalancerOutput) SslCompatibilityLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringPtrOutput { return v.SslCompatibilityLevel }).(pulumi.StringPtrOutput)
 }
 
-// The tags associated with the load-balancers.
+// The tags associated with the Load Balancer.
 func (o LoadbalancerOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of the load-balancer. Please check the migration section to upgrade the type.
+// The type of the Load Balancer. Please check the migration section to upgrade the type.
 func (o LoadbalancerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone of the load-balancer.
+// `zone`) The zone of the Load Balancer.
 func (o LoadbalancerOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

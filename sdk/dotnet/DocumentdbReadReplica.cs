@@ -46,9 +46,18 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
     /// 
+    ///     var instance = new Scaleway.DocumentdbInstance("instance", new()
+    ///     {
+    ///         NodeType = "docdb-play2-pico",
+    ///         Engine = "FerretDB-1",
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         VolumeSizeInGb = 20,
+    ///     });
+    /// 
     ///     var replica = new Scaleway.DocumentdbReadReplica("replica", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         PrivateNetwork = new Scaleway.Inputs.DocumentdbReadReplicaPrivateNetworkArgs
     ///         {
     ///             PrivateNetworkId = pn.Id,
