@@ -13,7 +13,7 @@ import (
 )
 
 // Add members to an IAM group.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
+// For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
 //
 // ## Example Usage
 //
@@ -76,7 +76,7 @@ type IamGroupMembership struct {
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
 	// The ID of the user that will be added to the group
 	//
-	// - > Only one of `applicationId` or `userId` must be specified
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrOutput `pulumi:"userId"`
 }
 
@@ -119,7 +119,7 @@ type iamGroupMembershipState struct {
 	GroupId *string `pulumi:"groupId"`
 	// The ID of the user that will be added to the group
 	//
-	// - > Only one of `applicationId` or `userId` must be specified
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -130,7 +130,7 @@ type IamGroupMembershipState struct {
 	GroupId pulumi.StringPtrInput
 	// The ID of the user that will be added to the group
 	//
-	// - > Only one of `applicationId` or `userId` must be specified
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrInput
 }
 
@@ -145,7 +145,7 @@ type iamGroupMembershipArgs struct {
 	GroupId string `pulumi:"groupId"`
 	// The ID of the user that will be added to the group
 	//
-	// - > Only one of `applicationId` or `userId` must be specified
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -157,7 +157,7 @@ type IamGroupMembershipArgs struct {
 	GroupId pulumi.StringInput
 	// The ID of the user that will be added to the group
 	//
-	// - > Only one of `applicationId` or `userId` must be specified
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrInput
 }
 
@@ -260,7 +260,7 @@ func (o IamGroupMembershipOutput) GroupId() pulumi.StringOutput {
 
 // The ID of the user that will be added to the group
 //
-// - > Only one of `applicationId` or `userId` must be specified
+// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 func (o IamGroupMembershipOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamGroupMembership) pulumi.StringPtrOutput { return v.UserId }).(pulumi.StringPtrOutput)
 }

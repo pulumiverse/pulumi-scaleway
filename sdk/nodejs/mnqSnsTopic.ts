@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manage Scaleway Messaging and queuing SNS Topics.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+ * Manage Scaleway Messaging and queuing SNS topics.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-topics/).
  *
  * ## Example Usage
  *
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+ * SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
  *
  * bash
  *
@@ -82,11 +82,11 @@ export class MnqSnsTopic extends pulumi.CustomResource {
      */
     public readonly contentBasedDeduplication!: pulumi.Output<boolean>;
     /**
-     * Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+     * Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
      */
     public readonly fifoTopic!: pulumi.Output<boolean>;
     /**
-     * The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+     * The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -98,12 +98,12 @@ export class MnqSnsTopic extends pulumi.CustomResource {
      */
     public /*out*/ readonly owner!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the sns is enabled for.
+     * `projectId`) The ID of the Project in which SNS is enabled.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
      * `region`). The region
-     * in which sns is enabled.
+     * in which SNS is enabled.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -183,11 +183,11 @@ export interface MnqSnsTopicState {
      */
     contentBasedDeduplication?: pulumi.Input<boolean>;
     /**
-     * Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+     * Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
      */
     fifoTopic?: pulumi.Input<boolean>;
     /**
-     * The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+     * The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
     name?: pulumi.Input<string>;
     /**
@@ -199,12 +199,12 @@ export interface MnqSnsTopicState {
      */
     owner?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sns is enabled for.
+     * `projectId`) The ID of the Project in which SNS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region
-     * in which sns is enabled.
+     * in which SNS is enabled.
      */
     region?: pulumi.Input<string>;
     /**
@@ -230,11 +230,11 @@ export interface MnqSnsTopicArgs {
      */
     contentBasedDeduplication?: pulumi.Input<boolean>;
     /**
-     * Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+     * Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
      */
     fifoTopic?: pulumi.Input<boolean>;
     /**
-     * The unique name of the sns topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+     * The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
     name?: pulumi.Input<string>;
     /**
@@ -242,12 +242,12 @@ export interface MnqSnsTopicArgs {
      */
     namePrefix?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sns is enabled for.
+     * `projectId`) The ID of the Project in which SNS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region
-     * in which sns is enabled.
+     * in which SNS is enabled.
      */
     region?: pulumi.Input<string>;
     /**

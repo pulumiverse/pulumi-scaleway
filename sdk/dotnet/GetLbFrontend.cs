@@ -13,8 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetLbFrontend
     {
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Frontends.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+        /// Get information about Scaleway Load Balancer frontends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
         /// 
         /// ## Example Usage
         /// 
@@ -68,8 +69,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbFrontendResult>("scaleway:index/getLbFrontend:getLbFrontend", args ?? new GetLbFrontendArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Frontends.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+        /// Get information about Scaleway Load Balancer frontends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
         /// 
         /// ## Example Usage
         /// 
@@ -127,14 +129,14 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbFrontendArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The frontend id.
+        /// The frontend ID.
         /// - Only one of `name` and `frontend_id` should be specified.
         /// </summary>
         [Input("frontendId")]
         public string? FrontendId { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The Load Balancer ID this frontend is attached to.
         /// </summary>
         [Input("lbId")]
         public string? LbId { get; set; }
@@ -155,14 +157,14 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbFrontendInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The frontend id.
+        /// The frontend ID.
         /// - Only one of `name` and `frontend_id` should be specified.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this frontend is attached to.
+        /// The Load Balancer ID this frontend is attached to.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }

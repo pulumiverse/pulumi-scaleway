@@ -29,6 +29,7 @@ __all__ = [
     'DatabaseInstanceReadReplica',
     'DatabaseReadReplicaDirectAccess',
     'DatabaseReadReplicaPrivateNetwork',
+    'DocumentdbPrivateNetworkEndpointPrivateNetwork',
     'DocumentdbReadReplicaDirectAccess',
     'DocumentdbReadReplicaPrivateNetwork',
     'DomainRecordGeoIp',
@@ -961,7 +962,7 @@ class DatabaseAclAclRule(dict):
                  ip: str,
                  description: Optional[str] = None):
         """
-        :param str ip: The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param str ip: The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         :param str description: A text describing this rule. Default description: `IP allowed`
         """
         pulumi.set(__self__, "ip", ip)
@@ -972,7 +973,7 @@ class DatabaseAclAclRule(dict):
     @pulumi.getter
     def ip(self) -> str:
         """
-        The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         """
         return pulumi.get(self, "ip")
 
@@ -1325,9 +1326,9 @@ class DatabaseReadReplicaDirectAccess(dict):
                  name: Optional[str] = None,
                  port: Optional[int] = None):
         """
-        :param str endpoint_id: The ID of the endpoint of the read replica.
-        :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
-        :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        :param str endpoint_id: The ID of the endpoint of the Read Replica.
+        :param str hostname: Hostname of the endpoint. Only one of IP and hostname may be set.
+        :param str ip: IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         :param str name: Name of the endpoint.
         :param int port: TCP port of the endpoint.
         """
@@ -1346,7 +1347,7 @@ class DatabaseReadReplicaDirectAccess(dict):
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[str]:
         """
-        The ID of the endpoint of the read replica.
+        The ID of the endpoint of the Read Replica.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -1354,7 +1355,7 @@ class DatabaseReadReplicaDirectAccess(dict):
     @pulumi.getter
     def hostname(self) -> Optional[str]:
         """
-        Hostname of the endpoint. Only one of ip and hostname may be set.
+        Hostname of the endpoint. Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "hostname")
 
@@ -1362,7 +1363,7 @@ class DatabaseReadReplicaDirectAccess(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         """
-        IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "ip")
 
@@ -1419,13 +1420,13 @@ class DatabaseReadReplicaPrivateNetwork(dict):
                  service_ip: Optional[str] = None,
                  zone: Optional[str] = None):
         """
-        :param str private_network_id: UUID of the private network to be connected to the read replica.
+        :param str private_network_id: UUID of the Private Netork to be connected to the Read Replica.
         :param bool enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
                
                > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
-        :param str endpoint_id: The ID of the endpoint of the read replica.
-        :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
-        :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        :param str endpoint_id: The ID of the endpoint of the Read Replica.
+        :param str hostname: Hostname of the endpoint. Only one of IP and hostname may be set.
+        :param str ip: IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         :param str name: Name of the endpoint.
         :param int port: TCP port of the endpoint.
         :param str service_ip: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -1453,7 +1454,7 @@ class DatabaseReadReplicaPrivateNetwork(dict):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> str:
         """
-        UUID of the private network to be connected to the read replica.
+        UUID of the Private Netork to be connected to the Read Replica.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -1471,7 +1472,7 @@ class DatabaseReadReplicaPrivateNetwork(dict):
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[str]:
         """
-        The ID of the endpoint of the read replica.
+        The ID of the endpoint of the Read Replica.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -1479,7 +1480,7 @@ class DatabaseReadReplicaPrivateNetwork(dict):
     @pulumi.getter
     def hostname(self) -> Optional[str]:
         """
-        Hostname of the endpoint. Only one of ip and hostname may be set.
+        Hostname of the endpoint. Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "hostname")
 
@@ -1487,7 +1488,7 @@ class DatabaseReadReplicaPrivateNetwork(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         """
-        IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "ip")
 
@@ -1520,6 +1521,113 @@ class DatabaseReadReplicaPrivateNetwork(dict):
     def zone(self) -> Optional[str]:
         """
         Private network zone
+        """
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class DocumentdbPrivateNetworkEndpointPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipNet":
+            suggest = "ip_net"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DocumentdbPrivateNetworkEndpointPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DocumentdbPrivateNetworkEndpointPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DocumentdbPrivateNetworkEndpointPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 hostname: Optional[str] = None,
+                 ip: Optional[str] = None,
+                 ip_net: Optional[str] = None,
+                 name: Optional[str] = None,
+                 port: Optional[int] = None,
+                 zone: Optional[str] = None):
+        """
+        :param str id: The private network ID.
+        :param str hostname: The hostname of your endpoint.
+        :param str ip: The IP of your private network service.
+        :param str ip_net: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+        :param str name: The name of your private service.
+        :param int port: The port of your private service.
+        :param str zone: The zone of your endpoint.
+        """
+        pulumi.set(__self__, "id", id)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if ip_net is not None:
+            pulumi.set(__self__, "ip_net", ip_net)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The private network ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        """
+        The hostname of your endpoint.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        The IP of your private network service.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="ipNet")
+    def ip_net(self) -> Optional[str]:
+        """
+        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+        """
+        return pulumi.get(self, "ip_net")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of your private service.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The port of your private service.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[str]:
+        """
+        The zone of your endpoint.
         """
         return pulumi.get(self, "zone")
 
@@ -2112,17 +2220,17 @@ class IamPolicyRule(dict):
                  organization_id: Optional[str] = None,
                  project_ids: Optional[Sequence[str]] = None):
         """
-        :param Sequence[str] permission_set_names: Names of permission sets bound to the rule.
+        :param Sequence[str] permission_set_names: Names of permission sets bind to the rule.
                
-               **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+               **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
                
                ```shell
-               $ scw iam permission-set list
+               $ scw IAM permission-set list
                ```
         :param str organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param Sequence[str] project_ids: List of project IDs scoped to the rule.
                
-               > **Important** One of `organization_id` or `project_ids`  must be set per rule.
+               > **Important** One `organization_id` or `project_ids` must be set per rule.
         """
         pulumi.set(__self__, "permission_set_names", permission_set_names)
         if organization_id is not None:
@@ -2134,12 +2242,12 @@ class IamPolicyRule(dict):
     @pulumi.getter(name="permissionSetNames")
     def permission_set_names(self) -> Sequence[str]:
         """
-        Names of permission sets bound to the rule.
+        Names of permission sets bind to the rule.
 
-        **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
         ```shell
-        $ scw iam permission-set list
+        $ scw IAM permission-set list
         ```
         """
         return pulumi.get(self, "permission_set_names")
@@ -2158,7 +2266,7 @@ class IamPolicyRule(dict):
         """
         List of project IDs scoped to the rule.
 
-        > **Important** One of `organization_id` or `project_ids`  must be set per rule.
+        > **Important** One `organization_id` or `project_ids` must be set per rule.
         """
         return pulumi.get(self, "project_ids")
 
@@ -3355,8 +3463,8 @@ class IpamIpResource(dict):
                  name: Optional[str] = None,
                  type: Optional[str] = None):
         """
-        :param str id: The ID of the resource that the IP is bound to.
-        :param str mac_address: The MAC Address of the resource the IP is attached to.
+        :param str id: The ID of the resource that the IP is attached to.
+        :param str mac_address: The MAC address of the resource the IP is attached to.
         :param str name: The name of the resource the IP is attached to.
         :param str type: The type of resource the IP is attached to.
         """
@@ -3373,7 +3481,7 @@ class IpamIpResource(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the resource that the IP is attached to.
         """
         return pulumi.get(self, "id")
 
@@ -3381,7 +3489,7 @@ class IpamIpResource(dict):
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[str]:
         """
-        The MAC Address of the resource the IP is attached to.
+        The MAC address of the resource the IP is attached to.
         """
         return pulumi.get(self, "mac_address")
 
@@ -3459,9 +3567,9 @@ class IpamIpSource(dict):
                  subnet_id: Optional[str] = None,
                  zonal: Optional[str] = None):
         """
-        :param str private_network_id: The private network the IP lives in if the IP is a private IP.
-        :param str subnet_id: The private network subnet the IP lives in if the IP is a private IP in a private network.
-        :param str zonal: The zone the IP lives in if the IP is a public zoned one
+        :param str private_network_id: The Private Network of the IP (if the IP is a private IP).
+        :param str subnet_id: The Private Network subnet of the IP (if the IP is a private IP).
+        :param str zonal: The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
         """
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
@@ -3474,7 +3582,7 @@ class IpamIpSource(dict):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[str]:
         """
-        The private network the IP lives in if the IP is a private IP.
+        The Private Network of the IP (if the IP is a private IP).
         """
         return pulumi.get(self, "private_network_id")
 
@@ -3482,7 +3590,7 @@ class IpamIpSource(dict):
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
         """
-        The private network subnet the IP lives in if the IP is a private IP in a private network.
+        The Private Network subnet of the IP (if the IP is a private IP).
         """
         return pulumi.get(self, "subnet_id")
 
@@ -3490,7 +3598,7 @@ class IpamIpSource(dict):
     @pulumi.getter
     def zonal(self) -> Optional[str]:
         """
-        The zone the IP lives in if the IP is a public zoned one
+        The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
         """
         return pulumi.get(self, "zonal")
 
@@ -4171,9 +4279,9 @@ class LoadbalancerAclMatch(dict):
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
         :param str http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param Sequence[str] http_filter_values: A list of possible values to match for the given HTTP filter.
-               Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+               Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param bool invert: If set to `true`, the condition will be of type "unless".
-        :param Sequence[str] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        :param Sequence[str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -4209,7 +4317,7 @@ class LoadbalancerAclMatch(dict):
     def http_filter_values(self) -> Optional[Sequence[str]]:
         """
         A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         """
         return pulumi.get(self, "http_filter_values")
 
@@ -4225,7 +4333,7 @@ class LoadbalancerAclMatch(dict):
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[Sequence[str]]:
         """
-        A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
 
@@ -4608,7 +4716,7 @@ class LoadbalancerFrontendAclActionRedirect(dict):
                  type: Optional[str] = None):
         """
         :param int code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
-        :param str target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param str target: A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         :param str type: The redirect type. Possible values are: `location` or `scheme`.
         """
         if code is not None:
@@ -4630,7 +4738,7 @@ class LoadbalancerFrontendAclActionRedirect(dict):
     @pulumi.getter
     def target(self) -> Optional[str]:
         """
-        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         """
         return pulumi.get(self, "target")
 
@@ -4680,9 +4788,9 @@ class LoadbalancerFrontendAclMatch(dict):
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
         :param str http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param Sequence[str] http_filter_values: A list of possible values to match for the given HTTP filter.
-               Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+               Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param bool invert: If set to `true`, the condition will be of type "unless".
-        :param Sequence[str] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        :param Sequence[str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -4718,7 +4826,7 @@ class LoadbalancerFrontendAclMatch(dict):
     def http_filter_values(self) -> Optional[Sequence[str]]:
         """
         A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         """
         return pulumi.get(self, "http_filter_values")
 
@@ -4734,7 +4842,7 @@ class LoadbalancerFrontendAclMatch(dict):
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[Sequence[str]]:
         """
-        A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
 
@@ -4769,11 +4877,11 @@ class LoadbalancerPrivateNetwork(dict):
                  status: Optional[str] = None,
                  zone: Optional[str] = None):
         """
-        :param str private_network_id: (Required) The ID of the Private Network to associate.
-        :param bool dhcp_config: (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
-        :param str static_config: (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        :param str private_network_id: (Required) The ID of the Private Network to attach to.
+        :param bool dhcp_config: (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        :param str static_config: (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         :param str status: The status of private network connection
-        :param str zone: `zone`) The zone of the load-balancer.
+        :param str zone: `zone`) The zone of the Load Balancer.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
@@ -4789,7 +4897,7 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> str:
         """
-        (Required) The ID of the Private Network to associate.
+        (Required) The ID of the Private Network to attach to.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -4797,7 +4905,7 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter(name="dhcpConfig")
     def dhcp_config(self) -> Optional[bool]:
         """
-        (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+        (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
         """
         return pulumi.get(self, "dhcp_config")
 
@@ -4805,8 +4913,11 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter(name="staticConfig")
     def static_config(self) -> Optional[str]:
         """
-        (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         """
+        warnings.warn("""static_config field is deprecated, please use dhcp_config instead""", DeprecationWarning)
+        pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use dhcp_config instead""")
+
         return pulumi.get(self, "static_config")
 
     @property
@@ -4821,7 +4932,7 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter
     def zone(self) -> Optional[str]:
         """
-        `zone`) The zone of the load-balancer.
+        `zone`) The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
@@ -4854,9 +4965,9 @@ class MnqSnsCredentialsPermissions(dict):
                  can_publish: Optional[bool] = None,
                  can_receive: Optional[bool] = None):
         """
-        :param bool can_manage: . Defines if user can manage the associated resource(s).
-        :param bool can_publish: . Defines if user can publish messages to the service.
-        :param bool can_receive: . Defines if user can receive messages from the service.
+        :param bool can_manage: . Defines whether the user can manage the associated resource(s).
+        :param bool can_publish: . Defines whether the user can publish messages to the service.
+        :param bool can_receive: . Defines whether the user can receive messages from the service.
         """
         if can_manage is not None:
             pulumi.set(__self__, "can_manage", can_manage)
@@ -4869,7 +4980,7 @@ class MnqSnsCredentialsPermissions(dict):
     @pulumi.getter(name="canManage")
     def can_manage(self) -> Optional[bool]:
         """
-        . Defines if user can manage the associated resource(s).
+        . Defines whether the user can manage the associated resource(s).
         """
         return pulumi.get(self, "can_manage")
 
@@ -4877,7 +4988,7 @@ class MnqSnsCredentialsPermissions(dict):
     @pulumi.getter(name="canPublish")
     def can_publish(self) -> Optional[bool]:
         """
-        . Defines if user can publish messages to the service.
+        . Defines whether the user can publish messages to the service.
         """
         return pulumi.get(self, "can_publish")
 
@@ -4885,7 +4996,7 @@ class MnqSnsCredentialsPermissions(dict):
     @pulumi.getter(name="canReceive")
     def can_receive(self) -> Optional[bool]:
         """
-        . Defines if user can receive messages from the service.
+        . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
 
@@ -4918,9 +5029,9 @@ class MnqSqsCredentialsPermissions(dict):
                  can_publish: Optional[bool] = None,
                  can_receive: Optional[bool] = None):
         """
-        :param bool can_manage: . Defines if user can manage the associated resource(s).
-        :param bool can_publish: . Defines if user can publish messages to the service.
-        :param bool can_receive: . Defines if user can receive messages from the service.
+        :param bool can_manage: . Defines whether the user can manage the associated resource(s).
+        :param bool can_publish: . Defines whether the user can publish messages to the service.
+        :param bool can_receive: . Defines whether the user can receive messages from the service.
         """
         if can_manage is not None:
             pulumi.set(__self__, "can_manage", can_manage)
@@ -4933,7 +5044,7 @@ class MnqSqsCredentialsPermissions(dict):
     @pulumi.getter(name="canManage")
     def can_manage(self) -> Optional[bool]:
         """
-        . Defines if user can manage the associated resource(s).
+        . Defines whether the user can manage the associated resource(s).
         """
         return pulumi.get(self, "can_manage")
 
@@ -4941,7 +5052,7 @@ class MnqSqsCredentialsPermissions(dict):
     @pulumi.getter(name="canPublish")
     def can_publish(self) -> Optional[bool]:
         """
-        . Defines if user can publish messages to the service.
+        . Defines whether the user can publish messages to the service.
         """
         return pulumi.get(self, "can_publish")
 
@@ -4949,7 +5060,7 @@ class MnqSqsCredentialsPermissions(dict):
     @pulumi.getter(name="canReceive")
     def can_receive(self) -> Optional[bool]:
         """
-        . Defines if user can receive messages from the service.
+        . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
 
@@ -5532,7 +5643,7 @@ class RedisClusterAcl(dict):
                  description: Optional[str] = None,
                  id: Optional[str] = None):
         """
-        :param str ip: The ip range to whitelist
+        :param str ip: The IP range to whitelist
                in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         :param str description: A text describing this rule. Default description: `Allow IP`
                
@@ -5549,7 +5660,7 @@ class RedisClusterAcl(dict):
     @pulumi.getter
     def ip(self) -> str:
         """
-        The ip range to whitelist
+        The IP range to whitelist
         in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         """
         return pulumi.get(self, "ip")
@@ -5603,30 +5714,30 @@ class RedisClusterPrivateNetwork(dict):
         :param str id: The UUID of the Private Network resource.
         :param str endpoint_id: The ID of the endpoint.
         :param Sequence[str] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-               Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-               scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+               Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+               scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
                If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
                
                > The `private_network` conflicts with `acl`. Only one should be specified.
                
-               > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+               > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
                
                - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-               block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+               block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
                Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
                by side.
                
-               - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-               able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-               configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-               require updating the private network to add IPs.
+               - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
+               able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+               configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+               require updating the Private Network to add IPs.
                Your `service_ips` must be listed as follows:
                
                ```python
                import pulumi
                ```
         :param str zone: `zone`) The zone in which the
-               Redis Cluster should be created.
+               Redis™ cluster should be created.
         """
         pulumi.set(__self__, "id", id)
         if endpoint_id is not None:
@@ -5657,23 +5768,23 @@ class RedisClusterPrivateNetwork(dict):
     def service_ips(self) -> Optional[Sequence[str]]:
         """
         Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-        Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-        scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+        Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+        scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
         > The `private_network` conflicts with `acl`. Only one should be specified.
 
-        > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+        > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 
         - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-        block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+        block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
         Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
         by side.
 
-        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-        able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-        configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-        require updating the private network to add IPs.
+        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
+        able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+        configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+        require updating the Private Network to add IPs.
         Your `service_ips` must be listed as follows:
 
         ```python
@@ -5687,7 +5798,7 @@ class RedisClusterPrivateNetwork(dict):
     def zone(self) -> Optional[str]:
         """
         `zone`) The zone in which the
-        Redis Cluster should be created.
+        Redis™ cluster should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -5849,7 +5960,7 @@ class VpcGatewayNetworkIpamConfig(dict):
                  push_default_route: Optional[bool] = None):
         """
         :param str ipam_ip_id: Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
-        :param bool push_default_route: Defines whether the default route is enabled on that Gateway Network.
+        :param bool push_default_route: Defines whether to enable the default route on the GatewayNetwork.
         """
         if ipam_ip_id is not None:
             pulumi.set(__self__, "ipam_ip_id", ipam_ip_id)
@@ -5868,7 +5979,7 @@ class VpcGatewayNetworkIpamConfig(dict):
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[bool]:
         """
-        Defines whether the default route is enabled on that Gateway Network.
+        Defines whether to enable the default route on the GatewayNetwork.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -5907,10 +6018,10 @@ class VpcPrivateNetworkIpv4Subnet(dict):
                  subnet_mask: Optional[str] = None,
                  updated_at: Optional[str] = None):
         """
-        :param str address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        :param str address: The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         :param str created_at: The date and time of the creation of the subnet.
         :param str id: The subnet ID.
-        :param int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        :param int prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         :param str subnet: The subnet CIDR.
         :param str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param str updated_at: The date and time of the last update of the subnet.
@@ -5934,7 +6045,7 @@ class VpcPrivateNetworkIpv4Subnet(dict):
     @pulumi.getter
     def address(self) -> Optional[str]:
         """
-        The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         """
         return pulumi.get(self, "address")
 
@@ -5958,7 +6069,7 @@ class VpcPrivateNetworkIpv4Subnet(dict):
     @pulumi.getter(name="prefixLength")
     def prefix_length(self) -> Optional[int]:
         """
-        The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
 
@@ -6021,10 +6132,10 @@ class VpcPrivateNetworkIpv6Subnet(dict):
                  subnet_mask: Optional[str] = None,
                  updated_at: Optional[str] = None):
         """
-        :param str address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        :param str address: The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         :param str created_at: The date and time of the creation of the subnet.
         :param str id: The subnet ID.
-        :param int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        :param int prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         :param str subnet: The subnet CIDR.
         :param str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param str updated_at: The date and time of the last update of the subnet.
@@ -6048,7 +6159,7 @@ class VpcPrivateNetworkIpv6Subnet(dict):
     @pulumi.getter
     def address(self) -> Optional[str]:
         """
-        The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         """
         return pulumi.get(self, "address")
 
@@ -6072,7 +6183,7 @@ class VpcPrivateNetworkIpv6Subnet(dict):
     @pulumi.getter(name="prefixLength")
     def prefix_length(self) -> Optional[int]:
         """
-        The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
 
@@ -6560,13 +6671,13 @@ class GetBillingConsumptionsConsumptionResult(dict):
                  unit: str,
                  value: str):
         """
-        :param str billed_quantity: Consumed quantity
-        :param str category_name: Name of consumption category
-        :param str product_name: The product name
-        :param str project_id: Project ID of the consumption
-        :param str sku: Unique identifier of the product
-        :param str unit: Unit of consumed quantity
-        :param str value: Monetary value of the consumption
+        :param str billed_quantity: The consumed quantity.
+        :param str category_name: The name of the consumption category.
+        :param str product_name: The product name.
+        :param str project_id: `project_id`) The ID of the project the consumption list is associated with.
+        :param str sku: The unique identifier of the product.
+        :param str unit: The unit of consumed quantity.
+        :param str value: The monetary value of the consumption.
         """
         pulumi.set(__self__, "billed_quantity", billed_quantity)
         pulumi.set(__self__, "category_name", category_name)
@@ -6580,7 +6691,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter(name="billedQuantity")
     def billed_quantity(self) -> str:
         """
-        Consumed quantity
+        The consumed quantity.
         """
         return pulumi.get(self, "billed_quantity")
 
@@ -6588,7 +6699,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter(name="categoryName")
     def category_name(self) -> str:
         """
-        Name of consumption category
+        The name of the consumption category.
         """
         return pulumi.get(self, "category_name")
 
@@ -6596,7 +6707,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter(name="productName")
     def product_name(self) -> str:
         """
-        The product name
+        The product name.
         """
         return pulumi.get(self, "product_name")
 
@@ -6604,7 +6715,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        Project ID of the consumption
+        `project_id`) The ID of the project the consumption list is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -6612,7 +6723,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter
     def sku(self) -> str:
         """
-        Unique identifier of the product
+        The unique identifier of the product.
         """
         return pulumi.get(self, "sku")
 
@@ -6620,7 +6731,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter
     def unit(self) -> str:
         """
-        Unit of consumed quantity
+        The unit of consumed quantity.
         """
         return pulumi.get(self, "unit")
 
@@ -6628,7 +6739,7 @@ class GetBillingConsumptionsConsumptionResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        Monetary value of the consumption
+        The monetary value of the consumption.
         """
         return pulumi.get(self, "value")
 
@@ -6949,7 +7060,6 @@ class GetDatabaseInstanceLoadBalancerResult(dict):
         :param str hostname: The hostname of your endpoint
         :param str ip: The IP of your load balancer service
         :param str name: The name of the RDB instance.
-               Only one of `name` and `instance_id` should be specified.
         :param int port: The port of your load balancer service
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -6987,7 +7097,6 @@ class GetDatabaseInstanceLoadBalancerResult(dict):
     def name(self) -> str:
         """
         The name of the RDB instance.
-        Only one of `name` and `instance_id` should be specified.
         """
         return pulumi.get(self, "name")
 
@@ -7048,7 +7157,6 @@ class GetDatabaseInstancePrivateNetworkResult(dict):
         :param str ip: The IP of your Instance within the private service
         :param str ip_net: The IP with the given mask within the private subnet
         :param str name: The name of the RDB instance.
-               Only one of `name` and `instance_id` should be specified.
         :param str pn_id: The private network ID
         :param int port: The port of your private service
         :param str zone: The zone you want to attach the resource to
@@ -7108,7 +7216,6 @@ class GetDatabaseInstancePrivateNetworkResult(dict):
     def name(self) -> str:
         """
         The name of the RDB instance.
-        Only one of `name` and `instance_id` should be specified.
         """
         return pulumi.get(self, "name")
 
@@ -7146,7 +7253,6 @@ class GetDatabaseInstanceReadReplicaResult(dict):
         """
         :param str ip: IP of the replica
         :param str name: The name of the RDB instance.
-               Only one of `name` and `instance_id` should be specified.
         :param int port: Port of the replica
         """
         pulumi.set(__self__, "ip", ip)
@@ -7166,7 +7272,6 @@ class GetDatabaseInstanceReadReplicaResult(dict):
     def name(self) -> str:
         """
         The name of the RDB instance.
-        Only one of `name` and `instance_id` should be specified.
         """
         return pulumi.get(self, "name")
 
@@ -8335,9 +8440,9 @@ class GetIpamIpResourceResult(dict):
                  id: Optional[str] = None,
                  name: Optional[str] = None):
         """
-        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        :param str id: The ID of the resource that the IP is bound to.
-        :param str name: The name of the resource to get the IP from.
+        :param str type: The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        :param str id: The ID of the resource that the IP is attached to.
+        :param str name: The name of the resource the IP is attached to.
         """
         pulumi.set(__self__, "type", type)
         if id is not None:
@@ -8349,7 +8454,7 @@ class GetIpamIpResourceResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         return pulumi.get(self, "type")
 
@@ -8357,7 +8462,7 @@ class GetIpamIpResourceResult(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the resource that the IP is attached to.
         """
         return pulumi.get(self, "id")
 
@@ -8365,7 +8470,7 @@ class GetIpamIpResourceResult(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the resource to get the IP from.
+        The name of the resource the IP is attached to.
         """
         return pulumi.get(self, "name")
 
@@ -8383,15 +8488,15 @@ class GetIpamIpsIpResult(dict):
                  updated_at: str,
                  zone: str):
         """
-        :param str address: The Scaleway internal IP address of the server.
+        :param str address: The Scaleway internal IP address of the resource.
         :param str created_at: The date and time of the creation of the IP.
         :param str id: The ID of the resource.
-        :param str project_id: The ID of the project used as filter.
-        :param str region: The region used as filter.
-        :param Sequence['GetIpamIpsIpResourceArgs'] resources: Filter by resource ID, type or name.
-        :param Sequence[str] tags: The tags used as filter.
+        :param str project_id: The ID of the Project to filter for.
+        :param str region: The region to filter for.
+        :param Sequence['GetIpamIpsIpResourceArgs'] resources: Filter for a resource attached to the IP, using resource ID, type or name.
+        :param Sequence[str] tags: The IP tags to filter for.
         :param str updated_at: The date and time of the last update of the IP.
-        :param str zone: The zone in which the IP is.
+        :param str zone: The zone of the IP.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "created_at", created_at)
@@ -8407,7 +8512,7 @@ class GetIpamIpsIpResult(dict):
     @pulumi.getter
     def address(self) -> str:
         """
-        The Scaleway internal IP address of the server.
+        The Scaleway internal IP address of the resource.
         """
         return pulumi.get(self, "address")
 
@@ -8431,7 +8536,7 @@ class GetIpamIpsIpResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project used as filter.
+        The ID of the Project to filter for.
         """
         return pulumi.get(self, "project_id")
 
@@ -8439,7 +8544,7 @@ class GetIpamIpsIpResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        The region used as filter.
+        The region to filter for.
         """
         return pulumi.get(self, "region")
 
@@ -8447,7 +8552,7 @@ class GetIpamIpsIpResult(dict):
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetIpamIpsIpResourceResult']:
         """
-        Filter by resource ID, type or name.
+        Filter for a resource attached to the IP, using resource ID, type or name.
         """
         return pulumi.get(self, "resources")
 
@@ -8455,7 +8560,7 @@ class GetIpamIpsIpResult(dict):
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        The tags used as filter.
+        The IP tags to filter for.
         """
         return pulumi.get(self, "tags")
 
@@ -8471,7 +8576,7 @@ class GetIpamIpsIpResult(dict):
     @pulumi.getter
     def zone(self) -> str:
         """
-        The zone in which the IP is.
+        The zone of the IP.
         """
         return pulumi.get(self, "zone")
 
@@ -8484,10 +8589,10 @@ class GetIpamIpsIpResourceResult(dict):
                  name: str,
                  type: str):
         """
-        :param str id: The ID of the resource that the IP is bound to.
-        :param str mac_address: The Mac Address used as filter.
-        :param str name: The name of the resource to get the IP from.
-        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        :param str id: The ID of the attached resource.
+        :param str mac_address: The linked MAC address to filter for.
+        :param str name: The name of the attached resource.
+        :param str type: The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "mac_address", mac_address)
@@ -8498,7 +8603,7 @@ class GetIpamIpsIpResourceResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the attached resource.
         """
         return pulumi.get(self, "id")
 
@@ -8506,7 +8611,7 @@ class GetIpamIpsIpResourceResult(dict):
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> str:
         """
-        The Mac Address used as filter.
+        The linked MAC address to filter for.
         """
         return pulumi.get(self, "mac_address")
 
@@ -8514,7 +8619,7 @@ class GetIpamIpsIpResourceResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the resource to get the IP from.
+        The name of the attached resource.
         """
         return pulumi.get(self, "name")
 
@@ -8522,7 +8627,7 @@ class GetIpamIpsIpResourceResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         return pulumi.get(self, "type")
 
@@ -8534,9 +8639,9 @@ class GetIpamIpsResourceResult(dict):
                  id: Optional[str] = None,
                  name: Optional[str] = None):
         """
-        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        :param str id: The ID of the resource that the IP is bound to.
-        :param str name: The name of the resource to get the IP from.
+        :param str type: The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        :param str id: The ID of the attached resource.
+        :param str name: The name of the attached resource.
         """
         pulumi.set(__self__, "type", type)
         if id is not None:
@@ -8548,7 +8653,7 @@ class GetIpamIpsResourceResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         return pulumi.get(self, "type")
 
@@ -8556,7 +8661,7 @@ class GetIpamIpsResourceResult(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the attached resource.
         """
         return pulumi.get(self, "id")
 
@@ -8564,7 +8669,7 @@ class GetIpamIpsResourceResult(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the resource to get the IP from.
+        The name of the attached resource.
         """
         return pulumi.get(self, "name")
 
@@ -8954,17 +9059,17 @@ class GetLbAclsAclResult(dict):
                  name: str,
                  update_at: str):
         """
-        :param Sequence['GetLbAclsAclActionArgs'] actions: The action that has been undertaken when an ACL filter had matched.
-        :param str created_at: The date at which the ACL was created (RFC 3339 format).
+        :param Sequence['GetLbAclsAclActionArgs'] actions: The action to be undertaken when an ACL filter matches.
+        :param str created_at: The date on which the ACL was created (RFC 3339 format).
         :param str description: The description of the ACL resource.
-        :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-               > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+               > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         :param str id: The associated ACL ID.
                > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
-        :param int index: The order between the ACLs.
+        :param int index: The priority of this ACL in the ordered list.
         :param Sequence['GetLbAclsAclMatchArgs'] matches: The ACL match rule.
-        :param str name: The ACL name used as filter. ACLs with a name like it are listed.
-        :param str update_at: The date at which the ACL was last updated (RFC 3339 format).
+        :param str name: The ACL name to filter for. ACLs with a matching name are listed.
+        :param str update_at: The date on which the ACL was last updated (RFC 3339 format).
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "created_at", created_at)
@@ -8980,7 +9085,7 @@ class GetLbAclsAclResult(dict):
     @pulumi.getter
     def actions(self) -> Sequence['outputs.GetLbAclsAclActionResult']:
         """
-        The action that has been undertaken when an ACL filter had matched.
+        The action to be undertaken when an ACL filter matches.
         """
         return pulumi.get(self, "actions")
 
@@ -8988,7 +9093,7 @@ class GetLbAclsAclResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        The date at which the ACL was created (RFC 3339 format).
+        The date on which the ACL was created (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -9004,8 +9109,8 @@ class GetLbAclsAclResult(dict):
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> str:
         """
-        The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-        > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+        > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         """
         return pulumi.get(self, "frontend_id")
 
@@ -9022,7 +9127,7 @@ class GetLbAclsAclResult(dict):
     @pulumi.getter
     def index(self) -> int:
         """
-        The order between the ACLs.
+        The priority of this ACL in the ordered list.
         """
         return pulumi.get(self, "index")
 
@@ -9038,7 +9143,7 @@ class GetLbAclsAclResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The ACL name used as filter. ACLs with a name like it are listed.
+        The ACL name to filter for. ACLs with a matching name are listed.
         """
         return pulumi.get(self, "name")
 
@@ -9046,7 +9151,7 @@ class GetLbAclsAclResult(dict):
     @pulumi.getter(name="updateAt")
     def update_at(self) -> str:
         """
-        The date at which the ACL was last updated (RFC 3339 format).
+        The date on which the ACL was last updated (RFC 3339 format).
         """
         return pulumi.get(self, "update_at")
 
@@ -9087,8 +9192,8 @@ class GetLbAclsAclActionRedirectResult(dict):
                  target: str,
                  type: str):
         """
-        :param int code: The HTTP redirect code used.
-        :param str target: The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+        :param int code: The HTTP redirect code to use.
+        :param str target: The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
         :param str type: The redirect type.
         """
         pulumi.set(__self__, "code", code)
@@ -9099,7 +9204,7 @@ class GetLbAclsAclActionRedirectResult(dict):
     @pulumi.getter
     def code(self) -> int:
         """
-        The HTTP redirect code used.
+        The HTTP redirect code to use.
         """
         return pulumi.get(self, "code")
 
@@ -9107,7 +9212,7 @@ class GetLbAclsAclActionRedirectResult(dict):
     @pulumi.getter
     def target(self) -> str:
         """
-        The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+        The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
         """
         return pulumi.get(self, "target")
 
@@ -9129,11 +9234,11 @@ class GetLbAclsAclMatchResult(dict):
                  invert: bool,
                  ip_subnets: Sequence[str]):
         """
-        :param str http_filter: The matched HTTP filter.
+        :param str http_filter: The HTTP filter to match.
         :param str http_filter_option: A list of possible values for the HTTP filter based on the HTTP header.
-        :param Sequence[str] http_filter_values: The possible values matched for a given HTTP filter.
+        :param Sequence[str] http_filter_values: The possible values to match for a given HTTP filter.
         :param bool invert: The condition will be of type "unless" if invert is set to `true`
-        :param Sequence[str] ip_subnets: A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+        :param Sequence[str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         pulumi.set(__self__, "http_filter", http_filter)
         pulumi.set(__self__, "http_filter_option", http_filter_option)
@@ -9145,7 +9250,7 @@ class GetLbAclsAclMatchResult(dict):
     @pulumi.getter(name="httpFilter")
     def http_filter(self) -> str:
         """
-        The matched HTTP filter.
+        The HTTP filter to match.
         """
         return pulumi.get(self, "http_filter")
 
@@ -9161,7 +9266,7 @@ class GetLbAclsAclMatchResult(dict):
     @pulumi.getter(name="httpFilterValues")
     def http_filter_values(self) -> Sequence[str]:
         """
-        The possible values matched for a given HTTP filter.
+        The possible values to match for a given HTTP filter.
         """
         return pulumi.get(self, "http_filter_values")
 
@@ -9177,7 +9282,7 @@ class GetLbAclsAclMatchResult(dict):
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Sequence[str]:
         """
-        A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
 
@@ -9280,32 +9385,32 @@ class GetLbBackendsBackendResult(dict):
                  timeout_tunnel: str,
                  update_at: str):
         """
-        :param str created_at: The date at which the backend was created (RFC 3339 format).
-        :param str failover_host: Scaleway S3 bucket website to be served in case all backend servers are down.
-        :param int forward_port: User sessions will be forwarded to this port of backend servers.
+        :param str created_at: The date on which the backend was created (RFC 3339 format).
+        :param str failover_host: Scaleway S3 bucket website to be served if all backend servers are down.
+        :param int forward_port: User sessions will be forwarded to this backend server port.
         :param str forward_port_algorithm: Load balancing algorithm.
         :param str forward_protocol: Backend protocol.
-        :param str health_check_delay: Interval between two HC requests.
-        :param Sequence['GetLbBackendsBackendHealthCheckHttpArgs'] health_check_http: This block enable HTTP health check.
-        :param Sequence['GetLbBackendsBackendHealthCheckHttpArgs'] health_check_https: This block enable HTTPS health check.
-        :param int health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
-        :param int health_check_port: Port the HC requests will be sent to.
-        :param Sequence['GetLbBackendsBackendHealthCheckTcpArgs'] health_check_tcps: This block enable TCP health check.
-        :param str health_check_timeout: Timeout before we consider a HC request failed.
+        :param str health_check_delay: Interval between two health check requests.
+        :param Sequence['GetLbBackendsBackendHealthCheckHttpArgs'] health_check_http: This block enables HTTP health checks.
+        :param Sequence['GetLbBackendsBackendHealthCheckHttpArgs'] health_check_https: This block enables HTTPS health checks.
+        :param int health_check_max_retries: Number of allowed failed health check requests before the backend server is marked as down.
+        :param int health_check_port: Port the health check requests will be sent to.
+        :param Sequence['GetLbBackendsBackendHealthCheckTcpArgs'] health_check_tcps: This block enables TCP health checks.
+        :param str health_check_timeout: Timeout before a health check request is considered failed.
         :param str id: The associated backend ID.
         :param bool ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
-        :param str lb_id: The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
-        :param str name: The backend name used as filter. Backends with a name like it are listed.
+        :param str lb_id: The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
+        :param str name: The backend name to filter for. Backends with a matching name are listed.
         :param str on_marked_down_action: Modify what occurs when a backend server is marked down.
         :param str proxy_protocol: The type of PROXY protocol.
         :param Sequence[str] server_ips: List of backend server IP addresses.
-        :param bool ssl_bridging: Enables SSL between load balancer and backend servers.
+        :param bool ssl_bridging: Enables SSL between Load Balancer and backend servers.
         :param str sticky_sessions: Enables cookie-based session persistence.
         :param str sticky_sessions_cookie_name: Cookie name for sticky sessions.
         :param str timeout_connect: Maximum initial server connection establishment time.
         :param str timeout_server: Maximum server connection inactivity time.
         :param str timeout_tunnel: Maximum tunnel inactivity time.
-        :param str update_at: The date at which the backend was last updated (RFC 3339 format).
+        :param str update_at: The date on which the backend was last updated (RFC 3339 format).
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "failover_host", failover_host)
@@ -9338,7 +9443,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        The date at which the backend was created (RFC 3339 format).
+        The date on which the backend was created (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -9346,7 +9451,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="failoverHost")
     def failover_host(self) -> str:
         """
-        Scaleway S3 bucket website to be served in case all backend servers are down.
+        Scaleway S3 bucket website to be served if all backend servers are down.
         """
         return pulumi.get(self, "failover_host")
 
@@ -9354,7 +9459,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="forwardPort")
     def forward_port(self) -> int:
         """
-        User sessions will be forwarded to this port of backend servers.
+        User sessions will be forwarded to this backend server port.
         """
         return pulumi.get(self, "forward_port")
 
@@ -9378,7 +9483,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckDelay")
     def health_check_delay(self) -> str:
         """
-        Interval between two HC requests.
+        Interval between two health check requests.
         """
         return pulumi.get(self, "health_check_delay")
 
@@ -9386,7 +9491,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> Sequence['outputs.GetLbBackendsBackendHealthCheckHttpResult']:
         """
-        This block enable HTTP health check.
+        This block enables HTTP health checks.
         """
         return pulumi.get(self, "health_check_http")
 
@@ -9394,7 +9499,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> Sequence['outputs.GetLbBackendsBackendHealthCheckHttpResult']:
         """
-        This block enable HTTPS health check.
+        This block enables HTTPS health checks.
         """
         return pulumi.get(self, "health_check_https")
 
@@ -9402,7 +9507,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckMaxRetries")
     def health_check_max_retries(self) -> int:
         """
-        Number of allowed failed HC requests before the backend server is marked down.
+        Number of allowed failed health check requests before the backend server is marked as down.
         """
         return pulumi.get(self, "health_check_max_retries")
 
@@ -9410,7 +9515,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckPort")
     def health_check_port(self) -> int:
         """
-        Port the HC requests will be sent to.
+        Port the health check requests will be sent to.
         """
         return pulumi.get(self, "health_check_port")
 
@@ -9418,7 +9523,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckTcps")
     def health_check_tcps(self) -> Sequence['outputs.GetLbBackendsBackendHealthCheckTcpResult']:
         """
-        This block enable TCP health check.
+        This block enables TCP health checks.
         """
         return pulumi.get(self, "health_check_tcps")
 
@@ -9426,7 +9531,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="healthCheckTimeout")
     def health_check_timeout(self) -> str:
         """
-        Timeout before we consider a HC request failed.
+        Timeout before a health check request is considered failed.
         """
         return pulumi.get(self, "health_check_timeout")
 
@@ -9450,7 +9555,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> str:
         """
-        The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+        The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
         """
         return pulumi.get(self, "lb_id")
 
@@ -9458,7 +9563,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The backend name used as filter. Backends with a name like it are listed.
+        The backend name to filter for. Backends with a matching name are listed.
         """
         return pulumi.get(self, "name")
 
@@ -9490,7 +9595,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="sslBridging")
     def ssl_bridging(self) -> bool:
         """
-        Enables SSL between load balancer and backend servers.
+        Enables SSL between Load Balancer and backend servers.
         """
         return pulumi.get(self, "ssl_bridging")
 
@@ -9538,7 +9643,7 @@ class GetLbBackendsBackendResult(dict):
     @pulumi.getter(name="updateAt")
     def update_at(self) -> str:
         """
-        The date at which the backend was last updated (RFC 3339 format).
+        The date on which the backend was last updated (RFC 3339 format).
         """
         return pulumi.get(self, "update_at")
 
@@ -9553,10 +9658,10 @@ class GetLbBackendsBackendHealthCheckHttpResult(dict):
                  uri: str):
         """
         :param int code: The expected HTTP status code.
-        :param str host_header: The HTTP host header to use for HC requests.
-        :param str method: The HTTP method to use for HC requests.
+        :param str host_header: The HTTP host header to use for health check requests.
+        :param str method: The HTTP method to use for health check requests.
         :param str sni: The SNI to use for HC requests over SSL.
-        :param str uri: The HTTPS endpoint URL to call for HC requests.
+        :param str uri: The HTTPS endpoint URL to call for health check requests.
         """
         pulumi.set(__self__, "code", code)
         pulumi.set(__self__, "host_header", host_header)
@@ -9576,7 +9681,7 @@ class GetLbBackendsBackendHealthCheckHttpResult(dict):
     @pulumi.getter(name="hostHeader")
     def host_header(self) -> str:
         """
-        The HTTP host header to use for HC requests.
+        The HTTP host header to use for health check requests.
         """
         return pulumi.get(self, "host_header")
 
@@ -9584,7 +9689,7 @@ class GetLbBackendsBackendHealthCheckHttpResult(dict):
     @pulumi.getter
     def method(self) -> str:
         """
-        The HTTP method to use for HC requests.
+        The HTTP method to use for health check requests.
         """
         return pulumi.get(self, "method")
 
@@ -9600,7 +9705,7 @@ class GetLbBackendsBackendHealthCheckHttpResult(dict):
     @pulumi.getter
     def uri(self) -> str:
         """
-        The HTTPS endpoint URL to call for HC requests.
+        The HTTPS endpoint URL to call for health check requests.
         """
         return pulumi.get(self, "uri")
 
@@ -9831,18 +9936,18 @@ class GetLbFrontendsFrontendResult(dict):
                  timeout_client: str,
                  update_at: str):
         """
-        :param str backend_id: The load-balancer backend ID this frontend is attached to.
-               > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
-        :param Sequence[str] certificate_ids: List of Certificate IDs that are used by the frontend.
-        :param str created_at: The date at which the frontend was created (RFC 3339 format).
-        :param bool enable_http3: If HTTP/3 protocol is activated.
-        :param str id: The associated frontend ID.
-               > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
-        :param int inbound_port: TCP port the frontend listen to.
-        :param str lb_id: The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
-        :param str name: The frontend name used as filter. Frontends with a name like it are listed.
+        :param str backend_id: The Load Balancer backend ID this frontend is attached to.
+               > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        :param Sequence[str] certificate_ids: List of certificate IDs that are used by the frontend.
+        :param str created_at: The date on which the frontend was created (RFC 3339 format).
+        :param bool enable_http3: Whether HTTP/3 protocol is activated.
+        :param str id: The ID of the associated frontend.
+               > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        :param int inbound_port: TCP port the frontend listens to.
+        :param str lb_id: The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
+        :param str name: The frontend name to filter for. Frontends with a matching name are listed.
         :param str timeout_client: Maximum inactivity time on the client side.
-        :param str update_at: The date at which the frontend was last updated (RFC 3339 format).
+        :param str update_at: The date aont which the frontend was last updated (RFC 3339 format).
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "certificate_ids", certificate_ids)
@@ -9859,8 +9964,8 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="backendId")
     def backend_id(self) -> str:
         """
-        The load-balancer backend ID this frontend is attached to.
-        > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        The Load Balancer backend ID this frontend is attached to.
+        > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         """
         return pulumi.get(self, "backend_id")
 
@@ -9868,7 +9973,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="certificateIds")
     def certificate_ids(self) -> Sequence[str]:
         """
-        List of Certificate IDs that are used by the frontend.
+        List of certificate IDs that are used by the frontend.
         """
         return pulumi.get(self, "certificate_ids")
 
@@ -9876,7 +9981,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        The date at which the frontend was created (RFC 3339 format).
+        The date on which the frontend was created (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -9884,7 +9989,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="enableHttp3")
     def enable_http3(self) -> bool:
         """
-        If HTTP/3 protocol is activated.
+        Whether HTTP/3 protocol is activated.
         """
         return pulumi.get(self, "enable_http3")
 
@@ -9892,8 +9997,8 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The associated frontend ID.
-        > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+        The ID of the associated frontend.
+        > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         """
         return pulumi.get(self, "id")
 
@@ -9901,7 +10006,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="inboundPort")
     def inbound_port(self) -> int:
         """
-        TCP port the frontend listen to.
+        TCP port the frontend listens to.
         """
         return pulumi.get(self, "inbound_port")
 
@@ -9909,7 +10014,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> str:
         """
-        The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+        The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
         """
         return pulumi.get(self, "lb_id")
 
@@ -9917,7 +10022,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The frontend name used as filter. Frontends with a name like it are listed.
+        The frontend name to filter for. Frontends with a matching name are listed.
         """
         return pulumi.get(self, "name")
 
@@ -9933,7 +10038,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="updateAt")
     def update_at(self) -> str:
         """
-        The date at which the frontend was last updated (RFC 3339 format).
+        The date aont which the frontend was last updated (RFC 3339 format).
         """
         return pulumi.get(self, "update_at")
 
@@ -9949,13 +10054,13 @@ class GetLbIpsIpResult(dict):
                  reverse: str,
                  zone: str):
         """
-        :param str id: The associated IP ID.
-        :param str ip_address: The IP Address
-        :param str lb_id: The associated load-balancer ID if any
-        :param str organization_id: The organization ID the load-balancer is associated with.
-        :param str project_id: The ID of the project the load-balancer is associated with.
+        :param str id: The ID of the associated IP.
+        :param str ip_address: The IP address
+        :param str lb_id: The ID of the associated Load BalancerD, if any
+        :param str organization_id: The ID of the Organization the Load Balancer is associated with.
+        :param str project_id: The ID of the Project the Load Balancer is associated with.
         :param str reverse: The reverse domain associated with this IP.
-        :param str zone: `zone`) The zone in which IPs exist.
+        :param str zone: `zone`) The zone in which the IPs exist.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_address", ip_address)
@@ -9969,7 +10074,7 @@ class GetLbIpsIpResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The associated IP ID.
+        The ID of the associated IP.
         """
         return pulumi.get(self, "id")
 
@@ -9977,7 +10082,7 @@ class GetLbIpsIpResult(dict):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
         """
-        The IP Address
+        The IP address
         """
         return pulumi.get(self, "ip_address")
 
@@ -9985,7 +10090,7 @@ class GetLbIpsIpResult(dict):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> str:
         """
-        The associated load-balancer ID if any
+        The ID of the associated Load BalancerD, if any
         """
         return pulumi.get(self, "lb_id")
 
@@ -9993,7 +10098,7 @@ class GetLbIpsIpResult(dict):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the load-balancer is associated with.
+        The ID of the Organization the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -10001,7 +10106,7 @@ class GetLbIpsIpResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the load-balancer is associated with.
+        The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -10017,7 +10122,7 @@ class GetLbIpsIpResult(dict):
     @pulumi.getter
     def zone(self) -> str:
         """
-        `zone`) The zone in which IPs exist.
+        `zone`) The zone in which the IPs exist.
         """
         return pulumi.get(self, "zone")
 
@@ -10033,13 +10138,13 @@ class GetLbRoutesRouteResult(dict):
                  match_sni: str,
                  update_at: str):
         """
-        :param str backend_id: The backend ID destination of redirection
-        :param str created_at: The date at which the route was created (RFC 3339 format).
-        :param str frontend_id: The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+        :param str backend_id: The backend ID to redirect to
+        :param str created_at: The date on which the route was created (RFC 3339 format).
+        :param str frontend_id: The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
         :param str id: The associated route ID.
         :param str match_host_header: Specifies the host of the server to which the request is being sent.
         :param str match_sni: Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
-        :param str update_at: The date at which the route was last updated (RFC 3339 format).
+        :param str update_at: The date on which the route was last updated (RFC 3339 format).
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "created_at", created_at)
@@ -10053,7 +10158,7 @@ class GetLbRoutesRouteResult(dict):
     @pulumi.getter(name="backendId")
     def backend_id(self) -> str:
         """
-        The backend ID destination of redirection
+        The backend ID to redirect to
         """
         return pulumi.get(self, "backend_id")
 
@@ -10061,7 +10166,7 @@ class GetLbRoutesRouteResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        The date at which the route was created (RFC 3339 format).
+        The date on which the route was created (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -10069,7 +10174,7 @@ class GetLbRoutesRouteResult(dict):
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> str:
         """
-        The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+        The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -10101,7 +10206,7 @@ class GetLbRoutesRouteResult(dict):
     @pulumi.getter(name="updateAt")
     def update_at(self) -> str:
         """
-        The date at which the route was last updated (RFC 3339 format).
+        The date on which the route was last updated (RFC 3339 format).
         """
         return pulumi.get(self, "update_at")
 
@@ -10129,25 +10234,25 @@ class GetLbsLbResult(dict):
                  updated_at: str,
                  zone: str):
         """
-        :param int backend_count: Number of backends the Load balancer has.
-        :param str created_at: Date at which the Load balancer was created.
-        :param str description: The description of the load-balancer.
-        :param int frontend_count: Number of frontends the Load balancer has.
-        :param str id: The ID of the load-balancer.
-        :param Sequence['GetLbsLbInstanceArgs'] instances: List of underlying instances.
-        :param Sequence['GetLbsLbIpArgs'] ips: List of IPs attached to the Load balancer.
-        :param str name: The load balancer name used as a filter. LBs with a name like it are listed.
-        :param str organization_id: The organization ID the load-balancer is associated with.
-        :param int private_network_count: Number of private networks attached to the Load balancer.
-        :param str project_id: The ID of the project the load-balancer is associated with.
+        :param int backend_count: Number of backends the Load Balancer has.
+        :param str created_at: Date on which the Load Balancer was created.
+        :param str description: The description of the Load Balancer.
+        :param int frontend_count: Number of frontends the Load Balancer has.
+        :param str id: The ID of the Load Balancer.
+        :param Sequence['GetLbsLbInstanceArgs'] instances: List of underlying Instances.
+        :param Sequence['GetLbsLbIpArgs'] ips: List of IPs attached to the Load Balancer.
+        :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.
+        :param str organization_id: The ID of the Organization the Load Balancer is associated with.
+        :param int private_network_count: Number of Private Networks attached to the Load balancer.
+        :param str project_id: The ID of the Project the Load Balancer is associated with.
         :param int route_count: Number of routes the Load balancer has.
-        :param str ssl_compatibility_level: Determines the minimal SSL version which needs to be supported on client side.
-        :param str status: The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        :param str ssl_compatibility_level: Determines the minimal SSL version which needs to be supported on the client side.
+        :param str status: The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         :param str subscriber: The subscriber information.
-        :param Sequence[str] tags: List of tags used as filter. LBs with these exact tags are listed.
-        :param str type: The offer type of the load-balancer.
-        :param str updated_at: Date at which the Load balancer was updated.
-        :param str zone: `zone`) The zone in which LBs exist.
+        :param Sequence[str] tags: List of tags to filter for. Load Balancers with these exact tags are listed.
+        :param str type: The offer type of the Load Balancer.
+        :param str updated_at: Date on which the Load Balancer was updated.
+        :param str zone: `zone`) The zone in which the Load Balancers exist.
         """
         pulumi.set(__self__, "backend_count", backend_count)
         pulumi.set(__self__, "created_at", created_at)
@@ -10173,7 +10278,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="backendCount")
     def backend_count(self) -> int:
         """
-        Number of backends the Load balancer has.
+        Number of backends the Load Balancer has.
         """
         return pulumi.get(self, "backend_count")
 
@@ -10181,7 +10286,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        Date at which the Load balancer was created.
+        Date on which the Load Balancer was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -10189,7 +10294,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def description(self) -> str:
         """
-        The description of the load-balancer.
+        The description of the Load Balancer.
         """
         return pulumi.get(self, "description")
 
@@ -10197,7 +10302,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="frontendCount")
     def frontend_count(self) -> int:
         """
-        Number of frontends the Load balancer has.
+        Number of frontends the Load Balancer has.
         """
         return pulumi.get(self, "frontend_count")
 
@@ -10205,7 +10310,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the load-balancer.
+        The ID of the Load Balancer.
         """
         return pulumi.get(self, "id")
 
@@ -10213,7 +10318,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def instances(self) -> Sequence['outputs.GetLbsLbInstanceResult']:
         """
-        List of underlying instances.
+        List of underlying Instances.
         """
         return pulumi.get(self, "instances")
 
@@ -10221,7 +10326,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def ips(self) -> Sequence['outputs.GetLbsLbIpResult']:
         """
-        List of IPs attached to the Load balancer.
+        List of IPs attached to the Load Balancer.
         """
         return pulumi.get(self, "ips")
 
@@ -10229,7 +10334,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The load balancer name used as a filter. LBs with a name like it are listed.
+        The Load Balancer name to filter for. Load Balancers with a matching name are listed.
         """
         return pulumi.get(self, "name")
 
@@ -10237,7 +10342,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the load-balancer is associated with.
+        The ID of the Organization the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -10245,7 +10350,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="privateNetworkCount")
     def private_network_count(self) -> int:
         """
-        Number of private networks attached to the Load balancer.
+        Number of Private Networks attached to the Load balancer.
         """
         return pulumi.get(self, "private_network_count")
 
@@ -10253,7 +10358,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the load-balancer is associated with.
+        The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -10269,7 +10374,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="sslCompatibilityLevel")
     def ssl_compatibility_level(self) -> str:
         """
-        Determines the minimal SSL version which needs to be supported on client side.
+        Determines the minimal SSL version which needs to be supported on the client side.
         """
         return pulumi.get(self, "ssl_compatibility_level")
 
@@ -10277,7 +10382,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def status(self) -> str:
         """
-        The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         """
         return pulumi.get(self, "status")
 
@@ -10293,7 +10398,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        List of tags used as filter. LBs with these exact tags are listed.
+        List of tags to filter for. Load Balancers with these exact tags are listed.
         """
         return pulumi.get(self, "tags")
 
@@ -10301,7 +10406,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        The offer type of the load-balancer.
+        The offer type of the Load Balancer.
         """
         return pulumi.get(self, "type")
 
@@ -10309,7 +10414,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
-        Date at which the Load balancer was updated.
+        Date on which the Load Balancer was updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -10317,7 +10422,7 @@ class GetLbsLbResult(dict):
     @pulumi.getter
     def zone(self) -> str:
         """
-        `zone`) The zone in which LBs exist.
+        `zone`) The zone in which the Load Balancers exist.
         """
         return pulumi.get(self, "zone")
 
@@ -10332,11 +10437,11 @@ class GetLbsLbInstanceResult(dict):
                  updated_at: str,
                  zone: str):
         """
-        :param str created_at: Date at which the Load balancer was created.
-        :param str id: The ID of the load-balancer.
-        :param str status: The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
-        :param str updated_at: Date at which the Load balancer was updated.
-        :param str zone: `zone`) The zone in which LBs exist.
+        :param str created_at: Date on which the Load Balancer was created.
+        :param str id: The ID of the Load Balancer.
+        :param str status: The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        :param str updated_at: Date on which the Load Balancer was updated.
+        :param str zone: `zone`) The zone in which the Load Balancers exist.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -10349,7 +10454,7 @@ class GetLbsLbInstanceResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        Date at which the Load balancer was created.
+        Date on which the Load Balancer was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -10357,7 +10462,7 @@ class GetLbsLbInstanceResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the load-balancer.
+        The ID of the Load Balancer.
         """
         return pulumi.get(self, "id")
 
@@ -10370,7 +10475,7 @@ class GetLbsLbInstanceResult(dict):
     @pulumi.getter
     def status(self) -> str:
         """
-        The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         """
         return pulumi.get(self, "status")
 
@@ -10378,7 +10483,7 @@ class GetLbsLbInstanceResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
-        Date at which the Load balancer was updated.
+        Date on which the Load Balancer was updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -10386,7 +10491,7 @@ class GetLbsLbInstanceResult(dict):
     @pulumi.getter
     def zone(self) -> str:
         """
-        `zone`) The zone in which LBs exist.
+        `zone`) The zone in which the Load Balancers exist.
         """
         return pulumi.get(self, "zone")
 
@@ -10402,10 +10507,10 @@ class GetLbsLbIpResult(dict):
                  reverse: str,
                  zone: str):
         """
-        :param str id: The ID of the load-balancer.
-        :param str organization_id: The organization ID the load-balancer is associated with.
-        :param str project_id: The ID of the project the load-balancer is associated with.
-        :param str zone: `zone`) The zone in which LBs exist.
+        :param str id: The ID of the Load Balancer.
+        :param str organization_id: The ID of the Organization the Load Balancer is associated with.
+        :param str project_id: The ID of the Project the Load Balancer is associated with.
+        :param str zone: `zone`) The zone in which the Load Balancers exist.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_address", ip_address)
@@ -10419,7 +10524,7 @@ class GetLbsLbIpResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the load-balancer.
+        The ID of the Load Balancer.
         """
         return pulumi.get(self, "id")
 
@@ -10437,7 +10542,7 @@ class GetLbsLbIpResult(dict):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the load-balancer is associated with.
+        The ID of the Organization the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -10445,7 +10550,7 @@ class GetLbsLbIpResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the load-balancer is associated with.
+        The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -10458,7 +10563,7 @@ class GetLbsLbIpResult(dict):
     @pulumi.getter
     def zone(self) -> str:
         """
-        `zone`) The zone in which LBs exist.
+        `zone`) The zone in which the Load Balancers exist.
         """
         return pulumi.get(self, "zone")
 
@@ -10523,7 +10628,7 @@ class GetLoadbalancerPrivateNetworkResult(dict):
         :param str private_network_id: The Private Network ID
         :param Sequence[str] static_configs: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param str status: The status of private network connection
-        :param str zone: (Defaults to provider `zone`) The zone in which the LB exists.
+        :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         pulumi.set(__self__, "dhcp_config", dhcp_config)
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -10567,7 +10672,7 @@ class GetLoadbalancerPrivateNetworkResult(dict):
     @pulumi.getter
     def zone(self) -> str:
         """
-        (Defaults to provider `zone`) The zone in which the LB exists.
+        (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
 
@@ -10809,7 +10914,7 @@ class GetRedisClusterPrivateNetworkResult(dict):
                  service_ips: Sequence[str],
                  zone: str):
         """
-        :param str endpoint_id: UUID of the endpoint to be connected to the cluster
+        :param str endpoint_id: The ID of the endpoint.
         :param str id: The ID of the Redis cluster.
         :param Sequence[str] service_ips: List of IPv4 addresses of the private network with a CIDR notation
         :param str zone: `region`) The zone in which the server exists.
@@ -10823,7 +10928,7 @@ class GetRedisClusterPrivateNetworkResult(dict):
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> str:
         """
-        UUID of the endpoint to be connected to the cluster
+        The ID of the endpoint.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -10992,7 +11097,7 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
         """
         :param str address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet
         :param str created_at: The date and time of the creation of the subnet
-        :param str id: The ID of the private network.
+        :param str id: The ID of the Private Network.
         :param int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
         :param str subnet: The subnet CIDR
         :param str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -11026,7 +11131,7 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the private network.
+        The ID of the Private Network.
         """
         return pulumi.get(self, "id")
 
@@ -11076,7 +11181,7 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
         """
         :param str address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet
         :param str created_at: The date and time of the creation of the subnet
-        :param str id: The ID of the private network.
+        :param str id: The ID of the Private Network.
         :param int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
         :param str subnet: The subnet CIDR
         :param str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -11110,7 +11215,7 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the private network.
+        The ID of the Private Network.
         """
         return pulumi.get(self, "id")
 
@@ -11162,13 +11267,13 @@ class GetVpcsVpcResult(dict):
         """
         :param str created_at: Date and time of VPC's creation (RFC 3339 format).
         :param str id: The associated VPC ID.
-               > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+               > **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
         :param bool is_default: Defines whether the VPC is the default one for its Project.
-        :param str name: The VPC name used as filter. VPCs with a name like it are listed.
-        :param str organization_id: The organization ID the VPC is associated with.
-        :param str project_id: The ID of the project the VPC is associated with.
-        :param str region: `region`). The region in which vpcs exist.
-        :param Sequence[str] tags: List of tags used as filter. VPCs with these exact tags are listed.
+        :param str name: The VPC name to filter for. VPCs with a similar name are listed.
+        :param str organization_id: The Organization ID the VPC is associated with.
+        :param str project_id: The ID of the Project the VPC is associated with.
+        :param str region: `region`). The region in which the VPCs exist.
+        :param Sequence[str] tags: List of tags to filter for. VPCs with these exact tags are listed.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -11193,7 +11298,7 @@ class GetVpcsVpcResult(dict):
     def id(self) -> str:
         """
         The associated VPC ID.
-        > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+        > **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
         """
         return pulumi.get(self, "id")
 
@@ -11209,7 +11314,7 @@ class GetVpcsVpcResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The VPC name used as filter. VPCs with a name like it are listed.
+        The VPC name to filter for. VPCs with a similar name are listed.
         """
         return pulumi.get(self, "name")
 
@@ -11217,7 +11322,7 @@ class GetVpcsVpcResult(dict):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the VPC is associated with.
+        The Organization ID the VPC is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -11225,7 +11330,7 @@ class GetVpcsVpcResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the VPC is associated with.
+        The ID of the Project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -11233,7 +11338,7 @@ class GetVpcsVpcResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        `region`). The region in which vpcs exist.
+        `region`). The region in which the VPCs exist.
         """
         return pulumi.get(self, "region")
 
@@ -11241,7 +11346,7 @@ class GetVpcsVpcResult(dict):
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         """
-        List of tags used as filter. VPCs with these exact tags are listed.
+        List of tags to filter for. VPCs with these exact tags are listed.
         """
         return pulumi.get(self, "tags")
 

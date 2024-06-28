@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway Container Registry.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/registry).
+// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
 //
 // ## Example Usage
 //
@@ -65,7 +65,7 @@ type RegistryNamespace struct {
 	//
 	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The Organization ID the namespace is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -113,7 +113,7 @@ type registryNamespaceState struct {
 	//
 	// > **Important** Updates to `name` will recreate the namespace.
 	Name *string `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The Organization ID the namespace is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -132,7 +132,7 @@ type RegistryNamespaceState struct {
 	//
 	// > **Important** Updates to `name` will recreate the namespace.
 	Name pulumi.StringPtrInput
-	// The organization ID the namespace is associated with.
+	// The Organization ID the namespace is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -284,7 +284,7 @@ func (o RegistryNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the namespace is associated with.
+// The Organization ID the namespace is associated with.
 func (o RegistryNamespaceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryNamespace) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

@@ -49,7 +49,7 @@ class GetLbBackendsResult:
     @pulumi.getter
     def backends(self) -> Sequence['outputs.GetLbBackendsBackendResult']:
         """
-        List of found backends
+        List of retrieved backends
         """
         return pulumi.get(self, "backends")
 
@@ -110,6 +110,8 @@ def get_lb_backends(lb_id: Optional[str] = None,
     """
     Gets information about multiple Load Balancer Backends.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+
     ## Example Usage
 
     ```python
@@ -122,8 +124,8 @@ def get_lb_backends(lb_id: Optional[str] = None,
     ```
 
 
-    :param str lb_id: The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
-    :param str name: The backend name used as filter. Backends with a name like it are listed.
+    :param str lb_id: The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
+    :param str name: The backend name to filter for. Backends with a matching name are listed.
     :param str zone: `zone`) The zone in which backends exist.
     """
     __args__ = dict()
@@ -153,6 +155,8 @@ def get_lb_backends_output(lb_id: Optional[pulumi.Input[str]] = None,
     """
     Gets information about multiple Load Balancer Backends.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+
     ## Example Usage
 
     ```python
@@ -165,8 +169,8 @@ def get_lb_backends_output(lb_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str lb_id: The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
-    :param str name: The backend name used as filter. Backends with a name like it are listed.
+    :param str lb_id: The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
+    :param str name: The backend name to filter for. Backends with a matching name are listed.
     :param str zone: `zone`) The zone in which backends exist.
     """
     ...

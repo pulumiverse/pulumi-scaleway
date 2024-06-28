@@ -57,7 +57,7 @@ class GetLbsResult:
     @pulumi.getter
     def lbs(self) -> Sequence['outputs.GetLbsLbResult']:
         """
-        List of found LBs
+        List of retrieved Load Balancers
         """
         return pulumi.get(self, "lbs")
 
@@ -65,7 +65,7 @@ class GetLbsResult:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the load-balancer.
+        The name of the Load Balancer.
         """
         return pulumi.get(self, "name")
 
@@ -73,7 +73,7 @@ class GetLbsResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the load-balancer is associated with.
+        The ID of the Organization the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -81,7 +81,7 @@ class GetLbsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        The ID of the project the load-balancer is associated with.
+        The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -89,7 +89,7 @@ class GetLbsResult:
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
         """
-        The tags associated with the load-balancer.
+        The tags associated with the Load Balancer.
         """
         return pulumi.get(self, "tags")
 
@@ -97,7 +97,7 @@ class GetLbsResult:
     @pulumi.getter
     def zone(self) -> str:
         """
-        The zone in which the load-balancer is.
+        The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
@@ -125,6 +125,8 @@ def get_lbs(name: Optional[str] = None,
     """
     Gets information about multiple Load Balancers.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+
     ## Example Usage
 
     ```python
@@ -137,10 +139,10 @@ def get_lbs(name: Optional[str] = None,
     ```
 
 
-    :param str name: The load balancer name used as a filter. LBs with a name like it are listed.
-    :param str project_id: The ID of the project the load-balancer is associated with.
-    :param Sequence[str] tags: List of tags used as filter. LBs with these exact tags are listed.
-    :param str zone: `zone`) The zone in which LBs exist.
+    :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.
+    :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param Sequence[str] tags: List of tags to filter for. Load Balancers with these exact tags are listed.
+    :param str zone: `zone`) The zone in which the Load Balancers exist.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -169,6 +171,8 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     """
     Gets information about multiple Load Balancers.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+
     ## Example Usage
 
     ```python
@@ -181,9 +185,9 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The load balancer name used as a filter. LBs with a name like it are listed.
-    :param str project_id: The ID of the project the load-balancer is associated with.
-    :param Sequence[str] tags: List of tags used as filter. LBs with these exact tags are listed.
-    :param str zone: `zone`) The zone in which LBs exist.
+    :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.
+    :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param Sequence[str] tags: List of tags to filter for. Load Balancers with these exact tags are listed.
+    :param str zone: `zone`) The zone in which the Load Balancers exist.
     """
     ...

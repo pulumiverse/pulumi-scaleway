@@ -12,7 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
+// Creates and manages Scaleway Load Balancer ACLs.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
 //
 // ## Example Usage
 //
@@ -56,7 +58,7 @@ import (
 //
 // ## Import
 //
-// Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g.
+// Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -72,9 +74,9 @@ type LoadbalancerAcl struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ACL description.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The load-balancer Frontend ID to attach the ACL to.
+	// The ID of the Load Balancer frontend to attach the ACL to.
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
-	// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index pulumi.IntOutput `pulumi:"index"`
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerAclMatchPtrOutput `pulumi:"match"`
@@ -129,9 +131,9 @@ type loadbalancerAclState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ACL description.
 	Description *string `pulumi:"description"`
-	// The load-balancer Frontend ID to attach the ACL to.
+	// The ID of the Load Balancer frontend to attach the ACL to.
 	FrontendId *string `pulumi:"frontendId"`
-	// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index *int `pulumi:"index"`
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match *LoadbalancerAclMatch `pulumi:"match"`
@@ -148,9 +150,9 @@ type LoadbalancerAclState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The ACL description.
 	Description pulumi.StringPtrInput
-	// The load-balancer Frontend ID to attach the ACL to.
+	// The ID of the Load Balancer frontend to attach the ACL to.
 	FrontendId pulumi.StringPtrInput
-	// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index pulumi.IntPtrInput
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerAclMatchPtrInput
@@ -169,9 +171,9 @@ type loadbalancerAclArgs struct {
 	Action LoadbalancerAclAction `pulumi:"action"`
 	// The ACL description.
 	Description *string `pulumi:"description"`
-	// The load-balancer Frontend ID to attach the ACL to.
+	// The ID of the Load Balancer frontend to attach the ACL to.
 	FrontendId string `pulumi:"frontendId"`
-	// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index int `pulumi:"index"`
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match *LoadbalancerAclMatch `pulumi:"match"`
@@ -185,9 +187,9 @@ type LoadbalancerAclArgs struct {
 	Action LoadbalancerAclActionInput
 	// The ACL description.
 	Description pulumi.StringPtrInput
-	// The load-balancer Frontend ID to attach the ACL to.
+	// The ID of the Load Balancer frontend to attach the ACL to.
 	FrontendId pulumi.StringInput
-	// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index pulumi.IntInput
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerAclMatchPtrInput
@@ -297,12 +299,12 @@ func (o LoadbalancerAclOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The load-balancer Frontend ID to attach the ACL to.
+// The ID of the Load Balancer frontend to attach the ACL to.
 func (o LoadbalancerAclOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) pulumi.StringOutput { return v.FrontendId }).(pulumi.StringOutput)
 }
 
-// The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 func (o LoadbalancerAclOutput) Index() pulumi.IntOutput {
 	return o.ApplyT(func(v *LoadbalancerAcl) pulumi.IntOutput { return v.Index }).(pulumi.IntOutput)
 }

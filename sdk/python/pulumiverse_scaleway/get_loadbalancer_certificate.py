@@ -149,19 +149,19 @@ def get_loadbalancer_certificate(certificate_id: Optional[str] = None,
                                  name: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerCertificateResult:
     """
-    Get information about Scaleway Load-Balancer Certificates.
+    Get information about Scaleway Load Balancer certificates.
 
-    This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+    This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
 
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
 
     ## Examples
 
 
-    :param str certificate_id: The certificate id.
+    :param str certificate_id: The certificate ID.
            - Only one of `name` and `certificate_id` should be specified.
-    :param str lb_id: The load-balancer ID this certificate is attached to.
-    :param str name: The name of the certificate backend.
+    :param str lb_id: The Load Balancer ID this certificate is attached to.
+    :param str name: The name of the Load Balancer certificate.
            - When using a certificate `name` you should specify the `lb-id`
     """
     __args__ = dict()
@@ -192,19 +192,19 @@ def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Op
                                         name: Optional[pulumi.Input[Optional[str]]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerCertificateResult]:
     """
-    Get information about Scaleway Load-Balancer Certificates.
+    Get information about Scaleway Load Balancer certificates.
 
-    This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+    This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
 
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
 
     ## Examples
 
 
-    :param str certificate_id: The certificate id.
+    :param str certificate_id: The certificate ID.
            - Only one of `name` and `certificate_id` should be specified.
-    :param str lb_id: The load-balancer ID this certificate is attached to.
-    :param str name: The name of the certificate backend.
+    :param str lb_id: The Load Balancer ID this certificate is attached to.
+    :param str name: The name of the Load Balancer certificate.
            - When using a certificate `name` you should specify the `lb-id`
     """
     ...

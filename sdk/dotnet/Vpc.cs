@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Virtual Private Clouds.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
+    /// For more information, see [the main documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
     /// 
     /// ## Example Usage
     /// 
@@ -64,7 +64,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// VPCs can be imported using the `{region}/{id}`, e.g.
+    /// VPCs can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -94,19 +94,19 @@ namespace Pulumiverse.Scaleway
         public Output<bool> IsDefault { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the VPC. If not provided it will be randomly generated.
+        /// The name for the VPC. If not provided it will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the VPC is associated with.
+        /// The Organization ID the VPC is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `project_id`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -118,7 +118,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the VPC.
+        /// The tags to associate with the VPC.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -183,13 +183,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableRouting { get; set; }
 
         /// <summary>
-        /// The name of the VPC. If not provided it will be randomly generated.
+        /// The name for the VPC. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `project_id`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -204,7 +204,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the VPC.
+        /// The tags to associate with the VPC.
         /// </summary>
         public InputList<string> Tags
         {
@@ -239,19 +239,19 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// The name of the VPC. If not provided it will be randomly generated.
+        /// The name for the VPC. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the VPC is associated with.
+        /// The Organization ID the VPC is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `project_id`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -266,7 +266,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the VPC.
+        /// The tags to associate with the VPC.
         /// </summary>
         public InputList<string> Tags
         {

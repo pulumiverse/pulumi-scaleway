@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+// Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+//
+// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 //
 // ## Examples
 //
@@ -43,7 +45,7 @@ import (
 //
 // ### Instance Private Network IP
 //
-// Get Instance IP in a private network.
+// Get an Instance's IP on a Private Network.
 //
 // ```go
 // package main
@@ -141,13 +143,13 @@ func LookupIpamIp(ctx *pulumi.Context, args *LookupIpamIpArgs, opts ...pulumi.In
 type LookupIpamIpArgs struct {
 	// Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipamIpId`.
 	Attached *bool `pulumi:"attached"`
-	// The IPAM IP ID. Cannot be used with the rest of the arguments.
+	// The IPAM IP ID. Cannot be used with any other arguments.
 	IpamIpId *string `pulumi:"ipamIpId"`
-	// The Mac Address linked to the IP. Cannot be used with `ipamIpId`.
+	// The MAC address linked to the IP. Cannot be used with `ipamIpId`.
 	MacAddress *string `pulumi:"macAddress"`
-	// The ID of the private network the IP belong to. Cannot be used with `ipamIpId`.
+	// The ID of the Private Network the IP belongs to. Cannot be used with `ipamIpId`.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the IP exists.
 	Region *string `pulumi:"region"`
@@ -157,7 +159,7 @@ type LookupIpamIpArgs struct {
 	// The tags associated with the IP. Cannot be used with `ipamIpId`.
 	// As datasource only returns one IP, the search with given tags must return only one result.
 	Tags []string `pulumi:"tags"`
-	// The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
+	// The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipamIpId`.
 	Type *string `pulumi:"type"`
 	// Only IPs that are zonal, and in this zone, will be returned.
 	Zonal *string `pulumi:"zonal"`
@@ -167,7 +169,7 @@ type LookupIpamIpArgs struct {
 type LookupIpamIpResult struct {
 	// The IP address.
 	Address string `pulumi:"address"`
-	// the IP address with a CIDR notation.
+	// the IP address in CIDR notation.
 	AddressCidr string `pulumi:"addressCidr"`
 	Attached    *bool  `pulumi:"attached"`
 	// The provider-assigned unique ID for this managed resource.
@@ -201,13 +203,13 @@ func LookupIpamIpOutput(ctx *pulumi.Context, args LookupIpamIpOutputArgs, opts .
 type LookupIpamIpOutputArgs struct {
 	// Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipamIpId`.
 	Attached pulumi.BoolPtrInput `pulumi:"attached"`
-	// The IPAM IP ID. Cannot be used with the rest of the arguments.
+	// The IPAM IP ID. Cannot be used with any other arguments.
 	IpamIpId pulumi.StringPtrInput `pulumi:"ipamIpId"`
-	// The Mac Address linked to the IP. Cannot be used with `ipamIpId`.
+	// The MAC address linked to the IP. Cannot be used with `ipamIpId`.
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
-	// The ID of the private network the IP belong to. Cannot be used with `ipamIpId`.
+	// The ID of the Private Network the IP belongs to. Cannot be used with `ipamIpId`.
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the IP exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -217,7 +219,7 @@ type LookupIpamIpOutputArgs struct {
 	// The tags associated with the IP. Cannot be used with `ipamIpId`.
 	// As datasource only returns one IP, the search with given tags must return only one result.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
+	// The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipamIpId`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Only IPs that are zonal, and in this zone, will be returned.
 	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
@@ -247,7 +249,7 @@ func (o LookupIpamIpResultOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// the IP address with a CIDR notation.
+// the IP address in CIDR notation.
 func (o LookupIpamIpResultOutput) AddressCidr() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) string { return v.AddressCidr }).(pulumi.StringOutput)
 }

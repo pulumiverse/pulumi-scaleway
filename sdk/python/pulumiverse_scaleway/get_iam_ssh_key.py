@@ -157,10 +157,12 @@ def get_iam_ssh_key(name: Optional[str] = None,
     ```
 
 
-    :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+    :param str name: The SSH key name.
     :param str project_id: `project_id`) The ID of the project the SSH
            key is associated with.
-    :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+    :param str ssh_key_id: The SSH key id.
+           
+           > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -200,9 +202,11 @@ def get_iam_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The SSH key name. Only one of `name` and `ssh_key_id` should be specified.
+    :param str name: The SSH key name.
     :param str project_id: `project_id`) The ID of the project the SSH
            key is associated with.
-    :param str ssh_key_id: The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
+    :param str ssh_key_id: The SSH key id.
+           
+           > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
     ...

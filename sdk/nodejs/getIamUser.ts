@@ -6,8 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get information on an existing IAM user based on its ID or email address.
- * For more information,
- * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+ * For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
  *
  * ## Example Usage
  *
@@ -39,7 +38,7 @@ export function getIamUser(args?: GetIamUserArgs, opts?: pulumi.InvokeOptions): 
  */
 export interface GetIamUserArgs {
     /**
-     * The email address of the IAM user. Only one of the `email` and `userId` should be specified.
+     * The email address of the IAM user.
      */
     email?: string;
     /**
@@ -48,7 +47,9 @@ export interface GetIamUserArgs {
      */
     organizationId?: string;
     /**
-     * The ID of the IAM user. Only one of the `email` and `userId` should be specified.
+     * The ID of the IAM user.
+     *
+     * > **Note** You must specify at least one: `name` and/or `userId`.
      */
     userId?: string;
 }
@@ -67,8 +68,7 @@ export interface GetIamUserResult {
 }
 /**
  * Use this data source to get information on an existing IAM user based on its ID or email address.
- * For more information,
- * see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+ * For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
  *
  * ## Example Usage
  *
@@ -93,7 +93,7 @@ export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.Invo
  */
 export interface GetIamUserOutputArgs {
     /**
-     * The email address of the IAM user. Only one of the `email` and `userId` should be specified.
+     * The email address of the IAM user.
      */
     email?: pulumi.Input<string>;
     /**
@@ -102,7 +102,9 @@ export interface GetIamUserOutputArgs {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The ID of the IAM user. Only one of the `email` and `userId` should be specified.
+     * The ID of the IAM user.
+     *
+     * > **Note** You must specify at least one: `name` and/or `userId`.
      */
     userId?: pulumi.Input<string>;
 }

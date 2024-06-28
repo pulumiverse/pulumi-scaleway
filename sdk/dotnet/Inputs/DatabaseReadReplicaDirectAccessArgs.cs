@@ -14,19 +14,19 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class DatabaseReadReplicaDirectAccessArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the endpoint of the read replica.
+        /// The ID of the endpoint of the Read Replica.
         /// </summary>
         [Input("endpointId")]
         public Input<string>? EndpointId { get; set; }
 
         /// <summary>
-        /// Hostname of the endpoint. Only one of ip and hostname may be set.
+        /// Hostname of the endpoint. Only one of IP and hostname may be set.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        /// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }

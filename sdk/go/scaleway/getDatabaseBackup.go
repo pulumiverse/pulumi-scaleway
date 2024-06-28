@@ -63,13 +63,13 @@ func LookupDatabaseBackup(ctx *pulumi.Context, args *LookupDatabaseBackupArgs, o
 
 // A collection of arguments for invoking getDatabaseBackup.
 type LookupDatabaseBackupArgs struct {
-	// The RDB backup ID.
-	// Only one of the `name` and `backupId` should be specified.
+	// The backup ID.
 	BackupId *string `pulumi:"backupId"`
-	// The RDB instance ID.
+	// The Database Instance ID.
 	InstanceId *string `pulumi:"instanceId"`
 	// The name of the RDB instance.
-	// Only one of the `name` and `backupId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `backupId`.
 	Name *string `pulumi:"name"`
 	// The ID of the project the Database Backup is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -109,13 +109,13 @@ func LookupDatabaseBackupOutput(ctx *pulumi.Context, args LookupDatabaseBackupOu
 
 // A collection of arguments for invoking getDatabaseBackup.
 type LookupDatabaseBackupOutputArgs struct {
-	// The RDB backup ID.
-	// Only one of the `name` and `backupId` should be specified.
+	// The backup ID.
 	BackupId pulumi.StringPtrInput `pulumi:"backupId"`
-	// The RDB instance ID.
+	// The Database Instance ID.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// The name of the RDB instance.
-	// Only one of the `name` and `backupId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `backupId`.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The ID of the project the Database Backup is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`

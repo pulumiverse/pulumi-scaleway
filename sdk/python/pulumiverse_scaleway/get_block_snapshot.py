@@ -105,7 +105,23 @@ def get_block_snapshot(name: Optional[str] = None,
                        zone: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockSnapshotResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Block Snapshot.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_snapshot = scaleway.get_block_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+    :param str project_id: The ID of the project the snapshot is associated with.
+    :param str snapshot_id: The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+    :param str volume_id: The ID of the volume from which the snapshot has been created.
+    :param str zone: `zone`) The zone in which the snapshot exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -134,6 +150,22 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
                               zone: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockSnapshotResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Block Snapshot.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_snapshot = scaleway.get_block_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+    :param str project_id: The ID of the project the snapshot is associated with.
+    :param str snapshot_id: The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+    :param str volume_id: The ID of the volume from which the snapshot has been created.
+    :param str zone: `zone`) The zone in which the snapshot exists.
     """
     ...

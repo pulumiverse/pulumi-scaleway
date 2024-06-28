@@ -13,6 +13,8 @@ import (
 
 // Gets information about multiple Load Balancer ACLs.
 //
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+//
 // ## Example Usage
 //
 // ```go
@@ -57,19 +59,19 @@ func GetLbAcls(ctx *pulumi.Context, args *GetLbAclsArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getLbAcls.
 type GetLbAclsArgs struct {
-	// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-	// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+	// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	FrontendId string `pulumi:"frontendId"`
-	// The ACL name used as filter. ACLs with a name like it are listed.
+	// The ACL name to filter for. ACLs with a matching name are listed.
 	Name      *string `pulumi:"name"`
 	ProjectId *string `pulumi:"projectId"`
-	// `zone`) The zone in which ACLs exist.
+	// `zone`) The zone in which the ACLs exist.
 	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getLbAcls.
 type GetLbAclsResult struct {
-	// List of found ACLs
+	// List of retrieved ACLs
 	Acls       []GetLbAclsAcl `pulumi:"acls"`
 	FrontendId string         `pulumi:"frontendId"`
 	// The provider-assigned unique ID for this managed resource.
@@ -95,13 +97,13 @@ func GetLbAclsOutput(ctx *pulumi.Context, args GetLbAclsOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getLbAcls.
 type GetLbAclsOutputArgs struct {
-	// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-	// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+	// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	FrontendId pulumi.StringInput `pulumi:"frontendId"`
-	// The ACL name used as filter. ACLs with a name like it are listed.
+	// The ACL name to filter for. ACLs with a matching name are listed.
 	Name      pulumi.StringPtrInput `pulumi:"name"`
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `zone`) The zone in which ACLs exist.
+	// `zone`) The zone in which the ACLs exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -124,7 +126,7 @@ func (o GetLbAclsResultOutput) ToGetLbAclsResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// List of found ACLs
+// List of retrieved ACLs
 func (o GetLbAclsResultOutput) Acls() GetLbAclsAclArrayOutput {
 	return o.ApplyT(func(v GetLbAclsResult) []GetLbAclsAcl { return v.Acls }).(GetLbAclsAclArrayOutput)
 }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about the privilege on RDB database.
+ * Gets information about the privileges in a database.
  *
  * ## Example Usage
  *
@@ -40,7 +40,7 @@ export interface GetDatabasePrivilegeArgs {
      */
     databaseName: string;
     /**
-     * The RDB instance ID.
+     * The Database Instance ID.
      */
     instanceId: string;
     /**
@@ -72,7 +72,7 @@ export interface GetDatabasePrivilegeResult {
     readonly userName: string;
 }
 /**
- * Gets information about the privilege on RDB database.
+ * Gets information about the privileges in a database.
  *
  * ## Example Usage
  *
@@ -100,7 +100,7 @@ export interface GetDatabasePrivilegeOutputArgs {
      */
     databaseName: pulumi.Input<string>;
     /**
-     * The RDB instance ID.
+     * The Database Instance ID.
      */
     instanceId: pulumi.Input<string>;
     /**

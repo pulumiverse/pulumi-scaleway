@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetMnqSqs
     {
         /// <summary>
-        /// Gets information about SQS for a project
+        /// Gets information about SQS for a Project
         /// 
         /// ## Examples
         /// 
@@ -41,7 +41,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMnqSqsResult>("scaleway:index/getMnqSqs:getMnqSqs", args ?? new GetMnqSqsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about SQS for a project
+        /// Gets information about SQS for a Project
         /// 
         /// ## Examples
         /// 
@@ -73,13 +73,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetMnqSqsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project for which sqs is enabled.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -93,13 +93,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetMnqSqsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project for which sqs is enabled.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -115,7 +115,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetMnqSqsResult
     {
         /// <summary>
-        /// The endpoint of the SQS service for this project.
+        /// The endpoint of the SQS service for this Project.
         /// </summary>
         public readonly string Endpoint;
         /// <summary>

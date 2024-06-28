@@ -13,8 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * const main = new scaleway.TemDomain("main", {acceptTos: true});
  * const example = new scaleway.TemDomainValidation("example", {
- *     domainId: "your-domain-id",
+ *     domainId: main.id,
  *     region: "fr-par",
  *     timeout: 300,
  * });

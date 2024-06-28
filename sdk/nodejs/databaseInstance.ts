@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Database Instances.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+ * For more information, see refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -85,11 +85,11 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Examples of endpoints configuration
+ * ### Examples of endpoint configuration
  *
- * RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+ * Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
  *
- * ### 1 static private network endpoint
+ * ### 1 static Private Network endpoint
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -108,7 +108,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### 1 IPAM private network endpoint + 1 public endpoint
+ * ### 1 IPAM Private Network endpoint + 1 public endpoint
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -138,11 +138,11 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * > If nothing is defined, your instance will have a default public load-balancer endpoint
+ * > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
  *
  * ## Limitations
  *
- * The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+ * The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
  * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
  * section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
  *
@@ -197,7 +197,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly backupScheduleRetention!: pulumi.Output<number>;
     /**
-     * Certificate of the database instance.
+     * Certificate of the Database Instance.
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
     /**
@@ -217,7 +217,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
      *
-     * > **Important:** Updates to `engine` will recreate the Database Instance.
+     * > **Important** Updates to `engine` will recreate the Database Instance.
      */
     public readonly engine!: pulumi.Output<string>;
     /**
@@ -225,13 +225,13 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Enable or disable high availability for the database instance.
+     * Enable or disable high availability for the Database Instance.
      *
-     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
+     * > **Important** Updates to `isHaCluster` will recreate the Database Instance.
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
-     * List of load balancer endpoints of the database instance.
+     * List of Load Balancer endpoints of the Database Instance.
      */
     public readonly loadBalancers!: pulumi.Output<outputs.DatabaseInstanceLoadBalancer[]>;
     /**
@@ -243,13 +243,12 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The type of database instance you want to create (e.g. `db-dev-s`).
+     * The type of Database Instance you want to create (e.g. `db-dev-s`).
      *
-     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * > **Important** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption.
      *
-     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
-     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+     * > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
@@ -257,11 +256,11 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * Password for the first user of the database instance.
+     * Password for the first user of the Database Instance.
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
-     * List of private networks endpoints of the database instance.
+     * List of Private Networks endpoints of the Database Instance.
      */
     public readonly privateNetwork!: pulumi.Output<outputs.DatabaseInstancePrivateNetwork | undefined>;
     /**
@@ -270,7 +269,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * List of read replicas of the database instance.
+     * List of read replicas of the Database Instance.
      */
     public /*out*/ readonly readReplicas!: pulumi.Output<outputs.DatabaseInstanceReadReplica[]>;
     /**
@@ -287,15 +286,15 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * Identifier for the first user of the database instance.
+     * Identifier for the first user of the Database Instance.
      *
-     * > **Important:** Updates to `userName` will recreate the Database Instance.
+     * > **Important** Updates to `userName` will recreate the Database Instance.
      */
     public readonly userName!: pulumi.Output<string>;
     /**
      * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
-     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
+     * > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
@@ -399,7 +398,7 @@ export interface DatabaseInstanceState {
      */
     backupScheduleRetention?: pulumi.Input<number>;
     /**
-     * Certificate of the database instance.
+     * Certificate of the Database Instance.
      */
     certificate?: pulumi.Input<string>;
     /**
@@ -419,7 +418,7 @@ export interface DatabaseInstanceState {
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
      *
-     * > **Important:** Updates to `engine` will recreate the Database Instance.
+     * > **Important** Updates to `engine` will recreate the Database Instance.
      */
     engine?: pulumi.Input<string>;
     /**
@@ -427,13 +426,13 @@ export interface DatabaseInstanceState {
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Enable or disable high availability for the database instance.
+     * Enable or disable high availability for the Database Instance.
      *
-     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
+     * > **Important** Updates to `isHaCluster` will recreate the Database Instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * List of load balancer endpoints of the database instance.
+     * List of Load Balancer endpoints of the Database Instance.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceLoadBalancer>[]>;
     /**
@@ -445,13 +444,12 @@ export interface DatabaseInstanceState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of database instance you want to create (e.g. `db-dev-s`).
+     * The type of Database Instance you want to create (e.g. `db-dev-s`).
      *
-     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * > **Important** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption.
      *
-     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
-     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+     * > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -459,11 +457,11 @@ export interface DatabaseInstanceState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * Password for the first user of the database instance.
+     * Password for the first user of the Database Instance.
      */
     password?: pulumi.Input<string>;
     /**
-     * List of private networks endpoints of the database instance.
+     * List of Private Networks endpoints of the Database Instance.
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseInstancePrivateNetwork>;
     /**
@@ -472,7 +470,7 @@ export interface DatabaseInstanceState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * List of read replicas of the database instance.
+     * List of read replicas of the Database Instance.
      */
     readReplicas?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceReadReplica>[]>;
     /**
@@ -489,15 +487,15 @@ export interface DatabaseInstanceState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Identifier for the first user of the database instance.
+     * Identifier for the first user of the Database Instance.
      *
-     * > **Important:** Updates to `userName` will recreate the Database Instance.
+     * > **Important** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
      * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
-     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
+     * > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
@@ -529,7 +527,7 @@ export interface DatabaseInstanceArgs {
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
      *
-     * > **Important:** Updates to `engine` will recreate the Database Instance.
+     * > **Important** Updates to `engine` will recreate the Database Instance.
      */
     engine: pulumi.Input<string>;
     /**
@@ -537,13 +535,13 @@ export interface DatabaseInstanceArgs {
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Enable or disable high availability for the database instance.
+     * Enable or disable high availability for the Database Instance.
      *
-     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
+     * > **Important** Updates to `isHaCluster` will recreate the Database Instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * List of load balancer endpoints of the database instance.
+     * List of Load Balancer endpoints of the Database Instance.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceLoadBalancer>[]>;
     /**
@@ -555,21 +553,20 @@ export interface DatabaseInstanceArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of database instance you want to create (e.g. `db-dev-s`).
+     * The type of Database Instance you want to create (e.g. `db-dev-s`).
      *
-     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * > **Important** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption.
      *
-     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
-     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+     * > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password for the first user of the database instance.
+     * Password for the first user of the Database Instance.
      */
     password?: pulumi.Input<string>;
     /**
-     * List of private networks endpoints of the database instance.
+     * List of Private Networks endpoints of the Database Instance.
      */
     privateNetwork?: pulumi.Input<inputs.DatabaseInstancePrivateNetwork>;
     /**
@@ -591,15 +588,15 @@ export interface DatabaseInstanceArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Identifier for the first user of the database instance.
+     * Identifier for the first user of the Database Instance.
      *
-     * > **Important:** Updates to `userName` will recreate the Database Instance.
+     * > **Important** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
      * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
-     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
+     * > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**

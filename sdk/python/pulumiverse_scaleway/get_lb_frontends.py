@@ -49,7 +49,7 @@ class GetLbFrontendsResult:
     @pulumi.getter
     def frontends(self) -> Sequence['outputs.GetLbFrontendsFrontendResult']:
         """
-        List of found frontends
+        List of retrieved frontends
         """
         return pulumi.get(self, "frontends")
 
@@ -108,7 +108,9 @@ def get_lb_frontends(lb_id: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbFrontendsResult:
     """
-    Gets information about multiple Load Balancer Frontends.
+    Gets information about multiple Load Balancer frontends.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 
@@ -122,9 +124,9 @@ def get_lb_frontends(lb_id: Optional[str] = None,
     ```
 
 
-    :param str lb_id: The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
-    :param str name: The frontend name used as filter. Frontends with a name like it are listed.
-    :param str zone: `zone`) The zone in which frontends exist.
+    :param str lb_id: The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
+    :param str name: The frontend name to filter for. Frontends with a matching name are listed.
+    :param str zone: `zone`) The zone in which the frontends exist.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
@@ -151,7 +153,9 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbFrontendsResult]:
     """
-    Gets information about multiple Load Balancer Frontends.
+    Gets information about multiple Load Balancer frontends.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 
@@ -165,8 +169,8 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str lb_id: The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
-    :param str name: The frontend name used as filter. Frontends with a name like it are listed.
-    :param str zone: `zone`) The zone in which frontends exist.
+    :param str lb_id: The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
+    :param str name: The frontend name to filter for. Frontends with a matching name are listed.
+    :param str zone: `zone`) The zone in which the frontends exist.
     """
     ...

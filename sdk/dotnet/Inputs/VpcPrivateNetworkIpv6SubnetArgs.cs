@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class VpcPrivateNetworkIpv6SubnetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        /// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        /// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         /// </summary>
         [Input("prefixLength")]
         public Input<int>? PrefixLength { get; set; }

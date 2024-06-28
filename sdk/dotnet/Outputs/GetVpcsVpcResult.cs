@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly string CreatedAt;
         /// <summary>
         /// The associated VPC ID.
-        /// &gt; **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+        /// &gt; **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -28,23 +28,23 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool IsDefault;
         /// <summary>
-        /// The VPC name used as filter. VPCs with a name like it are listed.
+        /// The VPC name to filter for. VPCs with a similar name are listed.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The organization ID the VPC is associated with.
+        /// The Organization ID the VPC is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The ID of the project the VPC is associated with.
+        /// The ID of the Project the VPC is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// `region`). The region in which vpcs exist.
+        /// `region`). The region in which the VPCs exist.
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// List of tags used as filter. VPCs with these exact tags are listed.
+        /// List of tags to filter for. VPCs with these exact tags are listed.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdateAt;

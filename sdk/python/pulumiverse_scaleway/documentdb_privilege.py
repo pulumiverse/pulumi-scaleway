@@ -203,11 +203,17 @@ class DocumentdbPrivilege(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        instance = scaleway.DocumentdbInstance("instance",
+            node_type="docdb-play2-pico",
+            engine="FerretDB-1",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=20)
         main = scaleway.DocumentdbPrivilege("main",
+            instance_id=instance.id,
+            user_name="my-db-user",
             database_name="my-db-name",
-            instance_id="11111111-1111-1111-1111-111111111111",
-            permission="all",
-            user_name="my-db-user")
+            permission="all")
         ```
 
         ## Import
@@ -243,11 +249,17 @@ class DocumentdbPrivilege(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        instance = scaleway.DocumentdbInstance("instance",
+            node_type="docdb-play2-pico",
+            engine="FerretDB-1",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=20)
         main = scaleway.DocumentdbPrivilege("main",
+            instance_id=instance.id,
+            user_name="my-db-user",
             database_name="my-db-name",
-            instance_id="11111111-1111-1111-1111-111111111111",
-            permission="all",
-            user_name="my-db-user")
+            permission="all")
         ```
 
         ## Import

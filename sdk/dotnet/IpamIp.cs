@@ -11,7 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Books and manages Scaleway IPAM IPs.
+    /// Books and manages IPAM IPs.
+    /// 
+    /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
     /// 
     /// ## Example Usage
     /// 
@@ -50,7 +52,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Request a specific IPv4
+    /// ### Request a specific IPv4 address
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -86,7 +88,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Request an IPv6
+    /// ### Request an IPv6 address
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -127,7 +129,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// IPAM IPs can be imported using the `{region}/{id}`, e.g.
+    /// IPAM IPs can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -151,13 +153,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Defines whether to request an IPv6 instead of an IPv4.
+        /// Defines whether to request an IPv6 address instead of IPv4.
         /// </summary>
         [Output("isIpv6")]
         public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -175,7 +177,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.IpamIpResource>> Resources { get; private set; } = null!;
 
         /// <summary>
-        /// The reverses DNS for this IP.
+        /// The reverse DNS for this IP.
         /// </summary>
         [Output("reverses")]
         public Output<ImmutableArray<Outputs.IpamIpReverse>> Reverses { get; private set; } = null!;
@@ -258,13 +260,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// Defines whether to request an IPv6 instead of an IPv4.
+        /// Defines whether to request an IPv6 address instead of IPv4.
         /// </summary>
         [Input("isIpv6")]
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -320,13 +322,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Defines whether to request an IPv6 instead of an IPv4.
+        /// Defines whether to request an IPv6 address instead of IPv4.
         /// </summary>
         [Input("isIpv6")]
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -353,7 +355,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.IpamIpReverseGetArgs>? _reverses;
 
         /// <summary>
-        /// The reverses DNS for this IP.
+        /// The reverse DNS for this IP.
         /// </summary>
         public InputList<Inputs.IpamIpReverseGetArgs> Reverses
         {

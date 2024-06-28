@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway VPC Public Gateway DHCP.
+ * Creates and manages Scaleway VPC Public Gateway DHCP configurations.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
  *
  * ## Example Usage
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g.
+ * Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -56,11 +56,11 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     }
 
     /**
-     * The IP address of the public gateway DHCP config.
+     * The IP address of the DHCP server. This will be the gateway's address in the Private Network.
      */
     public readonly address!: pulumi.Output<string>;
     /**
-     * The date and time of the creation of the public gateway DHCP config.
+     * The date and time of the creation of the Public Gateway DHCP configuration.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -72,7 +72,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly dnsSearches!: pulumi.Output<string[]>;
     /**
-     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
     public readonly dnsServersOverrides!: pulumi.Output<string[]>;
     /**
@@ -80,7 +80,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly enableDynamic!: pulumi.Output<boolean>;
     /**
-     * The organization ID the public gateway DHCP config is associated with.
+     * The Organization ID the Public Gateway DHCP config is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -92,7 +92,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly poolLow!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the public gateway DHCP config is associated with.
+     * `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -112,19 +112,19 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      */
     public readonly renewTimer!: pulumi.Output<number>;
     /**
-     * The subnet to associate with the public gateway DHCP config.
+     * The subnet to associate with the Public Gateway DHCP configuration.
      */
     public readonly subnet!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the public gateway DHCP config.
+     * The date and time of the last update of the Public Gateway DHCP configuration.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+     * How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
      */
     public readonly validLifetime!: pulumi.Output<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -193,11 +193,11 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayDhcpState {
     /**
-     * The IP address of the public gateway DHCP config.
+     * The IP address of the DHCP server. This will be the gateway's address in the Private Network.
      */
     address?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the public gateway DHCP config.
+     * The date and time of the creation of the Public Gateway DHCP configuration.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -209,7 +209,7 @@ export interface VpcPublicGatewayDhcpState {
      */
     dnsSearches?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
     dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -217,7 +217,7 @@ export interface VpcPublicGatewayDhcpState {
      */
     enableDynamic?: pulumi.Input<boolean>;
     /**
-     * The organization ID the public gateway DHCP config is associated with.
+     * The Organization ID the Public Gateway DHCP config is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -229,7 +229,7 @@ export interface VpcPublicGatewayDhcpState {
      */
     poolLow?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway DHCP config is associated with.
+     * `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -249,19 +249,19 @@ export interface VpcPublicGatewayDhcpState {
      */
     renewTimer?: pulumi.Input<number>;
     /**
-     * The subnet to associate with the public gateway DHCP config.
+     * The subnet to associate with the Public Gateway DHCP configuration.
      */
     subnet?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the public gateway DHCP config.
+     * The date and time of the last update of the Public Gateway DHCP configuration.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+     * How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
      */
     validLifetime?: pulumi.Input<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -271,7 +271,7 @@ export interface VpcPublicGatewayDhcpState {
  */
 export interface VpcPublicGatewayDhcpArgs {
     /**
-     * The IP address of the public gateway DHCP config.
+     * The IP address of the DHCP server. This will be the gateway's address in the Private Network.
      */
     address?: pulumi.Input<string>;
     /**
@@ -283,7 +283,7 @@ export interface VpcPublicGatewayDhcpArgs {
      */
     dnsSearches?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+     * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
     dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -299,7 +299,7 @@ export interface VpcPublicGatewayDhcpArgs {
      */
     poolLow?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway DHCP config is associated with.
+     * `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -319,15 +319,15 @@ export interface VpcPublicGatewayDhcpArgs {
      */
     renewTimer?: pulumi.Input<number>;
     /**
-     * The subnet to associate with the public gateway DHCP config.
+     * The subnet to associate with the Public Gateway DHCP configuration.
      */
     subnet: pulumi.Input<string>;
     /**
-     * For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+     * How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
      */
     validLifetime?: pulumi.Input<number>;
     /**
-     * `zone`) The zone in which the public gateway DHCP config should be created.
+     * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
     zone?: pulumi.Input<string>;
 }

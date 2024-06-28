@@ -23,7 +23,7 @@ class IamGroupMembershipArgs:
         :param pulumi.Input[str] application_id: The ID of the application that will be added to the group.
         :param pulumi.Input[str] user_id: The ID of the user that will be added to the group
                
-               - > Only one of `application_id` or `user_id` must be specified
+               > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         pulumi.set(__self__, "group_id", group_id)
         if application_id is not None:
@@ -61,7 +61,7 @@ class IamGroupMembershipArgs:
         """
         The ID of the user that will be added to the group
 
-        - > Only one of `application_id` or `user_id` must be specified
+        > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         return pulumi.get(self, "user_id")
 
@@ -82,7 +82,7 @@ class _IamGroupMembershipState:
         :param pulumi.Input[str] group_id: ID of the group to add members to.
         :param pulumi.Input[str] user_id: The ID of the user that will be added to the group
                
-               - > Only one of `application_id` or `user_id` must be specified
+               > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
@@ -121,7 +121,7 @@ class _IamGroupMembershipState:
         """
         The ID of the user that will be added to the group
 
-        - > Only one of `application_id` or `user_id` must be specified
+        > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         return pulumi.get(self, "user_id")
 
@@ -141,7 +141,7 @@ class IamGroupMembership(pulumi.CustomResource):
                  __props__=None):
         """
         Add members to an IAM group.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
+        For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
 
         ## Example Usage
 
@@ -178,7 +178,7 @@ class IamGroupMembership(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: ID of the group to add members to.
         :param pulumi.Input[str] user_id: The ID of the user that will be added to the group
                
-               - > Only one of `application_id` or `user_id` must be specified
+               > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         ...
     @overload
@@ -188,7 +188,7 @@ class IamGroupMembership(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Add members to an IAM group.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
+        For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
 
         ## Example Usage
 
@@ -275,7 +275,7 @@ class IamGroupMembership(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: ID of the group to add members to.
         :param pulumi.Input[str] user_id: The ID of the user that will be added to the group
                
-               - > Only one of `application_id` or `user_id` must be specified
+               > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -308,7 +308,7 @@ class IamGroupMembership(pulumi.CustomResource):
         """
         The ID of the user that will be added to the group
 
-        - > Only one of `application_id` or `user_id` must be specified
+        > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
         return pulumi.get(self, "user_id")
 

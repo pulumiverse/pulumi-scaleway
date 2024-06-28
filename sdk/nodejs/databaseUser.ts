@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Database Users.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+ * Creates and manages database users.
+ * For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -17,12 +17,20 @@ import * as utilities from "./utilities";
  * import * as random from "@pulumi/random";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
  * const dbPassword = new random.RandomPassword("dbPassword", {
  *     length: 16,
  *     special: true,
  * });
  * const dbAdmin = new scaleway.DatabaseUser("dbAdmin", {
- *     instanceId: scaleway_rdb_instance.main.id,
+ *     instanceId: main.id,
  *     password: dbPassword.result,
  *     isAdmin: true,
  * });
@@ -30,7 +38,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+ * Database users can be imported using `{region}/{instance_id}/{user_name}`, e.g.
  *
  * bash
  *
@@ -67,23 +75,23 @@ export class DatabaseUser extends pulumi.CustomResource {
     }
 
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Database User.
+     * > **Important:** Updates to `instanceId` will recreate the database user.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Grant admin permissions to the Database User.
+     * Grant admin permissions to the database user.
      */
     public readonly isAdmin!: pulumi.Output<boolean | undefined>;
     /**
-     * Database User name.
+     * database user name.
      *
-     * > **Important:** Updates to `name` will recreate the Database User.
+     * > **Important:** Updates to `name` will recreate the database user.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Database User password.
+     * database user password.
      */
     public readonly password!: pulumi.Output<string>;
     /**
@@ -135,23 +143,23 @@ export class DatabaseUser extends pulumi.CustomResource {
  */
 export interface DatabaseUserState {
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Database User.
+     * > **Important:** Updates to `instanceId` will recreate the database user.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Grant admin permissions to the Database User.
+     * Grant admin permissions to the database user.
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
-     * Database User name.
+     * database user name.
      *
-     * > **Important:** Updates to `name` will recreate the Database User.
+     * > **Important:** Updates to `name` will recreate the database user.
      */
     name?: pulumi.Input<string>;
     /**
-     * Database User password.
+     * database user password.
      */
     password?: pulumi.Input<string>;
     /**
@@ -165,23 +173,23 @@ export interface DatabaseUserState {
  */
 export interface DatabaseUserArgs {
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Database User.
+     * > **Important:** Updates to `instanceId` will recreate the database user.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Grant admin permissions to the Database User.
+     * Grant admin permissions to the database user.
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
-     * Database User name.
+     * database user name.
      *
-     * > **Important:** Updates to `name` will recreate the Database User.
+     * > **Important:** Updates to `name` will recreate the database user.
      */
     name?: pulumi.Input<string>;
     /**
-     * Database User password.
+     * database user password.
      */
     password: pulumi.Input<string>;
     /**

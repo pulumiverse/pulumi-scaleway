@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Messaging and queuing SQS Credentials.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+    /// Creates and manages Scaleway Messaging and Queuing SQS credentials.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
     /// 
     /// ## Example Usage
     /// 
@@ -45,7 +45,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// SQS credentials can be imported using the `{region}/{id}`, e.g.
+    /// SQS credentials can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -63,25 +63,25 @@ namespace Pulumiverse.Scaleway
         public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the sqs credentials.
+        /// The unique name of the SQS credentials.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// . List of permissions associated to these credentials. Only one of permissions may be set.
+        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
         /// </summary>
         [Output("permissions")]
         public Output<Outputs.MnqSqsCredentialsPermissions> Permissions { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the sqs is enabled for.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -145,25 +145,25 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqSqsCredentialsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the sqs credentials.
+        /// The unique name of the SQS credentials.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// . List of permissions associated to these credentials. Only one of permissions may be set.
+        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
         /// </summary>
         [Input("permissions")]
         public Input<Inputs.MnqSqsCredentialsPermissionsArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sqs is enabled for.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -193,25 +193,25 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The unique name of the sqs credentials.
+        /// The unique name of the SQS credentials.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// . List of permissions associated to these credentials. Only one of permissions may be set.
+        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
         /// </summary>
         [Input("permissions")]
         public Input<Inputs.MnqSqsCredentialsPermissionsGetArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sqs is enabled for.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

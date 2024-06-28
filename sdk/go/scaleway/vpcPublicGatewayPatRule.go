@@ -12,8 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
+// Creates and manages Scaleway Public Gateway PAT (Port Address Translation).
+// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
 //
 // ## Example Usage
 //
@@ -116,7 +116,7 @@ import (
 //
 // ## Import
 //
-// Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g.
+// Public Gateway PAT rule configurations can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -126,23 +126,23 @@ import (
 type VpcPublicGatewayPatRule struct {
 	pulumi.CustomResourceState
 
-	// The date and time of the creation of the pat rule config.
+	// The date and time of the creation of the PAT rule configuration.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The ID of the public gateway.
+	// The ID of the Public Gateway.
 	GatewayId pulumi.StringOutput `pulumi:"gatewayId"`
-	// The organization ID the pat rule config is associated with.
+	// The Organization ID the PAT rule configuration is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The Private IP to forward data to (IP address).
+	// The private IP address to forward data to.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
-	// The Private port to translate to.
+	// The private port to translate to.
 	PrivatePort pulumi.IntOutput `pulumi:"privatePort"`
-	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
-	// The Public port to listen on.
+	// The public port to listen on.
 	PublicPort pulumi.IntOutput `pulumi:"publicPort"`
-	// The date and time of the last update of the pat rule config.
+	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -188,44 +188,44 @@ func GetVpcPublicGatewayPatRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPublicGatewayPatRule resources.
 type vpcPublicGatewayPatRuleState struct {
-	// The date and time of the creation of the pat rule config.
+	// The date and time of the creation of the PAT rule configuration.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the public gateway.
+	// The ID of the Public Gateway.
 	GatewayId *string `pulumi:"gatewayId"`
-	// The organization ID the pat rule config is associated with.
+	// The Organization ID the PAT rule configuration is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The Private IP to forward data to (IP address).
+	// The private IP address to forward data to.
 	PrivateIp *string `pulumi:"privateIp"`
-	// The Private port to translate to.
+	// The private port to translate to.
 	PrivatePort *int `pulumi:"privatePort"`
-	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 	Protocol *string `pulumi:"protocol"`
-	// The Public port to listen on.
+	// The public port to listen on.
 	PublicPort *int `pulumi:"publicPort"`
-	// The date and time of the last update of the pat rule config.
+	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type VpcPublicGatewayPatRuleState struct {
-	// The date and time of the creation of the pat rule config.
+	// The date and time of the creation of the PAT rule configuration.
 	CreatedAt pulumi.StringPtrInput
-	// The ID of the public gateway.
+	// The ID of the Public Gateway.
 	GatewayId pulumi.StringPtrInput
-	// The organization ID the pat rule config is associated with.
+	// The Organization ID the PAT rule configuration is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The Private IP to forward data to (IP address).
+	// The private IP address to forward data to.
 	PrivateIp pulumi.StringPtrInput
-	// The Private port to translate to.
+	// The private port to translate to.
 	PrivatePort pulumi.IntPtrInput
-	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 	Protocol pulumi.StringPtrInput
-	// The Public port to listen on.
+	// The public port to listen on.
 	PublicPort pulumi.IntPtrInput
-	// The date and time of the last update of the pat rule config.
+	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt pulumi.StringPtrInput
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -234,33 +234,33 @@ func (VpcPublicGatewayPatRuleState) ElementType() reflect.Type {
 }
 
 type vpcPublicGatewayPatRuleArgs struct {
-	// The ID of the public gateway.
+	// The ID of the Public Gateway.
 	GatewayId string `pulumi:"gatewayId"`
-	// The Private IP to forward data to (IP address).
+	// The private IP address to forward data to.
 	PrivateIp string `pulumi:"privateIp"`
-	// The Private port to translate to.
+	// The private port to translate to.
 	PrivatePort int `pulumi:"privatePort"`
-	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 	Protocol *string `pulumi:"protocol"`
-	// The Public port to listen on.
+	// The public port to listen on.
 	PublicPort int `pulumi:"publicPort"`
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcPublicGatewayPatRule resource.
 type VpcPublicGatewayPatRuleArgs struct {
-	// The ID of the public gateway.
+	// The ID of the Public Gateway.
 	GatewayId pulumi.StringInput
-	// The Private IP to forward data to (IP address).
+	// The private IP address to forward data to.
 	PrivateIp pulumi.StringInput
-	// The Private port to translate to.
+	// The private port to translate to.
 	PrivatePort pulumi.IntInput
-	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 	Protocol pulumi.StringPtrInput
-	// The Public port to listen on.
+	// The public port to listen on.
 	PublicPort pulumi.IntInput
-	// `zone`) The zone in which the public gateway DHCP config should be created.
+	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -351,47 +351,47 @@ func (o VpcPublicGatewayPatRuleOutput) ToVpcPublicGatewayPatRuleOutputWithContex
 	return o
 }
 
-// The date and time of the creation of the pat rule config.
+// The date and time of the creation of the PAT rule configuration.
 func (o VpcPublicGatewayPatRuleOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the public gateway.
+// The ID of the Public Gateway.
 func (o VpcPublicGatewayPatRuleOutput) GatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.GatewayId }).(pulumi.StringOutput)
 }
 
-// The organization ID the pat rule config is associated with.
+// The Organization ID the PAT rule configuration is associated with.
 func (o VpcPublicGatewayPatRuleOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The Private IP to forward data to (IP address).
+// The private IP address to forward data to.
 func (o VpcPublicGatewayPatRuleOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
-// The Private port to translate to.
+// The private port to translate to.
 func (o VpcPublicGatewayPatRuleOutput) PrivatePort() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.IntOutput { return v.PrivatePort }).(pulumi.IntOutput)
 }
 
-// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 func (o VpcPublicGatewayPatRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
-// The Public port to listen on.
+// The public port to listen on.
 func (o VpcPublicGatewayPatRuleOutput) PublicPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.IntOutput { return v.PublicPort }).(pulumi.IntOutput)
 }
 
-// The date and time of the last update of the pat rule config.
+// The date and time of the last update of the PAT rule configuration.
 func (o VpcPublicGatewayPatRuleOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which the public gateway DHCP config should be created.
+// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
 func (o VpcPublicGatewayPatRuleOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

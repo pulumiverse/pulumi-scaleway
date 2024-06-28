@@ -36,12 +36,12 @@ export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pul
 export interface GetRegistryNamespaceArgs {
     /**
      * The namespace name.
-     * Only one of `name` and `namespaceId` should be specified.
      */
     name?: string;
     /**
      * The namespace id.
-     * Only one of `name` and `namespaceId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `imageId`.
      */
     namespaceId?: string;
     /**
@@ -104,12 +104,12 @@ export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs
 export interface GetRegistryNamespaceOutputArgs {
     /**
      * The namespace name.
-     * Only one of `name` and `namespaceId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
      * The namespace id.
-     * Only one of `name` and `namespaceId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `imageId`.
      */
     namespaceId?: pulumi.Input<string>;
     /**

@@ -15,22 +15,22 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbsLbIpResult
     {
         /// <summary>
-        /// The ID of the load-balancer.
+        /// The ID of the Load Balancer.
         /// </summary>
         public readonly string Id;
         public readonly string IpAddress;
         public readonly string LbId;
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization the Load Balancer is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
         public readonly string Reverse;
         /// <summary>
-        /// `zone`) The zone in which LBs exist.
+        /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
         public readonly string Zone;
 

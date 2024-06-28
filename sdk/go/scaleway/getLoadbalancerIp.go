@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a Load Balancer IP.
+// Gets information about a Load Balancer IP address.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 //
 // ## Example Usage
 //
@@ -56,7 +58,7 @@ type LookupLoadbalancerIpArgs struct {
 	// The IP ID.
 	// Only one of `ipAddress` and `ipId` should be specified.
 	IpId *string `pulumi:"ipId"`
-	// The ID of the project the LB IP associated with.
+	// The ID of the Project the Load Balancer IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 }
 
@@ -67,9 +69,9 @@ type LookupLoadbalancerIpResult struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	IpId      *string `pulumi:"ipId"`
 	IsIpv6    bool    `pulumi:"isIpv6"`
-	// The associated load-balancer ID if any
+	// The ID of the associated Load Balancer, if any
 	LbId string `pulumi:"lbId"`
-	// (Defaults to provider `organizationId`) The ID of the organization the LB IP is associated with.
+	// (Defaults to provider `organizationId`) The ID of the Organization the Load Balancer IP is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	ProjectId      string `pulumi:"projectId"`
 	Region         string `pulumi:"region"`
@@ -99,7 +101,7 @@ type LookupLoadbalancerIpOutputArgs struct {
 	// The IP ID.
 	// Only one of `ipAddress` and `ipId` should be specified.
 	IpId pulumi.StringPtrInput `pulumi:"ipId"`
-	// The ID of the project the LB IP associated with.
+	// The ID of the Project the Load Balancer IP is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }
 
@@ -139,12 +141,12 @@ func (o LookupLoadbalancerIpResultOutput) IsIpv6() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupLoadbalancerIpResult) bool { return v.IsIpv6 }).(pulumi.BoolOutput)
 }
 
-// The associated load-balancer ID if any
+// The ID of the associated Load Balancer, if any
 func (o LookupLoadbalancerIpResultOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.LbId }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `organizationId`) The ID of the organization the LB IP is associated with.
+// (Defaults to provider `organizationId`) The ID of the Organization the Load Balancer IP is associated with.
 func (o LookupLoadbalancerIpResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }

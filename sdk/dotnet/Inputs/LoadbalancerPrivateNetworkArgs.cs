@@ -14,19 +14,19 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class LoadbalancerPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+        /// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
         /// </summary>
         [Input("dhcpConfig")]
         public Input<bool>? DhcpConfig { get; set; }
 
         /// <summary>
-        /// (Required) The ID of the Private Network to associate.
+        /// (Required) The ID of the Private Network to attach to.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        /// (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         /// </summary>
         [Input("staticConfig")]
         public Input<string>? StaticConfig { get; set; }
@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// `zone`) The zone of the load-balancer.
+        /// `zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

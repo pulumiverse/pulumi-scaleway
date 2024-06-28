@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about the RDB instance network Access Control List.
+// Gets information about the Database Instance network Access Control List.
 //
 // ## Example Usage
 //

@@ -57,13 +57,13 @@ func LookupIamApplication(ctx *pulumi.Context, args *LookupIamApplicationArgs, o
 // A collection of arguments for invoking getIamApplication.
 type LookupIamApplicationArgs struct {
 	// The ID of the IAM application.
-	// Only one of the `name` and `applicationId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `applicationId`.
 	ApplicationId *string `pulumi:"applicationId"`
 	// The name of the IAM application.
-	// Only one of the `name` and `applicationId` should be specified.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the
-	// organization the application is associated with.
+	// Organization the application is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 }
 
@@ -97,13 +97,13 @@ func LookupIamApplicationOutput(ctx *pulumi.Context, args LookupIamApplicationOu
 // A collection of arguments for invoking getIamApplication.
 type LookupIamApplicationOutputArgs struct {
 	// The ID of the IAM application.
-	// Only one of the `name` and `applicationId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `applicationId`.
 	ApplicationId pulumi.StringPtrInput `pulumi:"applicationId"`
 	// The name of the IAM application.
-	// Only one of the `name` and `applicationId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// `organizationId`) The ID of the
-	// organization the application is associated with.
+	// Organization the application is associated with.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 }
 

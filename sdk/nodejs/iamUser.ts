@@ -62,11 +62,11 @@ export class IamUser extends pulumi.CustomResource {
      */
     public /*out*/ readonly accountRootUserId!: pulumi.Output<string>;
     /**
-     * The date and time of the creation of the iam user.
+     * The date and time of the creation of the IAM user.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Whether the iam user is deletable.
+     * Whether the IAM user is deletable.
      */
     public /*out*/ readonly deletable!: pulumi.Output<boolean>;
     /**
@@ -86,15 +86,15 @@ export class IamUser extends pulumi.CustomResource {
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+     * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+     * The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the iam user.
+     * The date and time of the last update of the IAM user.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -151,11 +151,11 @@ export interface IamUserState {
      */
     accountRootUserId?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the iam user.
+     * The date and time of the creation of the IAM user.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Whether the iam user is deletable.
+     * Whether the IAM user is deletable.
      */
     deletable?: pulumi.Input<boolean>;
     /**
@@ -175,15 +175,15 @@ export interface IamUserState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+     * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     status?: pulumi.Input<string>;
     /**
-     * The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+     * The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     type?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the iam user.
+     * The date and time of the last update of the IAM user.
      */
     updatedAt?: pulumi.Input<string>;
 }

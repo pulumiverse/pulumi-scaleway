@@ -12,8 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Database Users.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+// Creates and manages database users.
+// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 //
 // ## Example Usage
 //
@@ -32,6 +32,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			dbPassword, err := random.NewRandomPassword(ctx, "dbPassword", &random.RandomPasswordArgs{
 //				Length:  pulumi.Int(16),
 //				Special: pulumi.Bool(true),
@@ -40,7 +51,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewDatabaseUser(ctx, "dbAdmin", &scaleway.DatabaseUserArgs{
-//				InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
+//				InstanceId: main.ID(),
 //				Password:   dbPassword.Result,
 //				IsAdmin:    pulumi.Bool(true),
 //			})
@@ -55,7 +66,7 @@ import (
 //
 // ## Import
 //
-// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+// Database users can be imported using `{region}/{instance_id}/{user_name}`, e.g.
 //
 // bash
 //
@@ -65,17 +76,17 @@ import (
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Database User.
+	// > **Important:** Updates to `instanceId` will recreate the database user.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to the database user.
 	IsAdmin pulumi.BoolPtrOutput `pulumi:"isAdmin"`
-	// Database User name.
+	// database user name.
 	//
-	// > **Important:** Updates to `name` will recreate the Database User.
+	// > **Important:** Updates to `name` will recreate the database user.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Database User password.
+	// database user password.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -124,34 +135,34 @@ func GetDatabaseUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseUser resources.
 type databaseUserState struct {
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Database User.
+	// > **Important:** Updates to `instanceId` will recreate the database user.
 	InstanceId *string `pulumi:"instanceId"`
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to the database user.
 	IsAdmin *bool `pulumi:"isAdmin"`
-	// Database User name.
+	// database user name.
 	//
-	// > **Important:** Updates to `name` will recreate the Database User.
+	// > **Important:** Updates to `name` will recreate the database user.
 	Name *string `pulumi:"name"`
-	// Database User password.
+	// database user password.
 	Password *string `pulumi:"password"`
 	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
 
 type DatabaseUserState struct {
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Database User.
+	// > **Important:** Updates to `instanceId` will recreate the database user.
 	InstanceId pulumi.StringPtrInput
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to the database user.
 	IsAdmin pulumi.BoolPtrInput
-	// Database User name.
+	// database user name.
 	//
-	// > **Important:** Updates to `name` will recreate the Database User.
+	// > **Important:** Updates to `name` will recreate the database user.
 	Name pulumi.StringPtrInput
-	// Database User password.
+	// database user password.
 	Password pulumi.StringPtrInput
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
@@ -162,17 +173,17 @@ func (DatabaseUserState) ElementType() reflect.Type {
 }
 
 type databaseUserArgs struct {
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Database User.
+	// > **Important:** Updates to `instanceId` will recreate the database user.
 	InstanceId string `pulumi:"instanceId"`
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to the database user.
 	IsAdmin *bool `pulumi:"isAdmin"`
-	// Database User name.
+	// database user name.
 	//
-	// > **Important:** Updates to `name` will recreate the Database User.
+	// > **Important:** Updates to `name` will recreate the database user.
 	Name *string `pulumi:"name"`
-	// Database User password.
+	// database user password.
 	Password string `pulumi:"password"`
 	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
@@ -180,17 +191,17 @@ type databaseUserArgs struct {
 
 // The set of arguments for constructing a DatabaseUser resource.
 type DatabaseUserArgs struct {
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Database User.
+	// > **Important:** Updates to `instanceId` will recreate the database user.
 	InstanceId pulumi.StringInput
-	// Grant admin permissions to the Database User.
+	// Grant admin permissions to the database user.
 	IsAdmin pulumi.BoolPtrInput
-	// Database User name.
+	// database user name.
 	//
-	// > **Important:** Updates to `name` will recreate the Database User.
+	// > **Important:** Updates to `name` will recreate the database user.
 	Name pulumi.StringPtrInput
-	// Database User password.
+	// database user password.
 	Password pulumi.StringInput
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
@@ -283,26 +294,26 @@ func (o DatabaseUserOutput) ToDatabaseUserOutputWithContext(ctx context.Context)
 	return o
 }
 
-// UUID of the rdb instance.
+// UUID of the Database Instance.
 //
-// > **Important:** Updates to `instanceId` will recreate the Database User.
+// > **Important:** Updates to `instanceId` will recreate the database user.
 func (o DatabaseUserOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Grant admin permissions to the Database User.
+// Grant admin permissions to the database user.
 func (o DatabaseUserOutput) IsAdmin() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.BoolPtrOutput { return v.IsAdmin }).(pulumi.BoolPtrOutput)
 }
 
-// Database User name.
+// database user name.
 //
-// > **Important:** Updates to `name` will recreate the Database User.
+// > **Important:** Updates to `name` will recreate the database user.
 func (o DatabaseUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Database User password.
+// database user password.
 func (o DatabaseUserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }

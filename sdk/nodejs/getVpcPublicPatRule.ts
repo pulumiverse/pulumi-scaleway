@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a public gateway PAT rule. For further information please check the
- * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+ * Gets information about a Public Gateway PAT rule. For further information, please see the
+ * API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
  *
  * ## Example Usage
  *
@@ -83,7 +83,7 @@ export interface GetVpcPublicPatRuleArgs {
     patRuleId: string;
     /**
      * `zone`) The zone in which
-     * the image exists.
+     * the rule exists.
      */
     zone?: string;
 }
@@ -94,7 +94,7 @@ export interface GetVpcPublicPatRuleArgs {
 export interface GetVpcPublicPatRuleResult {
     readonly createdAt: string;
     /**
-     * The ID of the public gateway.
+     * The ID of the Public Gateway.
      */
     readonly gatewayId: string;
     /**
@@ -104,27 +104,27 @@ export interface GetVpcPublicPatRuleResult {
     readonly organizationId: string;
     readonly patRuleId: string;
     /**
-     * The Private IP to forward data to (IP address).
+     * The private IP address to forward data to.
      */
     readonly privateIp: string;
     /**
-     * The Private port to translate to.
+     * The private port to translate to.
      */
     readonly privatePort: number;
     /**
-     * The Protocol the rule should apply to. Possible values are both, tcp and udp.
+     * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
     readonly protocol: string;
     /**
-     * The Public port to listen on.
+     * The public port to listen on.
      */
     readonly publicPort: number;
     readonly updatedAt: string;
     readonly zone?: string;
 }
 /**
- * Gets information about a public gateway PAT rule. For further information please check the
- * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+ * Gets information about a Public Gateway PAT rule. For further information, please see the
+ * API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
  *
  * ## Example Usage
  *
@@ -196,7 +196,7 @@ export interface GetVpcPublicPatRuleOutputArgs {
     patRuleId: pulumi.Input<string>;
     /**
      * `zone`) The zone in which
-     * the image exists.
+     * the rule exists.
      */
     zone?: pulumi.Input<string>;
 }

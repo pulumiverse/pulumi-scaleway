@@ -13,8 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetLbRoute
     {
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Routes.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// Get information about Scaleway Load Balancer routes.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 
@@ -69,8 +70,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbRouteResult>("scaleway:index/getLbRoute:getLbRoute", args ?? new GetLbRouteArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Routes.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// Get information about Scaleway Load Balancer routes.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 
@@ -129,7 +131,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbRouteArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The route id.
+        /// The route ID.
         /// </summary>
         [Input("routeId", required: true)]
         public string RouteId { get; set; } = null!;
@@ -143,7 +145,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbRouteInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The route id.
+        /// The route ID.
         /// </summary>
         [Input("routeId", required: true)]
         public Input<string> RouteId { get; set; } = null!;

@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway VPC Public Gateway IP.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+    /// Creates and manages Scaleway VPC Public Gateway public (flexible) IP addresses.
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
     /// 
     /// ## Example Usage
     /// 
@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Public gateway can be imported using the `{zone}/{id}`, e.g.
+    /// Public Gateway IPs can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -61,19 +61,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the public gateway ip.
+        /// The date and time of the creation of the Public Gateway IP.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the public gateway ip is associated with.
+        /// The Organization ID the Public Gateway IP is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway ip is associated with.
+        /// `project_id`) The ID of the Project the Public Gateway IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -85,19 +85,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the public gateway IP.
+        /// The tags associated with the Public Gateway IP.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway ip.
+        /// The date and time of the last update of the Public Gateway IP.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway ip should be created.
+        /// `zone`) The zone in which the Public Gateway IP should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway ip is associated with.
+        /// `project_id`) The ID of the Project the Public Gateway IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -165,7 +165,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the public gateway IP.
+        /// The tags associated with the Public Gateway IP.
         /// </summary>
         public InputList<string> Tags
         {
@@ -174,7 +174,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway ip should be created.
+        /// `zone`) The zone in which the Public Gateway IP should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -194,19 +194,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the public gateway ip.
+        /// The date and time of the creation of the Public Gateway IP.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The organization ID the public gateway ip is associated with.
+        /// The Organization ID the Public Gateway IP is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway ip is associated with.
+        /// `project_id`) The ID of the Project the Public Gateway IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -221,7 +221,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the public gateway IP.
+        /// The tags associated with the Public Gateway IP.
         /// </summary>
         public InputList<string> Tags
         {
@@ -230,13 +230,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway ip.
+        /// The date and time of the last update of the Public Gateway IP.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway ip should be created.
+        /// `zone`) The zone in which the Public Gateway IP should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

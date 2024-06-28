@@ -28,11 +28,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDocumentdbPrivilege(ctx, "main", &scaleway.DocumentdbPrivilegeArgs{
-//				DatabaseName: pulumi.String("my-db-name"),
-//				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
-//				Permission:   pulumi.String("all"),
+//			instance, err := scaleway.NewDocumentdbInstance(ctx, "instance", &scaleway.DocumentdbInstanceArgs{
+//				NodeType:       pulumi.String("docdb-play2-pico"),
+//				Engine:         pulumi.String("FerretDB-1"),
+//				UserName:       pulumi.String("my_initial_user"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				VolumeSizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDocumentdbPrivilege(ctx, "main", &scaleway.DocumentdbPrivilegeArgs{
+//				InstanceId:   instance.ID(),
 //				UserName:     pulumi.String("my-db-user"),
+//				DatabaseName: pulumi.String("my-db-name"),
+//				Permission:   pulumi.String("all"),
 //			})
 //			if err != nil {
 //				return err

@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetDatabaseAcl
     {
         /// <summary>
-        /// Gets information about the RDB instance network Access Control List.
+        /// Gets information about the Database Instance network Access Control List.
         /// 
         /// ## Example Usage
         /// 
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseAclResult>("scaleway:index/getDatabaseAcl:getDatabaseAcl", args ?? new GetDatabaseAclArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the RDB instance network Access Control List.
+        /// Gets information about the Database Instance network Access Control List.
         /// 
         /// ## Example Usage
         /// 

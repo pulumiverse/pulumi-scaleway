@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Transactional Email Domains.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+    /// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
     /// 
     /// ## Example Usage
     /// 
@@ -97,7 +97,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        /// &gt; **Important:**  This attribute must be set to `true`.
+        /// &gt; **Important:** This attribute must be set to `true`.
         /// </summary>
         [Output("acceptTos")]
         public Output<bool> AcceptTos { get; private set; } = null!;
@@ -284,7 +284,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        /// &gt; **Important:**  This attribute must be set to `true`.
+        /// &gt; **Important:** This attribute must be set to `true`.
         /// </summary>
         [Input("acceptTos", required: true)]
         public Input<bool> AcceptTos { get; set; } = null!;
@@ -318,7 +318,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        /// &gt; **Important:**  This attribute must be set to `true`.
+        /// &gt; **Important:** This attribute must be set to `true`.
         /// </summary>
         [Input("acceptTos")]
         public Input<bool>? AcceptTos { get; set; }

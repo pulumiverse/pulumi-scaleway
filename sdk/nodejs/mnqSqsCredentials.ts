@@ -7,9 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Messaging and queuing SQS Credentials.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+ * Creates and manages Scaleway Messaging and Queuing SQS credentials.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
  *
  * ## Example Usage
  *
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * SQS credentials can be imported using the `{region}/{id}`, e.g.
+ * SQS credentials can be imported using `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -73,19 +73,19 @@ export class MnqSqsCredentials extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessKey!: pulumi.Output<string>;
     /**
-     * The unique name of the sqs credentials.
+     * The unique name of the SQS credentials.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * . List of permissions associated to these credentials. Only one of permissions may be set.
+     * . List of permissions associated with these credentials. Only one of the following permissions may be set:
      */
     public readonly permissions!: pulumi.Output<outputs.MnqSqsCredentialsPermissions>;
     /**
-     * `projectId`) The ID of the project the sqs is enabled for.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -137,19 +137,19 @@ export interface MnqSqsCredentialsState {
      */
     accessKey?: pulumi.Input<string>;
     /**
-     * The unique name of the sqs credentials.
+     * The unique name of the SQS credentials.
      */
     name?: pulumi.Input<string>;
     /**
-     * . List of permissions associated to these credentials. Only one of permissions may be set.
+     * . List of permissions associated with these credentials. Only one of the following permissions may be set:
      */
     permissions?: pulumi.Input<inputs.MnqSqsCredentialsPermissions>;
     /**
-     * `projectId`) The ID of the project the sqs is enabled for.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     region?: pulumi.Input<string>;
     /**
@@ -163,19 +163,19 @@ export interface MnqSqsCredentialsState {
  */
 export interface MnqSqsCredentialsArgs {
     /**
-     * The unique name of the sqs credentials.
+     * The unique name of the SQS credentials.
      */
     name?: pulumi.Input<string>;
     /**
-     * . List of permissions associated to these credentials. Only one of permissions may be set.
+     * . List of permissions associated with these credentials. Only one of the following permissions may be set:
      */
     permissions?: pulumi.Input<inputs.MnqSqsCredentialsPermissions>;
     /**
-     * `projectId`) The ID of the project the sqs is enabled for.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     region?: pulumi.Input<string>;
 }

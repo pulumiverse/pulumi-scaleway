@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about multiple IPs managed by IPAM service.
+ * Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+ *
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
  *
  * ## Examples
  *
@@ -81,31 +83,31 @@ export interface GetIpamIpsArgs {
      */
     attached?: boolean;
     /**
-     * The Mac Address used as filter.
+     * The linked MAC address to filter for.
      */
     macAddress?: string;
     /**
-     * The ID of the private network used as filter.
+     * The ID of the Private Network to filter for.
      */
     privateNetworkId?: string;
     /**
-     * The ID of the project used as filter.
+     * The ID of the Project to filter for.
      */
     projectId?: string;
     /**
-     * The region used as filter.
+     * The region to filter for.
      */
     region?: string;
     /**
-     * Filter by resource ID, type or name.
+     * Filter for a resource attached to the IP, using resource ID, type or name.
      */
     resource?: inputs.GetIpamIpsResource;
     /**
-     * The tags used as filter.
+     * The IP tags to filter for.
      */
     tags?: string[];
     /**
-     * The type of IP used as filter (ipv4, ipv6).
+     * The type of IP to filter for (`ipv4` or `ipv6`).
      */
     type?: string;
     /**
@@ -124,25 +126,25 @@ export interface GetIpamIpsResult {
      */
     readonly id: string;
     /**
-     * List of found IPs
+     * List of found IPs.
      */
     readonly ips: outputs.GetIpamIpsIp[];
     /**
-     * The mac address.
+     * The associated MAC address.
      */
     readonly macAddress?: string;
     readonly organizationId: string;
     readonly privateNetworkId?: string;
     /**
-     * The ID of the project the server is associated with.
+     * The ID of the Project the resource is associated with.
      */
     readonly projectId: string;
     /**
-     * The region in which the IP is.
+     * The region of the IP.
      */
     readonly region: string;
     /**
-     * The list of public IPs of the server.
+     * The list of public IPs attached to the resource.
      */
     readonly resource?: outputs.GetIpamIpsResource;
     /**
@@ -156,7 +158,9 @@ export interface GetIpamIpsResult {
     readonly zonal: string;
 }
 /**
- * Gets information about multiple IPs managed by IPAM service.
+ * Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+ *
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
  *
  * ## Examples
  *
@@ -217,31 +221,31 @@ export interface GetIpamIpsOutputArgs {
      */
     attached?: pulumi.Input<boolean>;
     /**
-     * The Mac Address used as filter.
+     * The linked MAC address to filter for.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The ID of the private network used as filter.
+     * The ID of the Private Network to filter for.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * The ID of the project used as filter.
+     * The ID of the Project to filter for.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region used as filter.
+     * The region to filter for.
      */
     region?: pulumi.Input<string>;
     /**
-     * Filter by resource ID, type or name.
+     * Filter for a resource attached to the IP, using resource ID, type or name.
      */
     resource?: pulumi.Input<inputs.GetIpamIpsResourceArgs>;
     /**
-     * The tags used as filter.
+     * The IP tags to filter for.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of IP used as filter (ipv4, ipv6).
+     * The type of IP to filter for (`ipv4` or `ipv6`).
      */
     type?: pulumi.Input<string>;
     /**

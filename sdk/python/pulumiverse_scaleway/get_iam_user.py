@@ -77,8 +77,7 @@ def get_iam_user(email: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamUserResult:
     """
     Use this data source to get information on an existing IAM user based on its ID or email address.
-    For more information,
-    see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+    For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
 
     ## Example Usage
 
@@ -91,10 +90,12 @@ def get_iam_user(email: Optional[str] = None,
     ```
 
 
-    :param str email: The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
+    :param str email: The email address of the IAM user.
     :param str organization_id: `organization_id`) The ID of the
            organization the user is associated with.
-    :param str user_id: The ID of the IAM user. Only one of the `email` and `user_id` should be specified.
+    :param str user_id: The ID of the IAM user.
+           
+           > **Note** You must specify at least one: `name` and/or `user_id`.
     """
     __args__ = dict()
     __args__['email'] = email
@@ -117,8 +118,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamUserResult]:
     """
     Use this data source to get information on an existing IAM user based on its ID or email address.
-    For more information,
-    see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+    For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
 
     ## Example Usage
 
@@ -131,9 +131,11 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str email: The email address of the IAM user. Only one of the `email` and `user_id` should be specified.
+    :param str email: The email address of the IAM user.
     :param str organization_id: `organization_id`) The ID of the
            organization the user is associated with.
-    :param str user_id: The ID of the IAM user. Only one of the `email` and `user_id` should be specified.
+    :param str user_id: The ID of the IAM user.
+           
+           > **Note** You must specify at least one: `name` and/or `user_id`.
     """
     ...

@@ -14,13 +14,13 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IpamIpResourceGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the resource that the IP is bound to.
+        /// The ID of the resource that the IP is attached to.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The MAC Address of the resource the IP is attached to.
+        /// The MAC address of the resource the IP is attached to.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }

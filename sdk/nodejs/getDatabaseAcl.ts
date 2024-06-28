@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about the RDB instance network Access Control List.
+ * Gets information about the Database Instance network Access Control List.
  *
  * ## Example Usage
  *
@@ -59,7 +59,7 @@ export interface GetDatabaseAclResult {
     readonly region?: string;
 }
 /**
- * Gets information about the RDB instance network Access Control List.
+ * Gets information about the Database Instance network Access Control List.
  *
  * ## Example Usage
  *

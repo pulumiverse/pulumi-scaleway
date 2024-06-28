@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? IpamIpId { get; set; }
 
         /// <summary>
-        /// Defines whether the default route is enabled on that Gateway Network.
+        /// Defines whether to enable the default route on the GatewayNetwork.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }

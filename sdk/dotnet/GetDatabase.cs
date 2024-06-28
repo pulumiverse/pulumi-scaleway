@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetDatabase
     {
         /// <summary>
-        /// Gets information about a RDB database.
+        /// Gets information about a database.
         /// 
         /// ## Example Usage
         /// 
@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseResult>("scaleway:index/getDatabase:getDatabase", args ?? new GetDatabaseArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a RDB database.
+        /// Gets information about a database.
         /// 
         /// ## Example Usage
         /// 

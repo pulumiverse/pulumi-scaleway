@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about the privilege on RDB database.
+// Gets information about the privileges in a database.
 //
 // ## Example Usage
 //
@@ -54,7 +54,7 @@ func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeA
 type LookupDatabasePrivilegeArgs struct {
 	// The database name.
 	DatabaseName string `pulumi:"databaseName"`
-	// The RDB instance ID.
+	// The Database Instance ID.
 	InstanceId string `pulumi:"instanceId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -92,7 +92,7 @@ func LookupDatabasePrivilegeOutput(ctx *pulumi.Context, args LookupDatabasePrivi
 type LookupDatabasePrivilegeOutputArgs struct {
 	// The database name.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
-	// The RDB instance ID.
+	// The Database Instance ID.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`

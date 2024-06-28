@@ -22,10 +22,10 @@ class VpcArgs:
         """
         The set of arguments for constructing a Vpc resource.
         :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
-        :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
+        :param pulumi.Input[str] name: The name for the VPC. If not provided it will be randomly generated.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the VPC is associated with.
         :param pulumi.Input[str] region: `region`) The region of the VPC.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the VPC.
         """
         if enable_routing is not None:
             pulumi.set(__self__, "enable_routing", enable_routing)
@@ -54,7 +54,7 @@ class VpcArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the VPC. If not provided it will be randomly generated.
+        The name for the VPC. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -66,7 +66,7 @@ class VpcArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the VPC is associated with.
+        `project_id`) The ID of the Project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -90,7 +90,7 @@ class VpcArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the VPC.
+        The tags to associate with the VPC.
         """
         return pulumi.get(self, "tags")
 
@@ -116,11 +116,11 @@ class _VpcState:
         :param pulumi.Input[str] created_at: Date and time of VPC's creation (RFC 3339 format).
         :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[bool] is_default: Defines whether the VPC is the default one for its Project.
-        :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the VPC is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
+        :param pulumi.Input[str] name: The name for the VPC. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The Organization ID the VPC is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the VPC is associated with.
         :param pulumi.Input[str] region: `region`) The region of the VPC.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the VPC.
         :param pulumi.Input[str] updated_at: Date and time of VPC's last update (RFC 3339 format).
         """
         if created_at is not None:
@@ -182,7 +182,7 @@ class _VpcState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the VPC. If not provided it will be randomly generated.
+        The name for the VPC. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -194,7 +194,7 @@ class _VpcState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the VPC is associated with.
+        The Organization ID the VPC is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -206,7 +206,7 @@ class _VpcState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the VPC is associated with.
+        `project_id`) The ID of the Project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -230,7 +230,7 @@ class _VpcState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the VPC.
+        The tags to associate with the VPC.
         """
         return pulumi.get(self, "tags")
 
@@ -264,7 +264,7 @@ class Vpc(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Virtual Private Clouds.
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
+        For more information, see [the main documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
 
         ## Example Usage
 
@@ -297,7 +297,7 @@ class Vpc(pulumi.CustomResource):
 
         ## Import
 
-        VPCs can be imported using the `{region}/{id}`, e.g.
+        VPCs can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -308,10 +308,10 @@ class Vpc(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
-        :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
+        :param pulumi.Input[str] name: The name for the VPC. If not provided it will be randomly generated.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the VPC is associated with.
         :param pulumi.Input[str] region: `region`) The region of the VPC.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the VPC.
         """
         ...
     @overload
@@ -321,7 +321,7 @@ class Vpc(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Virtual Private Clouds.
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
+        For more information, see [the main documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
 
         ## Example Usage
 
@@ -354,7 +354,7 @@ class Vpc(pulumi.CustomResource):
 
         ## Import
 
-        VPCs can be imported using the `{region}/{id}`, e.g.
+        VPCs can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -429,11 +429,11 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Date and time of VPC's creation (RFC 3339 format).
         :param pulumi.Input[bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[bool] is_default: Defines whether the VPC is the default one for its Project.
-        :param pulumi.Input[str] name: The name of the VPC. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the VPC is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
+        :param pulumi.Input[str] name: The name for the VPC. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The Organization ID the VPC is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the VPC is associated with.
         :param pulumi.Input[str] region: `region`) The region of the VPC.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the VPC.
         :param pulumi.Input[str] updated_at: Date and time of VPC's last update (RFC 3339 format).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -479,7 +479,7 @@ class Vpc(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the VPC. If not provided it will be randomly generated.
+        The name for the VPC. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -487,7 +487,7 @@ class Vpc(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the VPC is associated with.
+        The Organization ID the VPC is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -495,7 +495,7 @@ class Vpc(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the VPC is associated with.
+        `project_id`) The ID of the Project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -511,7 +511,7 @@ class Vpc(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the VPC.
+        The tags to associate with the VPC.
         """
         return pulumi.get(self, "tags")
 

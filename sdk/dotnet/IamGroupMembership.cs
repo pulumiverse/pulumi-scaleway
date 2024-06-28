@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Add members to an IAM group.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
+    /// For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
     /// 
     /// ## Example Usage
     /// 
@@ -74,7 +74,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the user that will be added to the group
         /// 
-        /// - &gt; Only one of `application_id` or `user_id` must be specified
+        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
         /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
@@ -141,7 +141,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the user that will be added to the group
         /// 
-        /// - &gt; Only one of `application_id` or `user_id` must be specified
+        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
@@ -169,7 +169,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the user that will be added to the group
         /// 
-        /// - &gt; Only one of `application_id` or `user_id` must be specified
+        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

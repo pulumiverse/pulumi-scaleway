@@ -13,7 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetIpamIps
     {
         /// <summary>
-        /// Gets information about multiple IPs managed by IPAM service.
+        /// Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+        /// 
+        /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
         /// 
         /// ## Examples
         /// 
@@ -93,7 +95,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpamIpsResult>("scaleway:index/getIpamIps:getIpamIps", args ?? new GetIpamIpsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about multiple IPs managed by IPAM service.
+        /// Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+        /// 
+        /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
         /// 
         /// ## Examples
         /// 
@@ -183,31 +187,31 @@ namespace Pulumiverse.Scaleway
         public bool? Attached { get; set; }
 
         /// <summary>
-        /// The Mac Address used as filter.
+        /// The linked MAC address to filter for.
         /// </summary>
         [Input("macAddress")]
         public string? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the private network used as filter.
+        /// The ID of the Private Network to filter for.
         /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The ID of the project used as filter.
+        /// The ID of the Project to filter for.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The region used as filter.
+        /// The region to filter for.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         /// <summary>
-        /// Filter by resource ID, type or name.
+        /// Filter for a resource attached to the IP, using resource ID, type or name.
         /// </summary>
         [Input("resource")]
         public Inputs.GetIpamIpsResourceArgs? Resource { get; set; }
@@ -216,7 +220,7 @@ namespace Pulumiverse.Scaleway
         private List<string>? _tags;
 
         /// <summary>
-        /// The tags used as filter.
+        /// The IP tags to filter for.
         /// </summary>
         public List<string> Tags
         {
@@ -225,7 +229,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of IP used as filter (ipv4, ipv6).
+        /// The type of IP to filter for (`ipv4` or `ipv6`).
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -251,31 +255,31 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Attached { get; set; }
 
         /// <summary>
-        /// The Mac Address used as filter.
+        /// The linked MAC address to filter for.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the private network used as filter.
+        /// The ID of the Private Network to filter for.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The ID of the project used as filter.
+        /// The ID of the Project to filter for.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region used as filter.
+        /// The region to filter for.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Filter by resource ID, type or name.
+        /// Filter for a resource attached to the IP, using resource ID, type or name.
         /// </summary>
         [Input("resource")]
         public Input<Inputs.GetIpamIpsResourceInputArgs>? Resource { get; set; }
@@ -284,7 +288,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags used as filter.
+        /// The IP tags to filter for.
         /// </summary>
         public InputList<string> Tags
         {
@@ -293,7 +297,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of IP used as filter (ipv4, ipv6).
+        /// The type of IP to filter for (`ipv4` or `ipv6`).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -320,25 +324,25 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// List of found IPs
+        /// List of found IPs.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIpamIpsIpResult> Ips;
         /// <summary>
-        /// The mac address.
+        /// The associated MAC address.
         /// </summary>
         public readonly string? MacAddress;
         public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
         /// <summary>
-        /// The ID of the project the server is associated with.
+        /// The ID of the Project the resource is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The region in which the IP is.
+        /// The region of the IP.
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// The list of public IPs of the server.
+        /// The list of public IPs attached to the resource.
         /// </summary>
         public readonly Outputs.GetIpamIpsResourceResult? Resource;
         /// <summary>

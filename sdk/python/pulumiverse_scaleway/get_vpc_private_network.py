@@ -83,7 +83,7 @@ class GetVpcPrivateNetworkResult:
     @pulumi.getter(name="ipv4Subnets")
     def ipv4_subnets(self) -> Sequence['outputs.GetVpcPrivateNetworkIpv4SubnetResult']:
         """
-        The IPv4 subnet associated with the private network.
+        The IPv4 subnet associated with the Private Network.
         """
         return pulumi.get(self, "ipv4_subnets")
 
@@ -91,7 +91,7 @@ class GetVpcPrivateNetworkResult:
     @pulumi.getter(name="ipv6Subnets")
     def ipv6_subnets(self) -> Sequence['outputs.GetVpcPrivateNetworkIpv6SubnetResult']:
         """
-        The IPv6 subnets associated with the private network.
+        The IPv6 subnets associated with the Private Network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
@@ -175,7 +175,7 @@ def get_vpc_private_network(name: Optional[str] = None,
                             vpc_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPrivateNetworkResult:
     """
-    Gets information about a private network.
+    Gets information about a Private Network.
 
     ## Example Usage
 
@@ -190,10 +190,10 @@ def get_vpc_private_network(name: Optional[str] = None,
     ```
 
 
-    :param str name: Name of the private network. Cannot be used with `private_network_id`.
-    :param str private_network_id: ID of the private network. Cannot be used with `name` and `vpc_id`.
-    :param str project_id: The ID of the project the private network is associated with.
-    :param str vpc_id: ID of the VPC in which the private network is. Cannot be used with `private_network_id`.
+    :param str name: Name of the Private Network. Cannot be used with `private_network_id`.
+    :param str private_network_id: ID of the Private Network. Cannot be used with `name` or `vpc_id`.
+    :param str project_id: The ID of the Project the Private Network is associated with.
+    :param str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -229,7 +229,7 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
     """
-    Gets information about a private network.
+    Gets information about a Private Network.
 
     ## Example Usage
 
@@ -244,9 +244,9 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     ```
 
 
-    :param str name: Name of the private network. Cannot be used with `private_network_id`.
-    :param str private_network_id: ID of the private network. Cannot be used with `name` and `vpc_id`.
-    :param str project_id: The ID of the project the private network is associated with.
-    :param str vpc_id: ID of the VPC in which the private network is. Cannot be used with `private_network_id`.
+    :param str name: Name of the Private Network. Cannot be used with `private_network_id`.
+    :param str private_network_id: ID of the Private Network. Cannot be used with `name` or `vpc_id`.
+    :param str project_id: The ID of the Project the Private Network is associated with.
+    :param str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
     ...

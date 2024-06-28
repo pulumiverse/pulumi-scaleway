@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     public static class GetVpcGatewayNetwork
     {
         /// <summary>
-        /// Gets information about a gateway network.
+        /// Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
         /// 
         /// ## Example Usage
         /// 
@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcGatewayNetworkResult>("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args ?? new GetVpcGatewayNetworkArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a gateway network.
+        /// Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
         /// 
         /// ## Example Usage
         /// 
@@ -96,35 +96,21 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetVpcGatewayNetworkArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of the public gateway DHCP config
-        /// </summary>
         [Input("dhcpId")]
         public string? DhcpId { get; set; }
 
-        /// <summary>
-        /// If masquerade is enabled on requested network
-        /// </summary>
         [Input("enableMasquerade")]
         public bool? EnableMasquerade { get; set; }
 
-        /// <summary>
-        /// ID of the public gateway the gateway network is linked to
-        /// </summary>
         [Input("gatewayId")]
         public string? GatewayId { get; set; }
 
         /// <summary>
-        /// ID of the gateway network.
-        /// 
-        /// &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
+        /// ID of the GatewayNetwork.
         /// </summary>
         [Input("gatewayNetworkId")]
         public string? GatewayNetworkId { get; set; }
 
-        /// <summary>
-        /// ID of the private network the gateway network is linked to
-        /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
@@ -136,35 +122,21 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetVpcGatewayNetworkInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of the public gateway DHCP config
-        /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
-        /// <summary>
-        /// If masquerade is enabled on requested network
-        /// </summary>
         [Input("enableMasquerade")]
         public Input<bool>? EnableMasquerade { get; set; }
 
-        /// <summary>
-        /// ID of the public gateway the gateway network is linked to
-        /// </summary>
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
 
         /// <summary>
-        /// ID of the gateway network.
-        /// 
-        /// &gt; Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
+        /// ID of the GatewayNetwork.
         /// </summary>
         [Input("gatewayNetworkId")]
         public Input<string>? GatewayNetworkId { get; set; }
 
-        /// <summary>
-        /// ID of the private network the gateway network is linked to
-        /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 

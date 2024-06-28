@@ -23,7 +23,7 @@ class TemDomainArgs:
         """
         The set of arguments for constructing a TemDomain resource.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-               > **Important:**  This attribute must be set to `true`.
+               > **Important:** This attribute must be set to `true`.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
@@ -42,7 +42,7 @@ class TemDomainArgs:
     def accept_tos(self) -> pulumi.Input[bool]:
         """
         Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        > **Important:**  This attribute must be set to `true`.
+        > **Important:** This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
 
@@ -117,7 +117,7 @@ class _TemDomainState:
         """
         Input properties used for looking up and filtering TemDomain resources.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-               > **Important:**  This attribute must be set to `true`.
+               > **Important:** This attribute must be set to `true`.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
@@ -194,7 +194,7 @@ class _TemDomainState:
     def accept_tos(self) -> Optional[pulumi.Input[bool]]:
         """
         Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        > **Important:**  This attribute must be set to `true`.
+        > **Important:** This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
 
@@ -480,7 +480,7 @@ class TemDomain(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Transactional Email Domains.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 
@@ -533,7 +533,7 @@ class TemDomain(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-               > **Important:**  This attribute must be set to `true`.
+               > **Important:** This attribute must be set to `true`.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
@@ -547,7 +547,7 @@ class TemDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Transactional Email Domains.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 
@@ -691,7 +691,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-               > **Important:**  This attribute must be set to `true`.
+               > **Important:** This attribute must be set to `true`.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
@@ -750,7 +750,7 @@ class TemDomain(pulumi.CustomResource):
     def accept_tos(self) -> pulumi.Output[bool]:
         """
         Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        > **Important:**  This attribute must be set to `true`.
+        > **Important:** This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
 

@@ -13,8 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetLbBackend
     {
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Backends.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        /// Get information about Scaleway Load Balancer backends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
         /// 
         /// ## Example Usage
         /// 
@@ -60,8 +61,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbBackendResult>("scaleway:index/getLbBackend:getLbBackend", args ?? new GetLbBackendArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Backends.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        /// Get information about Scaleway Load Balancer backends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
         /// 
         /// ## Example Usage
         /// 
@@ -111,21 +113,21 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbBackendArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The backend id.
+        /// The backend ID.
         /// - Only one of `name` and `backend_id` should be specified.
         /// </summary>
         [Input("backendId")]
         public string? BackendId { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this backend is attached to.
+        /// Load Balancer ID this backend is attached to.
         /// </summary>
         [Input("lbId")]
         public string? LbId { get; set; }
 
         /// <summary>
         /// The name of the backend.
-        /// - When using the `name` you should specify the `lb-id`
+        /// - When using `name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -139,21 +141,21 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbBackendInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The backend id.
+        /// The backend ID.
         /// - Only one of `name` and `backend_id` should be specified.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this backend is attached to.
+        /// Load Balancer ID this backend is attached to.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
         /// The name of the backend.
-        /// - When using the `name` you should specify the `lb-id`
+        /// - When using `name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

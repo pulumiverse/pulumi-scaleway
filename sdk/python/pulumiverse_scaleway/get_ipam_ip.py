@@ -79,7 +79,7 @@ class GetIpamIpResult:
     @pulumi.getter(name="addressCidr")
     def address_cidr(self) -> str:
         """
-        the IP address with a CIDR notation.
+        the IP address in CIDR notation.
         """
         return pulumi.get(self, "address_cidr")
 
@@ -181,7 +181,9 @@ def get_ipam_ip(attached: Optional[bool] = None,
                 zonal: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpamIpResult:
     """
-    Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+    Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+
+    For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 
     ## Examples
 
@@ -196,7 +198,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
 
     ### Instance Private Network IP
 
-    Get Instance IP in a private network.
+    Get an Instance's IP on a Private Network.
 
     ```python
     import pulumi
@@ -244,16 +246,16 @@ def get_ipam_ip(attached: Optional[bool] = None,
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipam_ip_id`.
-    :param str ipam_ip_id: The IPAM IP ID. Cannot be used with the rest of the arguments.
-    :param str mac_address: The Mac Address linked to the IP. Cannot be used with `ipam_ip_id`.
-    :param str private_network_id: The ID of the private network the IP belong to. Cannot be used with `ipam_ip_id`.
-    :param str project_id: `project_id`) The ID of the project the IP is associated with.
+    :param str ipam_ip_id: The IPAM IP ID. Cannot be used with any other arguments.
+    :param str mac_address: The MAC address linked to the IP. Cannot be used with `ipam_ip_id`.
+    :param str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
+    :param str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
     :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
-    :param str type: The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.
+    :param str type: The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     __args__ = dict()
@@ -300,7 +302,9 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                        zonal: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpamIpResult]:
     """
-    Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+    Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+
+    For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 
     ## Examples
 
@@ -315,7 +319,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
 
     ### Instance Private Network IP
 
-    Get Instance IP in a private network.
+    Get an Instance's IP on a Private Network.
 
     ```python
     import pulumi
@@ -363,16 +367,16 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
 
 
     :param bool attached: Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipam_ip_id`.
-    :param str ipam_ip_id: The IPAM IP ID. Cannot be used with the rest of the arguments.
-    :param str mac_address: The Mac Address linked to the IP. Cannot be used with `ipam_ip_id`.
-    :param str private_network_id: The ID of the private network the IP belong to. Cannot be used with `ipam_ip_id`.
-    :param str project_id: `project_id`) The ID of the project the IP is associated with.
+    :param str ipam_ip_id: The IPAM IP ID. Cannot be used with any other arguments.
+    :param str mac_address: The MAC address linked to the IP. Cannot be used with `ipam_ip_id`.
+    :param str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
+    :param str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
     :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
-    :param str type: The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.
+    :param str type: The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
     ...

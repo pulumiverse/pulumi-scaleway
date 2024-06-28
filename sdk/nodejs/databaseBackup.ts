@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway RDB database backup.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+ * Creates and manages database backups.
+ * For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -16,9 +16,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseBackup("main", {
- *     instanceId: data.scaleway_rdb_instance.main.id,
- *     databaseName: data.scaleway_rdb_database.main.name,
+ * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * const mainDatabase = new scaleway.Database("mainDatabase", {instanceId: mainDatabaseInstance.id});
+ * const mainDatabaseBackup = new scaleway.DatabaseBackup("mainDatabaseBackup", {
+ *     instanceId: mainDatabaseInstance.id,
+ *     databaseName: mainDatabase.name,
  * });
  * ```
  *
@@ -37,7 +46,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * RDB Database can be imported using the `{region}/{id}`, e.g.
+ * Databases can be imported using the `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -88,9 +97,9 @@ export class DatabaseBackup extends pulumi.CustomResource {
      */
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Backup.
+     * > **Important:** Updates to `instanceId` will recreate the backup.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -178,9 +187,9 @@ export interface DatabaseBackupState {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Backup.
+     * > **Important:** Updates to `instanceId` will recreate the backup.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -220,9 +229,9 @@ export interface DatabaseBackupArgs {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Backup.
+     * > **Important:** Updates to `instanceId` will recreate the backup.
      */
     instanceId: pulumi.Input<string>;
     /**

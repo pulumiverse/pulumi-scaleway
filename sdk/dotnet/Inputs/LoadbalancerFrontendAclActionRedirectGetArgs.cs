@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<int>? Code { get; set; }
 
         /// <summary>
-        /// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        /// A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }

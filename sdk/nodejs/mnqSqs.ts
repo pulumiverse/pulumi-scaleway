@@ -5,15 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Activate Scaleway Messaging and queuing SQS for a project.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+ * Activate Scaleway Messaging and Queuing SQS in a Project.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/).
  *
  * ## Example Usage
  *
  * ### Basic
  *
- * Activate SQS for default project
+ * Activate SQS in the default Project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -74,16 +74,16 @@ export class MnqSqs extends pulumi.CustomResource {
     }
 
     /**
-     * The endpoint of the SQS service for this project.
+     * The endpoint of the SQS service for this Project.
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the sqs will be enabled for.
+     * `projectId`) The ID of the Project in which SQS will be enabled.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
      * `region`). The region
-     * in which sqs will be enabled.
+     * in which SQS will be enabled.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -119,16 +119,16 @@ export class MnqSqs extends pulumi.CustomResource {
  */
 export interface MnqSqsState {
     /**
-     * The endpoint of the SQS service for this project.
+     * The endpoint of the SQS service for this Project.
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sqs will be enabled for.
+     * `projectId`) The ID of the Project in which SQS will be enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region
-     * in which sqs will be enabled.
+     * in which SQS will be enabled.
      */
     region?: pulumi.Input<string>;
 }
@@ -138,12 +138,12 @@ export interface MnqSqsState {
  */
 export interface MnqSqsArgs {
     /**
-     * `projectId`) The ID of the project the sqs will be enabled for.
+     * `projectId`) The ID of the Project in which SQS will be enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region
-     * in which sqs will be enabled.
+     * in which SQS will be enabled.
      */
     region?: pulumi.Input<string>;
 }

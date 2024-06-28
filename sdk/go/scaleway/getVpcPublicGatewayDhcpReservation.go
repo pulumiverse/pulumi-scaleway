@@ -11,8 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a dhcp entries. For further information please check the
-// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+// Gets information about a DHCP entry. For further information, please see the
+// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
 //
 // ## Example Dynamic
 //
@@ -84,7 +84,7 @@ import (
 //
 // ```
 //
-// ## Example Static and PAT rule
+// ## Example Static and PAT Rule
 //
 // ```go
 // package main
@@ -203,11 +203,11 @@ type LookupVpcPublicGatewayDhcpReservationArgs struct {
 	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve.
 	MacAddress *string `pulumi:"macAddress"`
-	// The ID of the Reservation to retrieve.
+	// The ID of the reservation (DHCP entry) to retrieve.
 	ReservationId *string `pulumi:"reservationId"`
-	// Boolean to wait for macAddress to exist in dhcp.
+	// Whether to wait for `macAddress` to exist in DHCP.
 	WaitForDhcp *bool `pulumi:"waitForDhcp"`
-	// `zone`) The zone in which the image exists.
+	// `zone`). The zone in which the reservation exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -248,11 +248,11 @@ type LookupVpcPublicGatewayDhcpReservationOutputArgs struct {
 	GatewayNetworkId pulumi.StringPtrInput `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve.
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
-	// The ID of the Reservation to retrieve.
+	// The ID of the reservation (DHCP entry) to retrieve.
 	ReservationId pulumi.StringPtrInput `pulumi:"reservationId"`
-	// Boolean to wait for macAddress to exist in dhcp.
+	// Whether to wait for `macAddress` to exist in DHCP.
 	WaitForDhcp pulumi.BoolPtrInput `pulumi:"waitForDhcp"`
-	// `zone`) The zone in which the image exists.
+	// `zone`). The zone in which the reservation exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 

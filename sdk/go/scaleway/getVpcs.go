@@ -51,13 +51,13 @@ func GetVpcs(ctx *pulumi.Context, args *GetVpcsArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking getVpcs.
 type GetVpcsArgs struct {
-	// The VPC name used as filter. VPCs with a name like it are listed.
+	// The VPC name to filter for. VPCs with a similar name are listed.
 	Name *string `pulumi:"name"`
-	// The ID of the project the VPC is associated with.
+	// The ID of the Project the VPC is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which vpcs exist.
+	// `region`). The region in which the VPCs exist.
 	Region *string `pulumi:"region"`
-	// List of tags used as filter. VPCs with these exact tags are listed.
+	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 }
 
@@ -66,13 +66,13 @@ type GetVpcsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id   string  `pulumi:"id"`
 	Name *string `pulumi:"name"`
-	// The organization ID the VPC is associated with.
+	// The Organization ID the VPC is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the VPC is associated with.
+	// The ID of the Project the VPC is associated with.
 	ProjectId string   `pulumi:"projectId"`
 	Region    string   `pulumi:"region"`
 	Tags      []string `pulumi:"tags"`
-	// List of found vpcs
+	// List of retrieved VPCs
 	Vpcs []GetVpcsVpc `pulumi:"vpcs"`
 }
 
@@ -91,13 +91,13 @@ func GetVpcsOutput(ctx *pulumi.Context, args GetVpcsOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking getVpcs.
 type GetVpcsOutputArgs struct {
-	// The VPC name used as filter. VPCs with a name like it are listed.
+	// The VPC name to filter for. VPCs with a similar name are listed.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the VPC is associated with.
+	// The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`). The region in which vpcs exist.
+	// `region`). The region in which the VPCs exist.
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// List of tags used as filter. VPCs with these exact tags are listed.
+	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
@@ -129,12 +129,12 @@ func (o GetVpcsResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVpcsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The organization ID the VPC is associated with.
+// The Organization ID the VPC is associated with.
 func (o GetVpcsResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the VPC is associated with.
+// The ID of the Project the VPC is associated with.
 func (o GetVpcsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -147,7 +147,7 @@ func (o GetVpcsResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVpcsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// List of found vpcs
+// List of retrieved VPCs
 func (o GetVpcsResultOutput) Vpcs() GetVpcsVpcArrayOutput {
 	return o.ApplyT(func(v GetVpcsResult) []GetVpcsVpc { return v.Vpcs }).(GetVpcsVpcArrayOutput)
 }

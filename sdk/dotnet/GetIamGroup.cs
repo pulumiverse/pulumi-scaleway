@@ -13,8 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetIamGroup
     {
         /// <summary>
-        /// Gets information about an existing IAM group. For more information, please
-        /// check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+        /// Gets information about an existing IAM group.
+        /// 
+        /// For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
         /// 
         /// ## Example Usage
         /// 
@@ -43,8 +44,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamGroupResult>("scaleway:index/getIamGroup:getIamGroup", args ?? new GetIamGroupArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about an existing IAM group. For more information, please
-        /// check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+        /// Gets information about an existing IAM group.
+        /// 
+        /// For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
         /// 
         /// ## Example Usage
         /// 
@@ -78,14 +80,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The ID of the IAM group.
-        /// Only one of the `name` and `group_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `group_id`.
         /// </summary>
         [Input("groupId")]
         public string? GroupId { get; set; }
 
         /// <summary>
         /// The name of the IAM group.
-        /// Only one of the `name` and `group_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -107,14 +109,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The ID of the IAM group.
-        /// Only one of the `name` and `group_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `group_id`.
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
         /// The name of the IAM group.
-        /// Only one of the `name` and `group_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

@@ -11,10 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Messaging and queuing Nats Accounts.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
-// To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
+// Creates and manages Scaleway Messaging and Queuing NATS accounts.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+// To use the Scaleway provider with the official NATS JetStream provider, check out the corresponding guide.
 //
 // ## Example Usage
 //
@@ -44,7 +44,7 @@ import (
 //
 // ## Import
 //
-// Namespaces can be imported using the `{region}/{id}`, e.g.
+// Namespaces can be imported using `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -56,9 +56,9 @@ type MnqNatsAccount struct {
 
 	// The endpoint of the NATS service for this account.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// The unique name of the nats account.
+	// The unique name of the NATS account.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `projectId`) The ID of the project the
+	// `projectId`) The ID of the Project the
 	// account is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
@@ -98,9 +98,9 @@ func GetMnqNatsAccount(ctx *pulumi.Context,
 type mnqNatsAccountState struct {
 	// The endpoint of the NATS service for this account.
 	Endpoint *string `pulumi:"endpoint"`
-	// The unique name of the nats account.
+	// The unique name of the NATS account.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the
+	// `projectId`) The ID of the Project the
 	// account is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
@@ -111,9 +111,9 @@ type mnqNatsAccountState struct {
 type MnqNatsAccountState struct {
 	// The endpoint of the NATS service for this account.
 	Endpoint pulumi.StringPtrInput
-	// The unique name of the nats account.
+	// The unique name of the NATS account.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the
+	// `projectId`) The ID of the Project the
 	// account is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
@@ -126,9 +126,9 @@ func (MnqNatsAccountState) ElementType() reflect.Type {
 }
 
 type mnqNatsAccountArgs struct {
-	// The unique name of the nats account.
+	// The unique name of the NATS account.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the
+	// `projectId`) The ID of the Project the
 	// account is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
@@ -138,9 +138,9 @@ type mnqNatsAccountArgs struct {
 
 // The set of arguments for constructing a MnqNatsAccount resource.
 type MnqNatsAccountArgs struct {
-	// The unique name of the nats account.
+	// The unique name of the NATS account.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the
+	// `projectId`) The ID of the Project the
 	// account is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
@@ -240,12 +240,12 @@ func (o MnqNatsAccountOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqNatsAccount) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
-// The unique name of the nats account.
+// The unique name of the NATS account.
 func (o MnqNatsAccountOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqNatsAccount) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the
+// `projectId`) The ID of the Project the
 // account is associated with.
 func (o MnqNatsAccountOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqNatsAccount) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)

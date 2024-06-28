@@ -15,6 +15,8 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancers.
         /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -47,6 +49,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about multiple Load Balancers.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
         /// 
         /// ## Example Usage
         /// 
@@ -83,13 +87,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The load balancer name used as a filter. LBs with a name like it are listed.
+        /// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -98,7 +102,7 @@ namespace Pulumiverse.Scaleway
         private List<string>? _tags;
 
         /// <summary>
-        /// List of tags used as filter. LBs with these exact tags are listed.
+        /// List of tags to filter for. Load Balancers with these exact tags are listed.
         /// </summary>
         public List<string> Tags
         {
@@ -107,7 +111,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which LBs exist.
+        /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -121,13 +125,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The load balancer name used as a filter. LBs with a name like it are listed.
+        /// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -136,7 +140,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags used as filter. LBs with these exact tags are listed.
+        /// List of tags to filter for. Load Balancers with these exact tags are listed.
         /// </summary>
         public InputList<string> Tags
         {
@@ -145,7 +149,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which LBs exist.
+        /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -165,27 +169,27 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// List of found LBs
+        /// List of retrieved Load Balancers
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbsLbResult> Lbs;
         /// <summary>
-        /// The name of the load-balancer.
+        /// The name of the Load Balancer.
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization the Load Balancer is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The tags associated with the load-balancer.
+        /// The tags associated with the Load Balancer.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// The zone in which the load-balancer is.
+        /// The zone of the Load Balancer.
         /// </summary>
         public readonly string Zone;
 

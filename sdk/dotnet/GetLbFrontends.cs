@@ -13,7 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetLbFrontends
     {
         /// <summary>
-        /// Gets information about multiple Load Balancer Frontends.
+        /// Gets information about multiple Load Balancer frontends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
         /// 
         /// ## Example Usage
         /// 
@@ -43,7 +45,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbFrontendsResult>("scaleway:index/getLbFrontends:getLbFrontends", args ?? new GetLbFrontendsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about multiple Load Balancer Frontends.
+        /// Gets information about multiple Load Balancer frontends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
         /// 
         /// ## Example Usage
         /// 
@@ -77,13 +81,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbFrontendsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+        /// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
         /// </summary>
         [Input("lbId", required: true)]
         public string LbId { get; set; } = null!;
 
         /// <summary>
-        /// The frontend name used as filter. Frontends with a name like it are listed.
+        /// The frontend name to filter for. Frontends with a matching name are listed.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -92,7 +96,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which frontends exist.
+        /// `zone`) The zone in which the frontends exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -106,13 +110,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbFrontendsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+        /// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
         /// </summary>
         [Input("lbId", required: true)]
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
-        /// The frontend name used as filter. Frontends with a name like it are listed.
+        /// The frontend name to filter for. Frontends with a matching name are listed.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -121,7 +125,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which frontends exist.
+        /// `zone`) The zone in which the frontends exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -137,7 +141,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetLbFrontendsResult
     {
         /// <summary>
-        /// List of found frontends
+        /// List of retrieved frontends
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbFrontendsFrontendResult> Frontends;
         /// <summary>

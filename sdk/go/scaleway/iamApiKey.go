@@ -11,10 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway IAM API Keys. For more information, please
-// check [the documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae)
+// Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).
 //
 // ## Example Usage
+//
+// ### With application
 //
 // ```go
 // package main
@@ -45,6 +46,39 @@ import (
 //
 // ```
 //
+// ### With user
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainIamUser, err := scaleway.NewIamUser(ctx, "mainIamUser", &scaleway.IamUserArgs{
+//				Email: pulumi.String("test@test.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamApiKey(ctx, "mainIamApiKey", &scaleway.IamApiKeyArgs{
+//				UserId:      mainIamUser.ID(),
+//				Description: pulumi.String("a description"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Api keys can be imported using the `{id}`, e.g.
@@ -57,30 +91,29 @@ import (
 type IamApiKey struct {
 	pulumi.CustomResourceState
 
-	// The access key of the iam api key.
+	// The access key of the IAM API key.
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
-	// ID of the application attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the application attached to the API key.
 	ApplicationId pulumi.StringPtrOutput `pulumi:"applicationId"`
-	// The date and time of the creation of the iam api key.
+	// The date and time of the creation of the IAM API key.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The IP Address of the device which created the API key.
 	CreationIp pulumi.StringOutput `pulumi:"creationIp"`
-	// The default project ID to use with object storage.
+	// The default Project ID to use with Object Storage.
 	DefaultProjectId pulumi.StringOutput `pulumi:"defaultProjectId"`
-	// The description of the iam api key.
+	// The description of the API key.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Whether the iam api key is editable.
+	// Whether the IAM API key is editable.
 	Editable pulumi.BoolOutput `pulumi:"editable"`
-	// The date and time of the expiration of the iam api key. Please note that in case of change,
+	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// The secret Key of the iam api key.
+	// The secret Key of the IAM API key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
-	// The date and time of the last update of the iam api key.
+	// The date and time of the last update of the IAM API key.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// ID of the user attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the user attached to the API key.
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrOutput `pulumi:"userId"`
 }
 
@@ -118,58 +151,56 @@ func GetIamApiKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamApiKey resources.
 type iamApiKeyState struct {
-	// The access key of the iam api key.
+	// The access key of the IAM API key.
 	AccessKey *string `pulumi:"accessKey"`
-	// ID of the application attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the application attached to the API key.
 	ApplicationId *string `pulumi:"applicationId"`
-	// The date and time of the creation of the iam api key.
+	// The date and time of the creation of the IAM API key.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The IP Address of the device which created the API key.
 	CreationIp *string `pulumi:"creationIp"`
-	// The default project ID to use with object storage.
+	// The default Project ID to use with Object Storage.
 	DefaultProjectId *string `pulumi:"defaultProjectId"`
-	// The description of the iam api key.
+	// The description of the API key.
 	Description *string `pulumi:"description"`
-	// Whether the iam api key is editable.
+	// Whether the IAM API key is editable.
 	Editable *bool `pulumi:"editable"`
-	// The date and time of the expiration of the iam api key. Please note that in case of change,
+	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The secret Key of the iam api key.
+	// The secret Key of the IAM API key.
 	SecretKey *string `pulumi:"secretKey"`
-	// The date and time of the last update of the iam api key.
+	// The date and time of the last update of the IAM API key.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// ID of the user attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the user attached to the API key.
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId *string `pulumi:"userId"`
 }
 
 type IamApiKeyState struct {
-	// The access key of the iam api key.
+	// The access key of the IAM API key.
 	AccessKey pulumi.StringPtrInput
-	// ID of the application attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the application attached to the API key.
 	ApplicationId pulumi.StringPtrInput
-	// The date and time of the creation of the iam api key.
+	// The date and time of the creation of the IAM API key.
 	CreatedAt pulumi.StringPtrInput
 	// The IP Address of the device which created the API key.
 	CreationIp pulumi.StringPtrInput
-	// The default project ID to use with object storage.
+	// The default Project ID to use with Object Storage.
 	DefaultProjectId pulumi.StringPtrInput
-	// The description of the iam api key.
+	// The description of the API key.
 	Description pulumi.StringPtrInput
-	// Whether the iam api key is editable.
+	// Whether the IAM API key is editable.
 	Editable pulumi.BoolPtrInput
-	// The date and time of the expiration of the iam api key. Please note that in case of change,
+	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt pulumi.StringPtrInput
-	// The secret Key of the iam api key.
+	// The secret Key of the IAM API key.
 	SecretKey pulumi.StringPtrInput
-	// The date and time of the last update of the iam api key.
+	// The date and time of the last update of the IAM API key.
 	UpdatedAt pulumi.StringPtrInput
-	// ID of the user attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the user attached to the API key.
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrInput
 }
 
@@ -178,35 +209,33 @@ func (IamApiKeyState) ElementType() reflect.Type {
 }
 
 type iamApiKeyArgs struct {
-	// ID of the application attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the application attached to the API key.
 	ApplicationId *string `pulumi:"applicationId"`
-	// The default project ID to use with object storage.
+	// The default Project ID to use with Object Storage.
 	DefaultProjectId *string `pulumi:"defaultProjectId"`
-	// The description of the iam api key.
+	// The description of the API key.
 	Description *string `pulumi:"description"`
-	// The date and time of the expiration of the iam api key. Please note that in case of change,
+	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// ID of the user attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the user attached to the API key.
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId *string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a IamApiKey resource.
 type IamApiKeyArgs struct {
-	// ID of the application attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the application attached to the API key.
 	ApplicationId pulumi.StringPtrInput
-	// The default project ID to use with object storage.
+	// The default Project ID to use with Object Storage.
 	DefaultProjectId pulumi.StringPtrInput
-	// The description of the iam api key.
+	// The description of the API key.
 	Description pulumi.StringPtrInput
-	// The date and time of the expiration of the iam api key. Please note that in case of change,
+	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt pulumi.StringPtrInput
-	// ID of the user attached to the api key.
-	// Only one of the `applicationId` and `userId` should be specified.
+	// ID of the user attached to the API key.
+	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrInput
 }
 
@@ -297,18 +326,17 @@ func (o IamApiKeyOutput) ToIamApiKeyOutputWithContext(ctx context.Context) IamAp
 	return o
 }
 
-// The access key of the iam api key.
+// The access key of the IAM API key.
 func (o IamApiKeyOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// ID of the application attached to the api key.
-// Only one of the `applicationId` and `userId` should be specified.
+// ID of the application attached to the API key.
 func (o IamApiKeyOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringPtrOutput { return v.ApplicationId }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the creation of the iam api key.
+// The date and time of the creation of the IAM API key.
 func (o IamApiKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -318,39 +346,39 @@ func (o IamApiKeyOutput) CreationIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.CreationIp }).(pulumi.StringOutput)
 }
 
-// The default project ID to use with object storage.
+// The default Project ID to use with Object Storage.
 func (o IamApiKeyOutput) DefaultProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.DefaultProjectId }).(pulumi.StringOutput)
 }
 
-// The description of the iam api key.
+// The description of the API key.
 func (o IamApiKeyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Whether the iam api key is editable.
+// Whether the IAM API key is editable.
 func (o IamApiKeyOutput) Editable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.BoolOutput { return v.Editable }).(pulumi.BoolOutput)
 }
 
-// The date and time of the expiration of the iam api key. Please note that in case of change,
+// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 // the resource will be recreated.
 func (o IamApiKeyOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The secret Key of the iam api key.
+// The secret Key of the IAM API key.
 func (o IamApiKeyOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the iam api key.
+// The date and time of the last update of the IAM API key.
 func (o IamApiKeyOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// ID of the user attached to the api key.
-// Only one of the `applicationId` and `userId` should be specified.
+// ID of the user attached to the API key.
+// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 func (o IamApiKeyOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringPtrOutput { return v.UserId }).(pulumi.StringPtrOutput)
 }

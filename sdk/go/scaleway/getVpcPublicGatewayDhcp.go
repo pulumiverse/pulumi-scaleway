@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a public gateway DHCP.
+// Gets information about a Public Gateway DHCP configuration.
 //
 // ## Example Usage
 //

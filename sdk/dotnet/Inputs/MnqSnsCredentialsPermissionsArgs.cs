@@ -14,19 +14,19 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class MnqSnsCredentialsPermissionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// . Defines if user can manage the associated resource(s).
+        /// . Defines whether the user can manage the associated resource(s).
         /// </summary>
         [Input("canManage")]
         public Input<bool>? CanManage { get; set; }
 
         /// <summary>
-        /// . Defines if user can publish messages to the service.
+        /// . Defines whether the user can publish messages to the service.
         /// </summary>
         [Input("canPublish")]
         public Input<bool>? CanPublish { get; set; }
 
         /// <summary>
-        /// . Defines if user can receive messages from the service.
+        /// . Defines whether the user can receive messages from the service.
         /// </summary>
         [Input("canReceive")]
         public Input<bool>? CanReceive { get; set; }

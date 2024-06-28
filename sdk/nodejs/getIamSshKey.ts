@@ -34,7 +34,7 @@ export function getIamSshKey(args?: GetIamSshKeyArgs, opts?: pulumi.InvokeOption
  */
 export interface GetIamSshKeyArgs {
     /**
-     * The SSH key name. Only one of `name` and `sshKeyId` should be specified.
+     * The SSH key name.
      */
     name?: string;
     /**
@@ -43,7 +43,9 @@ export interface GetIamSshKeyArgs {
      */
     projectId?: string;
     /**
-     * The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+     * The SSH key id.
+     *
+     * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */
     sshKeyId?: string;
 }
@@ -104,7 +106,7 @@ export function getIamSshKeyOutput(args?: GetIamSshKeyOutputArgs, opts?: pulumi.
  */
 export interface GetIamSshKeyOutputArgs {
     /**
-     * The SSH key name. Only one of `name` and `sshKeyId` should be specified.
+     * The SSH key name.
      */
     name?: pulumi.Input<string>;
     /**
@@ -113,7 +115,9 @@ export interface GetIamSshKeyOutputArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+     * The SSH key id.
+     *
+     * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */
     sshKeyId?: pulumi.Input<string>;
 }

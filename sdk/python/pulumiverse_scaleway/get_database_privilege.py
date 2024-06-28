@@ -99,7 +99,7 @@ def get_database_privilege(database_name: Optional[str] = None,
                            user_name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabasePrivilegeResult:
     """
-    Gets information about the privilege on RDB database.
+    Gets information about the privileges in a database.
 
     ## Example Usage
 
@@ -114,7 +114,7 @@ def get_database_privilege(database_name: Optional[str] = None,
 
 
     :param str database_name: The database name.
-    :param str instance_id: The RDB instance ID.
+    :param str instance_id: The Database Instance ID.
     :param str region: `region`) The region in which the resource exists.
     :param str user_name: The user name.
     """
@@ -142,7 +142,7 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
                                   user_name: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabasePrivilegeResult]:
     """
-    Gets information about the privilege on RDB database.
+    Gets information about the privileges in a database.
 
     ## Example Usage
 
@@ -157,7 +157,7 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
 
 
     :param str database_name: The database name.
-    :param str instance_id: The RDB instance ID.
+    :param str instance_id: The Database Instance ID.
     :param str region: `region`) The region in which the resource exists.
     :param str user_name: The user name.
     """

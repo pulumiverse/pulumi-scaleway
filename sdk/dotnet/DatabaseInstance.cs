@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Database Instances.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+    /// For more information, see refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 
@@ -119,11 +119,11 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Examples of endpoints configuration
+    /// ### Examples of endpoint configuration
     /// 
-    /// RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+    /// Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
     /// 
-    /// ### 1 static private network endpoint
+    /// ### 1 static Private Network endpoint
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -155,7 +155,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### 1 IPAM private network endpoint + 1 public endpoint
+    /// ### 1 IPAM Private Network endpoint + 1 public endpoint
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -204,11 +204,11 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// &gt; If nothing is defined, your instance will have a default public load-balancer endpoint
+    /// &gt; **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
     /// 
     /// ## Limitations
     /// 
-    /// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+    /// The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
     /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
     /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
     /// 
@@ -244,7 +244,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> BackupScheduleRetention { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate of the database instance.
+        /// Certificate of the Database Instance.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
@@ -270,7 +270,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
-        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
@@ -282,15 +282,15 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance.
+        /// Enable or disable high availability for the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Output("isHaCluster")]
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of Load Balancer endpoints of the Database Instance.
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
@@ -308,13 +308,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// The type of Database Instance you want to create (e.g. `db-dev-s`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// &gt; **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption.
         /// 
-        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+        /// &gt; **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -326,13 +325,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the database instance.
+        /// Password for the first user of the Database Instance.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// List of private networks endpoints of the database instance.
+        /// List of Private Networks endpoints of the Database Instance.
         /// </summary>
         [Output("privateNetwork")]
         public Output<Outputs.DatabaseInstancePrivateNetwork?> PrivateNetwork { get; private set; } = null!;
@@ -345,7 +344,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// List of read replicas of the database instance.
+        /// List of read replicas of the Database Instance.
         /// </summary>
         [Output("readReplicas")]
         public Output<ImmutableArray<Outputs.DatabaseInstanceReadReplica>> ReadReplicas { get; private set; } = null!;
@@ -370,9 +369,9 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Identifier for the first user of the database instance.
+        /// Identifier for the first user of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
@@ -380,7 +379,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
         /// 
-        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+        /// &gt; **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
@@ -469,7 +468,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
-        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
@@ -487,9 +486,9 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Enable or disable high availability for the database instance.
+        /// Enable or disable high availability for the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -498,7 +497,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of Load Balancer endpoints of the Database Instance.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerArgs> LoadBalancers
         {
@@ -519,13 +518,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// The type of Database Instance you want to create (e.g. `db-dev-s`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// &gt; **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption.
         /// 
-        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+        /// &gt; **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -534,7 +532,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the database instance.
+        /// Password for the first user of the Database Instance.
         /// </summary>
         public Input<string>? Password
         {
@@ -547,7 +545,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// List of private networks endpoints of the database instance.
+        /// List of Private Networks endpoints of the Database Instance.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DatabaseInstancePrivateNetworkArgs>? PrivateNetwork { get; set; }
@@ -591,9 +589,9 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Identifier for the first user of the database instance.
+        /// Identifier for the first user of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -601,7 +599,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
         /// 
-        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+        /// &gt; **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
@@ -639,7 +637,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? BackupScheduleRetention { get; set; }
 
         /// <summary>
-        /// Certificate of the database instance.
+        /// Certificate of the Database Instance.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
@@ -665,7 +663,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
-        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -683,9 +681,9 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Enable or disable high availability for the database instance.
+        /// Enable or disable high availability for the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -694,7 +692,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of Load Balancer endpoints of the Database Instance.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs> LoadBalancers
         {
@@ -715,13 +713,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// The type of Database Instance you want to create (e.g. `db-dev-s`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// &gt; **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption.
         /// 
-        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
-        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
+        /// &gt; **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -736,7 +733,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the database instance.
+        /// Password for the first user of the Database Instance.
         /// </summary>
         public Input<string>? Password
         {
@@ -749,7 +746,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// List of private networks endpoints of the database instance.
+        /// List of Private Networks endpoints of the Database Instance.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DatabaseInstancePrivateNetworkGetArgs>? PrivateNetwork { get; set; }
@@ -765,7 +762,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.DatabaseInstanceReadReplicaGetArgs>? _readReplicas;
 
         /// <summary>
-        /// List of read replicas of the database instance.
+        /// List of read replicas of the Database Instance.
         /// </summary>
         public InputList<Inputs.DatabaseInstanceReadReplicaGetArgs> ReadReplicas
         {
@@ -805,9 +802,9 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Identifier for the first user of the database instance.
+        /// Identifier for the first user of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+        /// &gt; **Important** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -815,7 +812,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
         /// 
-        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
+        /// &gt; **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }

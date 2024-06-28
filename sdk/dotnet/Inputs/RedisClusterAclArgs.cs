@@ -28,7 +28,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The ip range to whitelist
+        /// The IP range to whitelist
         /// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         /// </summary>
         [Input("ip", required: true)]

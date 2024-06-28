@@ -29,8 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewBlockSnapshot(ctx, "blockSnapshot", &scaleway.BlockSnapshotArgs{
-//				VolumeId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//			blockVolume, err := scaleway.NewBlockVolume(ctx, "blockVolume", &scaleway.BlockVolumeArgs{
+//				Iops:     pulumi.Int(5000),
+//				SizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewBlockSnapshot(ctx, "blockSnapshot", &scaleway.BlockSnapshotArgs{
+//				VolumeId: blockVolume.ID(),
 //			})
 //			if err != nil {
 //				return err

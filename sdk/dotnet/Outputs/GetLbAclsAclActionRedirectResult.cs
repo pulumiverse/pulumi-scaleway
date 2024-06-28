@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbAclsAclActionRedirectResult
     {
         /// <summary>
-        /// The HTTP redirect code used.
+        /// The HTTP redirect code to use.
         /// </summary>
         public readonly int Code;
         /// <summary>
-        /// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+        /// The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
         /// </summary>
         public readonly string Target;
         /// <summary>

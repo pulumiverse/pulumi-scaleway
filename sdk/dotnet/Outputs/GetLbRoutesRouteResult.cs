@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbRoutesRouteResult
     {
         /// <summary>
-        /// The backend ID destination of redirection
+        /// The backend ID to redirect to
         /// </summary>
         public readonly string BackendId;
         /// <summary>
-        /// The date at which the route was created (RFC 3339 format).
+        /// The date on which the route was created (RFC 3339 format).
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+        /// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
         /// </summary>
         public readonly string FrontendId;
         /// <summary>
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string MatchSni;
         /// <summary>
-        /// The date at which the route was last updated (RFC 3339 format).
+        /// The date on which the route was last updated (RFC 3339 format).
         /// </summary>
         public readonly string UpdateAt;
 

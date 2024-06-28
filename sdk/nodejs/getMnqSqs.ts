@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about SQS for a project
+ * Gets information about SQS for a Project
  *
  * ## Examples
  *
@@ -36,11 +36,11 @@ export function getMnqSqs(args?: GetMnqSqsArgs, opts?: pulumi.InvokeOptions): Pr
  */
 export interface GetMnqSqsArgs {
     /**
-     * `projectId`) The ID of the project for which sqs is enabled.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     projectId?: string;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     region?: string;
 }
@@ -50,7 +50,7 @@ export interface GetMnqSqsArgs {
  */
 export interface GetMnqSqsResult {
     /**
-     * The endpoint of the SQS service for this project.
+     * The endpoint of the SQS service for this Project.
      */
     readonly endpoint: string;
     /**
@@ -61,7 +61,7 @@ export interface GetMnqSqsResult {
     readonly region?: string;
 }
 /**
- * Gets information about SQS for a project
+ * Gets information about SQS for a Project
  *
  * ## Examples
  *
@@ -86,11 +86,11 @@ export function getMnqSqsOutput(args?: GetMnqSqsOutputArgs, opts?: pulumi.Invoke
  */
 export interface GetMnqSqsOutputArgs {
     /**
-     * `projectId`) The ID of the project for which sqs is enabled.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     region?: pulumi.Input<string>;
 }

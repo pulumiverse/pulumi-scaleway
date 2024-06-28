@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Database Users.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+    /// Creates and manages database users.
+    /// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 
@@ -27,6 +27,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     {
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
     ///     var dbPassword = new Random.RandomPassword("dbPassword", new()
     ///     {
     ///         Length = 16,
@@ -35,7 +45,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var dbAdmin = new Scaleway.DatabaseUser("dbAdmin", new()
     ///     {
-    ///         InstanceId = scaleway_rdb_instance.Main.Id,
+    ///         InstanceId = main.Id,
     ///         Password = dbPassword.Result,
     ///         IsAdmin = true,
     ///     });
@@ -45,7 +55,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+    /// Database users can be imported using `{region}/{instance_id}/{user_name}`, e.g.
     /// 
     /// bash
     /// 
@@ -57,29 +67,29 @@ namespace Pulumiverse.Scaleway
     public partial class DatabaseUser : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the database user.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to the Database User.
+        /// Grant admin permissions to the database user.
         /// </summary>
         [Output("isAdmin")]
         public Output<bool?> IsAdmin { get; private set; } = null!;
 
         /// <summary>
-        /// Database User name.
+        /// database user name.
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the Database User.
+        /// &gt; **Important:** Updates to `name` will recreate the database user.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Database User password.
+        /// database user password.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -142,23 +152,23 @@ namespace Pulumiverse.Scaleway
     public sealed class DatabaseUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the database user.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to the Database User.
+        /// Grant admin permissions to the database user.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database User name.
+        /// database user name.
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the Database User.
+        /// &gt; **Important:** Updates to `name` will recreate the database user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -167,7 +177,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Database User password.
+        /// database user password.
         /// </summary>
         public Input<string>? Password
         {
@@ -194,23 +204,23 @@ namespace Pulumiverse.Scaleway
     public sealed class DatabaseUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the database user.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Grant admin permissions to the Database User.
+        /// Grant admin permissions to the database user.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database User name.
+        /// database user name.
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the Database User.
+        /// &gt; **Important:** Updates to `name` will recreate the database user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -219,7 +229,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Database User password.
+        /// database user password.
         /// </summary>
         public Input<string>? Password
         {

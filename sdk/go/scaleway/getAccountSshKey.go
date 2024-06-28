@@ -50,11 +50,13 @@ func LookupAccountSshKey(ctx *pulumi.Context, args *LookupAccountSshKeyArgs, opt
 
 // A collection of arguments for invoking getAccountSshKey.
 type LookupAccountSshKeyArgs struct {
-	// The SSH key name. Only one of `name` and `sshKeyId` should be specified.
+	// The SSH key name.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+	// The SSH key id.
+	//
+	// > **Note** You must specify at least one: `name` and/or `sshKeyId`.
 	SshKeyId *string `pulumi:"sshKeyId"`
 }
 
@@ -90,11 +92,13 @@ func LookupAccountSshKeyOutput(ctx *pulumi.Context, args LookupAccountSshKeyOutp
 
 // A collection of arguments for invoking getAccountSshKey.
 type LookupAccountSshKeyOutputArgs struct {
-	// The SSH key name. Only one of `name` and `sshKeyId` should be specified.
+	// The SSH key name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// `projectId`) The ID of the project the SSH key is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The SSH key id. Only one of `name` and `sshKeyId` should be specified.
+	// The SSH key id.
+	//
+	// > **Note** You must specify at least one: `name` and/or `sshKeyId`.
 	SshKeyId pulumi.StringPtrInput `pulumi:"sshKeyId"`
 }
 

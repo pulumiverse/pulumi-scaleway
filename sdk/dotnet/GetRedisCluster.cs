@@ -13,7 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetRedisCluster
     {
         /// <summary>
-        /// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+        /// Gets information about a Redis™ cluster.
+        /// 
+        /// For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
         /// 
         /// ## Example Usage
         /// 
@@ -37,7 +39,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+        /// Gets information about a Redis™ cluster.
+        /// 
+        /// For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
         /// 
         /// ## Example Usage
         /// 
@@ -66,14 +70,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The Redis cluster ID.
-        /// Only one of the `name` and `cluster_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `cluster_id`.
         /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
         /// <summary>
         /// The name of the Redis cluster.
-        /// Only one of the `name` and `cluster_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -100,14 +104,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The Redis cluster ID.
-        /// Only one of the `name` and `cluster_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `cluster_id`.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
         /// The name of the Redis cluster.
-        /// Only one of the `name` and `cluster_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -134,26 +138,68 @@ namespace Pulumiverse.Scaleway
     [OutputType]
     public sealed class GetRedisClusterResult
     {
+        /// <summary>
+        /// List of acl rules.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetRedisClusterAclResult> Acls;
+        /// <summary>
+        /// The PEM of the certificate used by redis, only when `tls_enabled` is true.
+        /// </summary>
         public readonly string Certificate;
         public readonly string? ClusterId;
+        /// <summary>
+        /// The number of nodes in the Redis Cluster.
+        /// </summary>
         public readonly int ClusterSize;
+        /// <summary>
+        /// The date and time of creation of the Redis Cluster.
+        /// </summary>
         public readonly string CreatedAt;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? Name;
+        /// <summary>
+        /// The type of Redis Cluster (e.g. `RED1-M`).
+        /// </summary>
         public readonly string NodeType;
+        /// <summary>
+        /// Password of the first user of the Redis Cluster.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// List of private networks endpoints of the Redis Cluster.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetRedisClusterPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
+        /// <summary>
+        /// Public network details.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetRedisClusterPublicNetworkResult> PublicNetworks;
+        /// <summary>
+        /// Map of settings for redis cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Settings;
+        /// <summary>
+        /// The tags associated with the Redis Cluster.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// Whether TLS is enabled or not.
+        /// </summary>
         public readonly bool TlsEnabled;
+        /// <summary>
+        /// The date and time of the last update of the Redis Cluster.
+        /// </summary>
         public readonly string UpdatedAt;
+        /// <summary>
+        /// The first user of the Redis Cluster.
+        /// </summary>
         public readonly string UserName;
+        /// <summary>
+        /// Redis's Cluster version (e.g. `6.2.7`).
+        /// </summary>
         public readonly string Version;
         public readonly string? Zone;
 

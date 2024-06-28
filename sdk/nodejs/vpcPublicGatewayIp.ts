@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway VPC Public Gateway IP.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+ * Creates and manages Scaleway VPC Public Gateway public (flexible) IP addresses.
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
  *
  * ## Example Usage
  *
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway can be imported using the `{zone}/{id}`, e.g.
+ * Public Gateway IPs can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -67,15 +67,15 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly address!: pulumi.Output<string>;
     /**
-     * The date and time of the creation of the public gateway ip.
+     * The date and time of the creation of the Public Gateway IP.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The organization ID the public gateway ip is associated with.
+     * The Organization ID the Public Gateway IP is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the public gateway ip is associated with.
+     * `projectId`) The ID of the Project the Public Gateway IP is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -83,15 +83,15 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
-     * The tags associated with the public gateway IP.
+     * The tags associated with the Public Gateway IP.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the public gateway ip.
+     * The date and time of the last update of the Public Gateway IP.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the public gateway ip should be created.
+     * `zone`) The zone in which the Public Gateway IP should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -141,15 +141,15 @@ export interface VpcPublicGatewayIpState {
      */
     address?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the public gateway ip.
+     * The date and time of the creation of the Public Gateway IP.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The organization ID the public gateway ip is associated with.
+     * The Organization ID the Public Gateway IP is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the public gateway ip is associated with.
+     * `projectId`) The ID of the Project the Public Gateway IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -157,15 +157,15 @@ export interface VpcPublicGatewayIpState {
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway IP.
+     * The tags associated with the Public Gateway IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The date and time of the last update of the public gateway ip.
+     * The date and time of the last update of the Public Gateway IP.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the public gateway ip should be created.
+     * `zone`) The zone in which the Public Gateway IP should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -175,7 +175,7 @@ export interface VpcPublicGatewayIpState {
  */
 export interface VpcPublicGatewayIpArgs {
     /**
-     * `projectId`) The ID of the project the public gateway ip is associated with.
+     * `projectId`) The ID of the Project the Public Gateway IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -183,11 +183,11 @@ export interface VpcPublicGatewayIpArgs {
      */
     reverse?: pulumi.Input<string>;
     /**
-     * The tags associated with the public gateway IP.
+     * The tags associated with the Public Gateway IP.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the public gateway ip should be created.
+     * `zone`) The zone in which the Public Gateway IP should be created.
      */
     zone?: pulumi.Input<string>;
 }

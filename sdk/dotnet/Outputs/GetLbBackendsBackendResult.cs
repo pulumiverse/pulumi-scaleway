@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbBackendsBackendResult
     {
         /// <summary>
-        /// The date at which the backend was created (RFC 3339 format).
+        /// The date on which the backend was created (RFC 3339 format).
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// Scaleway S3 bucket website to be served in case all backend servers are down.
+        /// Scaleway S3 bucket website to be served if all backend servers are down.
         /// </summary>
         public readonly string FailoverHost;
         /// <summary>
-        /// User sessions will be forwarded to this port of backend servers.
+        /// User sessions will be forwarded to this backend server port.
         /// </summary>
         public readonly int ForwardPort;
         /// <summary>
@@ -35,31 +35,31 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string ForwardProtocol;
         /// <summary>
-        /// Interval between two HC requests.
+        /// Interval between two health check requests.
         /// </summary>
         public readonly string HealthCheckDelay;
         /// <summary>
-        /// This block enable HTTP health check.
+        /// This block enables HTTP health checks.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbBackendsBackendHealthCheckHttpResult> HealthCheckHttp;
         /// <summary>
-        /// This block enable HTTPS health check.
+        /// This block enables HTTPS health checks.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbBackendsBackendHealthCheckHttpResult> HealthCheckHttps;
         /// <summary>
-        /// Number of allowed failed HC requests before the backend server is marked down.
+        /// Number of allowed failed health check requests before the backend server is marked as down.
         /// </summary>
         public readonly int HealthCheckMaxRetries;
         /// <summary>
-        /// Port the HC requests will be sent to.
+        /// Port the health check requests will be sent to.
         /// </summary>
         public readonly int HealthCheckPort;
         /// <summary>
-        /// This block enable TCP health check.
+        /// This block enables TCP health checks.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbBackendsBackendHealthCheckTcpResult> HealthCheckTcps;
         /// <summary>
-        /// Timeout before we consider a HC request failed.
+        /// Timeout before a health check request is considered failed.
         /// </summary>
         public readonly string HealthCheckTimeout;
         /// <summary>
@@ -71,11 +71,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool IgnoreSslServerVerify;
         /// <summary>
-        /// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+        /// The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
         /// </summary>
         public readonly string LbId;
         /// <summary>
-        /// The backend name used as filter. Backends with a name like it are listed.
+        /// The backend name to filter for. Backends with a matching name are listed.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ServerIps;
         /// <summary>
-        /// Enables SSL between load balancer and backend servers.
+        /// Enables SSL between Load Balancer and backend servers.
         /// </summary>
         public readonly bool SslBridging;
         /// <summary>
@@ -115,7 +115,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string TimeoutTunnel;
         /// <summary>
-        /// The date at which the backend was last updated (RFC 3339 format).
+        /// The date on which the backend was last updated (RFC 3339 format).
         /// </summary>
         public readonly string UpdateAt;
 

@@ -7,8 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Redis Clusters.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+ * Creates and manages Scaleway Redis™ clusters.
+ * For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
  *
  * ## Example Usage
  *
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With a private network
+ * ### With a Private Network
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -78,7 +78,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+ * Redis™ cluster can be imported using the `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -123,45 +123,45 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
     /**
-     * The number of nodes in the Redis Cluster.
+     * The number of nodes in the Redis™ cluster.
      *
-     * > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+     * > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
      * which is minimum 3 (1 main node + 2 secondary nodes)
      *
-     * > **Important:** If you are using the Cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
-     * did, it will migrate the Redis Cluster but keep in mind that you cannot downgrade a Redis Cluster, so setting a smaller
-     * `clusterSize` will destroy and recreate your Cluster.
+     * > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
+     * did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
+     * `clusterSize` will destroy and recreate your cluster.
      *
      * > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
-     * recreate your Cluster as you will be switching to the Cluster mode.
+     * recreate your cluster as you will be switching to the cluster mode.
      */
     public readonly clusterSize!: pulumi.Output<number>;
     /**
-     * The date and time of creation of the Redis Cluster.
+     * The date and time of creation of the Redis™ cluster.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The name of the Redis Cluster.
+     * The name of the Redis™ cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The type of Redis Cluster you want to create (e.g. `RED1-M`).
+     * The type of Redis™ cluster you want to create (e.g. `RED1-M`).
      *
-     * > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
-     * you cannot downgrade a Redis Cluster.
+     * > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
+     * you cannot downgrade a Redis™ cluster.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
-     * Password for the first user of the Redis Cluster.
+     * Password for the first user of the Redis™ cluster.
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public
+     * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
     public readonly privateNetworks!: pulumi.Output<outputs.RedisClusterPrivateNetwork[] | undefined>;
     /**
-     * `projectId`) The ID of the project the Redis Cluster is
+     * `projectId`) The ID of the project the Redis™ cluster is
      * associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -171,12 +171,12 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public readonly publicNetwork!: pulumi.Output<outputs.RedisClusterPublicNetwork>;
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
      * with scaleway API or CLI
      */
     public readonly settings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The tags associated with the Redis Cluster.
+     * The tags associated with the Redis™ cluster.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -186,23 +186,23 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public readonly tlsEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * The date and time of the last update of the Redis Cluster.
+     * The date and time of the last update of the Redis™ cluster.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * Identifier for the first user of the Redis Cluster.
+     * Identifier for the first user of the Redis™ cluster.
      */
     public readonly userName!: pulumi.Output<string>;
     /**
-     * Redis's Cluster version (e.g. `6.2.7`).
+     * Redis™ cluster's version (e.g. `6.2.7`).
      *
-     * > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
-     * cannot downgrade a Redis Cluster.
+     * > **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+     * cannot downgrade a Redis™ cluster.
      */
     public readonly version!: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the
-     * Redis Cluster should be created.
+     * Redis™ cluster should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -288,45 +288,45 @@ export interface RedisClusterState {
      */
     certificate?: pulumi.Input<string>;
     /**
-     * The number of nodes in the Redis Cluster.
+     * The number of nodes in the Redis™ cluster.
      *
-     * > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+     * > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
      * which is minimum 3 (1 main node + 2 secondary nodes)
      *
-     * > **Important:** If you are using the Cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
-     * did, it will migrate the Redis Cluster but keep in mind that you cannot downgrade a Redis Cluster, so setting a smaller
-     * `clusterSize` will destroy and recreate your Cluster.
+     * > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
+     * did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
+     * `clusterSize` will destroy and recreate your cluster.
      *
      * > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
-     * recreate your Cluster as you will be switching to the Cluster mode.
+     * recreate your cluster as you will be switching to the cluster mode.
      */
     clusterSize?: pulumi.Input<number>;
     /**
-     * The date and time of creation of the Redis Cluster.
+     * The date and time of creation of the Redis™ cluster.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The name of the Redis Cluster.
+     * The name of the Redis™ cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of Redis Cluster you want to create (e.g. `RED1-M`).
+     * The type of Redis™ cluster you want to create (e.g. `RED1-M`).
      *
-     * > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
-     * you cannot downgrade a Redis Cluster.
+     * > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
+     * you cannot downgrade a Redis™ cluster.
      */
     nodeType?: pulumi.Input<string>;
     /**
-     * Password for the first user of the Redis Cluster.
+     * Password for the first user of the Redis™ cluster.
      */
     password?: pulumi.Input<string>;
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public
+     * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
     /**
-     * `projectId`) The ID of the project the Redis Cluster is
+     * `projectId`) The ID of the project the Redis™ cluster is
      * associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -336,12 +336,12 @@ export interface RedisClusterState {
      */
     publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork>;
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
      * with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The tags associated with the Redis Cluster.
+     * The tags associated with the Redis™ cluster.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -351,23 +351,23 @@ export interface RedisClusterState {
      */
     tlsEnabled?: pulumi.Input<boolean>;
     /**
-     * The date and time of the last update of the Redis Cluster.
+     * The date and time of the last update of the Redis™ cluster.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * Identifier for the first user of the Redis Cluster.
+     * Identifier for the first user of the Redis™ cluster.
      */
     userName?: pulumi.Input<string>;
     /**
-     * Redis's Cluster version (e.g. `6.2.7`).
+     * Redis™ cluster's version (e.g. `6.2.7`).
      *
-     * > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
-     * cannot downgrade a Redis Cluster.
+     * > **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+     * cannot downgrade a Redis™ cluster.
      */
     version?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the
-     * Redis Cluster should be created.
+     * Redis™ cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -381,41 +381,41 @@ export interface RedisClusterArgs {
      */
     acls?: pulumi.Input<pulumi.Input<inputs.RedisClusterAcl>[]>;
     /**
-     * The number of nodes in the Redis Cluster.
+     * The number of nodes in the Redis™ cluster.
      *
-     * > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or Cluster mode
+     * > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
      * which is minimum 3 (1 main node + 2 secondary nodes)
      *
-     * > **Important:** If you are using the Cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
-     * did, it will migrate the Redis Cluster but keep in mind that you cannot downgrade a Redis Cluster, so setting a smaller
-     * `clusterSize` will destroy and recreate your Cluster.
+     * > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
+     * did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
+     * `clusterSize` will destroy and recreate your cluster.
      *
      * > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
-     * recreate your Cluster as you will be switching to the Cluster mode.
+     * recreate your cluster as you will be switching to the cluster mode.
      */
     clusterSize?: pulumi.Input<number>;
     /**
-     * The name of the Redis Cluster.
+     * The name of the Redis™ cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of Redis Cluster you want to create (e.g. `RED1-M`).
+     * The type of Redis™ cluster you want to create (e.g. `RED1-M`).
      *
-     * > **Important:** Updates to `nodeType` will migrate the Redis Cluster to the desired `nodeType`. Keep in mind that
-     * you cannot downgrade a Redis Cluster.
+     * > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
+     * you cannot downgrade a Redis™ cluster.
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password for the first user of the Redis Cluster.
+     * Password for the first user of the Redis™ cluster.
      */
     password: pulumi.Input<string>;
     /**
-     * Describes the private network you want to connect to your cluster. If not set, a public
+     * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateNetwork>[]>;
     /**
-     * `projectId`) The ID of the project the Redis Cluster is
+     * `projectId`) The ID of the project the Redis™ cluster is
      * associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -425,12 +425,12 @@ export interface RedisClusterArgs {
      */
     publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork>;
     /**
-     * Map of settings for redis cluster. Available settings can be found by listing redis versions
+     * Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
      * with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The tags associated with the Redis Cluster.
+     * The tags associated with the Redis™ cluster.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -440,19 +440,19 @@ export interface RedisClusterArgs {
      */
     tlsEnabled?: pulumi.Input<boolean>;
     /**
-     * Identifier for the first user of the Redis Cluster.
+     * Identifier for the first user of the Redis™ cluster.
      */
     userName: pulumi.Input<string>;
     /**
-     * Redis's Cluster version (e.g. `6.2.7`).
+     * Redis™ cluster's version (e.g. `6.2.7`).
      *
-     * > **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
-     * cannot downgrade a Redis Cluster.
+     * > **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+     * cannot downgrade a Redis™ cluster.
      */
     version: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the
-     * Redis Cluster should be created.
+     * Redis™ cluster should be created.
      */
     zone?: pulumi.Input<string>;
 }

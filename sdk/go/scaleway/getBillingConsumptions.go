@@ -11,6 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about your Consumptions.
 func GetBillingConsumptions(ctx *pulumi.Context, args *GetBillingConsumptionsArgs, opts ...pulumi.InvokeOption) (*GetBillingConsumptionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBillingConsumptionsResult
@@ -23,17 +24,21 @@ func GetBillingConsumptions(ctx *pulumi.Context, args *GetBillingConsumptionsArg
 
 // A collection of arguments for invoking getBillingConsumptions.
 type GetBillingConsumptionsArgs struct {
+	// `projectId`) The ID of the project the consumption list is associated with.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getBillingConsumptions.
 type GetBillingConsumptionsResult struct {
+	// List of found consumptions
 	Consumptions []GetBillingConsumptionsConsumption `pulumi:"consumptions"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string `pulumi:"id"`
 	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
-	UpdatedAt      string `pulumi:"updatedAt"`
+	// The project ID of the consumption.
+	ProjectId string `pulumi:"projectId"`
+	// The last consumption update date.
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func GetBillingConsumptionsOutput(ctx *pulumi.Context, args GetBillingConsumptionsOutputArgs, opts ...pulumi.InvokeOption) GetBillingConsumptionsResultOutput {
@@ -51,6 +56,7 @@ func GetBillingConsumptionsOutput(ctx *pulumi.Context, args GetBillingConsumptio
 
 // A collection of arguments for invoking getBillingConsumptions.
 type GetBillingConsumptionsOutputArgs struct {
+	// `projectId`) The ID of the project the consumption list is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }
 
@@ -73,6 +79,7 @@ func (o GetBillingConsumptionsResultOutput) ToGetBillingConsumptionsResultOutput
 	return o
 }
 
+// List of found consumptions
 func (o GetBillingConsumptionsResultOutput) Consumptions() GetBillingConsumptionsConsumptionArrayOutput {
 	return o.ApplyT(func(v GetBillingConsumptionsResult) []GetBillingConsumptionsConsumption { return v.Consumptions }).(GetBillingConsumptionsConsumptionArrayOutput)
 }
@@ -86,10 +93,12 @@ func (o GetBillingConsumptionsResultOutput) OrganizationId() pulumi.StringOutput
 	return o.ApplyT(func(v GetBillingConsumptionsResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The project ID of the consumption.
 func (o GetBillingConsumptionsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingConsumptionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The last consumption update date.
 func (o GetBillingConsumptionsResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingConsumptionsResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }

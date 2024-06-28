@@ -5,8 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about an existing IAM group. For more information, please
- * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+ * Gets information about an existing IAM group.
+ *
+ * For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
  *
  * ## Example Usage
  *
@@ -39,12 +40,12 @@ export function getIamGroup(args?: GetIamGroupArgs, opts?: pulumi.InvokeOptions)
 export interface GetIamGroupArgs {
     /**
      * The ID of the IAM group.
-     * Only one of the `name` and `groupId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `groupId`.
      */
     groupId?: string;
     /**
      * The name of the IAM group.
-     * Only one of the `name` and `groupId` should be specified.
      */
     name?: string;
     /**
@@ -74,8 +75,9 @@ export interface GetIamGroupResult {
     readonly userIds: string[];
 }
 /**
- * Gets information about an existing IAM group. For more information, please
- * check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+ * Gets information about an existing IAM group.
+ *
+ * For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
  *
  * ## Example Usage
  *
@@ -101,12 +103,12 @@ export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.In
 export interface GetIamGroupOutputArgs {
     /**
      * The ID of the IAM group.
-     * Only one of the `name` and `groupId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `groupId`.
      */
     groupId?: pulumi.Input<string>;
     /**
      * The name of the IAM group.
-     * Only one of the `name` and `groupId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**

@@ -4,6 +4,20 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about a Block Snapshot.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const mySnapshot = scaleway.getBlockSnapshot({
+ *     snapshotId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockSnapshotResult> {
     args = args || {};
 
@@ -21,10 +35,25 @@ export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getBlockSnapshot.
  */
 export interface GetBlockSnapshotArgs {
+    /**
+     * The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     */
     name?: string;
+    /**
+     * The ID of the project the snapshot is associated with.
+     */
     projectId?: string;
+    /**
+     * The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     */
     snapshotId?: string;
+    /**
+     * The ID of the volume from which the snapshot has been created.
+     */
     volumeId?: string;
+    /**
+     * `zone`) The zone in which the snapshot exists.
+     */
     zone?: string;
 }
 
@@ -43,6 +72,20 @@ export interface GetBlockSnapshotResult {
     readonly volumeId?: string;
     readonly zone?: string;
 }
+/**
+ * Gets information about a Block Snapshot.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const mySnapshot = scaleway.getBlockSnapshot({
+ *     snapshotId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ */
 export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockSnapshotResult> {
     return pulumi.output(args).apply((a: any) => getBlockSnapshot(a, opts))
 }
@@ -51,9 +94,24 @@ export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?:
  * A collection of arguments for invoking getBlockSnapshot.
  */
 export interface GetBlockSnapshotOutputArgs {
+    /**
+     * The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the snapshot is associated with.
+     */
     projectId?: pulumi.Input<string>;
+    /**
+     * The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * The ID of the volume from which the snapshot has been created.
+     */
     volumeId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the snapshot exists.
+     */
     zone?: pulumi.Input<string>;
 }

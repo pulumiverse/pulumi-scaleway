@@ -2,12 +2,39 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Database Private Network Endpoint.
  *
  * ## Example Usage
+ *
+ * ### Example Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const instance = new scaleway.DocumentdbInstance("instance", {
+ *     nodeType: "docdb-play2-pico",
+ *     engine: "FerretDB-1",
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     volumeSizeInGb: 20,
+ * });
+ * const main = new scaleway.DocumentdbPrivateNetworkEndpoint("main", {
+ *     instanceId: instance.id,
+ *     privateNetwork: {
+ *         ipNet: "172.16.32.3/22",
+ *         id: pn.id,
+ *     },
+ * }, {
+ *     dependsOn: [pn],
+ * });
+ * ```
  *
  * ## Import
  *
@@ -48,43 +75,22 @@ export class DocumentdbPrivateNetworkEndpoint extends pulumi.CustomResource {
     }
 
     /**
-     * Hostname of the endpoint.
-     */
-    public /*out*/ readonly hostname!: pulumi.Output<string>;
-    /**
      * UUID of the documentdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * IPv4 address on the network.
+     * The private network specs details. This is a list with maximum one element and supports the following attributes:
      */
-    public /*out*/ readonly ip!: pulumi.Output<string>;
+    public readonly privateNetwork!: pulumi.Output<outputs.DocumentdbPrivateNetworkEndpointPrivateNetwork | undefined>;
     /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
-     */
-    public readonly ipNet!: pulumi.Output<string>;
-    /**
-     * Name of the endpoint.
-     */
-    public /*out*/ readonly name!: pulumi.Output<string>;
-    /**
-     * Port in the Private Network.
-     */
-    public readonly port!: pulumi.Output<number>;
-    /**
-     * The ID of the private network.
-     */
-    public readonly privateNetworkId!: pulumi.Output<string>;
-    /**
-     * The region you want to attach the resource to
+     * The region of the endpoint.
+     *
+     *
+     * > **NOTE:** Please calculate your host IP.
+     * using cirhost. Otherwise, lets IPAM service
+     * handle the host IP on the network.
      */
     public readonly region!: pulumi.Output<string>;
-    /**
-     * The zone you want to attach the resource to
-     */
-    public readonly zone!: pulumi.Output<string>;
 
     /**
      * Create a DocumentdbPrivateNetworkEndpoint resource with the given unique name, arguments, and options.
@@ -99,32 +105,17 @@ export class DocumentdbPrivateNetworkEndpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DocumentdbPrivateNetworkEndpointState | undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["ip"] = state ? state.ip : undefined;
-            resourceInputs["ipNet"] = state ? state.ipNet : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["port"] = state ? state.port : undefined;
-            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
+            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as DocumentdbPrivateNetworkEndpointArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.privateNetworkId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'privateNetworkId'");
-            }
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["ipNet"] = args ? args.ipNet : undefined;
-            resourceInputs["port"] = args ? args.port : undefined;
-            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
+            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
-            resourceInputs["hostname"] = undefined /*out*/;
-            resourceInputs["ip"] = undefined /*out*/;
-            resourceInputs["name"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DocumentdbPrivateNetworkEndpoint.__pulumiType, name, resourceInputs, opts);
@@ -136,43 +127,22 @@ export class DocumentdbPrivateNetworkEndpoint extends pulumi.CustomResource {
  */
 export interface DocumentdbPrivateNetworkEndpointState {
     /**
-     * Hostname of the endpoint.
-     */
-    hostname?: pulumi.Input<string>;
-    /**
      * UUID of the documentdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * IPv4 address on the network.
+     * The private network specs details. This is a list with maximum one element and supports the following attributes:
      */
-    ip?: pulumi.Input<string>;
+    privateNetwork?: pulumi.Input<inputs.DocumentdbPrivateNetworkEndpointPrivateNetwork>;
     /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
-     */
-    ipNet?: pulumi.Input<string>;
-    /**
-     * Name of the endpoint.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Port in the Private Network.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * The ID of the private network.
-     */
-    privateNetworkId?: pulumi.Input<string>;
-    /**
-     * The region you want to attach the resource to
+     * The region of the endpoint.
+     *
+     *
+     * > **NOTE:** Please calculate your host IP.
+     * using cirhost. Otherwise, lets IPAM service
+     * handle the host IP on the network.
      */
     region?: pulumi.Input<string>;
-    /**
-     * The zone you want to attach the resource to
-     */
-    zone?: pulumi.Input<string>;
 }
 
 /**
@@ -184,25 +154,16 @@ export interface DocumentdbPrivateNetworkEndpointArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
+     * The private network specs details. This is a list with maximum one element and supports the following attributes:
      */
-    ipNet?: pulumi.Input<string>;
+    privateNetwork?: pulumi.Input<inputs.DocumentdbPrivateNetworkEndpointPrivateNetwork>;
     /**
-     * Port in the Private Network.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * The ID of the private network.
-     */
-    privateNetworkId: pulumi.Input<string>;
-    /**
-     * The region you want to attach the resource to
+     * The region of the endpoint.
+     *
+     *
+     * > **NOTE:** Please calculate your host IP.
+     * using cirhost. Otherwise, lets IPAM service
+     * handle the host IP on the network.
      */
     region?: pulumi.Input<string>;
-    /**
-     * The zone you want to attach the resource to
-     */
-    zone?: pulumi.Input<string>;
 }

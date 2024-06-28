@@ -19,8 +19,8 @@ class MnqNatsCredentialsArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MnqNatsCredentials resource.
-        :param pulumi.Input[str] account_id: The ID of the nats account the credentials are generated from
-        :param pulumi.Input[str] name: The unique name of the nats credentials.
+        :param pulumi.Input[str] account_id: The ID of the NATS account the credentials are generated from
+        :param pulumi.Input[str] name: The unique name of the NATS credentials.
         :param pulumi.Input[str] region: `region`). The region
                in which the account exists.
         """
@@ -34,7 +34,7 @@ class MnqNatsCredentialsArgs:
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Input[str]:
         """
-        The ID of the nats account the credentials are generated from
+        The ID of the NATS account the credentials are generated from
         """
         return pulumi.get(self, "account_id")
 
@@ -46,7 +46,7 @@ class MnqNatsCredentialsArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the nats credentials.
+        The unique name of the NATS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -77,9 +77,9 @@ class _MnqNatsCredentialsState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MnqNatsCredentials resources.
-        :param pulumi.Input[str] account_id: The ID of the nats account the credentials are generated from
+        :param pulumi.Input[str] account_id: The ID of the NATS account the credentials are generated from
         :param pulumi.Input[str] file: The content of the credentials file.
-        :param pulumi.Input[str] name: The unique name of the nats credentials.
+        :param pulumi.Input[str] name: The unique name of the NATS credentials.
         :param pulumi.Input[str] region: `region`). The region
                in which the account exists.
         """
@@ -96,7 +96,7 @@ class _MnqNatsCredentialsState:
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the nats account the credentials are generated from
+        The ID of the NATS account the credentials are generated from
         """
         return pulumi.get(self, "account_id")
 
@@ -120,7 +120,7 @@ class _MnqNatsCredentialsState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the nats credentials.
+        The unique name of the NATS credentials.
         """
         return pulumi.get(self, "name")
 
@@ -152,9 +152,9 @@ class MnqNatsCredentials(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Messaging and queuing Nats Credentials.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+        Creates and manages Scaleway Messaging and Queuing NATS credentials.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/).
 
         ## Example Usage
 
@@ -170,7 +170,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Namespaces can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -180,8 +180,8 @@ class MnqNatsCredentials(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_id: The ID of the nats account the credentials are generated from
-        :param pulumi.Input[str] name: The unique name of the nats credentials.
+        :param pulumi.Input[str] account_id: The ID of the NATS account the credentials are generated from
+        :param pulumi.Input[str] name: The unique name of the NATS credentials.
         :param pulumi.Input[str] region: `region`). The region
                in which the account exists.
         """
@@ -192,9 +192,9 @@ class MnqNatsCredentials(pulumi.CustomResource):
                  args: MnqNatsCredentialsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Messaging and queuing Nats Credentials.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+        Creates and manages Scaleway Messaging and Queuing NATS credentials.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/).
 
         ## Example Usage
 
@@ -210,7 +210,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Namespaces can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -272,9 +272,9 @@ class MnqNatsCredentials(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_id: The ID of the nats account the credentials are generated from
+        :param pulumi.Input[str] account_id: The ID of the NATS account the credentials are generated from
         :param pulumi.Input[str] file: The content of the credentials file.
-        :param pulumi.Input[str] name: The unique name of the nats credentials.
+        :param pulumi.Input[str] name: The unique name of the NATS credentials.
         :param pulumi.Input[str] region: `region`). The region
                in which the account exists.
         """
@@ -292,7 +292,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[str]:
         """
-        The ID of the nats account the credentials are generated from
+        The ID of the NATS account the credentials are generated from
         """
         return pulumi.get(self, "account_id")
 
@@ -308,7 +308,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the nats credentials.
+        The unique name of the NATS credentials.
         """
         return pulumi.get(self, "name")
 

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway VPC Public Gateway DHCP.
+    /// Creates and manages Scaleway VPC Public Gateway DHCP configurations.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
     /// 
     /// ## Example Usage
@@ -34,7 +34,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g.
+    /// Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -46,13 +46,13 @@ namespace Pulumiverse.Scaleway
     public partial class VpcPublicGatewayDhcp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The IP address of the public gateway DHCP config.
+        /// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the public gateway DHCP config.
+        /// The date and time of the creation of the Public Gateway DHCP configuration.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -70,7 +70,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> DnsSearches { get; private set; } = null!;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         /// </summary>
         [Output("dnsServersOverrides")]
         public Output<ImmutableArray<string>> DnsServersOverrides { get; private set; } = null!;
@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool> EnableDynamic { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the public gateway DHCP config is associated with.
+        /// The Organization ID the Public Gateway DHCP config is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> PoolLow { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        /// `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -130,25 +130,25 @@ namespace Pulumiverse.Scaleway
         public Output<int> RenewTimer { get; private set; } = null!;
 
         /// <summary>
-        /// The subnet to associate with the public gateway DHCP config.
+        /// The subnet to associate with the Public Gateway DHCP configuration.
         /// </summary>
         [Output("subnet")]
         public Output<string> Subnet { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway DHCP config.
+        /// The date and time of the last update of the Public Gateway DHCP configuration.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+        /// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
         /// </summary>
         [Output("validLifetime")]
         public Output<int> ValidLifetime { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -201,7 +201,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayDhcpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP address of the public gateway DHCP config.
+        /// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -228,7 +228,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _dnsServersOverrides;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         /// </summary>
         public InputList<string> DnsServersOverrides
         {
@@ -255,7 +255,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        /// `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -285,19 +285,19 @@ namespace Pulumiverse.Scaleway
         public Input<int>? RenewTimer { get; set; }
 
         /// <summary>
-        /// The subnet to associate with the public gateway DHCP config.
+        /// The subnet to associate with the Public Gateway DHCP configuration.
         /// </summary>
         [Input("subnet", required: true)]
         public Input<string> Subnet { get; set; } = null!;
 
         /// <summary>
-        /// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+        /// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
         /// </summary>
         [Input("validLifetime")]
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -311,13 +311,13 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayDhcpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP address of the public gateway DHCP config.
+        /// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the public gateway DHCP config.
+        /// The date and time of the creation of the Public Gateway DHCP configuration.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -344,7 +344,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _dnsServersOverrides;
 
         /// <summary>
-        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself
+        /// Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         /// </summary>
         public InputList<string> DnsServersOverrides
         {
@@ -359,7 +359,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableDynamic { get; set; }
 
         /// <summary>
-        /// The organization ID the public gateway DHCP config is associated with.
+        /// The Organization ID the Public Gateway DHCP config is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -377,7 +377,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway DHCP config is associated with.
+        /// `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -407,25 +407,25 @@ namespace Pulumiverse.Scaleway
         public Input<int>? RenewTimer { get; set; }
 
         /// <summary>
-        /// The subnet to associate with the public gateway DHCP config.
+        /// The subnet to associate with the Public Gateway DHCP configuration.
         /// </summary>
         [Input("subnet")]
         public Input<string>? Subnet { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway DHCP config.
+        /// The date and time of the last update of the Public Gateway DHCP configuration.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
+        /// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
         /// </summary>
         [Input("validLifetime")]
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+ * Gets information about a Redis™ cluster.
+ *
+ * For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
  *
  * ## Example Usage
  *
@@ -38,12 +40,12 @@ export function getRedisCluster(args?: GetRedisClusterArgs, opts?: pulumi.Invoke
 export interface GetRedisClusterArgs {
     /**
      * The Redis cluster ID.
-     * Only one of the `name` and `clusterId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `clusterId`.
      */
     clusterId?: string;
     /**
      * The name of the Redis cluster.
-     * Only one of the `name` and `clusterId` should be specified.
      */
     name?: string;
     /**
@@ -60,31 +62,75 @@ export interface GetRedisClusterArgs {
  * A collection of values returned by getRedisCluster.
  */
 export interface GetRedisClusterResult {
+    /**
+     * List of acl rules.
+     */
     readonly acls: outputs.GetRedisClusterAcl[];
+    /**
+     * The PEM of the certificate used by redis, only when `tlsEnabled` is true.
+     */
     readonly certificate: string;
     readonly clusterId?: string;
+    /**
+     * The number of nodes in the Redis Cluster.
+     */
     readonly clusterSize: number;
+    /**
+     * The date and time of creation of the Redis Cluster.
+     */
     readonly createdAt: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly name?: string;
+    /**
+     * The type of Redis Cluster (e.g. `RED1-M`).
+     */
     readonly nodeType: string;
+    /**
+     * Password of the first user of the Redis Cluster.
+     */
     readonly password: string;
+    /**
+     * List of private networks endpoints of the Redis Cluster.
+     */
     readonly privateNetworks: outputs.GetRedisClusterPrivateNetwork[];
     readonly projectId?: string;
+    /**
+     * Public network details.
+     */
     readonly publicNetworks: outputs.GetRedisClusterPublicNetwork[];
+    /**
+     * Map of settings for redis cluster.
+     */
     readonly settings: {[key: string]: string};
+    /**
+     * The tags associated with the Redis Cluster.
+     */
     readonly tags: string[];
+    /**
+     * Whether TLS is enabled or not.
+     */
     readonly tlsEnabled: boolean;
+    /**
+     * The date and time of the last update of the Redis Cluster.
+     */
     readonly updatedAt: string;
+    /**
+     * The first user of the Redis Cluster.
+     */
     readonly userName: string;
+    /**
+     * Redis's Cluster version (e.g. `6.2.7`).
+     */
     readonly version: string;
     readonly zone?: string;
 }
 /**
- * Gets information about a Redis cluster. For further information check our [api documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816)
+ * Gets information about a Redis™ cluster.
+ *
+ * For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
  *
  * ## Example Usage
  *
@@ -107,12 +153,12 @@ export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: p
 export interface GetRedisClusterOutputArgs {
     /**
      * The Redis cluster ID.
-     * Only one of the `name` and `clusterId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `clusterId`.
      */
     clusterId?: pulumi.Input<string>;
     /**
      * The name of the Redis cluster.
-     * Only one of the `name` and `clusterId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**

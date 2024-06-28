@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Messaging and queuing SQS Queues.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
+ * Creates and manages Scaleway Messaging and Queuing SQS queues.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/).
  *
  * ## Example Usage
  *
@@ -83,7 +83,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      */
     public readonly messageMaxSize!: pulumi.Output<number | undefined>;
     /**
-     * The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+     * The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -91,7 +91,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      */
     public readonly namePrefix!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the sqs is enabled for.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -99,7 +99,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      */
     public readonly receiveWaitTimeSeconds!: pulumi.Output<number | undefined>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -201,7 +201,7 @@ export interface MnqSqsQueueState {
      */
     messageMaxSize?: pulumi.Input<number>;
     /**
-     * The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+     * The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
     name?: pulumi.Input<string>;
     /**
@@ -209,7 +209,7 @@ export interface MnqSqsQueueState {
      */
     namePrefix?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sqs is enabled for.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -217,7 +217,7 @@ export interface MnqSqsQueueState {
      */
     receiveWaitTimeSeconds?: pulumi.Input<number>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     region?: pulumi.Input<string>;
     /**
@@ -263,7 +263,7 @@ export interface MnqSqsQueueArgs {
      */
     messageMaxSize?: pulumi.Input<number>;
     /**
-     * The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+     * The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
     name?: pulumi.Input<string>;
     /**
@@ -271,7 +271,7 @@ export interface MnqSqsQueueArgs {
      */
     namePrefix?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the sqs is enabled for.
+     * `projectId`) The ID of the Project in which SQS is enabled.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -279,7 +279,7 @@ export interface MnqSqsQueueArgs {
      */
     receiveWaitTimeSeconds?: pulumi.Input<number>;
     /**
-     * `region`). The region in which sqs is enabled.
+     * `region`). The region in which SQS is enabled.
      */
     region?: pulumi.Input<string>;
     /**

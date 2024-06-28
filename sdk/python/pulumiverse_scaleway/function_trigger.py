@@ -253,6 +253,21 @@ class FunctionTrigger(pulumi.CustomResource):
             ))
         ```
 
+        ### Nats
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.FunctionTrigger("main",
+            function_id=scaleway_function["main"]["id"],
+            nats=scaleway.FunctionTriggerNatsArgs(
+                account_id=scaleway_mnq_nats_account["main"]["id"],
+                subject="MySubject",
+                region=scaleway_mnq_nats_account["main"]["region"],
+            ))
+        ```
+
         ## Import
 
         Function Triggers can be imported using the `{region}/{id}`, e.g.
@@ -296,6 +311,21 @@ class FunctionTrigger(pulumi.CustomResource):
                 project_id=scaleway_mnq_sqs["main"]["project_id"],
                 queue="MyQueue",
                 region=scaleway_mnq_sqs["main"]["region"],
+            ))
+        ```
+
+        ### Nats
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.FunctionTrigger("main",
+            function_id=scaleway_function["main"]["id"],
+            nats=scaleway.FunctionTriggerNatsArgs(
+                account_id=scaleway_mnq_nats_account["main"]["id"],
+                subject="MySubject",
+                region=scaleway_mnq_nats_account["main"]["region"],
             ))
         ```
 

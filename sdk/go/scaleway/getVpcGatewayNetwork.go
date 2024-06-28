@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a gateway network.
+// Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
 //
 // ## Example Usage
 //
@@ -64,17 +64,11 @@ func LookupVpcGatewayNetwork(ctx *pulumi.Context, args *LookupVpcGatewayNetworkA
 
 // A collection of arguments for invoking getVpcGatewayNetwork.
 type LookupVpcGatewayNetworkArgs struct {
-	// ID of the public gateway DHCP config
-	DhcpId *string `pulumi:"dhcpId"`
-	// If masquerade is enabled on requested network
-	EnableMasquerade *bool `pulumi:"enableMasquerade"`
-	// ID of the public gateway the gateway network is linked to
-	GatewayId *string `pulumi:"gatewayId"`
-	// ID of the gateway network.
-	//
-	// > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
+	DhcpId           *string `pulumi:"dhcpId"`
+	EnableMasquerade *bool   `pulumi:"enableMasquerade"`
+	GatewayId        *string `pulumi:"gatewayId"`
+	// ID of the GatewayNetwork.
 	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
-	// ID of the private network the gateway network is linked to
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 }
 
@@ -113,17 +107,11 @@ func LookupVpcGatewayNetworkOutput(ctx *pulumi.Context, args LookupVpcGatewayNet
 
 // A collection of arguments for invoking getVpcGatewayNetwork.
 type LookupVpcGatewayNetworkOutputArgs struct {
-	// ID of the public gateway DHCP config
-	DhcpId pulumi.StringPtrInput `pulumi:"dhcpId"`
-	// If masquerade is enabled on requested network
-	EnableMasquerade pulumi.BoolPtrInput `pulumi:"enableMasquerade"`
-	// ID of the public gateway the gateway network is linked to
-	GatewayId pulumi.StringPtrInput `pulumi:"gatewayId"`
-	// ID of the gateway network.
-	//
-	// > Only one of `gatewayNetworkId` or filters should be specified. You can use all the filters you want.
+	DhcpId           pulumi.StringPtrInput `pulumi:"dhcpId"`
+	EnableMasquerade pulumi.BoolPtrInput   `pulumi:"enableMasquerade"`
+	GatewayId        pulumi.StringPtrInput `pulumi:"gatewayId"`
+	// ID of the GatewayNetwork.
 	GatewayNetworkId pulumi.StringPtrInput `pulumi:"gatewayNetworkId"`
-	// ID of the private network the gateway network is linked to
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
 }
 

@@ -19,8 +19,8 @@ class MnqNatsAccountArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MnqNatsAccount resource.
-        :param pulumi.Input[str] name: The unique name of the nats account.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the
+        :param pulumi.Input[str] name: The unique name of the NATS account.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the
                account is associated with.
         :param pulumi.Input[str] region: `region`). The region
                in which the account should be created.
@@ -36,7 +36,7 @@ class MnqNatsAccountArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the nats account.
+        The unique name of the NATS account.
         """
         return pulumi.get(self, "name")
 
@@ -48,7 +48,7 @@ class MnqNatsAccountArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the
+        `project_id`) The ID of the Project the
         account is associated with.
         """
         return pulumi.get(self, "project_id")
@@ -81,8 +81,8 @@ class _MnqNatsAccountState:
         """
         Input properties used for looking up and filtering MnqNatsAccount resources.
         :param pulumi.Input[str] endpoint: The endpoint of the NATS service for this account.
-        :param pulumi.Input[str] name: The unique name of the nats account.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the
+        :param pulumi.Input[str] name: The unique name of the NATS account.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the
                account is associated with.
         :param pulumi.Input[str] region: `region`). The region
                in which the account should be created.
@@ -112,7 +112,7 @@ class _MnqNatsAccountState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the nats account.
+        The unique name of the NATS account.
         """
         return pulumi.get(self, "name")
 
@@ -124,7 +124,7 @@ class _MnqNatsAccountState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the
+        `project_id`) The ID of the Project the
         account is associated with.
         """
         return pulumi.get(self, "project_id")
@@ -157,10 +157,10 @@ class MnqNatsAccount(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Messaging and queuing Nats Accounts.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
-        To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
+        Creates and manages Scaleway Messaging and Queuing NATS accounts.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+        To use the Scaleway provider with the official NATS JetStream provider, check out the corresponding guide.
 
         ## Example Usage
 
@@ -175,7 +175,7 @@ class MnqNatsAccount(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Namespaces can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -185,8 +185,8 @@ class MnqNatsAccount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The unique name of the nats account.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the
+        :param pulumi.Input[str] name: The unique name of the NATS account.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the
                account is associated with.
         :param pulumi.Input[str] region: `region`). The region
                in which the account should be created.
@@ -198,10 +198,10 @@ class MnqNatsAccount(pulumi.CustomResource):
                  args: Optional[MnqNatsAccountArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Messaging and queuing Nats Accounts.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
-        To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
+        Creates and manages Scaleway Messaging and Queuing NATS accounts.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+        To use the Scaleway provider with the official NATS JetStream provider, check out the corresponding guide.
 
         ## Example Usage
 
@@ -216,7 +216,7 @@ class MnqNatsAccount(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Namespaces can be imported using `{region}/{id}`, e.g.
 
         bash
 
@@ -277,8 +277,8 @@ class MnqNatsAccount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] endpoint: The endpoint of the NATS service for this account.
-        :param pulumi.Input[str] name: The unique name of the nats account.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the
+        :param pulumi.Input[str] name: The unique name of the NATS account.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the
                account is associated with.
         :param pulumi.Input[str] region: `region`). The region
                in which the account should be created.
@@ -305,7 +305,7 @@ class MnqNatsAccount(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the nats account.
+        The unique name of the NATS account.
         """
         return pulumi.get(self, "name")
 
@@ -313,7 +313,7 @@ class MnqNatsAccount(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the
+        `project_id`) The ID of the Project the
         account is associated with.
         """
         return pulumi.get(self, "project_id")

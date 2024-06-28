@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+ * Gets information about an Database Instance.
+ *
+ * For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstanceResult> {
     args = args || {};
@@ -27,20 +29,20 @@ export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulum
 export interface GetDatabaseInstanceArgs {
     /**
      * The RDB instance ID.
-     * Only one of `name` and `instanceId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `instanceId`.
      */
     instanceId?: string;
     /**
      * The name of the RDB instance.
-     * Only one of `name` and `instanceId` should be specified.
      */
     name?: string;
     /**
-     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     * The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
      */
     projectId?: string;
     /**
-     * `region`) The region in which the RDB instance exists.
+     * `region`) The region in which the Database Instance exists.
      */
     region?: string;
 }
@@ -81,7 +83,9 @@ export interface GetDatabaseInstanceResult {
     readonly volumeType: string;
 }
 /**
- * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+ * Gets information about an Database Instance.
+ *
+ * For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getDatabaseInstanceOutput(args?: GetDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseInstanceResult> {
     return pulumi.output(args).apply((a: any) => getDatabaseInstance(a, opts))
@@ -93,20 +97,20 @@ export function getDatabaseInstanceOutput(args?: GetDatabaseInstanceOutputArgs, 
 export interface GetDatabaseInstanceOutputArgs {
     /**
      * The RDB instance ID.
-     * Only one of `name` and `instanceId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `instanceId`.
      */
     instanceId?: pulumi.Input<string>;
     /**
      * The name of the RDB instance.
-     * Only one of `name` and `instanceId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     * The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the RDB instance exists.
+     * `region`) The region in which the Database Instance exists.
      */
     region?: pulumi.Input<string>;
 }

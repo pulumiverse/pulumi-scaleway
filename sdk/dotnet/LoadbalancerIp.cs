@@ -11,8 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancers IPs.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
+    /// Creates and manages Scaleway Load Balancer IP addresses.
+    /// 
+    /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
     /// 
     /// ## Example Usage
     /// 
@@ -54,7 +55,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// IPs can be imported using the `{zone}/{id}`, e.g.
+    /// IPs can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -66,19 +67,19 @@ namespace Pulumiverse.Scaleway
     public partial class LoadbalancerIp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The IP Address
+        /// The IP address
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// If true, creates a Flexible IP with an IPv6 address.
+        /// If true, creates a flexible IP with an IPv6 address.
         /// </summary>
         [Output("isIpv6")]
         public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// The associated load-balance ID if any
+        /// The associated Load Balancer ID if any
         /// </summary>
         [Output("lbId")]
         public Output<string> LbId { get; private set; } = null!;
@@ -90,7 +91,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -161,13 +162,13 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If true, creates a Flexible IP with an IPv6 address.
+        /// If true, creates a flexible IP with an IPv6 address.
         /// </summary>
         [Input("isIpv6")]
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -193,19 +194,19 @@ namespace Pulumiverse.Scaleway
     public sealed class LoadbalancerIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP Address
+        /// The IP address
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// If true, creates a Flexible IP with an IPv6 address.
+        /// If true, creates a flexible IP with an IPv6 address.
         /// </summary>
         [Input("isIpv6")]
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// The associated load-balance ID if any
+        /// The associated Load Balancer ID if any
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
@@ -217,7 +218,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

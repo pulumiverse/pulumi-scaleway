@@ -51,10 +51,10 @@ func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceA
 // A collection of arguments for invoking getRegistryNamespace.
 type LookupRegistryNamespaceArgs struct {
 	// The namespace name.
-	// Only one of `name` and `namespaceId` should be specified.
 	Name *string `pulumi:"name"`
 	// The namespace id.
-	// Only one of `name` and `namespaceId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `imageId`.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -95,10 +95,10 @@ func LookupRegistryNamespaceOutput(ctx *pulumi.Context, args LookupRegistryNames
 // A collection of arguments for invoking getRegistryNamespace.
 type LookupRegistryNamespaceOutputArgs struct {
 	// The namespace name.
-	// Only one of `name` and `namespaceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The namespace id.
-	// Only one of `name` and `namespaceId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `imageId`.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`

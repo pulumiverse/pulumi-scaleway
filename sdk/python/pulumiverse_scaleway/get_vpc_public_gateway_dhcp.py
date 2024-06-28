@@ -218,7 +218,7 @@ class AwaitableGetVpcPublicGatewayDhcpResult(GetVpcPublicGatewayDhcpResult):
 def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpResult:
     """
-    Gets information about a public gateway DHCP.
+    Gets information about a Public Gateway DHCP configuration.
 
     ## Example Usage
 
@@ -263,7 +263,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
 def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
     """
-    Gets information about a public gateway DHCP.
+    Gets information about a Public Gateway DHCP configuration.
 
     ## Example Usage
 

@@ -11,8 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Get information about Scaleway Load-Balancer Backends.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+// Get information about Scaleway Load Balancer backends.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 //
 // ## Example Usage
 //
@@ -71,13 +72,13 @@ func GetLbBackend(ctx *pulumi.Context, args *GetLbBackendArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getLbBackend.
 type GetLbBackendArgs struct {
-	// The backend id.
+	// The backend ID.
 	// - Only one of `name` and `backendId` should be specified.
 	BackendId *string `pulumi:"backendId"`
-	// The load-balancer ID this backend is attached to.
+	// Load Balancer ID this backend is attached to.
 	LbId *string `pulumi:"lbId"`
 	// The name of the backend.
-	// - When using the `name` you should specify the `lb-id`
+	// - When using `name` you should specify the `lb-id`
 	Name *string `pulumi:"name"`
 }
 
@@ -133,13 +134,13 @@ func GetLbBackendOutput(ctx *pulumi.Context, args GetLbBackendOutputArgs, opts .
 
 // A collection of arguments for invoking getLbBackend.
 type GetLbBackendOutputArgs struct {
-	// The backend id.
+	// The backend ID.
 	// - Only one of `name` and `backendId` should be specified.
 	BackendId pulumi.StringPtrInput `pulumi:"backendId"`
-	// The load-balancer ID this backend is attached to.
+	// Load Balancer ID this backend is attached to.
 	LbId pulumi.StringPtrInput `pulumi:"lbId"`
 	// The name of the backend.
-	// - When using the `name` you should specify the `lb-id`
+	// - When using `name` you should specify the `lb-id`
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 

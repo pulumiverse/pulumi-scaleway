@@ -15,23 +15,23 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbIpsIpResult
     {
         /// <summary>
-        /// The associated IP ID.
+        /// The ID of the associated IP.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The IP Address
+        /// The IP address
         /// </summary>
         public readonly string IpAddress;
         /// <summary>
-        /// The associated load-balancer ID if any
+        /// The ID of the associated Load BalancerD, if any
         /// </summary>
         public readonly string LbId;
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization the Load Balancer is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Reverse;
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `zone`) The zone in which the IPs exist.
         /// </summary>
         public readonly string Zone;
 

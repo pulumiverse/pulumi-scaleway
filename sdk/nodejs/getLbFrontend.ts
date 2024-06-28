@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Get information about Scaleway Load-Balancer Frontends.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+ * Get information about Scaleway Load Balancer frontends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Example Usage
  *
@@ -58,12 +59,12 @@ export function getLbFrontend(args?: GetLbFrontendArgs, opts?: pulumi.InvokeOpti
  */
 export interface GetLbFrontendArgs {
     /**
-     * The frontend id.
+     * The frontend ID.
      * - Only one of `name` and `frontendId` should be specified.
      */
     frontendId?: string;
     /**
-     * The load-balancer ID this frontend is attached to.
+     * The Load Balancer ID this frontend is attached to.
      */
     lbId?: string;
     /**
@@ -94,8 +95,9 @@ export interface GetLbFrontendResult {
     readonly timeoutClient: string;
 }
 /**
- * Get information about Scaleway Load-Balancer Frontends.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+ * Get information about Scaleway Load Balancer frontends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Example Usage
  *
@@ -138,12 +140,12 @@ export function getLbFrontendOutput(args?: GetLbFrontendOutputArgs, opts?: pulum
  */
 export interface GetLbFrontendOutputArgs {
     /**
-     * The frontend id.
+     * The frontend ID.
      * - Only one of `name` and `frontendId` should be specified.
      */
     frontendId?: pulumi.Input<string>;
     /**
-     * The load-balancer ID this frontend is attached to.
+     * The Load Balancer ID this frontend is attached to.
      */
     lbId?: pulumi.Input<string>;
     /**

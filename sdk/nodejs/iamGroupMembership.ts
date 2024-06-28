@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Add members to an IAM group.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
+ * For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#groups-f592eb).
  *
  * ## Example Usage
  *
@@ -77,7 +77,7 @@ export class IamGroupMembership extends pulumi.CustomResource {
     /**
      * The ID of the user that will be added to the group
      *
-     * - > Only one of `applicationId` or `userId` must be specified
+     * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
     public readonly userId!: pulumi.Output<string | undefined>;
 
@@ -126,7 +126,7 @@ export interface IamGroupMembershipState {
     /**
      * The ID of the user that will be added to the group
      *
-     * - > Only one of `applicationId` or `userId` must be specified
+     * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
     userId?: pulumi.Input<string>;
 }
@@ -146,7 +146,7 @@ export interface IamGroupMembershipArgs {
     /**
      * The ID of the user that will be added to the group
      *
-     * - > Only one of `applicationId` or `userId` must be specified
+     * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
     userId?: pulumi.Input<string>;
 }

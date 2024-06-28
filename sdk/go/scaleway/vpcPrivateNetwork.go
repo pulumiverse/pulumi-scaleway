@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway VPC Private Networks.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/vpc/#private-networks-ac2df4).
+// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/vpc/#private-networks-ac2df4).
 //
 // ## Example Usage
 //
@@ -87,7 +87,7 @@ import (
 //
 // ## Import
 //
-// Private networks can be imported using the `{region}/{id}`, e.g.
+// Private Networks can be imported using `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -99,29 +99,29 @@ type VpcPrivateNetwork struct {
 
 	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The IPv4 subnet to associate with the private network.
+	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetOutput `pulumi:"ipv4Subnet"`
 	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets VpcPrivateNetworkIpv6SubnetArrayOutput `pulumi:"ipv6Subnets"`
-	// The private networks are necessarily regional now.
+	// Private Networks are now all necessarily regional.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version
 	IsRegional pulumi.BoolOutput `pulumi:"isRegional"`
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the Private Network. If not provided, it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the private network is associated with.
+	// The Organization ID the Private Network is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the private network is associated with.
+	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`) The region of the private network.
+	// `region`) The region of the Private Network.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The tags associated with the private network.
+	// The tags associated with the Private Network.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the subnet.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The VPC in which to create the private network.
+	// The VPC in which to create the Private Network.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
-	// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+	// Use `region` instead.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -159,29 +159,29 @@ func GetVpcPrivateNetwork(ctx *pulumi.Context,
 type vpcPrivateNetworkState struct {
 	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The IPv4 subnet to associate with the private network.
+	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet *VpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnet"`
 	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets []VpcPrivateNetworkIpv6Subnet `pulumi:"ipv6Subnets"`
-	// The private networks are necessarily regional now.
+	// Private Networks are now all necessarily regional.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version
 	IsRegional *bool `pulumi:"isRegional"`
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the Private Network. If not provided, it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The organization ID the private network is associated with.
+	// The Organization ID the Private Network is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the private network is associated with.
+	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the private network.
+	// `region`) The region of the Private Network.
 	Region *string `pulumi:"region"`
-	// The tags associated with the private network.
+	// The tags associated with the Private Network.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the subnet.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The VPC in which to create the private network.
+	// The VPC in which to create the Private Network.
 	VpcId *string `pulumi:"vpcId"`
-	// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+	// Use `region` instead.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead
 	Zone *string `pulumi:"zone"`
@@ -190,29 +190,29 @@ type vpcPrivateNetworkState struct {
 type VpcPrivateNetworkState struct {
 	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput
-	// The IPv4 subnet to associate with the private network.
+	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetPtrInput
 	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets VpcPrivateNetworkIpv6SubnetArrayInput
-	// The private networks are necessarily regional now.
+	// Private Networks are now all necessarily regional.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version
 	IsRegional pulumi.BoolPtrInput
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the Private Network. If not provided, it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// The organization ID the private network is associated with.
+	// The Organization ID the Private Network is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the private network is associated with.
+	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the private network.
+	// `region`) The region of the Private Network.
 	Region pulumi.StringPtrInput
-	// The tags associated with the private network.
+	// The tags associated with the Private Network.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the subnet.
 	UpdatedAt pulumi.StringPtrInput
-	// The VPC in which to create the private network.
+	// The VPC in which to create the Private Network.
 	VpcId pulumi.StringPtrInput
-	// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+	// Use `region` instead.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead
 	Zone pulumi.StringPtrInput
@@ -223,25 +223,25 @@ func (VpcPrivateNetworkState) ElementType() reflect.Type {
 }
 
 type vpcPrivateNetworkArgs struct {
-	// The IPv4 subnet to associate with the private network.
+	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet *VpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnet"`
 	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets []VpcPrivateNetworkIpv6Subnet `pulumi:"ipv6Subnets"`
-	// The private networks are necessarily regional now.
+	// Private Networks are now all necessarily regional.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version
 	IsRegional *bool `pulumi:"isRegional"`
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the Private Network. If not provided, it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the private network is associated with.
+	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the private network.
+	// `region`) The region of the Private Network.
 	Region *string `pulumi:"region"`
-	// The tags associated with the private network.
+	// The tags associated with the Private Network.
 	Tags []string `pulumi:"tags"`
-	// The VPC in which to create the private network.
+	// The VPC in which to create the Private Network.
 	VpcId *string `pulumi:"vpcId"`
-	// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+	// Use `region` instead.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead
 	Zone *string `pulumi:"zone"`
@@ -249,25 +249,25 @@ type vpcPrivateNetworkArgs struct {
 
 // The set of arguments for constructing a VpcPrivateNetwork resource.
 type VpcPrivateNetworkArgs struct {
-	// The IPv4 subnet to associate with the private network.
+	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetPtrInput
 	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets VpcPrivateNetworkIpv6SubnetArrayInput
-	// The private networks are necessarily regional now.
+	// Private Networks are now all necessarily regional.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version
 	IsRegional pulumi.BoolPtrInput
-	// The name of the private network. If not provided it will be randomly generated.
+	// The name of the Private Network. If not provided, it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the private network is associated with.
+	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the private network.
+	// `region`) The region of the Private Network.
 	Region pulumi.StringPtrInput
-	// The tags associated with the private network.
+	// The tags associated with the Private Network.
 	Tags pulumi.StringArrayInput
-	// The VPC in which to create the private network.
+	// The VPC in which to create the Private Network.
 	VpcId pulumi.StringPtrInput
-	// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+	// Use `region` instead.
 	//
 	// Deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead
 	Zone pulumi.StringPtrInput
@@ -365,7 +365,7 @@ func (o VpcPrivateNetworkOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The IPv4 subnet to associate with the private network.
+// The IPv4 subnet to associate with the Private Network.
 func (o VpcPrivateNetworkOutput) Ipv4Subnet() VpcPrivateNetworkIpv4SubnetOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) VpcPrivateNetworkIpv4SubnetOutput { return v.Ipv4Subnet }).(VpcPrivateNetworkIpv4SubnetOutput)
 }
@@ -375,34 +375,34 @@ func (o VpcPrivateNetworkOutput) Ipv6Subnets() VpcPrivateNetworkIpv6SubnetArrayO
 	return o.ApplyT(func(v *VpcPrivateNetwork) VpcPrivateNetworkIpv6SubnetArrayOutput { return v.Ipv6Subnets }).(VpcPrivateNetworkIpv6SubnetArrayOutput)
 }
 
-// The private networks are necessarily regional now.
+// Private Networks are now all necessarily regional.
 //
 // Deprecated: This field is deprecated and will be removed in the next major version
 func (o VpcPrivateNetworkOutput) IsRegional() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.BoolOutput { return v.IsRegional }).(pulumi.BoolOutput)
 }
 
-// The name of the private network. If not provided it will be randomly generated.
+// The name of the Private Network. If not provided, it will be randomly generated.
 func (o VpcPrivateNetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the private network is associated with.
+// The Organization ID the Private Network is associated with.
 func (o VpcPrivateNetworkOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the private network is associated with.
+// `projectId`) The ID of the Project the private network is associated with.
 func (o VpcPrivateNetworkOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`) The region of the private network.
+// `region`) The region of the Private Network.
 func (o VpcPrivateNetworkOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The tags associated with the private network.
+// The tags associated with the Private Network.
 func (o VpcPrivateNetworkOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -412,12 +412,12 @@ func (o VpcPrivateNetworkOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The VPC in which to create the private network.
+// The VPC in which to create the Private Network.
 func (o VpcPrivateNetworkOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
 }
 
-// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+// Use `region` instead.
 //
 // Deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead
 func (o VpcPrivateNetworkOutput) Zone() pulumi.StringOutput {

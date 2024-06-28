@@ -194,7 +194,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
                            zone: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayResult:
     """
-    Gets information about a public gateway.
+    Gets information about a Public Gateway.
 
     ## Example Usage
 
@@ -212,10 +212,9 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     ```
 
 
-    :param str name: Exact name of the public gateway.
-    :param str project_id: The ID of the project the public gateway is associated with.
-    :param str zone: `zone`) The zone in which
-           the public gateway should be created.
+    :param str name: Exact name of the Public Gateway.
+    :param str project_id: The ID of the Project the Public Gateway is associated with.
+    :param str zone: `zone`) The Public Gateway's zone.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -252,7 +251,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   zone: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
-    Gets information about a public gateway.
+    Gets information about a Public Gateway.
 
     ## Example Usage
 
@@ -270,9 +269,8 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     ```
 
 
-    :param str name: Exact name of the public gateway.
-    :param str project_id: The ID of the project the public gateway is associated with.
-    :param str zone: `zone`) The zone in which
-           the public gateway should be created.
+    :param str name: Exact name of the Public Gateway.
+    :param str project_id: The ID of the Project the Public Gateway is associated with.
+    :param str zone: `zone`) The Public Gateway's zone.
     """
     ...

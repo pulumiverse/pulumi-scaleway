@@ -40,6 +40,30 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Nats
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.FunctionTrigger("main", new()
+    ///     {
+    ///         FunctionId = scaleway_function.Main.Id,
+    ///         Nats = new Scaleway.Inputs.FunctionTriggerNatsArgs
+    ///         {
+    ///             AccountId = scaleway_mnq_nats_account.Main.Id,
+    ///             Subject = "MySubject",
+    ///             Region = scaleway_mnq_nats_account.Main.Region,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Function Triggers can be imported using the `{region}/{id}`, e.g.

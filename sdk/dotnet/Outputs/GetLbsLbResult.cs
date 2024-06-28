@@ -15,47 +15,47 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbsLbResult
     {
         /// <summary>
-        /// Number of backends the Load balancer has.
+        /// Number of backends the Load Balancer has.
         /// </summary>
         public readonly int BackendCount;
         /// <summary>
-        /// Date at which the Load balancer was created.
+        /// Date on which the Load Balancer was created.
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The description of the load-balancer.
+        /// The description of the Load Balancer.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// Number of frontends the Load balancer has.
+        /// Number of frontends the Load Balancer has.
         /// </summary>
         public readonly int FrontendCount;
         /// <summary>
-        /// The ID of the load-balancer.
+        /// The ID of the Load Balancer.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// List of underlying instances.
+        /// List of underlying Instances.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbsLbInstanceResult> Instances;
         /// <summary>
-        /// List of IPs attached to the Load balancer.
+        /// List of IPs attached to the Load Balancer.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbsLbIpResult> Ips;
         /// <summary>
-        /// The load balancer name used as a filter. LBs with a name like it are listed.
+        /// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The organization ID the load-balancer is associated with.
+        /// The ID of the Organization the Load Balancer is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// Number of private networks attached to the Load balancer.
+        /// Number of Private Networks attached to the Load balancer.
         /// </summary>
         public readonly int PrivateNetworkCount;
         /// <summary>
-        /// The ID of the project the load-balancer is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
@@ -63,11 +63,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int RouteCount;
         /// <summary>
-        /// Determines the minimal SSL version which needs to be supported on client side.
+        /// Determines the minimal SSL version which needs to be supported on the client side.
         /// </summary>
         public readonly string SslCompatibilityLevel;
         /// <summary>
-        /// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        /// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         /// </summary>
         public readonly string Status;
         /// <summary>
@@ -75,19 +75,19 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Subscriber;
         /// <summary>
-        /// List of tags used as filter. LBs with these exact tags are listed.
+        /// List of tags to filter for. Load Balancers with these exact tags are listed.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// The offer type of the load-balancer.
+        /// The offer type of the Load Balancer.
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// Date at which the Load balancer was updated.
+        /// Date on which the Load Balancer was updated.
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
-        /// `zone`) The zone in which LBs exist.
+        /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
         public readonly string Zone;
 

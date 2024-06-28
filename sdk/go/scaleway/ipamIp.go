@@ -12,7 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Books and manages Scaleway IPAM IPs.
+// Books and manages IPAM IPs.
+//
+// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
 //
 // ## Example Usage
 //
@@ -59,7 +61,7 @@ import (
 //
 // ```
 //
-// ### Request a specific IPv4
+// ### Request a specific IPv4 address
 //
 // ```go
 // package main
@@ -103,7 +105,7 @@ import (
 //
 // ```
 //
-// ### Request an IPv6
+// ### Request an IPv6 address
 //
 // ```go
 // package main
@@ -151,7 +153,7 @@ import (
 //
 // ## Import
 //
-// IPAM IPs can be imported using the `{region}/{id}`, e.g.
+// IPAM IPs can be imported using `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -165,15 +167,15 @@ type IpamIp struct {
 	Address pulumi.StringOutput `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the IP.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The IP resource.
 	Resources IpamIpResourceArrayOutput `pulumi:"resources"`
-	// The reverses DNS for this IP.
+	// The reverse DNS for this IP.
 	Reverses IpamIpReverseArrayOutput `pulumi:"reverses"`
 	// The source in which to book the IP.
 	Sources IpamIpSourceArrayOutput `pulumi:"sources"`
@@ -222,15 +224,15 @@ type ipamIpState struct {
 	Address *string `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the IP.
 	Region *string `pulumi:"region"`
 	// The IP resource.
 	Resources []IpamIpResource `pulumi:"resources"`
-	// The reverses DNS for this IP.
+	// The reverse DNS for this IP.
 	Reverses []IpamIpReverse `pulumi:"reverses"`
 	// The source in which to book the IP.
 	Sources []IpamIpSource `pulumi:"sources"`
@@ -247,15 +249,15 @@ type IpamIpState struct {
 	Address pulumi.StringPtrInput
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the IP.
 	Region pulumi.StringPtrInput
 	// The IP resource.
 	Resources IpamIpResourceArrayInput
-	// The reverses DNS for this IP.
+	// The reverse DNS for this IP.
 	Reverses IpamIpReverseArrayInput
 	// The source in which to book the IP.
 	Sources IpamIpSourceArrayInput
@@ -274,9 +276,9 @@ func (IpamIpState) ElementType() reflect.Type {
 type ipamIpArgs struct {
 	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the IP.
 	Region *string `pulumi:"region"`
@@ -290,9 +292,9 @@ type ipamIpArgs struct {
 type IpamIpArgs struct {
 	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the IP.
 	Region pulumi.StringPtrInput
@@ -399,12 +401,12 @@ func (o IpamIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Defines whether to request an IPv6 instead of an IPv4.
+// Defines whether to request an IPv6 address instead of IPv4.
 func (o IpamIpOutput) IsIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IpamIp) pulumi.BoolPtrOutput { return v.IsIpv6 }).(pulumi.BoolPtrOutput)
 }
 
-// `projectId`) The ID of the project the IP is associated with.
+// `projectId`) The ID of the Project the IP is associated with.
 func (o IpamIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -419,7 +421,7 @@ func (o IpamIpOutput) Resources() IpamIpResourceArrayOutput {
 	return o.ApplyT(func(v *IpamIp) IpamIpResourceArrayOutput { return v.Resources }).(IpamIpResourceArrayOutput)
 }
 
-// The reverses DNS for this IP.
+// The reverse DNS for this IP.
 func (o IpamIpOutput) Reverses() IpamIpReverseArrayOutput {
 	return o.ApplyT(func(v *IpamIp) IpamIpReverseArrayOutput { return v.Reverses }).(IpamIpReverseArrayOutput)
 }

@@ -107,7 +107,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The namespace ID the function is associated with.
+     * The function namespace ID of the function.
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
@@ -272,7 +272,7 @@ export interface FunctionState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID the function is associated with.
+     * The function namespace ID of the function.
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -353,7 +353,7 @@ export interface FunctionArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID the function is associated with.
+     * The function namespace ID of the function.
      */
     namespaceId: pulumi.Input<string>;
     /**

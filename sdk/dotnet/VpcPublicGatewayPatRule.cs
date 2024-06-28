@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
+    /// Creates and manages Scaleway Public Gateway PAT (Port Address Translation).
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#pat-rules-e75d10).
     /// 
     /// ## Example Usage
     /// 
@@ -98,7 +98,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Public gateway PAT rules config can be imported using the `{zone}/{id}`, e.g.
+    /// Public Gateway PAT rule configurations can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -110,55 +110,55 @@ namespace Pulumiverse.Scaleway
     public partial class VpcPublicGatewayPatRule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the pat rule config.
+        /// The date and time of the creation of the PAT rule configuration.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the public gateway.
+        /// The ID of the Public Gateway.
         /// </summary>
         [Output("gatewayId")]
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the pat rule config is associated with.
+        /// The Organization ID the PAT rule configuration is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The Private IP to forward data to (IP address).
+        /// The private IP address to forward data to.
         /// </summary>
         [Output("privateIp")]
         public Output<string> PrivateIp { get; private set; } = null!;
 
         /// <summary>
-        /// The Private port to translate to.
+        /// The private port to translate to.
         /// </summary>
         [Output("privatePort")]
         public Output<int> PrivatePort { get; private set; } = null!;
 
         /// <summary>
-        /// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// The Public port to listen on.
+        /// The public port to listen on.
         /// </summary>
         [Output("publicPort")]
         public Output<int> PublicPort { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the pat rule config.
+        /// The date and time of the last update of the PAT rule configuration.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -211,37 +211,37 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayPatRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the public gateway.
+        /// The ID of the Public Gateway.
         /// </summary>
         [Input("gatewayId", required: true)]
         public Input<string> GatewayId { get; set; } = null!;
 
         /// <summary>
-        /// The Private IP to forward data to (IP address).
+        /// The private IP address to forward data to.
         /// </summary>
         [Input("privateIp", required: true)]
         public Input<string> PrivateIp { get; set; } = null!;
 
         /// <summary>
-        /// The Private port to translate to.
+        /// The private port to translate to.
         /// </summary>
         [Input("privatePort", required: true)]
         public Input<int> PrivatePort { get; set; } = null!;
 
         /// <summary>
-        /// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The Public port to listen on.
+        /// The public port to listen on.
         /// </summary>
         [Input("publicPort", required: true)]
         public Input<int> PublicPort { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -255,55 +255,55 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPublicGatewayPatRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the pat rule config.
+        /// The date and time of the creation of the PAT rule configuration.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the public gateway.
+        /// The ID of the Public Gateway.
         /// </summary>
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
 
         /// <summary>
-        /// The organization ID the pat rule config is associated with.
+        /// The Organization ID the PAT rule configuration is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The Private IP to forward data to (IP address).
+        /// The private IP address to forward data to.
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
 
         /// <summary>
-        /// The Private port to translate to.
+        /// The private port to translate to.
         /// </summary>
         [Input("privatePort")]
         public Input<int>? PrivatePort { get; set; }
 
         /// <summary>
-        /// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The Public port to listen on.
+        /// The public port to listen on.
         /// </summary>
         [Input("publicPort")]
         public Input<int>? PublicPort { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the pat rule config.
+        /// The date and time of the last update of the PAT rule configuration.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

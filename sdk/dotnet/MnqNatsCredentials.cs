@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Messaging and queuing Nats Credentials.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+    /// Creates and manages Scaleway Messaging and Queuing NATS credentials.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/).
     /// 
     /// ## Example Usage
     /// 
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using the `{region}/{id}`, e.g.
+    /// Namespaces can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway
     public partial class MnqNatsCredentials : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the nats account the credentials are generated from
+        /// The ID of the NATS account the credentials are generated from
         /// </summary>
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
@@ -63,7 +63,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> File { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the nats credentials.
+        /// The unique name of the NATS credentials.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -123,13 +123,13 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqNatsCredentialsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the nats account the credentials are generated from
+        /// The ID of the NATS account the credentials are generated from
         /// </summary>
         [Input("accountId", required: true)]
         public Input<string> AccountId { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the nats credentials.
+        /// The unique name of the NATS credentials.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -150,7 +150,7 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqNatsCredentialsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the nats account the credentials are generated from
+        /// The ID of the NATS account the credentials are generated from
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
@@ -162,7 +162,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? File { get; set; }
 
         /// <summary>
-        /// The unique name of the nats credentials.
+        /// The unique name of the NATS credentials.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

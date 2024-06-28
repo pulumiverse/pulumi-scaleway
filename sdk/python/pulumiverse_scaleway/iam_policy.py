@@ -28,16 +28,16 @@ class IamPolicyArgs:
         """
         The set of arguments for constructing a IamPolicy resource.
         :param pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]] rules: List of rules in the policy.
-        :param pulumi.Input[str] application_id: ID of the Application the policy will be linked to
-        :param pulumi.Input[str] description: The description of the iam policy.
-        :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
-        :param pulumi.Input[str] name: The name of the iam policy.
+        :param pulumi.Input[str] application_id: ID of the application the policy will be linked to
+        :param pulumi.Input[str] description: The description of the IAM policy.
+        :param pulumi.Input[str] group_id: ID of the group the policy will be linked to
+        :param pulumi.Input[str] name: The name of the IAM policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
                
-               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the iam policy.
-        :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IAM policy.
+        :param pulumi.Input[str] user_id: ID of the user the policy will be linked to
         """
         pulumi.set(__self__, "rules", rules)
         if application_id is not None:
@@ -73,7 +73,7 @@ class IamPolicyArgs:
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the Application the policy will be linked to
+        ID of the application the policy will be linked to
         """
         return pulumi.get(self, "application_id")
 
@@ -85,7 +85,7 @@ class IamPolicyArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the iam policy.
+        The description of the IAM policy.
         """
         return pulumi.get(self, "description")
 
@@ -97,7 +97,7 @@ class IamPolicyArgs:
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the Group the policy will be linked to
+        ID of the group the policy will be linked to
         """
         return pulumi.get(self, "group_id")
 
@@ -109,7 +109,7 @@ class IamPolicyArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the iam policy.
+        The name of the IAM policy.
         """
         return pulumi.get(self, "name")
 
@@ -123,7 +123,7 @@ class IamPolicyArgs:
         """
         If the policy doesn't apply to a principal.
 
-        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         """
         return pulumi.get(self, "no_principal")
 
@@ -147,7 +147,7 @@ class IamPolicyArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the iam policy.
+        The tags associated with the IAM policy.
         """
         return pulumi.get(self, "tags")
 
@@ -159,7 +159,7 @@ class IamPolicyArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the User the policy will be linked to
+        ID of the user the policy will be linked to
         """
         return pulumi.get(self, "user_id")
 
@@ -185,20 +185,20 @@ class _IamPolicyState:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IamPolicy resources.
-        :param pulumi.Input[str] application_id: ID of the Application the policy will be linked to
+        :param pulumi.Input[str] application_id: ID of the application the policy will be linked to
         :param pulumi.Input[str] created_at: The date and time of the creation of the policy.
-        :param pulumi.Input[str] description: The description of the iam policy.
+        :param pulumi.Input[str] description: The description of the IAM policy.
         :param pulumi.Input[bool] editable: Whether the policy is editable.
-        :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
-        :param pulumi.Input[str] name: The name of the iam policy.
+        :param pulumi.Input[str] group_id: ID of the group the policy will be linked to
+        :param pulumi.Input[str] name: The name of the IAM policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
                
-               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]] rules: List of rules in the policy.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the iam policy.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the policy.
-        :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
+        :param pulumi.Input[str] user_id: ID of the user the policy will be linked to
         """
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
@@ -229,7 +229,7 @@ class _IamPolicyState:
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the Application the policy will be linked to
+        ID of the application the policy will be linked to
         """
         return pulumi.get(self, "application_id")
 
@@ -253,7 +253,7 @@ class _IamPolicyState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the iam policy.
+        The description of the IAM policy.
         """
         return pulumi.get(self, "description")
 
@@ -277,7 +277,7 @@ class _IamPolicyState:
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the Group the policy will be linked to
+        ID of the group the policy will be linked to
         """
         return pulumi.get(self, "group_id")
 
@@ -289,7 +289,7 @@ class _IamPolicyState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the iam policy.
+        The name of the IAM policy.
         """
         return pulumi.get(self, "name")
 
@@ -303,7 +303,7 @@ class _IamPolicyState:
         """
         If the policy doesn't apply to a principal.
 
-        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         """
         return pulumi.get(self, "no_principal")
 
@@ -339,7 +339,7 @@ class _IamPolicyState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the iam policy.
+        The tags associated with the IAM policy.
         """
         return pulumi.get(self, "tags")
 
@@ -363,7 +363,7 @@ class _IamPolicyState:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the User the policy will be linked to
+        ID of the user the policy will be linked to
         """
         return pulumi.get(self, "user_id")
 
@@ -388,7 +388,7 @@ class IamPolicy(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#policies-54b8a7).
+        Creates and manages Scaleway IAM Policies. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#path-policies-create-a-new-policy).
 
         > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
 
@@ -440,17 +440,17 @@ class IamPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] application_id: ID of the Application the policy will be linked to
-        :param pulumi.Input[str] description: The description of the iam policy.
-        :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
-        :param pulumi.Input[str] name: The name of the iam policy.
+        :param pulumi.Input[str] application_id: ID of the application the policy will be linked to
+        :param pulumi.Input[str] description: The description of the IAM policy.
+        :param pulumi.Input[str] group_id: ID of the group the policy will be linked to
+        :param pulumi.Input[str] name: The name of the IAM policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
                
-               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]] rules: List of rules in the policy.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the iam policy.
-        :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IAM policy.
+        :param pulumi.Input[str] user_id: ID of the user the policy will be linked to
         """
         ...
     @overload
@@ -459,7 +459,7 @@ class IamPolicy(pulumi.CustomResource):
                  args: IamPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#policies-54b8a7).
+        Creates and manages Scaleway IAM Policies. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#path-policies-create-a-new-policy).
 
         > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
 
@@ -585,20 +585,20 @@ class IamPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] application_id: ID of the Application the policy will be linked to
+        :param pulumi.Input[str] application_id: ID of the application the policy will be linked to
         :param pulumi.Input[str] created_at: The date and time of the creation of the policy.
-        :param pulumi.Input[str] description: The description of the iam policy.
+        :param pulumi.Input[str] description: The description of the IAM policy.
         :param pulumi.Input[bool] editable: Whether the policy is editable.
-        :param pulumi.Input[str] group_id: ID of the Group the policy will be linked to
-        :param pulumi.Input[str] name: The name of the iam policy.
+        :param pulumi.Input[str] group_id: ID of the group the policy will be linked to
+        :param pulumi.Input[str] name: The name of the IAM policy.
         :param pulumi.Input[bool] no_principal: If the policy doesn't apply to a principal.
                
-               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+               > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]] rules: List of rules in the policy.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the iam policy.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the policy.
-        :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
+        :param pulumi.Input[str] user_id: ID of the user the policy will be linked to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -622,7 +622,7 @@ class IamPolicy(pulumi.CustomResource):
     @pulumi.getter(name="applicationId")
     def application_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of the Application the policy will be linked to
+        ID of the application the policy will be linked to
         """
         return pulumi.get(self, "application_id")
 
@@ -638,7 +638,7 @@ class IamPolicy(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        The description of the iam policy.
+        The description of the IAM policy.
         """
         return pulumi.get(self, "description")
 
@@ -654,7 +654,7 @@ class IamPolicy(pulumi.CustomResource):
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of the Group the policy will be linked to
+        ID of the group the policy will be linked to
         """
         return pulumi.get(self, "group_id")
 
@@ -662,7 +662,7 @@ class IamPolicy(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the iam policy.
+        The name of the IAM policy.
         """
         return pulumi.get(self, "name")
 
@@ -672,7 +672,7 @@ class IamPolicy(pulumi.CustomResource):
         """
         If the policy doesn't apply to a principal.
 
-        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal`  may be set.
+        > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         """
         return pulumi.get(self, "no_principal")
 
@@ -696,7 +696,7 @@ class IamPolicy(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the iam policy.
+        The tags associated with the IAM policy.
         """
         return pulumi.get(self, "tags")
 
@@ -712,7 +712,7 @@ class IamPolicy(pulumi.CustomResource):
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of the User the policy will be linked to
+        ID of the user the policy will be linked to
         """
         return pulumi.get(self, "user_id")
 

@@ -67,19 +67,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The VPC name used as filter. VPCs with a name like it are listed.
+        /// The VPC name to filter for. VPCs with a similar name are listed.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the VPC is associated with.
+        /// The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which vpcs exist.
+        /// `region`). The region in which the VPCs exist.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -88,7 +88,7 @@ namespace Pulumiverse.Scaleway
         private List<string>? _tags;
 
         /// <summary>
-        /// List of tags used as filter. VPCs with these exact tags are listed.
+        /// List of tags to filter for. VPCs with these exact tags are listed.
         /// </summary>
         public List<string> Tags
         {
@@ -105,19 +105,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The VPC name used as filter. VPCs with a name like it are listed.
+        /// The VPC name to filter for. VPCs with a similar name are listed.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the VPC is associated with.
+        /// The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which vpcs exist.
+        /// `region`). The region in which the VPCs exist.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -126,7 +126,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags used as filter. VPCs with these exact tags are listed.
+        /// List of tags to filter for. VPCs with these exact tags are listed.
         /// </summary>
         public InputList<string> Tags
         {
@@ -150,17 +150,17 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string? Name;
         /// <summary>
-        /// The organization ID the VPC is associated with.
+        /// The Organization ID the VPC is associated with.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The ID of the project the VPC is associated with.
+        /// The ID of the Project the VPC is associated with.
         /// </summary>
         public readonly string ProjectId;
         public readonly string Region;
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// List of found vpcs
+        /// List of retrieved VPCs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetVpcsVpcResult> Vpcs;
 

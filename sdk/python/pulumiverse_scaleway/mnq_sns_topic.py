@@ -28,12 +28,12 @@ class MnqSnsTopicArgs:
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
-        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO. If true, the topic name must end with .fifo.
-        :param pulumi.Input[str] name: The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
+        :param pulumi.Input[str] name: The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -93,7 +93,7 @@ class MnqSnsTopicArgs:
     @pulumi.getter(name="fifoTopic")
     def fifo_topic(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+        Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         """
         return pulumi.get(self, "fifo_topic")
 
@@ -105,7 +105,7 @@ class MnqSnsTopicArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
@@ -129,7 +129,7 @@ class MnqSnsTopicArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -142,7 +142,7 @@ class MnqSnsTopicArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sns is enabled.
+        in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -182,13 +182,13 @@ class _MnqSnsTopicState:
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[str] arn: The ARN of the topic
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
-        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO. If true, the topic name must end with .fifo.
-        :param pulumi.Input[str] name: The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
+        :param pulumi.Input[str] name: The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         :param pulumi.Input[str] owner: Owner of the SNS topic, should have format 'project-${project_id}'
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
@@ -255,7 +255,7 @@ class _MnqSnsTopicState:
     @pulumi.getter(name="fifoTopic")
     def fifo_topic(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+        Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         """
         return pulumi.get(self, "fifo_topic")
 
@@ -267,7 +267,7 @@ class _MnqSnsTopicState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
@@ -303,7 +303,7 @@ class _MnqSnsTopicState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -316,7 +316,7 @@ class _MnqSnsTopicState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sns is enabled.
+        in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -365,9 +365,9 @@ class MnqSnsTopic(pulumi.CustomResource):
                  sns_endpoint: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manage Scaleway Messaging and queuing SNS Topics.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Manage Scaleway Messaging and queuing SNS topics.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-topics/).
 
         ## Example Usage
 
@@ -391,7 +391,7 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         ## Import
 
-        SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+        SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 
         bash
 
@@ -403,12 +403,12 @@ class MnqSnsTopic(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
-        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO. If true, the topic name must end with .fifo.
-        :param pulumi.Input[str] name: The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
+        :param pulumi.Input[str] name: The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
@@ -419,9 +419,9 @@ class MnqSnsTopic(pulumi.CustomResource):
                  args: MnqSnsTopicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manage Scaleway Messaging and queuing SNS Topics.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+        Manage Scaleway Messaging and queuing SNS topics.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-topics/).
 
         ## Example Usage
 
@@ -445,7 +445,7 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         ## Import
 
-        SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+        SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 
         bash
 
@@ -534,13 +534,13 @@ class MnqSnsTopic(pulumi.CustomResource):
         :param pulumi.Input[str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[str] arn: The ARN of the topic
         :param pulumi.Input[bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
-        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO. If true, the topic name must end with .fifo.
-        :param pulumi.Input[str] name: The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[bool] fifo_topic: Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
+        :param pulumi.Input[str] name: The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         :param pulumi.Input[str] owner: Owner of the SNS topic, should have format 'project-${project_id}'
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sns is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sns is enabled.
+               in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[str] sns_endpoint: The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
@@ -589,7 +589,7 @@ class MnqSnsTopic(pulumi.CustomResource):
     @pulumi.getter(name="fifoTopic")
     def fifo_topic(self) -> pulumi.Output[bool]:
         """
-        Whether the topic is a FIFO. If true, the topic name must end with .fifo.
+        Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         """
         return pulumi.get(self, "fifo_topic")
 
@@ -597,7 +597,7 @@ class MnqSnsTopic(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the sns topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
@@ -621,7 +621,7 @@ class MnqSnsTopic(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sns is enabled for.
+        `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -630,7 +630,7 @@ class MnqSnsTopic(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`). The region
-        in which sns is enabled.
+        in which SNS is enabled.
         """
         return pulumi.get(self, "region")
 

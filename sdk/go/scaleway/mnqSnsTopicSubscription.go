@@ -12,9 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manage Scaleway Messaging and queuing SNS Topic Subscriptions.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+// Manages Scaleway Messaging and Queuing SNS topic subscriptions.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
 //
 // ## Example Usage
 //
@@ -75,7 +75,7 @@ import (
 //
 // ## Import
 //
-// SNS topic subscriptions can be imported using the `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
+// SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
 //
 // bash
 //
@@ -91,14 +91,14 @@ type MnqSnsTopicSubscription struct {
 	Arn pulumi.StringOutput `pulumi:"arn"`
 	// Endpoint of the subscription
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Protocol of the SNS Topic Subscription.
+	// Protocol of the SNS topic subscription.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Activate JSON Redrive Policy.
+	// Activate JSON redrive policy.
 	RedrivePolicy pulumi.BoolOutput `pulumi:"redrivePolicy"`
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
@@ -166,14 +166,14 @@ type mnqSnsTopicSubscriptionState struct {
 	Arn *string `pulumi:"arn"`
 	// Endpoint of the subscription
 	Endpoint *string `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// Protocol of the SNS Topic Subscription.
+	// Protocol of the SNS topic subscription.
 	Protocol *string `pulumi:"protocol"`
-	// Activate JSON Redrive Policy.
+	// Activate JSON redrive policy.
 	RedrivePolicy *bool `pulumi:"redrivePolicy"`
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey *string `pulumi:"secretKey"`
@@ -192,14 +192,14 @@ type MnqSnsTopicSubscriptionState struct {
 	Arn pulumi.StringPtrInput
 	// Endpoint of the subscription
 	Endpoint pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
-	// Protocol of the SNS Topic Subscription.
+	// Protocol of the SNS topic subscription.
 	Protocol pulumi.StringPtrInput
-	// Activate JSON Redrive Policy.
+	// Activate JSON redrive policy.
 	RedrivePolicy pulumi.BoolPtrInput
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringPtrInput
@@ -220,14 +220,14 @@ type mnqSnsTopicSubscriptionArgs struct {
 	AccessKey string `pulumi:"accessKey"`
 	// Endpoint of the subscription
 	Endpoint *string `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
-	// Protocol of the SNS Topic Subscription.
+	// Protocol of the SNS topic subscription.
 	Protocol string `pulumi:"protocol"`
-	// Activate JSON Redrive Policy.
+	// Activate JSON redrive policy.
 	RedrivePolicy *bool `pulumi:"redrivePolicy"`
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey string `pulumi:"secretKey"`
@@ -245,14 +245,14 @@ type MnqSnsTopicSubscriptionArgs struct {
 	AccessKey pulumi.StringInput
 	// Endpoint of the subscription
 	Endpoint pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sns is enabled for.
+	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
-	// Protocol of the SNS Topic Subscription.
+	// Protocol of the SNS topic subscription.
 	Protocol pulumi.StringInput
-	// Activate JSON Redrive Policy.
+	// Activate JSON redrive policy.
 	RedrivePolicy pulumi.BoolPtrInput
 	// `region`). The region
-	// in which sns is enabled.
+	// in which SNS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringInput
@@ -366,23 +366,23 @@ func (o MnqSnsTopicSubscriptionOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
-// `projectId`) The ID of the project the sns is enabled for.
+// `projectId`) The ID of the Project in which SNS is enabled.
 func (o MnqSnsTopicSubscriptionOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Protocol of the SNS Topic Subscription.
+// Protocol of the SNS topic subscription.
 func (o MnqSnsTopicSubscriptionOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// Activate JSON Redrive Policy.
+// Activate JSON redrive policy.
 func (o MnqSnsTopicSubscriptionOutput) RedrivePolicy() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.BoolOutput { return v.RedrivePolicy }).(pulumi.BoolOutput)
 }
 
 // `region`). The region
-// in which sns is enabled.
+// in which SNS is enabled.
 func (o MnqSnsTopicSubscriptionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

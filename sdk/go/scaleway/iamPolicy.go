@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#policies-54b8a7).
+// Creates and manages Scaleway IAM Policies. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#path-policies-create-a-new-policy).
 //
 // > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
 //
@@ -116,31 +116,31 @@ import (
 type IamPolicy struct {
 	pulumi.CustomResourceState
 
-	// ID of the Application the policy will be linked to
+	// ID of the application the policy will be linked to
 	ApplicationId pulumi.StringPtrOutput `pulumi:"applicationId"`
 	// The date and time of the creation of the policy.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The description of the iam policy.
+	// The description of the IAM policy.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Whether the policy is editable.
 	Editable pulumi.BoolOutput `pulumi:"editable"`
-	// ID of the Group the policy will be linked to
+	// ID of the group the policy will be linked to
 	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
-	// The name of the iam policy.
+	// The name of the IAM policy.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
 	//
-	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
 	NoPrincipal pulumi.BoolPtrOutput `pulumi:"noPrincipal"`
 	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayOutput `pulumi:"rules"`
-	// The tags associated with the iam policy.
+	// The tags associated with the IAM policy.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the policy.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// ID of the User the policy will be linked to
+	// ID of the user the policy will be linked to
 	UserId pulumi.StringPtrOutput `pulumi:"userId"`
 }
 
@@ -177,60 +177,60 @@ func GetIamPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamPolicy resources.
 type iamPolicyState struct {
-	// ID of the Application the policy will be linked to
+	// ID of the application the policy will be linked to
 	ApplicationId *string `pulumi:"applicationId"`
 	// The date and time of the creation of the policy.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The description of the iam policy.
+	// The description of the IAM policy.
 	Description *string `pulumi:"description"`
 	// Whether the policy is editable.
 	Editable *bool `pulumi:"editable"`
-	// ID of the Group the policy will be linked to
+	// ID of the group the policy will be linked to
 	GroupId *string `pulumi:"groupId"`
-	// The name of the iam policy.
+	// The name of the IAM policy.
 	Name *string `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
 	//
-	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
 	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
-	// The tags associated with the iam policy.
+	// The tags associated with the IAM policy.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the policy.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// ID of the User the policy will be linked to
+	// ID of the user the policy will be linked to
 	UserId *string `pulumi:"userId"`
 }
 
 type IamPolicyState struct {
-	// ID of the Application the policy will be linked to
+	// ID of the application the policy will be linked to
 	ApplicationId pulumi.StringPtrInput
 	// The date and time of the creation of the policy.
 	CreatedAt pulumi.StringPtrInput
-	// The description of the iam policy.
+	// The description of the IAM policy.
 	Description pulumi.StringPtrInput
 	// Whether the policy is editable.
 	Editable pulumi.BoolPtrInput
-	// ID of the Group the policy will be linked to
+	// ID of the group the policy will be linked to
 	GroupId pulumi.StringPtrInput
-	// The name of the iam policy.
+	// The name of the IAM policy.
 	Name pulumi.StringPtrInput
 	// If the policy doesn't apply to a principal.
 	//
-	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
 	NoPrincipal pulumi.BoolPtrInput
 	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
-	// The tags associated with the iam policy.
+	// The tags associated with the IAM policy.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the policy.
 	UpdatedAt pulumi.StringPtrInput
-	// ID of the User the policy will be linked to
+	// ID of the user the policy will be linked to
 	UserId pulumi.StringPtrInput
 }
 
@@ -239,49 +239,49 @@ func (IamPolicyState) ElementType() reflect.Type {
 }
 
 type iamPolicyArgs struct {
-	// ID of the Application the policy will be linked to
+	// ID of the application the policy will be linked to
 	ApplicationId *string `pulumi:"applicationId"`
-	// The description of the iam policy.
+	// The description of the IAM policy.
 	Description *string `pulumi:"description"`
-	// ID of the Group the policy will be linked to
+	// ID of the group the policy will be linked to
 	GroupId *string `pulumi:"groupId"`
-	// The name of the iam policy.
+	// The name of the IAM policy.
 	Name *string `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
 	//
-	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
 	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
-	// The tags associated with the iam policy.
+	// The tags associated with the IAM policy.
 	Tags []string `pulumi:"tags"`
-	// ID of the User the policy will be linked to
+	// ID of the user the policy will be linked to
 	UserId *string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a IamPolicy resource.
 type IamPolicyArgs struct {
-	// ID of the Application the policy will be linked to
+	// ID of the application the policy will be linked to
 	ApplicationId pulumi.StringPtrInput
-	// The description of the iam policy.
+	// The description of the IAM policy.
 	Description pulumi.StringPtrInput
-	// ID of the Group the policy will be linked to
+	// ID of the group the policy will be linked to
 	GroupId pulumi.StringPtrInput
-	// The name of the iam policy.
+	// The name of the IAM policy.
 	Name pulumi.StringPtrInput
 	// If the policy doesn't apply to a principal.
 	//
-	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
 	NoPrincipal pulumi.BoolPtrInput
 	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
-	// The tags associated with the iam policy.
+	// The tags associated with the IAM policy.
 	Tags pulumi.StringArrayInput
-	// ID of the User the policy will be linked to
+	// ID of the user the policy will be linked to
 	UserId pulumi.StringPtrInput
 }
 
@@ -372,7 +372,7 @@ func (o IamPolicyOutput) ToIamPolicyOutputWithContext(ctx context.Context) IamPo
 	return o
 }
 
-// ID of the Application the policy will be linked to
+// ID of the application the policy will be linked to
 func (o IamPolicyOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringPtrOutput { return v.ApplicationId }).(pulumi.StringPtrOutput)
 }
@@ -382,7 +382,7 @@ func (o IamPolicyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The description of the iam policy.
+// The description of the IAM policy.
 func (o IamPolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -392,19 +392,19 @@ func (o IamPolicyOutput) Editable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.BoolOutput { return v.Editable }).(pulumi.BoolOutput)
 }
 
-// ID of the Group the policy will be linked to
+// ID of the group the policy will be linked to
 func (o IamPolicyOutput) GroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringPtrOutput { return v.GroupId }).(pulumi.StringPtrOutput)
 }
 
-// The name of the iam policy.
+// The name of the IAM policy.
 func (o IamPolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // If the policy doesn't apply to a principal.
 //
-// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
+// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
 func (o IamPolicyOutput) NoPrincipal() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.BoolPtrOutput { return v.NoPrincipal }).(pulumi.BoolPtrOutput)
 }
@@ -419,7 +419,7 @@ func (o IamPolicyOutput) Rules() IamPolicyRuleArrayOutput {
 	return o.ApplyT(func(v *IamPolicy) IamPolicyRuleArrayOutput { return v.Rules }).(IamPolicyRuleArrayOutput)
 }
 
-// The tags associated with the iam policy.
+// The tags associated with the IAM policy.
 func (o IamPolicyOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -429,7 +429,7 @@ func (o IamPolicyOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// ID of the User the policy will be linked to
+// ID of the user the policy will be linked to
 func (o IamPolicyOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringPtrOutput { return v.UserId }).(pulumi.StringPtrOutput)
 }

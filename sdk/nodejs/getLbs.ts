@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Load Balancers.
  *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -41,19 +43,19 @@ export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<
  */
 export interface GetLbsArgs {
     /**
-     * The load balancer name used as a filter. LBs with a name like it are listed.
+     * The Load Balancer name to filter for. Load Balancers with a matching name are listed.
      */
     name?: string;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: string;
     /**
-     * List of tags used as filter. LBs with these exact tags are listed.
+     * List of tags to filter for. Load Balancers with these exact tags are listed.
      */
     tags?: string[];
     /**
-     * `zone`) The zone in which LBs exist.
+     * `zone`) The zone in which the Load Balancers exist.
      */
     zone?: string;
 }
@@ -67,32 +69,34 @@ export interface GetLbsResult {
      */
     readonly id: string;
     /**
-     * List of found LBs
+     * List of retrieved Load Balancers
      */
     readonly lbs: outputs.GetLbsLb[];
     /**
-     * The name of the load-balancer.
+     * The name of the Load Balancer.
      */
     readonly name?: string;
     /**
-     * The organization ID the load-balancer is associated with.
+     * The ID of the Organization the Load Balancer is associated with.
      */
     readonly organizationId: string;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     readonly projectId: string;
     /**
-     * The tags associated with the load-balancer.
+     * The tags associated with the Load Balancer.
      */
     readonly tags?: string[];
     /**
-     * The zone in which the load-balancer is.
+     * The zone of the Load Balancer.
      */
     readonly zone: string;
 }
 /**
  * Gets information about multiple Load Balancers.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  *
  * ## Example Usage
  *
@@ -118,19 +122,19 @@ export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOption
  */
 export interface GetLbsOutputArgs {
     /**
-     * The load balancer name used as a filter. LBs with a name like it are listed.
+     * The Load Balancer name to filter for. Load Balancers with a matching name are listed.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the load-balancer is associated with.
+     * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * List of tags used as filter. LBs with these exact tags are listed.
+     * List of tags to filter for. Load Balancers with these exact tags are listed.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which LBs exist.
+     * `zone`) The zone in which the Load Balancers exist.
      */
     zone?: pulumi.Input<string>;
 }

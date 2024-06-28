@@ -5,15 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages the [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+ * Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
  *
- * The static associations are used to assign IP addresses based on the MAC addresses of the Instance.
+ * These static associations are used to assign IP addresses based on the MAC addresses of the resource.
  *
  * Statically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.
  *
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544) and [configuration guide](https://www.scaleway.com/en/docs/network/vpc/how-to/configure-a-public-gateway/#how-to-review-and-configure-dhcp).
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
  *
- * [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to instances) and static user-created DHCP reservations.
+ * [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to resources) and static user-created DHCP reservations.
  *
  * ## Example Usage
  *
@@ -57,7 +57,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.
+ * Public Gateway DHCP reservation configurations can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -94,7 +94,7 @@ export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the public gateway DHCP config.
+     * The date and time of the creation of the Public Gateway DHCP configuration.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -102,23 +102,23 @@ export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
      */
     public readonly gatewayNetworkId!: pulumi.Output<string>;
     /**
-     * The Hostname of the client machine.
+     * The hostname of the client machine.
      */
     public /*out*/ readonly hostname!: pulumi.Output<string>;
     /**
-     * The IP address to give to the machine (IP address).
+     * The IP address to give to the machine.
      */
     public readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The MAC address to give a static entry to.
+     * The MAC address for the static entry.
      */
     public readonly macAddress!: pulumi.Output<string>;
     /**
-     * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+     * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the public gateway DHCP config.
+     * The date and time of the last update of the Public Gateway DHCP configuration.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -177,7 +177,7 @@ export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayDhcpReservationState {
     /**
-     * The date and time of the creation of the public gateway DHCP config.
+     * The date and time of the creation of the Public Gateway DHCP configuration.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -185,23 +185,23 @@ export interface VpcPublicGatewayDhcpReservationState {
      */
     gatewayNetworkId?: pulumi.Input<string>;
     /**
-     * The Hostname of the client machine.
+     * The hostname of the client machine.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * The IP address to give to the machine (IP address).
+     * The IP address to give to the machine.
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The MAC address to give a static entry to.
+     * The MAC address for the static entry.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are reservation and lease.
+     * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
      */
     type?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the public gateway DHCP config.
+     * The date and time of the last update of the Public Gateway DHCP configuration.
      */
     updatedAt?: pulumi.Input<string>;
     /**
@@ -219,11 +219,11 @@ export interface VpcPublicGatewayDhcpReservationArgs {
      */
     gatewayNetworkId: pulumi.Input<string>;
     /**
-     * The IP address to give to the machine (IP address).
+     * The IP address to give to the machine.
      */
     ipAddress: pulumi.Input<string>;
     /**
-     * The MAC address to give a static entry to.
+     * The MAC address for the static entry.
      */
     macAddress: pulumi.Input<string>;
     /**

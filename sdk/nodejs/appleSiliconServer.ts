@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const server = new scaleway.AppleSliconValleyServer("server", {type: "M1-M"});
+ * const server = new scaleway.AppleSiliconServer("server", {type: "M1-M"});
  * ```
  *
  * ## Import
@@ -26,12 +26,12 @@ import * as utilities from "./utilities";
  * bash
  *
  * ```sh
- * $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class AppleSliconValleyServer extends pulumi.CustomResource {
+export class AppleSiliconServer extends pulumi.CustomResource {
     /**
-     * Get an existing AppleSliconValleyServer resource's state with the given name, ID, and optional extra
+     * Get an existing AppleSiliconServer resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -39,22 +39,22 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppleSliconValleyServerState, opts?: pulumi.CustomResourceOptions): AppleSliconValleyServer {
-        return new AppleSliconValleyServer(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppleSiliconServerState, opts?: pulumi.CustomResourceOptions): AppleSiliconServer {
+        return new AppleSiliconServer(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/appleSliconValleyServer:AppleSliconValleyServer';
+    public static readonly __pulumiType = 'scaleway:index/appleSiliconServer:AppleSiliconServer';
 
     /**
-     * Returns true if the given object is an instance of AppleSliconValleyServer.  This is designed to work even
+     * Returns true if the given object is an instance of AppleSiliconServer.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AppleSliconValleyServer {
+    public static isInstance(obj: any): obj is AppleSiliconServer {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AppleSliconValleyServer.__pulumiType;
+        return obj['__pulumiType'] === AppleSiliconServer.__pulumiType;
     }
 
     /**
@@ -107,18 +107,18 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
     public readonly zone!: pulumi.Output<string>;
 
     /**
-     * Create a AppleSliconValleyServer resource with the given unique name, arguments, and options.
+     * Create a AppleSiliconServer resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AppleSliconValleyServerArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AppleSliconValleyServerArgs | AppleSliconValleyServerState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: AppleSiliconServerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: AppleSiliconServerArgs | AppleSiliconServerState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AppleSliconValleyServerState | undefined;
+            const state = argsOrState as AppleSiliconServerState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deletableAt"] = state ? state.deletableAt : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
@@ -131,7 +131,7 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
             resourceInputs["vncUrl"] = state ? state.vncUrl : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
-            const args = argsOrState as AppleSliconValleyServerArgs | undefined;
+            const args = argsOrState as AppleSiliconServerArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
@@ -148,14 +148,14 @@ export class AppleSliconValleyServer extends pulumi.CustomResource {
             resourceInputs["vncUrl"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AppleSliconValleyServer.__pulumiType, name, resourceInputs, opts);
+        super(AppleSiliconServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AppleSliconValleyServer resources.
+ * Input properties used for looking up and filtering AppleSiliconServer resources.
  */
-export interface AppleSliconValleyServerState {
+export interface AppleSiliconServerState {
     /**
      * The date and time of the creation of the Apple Silicon server.
      */
@@ -207,9 +207,9 @@ export interface AppleSliconValleyServerState {
 }
 
 /**
- * The set of arguments for constructing a AppleSliconValleyServer resource.
+ * The set of arguments for constructing a AppleSiliconServer resource.
  */
-export interface AppleSliconValleyServerArgs {
+export interface AppleSiliconServerArgs {
     /**
      * The name of the server.
      */

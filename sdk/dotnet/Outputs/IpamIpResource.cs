@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IpamIpResource
     {
         /// <summary>
-        /// The ID of the resource that the IP is bound to.
+        /// The ID of the resource that the IP is attached to.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The MAC Address of the resource the IP is attached to.
+        /// The MAC address of the resource the IP is attached to.
         /// </summary>
         public readonly string? MacAddress;
         /// <summary>

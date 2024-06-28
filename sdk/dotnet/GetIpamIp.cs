@@ -13,7 +13,9 @@ namespace Pulumiverse.Scaleway
     public static class GetIpamIp
     {
         /// <summary>
-        /// Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+        /// Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+        /// 
+        /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
         /// 
         /// ## Examples
         /// 
@@ -37,7 +39,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Instance Private Network IP
         /// 
-        /// Get Instance IP in a private network.
+        /// Get an Instance's IP on a Private Network.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -119,7 +121,9 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpamIpResult>("scaleway:index/getIpamIp:getIpamIp", args ?? new GetIpamIpArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+        /// Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+        /// 
+        /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
         /// 
         /// ## Examples
         /// 
@@ -143,7 +147,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Instance Private Network IP
         /// 
-        /// Get Instance IP in a private network.
+        /// Get an Instance's IP on a Private Network.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -235,25 +239,25 @@ namespace Pulumiverse.Scaleway
         public bool? Attached { get; set; }
 
         /// <summary>
-        /// The IPAM IP ID. Cannot be used with the rest of the arguments.
+        /// The IPAM IP ID. Cannot be used with any other arguments.
         /// </summary>
         [Input("ipamIpId")]
         public string? IpamIpId { get; set; }
 
         /// <summary>
-        /// The Mac Address linked to the IP. Cannot be used with `ipam_ip_id`.
+        /// The MAC address linked to the IP. Cannot be used with `ipam_ip_id`.
         /// </summary>
         [Input("macAddress")]
         public string? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the private network the IP belong to. Cannot be used with `ipam_ip_id`.
+        /// The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
         /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -285,7 +289,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.
+        /// The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -311,25 +315,25 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Attached { get; set; }
 
         /// <summary>
-        /// The IPAM IP ID. Cannot be used with the rest of the arguments.
+        /// The IPAM IP ID. Cannot be used with any other arguments.
         /// </summary>
         [Input("ipamIpId")]
         public Input<string>? IpamIpId { get; set; }
 
         /// <summary>
-        /// The Mac Address linked to the IP. Cannot be used with `ipam_ip_id`.
+        /// The MAC address linked to the IP. Cannot be used with `ipam_ip_id`.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the private network the IP belong to. Cannot be used with `ipam_ip_id`.
+        /// The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `project_id`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -361,7 +365,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of IP to search for (ipv4, ipv6). Cannot be used with `ipam_ip_id`.
+        /// The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -387,7 +391,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// the IP address with a CIDR notation.
+        /// the IP address in CIDR notation.
         /// </summary>
         public readonly string AddressCidr;
         public readonly bool? Attached;

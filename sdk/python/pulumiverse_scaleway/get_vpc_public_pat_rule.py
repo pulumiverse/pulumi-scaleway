@@ -65,7 +65,7 @@ class GetVpcPublicPatRuleResult:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> str:
         """
-        The ID of the public gateway.
+        The ID of the Public Gateway.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -91,7 +91,7 @@ class GetVpcPublicPatRuleResult:
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
         """
-        The Private IP to forward data to (IP address).
+        The private IP address to forward data to.
         """
         return pulumi.get(self, "private_ip")
 
@@ -99,7 +99,7 @@ class GetVpcPublicPatRuleResult:
     @pulumi.getter(name="privatePort")
     def private_port(self) -> int:
         """
-        The Private port to translate to.
+        The private port to translate to.
         """
         return pulumi.get(self, "private_port")
 
@@ -107,7 +107,7 @@ class GetVpcPublicPatRuleResult:
     @pulumi.getter
     def protocol(self) -> str:
         """
-        The Protocol the rule should apply to. Possible values are both, tcp and udp.
+        The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         """
         return pulumi.get(self, "protocol")
 
@@ -115,7 +115,7 @@ class GetVpcPublicPatRuleResult:
     @pulumi.getter(name="publicPort")
     def public_port(self) -> int:
         """
-        The Public port to listen on.
+        The public port to listen on.
         """
         return pulumi.get(self, "public_port")
 
@@ -153,8 +153,8 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
                             zone: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicPatRuleResult:
     """
-    Gets information about a public gateway PAT rule. For further information please check the
-    API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+    Gets information about a Public Gateway PAT rule. For further information, please see the
+    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
 
     ## Example Usage
 
@@ -206,7 +206,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
 
     :param str pat_rule_id: The ID of the PAT rule to retrieve
     :param str zone: `zone`) The zone in which
-           the image exists.
+           the rule exists.
     """
     __args__ = dict()
     __args__['patRuleId'] = pat_rule_id
@@ -233,8 +233,8 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicPatRuleResult]:
     """
-    Gets information about a public gateway PAT rule. For further information please check the
-    API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+    Gets information about a Public Gateway PAT rule. For further information, please see the
+    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
 
     ## Example Usage
 
@@ -286,6 +286,6 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
 
     :param str pat_rule_id: The ID of the PAT rule to retrieve
     :param str zone: `zone`) The zone in which
-           the image exists.
+           the rule exists.
     """
     ...

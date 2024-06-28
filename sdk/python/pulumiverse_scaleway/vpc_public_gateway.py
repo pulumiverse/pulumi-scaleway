@@ -31,13 +31,13 @@ class VpcPublicGatewayArgs:
         :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
         :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] ip_id: Attach an existing flexible IP to the gateway.
+        :param pulumi.Input[str] name: The name for the Public Gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the Public Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: Override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Public Gateway should be created.
         """
         pulumi.set(__self__, "type", type)
         if bastion_enabled is not None:
@@ -113,7 +113,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing flexible IP to the gateway.
+        Attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
@@ -125,7 +125,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the public gateway. If not provided it will be randomly generated.
+        The name for the Public Gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -149,7 +149,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="refreshSshKeys")
     def refresh_ssh_keys(self) -> Optional[pulumi.Input[str]]:
         """
-        Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         """
         return pulumi.get(self, "refresh_ssh_keys")
 
@@ -161,7 +161,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the public gateway.
+        The tags to associate with the Public Gateway.
         """
         return pulumi.get(self, "tags")
 
@@ -173,7 +173,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled.
+        Override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -185,7 +185,7 @@ class VpcPublicGatewayArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway should be created.
+        `zone`) The zone in which the Public Gateway should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -216,19 +216,19 @@ class _VpcPublicGatewayState:
         Input properties used for looking up and filtering VpcPublicGateway resources.
         :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Public Gateway.
         :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
+        :param pulumi.Input[str] ip_id: Attach an existing flexible IP to the gateway.
+        :param pulumi.Input[str] name: The name for the Public Gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The Organization ID the Public Gateway is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         :param pulumi.Input[str] status: The status of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the Public Gateway.
         :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Public Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: Override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Public Gateway should be created.
         """
         if bastion_enabled is not None:
             pulumi.set(__self__, "bastion_enabled", bastion_enabled)
@@ -289,7 +289,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the public gateway.
+        The date and time of the creation of the Public Gateway.
         """
         return pulumi.get(self, "created_at")
 
@@ -313,7 +313,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
-        attach an existing flexible IP to the gateway.
+        Attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
@@ -325,7 +325,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the public gateway. If not provided it will be randomly generated.
+        The name for the Public Gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -337,7 +337,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the public gateway is associated with.
+        The Organization ID the Public Gateway is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -361,7 +361,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="refreshSshKeys")
     def refresh_ssh_keys(self) -> Optional[pulumi.Input[str]]:
         """
-        Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         """
         return pulumi.get(self, "refresh_ssh_keys")
 
@@ -385,7 +385,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags associated with the public gateway.
+        The tags to associate with the Public Gateway.
         """
         return pulumi.get(self, "tags")
 
@@ -409,7 +409,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the public gateway.
+        The date and time of the last update of the Public Gateway.
         """
         return pulumi.get(self, "updated_at")
 
@@ -421,7 +421,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled.
+        Override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -433,7 +433,7 @@ class _VpcPublicGatewayState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the public gateway should be created.
+        `zone`) The zone in which the Public Gateway should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -460,8 +460,8 @@ class VpcPublicGateway(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway VPC Public Gateway.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
+        Creates and manages Scaleway Public Gateways.
+        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
 
         ## Example Usage
 
@@ -481,7 +481,7 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         ## Import
 
-        Public gateway can be imported using the `{zone}/{id}`, e.g.
+        Public Gateways can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -494,14 +494,14 @@ class VpcPublicGateway(pulumi.CustomResource):
         :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
         :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] ip_id: Attach an existing flexible IP to the gateway.
+        :param pulumi.Input[str] name: The name for the Public Gateway. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the Public Gateway.
         :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: Override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Public Gateway should be created.
         """
         ...
     @overload
@@ -510,8 +510,8 @@ class VpcPublicGateway(pulumi.CustomResource):
                  args: VpcPublicGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway VPC Public Gateway.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
+        Creates and manages Scaleway Public Gateways.
+        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
 
         ## Example Usage
 
@@ -531,7 +531,7 @@ class VpcPublicGateway(pulumi.CustomResource):
 
         ## Import
 
-        Public gateway can be imported using the `{zone}/{id}`, e.g.
+        Public Gateways can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -625,19 +625,19 @@ class VpcPublicGateway(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] bastion_enabled: Enable SSH bastion on the gateway.
         :param pulumi.Input[int] bastion_port: The port on which the SSH bastion will listen.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the public gateway.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Public Gateway.
         :param pulumi.Input[bool] enable_smtp: Enable SMTP on the gateway.
-        :param pulumi.Input[str] ip_id: attach an existing flexible IP to the gateway.
-        :param pulumi.Input[str] name: The name of the public gateway. If not provided it will be randomly generated.
-        :param pulumi.Input[str] organization_id: The organization ID the public gateway is associated with.
+        :param pulumi.Input[str] ip_id: Attach an existing flexible IP to the gateway.
+        :param pulumi.Input[str] name: The name for the Public Gateway. If not provided it will be randomly generated.
+        :param pulumi.Input[str] organization_id: The Organization ID the Public Gateway is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the public gateway is associated with.
-        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        :param pulumi.Input[str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         :param pulumi.Input[str] status: The status of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the public gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to associate with the Public Gateway.
         :param pulumi.Input[str] type: The gateway type.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Public Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: Override the gateway's default recursive DNS servers, if DNS features are enabled.
+        :param pulumi.Input[str] zone: `zone`) The zone in which the Public Gateway should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -680,7 +680,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the public gateway.
+        The date and time of the creation of the Public Gateway.
         """
         return pulumi.get(self, "created_at")
 
@@ -696,7 +696,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="ipId")
     def ip_id(self) -> pulumi.Output[str]:
         """
-        attach an existing flexible IP to the gateway.
+        Attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
@@ -704,7 +704,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the public gateway. If not provided it will be randomly generated.
+        The name for the Public Gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -712,7 +712,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the public gateway is associated with.
+        The Organization ID the Public Gateway is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -728,7 +728,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="refreshSshKeys")
     def refresh_ssh_keys(self) -> pulumi.Output[Optional[str]]:
         """
-        Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         """
         return pulumi.get(self, "refresh_ssh_keys")
 
@@ -744,7 +744,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags associated with the public gateway.
+        The tags to associate with the Public Gateway.
         """
         return pulumi.get(self, "tags")
 
@@ -760,7 +760,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the public gateway.
+        The date and time of the last update of the Public Gateway.
         """
         return pulumi.get(self, "updated_at")
 
@@ -768,7 +768,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter(name="upstreamDnsServers")
     def upstream_dns_servers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        override the gateway's default recursive DNS servers, if DNS features are enabled.
+        Override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
@@ -776,7 +776,7 @@ class VpcPublicGateway(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the public gateway should be created.
+        `zone`) The zone in which the Public Gateway should be created.
         """
         return pulumi.get(self, "zone")
 

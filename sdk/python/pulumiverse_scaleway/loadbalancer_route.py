@@ -20,8 +20,8 @@ class LoadbalancerRouteArgs:
                  match_sni: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerRoute resource.
-        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
+        :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
+        :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
                Only one of `match_sni` and `match_host_header` should be specified.
                
@@ -42,7 +42,7 @@ class LoadbalancerRouteArgs:
     @pulumi.getter(name="backendId")
     def backend_id(self) -> pulumi.Input[str]:
         """
-        The ID of the backend to which the route is associated.
+        The ID of the backend the route is associated with.
         """
         return pulumi.get(self, "backend_id")
 
@@ -54,7 +54,7 @@ class LoadbalancerRouteArgs:
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Input[str]:
         """
-        The ID of the frontend to which the route is associated.
+        The ID of the frontend the route is associated with.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -104,9 +104,9 @@ class _LoadbalancerRouteState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerRoute resources.
-        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-        :param pulumi.Input[str] created_at: The date at which the route was created.
-        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
+        :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
+        :param pulumi.Input[str] created_at: The date on which the route was created.
+        :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
                Only one of `match_sni` and `match_host_header` should be specified.
                
@@ -115,7 +115,7 @@ class _LoadbalancerRouteState:
                Only one of `match_sni` and `match_host_header` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
-        :param pulumi.Input[str] updated_at: The date at which the route was last updated.
+        :param pulumi.Input[str] updated_at: The date on which the route was last updated.
         """
         if backend_id is not None:
             pulumi.set(__self__, "backend_id", backend_id)
@@ -134,7 +134,7 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="backendId")
     def backend_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the backend to which the route is associated.
+        The ID of the backend the route is associated with.
         """
         return pulumi.get(self, "backend_id")
 
@@ -146,7 +146,7 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date at which the route was created.
+        The date on which the route was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -158,7 +158,7 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the frontend to which the route is associated.
+        The ID of the frontend the route is associated with.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -200,7 +200,7 @@ class _LoadbalancerRouteState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date at which the route was last updated.
+        The date on which the route was last updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -220,8 +220,9 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  match_sni: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Load-Balancer Routes.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        Creates and manages Scaleway Load Balancer routes.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
         ## Example Usage
 
@@ -277,7 +278,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -287,8 +288,8 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
+        :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
+        :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
                Only one of `match_sni` and `match_host_header` should be specified.
                
@@ -305,8 +306,9 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  args: LoadbalancerRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Load-Balancer Routes.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        Creates and manages Scaleway Load Balancer routes.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
         ## Example Usage
 
@@ -362,7 +364,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -431,9 +433,9 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_id: The ID of the backend to which the route is associated.
-        :param pulumi.Input[str] created_at: The date at which the route was created.
-        :param pulumi.Input[str] frontend_id: The ID of the frontend to which the route is associated.
+        :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
+        :param pulumi.Input[str] created_at: The date on which the route was created.
+        :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
                Only one of `match_sni` and `match_host_header` should be specified.
                
@@ -442,7 +444,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                Only one of `match_sni` and `match_host_header` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
-        :param pulumi.Input[str] updated_at: The date at which the route was last updated.
+        :param pulumi.Input[str] updated_at: The date on which the route was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -460,7 +462,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="backendId")
     def backend_id(self) -> pulumi.Output[str]:
         """
-        The ID of the backend to which the route is associated.
+        The ID of the backend the route is associated with.
         """
         return pulumi.get(self, "backend_id")
 
@@ -468,7 +470,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date at which the route was created.
+        The date on which the route was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -476,7 +478,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Output[str]:
         """
-        The ID of the frontend to which the route is associated.
+        The ID of the frontend the route is associated with.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -506,7 +508,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date at which the route was last updated.
+        The date on which the route was last updated.
         """
         return pulumi.get(self, "updated_at")
 

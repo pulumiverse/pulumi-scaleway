@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        /// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         /// </summary>
         public readonly string Ip;
 

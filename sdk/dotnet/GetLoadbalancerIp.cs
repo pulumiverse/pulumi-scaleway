@@ -13,7 +13,10 @@ namespace Pulumiverse.Scaleway
     public static class GetLoadbalancerIp
     {
         /// <summary>
-        /// Gets information about a Load Balancer IP.
+        /// Gets information about a Load Balancer IP address.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -37,7 +40,10 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoadbalancerIpResult>("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args ?? new GetLoadbalancerIpArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Load Balancer IP.
+        /// Gets information about a Load Balancer IP address.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -79,7 +85,7 @@ namespace Pulumiverse.Scaleway
         public string? IpId { get; set; }
 
         /// <summary>
-        /// The ID of the project the LB IP associated with.
+        /// The ID of the Project the Load Balancer IP is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -107,7 +113,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The ID of the project the LB IP associated with.
+        /// The ID of the Project the Load Balancer IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -130,11 +136,11 @@ namespace Pulumiverse.Scaleway
         public readonly string? IpId;
         public readonly bool IsIpv6;
         /// <summary>
-        /// The associated load-balancer ID if any
+        /// The ID of the associated Load Balancer, if any
         /// </summary>
         public readonly string LbId;
         /// <summary>
-        /// (Defaults to provider `organization_id`) The ID of the organization the LB IP is associated with.
+        /// (Defaults to provider `organization_id`) The ID of the Organization the Load Balancer IP is associated with.
         /// </summary>
         public readonly string OrganizationId;
         public readonly string ProjectId;

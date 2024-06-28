@@ -11,15 +11,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Activate Scaleway Messaging and queuing SNS for a project.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+// Activates Scaleway Messaging and Queuing SNS in a Project.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
 //
 // ## Example Usage
 //
 // ### Basic
 //
-// # Activate SNS for default project
+// # Activate SNS in the default Project
 //
 // ```go
 // package main
@@ -43,7 +43,7 @@ import (
 //
 // ```
 //
-// # Activate SNS for a specific project
+// # Activate SNS in a specific Project
 //
 // ```go
 // package main
@@ -63,7 +63,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// For specific project in default region
+//			// For specific Project in default region
 //			_, err = scaleway.NewMnqSns(ctx, "forProject", &scaleway.MnqSnsArgs{
 //				ProjectId: pulumi.String(project.Id),
 //			})
@@ -78,7 +78,7 @@ import (
 //
 // ## Import
 //
-// SNS status can be imported using the `{region}/{project_id}`, e.g.
+// SNS status can be imported using `{region}/{project_id}`, e.g.
 //
 // bash
 //
@@ -88,12 +88,12 @@ import (
 type MnqSns struct {
 	pulumi.CustomResourceState
 
-	// The endpoint of the SNS service for this project.
+	// The endpoint of the SNS service for this Project.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sns will be enabled for.
+	// `projectId`) The ID of the project in which SNS will be enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
-	// in which sns will be enabled.
+	// in which SNS will be enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -127,22 +127,22 @@ func GetMnqSns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MnqSns resources.
 type mnqSnsState struct {
-	// The endpoint of the SNS service for this project.
+	// The endpoint of the SNS service for this Project.
 	Endpoint *string `pulumi:"endpoint"`
-	// `projectId`) The ID of the project the sns will be enabled for.
+	// `projectId`) The ID of the project in which SNS will be enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
-	// in which sns will be enabled.
+	// in which SNS will be enabled.
 	Region *string `pulumi:"region"`
 }
 
 type MnqSnsState struct {
-	// The endpoint of the SNS service for this project.
+	// The endpoint of the SNS service for this Project.
 	Endpoint pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sns will be enabled for.
+	// `projectId`) The ID of the project in which SNS will be enabled.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
-	// in which sns will be enabled.
+	// in which SNS will be enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -151,19 +151,19 @@ func (MnqSnsState) ElementType() reflect.Type {
 }
 
 type mnqSnsArgs struct {
-	// `projectId`) The ID of the project the sns will be enabled for.
+	// `projectId`) The ID of the project in which SNS will be enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region
-	// in which sns will be enabled.
+	// in which SNS will be enabled.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a MnqSns resource.
 type MnqSnsArgs struct {
-	// `projectId`) The ID of the project the sns will be enabled for.
+	// `projectId`) The ID of the project in which SNS will be enabled.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region
-	// in which sns will be enabled.
+	// in which SNS will be enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -254,18 +254,18 @@ func (o MnqSnsOutput) ToMnqSnsOutputWithContext(ctx context.Context) MnqSnsOutpu
 	return o
 }
 
-// The endpoint of the SNS service for this project.
+// The endpoint of the SNS service for this Project.
 func (o MnqSnsOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSns) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the sns will be enabled for.
+// `projectId`) The ID of the project in which SNS will be enabled.
 func (o MnqSnsOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSns) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // `region`). The region
-// in which sns will be enabled.
+// in which SNS will be enabled.
 func (o MnqSnsOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSns) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

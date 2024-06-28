@@ -11,8 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about an existing IAM group. For more information, please
-// check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+// Gets information about an existing IAM group.
+//
+// For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
 //
 // ## Example Usage
 //
@@ -58,10 +59,10 @@ func LookupIamGroup(ctx *pulumi.Context, args *LookupIamGroupArgs, opts ...pulum
 // A collection of arguments for invoking getIamGroup.
 type LookupIamGroupArgs struct {
 	// The ID of the IAM group.
-	// Only one of the `name` and `groupId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `groupId`.
 	GroupId *string `pulumi:"groupId"`
 	// The name of the IAM group.
-	// Only one of the `name` and `groupId` should be specified.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the
 	// organization the group is associated with.
@@ -100,10 +101,10 @@ func LookupIamGroupOutput(ctx *pulumi.Context, args LookupIamGroupOutputArgs, op
 // A collection of arguments for invoking getIamGroup.
 type LookupIamGroupOutputArgs struct {
 	// The ID of the IAM group.
-	// Only one of the `name` and `groupId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `groupId`.
 	GroupId pulumi.StringPtrInput `pulumi:"groupId"`
 	// The name of the IAM group.
-	// Only one of the `name` and `groupId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// `organizationId`) The ID of the
 	// organization the group is associated with.

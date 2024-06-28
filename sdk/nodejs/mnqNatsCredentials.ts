@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Messaging and queuing Nats Credentials.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+ * Creates and manages Scaleway Messaging and Queuing NATS credentials.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/).
  *
  * ## Example Usage
  *
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g.
+ * Namespaces can be imported using `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -60,7 +60,7 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the nats account the credentials are generated from
+     * The ID of the NATS account the credentials are generated from
      */
     public readonly accountId!: pulumi.Output<string>;
     /**
@@ -68,7 +68,7 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
      */
     public /*out*/ readonly file!: pulumi.Output<string>;
     /**
-     * The unique name of the nats credentials.
+     * The unique name of the NATS credentials.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -114,7 +114,7 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
  */
 export interface MnqNatsCredentialsState {
     /**
-     * The ID of the nats account the credentials are generated from
+     * The ID of the NATS account the credentials are generated from
      */
     accountId?: pulumi.Input<string>;
     /**
@@ -122,7 +122,7 @@ export interface MnqNatsCredentialsState {
      */
     file?: pulumi.Input<string>;
     /**
-     * The unique name of the nats credentials.
+     * The unique name of the NATS credentials.
      */
     name?: pulumi.Input<string>;
     /**
@@ -137,11 +137,11 @@ export interface MnqNatsCredentialsState {
  */
 export interface MnqNatsCredentialsArgs {
     /**
-     * The ID of the nats account the credentials are generated from
+     * The ID of the NATS account the credentials are generated from
      */
     accountId: pulumi.Input<string>;
     /**
-     * The unique name of the nats credentials.
+     * The unique name of the NATS credentials.
      */
     name?: pulumi.Input<string>;
     /**

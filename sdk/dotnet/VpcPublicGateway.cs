@@ -11,8 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway VPC Public Gateway.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway).
+    /// Creates and manages Scaleway Public Gateways.
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
     /// 
     /// ## Example Usage
     /// 
@@ -41,7 +41,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Public gateway can be imported using the `{zone}/{id}`, e.g.
+    /// Public Gateways can be imported using `{zone}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> BastionPort { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the public gateway.
+        /// The date and time of the creation of the Public Gateway.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -77,19 +77,19 @@ namespace Pulumiverse.Scaleway
         public Output<bool> EnableSmtp { get; private set; } = null!;
 
         /// <summary>
-        /// attach an existing flexible IP to the gateway.
+        /// Attach an existing flexible IP to the gateway.
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the public gateway. If not provided it will be randomly generated.
+        /// The name for the Public Gateway. If not provided it will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the public gateway is associated with.
+        /// The Organization ID the Public Gateway is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -101,7 +101,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        /// Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         /// </summary>
         [Output("refreshSshKeys")]
         public Output<string?> RefreshSshKeys { get; private set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the public gateway.
+        /// The tags to associate with the Public Gateway.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -125,19 +125,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the public gateway.
+        /// The date and time of the last update of the Public Gateway.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// override the gateway's default recursive DNS servers, if DNS features are enabled.
+        /// Override the gateway's default recursive DNS servers, if DNS features are enabled.
         /// </summary>
         [Output("upstreamDnsServers")]
         public Output<ImmutableArray<string>> UpstreamDnsServers { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway should be created.
+        /// `zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -208,13 +208,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableSmtp { get; set; }
 
         /// <summary>
-        /// attach an existing flexible IP to the gateway.
+        /// Attach an existing flexible IP to the gateway.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The name of the public gateway. If not provided it will be randomly generated.
+        /// The name for the Public Gateway. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -226,7 +226,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        /// Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         /// </summary>
         [Input("refreshSshKeys")]
         public Input<string>? RefreshSshKeys { get; set; }
@@ -235,7 +235,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the public gateway.
+        /// The tags to associate with the Public Gateway.
         /// </summary>
         public InputList<string> Tags
         {
@@ -253,7 +253,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _upstreamDnsServers;
 
         /// <summary>
-        /// override the gateway's default recursive DNS servers, if DNS features are enabled.
+        /// Override the gateway's default recursive DNS servers, if DNS features are enabled.
         /// </summary>
         public InputList<string> UpstreamDnsServers
         {
@@ -262,7 +262,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway should be created.
+        /// `zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -288,7 +288,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? BastionPort { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the public gateway.
+        /// The date and time of the creation of the Public Gateway.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -300,19 +300,19 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableSmtp { get; set; }
 
         /// <summary>
-        /// attach an existing flexible IP to the gateway.
+        /// Attach an existing flexible IP to the gateway.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
 
         /// <summary>
-        /// The name of the public gateway. If not provided it will be randomly generated.
+        /// The name for the Public Gateway. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the public gateway is associated with.
+        /// The Organization ID the Public Gateway is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -324,7 +324,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Trigger a refresh of the SSH keys on the public gateway by changing this field's value.
+        /// Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         /// </summary>
         [Input("refreshSshKeys")]
         public Input<string>? RefreshSshKeys { get; set; }
@@ -339,7 +339,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the public gateway.
+        /// The tags to associate with the Public Gateway.
         /// </summary>
         public InputList<string> Tags
         {
@@ -354,7 +354,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the public gateway.
+        /// The date and time of the last update of the Public Gateway.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
@@ -363,7 +363,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _upstreamDnsServers;
 
         /// <summary>
-        /// override the gateway's default recursive DNS servers, if DNS features are enabled.
+        /// Override the gateway's default recursive DNS servers, if DNS features are enabled.
         /// </summary>
         public InputList<string> UpstreamDnsServers
         {
@@ -372,7 +372,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway should be created.
+        /// `zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

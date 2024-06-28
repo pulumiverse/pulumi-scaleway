@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway VPC Private Networks.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/vpc/#private-networks-ac2df4).
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/vpc/#private-networks-ac2df4).
  *
  * ## Example Usage
  *
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Private networks can be imported using the `{region}/{id}`, e.g.
+ * Private Networks can be imported using `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -92,7 +92,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The IPv4 subnet to associate with the private network.
+     * The IPv4 subnet to associate with the Private Network.
      */
     public readonly ipv4Subnet!: pulumi.Output<outputs.VpcPrivateNetworkIpv4Subnet>;
     /**
@@ -100,29 +100,29 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly ipv6Subnets!: pulumi.Output<outputs.VpcPrivateNetworkIpv6Subnet[]>;
     /**
-     * The private networks are necessarily regional now.
+     * Private Networks are now all necessarily regional.
      *
      * @deprecated This field is deprecated and will be removed in the next major version
      */
     public readonly isRegional!: pulumi.Output<boolean>;
     /**
-     * The name of the private network. If not provided it will be randomly generated.
+     * The name of the Private Network. If not provided, it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the private network is associated with.
+     * The Organization ID the Private Network is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the private network is associated with.
+     * `projectId`) The ID of the Project the private network is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`) The region of the private network.
+     * `region`) The region of the Private Network.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The tags associated with the private network.
+     * The tags associated with the Private Network.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -130,11 +130,11 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The VPC in which to create the private network.
+     * The VPC in which to create the Private Network.
      */
     public readonly vpcId!: pulumi.Output<string>;
     /**
-     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     * Use `region` instead.
      *
      * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
@@ -194,7 +194,7 @@ export interface VpcPrivateNetworkState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The IPv4 subnet to associate with the private network.
+     * The IPv4 subnet to associate with the Private Network.
      */
     ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
     /**
@@ -202,29 +202,29 @@ export interface VpcPrivateNetworkState {
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
-     * The private networks are necessarily regional now.
+     * Private Networks are now all necessarily regional.
      *
      * @deprecated This field is deprecated and will be removed in the next major version
      */
     isRegional?: pulumi.Input<boolean>;
     /**
-     * The name of the private network. If not provided it will be randomly generated.
+     * The name of the Private Network. If not provided, it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the private network is associated with.
+     * The Organization ID the Private Network is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the private network is associated with.
+     * `projectId`) The ID of the Project the private network is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region of the private network.
+     * `region`) The region of the Private Network.
      */
     region?: pulumi.Input<string>;
     /**
-     * The tags associated with the private network.
+     * The tags associated with the Private Network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -232,11 +232,11 @@ export interface VpcPrivateNetworkState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The VPC in which to create the private network.
+     * The VPC in which to create the Private Network.
      */
     vpcId?: pulumi.Input<string>;
     /**
-     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     * Use `region` instead.
      *
      * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
@@ -248,7 +248,7 @@ export interface VpcPrivateNetworkState {
  */
 export interface VpcPrivateNetworkArgs {
     /**
-     * The IPv4 subnet to associate with the private network.
+     * The IPv4 subnet to associate with the Private Network.
      */
     ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
     /**
@@ -256,33 +256,33 @@ export interface VpcPrivateNetworkArgs {
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
-     * The private networks are necessarily regional now.
+     * Private Networks are now all necessarily regional.
      *
      * @deprecated This field is deprecated and will be removed in the next major version
      */
     isRegional?: pulumi.Input<boolean>;
     /**
-     * The name of the private network. If not provided it will be randomly generated.
+     * The name of the Private Network. If not provided, it will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the private network is associated with.
+     * `projectId`) The ID of the Project the private network is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region of the private network.
+     * `region`) The region of the Private Network.
      */
     region?: pulumi.Input<string>;
     /**
-     * The tags associated with the private network.
+     * The tags associated with the Private Network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The VPC in which to create the private network.
+     * The VPC in which to create the Private Network.
      */
     vpcId?: pulumi.Input<string>;
     /**
-     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     * Use `region` instead.
      *
      * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */

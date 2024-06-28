@@ -18,9 +18,9 @@ class MnqSqsArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MnqSqs resource.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs will be enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sqs will be enabled.
+               in which SQS will be enabled.
         """
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -31,7 +31,7 @@ class MnqSqsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sqs will be enabled for.
+        `project_id`) The ID of the Project in which SQS will be enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -44,7 +44,7 @@ class MnqSqsArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sqs will be enabled.
+        in which SQS will be enabled.
         """
         return pulumi.get(self, "region")
 
@@ -61,10 +61,10 @@ class _MnqSqsState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MnqSqs resources.
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS service for this project.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs will be enabled for.
+        :param pulumi.Input[str] endpoint: The endpoint of the SQS service for this Project.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sqs will be enabled.
+               in which SQS will be enabled.
         """
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
@@ -77,7 +77,7 @@ class _MnqSqsState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        The endpoint of the SQS service for this project.
+        The endpoint of the SQS service for this Project.
         """
         return pulumi.get(self, "endpoint")
 
@@ -89,7 +89,7 @@ class _MnqSqsState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sqs will be enabled for.
+        `project_id`) The ID of the Project in which SQS will be enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -102,7 +102,7 @@ class _MnqSqsState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region
-        in which sqs will be enabled.
+        in which SQS will be enabled.
         """
         return pulumi.get(self, "region")
 
@@ -120,15 +120,15 @@ class MnqSqs(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Activate Scaleway Messaging and queuing SQS for a project.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+        Activate Scaleway Messaging and Queuing SQS in a Project.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/).
 
         ## Example Usage
 
         ### Basic
 
-        Activate SQS for default project
+        Activate SQS in the default Project
 
         ```python
         import pulumi
@@ -160,9 +160,9 @@ class MnqSqs(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs will be enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sqs will be enabled.
+               in which SQS will be enabled.
         """
         ...
     @overload
@@ -171,15 +171,15 @@ class MnqSqs(pulumi.CustomResource):
                  args: Optional[MnqSqsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Activate Scaleway Messaging and queuing SQS for a project.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
+        Activate Scaleway Messaging and Queuing SQS in a Project.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/).
 
         ## Example Usage
 
         ### Basic
 
-        Activate SQS for default project
+        Activate SQS in the default Project
 
         ```python
         import pulumi
@@ -258,10 +258,10 @@ class MnqSqs(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] endpoint: The endpoint of the SQS service for this project.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs will be enabled for.
+        :param pulumi.Input[str] endpoint: The endpoint of the SQS service for this Project.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS will be enabled.
         :param pulumi.Input[str] region: `region`). The region
-               in which sqs will be enabled.
+               in which SQS will be enabled.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -276,7 +276,7 @@ class MnqSqs(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[str]:
         """
-        The endpoint of the SQS service for this project.
+        The endpoint of the SQS service for this Project.
         """
         return pulumi.get(self, "endpoint")
 
@@ -284,7 +284,7 @@ class MnqSqs(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sqs will be enabled for.
+        `project_id`) The ID of the Project in which SQS will be enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -293,7 +293,7 @@ class MnqSqs(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`). The region
-        in which sqs will be enabled.
+        in which SQS will be enabled.
         """
         return pulumi.get(self, "region")
 

@@ -49,7 +49,7 @@ class GetLbAclsResult:
     @pulumi.getter
     def acls(self) -> Sequence['outputs.GetLbAclsAclResult']:
         """
-        List of found ACLs
+        List of retrieved ACLs
         """
         return pulumi.get(self, "acls")
 
@@ -110,6 +110,8 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     """
     Gets information about multiple Load Balancer ACLs.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+
     ## Example Usage
 
     ```python
@@ -122,10 +124,10 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     ```
 
 
-    :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-           > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
-    :param str name: The ACL name used as filter. ACLs with a name like it are listed.
-    :param str zone: `zone`) The zone in which ACLs exist.
+    :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+           > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+    :param str name: The ACL name to filter for. ACLs with a matching name are listed.
+    :param str zone: `zone`) The zone in which the ACLs exist.
     """
     __args__ = dict()
     __args__['frontendId'] = frontend_id
@@ -154,6 +156,8 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     """
     Gets information about multiple Load Balancer ACLs.
 
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+
     ## Example Usage
 
     ```python
@@ -166,9 +170,9 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-           > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
-    :param str name: The ACL name used as filter. ACLs with a name like it are listed.
-    :param str zone: `zone`) The zone in which ACLs exist.
+    :param str frontend_id: The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+           > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+    :param str name: The ACL name to filter for. ACLs with a matching name are listed.
+    :param str zone: `zone`) The zone in which the ACLs exist.
     """
     ...

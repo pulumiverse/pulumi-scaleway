@@ -5,10 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Messaging and queuing Nats Accounts.
- * For further information please check
- * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
- * To use Scaleway's provider with official nats jetstream provider, check out the corresponding guide
+ * Creates and manages Scaleway Messaging and Queuing NATS accounts.
+ * For further information, see
+ * our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
+ * To use the Scaleway provider with the official NATS JetStream provider, check out the corresponding guide.
  *
  * ## Example Usage
  *
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g.
+ * Namespaces can be imported using `{region}/{id}`, e.g.
  *
  * bash
  *
@@ -64,11 +64,11 @@ export class MnqNatsAccount extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * The unique name of the nats account.
+     * The unique name of the NATS account.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the
+     * `projectId`) The ID of the Project the
      * account is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -116,11 +116,11 @@ export interface MnqNatsAccountState {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * The unique name of the nats account.
+     * The unique name of the NATS account.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the
+     * `projectId`) The ID of the Project the
      * account is associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -136,11 +136,11 @@ export interface MnqNatsAccountState {
  */
 export interface MnqNatsAccountArgs {
     /**
-     * The unique name of the nats account.
+     * The unique name of the NATS account.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the
+     * `projectId`) The ID of the Project the
      * account is associated with.
      */
     projectId?: pulumi.Input<string>;

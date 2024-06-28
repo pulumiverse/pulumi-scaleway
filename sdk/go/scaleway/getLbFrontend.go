@@ -11,8 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Get information about Scaleway Load-Balancer Frontends.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+// Get information about Scaleway Load Balancer frontends.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 //
 // ## Example Usage
 //
@@ -80,10 +81,10 @@ func GetLbFrontend(ctx *pulumi.Context, args *GetLbFrontendArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getLbFrontend.
 type GetLbFrontendArgs struct {
-	// The frontend id.
+	// The frontend ID.
 	// - Only one of `name` and `frontendId` should be specified.
 	FrontendId *string `pulumi:"frontendId"`
-	// The load-balancer ID this frontend is attached to.
+	// The Load Balancer ID this frontend is attached to.
 	LbId *string `pulumi:"lbId"`
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
@@ -122,10 +123,10 @@ func GetLbFrontendOutput(ctx *pulumi.Context, args GetLbFrontendOutputArgs, opts
 
 // A collection of arguments for invoking getLbFrontend.
 type GetLbFrontendOutputArgs struct {
-	// The frontend id.
+	// The frontend ID.
 	// - Only one of `name` and `frontendId` should be specified.
 	FrontendId pulumi.StringPtrInput `pulumi:"frontendId"`
-	// The load-balancer ID this frontend is attached to.
+	// The Load Balancer ID this frontend is attached to.
 	LbId pulumi.StringPtrInput `pulumi:"lbId"`
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`

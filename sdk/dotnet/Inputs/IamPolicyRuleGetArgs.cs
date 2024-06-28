@@ -23,12 +23,12 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _permissionSetNames;
 
         /// <summary>
-        /// Names of permission sets bound to the rule.
+        /// Names of permission sets bind to the rule.
         /// 
-        /// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        /// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
         /// 
         /// ```shell
-        /// $ scw iam permission-set list
+        /// $ scw IAM permission-set list
         /// ```
         /// </summary>
         public InputList<string> PermissionSetNames
@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// List of project IDs scoped to the rule.
         /// 
-        /// &gt; **Important** One of `organization_id` or `project_ids`  must be set per rule.
+        /// &gt; **Important** One `organization_id` or `project_ids` must be set per rule.
         /// </summary>
         public InputList<string> ProjectIds
         {

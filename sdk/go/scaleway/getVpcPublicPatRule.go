@@ -11,8 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a public gateway PAT rule. For further information please check the
-// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+// Gets information about a Public Gateway PAT rule. For further information, please see the
+// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
 //
 // ## Example Usage
 //
@@ -129,26 +129,26 @@ type GetVpcPublicPatRuleArgs struct {
 	// The ID of the PAT rule to retrieve
 	PatRuleId string `pulumi:"patRuleId"`
 	// `zone`) The zone in which
-	// the image exists.
+	// the rule exists.
 	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getVpcPublicPatRule.
 type GetVpcPublicPatRuleResult struct {
 	CreatedAt string `pulumi:"createdAt"`
-	// The ID of the public gateway.
+	// The ID of the Public Gateway.
 	GatewayId string `pulumi:"gatewayId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string `pulumi:"id"`
 	OrganizationId string `pulumi:"organizationId"`
 	PatRuleId      string `pulumi:"patRuleId"`
-	// The Private IP to forward data to (IP address).
+	// The private IP address to forward data to.
 	PrivateIp string `pulumi:"privateIp"`
-	// The Private port to translate to.
+	// The private port to translate to.
 	PrivatePort int `pulumi:"privatePort"`
-	// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+	// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 	Protocol string `pulumi:"protocol"`
-	// The Public port to listen on.
+	// The public port to listen on.
 	PublicPort int     `pulumi:"publicPort"`
 	UpdatedAt  string  `pulumi:"updatedAt"`
 	Zone       *string `pulumi:"zone"`
@@ -172,7 +172,7 @@ type GetVpcPublicPatRuleOutputArgs struct {
 	// The ID of the PAT rule to retrieve
 	PatRuleId pulumi.StringInput `pulumi:"patRuleId"`
 	// `zone`) The zone in which
-	// the image exists.
+	// the rule exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -199,7 +199,7 @@ func (o GetVpcPublicPatRuleResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the public gateway.
+// The ID of the Public Gateway.
 func (o GetVpcPublicPatRuleResultOutput) GatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.GatewayId }).(pulumi.StringOutput)
 }
@@ -217,22 +217,22 @@ func (o GetVpcPublicPatRuleResultOutput) PatRuleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.PatRuleId }).(pulumi.StringOutput)
 }
 
-// The Private IP to forward data to (IP address).
+// The private IP address to forward data to.
 func (o GetVpcPublicPatRuleResultOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
-// The Private port to translate to.
+// The private port to translate to.
 func (o GetVpcPublicPatRuleResultOutput) PrivatePort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) int { return v.PrivatePort }).(pulumi.IntOutput)
 }
 
-// The Protocol the rule should apply to. Possible values are both, tcp and udp.
+// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
 func (o GetVpcPublicPatRuleResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// The Public port to listen on.
+// The public port to listen on.
 func (o GetVpcPublicPatRuleResultOutput) PublicPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVpcPublicPatRuleResult) int { return v.PublicPort }).(pulumi.IntOutput)
 }

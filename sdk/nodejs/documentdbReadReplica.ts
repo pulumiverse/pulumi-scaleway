@@ -30,8 +30,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const instance = new scaleway.DocumentdbInstance("instance", {
+ *     nodeType: "docdb-play2-pico",
+ *     engine: "FerretDB-1",
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     volumeSizeInGb: 20,
+ * });
  * const replica = new scaleway.DocumentdbReadReplica("replica", {
- *     instanceId: scaleway_rdb_instance.instance.id,
+ *     instanceId: instance.id,
  *     privateNetwork: {
  *         privateNetworkId: pn.id,
  *         serviceIp: "192.168.1.254/24",

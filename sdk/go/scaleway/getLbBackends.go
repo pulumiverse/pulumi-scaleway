@@ -13,6 +13,8 @@ import (
 
 // Gets information about multiple Load Balancer Backends.
 //
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+//
 // ## Example Usage
 //
 // ```go
@@ -57,9 +59,9 @@ func GetLbBackends(ctx *pulumi.Context, args *GetLbBackendsArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getLbBackends.
 type GetLbBackendsArgs struct {
-	// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+	// The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
 	LbId string `pulumi:"lbId"`
-	// The backend name used as filter. Backends with a name like it are listed.
+	// The backend name to filter for. Backends with a matching name are listed.
 	Name      *string `pulumi:"name"`
 	ProjectId *string `pulumi:"projectId"`
 	// `zone`) The zone in which backends exist.
@@ -68,7 +70,7 @@ type GetLbBackendsArgs struct {
 
 // A collection of values returned by getLbBackends.
 type GetLbBackendsResult struct {
-	// List of found backends
+	// List of retrieved backends
 	Backends []GetLbBackendsBackend `pulumi:"backends"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
@@ -94,9 +96,9 @@ func GetLbBackendsOutput(ctx *pulumi.Context, args GetLbBackendsOutputArgs, opts
 
 // A collection of arguments for invoking getLbBackends.
 type GetLbBackendsOutputArgs struct {
-	// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+	// The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
 	LbId pulumi.StringInput `pulumi:"lbId"`
-	// The backend name used as filter. Backends with a name like it are listed.
+	// The backend name to filter for. Backends with a matching name are listed.
 	Name      pulumi.StringPtrInput `pulumi:"name"`
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `zone`) The zone in which backends exist.
@@ -122,7 +124,7 @@ func (o GetLbBackendsResultOutput) ToGetLbBackendsResultOutputWithContext(ctx co
 	return o
 }
 
-// List of found backends
+// List of retrieved backends
 func (o GetLbBackendsResultOutput) Backends() GetLbBackendsBackendArrayOutput {
 	return o.ApplyT(func(v GetLbBackendsResult) []GetLbBackendsBackend { return v.Backends }).(GetLbBackendsBackendArrayOutput)
 }

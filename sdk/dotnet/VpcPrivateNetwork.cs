@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway VPC Private Networks.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/vpc/#private-networks-ac2df4).
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/vpc/#private-networks-ac2df4).
     /// 
     /// ## Example Usage
     /// 
@@ -77,7 +77,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Private networks can be imported using the `{region}/{id}`, e.g.
+    /// Private Networks can be imported using `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The IPv4 subnet to associate with the private network.
+        /// The IPv4 subnet to associate with the Private Network.
         /// </summary>
         [Output("ipv4Subnet")]
         public Output<Outputs.VpcPrivateNetworkIpv4Subnet> Ipv4Subnet { get; private set; } = null!;
@@ -107,37 +107,37 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.VpcPrivateNetworkIpv6Subnet>> Ipv6Subnets { get; private set; } = null!;
 
         /// <summary>
-        /// The private networks are necessarily regional now.
+        /// Private Networks are now all necessarily regional.
         /// </summary>
         [Output("isRegional")]
         public Output<bool> IsRegional { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the private network. If not provided it will be randomly generated.
+        /// The name of the Private Network. If not provided, it will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the private network is associated with.
+        /// The Organization ID the Private Network is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the private network is associated with.
+        /// `project_id`) The ID of the Project the private network is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the private network.
+        /// `region`) The region of the Private Network.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the private network.
+        /// The tags associated with the Private Network.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -149,13 +149,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The VPC in which to create the private network.
+        /// The VPC in which to create the Private Network.
         /// </summary>
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
 
         /// <summary>
-        /// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+        /// Use `region` instead.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -208,7 +208,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IPv4 subnet to associate with the private network.
+        /// The IPv4 subnet to associate with the Private Network.
         /// </summary>
         [Input("ipv4Subnet")]
         public Input<Inputs.VpcPrivateNetworkIpv4SubnetArgs>? Ipv4Subnet { get; set; }
@@ -226,25 +226,25 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The private networks are necessarily regional now.
+        /// Private Networks are now all necessarily regional.
         /// </summary>
         [Input("isRegional")]
         public Input<bool>? IsRegional { get; set; }
 
         /// <summary>
-        /// The name of the private network. If not provided it will be randomly generated.
+        /// The name of the Private Network. If not provided, it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the private network is associated with.
+        /// `project_id`) The ID of the Project the private network is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the private network.
+        /// `region`) The region of the Private Network.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -253,7 +253,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the private network.
+        /// The tags associated with the Private Network.
         /// </summary>
         public InputList<string> Tags
         {
@@ -262,13 +262,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The VPC in which to create the private network.
+        /// The VPC in which to create the Private Network.
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+        /// Use `region` instead.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -288,7 +288,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The IPv4 subnet to associate with the private network.
+        /// The IPv4 subnet to associate with the Private Network.
         /// </summary>
         [Input("ipv4Subnet")]
         public Input<Inputs.VpcPrivateNetworkIpv4SubnetGetArgs>? Ipv4Subnet { get; set; }
@@ -306,31 +306,31 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The private networks are necessarily regional now.
+        /// Private Networks are now all necessarily regional.
         /// </summary>
         [Input("isRegional")]
         public Input<bool>? IsRegional { get; set; }
 
         /// <summary>
-        /// The name of the private network. If not provided it will be randomly generated.
+        /// The name of the Private Network. If not provided, it will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the private network is associated with.
+        /// The Organization ID the Private Network is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the private network is associated with.
+        /// `project_id`) The ID of the Project the private network is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the private network.
+        /// `region`) The region of the Private Network.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -339,7 +339,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the private network.
+        /// The tags associated with the Private Network.
         /// </summary>
         public InputList<string> Tags
         {
@@ -354,13 +354,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The VPC in which to create the private network.
+        /// The VPC in which to create the Private Network.
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+        /// Use `region` instead.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -1019,8 +1019,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  timeout_tunnel: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Load-Balancer Backends.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        Creates and manages Scaleway Load Balancer backends.
+
+        or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Example Usage
 
@@ -1053,7 +1054,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer backend can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer backends can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -1100,8 +1101,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  args: LoadbalancerBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Load-Balancer Backends.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        Creates and manages Scaleway Load Balancer backends.
+
+        or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Example Usage
 
@@ -1134,7 +1136,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer backend can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer backends can be imported using `{zone}/{id}`, e.g.
 
         bash
 

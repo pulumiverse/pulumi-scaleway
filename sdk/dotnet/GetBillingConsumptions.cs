@@ -12,9 +12,15 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetBillingConsumptions
     {
+        /// <summary>
+        /// Gets information about your Consumptions.
+        /// </summary>
         public static Task<GetBillingConsumptionsResult> InvokeAsync(GetBillingConsumptionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about your Consumptions.
+        /// </summary>
         public static Output<GetBillingConsumptionsResult> Invoke(GetBillingConsumptionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsInvokeArgs(), options.WithDefaults());
     }
@@ -22,6 +28,9 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetBillingConsumptionsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
@@ -33,6 +42,9 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetBillingConsumptionsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
@@ -46,13 +58,22 @@ namespace Pulumiverse.Scaleway
     [OutputType]
     public sealed class GetBillingConsumptionsResult
     {
+        /// <summary>
+        /// List of found consumptions
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetBillingConsumptionsConsumptionResult> Consumptions;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string OrganizationId;
+        /// <summary>
+        /// The project ID of the consumption.
+        /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// The last consumption update date.
+        /// </summary>
         public readonly string UpdatedAt;
 
         [OutputConstructor]

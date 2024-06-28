@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetLbAclsAclMatchResult
     {
         /// <summary>
-        /// The matched HTTP filter.
+        /// The HTTP filter to match.
         /// </summary>
         public readonly string HttpFilter;
         /// <summary>
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string HttpFilterOption;
         /// <summary>
-        /// The possible values matched for a given HTTP filter.
+        /// The possible values to match for a given HTTP filter.
         /// </summary>
         public readonly ImmutableArray<string> HttpFilterValues;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool Invert;
         /// <summary>
-        /// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         /// </summary>
         public readonly ImmutableArray<string> IpSubnets;
 

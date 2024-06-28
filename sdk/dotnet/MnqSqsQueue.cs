@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Messaging and queuing SQS Queues.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
+    /// Creates and manages Scaleway Messaging and Queuing SQS queues.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/).
     /// 
     /// ## Example Usage
     /// 
@@ -85,7 +85,7 @@ namespace Pulumiverse.Scaleway
         public Output<int?> MessageMaxSize { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -97,7 +97,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> NamePrefix { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the sqs is enabled for.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -109,7 +109,7 @@ namespace Pulumiverse.Scaleway
         public Output<int?> ReceiveWaitTimeSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -231,7 +231,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MessageMaxSize { get; set; }
 
         /// <summary>
-        /// The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -243,7 +243,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sqs is enabled for.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -255,7 +255,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ReceiveWaitTimeSeconds { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -337,7 +337,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MessageMaxSize { get; set; }
 
         /// <summary>
-        /// The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -349,7 +349,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sqs is enabled for.
+        /// `project_id`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -361,7 +361,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ReceiveWaitTimeSeconds { get; set; }
 
         /// <summary>
-        /// `region`). The region in which sqs is enabled.
+        /// `region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -149,8 +149,9 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbFrontendResult:
     """
-    Get information about Scaleway Load-Balancer Frontends.
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+    Get information about Scaleway Load Balancer frontends.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 
@@ -178,9 +179,9 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
     ```
 
 
-    :param str frontend_id: The frontend id.
+    :param str frontend_id: The frontend ID.
            - Only one of `name` and `frontend_id` should be specified.
-    :param str lb_id: The load-balancer ID this frontend is attached to.
+    :param str lb_id: The Load Balancer ID this frontend is attached to.
     :param str name: The name of the frontend.
            - When using the `name` you should specify the `lb-id`
     """
@@ -212,8 +213,9 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbFrontendResult]:
     """
-    Get information about Scaleway Load-Balancer Frontends.
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+    Get information about Scaleway Load Balancer frontends.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 
@@ -241,9 +243,9 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
     ```
 
 
-    :param str frontend_id: The frontend id.
+    :param str frontend_id: The frontend ID.
            - Only one of `name` and `frontend_id` should be specified.
-    :param str lb_id: The load-balancer ID this frontend is attached to.
+    :param str lb_id: The Load Balancer ID this frontend is attached to.
     :param str name: The name of the frontend.
            - When using the `name` you should specify the `lb-id`
     """

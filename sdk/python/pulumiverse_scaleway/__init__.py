@@ -7,7 +7,7 @@ import typing
 # Export this package's modules as members:
 from .account_project import *
 from .account_ssh_key import *
-from .apple_slicon_valley_server import *
+from .apple_silicon_server import *
 from .baremetal_server import *
 from .block_snapshot import *
 from .block_volume import *
@@ -58,6 +58,7 @@ from .get_block_snapshot import *
 from .get_block_volume import *
 from .get_cockpit import *
 from .get_cockpit_plan import *
+from .get_config import *
 from .get_container import *
 from .get_container_namespace import *
 from .get_database import *
@@ -225,10 +226,10 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/appleSliconValleyServer",
+  "mod": "index/appleSiliconServer",
   "fqn": "pulumiverse_scaleway",
   "classes": {
-   "scaleway:index/appleSliconValleyServer:AppleSliconValleyServer": "AppleSliconValleyServer"
+   "scaleway:index/appleSiliconServer:AppleSiliconServer": "AppleSiliconServer"
   }
  },
  {

@@ -17,6 +17,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic
+//
 // ```go
 // package main
 //
@@ -32,6 +34,46 @@ import (
 //			_, err := scaleway.NewBlockVolume(ctx, "blockVolume", &scaleway.BlockVolumeArgs{
 //				Iops:     pulumi.Int(5000),
 //				SizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With snapshot
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			base, err := scaleway.NewBlockVolume(ctx, "base", &scaleway.BlockVolumeArgs{
+//				Iops:     pulumi.Int(5000),
+//				SizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainBlockSnapshot, err := scaleway.NewBlockSnapshot(ctx, "mainBlockSnapshot", &scaleway.BlockSnapshotArgs{
+//				VolumeId: base.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewBlockVolume(ctx, "mainBlockVolume", &scaleway.BlockVolumeArgs{
+//				Iops:       pulumi.Int(5000),
+//				SnapshotId: mainBlockSnapshot.ID(),
 //			})
 //			if err != nil {
 //				return err

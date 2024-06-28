@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         /// </summary>
         public readonly string Zone;
 

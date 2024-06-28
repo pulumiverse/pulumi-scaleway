@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class VpcPrivateNetworkIpv4Subnet
     {
         /// <summary>
-        /// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        /// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         /// </summary>
         public readonly string? Address;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        /// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         /// </summary>
         public readonly int? PrefixLength;
         /// <summary>

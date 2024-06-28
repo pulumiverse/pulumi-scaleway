@@ -20,8 +20,8 @@ class LoadbalancerIpArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerIp resource.
-        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
@@ -38,7 +38,7 @@ class LoadbalancerIpArgs:
     @pulumi.getter(name="isIpv6")
     def is_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        If true, creates a Flexible IP with an IPv6 address.
+        If true, creates a flexible IP with an IPv6 address.
         """
         return pulumi.get(self, "is_ipv6")
 
@@ -50,7 +50,7 @@ class LoadbalancerIpArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -96,11 +96,11 @@ class _LoadbalancerIpState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerIp resources.
-        :param pulumi.Input[str] ip_address: The IP Address
-        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
-        :param pulumi.Input[str] lb_id: The associated load-balance ID if any
+        :param pulumi.Input[str] ip_address: The IP address
+        :param pulumi.Input[bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
+        :param pulumi.Input[str] lb_id: The associated Load Balancer ID if any
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
@@ -126,7 +126,7 @@ class _LoadbalancerIpState:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP Address
+        The IP address
         """
         return pulumi.get(self, "ip_address")
 
@@ -138,7 +138,7 @@ class _LoadbalancerIpState:
     @pulumi.getter(name="isIpv6")
     def is_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        If true, creates a Flexible IP with an IPv6 address.
+        If true, creates a flexible IP with an IPv6 address.
         """
         return pulumi.get(self, "is_ipv6")
 
@@ -150,7 +150,7 @@ class _LoadbalancerIpState:
     @pulumi.getter(name="lbId")
     def lb_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The associated load-balance ID if any
+        The associated Load Balancer ID if any
         """
         return pulumi.get(self, "lb_id")
 
@@ -174,7 +174,7 @@ class _LoadbalancerIpState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -230,8 +230,9 @@ class LoadbalancerIp(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Load-Balancers IPs.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
+        Creates and manages Scaleway Load Balancer IP addresses.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
         ## Example Usage
 
@@ -255,7 +256,7 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         ## Import
 
-        IPs can be imported using the `{zone}/{id}`, e.g.
+        IPs can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -265,8 +266,8 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
@@ -277,8 +278,9 @@ class LoadbalancerIp(pulumi.CustomResource):
                  args: Optional[LoadbalancerIpArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Load-Balancers IPs.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
+        Creates and manages Scaleway Load Balancer IP addresses.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
         ## Example Usage
 
@@ -302,7 +304,7 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         ## Import
 
-        IPs can be imported using the `{zone}/{id}`, e.g.
+        IPs can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -371,11 +373,11 @@ class LoadbalancerIp(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_address: The IP Address
-        :param pulumi.Input[bool] is_ipv6: If true, creates a Flexible IP with an IPv6 address.
-        :param pulumi.Input[str] lb_id: The associated load-balance ID if any
+        :param pulumi.Input[str] ip_address: The IP address
+        :param pulumi.Input[bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
+        :param pulumi.Input[str] lb_id: The associated Load Balancer ID if any
         :param pulumi.Input[str] organization_id: The organization_id you want to attach the resource to
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
@@ -398,7 +400,7 @@ class LoadbalancerIp(pulumi.CustomResource):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Output[str]:
         """
-        The IP Address
+        The IP address
         """
         return pulumi.get(self, "ip_address")
 
@@ -406,7 +408,7 @@ class LoadbalancerIp(pulumi.CustomResource):
     @pulumi.getter(name="isIpv6")
     def is_ipv6(self) -> pulumi.Output[Optional[bool]]:
         """
-        If true, creates a Flexible IP with an IPv6 address.
+        If true, creates a flexible IP with an IPv6 address.
         """
         return pulumi.get(self, "is_ipv6")
 
@@ -414,7 +416,7 @@ class LoadbalancerIp(pulumi.CustomResource):
     @pulumi.getter(name="lbId")
     def lb_id(self) -> pulumi.Output[str]:
         """
-        The associated load-balance ID if any
+        The associated Load Balancer ID if any
         """
         return pulumi.get(self, "lb_id")
 
@@ -430,7 +432,7 @@ class LoadbalancerIp(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the IP is associated with.
+        `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 

@@ -35,11 +35,11 @@ class MnqSqsQueueArgs:
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
-        :param pulumi.Input[str] name: The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[str] name: The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
@@ -144,7 +144,7 @@ class MnqSqsQueueArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
@@ -168,7 +168,7 @@ class MnqSqsQueueArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sqs is enabled for.
+        `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -192,7 +192,7 @@ class MnqSqsQueueArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which sqs is enabled.
+        `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -249,11 +249,11 @@ class _MnqSqsQueueState:
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
-        :param pulumi.Input[str] name: The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[str] name: The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
         :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] url: The URL of the queue.
@@ -352,7 +352,7 @@ class _MnqSqsQueueState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
@@ -376,7 +376,7 @@ class _MnqSqsQueueState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the sqs is enabled for.
+        `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -400,7 +400,7 @@ class _MnqSqsQueueState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which sqs is enabled.
+        `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 
@@ -477,9 +477,9 @@ class MnqSqsQueue(pulumi.CustomResource):
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Messaging and queuing SQS Queues.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
+        Creates and manages Scaleway Messaging and Queuing SQS queues.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/).
 
         ## Example Usage
 
@@ -511,11 +511,11 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
-        :param pulumi.Input[str] name: The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[str] name: The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
         :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
@@ -527,9 +527,9 @@ class MnqSqsQueue(pulumi.CustomResource):
                  args: MnqSqsQueueArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Messaging and queuing SQS Queues.
-        For further information please check
-        our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
+        Creates and manages Scaleway Messaging and Queuing SQS queues.
+        For further information, see
+        our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/).
 
         ## Example Usage
 
@@ -647,11 +647,11 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.Input[bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
-        :param pulumi.Input[str] name: The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        :param pulumi.Input[str] name: The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[int] receive_wait_time_seconds: The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
-        :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
+        :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret key of the SQS queue.
         :param pulumi.Input[str] sqs_endpoint: The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         :param pulumi.Input[str] url: The URL of the queue.
@@ -721,7 +721,7 @@ class MnqSqsQueue(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
@@ -737,7 +737,7 @@ class MnqSqsQueue(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the sqs is enabled for.
+        `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
@@ -753,7 +753,7 @@ class MnqSqsQueue(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which sqs is enabled.
+        `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 

@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IpamIpSource
     {
         /// <summary>
-        /// The private network the IP lives in if the IP is a private IP.
+        /// The Private Network of the IP (if the IP is a private IP).
         /// </summary>
         public readonly string? PrivateNetworkId;
         /// <summary>
-        /// The private network subnet the IP lives in if the IP is a private IP in a private network.
+        /// The Private Network subnet of the IP (if the IP is a private IP).
         /// </summary>
         public readonly string? SubnetId;
         /// <summary>
-        /// The zone the IP lives in if the IP is a public zoned one
+        /// The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
         /// </summary>
         public readonly string? Zonal;
 

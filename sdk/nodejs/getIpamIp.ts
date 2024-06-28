@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+ * Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+ *
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
  *
  * ## Examples
  *
@@ -24,7 +26,7 @@ import * as utilities from "./utilities";
  *
  * ### Instance Private Network IP
  *
- * Get Instance IP in a private network.
+ * Get an Instance's IP on a Private Network.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -105,19 +107,19 @@ export interface GetIpamIpArgs {
      */
     attached?: boolean;
     /**
-     * The IPAM IP ID. Cannot be used with the rest of the arguments.
+     * The IPAM IP ID. Cannot be used with any other arguments.
      */
     ipamIpId?: string;
     /**
-     * The Mac Address linked to the IP. Cannot be used with `ipamIpId`.
+     * The MAC address linked to the IP. Cannot be used with `ipamIpId`.
      */
     macAddress?: string;
     /**
-     * The ID of the private network the IP belong to. Cannot be used with `ipamIpId`.
+     * The ID of the Private Network the IP belongs to. Cannot be used with `ipamIpId`.
      */
     privateNetworkId?: string;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     projectId?: string;
     /**
@@ -135,7 +137,7 @@ export interface GetIpamIpArgs {
      */
     tags?: string[];
     /**
-     * The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
+     * The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipamIpId`.
      */
     type?: string;
     /**
@@ -153,7 +155,7 @@ export interface GetIpamIpResult {
      */
     readonly address: string;
     /**
-     * the IP address with a CIDR notation.
+     * the IP address in CIDR notation.
      */
     readonly addressCidr: string;
     readonly attached?: boolean;
@@ -173,7 +175,9 @@ export interface GetIpamIpResult {
     readonly zonal: string;
 }
 /**
- * Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
+ * Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+ *
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
  *
  * ## Examples
  *
@@ -190,7 +194,7 @@ export interface GetIpamIpResult {
  *
  * ### Instance Private Network IP
  *
- * Get Instance IP in a private network.
+ * Get an Instance's IP on a Private Network.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -257,19 +261,19 @@ export interface GetIpamIpOutputArgs {
      */
     attached?: pulumi.Input<boolean>;
     /**
-     * The IPAM IP ID. Cannot be used with the rest of the arguments.
+     * The IPAM IP ID. Cannot be used with any other arguments.
      */
     ipamIpId?: pulumi.Input<string>;
     /**
-     * The Mac Address linked to the IP. Cannot be used with `ipamIpId`.
+     * The MAC address linked to the IP. Cannot be used with `ipamIpId`.
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The ID of the private network the IP belong to. Cannot be used with `ipamIpId`.
+     * The ID of the Private Network the IP belongs to. Cannot be used with `ipamIpId`.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * `projectId`) The ID of the Project the IP is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -287,7 +291,7 @@ export interface GetIpamIpOutputArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of IP to search for (ipv4, ipv6). Cannot be used with `ipamIpId`.
+     * The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipamIpId`.
      */
     type?: pulumi.Input<string>;
     /**

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a public gateway DHCP.
+ * Gets information about a Public Gateway DHCP configuration.
  *
  * ## Example Usage
  *
@@ -64,7 +64,7 @@ export interface GetVpcPublicGatewayDhcpResult {
     readonly zone: string;
 }
 /**
- * Gets information about a public gateway DHCP.
+ * Gets information about a Public Gateway DHCP configuration.
  *
  * ## Example Usage
  *

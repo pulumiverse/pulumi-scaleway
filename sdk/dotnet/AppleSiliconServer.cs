@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var server = new Scaleway.AppleSliconValleyServer("server", new()
+    ///     var server = new Scaleway.AppleSiliconServer("server", new()
     ///     {
     ///         Type = "M1-M",
     ///     });
@@ -41,11 +41,11 @@ namespace Pulumiverse.Scaleway
     /// bash
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/appleSliconValleyServer:AppleSliconValleyServer main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer")]
-    public partial class AppleSliconValleyServer : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/appleSiliconServer:AppleSiliconServer")]
+    public partial class AppleSiliconServer : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The date and time of the creation of the Apple Silicon server.
@@ -119,19 +119,19 @@ namespace Pulumiverse.Scaleway
 
 
         /// <summary>
-        /// Create a AppleSliconValleyServer resource with the given unique name, arguments, and options.
+        /// Create a AppleSiliconServer resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppleSliconValleyServer(string name, AppleSliconValleyServerArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer", name, args ?? new AppleSliconValleyServerArgs(), MakeResourceOptions(options, ""))
+        public AppleSiliconServer(string name, AppleSiliconServerArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/appleSiliconServer:AppleSiliconServer", name, args ?? new AppleSiliconServerArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppleSliconValleyServer(string name, Input<string> id, AppleSliconValleyServerState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/appleSliconValleyServer:AppleSliconValleyServer", name, state, MakeResourceOptions(options, id))
+        private AppleSiliconServer(string name, Input<string> id, AppleSiliconServerState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/appleSiliconServer:AppleSiliconServer", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -148,7 +148,7 @@ namespace Pulumiverse.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing AppleSliconValleyServer resource's state with the given name, ID, and optional extra
+        /// Get an existing AppleSiliconServer resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -156,13 +156,13 @@ namespace Pulumiverse.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppleSliconValleyServer Get(string name, Input<string> id, AppleSliconValleyServerState? state = null, CustomResourceOptions? options = null)
+        public static AppleSiliconServer Get(string name, Input<string> id, AppleSiliconServerState? state = null, CustomResourceOptions? options = null)
         {
-            return new AppleSliconValleyServer(name, id, state, options);
+            return new AppleSiliconServer(name, id, state, options);
         }
     }
 
-    public sealed class AppleSliconValleyServerArgs : global::Pulumi.ResourceArgs
+    public sealed class AppleSiliconServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the server.
@@ -192,13 +192,13 @@ namespace Pulumiverse.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public AppleSliconValleyServerArgs()
+        public AppleSiliconServerArgs()
         {
         }
-        public static new AppleSliconValleyServerArgs Empty => new AppleSliconValleyServerArgs();
+        public static new AppleSiliconServerArgs Empty => new AppleSiliconServerArgs();
     }
 
-    public sealed class AppleSliconValleyServerState : global::Pulumi.ResourceArgs
+    public sealed class AppleSiliconServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The date and time of the creation of the Apple Silicon server.
@@ -270,9 +270,9 @@ namespace Pulumiverse.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public AppleSliconValleyServerState()
+        public AppleSiliconServerState()
         {
         }
-        public static new AppleSliconValleyServerState Empty => new AppleSliconValleyServerState();
+        public static new AppleSiliconServerState Empty => new AppleSiliconServerState();
     }
 }

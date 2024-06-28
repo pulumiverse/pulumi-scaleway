@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class LoadbalancerPrivateNetwork
     {
         /// <summary>
-        /// (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+        /// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
         /// </summary>
         public readonly bool? DhcpConfig;
         /// <summary>
-        /// (Required) The ID of the Private Network to associate.
+        /// (Required) The ID of the Private Network to attach to.
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
-        /// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        /// (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         /// </summary>
         public readonly string? StaticConfig;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// `zone`) The zone of the load-balancer.
+        /// `zone`) The zone of the Load Balancer.
         /// </summary>
         public readonly string? Zone;
 

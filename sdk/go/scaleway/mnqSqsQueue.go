@@ -12,9 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Messaging and queuing SQS Queues.
-// For further information please check
-// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
+// Creates and manages Scaleway Messaging and Queuing SQS queues.
+// For further information, see
+// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/).
 //
 // ## Example Usage
 //
@@ -74,15 +74,15 @@ type MnqSqsQueue struct {
 	MessageMaxAge pulumi.IntPtrOutput `pulumi:"messageMaxAge"`
 	// The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
 	MessageMaxSize pulumi.IntPtrOutput `pulumi:"messageMaxSize"`
-	// The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringOutput `pulumi:"namePrefix"`
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
 	ReceiveWaitTimeSeconds pulumi.IntPtrOutput `pulumi:"receiveWaitTimeSeconds"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
@@ -151,15 +151,15 @@ type mnqSqsQueueState struct {
 	MessageMaxAge *int `pulumi:"messageMaxAge"`
 	// The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
 	MessageMaxSize *int `pulumi:"messageMaxSize"`
-	// The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name *string `pulumi:"name"`
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix *string `pulumi:"namePrefix"`
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
 	ReceiveWaitTimeSeconds *int `pulumi:"receiveWaitTimeSeconds"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey *string `pulumi:"secretKey"`
@@ -182,15 +182,15 @@ type MnqSqsQueueState struct {
 	MessageMaxAge pulumi.IntPtrInput
 	// The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
 	MessageMaxSize pulumi.IntPtrInput
-	// The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name pulumi.StringPtrInput
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput
 	// The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
 	ReceiveWaitTimeSeconds pulumi.IntPtrInput
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringPtrInput
@@ -217,15 +217,15 @@ type mnqSqsQueueArgs struct {
 	MessageMaxAge *int `pulumi:"messageMaxAge"`
 	// The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
 	MessageMaxSize *int `pulumi:"messageMaxSize"`
-	// The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name *string `pulumi:"name"`
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix *string `pulumi:"namePrefix"`
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
 	// The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
 	ReceiveWaitTimeSeconds *int `pulumi:"receiveWaitTimeSeconds"`
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region *string `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey string `pulumi:"secretKey"`
@@ -247,15 +247,15 @@ type MnqSqsQueueArgs struct {
 	MessageMaxAge pulumi.IntPtrInput
 	// The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
 	MessageMaxSize pulumi.IntPtrInput
-	// The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+	// The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 	Name pulumi.StringPtrInput
 	// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringPtrInput
-	// `projectId`) The ID of the project the sqs is enabled for.
+	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput
 	// The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
 	ReceiveWaitTimeSeconds pulumi.IntPtrInput
-	// `region`). The region in which sqs is enabled.
+	// `region`). The region in which SQS is enabled.
 	Region pulumi.StringPtrInput
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringInput
@@ -377,7 +377,7 @@ func (o MnqSqsQueueOutput) MessageMaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.IntPtrOutput { return v.MessageMaxSize }).(pulumi.IntPtrOutput)
 }
 
-// The unique name of the sqs queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
+// The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
 func (o MnqSqsQueueOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -387,7 +387,7 @@ func (o MnqSqsQueueOutput) NamePrefix() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.NamePrefix }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the sqs is enabled for.
+// `projectId`) The ID of the Project in which SQS is enabled.
 func (o MnqSqsQueueOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -397,7 +397,7 @@ func (o MnqSqsQueueOutput) ReceiveWaitTimeSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.IntPtrOutput { return v.ReceiveWaitTimeSeconds }).(pulumi.IntPtrOutput)
 }
 
-// `region`). The region in which sqs is enabled.
+// `region`). The region in which SQS is enabled.
 func (o MnqSqsQueueOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

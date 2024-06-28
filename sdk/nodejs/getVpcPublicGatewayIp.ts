@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a public gateway IP.
+ * Gets information about a Public Gateway public flexible IP address.
  *
- * For further information please check the API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-66f0c0)
+ * For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
  *
  * ## Example Usage
  *
@@ -57,9 +57,9 @@ export interface GetVpcPublicGatewayIpResult {
     readonly zone: string;
 }
 /**
- * Gets information about a public gateway IP.
+ * Gets information about a Public Gateway public flexible IP address.
  *
- * For further information please check the API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-66f0c0)
+ * For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
  *
  * ## Example Usage
  *

@@ -139,8 +139,9 @@ def get_iam_group(group_id: Optional[str] = None,
                   organization_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamGroupResult:
     """
-    Gets information about an existing IAM group. For more information, please
-    check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+    Gets information about an existing IAM group.
+
+    For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
 
     ## Example Usage
 
@@ -154,9 +155,9 @@ def get_iam_group(group_id: Optional[str] = None,
 
 
     :param str group_id: The ID of the IAM group.
-           Only one of the `name` and `group_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `group_id`.
     :param str name: The name of the IAM group.
-           Only one of the `name` and `group_id` should be specified.
     :param str organization_id: `organization_id`) The ID of the
            organization the group is associated with.
     """
@@ -187,8 +188,9 @@ def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
                          organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamGroupResult]:
     """
-    Gets information about an existing IAM group. For more information, please
-    check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+    Gets information about an existing IAM group.
+
+    For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
 
     ## Example Usage
 
@@ -202,9 +204,9 @@ def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str group_id: The ID of the IAM group.
-           Only one of the `name` and `group_id` should be specified.
+           
+           > **Note** You must specify at least one: `name` and/or `group_id`.
     :param str name: The name of the IAM group.
-           Only one of the `name` and `group_id` should be specified.
     :param str organization_id: `organization_id`) The ID of the
            organization the group is associated with.
     """

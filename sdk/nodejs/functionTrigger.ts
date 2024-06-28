@@ -28,6 +28,22 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Nats
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.FunctionTrigger("main", {
+ *     functionId: scaleway_function.main.id,
+ *     nats: {
+ *         accountId: scaleway_mnq_nats_account.main.id,
+ *         subject: "MySubject",
+ *         region: scaleway_mnq_nats_account.main.region,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Function Triggers can be imported using the `{region}/{id}`, e.g.

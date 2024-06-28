@@ -12,8 +12,7 @@ import (
 )
 
 // Use this data source to get information on an existing IAM user based on its ID or email address.
-// For more information,
-// see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+// For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
 //
 // ## Example Usage
 //
@@ -58,12 +57,14 @@ func LookupIamUser(ctx *pulumi.Context, args *LookupIamUserArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getIamUser.
 type LookupIamUserArgs struct {
-	// The email address of the IAM user. Only one of the `email` and `userId` should be specified.
+	// The email address of the IAM user.
 	Email *string `pulumi:"email"`
 	// `organizationId`) The ID of the
 	// organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The ID of the IAM user. Only one of the `email` and `userId` should be specified.
+	// The ID of the IAM user.
+	//
+	// > **Note** You must specify at least one: `name` and/or `userId`.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -91,12 +92,14 @@ func LookupIamUserOutput(ctx *pulumi.Context, args LookupIamUserOutputArgs, opts
 
 // A collection of arguments for invoking getIamUser.
 type LookupIamUserOutputArgs struct {
-	// The email address of the IAM user. Only one of the `email` and `userId` should be specified.
+	// The email address of the IAM user.
 	Email pulumi.StringPtrInput `pulumi:"email"`
 	// `organizationId`) The ID of the
 	// organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
-	// The ID of the IAM user. Only one of the `email` and `userId` should be specified.
+	// The ID of the IAM user.
+	//
+	// > **Note** You must specify at least one: `name` and/or `userId`.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 

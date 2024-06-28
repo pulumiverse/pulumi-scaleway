@@ -10,6 +10,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -17,6 +19,23 @@ import * as utilities from "./utilities";
  * const blockVolume = new scaleway.BlockVolume("blockVolume", {
  *     iops: 5000,
  *     sizeInGb: 20,
+ * });
+ * ```
+ *
+ * ### With snapshot
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const base = new scaleway.BlockVolume("base", {
+ *     iops: 5000,
+ *     sizeInGb: 20,
+ * });
+ * const mainBlockSnapshot = new scaleway.BlockSnapshot("mainBlockSnapshot", {volumeId: base.id});
+ * const mainBlockVolume = new scaleway.BlockVolume("mainBlockVolume", {
+ *     iops: 5000,
+ *     snapshotId: mainBlockSnapshot.id,
  * });
  * ```
  *

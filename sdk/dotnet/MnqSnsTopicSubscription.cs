@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Manage Scaleway Messaging and queuing SNS Topic Subscriptions.
-    /// For further information please check
-    /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
+    /// Manages Scaleway Messaging and Queuing SNS topic subscriptions.
+    /// For further information, see
+    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/).
     /// 
     /// ## Example Usage
     /// 
@@ -63,7 +63,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// SNS topic subscriptions can be imported using the `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
+    /// SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
     /// 
     /// bash
     /// 
@@ -93,26 +93,26 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Protocol of the SNS Topic Subscription.
+        /// Protocol of the SNS topic subscription.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// Activate JSON Redrive Policy.
+        /// Activate JSON redrive policy.
         /// </summary>
         [Output("redrivePolicy")]
         public Output<bool> RedrivePolicy { get; private set; } = null!;
 
         /// <summary>
         /// `region`). The region
-        /// in which sns is enabled.
+        /// in which SNS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -216,26 +216,26 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Protocol of the SNS Topic Subscription.
+        /// Protocol of the SNS topic subscription.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
 
         /// <summary>
-        /// Activate JSON Redrive Policy.
+        /// Activate JSON redrive policy.
         /// </summary>
         [Input("redrivePolicy")]
         public Input<bool>? RedrivePolicy { get; set; }
 
         /// <summary>
         /// `region`). The region
-        /// in which sns is enabled.
+        /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -311,26 +311,26 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the sns is enabled for.
+        /// `project_id`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Protocol of the SNS Topic Subscription.
+        /// Protocol of the SNS topic subscription.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// Activate JSON Redrive Policy.
+        /// Activate JSON redrive policy.
         /// </summary>
         [Input("redrivePolicy")]
         public Input<bool>? RedrivePolicy { get; set; }
 
         /// <summary>
         /// `region`). The region
-        /// in which sns is enabled.
+        /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

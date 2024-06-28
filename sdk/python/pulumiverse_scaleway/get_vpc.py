@@ -156,11 +156,11 @@ def get_vpc(is_default: Optional[bool] = None,
     ```
 
 
-    :param bool is_default: To get default VPC's information.
-    :param str name: Name of the VPC. One of `name` and `vpc_id` should be specified.
-    :param str organization_id: The ID of the organization the VPC is associated with.
-    :param str project_id: `project_id`) The ID of the project the VPC is associated with.
-    :param str vpc_id: ID of the VPC. One of `name` and `vpc_id` should be specified.
+    :param bool is_default: Whether the targeted VPC is the default VPC.
+    :param str name: Name of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
+    :param str organization_id: The ID of the Organization the VPC is associated with.
+    :param str project_id: `project_id`) The ID of the Project the VPC is associated with.
+    :param str vpc_id: ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
     """
     __args__ = dict()
     __args__['isDefault'] = is_default
@@ -209,10 +209,10 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     ```
 
 
-    :param bool is_default: To get default VPC's information.
-    :param str name: Name of the VPC. One of `name` and `vpc_id` should be specified.
-    :param str organization_id: The ID of the organization the VPC is associated with.
-    :param str project_id: `project_id`) The ID of the project the VPC is associated with.
-    :param str vpc_id: ID of the VPC. One of `name` and `vpc_id` should be specified.
+    :param bool is_default: Whether the targeted VPC is the default VPC.
+    :param str name: Name of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
+    :param str organization_id: The ID of the Organization the VPC is associated with.
+    :param str project_id: `project_id`) The ID of the Project the VPC is associated with.
+    :param str vpc_id: ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
     """
     ...

@@ -15,10 +15,10 @@ export type AccountSshKey = import("./accountSshKey").AccountSshKey;
 export const AccountSshKey: typeof import("./accountSshKey").AccountSshKey = null as any;
 utilities.lazyLoad(exports, ["AccountSshKey"], () => require("./accountSshKey"));
 
-export { AppleSliconValleyServerArgs, AppleSliconValleyServerState } from "./appleSliconValleyServer";
-export type AppleSliconValleyServer = import("./appleSliconValleyServer").AppleSliconValleyServer;
-export const AppleSliconValleyServer: typeof import("./appleSliconValleyServer").AppleSliconValleyServer = null as any;
-utilities.lazyLoad(exports, ["AppleSliconValleyServer"], () => require("./appleSliconValleyServer"));
+export { AppleSiliconServerArgs, AppleSiliconServerState } from "./appleSiliconServer";
+export type AppleSiliconServer = import("./appleSiliconServer").AppleSiliconServer;
+export const AppleSiliconServer: typeof import("./appleSiliconServer").AppleSiliconServer = null as any;
+utilities.lazyLoad(exports, ["AppleSiliconServer"], () => require("./appleSiliconServer"));
 
 export { BaremetalServerArgs, BaremetalServerState } from "./baremetalServer";
 export type BaremetalServer = import("./baremetalServer").BaremetalServer;
@@ -269,6 +269,11 @@ export { GetCockpitPlanArgs, GetCockpitPlanResult, GetCockpitPlanOutputArgs } fr
 export const getCockpitPlan: typeof import("./getCockpitPlan").getCockpitPlan = null as any;
 export const getCockpitPlanOutput: typeof import("./getCockpitPlan").getCockpitPlanOutput = null as any;
 utilities.lazyLoad(exports, ["getCockpitPlan","getCockpitPlanOutput"], () => require("./getCockpitPlan"));
+
+export { GetConfigResult } from "./getConfig";
+export const getConfig: typeof import("./getConfig").getConfig = null as any;
+export const getConfigOutput: typeof import("./getConfig").getConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getConfig","getConfigOutput"], () => require("./getConfig"));
 
 export { GetContainerArgs, GetContainerResult, GetContainerOutputArgs } from "./getContainer";
 export const getContainer: typeof import("./getContainer").getContainer = null as any;
@@ -968,8 +973,8 @@ const _module = {
                 return new AccountProject(name, <any>undefined, { urn })
             case "scaleway:index/accountSshKey:AccountSshKey":
                 return new AccountSshKey(name, <any>undefined, { urn })
-            case "scaleway:index/appleSliconValleyServer:AppleSliconValleyServer":
-                return new AppleSliconValleyServer(name, <any>undefined, { urn })
+            case "scaleway:index/appleSiliconServer:AppleSiliconServer":
+                return new AppleSiliconServer(name, <any>undefined, { urn })
             case "scaleway:index/baremetalServer:BaremetalServer":
                 return new BaremetalServer(name, <any>undefined, { urn })
             case "scaleway:index/blockSnapshot:BlockSnapshot":
@@ -1183,7 +1188,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/appleSliconValleyServer", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/appleSiliconServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)

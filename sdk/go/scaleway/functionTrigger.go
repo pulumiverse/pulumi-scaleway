@@ -48,6 +48,37 @@ import (
 //
 // ```
 //
+// ### Nats
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewFunctionTrigger(ctx, "main", &scaleway.FunctionTriggerArgs{
+//				FunctionId: pulumi.Any(scaleway_function.Main.Id),
+//				Nats: &scaleway.FunctionTriggerNatsArgs{
+//					AccountId: pulumi.Any(scaleway_mnq_nats_account.Main.Id),
+//					Subject:   pulumi.String("MySubject"),
+//					Region:    pulumi.Any(scaleway_mnq_nats_account.Main.Region),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Function Triggers can be imported using the `{region}/{id}`, e.g.

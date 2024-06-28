@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages Scaleway VPC Public Gateways IPs reverse DNS.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/public-gateway/#ips-268151).
+ * Manages Scaleway Public Gateway public (flexible) IPs' reverse DNS.
+ * For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
  *
  * ## Example Usage
  *
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
+ * Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
  *
  * bash
  *
@@ -67,7 +67,7 @@ export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
     }
 
     /**
-     * The public gateway IP ID
+     * The Public Gateway IP ID
      */
     public readonly gatewayIpId!: pulumi.Output<string>;
     /**
@@ -117,7 +117,7 @@ export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
  */
 export interface VpcPublicGatewayIpReverseDnsState {
     /**
-     * The public gateway IP ID
+     * The Public Gateway IP ID
      */
     gatewayIpId?: pulumi.Input<string>;
     /**
@@ -135,7 +135,7 @@ export interface VpcPublicGatewayIpReverseDnsState {
  */
 export interface VpcPublicGatewayIpReverseDnsArgs {
     /**
-     * The public gateway IP ID
+     * The Public Gateway IP ID
      */
     gatewayIpId: pulumi.Input<string>;
     /**

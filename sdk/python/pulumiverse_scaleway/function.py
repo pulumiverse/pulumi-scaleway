@@ -35,7 +35,7 @@ class FunctionArgs:
         """
         The set of arguments for constructing a Function resource.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
-        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
+        :param pulumi.Input[str] namespace_id: The function namespace ID of the function.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         :param pulumi.Input[str] description: The description of the function.
@@ -103,7 +103,7 @@ class FunctionArgs:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Input[str]:
         """
-        The namespace ID the function is associated with.
+        The function namespace ID of the function.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -341,7 +341,7 @@ class _FunctionState:
         :param pulumi.Input[str] name: The unique name of the function.
                
                > **Important** Updates to `name` will recreate the function.
-        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
+        :param pulumi.Input[str] namespace_id: The function namespace ID of the function.
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -530,7 +530,7 @@ class _FunctionState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace ID the function is associated with.
+        The function namespace ID of the function.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -713,7 +713,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique name of the function.
                
                > **Important** Updates to `name` will recreate the function.
-        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
+        :param pulumi.Input[str] namespace_id: The function namespace ID of the function.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
@@ -882,7 +882,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique name of the function.
                
                > **Important** Updates to `name` will recreate the function.
-        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
+        :param pulumi.Input[str] namespace_id: The function namespace ID of the function.
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -1011,7 +1011,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[str]:
         """
-        The namespace ID the function is associated with.
+        The function namespace ID of the function.
         """
         return pulumi.get(self, "namespace_id")
 

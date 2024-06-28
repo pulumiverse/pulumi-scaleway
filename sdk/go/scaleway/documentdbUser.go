@@ -31,6 +31,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := scaleway.NewDocumentdbInstance(ctx, "instance", &scaleway.DocumentdbInstanceArgs{
+//				NodeType:       pulumi.String("docdb-play2-pico"),
+//				Engine:         pulumi.String("FerretDB-1"),
+//				UserName:       pulumi.String("my_initial_user"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				VolumeSizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			dbPassword, err := random.NewRandomPassword(ctx, "dbPassword", &random.RandomPasswordArgs{
 //				Length:  pulumi.Int(16),
 //				Special: pulumi.Bool(true),
@@ -39,7 +49,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewDocumentdbUser(ctx, "dbAdmin", &scaleway.DocumentdbUserArgs{
-//				InstanceId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//				InstanceId: instance.ID(),
 //				Password:   dbPassword.Result,
 //				IsAdmin:    pulumi.Bool(true),
 //			})

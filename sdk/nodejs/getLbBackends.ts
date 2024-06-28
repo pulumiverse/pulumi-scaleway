@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Load Balancer Backends.
  *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -40,11 +42,11 @@ export function getLbBackends(args: GetLbBackendsArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetLbBackendsArgs {
     /**
-     * The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+     * The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
      */
     lbId: string;
     /**
-     * The backend name used as filter. Backends with a name like it are listed.
+     * The backend name to filter for. Backends with a matching name are listed.
      */
     name?: string;
     projectId?: string;
@@ -59,7 +61,7 @@ export interface GetLbBackendsArgs {
  */
 export interface GetLbBackendsResult {
     /**
-     * List of found backends
+     * List of retrieved backends
      */
     readonly backends: outputs.GetLbBackendsBackend[];
     /**
@@ -74,6 +76,8 @@ export interface GetLbBackendsResult {
 }
 /**
  * Gets information about multiple Load Balancer Backends.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Example Usage
  *
@@ -99,11 +103,11 @@ export function getLbBackendsOutput(args: GetLbBackendsOutputArgs, opts?: pulumi
  */
 export interface GetLbBackendsOutputArgs {
     /**
-     * The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+     * The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
      */
     lbId: pulumi.Input<string>;
     /**
-     * The backend name used as filter. Backends with a name like it are listed.
+     * The backend name to filter for. Backends with a matching name are listed.
      */
     name?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;

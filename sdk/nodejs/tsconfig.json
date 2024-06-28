@@ -15,7 +15,7 @@
     "files": [
         "accountProject.ts",
         "accountSshKey.ts",
-        "appleSliconValleyServer.ts",
+        "appleSiliconServer.ts",
         "baremetalServer.ts",
         "blockSnapshot.ts",
         "blockVolume.ts",
@@ -68,6 +68,7 @@
         "getBlockVolume.ts",
         "getCockpit.ts",
         "getCockpitPlan.ts",
+        "getConfig.ts",
         "getContainer.ts",
         "getContainerNamespace.ts",
         "getDatabase.ts",

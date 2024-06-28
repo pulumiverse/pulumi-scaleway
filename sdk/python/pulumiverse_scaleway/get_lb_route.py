@@ -110,8 +110,9 @@ class AwaitableGetLbRouteResult(GetLbRouteResult):
 def get_lb_route(route_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbRouteResult:
     """
-    Get information about Scaleway Load-Balancer Routes.
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+    Get information about Scaleway Load Balancer routes.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
     ## Example Usage
 
@@ -141,7 +142,7 @@ def get_lb_route(route_id: Optional[str] = None,
     ```
 
 
-    :param str route_id: The route id.
+    :param str route_id: The route ID.
     """
     __args__ = dict()
     __args__['routeId'] = route_id
@@ -163,8 +164,9 @@ def get_lb_route(route_id: Optional[str] = None,
 def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbRouteResult]:
     """
-    Get information about Scaleway Load-Balancer Routes.
-    For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+    Get information about Scaleway Load Balancer routes.
+
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
     ## Example Usage
 
@@ -194,6 +196,6 @@ def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str route_id: The route id.
+    :param str route_id: The route ID.
     """
     ...

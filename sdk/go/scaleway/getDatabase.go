@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a RDB database.
+// Gets information about a database.
 //
 // ## Example Usage
 //

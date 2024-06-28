@@ -17,15 +17,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const hedy = new scaleway.VpcPrivateNetwork("hedy", {});
- * const jack = new scaleway.KubernetesCluster("jack", {
- *     version: "1.24.3",
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     version: "1.29.1",
  *     cni: "cilium",
- *     privateNetworkId: hedy.id,
+ *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
  * });
- * const john = new scaleway.KubernetesNodePool("john", {
- *     clusterId: jack.id,
+ * const pool = new scaleway.KubernetesNodePool("pool", {
+ *     clusterId: cluster.id,
  *     nodeType: "DEV1-M",
  *     size: 1,
  * });
@@ -37,14 +37,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const henry = new scaleway.KubernetesCluster("henry", {
+ * const cluster = new scaleway.KubernetesCluster("cluster", {
  *     type: "multicloud",
- *     version: "1.24.3",
+ *     version: "1.29.1",
  *     cni: "kilo",
  *     deleteAdditionalResources: false,
  * });
- * const friendFromOuterSpace = new scaleway.KubernetesNodePool("friendFromOuterSpace", {
- *     clusterId: henry.id,
+ * const pool = new scaleway.KubernetesNodePool("pool", {
+ *     clusterId: cluster.id,
  *     nodeType: "external",
  *     size: 0,
  *     minSize: 0,
@@ -59,16 +59,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const hedy = new scaleway.VpcPrivateNetwork("hedy", {});
- * const johnKubernetesCluster = new scaleway.KubernetesCluster("johnKubernetesCluster", {
- *     description: "my awesome cluster",
- *     version: "1.24.3",
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     description: "cluster made in terraform",
+ *     version: "1.29.1",
  *     cni: "calico",
- *     tags: [
- *         "i'm an awesome tag",
- *         "yay",
- *     ],
- *     privateNetworkId: hedy.id,
+ *     tags: ["terraform"],
+ *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
  *     autoscalerConfig: {
  *         disableScaleDown: false,
@@ -80,8 +77,8 @@ import * as utilities from "./utilities";
  *         expendablePodsPriorityCutoff: -5,
  *     },
  * });
- * const johnKubernetesNodePool = new scaleway.KubernetesNodePool("johnKubernetesNodePool", {
- *     clusterId: johnKubernetesCluster.id,
+ * const pool = new scaleway.KubernetesNodePool("pool", {
+ *     clusterId: cluster.id,
  *     nodeType: "DEV1-M",
  *     size: 3,
  *     autoscaling: true,

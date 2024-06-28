@@ -15,31 +15,31 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetBillingConsumptionsConsumptionResult
     {
         /// <summary>
-        /// Consumed quantity
+        /// The consumed quantity.
         /// </summary>
         public readonly string BilledQuantity;
         /// <summary>
-        /// Name of consumption category
+        /// The name of the consumption category.
         /// </summary>
         public readonly string CategoryName;
         /// <summary>
-        /// The product name
+        /// The product name.
         /// </summary>
         public readonly string ProductName;
         /// <summary>
-        /// Project ID of the consumption
+        /// `project_id`) The ID of the project the consumption list is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// Unique identifier of the product
+        /// The unique identifier of the product.
         /// </summary>
         public readonly string Sku;
         /// <summary>
-        /// Unit of consumed quantity
+        /// The unit of consumed quantity.
         /// </summary>
         public readonly string Unit;
         /// <summary>
-        /// Monetary value of the consumption
+        /// The monetary value of the consumption.
         /// </summary>
         public readonly string Value;
 

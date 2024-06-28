@@ -15,6 +15,8 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer.
         /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -43,6 +45,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about a Load Balancer.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
         /// 
         /// ## Example Usage
         /// 
@@ -78,13 +82,13 @@ namespace Pulumiverse.Scaleway
         public string? LbId { get; set; }
 
         /// <summary>
-        /// The load balancer name.
+        /// The Load Balancer name.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the LB is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -93,7 +97,7 @@ namespace Pulumiverse.Scaleway
         public bool? ReleaseIp { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -110,13 +114,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The load balancer name.
+        /// The Load Balancer name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the LB is associated with.
+        /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -125,7 +129,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ReleaseIp { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -148,7 +152,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The load-balancer public IP Address.
+        /// The Load Balancer public IP address.
         /// </summary>
         public readonly string IpAddress;
         public readonly string IpId;
@@ -163,15 +167,15 @@ namespace Pulumiverse.Scaleway
         public readonly bool? ReleaseIp;
         public readonly string SslCompatibilityLevel;
         /// <summary>
-        /// The tags associated with the load-balancer.
+        /// The tags associated with the Load Balancer.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// The type of the load-balancer.
+        /// The Load Balancer type.
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the LB exists.
+        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         /// </summary>
         public readonly string? Zone;
 

@@ -20,7 +20,6 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly string Ip;
         /// <summary>
         /// The name of the RDB instance.
-        /// Only one of `name` and `instance_id` should be specified.
         /// </summary>
         public readonly string Name;
         /// <summary>

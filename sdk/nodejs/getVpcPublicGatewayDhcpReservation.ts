@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a dhcp entries. For further information please check the
- * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+ * Gets information about a DHCP entry. For further information, please see the
+ * API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
  *
  * ## Example Dynamic
  *
@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## Example Static and PAT rule
+ * ## Example Static and PAT Rule
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -130,15 +130,15 @@ export interface GetVpcPublicGatewayDhcpReservationArgs {
      */
     macAddress?: string;
     /**
-     * The ID of the Reservation to retrieve.
+     * The ID of the reservation (DHCP entry) to retrieve.
      */
     reservationId?: string;
     /**
-     * Boolean to wait for macAddress to exist in dhcp.
+     * Whether to wait for `macAddress` to exist in DHCP.
      */
     waitForDhcp?: boolean;
     /**
-     * `zone`) The zone in which the image exists.
+     * `zone`). The zone in which the reservation exists.
      */
     zone?: string;
 }
@@ -163,8 +163,8 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
     readonly zone?: string;
 }
 /**
- * Gets information about a dhcp entries. For further information please check the
- * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-entries-e40fb6)
+ * Gets information about a DHCP entry. For further information, please see the
+ * API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
  *
  * ## Example Dynamic
  *
@@ -203,7 +203,7 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
  * });
  * ```
  *
- * ## Example Static and PAT rule
+ * ## Example Static and PAT Rule
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -279,15 +279,15 @@ export interface GetVpcPublicGatewayDhcpReservationOutputArgs {
      */
     macAddress?: pulumi.Input<string>;
     /**
-     * The ID of the Reservation to retrieve.
+     * The ID of the reservation (DHCP entry) to retrieve.
      */
     reservationId?: pulumi.Input<string>;
     /**
-     * Boolean to wait for macAddress to exist in dhcp.
+     * Whether to wait for `macAddress` to exist in DHCP.
      */
     waitForDhcp?: pulumi.Input<boolean>;
     /**
-     * `zone`) The zone in which the image exists.
+     * `zone`). The zone in which the reservation exists.
      */
     zone?: pulumi.Input<string>;
 }

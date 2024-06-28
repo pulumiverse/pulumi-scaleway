@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
 
         /// <summary>
         /// A list of possible values to match for the given HTTP filter.
-        /// Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        /// Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         /// </summary>
         public InputList<string> HttpFilterValues
         {
@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _ipSubnets;
 
         /// <summary>
-        /// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         /// </summary>
         public InputList<string> IpSubnets
         {
