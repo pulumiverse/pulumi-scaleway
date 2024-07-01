@@ -255,13 +255,11 @@ class _LoadbalancerFrontendState:
 
     @property
     @pulumi.getter(name="certificateId")
+    @_utilities.deprecated("""Please use certificate_ids""")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) First certificate ID used by the frontend.
         """
-        warnings.warn("""Please use certificate_ids""", DeprecationWarning)
-        pulumi.log.warn("""certificate_id is deprecated: Please use certificate_ids""")
-
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
@@ -754,13 +752,11 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="certificateId")
+    @_utilities.deprecated("""Please use certificate_ids""")
     def certificate_id(self) -> pulumi.Output[str]:
         """
         (Deprecated) First certificate ID used by the frontend.
         """
-        warnings.warn("""Please use certificate_ids""", DeprecationWarning)
-        pulumi.log.warn("""certificate_id is deprecated: Please use certificate_ids""")
-
         return pulumi.get(self, "certificate_id")
 
     @property

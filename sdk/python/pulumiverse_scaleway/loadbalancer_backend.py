@@ -386,13 +386,11 @@ class LoadbalancerBackendArgs:
 
     @property
     @pulumi.getter(name="sendProxyV2")
+    @_utilities.deprecated("""Please use proxy_protocol instead""")
     def send_proxy_v2(self) -> Optional[pulumi.Input[bool]]:
         """
         Enables PROXY protocol version 2
         """
-        warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
-        pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
-
         return pulumi.get(self, "send_proxy_v2")
 
     @send_proxy_v2.setter
@@ -872,13 +870,11 @@ class _LoadbalancerBackendState:
 
     @property
     @pulumi.getter(name="sendProxyV2")
+    @_utilities.deprecated("""Please use proxy_protocol instead""")
     def send_proxy_v2(self) -> Optional[pulumi.Input[bool]]:
         """
         Enables PROXY protocol version 2
         """
-        warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
-        pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
-
         return pulumi.get(self, "send_proxy_v2")
 
     @send_proxy_v2.setter
@@ -1510,13 +1506,11 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sendProxyV2")
+    @_utilities.deprecated("""Please use proxy_protocol instead""")
     def send_proxy_v2(self) -> pulumi.Output[bool]:
         """
         Enables PROXY protocol version 2
         """
-        warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
-        pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
-
         return pulumi.get(self, "send_proxy_v2")
 
     @property

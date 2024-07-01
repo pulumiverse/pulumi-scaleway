@@ -71,13 +71,11 @@ class ObjectBucketArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
-        warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
-        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
-
         return pulumi.get(self, "acl")
 
     @acl.setter
@@ -265,13 +263,11 @@ class _ObjectBucketState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
-        warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
-        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
-
         return pulumi.get(self, "acl")
 
     @acl.setter
@@ -774,13 +770,11 @@ class ObjectBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
     def acl(self) -> pulumi.Output[Optional[str]]:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
-        warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
-        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
-
         return pulumi.get(self, "acl")
 
     @property

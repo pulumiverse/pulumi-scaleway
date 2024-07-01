@@ -129,15 +129,13 @@ class LoadbalancerArgs:
 
     @property
     @pulumi.getter(name="ipId")
+    @_utilities.deprecated("""Please use ip_ids""")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the associated Load Balancer IP. See below.
 
         > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         """
-        warnings.warn("""Please use ip_ids""", DeprecationWarning)
-        pulumi.log.warn("""ip_id is deprecated: Please use ip_ids""")
-
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
@@ -194,13 +192,11 @@ class LoadbalancerArgs:
 
     @property
     @pulumi.getter(name="releaseIp")
+    @_utilities.deprecated("""The resource ip will be destroyed by it's own resource. Please set this to `false`""")
     def release_ip(self) -> Optional[pulumi.Input[bool]]:
         """
         The `release_ip` allow the release of the IP address associated with the Load Balancer.
         """
-        warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
-        pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
-
         return pulumi.get(self, "release_ip")
 
     @release_ip.setter
@@ -377,15 +373,13 @@ class _LoadbalancerState:
 
     @property
     @pulumi.getter(name="ipId")
+    @_utilities.deprecated("""Please use ip_ids""")
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the associated Load Balancer IP. See below.
 
         > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         """
-        warnings.warn("""Please use ip_ids""", DeprecationWarning)
-        pulumi.log.warn("""ip_id is deprecated: Please use ip_ids""")
-
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
@@ -478,13 +472,11 @@ class _LoadbalancerState:
 
     @property
     @pulumi.getter(name="releaseIp")
+    @_utilities.deprecated("""The resource ip will be destroyed by it's own resource. Please set this to `false`""")
     def release_ip(self) -> Optional[pulumi.Input[bool]]:
         """
         The `release_ip` allow the release of the IP address associated with the Load Balancer.
         """
-        warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
-        pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
-
         return pulumi.get(self, "release_ip")
 
     @release_ip.setter
@@ -649,7 +641,7 @@ class Loadbalancer(pulumi.CustomResource):
                 private_network_id=main_vpc_private_network.id,
                 dhcp_config=True,
             )],
-            opts=pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
+            opts = pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
         ```
 
         ## Migration
@@ -816,7 +808,7 @@ class Loadbalancer(pulumi.CustomResource):
                 private_network_id=main_vpc_private_network.id,
                 dhcp_config=True,
             )],
-            opts=pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
+            opts = pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
         ```
 
         ## Migration
@@ -1036,15 +1028,13 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipId")
+    @_utilities.deprecated("""Please use ip_ids""")
     def ip_id(self) -> pulumi.Output[str]:
         """
         The ID of the associated Load Balancer IP. See below.
 
         > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         """
-        warnings.warn("""Please use ip_ids""", DeprecationWarning)
-        pulumi.log.warn("""ip_id is deprecated: Please use ip_ids""")
-
         return pulumi.get(self, "ip_id")
 
     @property
@@ -1105,13 +1095,11 @@ class Loadbalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="releaseIp")
+    @_utilities.deprecated("""The resource ip will be destroyed by it's own resource. Please set this to `false`""")
     def release_ip(self) -> pulumi.Output[Optional[bool]]:
         """
         The `release_ip` allow the release of the IP address associated with the Load Balancer.
         """
-        warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
-        pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
-
         return pulumi.get(self, "release_ip")
 
     @property
