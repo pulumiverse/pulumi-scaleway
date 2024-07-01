@@ -181,7 +181,7 @@ class FunctionDomain(pulumi.CustomResource):
         main_function_domain = scaleway.FunctionDomain("mainFunctionDomain",
             function_id=main_function.id,
             hostname="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[main_function]))
+            opts = pulumi.ResourceOptions(depends_on=[main_function]))
         ```
 
         ## Import
@@ -232,7 +232,7 @@ class FunctionDomain(pulumi.CustomResource):
         main_function_domain = scaleway.FunctionDomain("mainFunctionDomain",
             function_id=main_function.id,
             hostname="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[main_function]))
+            opts = pulumi.ResourceOptions(depends_on=[main_function]))
         ```
 
         ## Import

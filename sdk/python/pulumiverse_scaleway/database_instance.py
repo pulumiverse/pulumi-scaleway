@@ -556,13 +556,11 @@ class _DatabaseInstanceState:
 
     @property
     @pulumi.getter(name="endpointIp")
+    @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_ip(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) The IP of the Database Instance.
         """
-        warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
-        pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
-
         return pulumi.get(self, "endpoint_ip")
 
     @endpoint_ip.setter
@@ -1400,13 +1398,11 @@ class DatabaseInstance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="endpointIp")
+    @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_ip(self) -> pulumi.Output[str]:
         """
         (Deprecated) The IP of the Database Instance.
         """
-        warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
-        pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
-
         return pulumi.get(self, "endpoint_ip")
 
     @property

@@ -696,7 +696,7 @@ class RedisCluster(pulumi.CustomResource):
                 id=pn.id,
                 service_ips=["10.12.1.1/20"],
             )],
-            opts=pulumi.ResourceOptions(depends_on=[pn]))
+            opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
         ## Import
@@ -818,7 +818,7 @@ class RedisCluster(pulumi.CustomResource):
                 id=pn.id,
                 service_ips=["10.12.1.1/20"],
             )],
-            opts=pulumi.ResourceOptions(depends_on=[pn]))
+            opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
         ## Import
