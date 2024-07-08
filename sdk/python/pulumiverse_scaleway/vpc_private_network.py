@@ -88,13 +88,11 @@ class VpcPrivateNetworkArgs:
 
     @property
     @pulumi.getter(name="isRegional")
+    @_utilities.deprecated("""This field is deprecated and will be removed in the next major version""")
     def is_regional(self) -> Optional[pulumi.Input[bool]]:
         """
         Private Networks are now all necessarily regional.
         """
-        warnings.warn("""This field is deprecated and will be removed in the next major version""", DeprecationWarning)
-        pulumi.log.warn("""is_regional is deprecated: This field is deprecated and will be removed in the next major version""")
-
         return pulumi.get(self, "is_regional")
 
     @is_regional.setter
@@ -163,13 +161,11 @@ class VpcPrivateNetworkArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This field is deprecated and will be removed in the next major version, please use `region` instead""")
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         Use `region` instead.
         """
-        warnings.warn("""This field is deprecated and will be removed in the next major version, please use `region` instead""", DeprecationWarning)
-        pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
-
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -276,13 +272,11 @@ class _VpcPrivateNetworkState:
 
     @property
     @pulumi.getter(name="isRegional")
+    @_utilities.deprecated("""This field is deprecated and will be removed in the next major version""")
     def is_regional(self) -> Optional[pulumi.Input[bool]]:
         """
         Private Networks are now all necessarily regional.
         """
-        warnings.warn("""This field is deprecated and will be removed in the next major version""", DeprecationWarning)
-        pulumi.log.warn("""is_regional is deprecated: This field is deprecated and will be removed in the next major version""")
-
         return pulumi.get(self, "is_regional")
 
     @is_regional.setter
@@ -375,13 +369,11 @@ class _VpcPrivateNetworkState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This field is deprecated and will be removed in the next major version, please use `region` instead""")
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         Use `region` instead.
         """
-        warnings.warn("""This field is deprecated and will be removed in the next major version, please use `region` instead""", DeprecationWarning)
-        pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
-
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -657,13 +649,11 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="isRegional")
+    @_utilities.deprecated("""This field is deprecated and will be removed in the next major version""")
     def is_regional(self) -> pulumi.Output[bool]:
         """
         Private Networks are now all necessarily regional.
         """
-        warnings.warn("""This field is deprecated and will be removed in the next major version""", DeprecationWarning)
-        pulumi.log.warn("""is_regional is deprecated: This field is deprecated and will be removed in the next major version""")
-
         return pulumi.get(self, "is_regional")
 
     @property
@@ -724,12 +714,10 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This field is deprecated and will be removed in the next major version, please use `region` instead""")
     def zone(self) -> pulumi.Output[str]:
         """
         Use `region` instead.
         """
-        warnings.warn("""This field is deprecated and will be removed in the next major version, please use `region` instead""", DeprecationWarning)
-        pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
-
         return pulumi.get(self, "zone")
 

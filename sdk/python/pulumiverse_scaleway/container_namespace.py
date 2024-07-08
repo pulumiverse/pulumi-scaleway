@@ -65,13 +65,11 @@ class ContainerNamespaceArgs:
 
     @property
     @pulumi.getter(name="destroyRegistry")
+    @_utilities.deprecated("""Registry namespace is automatically destroyed with namespace""")
     def destroy_registry(self) -> Optional[pulumi.Input[bool]]:
         """
         Destroy registry on deletion
         """
-        warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
-        pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
-
         return pulumi.get(self, "destroy_registry")
 
     @destroy_registry.setter
@@ -207,13 +205,11 @@ class _ContainerNamespaceState:
 
     @property
     @pulumi.getter(name="destroyRegistry")
+    @_utilities.deprecated("""Registry namespace is automatically destroyed with namespace""")
     def destroy_registry(self) -> Optional[pulumi.Input[bool]]:
         """
         Destroy registry on deletion
         """
-        warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
-        pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
-
         return pulumi.get(self, "destroy_registry")
 
     @destroy_registry.setter
@@ -509,13 +505,11 @@ class ContainerNamespace(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="destroyRegistry")
+    @_utilities.deprecated("""Registry namespace is automatically destroyed with namespace""")
     def destroy_registry(self) -> pulumi.Output[Optional[bool]]:
         """
         Destroy registry on deletion
         """
-        warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
-        pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
-
         return pulumi.get(self, "destroy_registry")
 
     @property
