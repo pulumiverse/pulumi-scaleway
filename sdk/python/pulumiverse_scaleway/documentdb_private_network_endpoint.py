@@ -177,7 +177,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                 ip_net="172.16.32.3/22",
                 id=pn.id,
             ),
-            opts=pulumi.ResourceOptions(depends_on=[pn]))
+            opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
         ## Import
@@ -231,7 +231,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                 ip_net="172.16.32.3/22",
                 id=pn.id,
             ),
-            opts=pulumi.ResourceOptions(depends_on=[pn]))
+            opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
         ## Import

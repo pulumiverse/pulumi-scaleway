@@ -262,7 +262,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             dhcp_id=main_vpc_public_gateway_dhcp.id,
             cleanup_dhcp=True,
             enable_masquerade=True,
-            opts=pulumi.ResourceOptions(depends_on=[
+            opts = pulumi.ResourceOptions(depends_on=[
                     main_vpc_public_gateway_ip,
                     main_vpc_private_network,
                 ]))
@@ -331,7 +331,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             dhcp_id=main_vpc_public_gateway_dhcp.id,
             cleanup_dhcp=True,
             enable_masquerade=True,
-            opts=pulumi.ResourceOptions(depends_on=[
+            opts = pulumi.ResourceOptions(depends_on=[
                     main_vpc_public_gateway_ip,
                     main_vpc_private_network,
                 ]))

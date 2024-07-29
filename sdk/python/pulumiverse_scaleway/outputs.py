@@ -930,13 +930,11 @@ class ContainerTriggerSqs(dict):
 
     @property
     @pulumi.getter(name="namespaceId")
+    @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[str]:
         """
         ID of the mnq namespace. Deprecated.
         """
-        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
-        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
-
         return pulumi.get(self, "namespace_id")
 
     @property
@@ -2166,13 +2164,11 @@ class FunctionTriggerSqs(dict):
 
     @property
     @pulumi.getter(name="namespaceId")
+    @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[str]:
         """
         ID of the mnq namespace. Deprecated.
         """
-        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
-        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
-
         return pulumi.get(self, "namespace_id")
 
     @property
@@ -2515,13 +2511,11 @@ class InstanceSecurityGroupInboundRule(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[str]:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @property
@@ -2615,13 +2609,11 @@ class InstanceSecurityGroupOutboundRule(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[str]:
         """
         Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @property
@@ -2715,13 +2707,11 @@ class InstanceSecurityGroupRulesInboundRule(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[str]:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @property
@@ -2815,13 +2805,11 @@ class InstanceSecurityGroupRulesOutboundRule(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[str]:
         """
         Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @property
@@ -4911,13 +4899,11 @@ class LoadbalancerPrivateNetwork(dict):
 
     @property
     @pulumi.getter(name="staticConfig")
+    @_utilities.deprecated("""static_config field is deprecated, please use dhcp_config instead""")
     def static_config(self) -> Optional[str]:
         """
         (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         """
-        warnings.warn("""static_config field is deprecated, please use dhcp_config instead""", DeprecationWarning)
-        pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use dhcp_config instead""")
-
         return pulumi.get(self, "static_config")
 
     @property
