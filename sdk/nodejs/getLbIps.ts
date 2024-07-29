@@ -21,6 +21,10 @@ import * as utilities from "./utilities";
  *     ipCidrRange: "0.0.0.0/0",
  *     zone: "fr-par-2",
  * });
+ * const ipsByTagsAndType = scaleway.getLbIps({
+ *     ipType: "ipv4",
+ *     tags: ["a tag"],
+ * });
  * ```
  */
 export function getLbIps(args?: GetLbIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbIpsResult> {
@@ -29,7 +33,9 @@ export function getLbIps(args?: GetLbIpsArgs, opts?: pulumi.InvokeOptions): Prom
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbIps:getLbIps", {
         "ipCidrRange": args.ipCidrRange,
+        "ipType": args.ipType,
         "projectId": args.projectId,
+        "tags": args.tags,
         "zone": args.zone,
     }, opts);
 }
@@ -43,9 +49,17 @@ export interface GetLbIpsArgs {
      */
     ipCidrRange?: string;
     /**
+     * The IP type used as a filter.
+     */
+    ipType?: string;
+    /**
      * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: string;
+    /**
+     * List of tags used as filter. IPs with these exact tags are listed.
+     */
+    tags?: string[];
     /**
      * `zone`) The zone in which the IPs exist.
      */
@@ -61,6 +75,7 @@ export interface GetLbIpsResult {
      */
     readonly id: string;
     readonly ipCidrRange?: string;
+    readonly ipType?: string;
     /**
      * List of retrieved IPs
      */
@@ -73,6 +88,7 @@ export interface GetLbIpsResult {
      * The ID of the Project the Load Balancer is associated with.
      */
     readonly projectId: string;
+    readonly tags?: string[];
     /**
      * The zone of the Load Balancer.
      */
@@ -93,6 +109,10 @@ export interface GetLbIpsResult {
  *     ipCidrRange: "0.0.0.0/0",
  *     zone: "fr-par-2",
  * });
+ * const ipsByTagsAndType = scaleway.getLbIps({
+ *     ipType: "ipv4",
+ *     tags: ["a tag"],
+ * });
  * ```
  */
 export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbIpsResult> {
@@ -108,9 +128,17 @@ export interface GetLbIpsOutputArgs {
      */
     ipCidrRange?: pulumi.Input<string>;
     /**
+     * The IP type used as a filter.
+     */
+    ipType?: pulumi.Input<string>;
+    /**
      * The ID of the Project the Load Balancer is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * List of tags used as filter. IPs with these exact tags are listed.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which the IPs exist.
      */

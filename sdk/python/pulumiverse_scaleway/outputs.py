@@ -183,6 +183,7 @@ __all__ = [
     'GetVpcGatewayNetworkIpamConfigResult',
     'GetVpcPrivateNetworkIpv4SubnetResult',
     'GetVpcPrivateNetworkIpv6SubnetResult',
+    'GetVpcRoutesRouteResult',
     'GetVpcsVpcResult',
     'GetWebHostOfferProductResult',
     'GetWebhostingCpanelUrlResult',
@@ -2221,7 +2222,7 @@ class IamPolicyRule(dict):
                **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
                
                ```shell
-               $ scw IAM permission-set list
+               scw IAM permission-set list
                ```
         :param str organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param Sequence[str] project_ids: List of project IDs scoped to the rule.
@@ -2243,7 +2244,7 @@ class IamPolicyRule(dict):
         **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
         ```shell
-        $ scw IAM permission-set list
+        scw IAM permission-set list
         ```
         """
         return pulumi.get(self, "permission_set_names")
@@ -4844,6 +4845,8 @@ class LoadbalancerPrivateNetwork(dict):
             suggest = "private_network_id"
         elif key == "dhcpConfig":
             suggest = "dhcp_config"
+        elif key == "ipamIds":
+            suggest = "ipam_ids"
         elif key == "staticConfig":
             suggest = "static_config"
 
@@ -4861,19 +4864,23 @@ class LoadbalancerPrivateNetwork(dict):
     def __init__(__self__, *,
                  private_network_id: str,
                  dhcp_config: Optional[bool] = None,
+                 ipam_ids: Optional[str] = None,
                  static_config: Optional[str] = None,
                  status: Optional[str] = None,
                  zone: Optional[str] = None):
         """
         :param str private_network_id: (Required) The ID of the Private Network to attach to.
         :param bool dhcp_config: (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
-        :param str static_config: (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
+        :param str ipam_ids: (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        :param str static_config: (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         :param str status: The status of private network connection
         :param str zone: `zone`) The zone of the Load Balancer.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
+        if ipam_ids is not None:
+            pulumi.set(__self__, "ipam_ids", ipam_ids)
         if static_config is not None:
             pulumi.set(__self__, "static_config", static_config)
         if status is not None:
@@ -4898,11 +4905,19 @@ class LoadbalancerPrivateNetwork(dict):
         return pulumi.get(self, "dhcp_config")
 
     @property
+    @pulumi.getter(name="ipamIds")
+    def ipam_ids(self) -> Optional[str]:
+        """
+        (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        """
+        return pulumi.get(self, "ipam_ids")
+
+    @property
     @pulumi.getter(name="staticConfig")
     @_utilities.deprecated("""static_config field is deprecated, please use dhcp_config instead""")
     def static_config(self) -> Optional[str]:
         """
-        (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
+        (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         """
         return pulumi.get(self, "static_config")
 
@@ -10038,6 +10053,7 @@ class GetLbIpsIpResult(dict):
                  organization_id: str,
                  project_id: str,
                  reverse: str,
+                 tags: Sequence[str],
                  zone: str):
         """
         :param str id: The ID of the associated IP.
@@ -10046,6 +10062,7 @@ class GetLbIpsIpResult(dict):
         :param str organization_id: The ID of the Organization the Load Balancer is associated with.
         :param str project_id: The ID of the Project the Load Balancer is associated with.
         :param str reverse: The reverse domain associated with this IP.
+        :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
         :param str zone: `zone`) The zone in which the IPs exist.
         """
         pulumi.set(__self__, "id", id)
@@ -10054,6 +10071,7 @@ class GetLbIpsIpResult(dict):
         pulumi.set(__self__, "organization_id", organization_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "reverse", reverse)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "zone", zone)
 
     @property
@@ -10103,6 +10121,14 @@ class GetLbIpsIpResult(dict):
         The reverse domain associated with this IP.
         """
         return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        """
+        List of tags used as filter. IPs with these exact tags are listed.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -10605,18 +10631,21 @@ class GetLoadbalancerCertificateLetsencryptResult(dict):
 class GetLoadbalancerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  dhcp_config: bool,
+                 ipam_ids: Sequence[str],
                  private_network_id: str,
                  static_configs: Sequence[str],
                  status: str,
                  zone: str):
         """
         :param bool dhcp_config: Set to true if you want to let DHCP assign IP addresses
+        :param Sequence[str] ipam_ids: IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
         :param str private_network_id: The Private Network ID
         :param Sequence[str] static_configs: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param str status: The status of private network connection
         :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         pulumi.set(__self__, "dhcp_config", dhcp_config)
+        pulumi.set(__self__, "ipam_ids", ipam_ids)
         pulumi.set(__self__, "private_network_id", private_network_id)
         pulumi.set(__self__, "static_configs", static_configs)
         pulumi.set(__self__, "status", status)
@@ -10629,6 +10658,14 @@ class GetLoadbalancerPrivateNetworkResult(dict):
         Set to true if you want to let DHCP assign IP addresses
         """
         return pulumi.get(self, "dhcp_config")
+
+    @property
+    @pulumi.getter(name="ipamIds")
+    def ipam_ids(self) -> Sequence[str]:
+        """
+        IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+        """
+        return pulumi.get(self, "ipam_ids")
 
     @property
     @pulumi.getter(name="privateNetworkId")
@@ -11236,6 +11273,147 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
         The date and time of the last update of the subnet
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetVpcRoutesRouteResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destination: str,
+                 id: str,
+                 nexthop_ip: str,
+                 nexthop_name: str,
+                 nexthop_private_network_id: str,
+                 nexthop_resource_id: str,
+                 nexthop_resource_type: str,
+                 region: str,
+                 tags: Sequence[str],
+                 vpc_id: str):
+        """
+        :param str created_at: The date on which the route was created (RFC 3339 format).
+        :param str description: The description of the route.
+        :param str destination: The destination IP or IP range of the route.
+        :param str id: The ID of the route.
+               > **Important:** route IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+        :param str nexthop_ip: The IP of the route's next hop.
+        :param str nexthop_name: The name of the route's next hop.
+        :param str nexthop_private_network_id: The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
+        :param str nexthop_resource_id: The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
+        :param str nexthop_resource_type: The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+        :param str region: `region`). The region in which the routes exist.
+        :param Sequence[str] tags: List of tags to filter for. routes with these exact tags are listed.
+        :param str vpc_id: The VPC ID to filter for. routes with a similar VPC ID are listed.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "nexthop_ip", nexthop_ip)
+        pulumi.set(__self__, "nexthop_name", nexthop_name)
+        pulumi.set(__self__, "nexthop_private_network_id", nexthop_private_network_id)
+        pulumi.set(__self__, "nexthop_resource_id", nexthop_resource_id)
+        pulumi.set(__self__, "nexthop_resource_type", nexthop_resource_type)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The date on which the route was created (RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the route.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        """
+        The destination IP or IP range of the route.
+        """
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the route.
+        > **Important:** route IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="nexthopIp")
+    def nexthop_ip(self) -> str:
+        """
+        The IP of the route's next hop.
+        """
+        return pulumi.get(self, "nexthop_ip")
+
+    @property
+    @pulumi.getter(name="nexthopName")
+    def nexthop_name(self) -> str:
+        """
+        The name of the route's next hop.
+        """
+        return pulumi.get(self, "nexthop_name")
+
+    @property
+    @pulumi.getter(name="nexthopPrivateNetworkId")
+    def nexthop_private_network_id(self) -> str:
+        """
+        The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
+        """
+        return pulumi.get(self, "nexthop_private_network_id")
+
+    @property
+    @pulumi.getter(name="nexthopResourceId")
+    def nexthop_resource_id(self) -> str:
+        """
+        The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
+        """
+        return pulumi.get(self, "nexthop_resource_id")
+
+    @property
+    @pulumi.getter(name="nexthopResourceType")
+    def nexthop_resource_type(self) -> str:
+        """
+        The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+        """
+        return pulumi.get(self, "nexthop_resource_type")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        `region`). The region in which the routes exist.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        """
+        List of tags to filter for. routes with these exact tags are listed.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC ID to filter for. routes with a similar VPC ID are listed.
+        """
+        return pulumi.get(self, "vpc_id")
 
 
 @pulumi.output_type

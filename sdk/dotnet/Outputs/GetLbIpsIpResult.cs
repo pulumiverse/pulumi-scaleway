@@ -39,6 +39,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Reverse;
         /// <summary>
+        /// List of tags used as filter. IPs with these exact tags are listed.
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
+        /// <summary>
         /// `zone`) The zone in which the IPs exist.
         /// </summary>
         public readonly string Zone;
@@ -57,6 +61,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string reverse,
 
+            ImmutableArray<string> tags,
+
             string zone)
         {
             Id = id;
@@ -65,6 +71,7 @@ namespace Pulumiverse.Scaleway.Outputs
             OrganizationId = organizationId;
             ProjectId = projectId;
             Reverse = reverse;
+            Tags = tags;
             Zone = zone;
         }
     }

@@ -21,7 +21,7 @@ class GetLoadbalancerIpResult:
     """
     A collection of values returned by getLoadbalancerIp.
     """
-    def __init__(__self__, id=None, ip_address=None, ip_id=None, is_ipv6=None, lb_id=None, organization_id=None, project_id=None, region=None, reverse=None, zone=None):
+    def __init__(__self__, id=None, ip_address=None, ip_id=None, is_ipv6=None, lb_id=None, organization_id=None, project_id=None, region=None, reverse=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -49,6 +49,9 @@ class GetLoadbalancerIpResult:
         if reverse and not isinstance(reverse, str):
             raise TypeError("Expected argument 'reverse' to be a str")
         pulumi.set(__self__, "reverse", reverse)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -112,6 +115,14 @@ class GetLoadbalancerIpResult:
 
     @property
     @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        """
+        The tags associated with this IP.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def zone(self) -> str:
         return pulumi.get(self, "zone")
 
@@ -131,6 +142,7 @@ class AwaitableGetLoadbalancerIpResult(GetLoadbalancerIpResult):
             project_id=self.project_id,
             region=self.region,
             reverse=self.reverse,
+            tags=self.tags,
             zone=self.zone)
 
 
@@ -176,6 +188,7 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         reverse=pulumi.get(__ret__, 'reverse'),
+        tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
 
 

@@ -382,7 +382,7 @@ type InstanceServer struct {
 	EnableDynamicIp pulumi.BoolPtrOutput `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
 	EnableIpv6 pulumi.BoolPtrOutput `pulumi:"enableIpv6"`
-	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	//
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -504,7 +504,7 @@ type instanceServerState struct {
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
-	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	//
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -594,7 +594,7 @@ type InstanceServerState struct {
 	EnableDynamicIp pulumi.BoolPtrInput
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
 	EnableIpv6 pulumi.BoolPtrInput
-	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	//
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -688,7 +688,7 @@ type instanceServerArgs struct {
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
-	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	//
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -765,7 +765,7 @@ type InstanceServerArgs struct {
 	EnableDynamicIp pulumi.BoolPtrInput
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
 	EnableIpv6 pulumi.BoolPtrInput
-	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 	//
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -945,7 +945,7 @@ func (o InstanceServerOutput) EnableIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.EnableIpv6 }).(pulumi.BoolPtrOutput)
 }
 
-// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 // to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 //
 // You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```

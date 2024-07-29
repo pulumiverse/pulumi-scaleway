@@ -131,6 +131,10 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly runtime!: pulumi.Output<string>;
     /**
+     * Execution environment of the function.
+     */
+    public readonly sandbox!: pulumi.Output<string>;
+    /**
      * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
      */
     public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -177,6 +181,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["runtime"] = state ? state.runtime : undefined;
+            resourceInputs["sandbox"] = state ? state.sandbox : undefined;
             resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["zipFile"] = state ? state.zipFile : undefined;
@@ -209,6 +214,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["runtime"] = args ? args.runtime : undefined;
+            resourceInputs["sandbox"] = args ? args.sandbox : undefined;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["zipFile"] = args ? args.zipFile : undefined;
@@ -296,6 +302,10 @@ export interface FunctionState {
      */
     runtime?: pulumi.Input<string>;
     /**
+     * Execution environment of the function.
+     */
+    sandbox?: pulumi.Input<string>;
+    /**
      * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -372,6 +382,10 @@ export interface FunctionArgs {
      * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
      */
     runtime: pulumi.Input<string>;
+    /**
+     * Execution environment of the function.
+     */
+    sandbox?: pulumi.Input<string>;
     /**
      * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
      */

@@ -123,7 +123,9 @@ type LookupContainerResult struct {
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
-	RegistrySha256             string            `pulumi:"registrySha256"`
+	RegistrySha256 string `pulumi:"registrySha256"`
+	// (Optional) Execution environment of the container.
+	Sandbox                    string            `pulumi:"sandbox"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status string `pulumi:"status"`
@@ -286,6 +288,11 @@ func (o LookupContainerResultOutput) RegistryImage() pulumi.StringOutput {
 // The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 func (o LookupContainerResultOutput) RegistrySha256() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.RegistrySha256 }).(pulumi.StringOutput)
+}
+
+// (Optional) Execution environment of the container.
+func (o LookupContainerResultOutput) Sandbox() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupContainerResult) string { return v.Sandbox }).(pulumi.StringOutput)
 }
 
 func (o LookupContainerResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {

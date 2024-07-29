@@ -90,7 +90,7 @@ def get_marketplace_image(instance_type: Optional[str] = None,
 
     :param str instance_type: The instance type the image is compatible with.
            You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-    :param str label: Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+    :param str label: Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
            to find the right `label`.
     :param str zone: `zone`) The zone in which the image exists.
     """
@@ -128,7 +128,7 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
 
     :param str instance_type: The instance type the image is compatible with.
            You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-    :param str label: Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+    :param str label: Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
            to find the right `label`.
     :param str zone: `zone`) The zone in which the image exists.
     """

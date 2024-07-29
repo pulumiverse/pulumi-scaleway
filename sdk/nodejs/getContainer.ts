@@ -150,6 +150,10 @@ export interface GetContainerResult {
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     readonly registrySha256: string;
+    /**
+     * (Optional) Execution environment of the container.
+     */
+    readonly sandbox: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
     /**
      * The container status.

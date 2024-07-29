@@ -76,6 +76,10 @@ export interface GetLoadbalancerIpResult {
      * The reverse domain associated with this IP.
      */
     readonly reverse: string;
+    /**
+     * The tags associated with this IP.
+     */
+    readonly tags: string[];
     readonly zone: string;
 }
 /**

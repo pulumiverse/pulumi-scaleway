@@ -53,7 +53,7 @@ type GetMarketplaceImageArgs struct {
 	// The instance type the image is compatible with.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType *string `pulumi:"instanceType"`
-	// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find the right `label`.
 	Label string `pulumi:"label"`
 	// `zone`) The zone in which the image exists.
@@ -87,7 +87,7 @@ type GetMarketplaceImageOutputArgs struct {
 	// The instance type the image is compatible with.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType pulumi.StringPtrInput `pulumi:"instanceType"`
-	// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+	// Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find the right `label`.
 	Label pulumi.StringInput `pulumi:"label"`
 	// `zone`) The zone in which the image exists.

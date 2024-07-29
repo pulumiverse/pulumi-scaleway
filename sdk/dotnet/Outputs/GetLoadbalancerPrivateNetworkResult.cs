@@ -19,6 +19,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool DhcpConfig;
         /// <summary>
+        /// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+        /// </summary>
+        public readonly ImmutableArray<string> IpamIds;
+        /// <summary>
         /// The Private Network ID
         /// </summary>
         public readonly string PrivateNetworkId;
@@ -39,6 +43,8 @@ namespace Pulumiverse.Scaleway.Outputs
         private GetLoadbalancerPrivateNetworkResult(
             bool dhcpConfig,
 
+            ImmutableArray<string> ipamIds,
+
             string privateNetworkId,
 
             ImmutableArray<string> staticConfigs,
@@ -48,6 +54,7 @@ namespace Pulumiverse.Scaleway.Outputs
             string zone)
         {
             DhcpConfig = dhcpConfig;
+            IpamIds = ipamIds;
             PrivateNetworkId = privateNetworkId;
             StaticConfigs = staticConfigs;
             Status = status;

@@ -58,7 +58,7 @@ class InstanceServerArgs:
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -237,7 +237,7 @@ class InstanceServerArgs:
     @pulumi.getter
     def image(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 
         You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -490,7 +490,7 @@ class _InstanceServerState:
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -680,7 +680,7 @@ class _InstanceServerState:
     @pulumi.getter
     def image(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 
         You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -1212,7 +1212,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -1578,7 +1578,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -1719,7 +1719,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter
     def image(self) -> pulumi.Output[Optional[str]]:
         """
-        The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+        The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
 
         You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```

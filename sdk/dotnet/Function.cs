@@ -157,6 +157,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Runtime { get; private set; } = null!;
 
         /// <summary>
+        /// Execution environment of the function.
+        /// </summary>
+        [Output("sandbox")]
+        public Output<string> Sandbox { get; private set; } = null!;
+
+        /// <summary>
         /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         /// </summary>
         [Output("secretEnvironmentVariables")]
@@ -320,6 +326,12 @@ namespace Pulumiverse.Scaleway
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
 
+        /// <summary>
+        /// Execution environment of the function.
+        /// </summary>
+        [Input("sandbox")]
+        public Input<string>? Sandbox { get; set; }
+
         [Input("secretEnvironmentVariables")]
         private InputMap<string>? _secretEnvironmentVariables;
 
@@ -468,6 +480,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
+
+        /// <summary>
+        /// Execution environment of the function.
+        /// </summary>
+        [Input("sandbox")]
+        public Input<string>? Sandbox { get; set; }
 
         [Input("secretEnvironmentVariables")]
         private InputMap<string>? _secretEnvironmentVariables;

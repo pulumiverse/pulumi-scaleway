@@ -20,13 +20,19 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<bool>? DhcpConfig { get; set; }
 
         /// <summary>
+        /// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        /// </summary>
+        [Input("ipamIds")]
+        public Input<string>? IpamIds { get; set; }
+
+        /// <summary>
         /// (Required) The ID of the Private Network to attach to.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
+        /// (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         /// </summary>
         [Input("staticConfig")]
         public Input<string>? StaticConfig { get; set; }

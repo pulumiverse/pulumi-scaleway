@@ -1259,6 +1259,18 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "webhosting.md",
 				},
 			},
+			"scaleway_iam_api_key": {
+				Tok: scalewayDataSource(scalewayMod, "getIamApiKey"),
+				Docs: &tfbridge.DocInfo{
+					Source: "iam_api_key.md",
+				},
+			},
+			"scaleway_vpc_routes": {
+				Tok: scalewayDataSource(scalewayMod, "getVpcRoutes"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_routes.md",
+				},
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

@@ -259,6 +259,10 @@ namespace Pulumiverse.Scaleway
         /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         /// </summary>
         public readonly string RegistrySha256;
+        /// <summary>
+        /// (Optional) Execution environment of the container.
+        /// </summary>
+        public readonly string Sandbox;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         /// <summary>
         /// The container status.
@@ -317,6 +321,8 @@ namespace Pulumiverse.Scaleway
 
             string registrySha256,
 
+            string sandbox,
+
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
             string status,
@@ -346,6 +352,7 @@ namespace Pulumiverse.Scaleway
             Region = region;
             RegistryImage = registryImage;
             RegistrySha256 = registrySha256;
+            Sandbox = sandbox;
             SecretEnvironmentVariables = secretEnvironmentVariables;
             Status = status;
             Timeout = timeout;

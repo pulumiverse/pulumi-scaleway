@@ -22,13 +22,16 @@ class GetLbIpsResult:
     """
     A collection of values returned by getLbIps.
     """
-    def __init__(__self__, id=None, ip_cidr_range=None, ips=None, organization_id=None, project_id=None, zone=None):
+    def __init__(__self__, id=None, ip_cidr_range=None, ip_type=None, ips=None, organization_id=None, project_id=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if ip_cidr_range and not isinstance(ip_cidr_range, str):
             raise TypeError("Expected argument 'ip_cidr_range' to be a str")
         pulumi.set(__self__, "ip_cidr_range", ip_cidr_range)
+        if ip_type and not isinstance(ip_type, str):
+            raise TypeError("Expected argument 'ip_type' to be a str")
+        pulumi.set(__self__, "ip_type", ip_type)
         if ips and not isinstance(ips, list):
             raise TypeError("Expected argument 'ips' to be a list")
         pulumi.set(__self__, "ips", ips)
@@ -38,6 +41,9 @@ class GetLbIpsResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
@@ -54,6 +60,11 @@ class GetLbIpsResult:
     @pulumi.getter(name="ipCidrRange")
     def ip_cidr_range(self) -> Optional[str]:
         return pulumi.get(self, "ip_cidr_range")
+
+    @property
+    @pulumi.getter(name="ipType")
+    def ip_type(self) -> Optional[str]:
+        return pulumi.get(self, "ip_type")
 
     @property
     @pulumi.getter
@@ -81,6 +92,11 @@ class GetLbIpsResult:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def zone(self) -> str:
         """
         The zone of the Load Balancer.
@@ -96,14 +112,18 @@ class AwaitableGetLbIpsResult(GetLbIpsResult):
         return GetLbIpsResult(
             id=self.id,
             ip_cidr_range=self.ip_cidr_range,
+            ip_type=self.ip_type,
             ips=self.ips,
             organization_id=self.organization_id,
             project_id=self.project_id,
+            tags=self.tags,
             zone=self.zone)
 
 
 def get_lb_ips(ip_cidr_range: Optional[str] = None,
+               ip_type: Optional[str] = None,
                project_id: Optional[str] = None,
+               tags: Optional[Sequence[str]] = None,
                zone: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbIpsResult:
     """
@@ -119,16 +139,22 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
 
     my_key = scaleway.get_lb_ips(ip_cidr_range="0.0.0.0/0",
         zone="fr-par-2")
+    ips_by_tags_and_type = scaleway.get_lb_ips(ip_type="ipv4",
+        tags=["a tag"])
     ```
 
 
     :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
+    :param str ip_type: The IP type used as a filter.
     :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which the IPs exist.
     """
     __args__ = dict()
     __args__['ipCidrRange'] = ip_cidr_range
+    __args__['ipType'] = ip_type
     __args__['projectId'] = project_id
+    __args__['tags'] = tags
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbIps:getLbIps', __args__, opts=opts, typ=GetLbIpsResult).value
@@ -136,15 +162,19 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
     return AwaitableGetLbIpsResult(
         id=pulumi.get(__ret__, 'id'),
         ip_cidr_range=pulumi.get(__ret__, 'ip_cidr_range'),
+        ip_type=pulumi.get(__ret__, 'ip_type'),
         ips=pulumi.get(__ret__, 'ips'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
 
 
 @_utilities.lift_output_func(get_lb_ips)
 def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = None,
+                      ip_type: Optional[pulumi.Input[Optional[str]]] = None,
                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                      tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                       zone: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbIpsResult]:
     """
@@ -160,11 +190,15 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
 
     my_key = scaleway.get_lb_ips(ip_cidr_range="0.0.0.0/0",
         zone="fr-par-2")
+    ips_by_tags_and_type = scaleway.get_lb_ips(ip_type="ipv4",
+        tags=["a tag"])
     ```
 
 
     :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
+    :param str ip_type: The IP type used as a filter.
     :param str project_id: The ID of the Project the Load Balancer is associated with.
+    :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which the IPs exist.
     """
     ...

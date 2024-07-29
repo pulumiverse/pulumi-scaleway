@@ -33,6 +33,15 @@ namespace Pulumiverse.Scaleway
         ///         Zone = "fr-par-2",
         ///     });
         /// 
+        ///     var ipsByTagsAndType = Scaleway.GetLbIps.Invoke(new()
+        ///     {
+        ///         IpType = "ipv4",
+        ///         Tags = new[]
+        ///         {
+        ///             "a tag",
+        ///         },
+        ///     });
+        /// 
         /// });
         /// ```
         /// </summary>
@@ -60,6 +69,15 @@ namespace Pulumiverse.Scaleway
         ///         Zone = "fr-par-2",
         ///     });
         /// 
+        ///     var ipsByTagsAndType = Scaleway.GetLbIps.Invoke(new()
+        ///     {
+        ///         IpType = "ipv4",
+        ///         Tags = new[]
+        ///         {
+        ///             "a tag",
+        ///         },
+        ///     });
+        /// 
         /// });
         /// ```
         /// </summary>
@@ -77,10 +95,28 @@ namespace Pulumiverse.Scaleway
         public string? IpCidrRange { get; set; }
 
         /// <summary>
+        /// The IP type used as a filter.
+        /// </summary>
+        [Input("ipType")]
+        public string? IpType { get; set; }
+
+        /// <summary>
         /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
+
+        [Input("tags")]
+        private List<string>? _tags;
+
+        /// <summary>
+        /// List of tags used as filter. IPs with these exact tags are listed.
+        /// </summary>
+        public List<string> Tags
+        {
+            get => _tags ?? (_tags = new List<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// `zone`) The zone in which the IPs exist.
@@ -103,10 +139,28 @@ namespace Pulumiverse.Scaleway
         public Input<string>? IpCidrRange { get; set; }
 
         /// <summary>
+        /// The IP type used as a filter.
+        /// </summary>
+        [Input("ipType")]
+        public Input<string>? IpType { get; set; }
+
+        /// <summary>
         /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// List of tags used as filter. IPs with these exact tags are listed.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// `zone`) The zone in which the IPs exist.
@@ -129,6 +183,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? IpCidrRange;
+        public readonly string? IpType;
         /// <summary>
         /// List of retrieved IPs
         /// </summary>
@@ -141,6 +196,7 @@ namespace Pulumiverse.Scaleway
         /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
+        public readonly ImmutableArray<string> Tags;
         /// <summary>
         /// The zone of the Load Balancer.
         /// </summary>
@@ -152,19 +208,25 @@ namespace Pulumiverse.Scaleway
 
             string? ipCidrRange,
 
+            string? ipType,
+
             ImmutableArray<Outputs.GetLbIpsIpResult> ips,
 
             string organizationId,
 
             string projectId,
 
+            ImmutableArray<string> tags,
+
             string zone)
         {
             Id = id;
             IpCidrRange = ipCidrRange;
+            IpType = ipType;
             Ips = ips;
             OrganizationId = organizationId;
             ProjectId = projectId;
+            Tags = tags;
             Zone = zone;
         }
     }

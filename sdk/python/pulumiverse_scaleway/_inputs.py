@@ -2245,7 +2245,7 @@ class IamPolicyRuleArgs:
                **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
                
                ```shell
-               $ scw IAM permission-set list
+               scw IAM permission-set list
                ```
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: List of project IDs scoped to the rule.
@@ -2267,7 +2267,7 @@ class IamPolicyRuleArgs:
         **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
         ```shell
-        $ scw IAM permission-set list
+        scw IAM permission-set list
         ```
         """
         return pulumi.get(self, "permission_set_names")
@@ -5025,19 +5025,23 @@ class LoadbalancerPrivateNetworkArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[str],
                  dhcp_config: Optional[pulumi.Input[bool]] = None,
+                 ipam_ids: Optional[pulumi.Input[str]] = None,
                  static_config: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] private_network_id: (Required) The ID of the Private Network to attach to.
         :param pulumi.Input[bool] dhcp_config: (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
-        :param pulumi.Input[str] static_config: (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
+        :param pulumi.Input[str] ipam_ids: (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        :param pulumi.Input[str] static_config: (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         :param pulumi.Input[str] status: The status of private network connection
         :param pulumi.Input[str] zone: `zone`) The zone of the Load Balancer.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
+        if ipam_ids is not None:
+            pulumi.set(__self__, "ipam_ids", ipam_ids)
         if static_config is not None:
             warnings.warn("""static_config field is deprecated, please use dhcp_config instead""", DeprecationWarning)
             pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use dhcp_config instead""")
@@ -5073,11 +5077,23 @@ class LoadbalancerPrivateNetworkArgs:
         pulumi.set(self, "dhcp_config", value)
 
     @property
+    @pulumi.getter(name="ipamIds")
+    def ipam_ids(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        """
+        return pulumi.get(self, "ipam_ids")
+
+    @ipam_ids.setter
+    def ipam_ids(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipam_ids", value)
+
+    @property
     @pulumi.getter(name="staticConfig")
     @_utilities.deprecated("""static_config field is deprecated, please use dhcp_config instead""")
     def static_config(self) -> Optional[pulumi.Input[str]]:
         """
-        (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
+        (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         """
         return pulumi.get(self, "static_config")
 

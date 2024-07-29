@@ -17,12 +17,14 @@ class LoadbalancerIpArgs:
                  is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadbalancerIp resource.
         :param pulumi.Input[bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         if is_ipv6 is not None:
@@ -31,6 +33,8 @@ class LoadbalancerIpArgs:
             pulumi.set(__self__, "project_id", project_id)
         if reverse is not None:
             pulumi.set(__self__, "reverse", reverse)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -72,6 +76,18 @@ class LoadbalancerIpArgs:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with this IP.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the IP should be reserved.
@@ -93,6 +109,7 @@ class _LoadbalancerIpState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerIp resources.
@@ -103,6 +120,7 @@ class _LoadbalancerIpState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         if ip_address is not None:
@@ -119,6 +137,8 @@ class _LoadbalancerIpState:
             pulumi.set(__self__, "region", region)
         if reverse is not None:
             pulumi.set(__self__, "reverse", reverse)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -208,6 +228,18 @@ class _LoadbalancerIpState:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with this IP.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the IP should be reserved.
@@ -227,6 +259,7 @@ class LoadbalancerIp(pulumi.CustomResource):
                  is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -269,6 +302,7 @@ class LoadbalancerIp(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         ...
@@ -330,6 +364,7 @@ class LoadbalancerIp(pulumi.CustomResource):
                  is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -343,6 +378,7 @@ class LoadbalancerIp(pulumi.CustomResource):
             __props__.__dict__["is_ipv6"] = is_ipv6
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["reverse"] = reverse
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["ip_address"] = None
             __props__.__dict__["lb_id"] = None
@@ -365,6 +401,7 @@ class LoadbalancerIp(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             reverse: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'LoadbalancerIp':
         """
         Get an existing LoadbalancerIp resource's state with the given name, id, and optional extra
@@ -380,6 +417,7 @@ class LoadbalancerIp(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -393,6 +431,7 @@ class LoadbalancerIp(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["reverse"] = reverse
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
         return LoadbalancerIp(resource_name, opts=opts, __props__=__props__)
 
@@ -451,6 +490,14 @@ class LoadbalancerIp(pulumi.CustomResource):
         The reverse domain associated with this IP.
         """
         return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The tags associated with this IP.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter

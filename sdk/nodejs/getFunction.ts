@@ -83,6 +83,7 @@ export interface GetFunctionResult {
     readonly projectId?: string;
     readonly region?: string;
     readonly runtime: string;
+    readonly sandbox: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
     readonly timeout: number;
     readonly zipFile: string;
