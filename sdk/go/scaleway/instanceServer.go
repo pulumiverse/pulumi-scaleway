@@ -216,7 +216,7 @@ import (
 //				Image: pulumi.String("ubuntu_jammy"),
 //				UserData: pulumi.StringMap{
 //					"foo":        pulumi.String("bar"),
-//					"cloud-init": readFileOrPanic(fmt.Sprintf("%v/cloud-init.yml", path.Module)),
+//					"cloud-init": pulumi.String(readFileOrPanic(fmt.Sprintf("%v/cloud-init.yml", path.Module))),
 //				},
 //			})
 //			if err != nil {

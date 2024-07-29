@@ -131,7 +131,7 @@ import (
 //					Expander:                     pulumi.String("random"),
 //					IgnoreDaemonsetsUtilization:  pulumi.Bool(true),
 //					BalanceSimilarNodeGroups:     pulumi.Bool(true),
-//					ExpendablePodsPriorityCutoff: -5,
+//					ExpendablePodsPriorityCutoff: int(-5),
 //				},
 //			})
 //			if err != nil {

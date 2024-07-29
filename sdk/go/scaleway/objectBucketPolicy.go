@@ -303,9 +303,9 @@ import (
 //			}, nil)
 //			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
 //				Bucket: bucket.ID(),
-//				Policy: policy.ApplyT(func(policy iam.GetPolicyDocumentResult) (*string, error) {
+//				Policy: pulumi.String(policy.ApplyT(func(policy iam.GetPolicyDocumentResult) (*string, error) {
 //					return &policy.Json, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //			})
 //			if err != nil {
 //				return err

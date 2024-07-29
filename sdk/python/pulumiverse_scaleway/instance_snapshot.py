@@ -360,7 +360,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
             volume_id=main_instance_volume.id,
             type="unified",
-            opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
+            opts = pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
 
         ### Example importing a local qcow2 file
@@ -445,7 +445,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
             volume_id=main_instance_volume.id,
             type="unified",
-            opts=pulumi.ResourceOptions(depends_on=[main_instance_server]))
+            opts = pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
 
         ### Example importing a local qcow2 file
