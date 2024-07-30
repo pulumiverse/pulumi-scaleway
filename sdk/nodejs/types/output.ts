@@ -2004,6 +2004,10 @@ export interface GetLbIpsIp {
      */
     reverse: string;
     /**
+     * List of tags used as filter. IPs with these exact tags are listed.
+     */
+    tags: string[];
+    /**
      * `zone`) The zone in which the IPs exist.
      */
     zone: string;
@@ -2188,6 +2192,10 @@ export interface GetLoadbalancerPrivateNetwork {
      * Set to true if you want to let DHCP assign IP addresses
      */
     dhcpConfig: boolean;
+    /**
+     * IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+     */
+    ipamIds: string[];
     /**
      * The Private Network ID
      */
@@ -2412,6 +2420,58 @@ export interface GetVpcPrivateNetworkIpv6Subnet {
     updatedAt: string;
 }
 
+export interface GetVpcRoutesRoute {
+    /**
+     * The date on which the route was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The description of the route.
+     */
+    description: string;
+    /**
+     * The destination IP or IP range of the route.
+     */
+    destination: string;
+    /**
+     * The ID of the route.
+     * > **Important:** route IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+     */
+    id: string;
+    /**
+     * The IP of the route's next hop.
+     */
+    nexthopIp: string;
+    /**
+     * The name of the route's next hop.
+     */
+    nexthopName: string;
+    /**
+     * The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
+     */
+    nexthopPrivateNetworkId: string;
+    /**
+     * The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
+     */
+    nexthopResourceId: string;
+    /**
+     * The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+     */
+    nexthopResourceType: string;
+    /**
+     * `region`). The region in which the routes exist.
+     */
+    region: string;
+    /**
+     * List of tags to filter for. routes with these exact tags are listed.
+     */
+    tags: string[];
+    /**
+     * The VPC ID to filter for. routes with a similar VPC ID are listed.
+     */
+    vpcId: string;
+}
+
 export interface GetVpcsVpc {
     /**
      * Date and time of VPC's creation (RFC 3339 format).
@@ -2509,7 +2569,7 @@ export interface IamPolicyRule {
      * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
      *
      * ```shell
-     * $ scw IAM permission-set list
+     * scw IAM permission-set list
      * ```
      */
     permissionSetNames: string[];
@@ -3276,11 +3336,15 @@ export interface LoadbalancerPrivateNetwork {
      */
     dhcpConfig: boolean;
     /**
+     * (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+     */
+    ipamIds: string;
+    /**
      * (Required) The ID of the Private Network to attach to.
      */
     privateNetworkId: string;
     /**
-     * (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+     * (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
      *
      * @deprecated static_config field is deprecated, please use dhcpConfig instead
      */

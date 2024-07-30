@@ -31,6 +31,7 @@ class ContainerArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None):
@@ -59,6 +60,7 @@ class ContainerArgs:
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
+        :param pulumi.Input[str] sandbox: Execution environment of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
         :param pulumi.Input[str] status: The container status.
         :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -96,6 +98,8 @@ class ContainerArgs:
             pulumi.set(__self__, "registry_image", registry_image)
         if registry_sha256 is not None:
             pulumi.set(__self__, "registry_sha256", registry_sha256)
+        if sandbox is not None:
+            pulumi.set(__self__, "sandbox", sandbox)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if status is not None:
@@ -314,6 +318,18 @@ class ContainerArgs:
         pulumi.set(self, "registry_sha256", value)
 
     @property
+    @pulumi.getter
+    def sandbox(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution environment of the container.
+        """
+        return pulumi.get(self, "sandbox")
+
+    @sandbox.setter
+    def sandbox(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sandbox", value)
+
+    @property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -373,6 +389,7 @@ class _ContainerState:
                  region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None):
@@ -404,6 +421,7 @@ class _ContainerState:
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
+        :param pulumi.Input[str] sandbox: Execution environment of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
         :param pulumi.Input[str] status: The container status.
         :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -448,6 +466,8 @@ class _ContainerState:
             pulumi.set(__self__, "registry_image", registry_image)
         if registry_sha256 is not None:
             pulumi.set(__self__, "registry_sha256", registry_sha256)
+        if sandbox is not None:
+            pulumi.set(__self__, "sandbox", sandbox)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if status is not None:
@@ -702,6 +722,18 @@ class _ContainerState:
         pulumi.set(self, "registry_sha256", value)
 
     @property
+    @pulumi.getter
+    def sandbox(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution environment of the container.
+        """
+        return pulumi.get(self, "sandbox")
+
+    @sandbox.setter
+    def sandbox(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sandbox", value)
+
+    @property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -760,6 +792,7 @@ class Container(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
@@ -873,6 +906,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
+        :param pulumi.Input[str] sandbox: Execution environment of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
         :param pulumi.Input[str] status: The container status.
         :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -999,6 +1033,7 @@ class Container(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  registry_image: Optional[pulumi.Input[str]] = None,
                  registry_sha256: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
@@ -1030,6 +1065,7 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["registry_image"] = registry_image
             __props__.__dict__["registry_sha256"] = registry_sha256
+            __props__.__dict__["sandbox"] = sandbox
             __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
             __props__.__dict__["status"] = status
             __props__.__dict__["timeout"] = timeout
@@ -1068,6 +1104,7 @@ class Container(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             registry_image: Optional[pulumi.Input[str]] = None,
             registry_sha256: Optional[pulumi.Input[str]] = None,
+            sandbox: Optional[pulumi.Input[str]] = None,
             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             timeout: Optional[pulumi.Input[int]] = None) -> 'Container':
@@ -1104,6 +1141,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
+        :param pulumi.Input[str] sandbox: Execution environment of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
         :param pulumi.Input[str] status: The container status.
         :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
@@ -1132,6 +1170,7 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["registry_image"] = registry_image
         __props__.__dict__["registry_sha256"] = registry_sha256
+        __props__.__dict__["sandbox"] = sandbox
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
         __props__.__dict__["status"] = status
         __props__.__dict__["timeout"] = timeout
@@ -1302,6 +1341,14 @@ class Container(pulumi.CustomResource):
         The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         """
         return pulumi.get(self, "registry_sha256")
+
+    @property
+    @pulumi.getter
+    def sandbox(self) -> pulumi.Output[str]:
+        """
+        Execution environment of the container.
+        """
+        return pulumi.get(self, "sandbox")
 
     @property
     @pulumi.getter(name="secretEnvironmentVariables")

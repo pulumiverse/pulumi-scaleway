@@ -38,7 +38,7 @@ export interface GetMarketplaceImageArgs {
      */
     instanceType?: string;
     /**
-     * Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find the right `label`.
      */
     label: string;
@@ -88,7 +88,7 @@ export interface GetMarketplaceImageOutputArgs {
      */
     instanceType?: pulumi.Input<string>;
     /**
-     * Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find the right `label`.
      */
     label: pulumi.Input<string>;

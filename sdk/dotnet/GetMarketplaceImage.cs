@@ -72,7 +72,7 @@ namespace Pulumiverse.Scaleway
         public string? InstanceType { get; set; }
 
         /// <summary>
-        /// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
+        /// Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         /// to find the right `label`.
         /// </summary>
         [Input("label", required: true)]
@@ -100,7 +100,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? InstanceType { get; set; }
 
         /// <summary>
-        /// Exact label of the desired image. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
+        /// Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         /// to find the right `label`.
         /// </summary>
         [Input("label", required: true)]

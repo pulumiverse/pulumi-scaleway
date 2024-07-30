@@ -36,6 +36,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = scaleway.GetLbIps(ctx, &scaleway.GetLbIpsArgs{
+//				IpType: pulumi.StringRef("ipv4"),
+//				Tags: []string{
+//					"a tag",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -55,8 +64,12 @@ func GetLbIps(ctx *pulumi.Context, args *GetLbIpsArgs, opts ...pulumi.InvokeOpti
 type GetLbIpsArgs struct {
 	// The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
 	IpCidrRange *string `pulumi:"ipCidrRange"`
+	// The IP type used as a filter.
+	IpType *string `pulumi:"ipType"`
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// List of tags used as filter. IPs with these exact tags are listed.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
 	Zone *string `pulumi:"zone"`
 }
@@ -66,12 +79,14 @@ type GetLbIpsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id          string  `pulumi:"id"`
 	IpCidrRange *string `pulumi:"ipCidrRange"`
+	IpType      *string `pulumi:"ipType"`
 	// List of retrieved IPs
 	Ips []GetLbIpsIp `pulumi:"ips"`
 	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the Project the Load Balancer is associated with.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId string   `pulumi:"projectId"`
+	Tags      []string `pulumi:"tags"`
 	// The zone of the Load Balancer.
 	Zone string `pulumi:"zone"`
 }
@@ -93,8 +108,12 @@ func GetLbIpsOutput(ctx *pulumi.Context, args GetLbIpsOutputArgs, opts ...pulumi
 type GetLbIpsOutputArgs struct {
 	// The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
 	IpCidrRange pulumi.StringPtrInput `pulumi:"ipCidrRange"`
+	// The IP type used as a filter.
+	IpType pulumi.StringPtrInput `pulumi:"ipType"`
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// List of tags used as filter. IPs with these exact tags are listed.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -127,6 +146,10 @@ func (o GetLbIpsResultOutput) IpCidrRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLbIpsResult) *string { return v.IpCidrRange }).(pulumi.StringPtrOutput)
 }
 
+func (o GetLbIpsResultOutput) IpType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbIpsResult) *string { return v.IpType }).(pulumi.StringPtrOutput)
+}
+
 // List of retrieved IPs
 func (o GetLbIpsResultOutput) Ips() GetLbIpsIpArrayOutput {
 	return o.ApplyT(func(v GetLbIpsResult) []GetLbIpsIp { return v.Ips }).(GetLbIpsIpArrayOutput)
@@ -140,6 +163,10 @@ func (o GetLbIpsResultOutput) OrganizationId() pulumi.StringOutput {
 // The ID of the Project the Load Balancer is associated with.
 func (o GetLbIpsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetLbIpsResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbIpsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The zone of the Load Balancer.

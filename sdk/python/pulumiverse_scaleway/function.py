@@ -28,6 +28,7 @@ class FunctionArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
@@ -49,6 +50,7 @@ class FunctionArgs:
                > **Important** Updates to `name` will recreate the function.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] sandbox: Execution environment of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -78,6 +80,8 @@ class FunctionArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if sandbox is not None:
+            pulumi.set(__self__, "sandbox", sandbox)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout is not None:
@@ -255,6 +259,18 @@ class FunctionArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter
+    def sandbox(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution environment of the function.
+        """
+        return pulumi.get(self, "sandbox")
+
+    @sandbox.setter
+    def sandbox(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sandbox", value)
+
+    @property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -323,6 +339,7 @@ class _FunctionState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
@@ -347,6 +364,7 @@ class _FunctionState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+        :param pulumi.Input[str] sandbox: Execution environment of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -386,6 +404,8 @@ class _FunctionState:
             pulumi.set(__self__, "region", region)
         if runtime is not None:
             pulumi.set(__self__, "runtime", runtime)
+        if sandbox is not None:
+            pulumi.set(__self__, "sandbox", sandbox)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if timeout is not None:
@@ -599,6 +619,18 @@ class _FunctionState:
         pulumi.set(self, "runtime", value)
 
     @property
+    @pulumi.getter
+    def sandbox(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution environment of the function.
+        """
+        return pulumi.get(self, "sandbox")
+
+    @sandbox.setter
+    def sandbox(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sandbox", value)
+
+    @property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
@@ -666,6 +698,7 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
@@ -718,6 +751,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+        :param pulumi.Input[str] sandbox: Execution environment of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -788,6 +822,7 @@ class Function(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  runtime: Optional[pulumi.Input[str]] = None,
+                 sandbox: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  zip_file: Optional[pulumi.Input[str]] = None,
@@ -823,6 +858,7 @@ class Function(pulumi.CustomResource):
             if runtime is None and not opts.urn:
                 raise TypeError("Missing required property 'runtime'")
             __props__.__dict__["runtime"] = runtime
+            __props__.__dict__["sandbox"] = sandbox
             __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
             __props__.__dict__["timeout"] = timeout
             __props__.__dict__["zip_file"] = zip_file
@@ -859,6 +895,7 @@ class Function(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             runtime: Optional[pulumi.Input[str]] = None,
+            sandbox: Optional[pulumi.Input[str]] = None,
             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
             zip_file: Optional[pulumi.Input[str]] = None,
@@ -888,6 +925,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+        :param pulumi.Input[str] sandbox: Execution environment of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
         :param pulumi.Input[int] timeout: Holds the max duration (in seconds) the function is allowed for responding to a request
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
@@ -914,6 +952,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["runtime"] = runtime
+        __props__.__dict__["sandbox"] = sandbox
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["zip_file"] = zip_file
@@ -1054,6 +1093,14 @@ class Function(pulumi.CustomResource):
         Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         """
         return pulumi.get(self, "runtime")
+
+    @property
+    @pulumi.getter
+    def sandbox(self) -> pulumi.Output[str]:
+        """
+        Execution environment of the function.
+        """
+        return pulumi.get(self, "sandbox")
 
     @property
     @pulumi.getter(name="secretEnvironmentVariables")

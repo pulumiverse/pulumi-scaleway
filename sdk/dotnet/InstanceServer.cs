@@ -339,7 +339,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
+        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         /// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
         /// 
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -600,7 +600,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableIpv6 { get; set; }
 
         /// <summary>
-        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
+        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         /// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
         /// 
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -810,7 +810,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableIpv6 { get; set; }
 
         /// <summary>
-        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&amp;per_page=100)
+        /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         /// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
         /// 
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```

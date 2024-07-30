@@ -238,6 +238,12 @@ namespace Pulumiverse.Scaleway
         public Output<string?> RegistrySha256 { get; private set; } = null!;
 
         /// <summary>
+        /// Execution environment of the container.
+        /// </summary>
+        [Output("sandbox")]
+        public Output<string> Sandbox { get; private set; } = null!;
+
+        /// <summary>
         /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
         /// </summary>
         [Output("secretEnvironmentVariables")]
@@ -420,6 +426,12 @@ namespace Pulumiverse.Scaleway
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }
 
+        /// <summary>
+        /// Execution environment of the container.
+        /// </summary>
+        [Input("sandbox")]
+        public Input<string>? Sandbox { get; set; }
+
         [Input("secretEnvironmentVariables")]
         private InputMap<string>? _secretEnvironmentVariables;
 
@@ -587,6 +599,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("registrySha256")]
         public Input<string>? RegistrySha256 { get; set; }
+
+        /// <summary>
+        /// Execution environment of the container.
+        /// </summary>
+        [Input("sandbox")]
+        public Input<string>? Sandbox { get; set; }
 
         [Input("secretEnvironmentVariables")]
         private InputMap<string>? _secretEnvironmentVariables;

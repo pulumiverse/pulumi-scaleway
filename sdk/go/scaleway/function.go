@@ -99,6 +99,8 @@ type Function struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime pulumi.StringOutput `pulumi:"runtime"`
+	// Execution environment of the function.
+	Sandbox pulumi.StringOutput `pulumi:"sandbox"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
@@ -193,6 +195,8 @@ type functionState struct {
 	Region *string `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime *string `pulumi:"runtime"`
+	// Execution environment of the function.
+	Sandbox *string `pulumi:"sandbox"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
@@ -239,6 +243,8 @@ type FunctionState struct {
 	Region pulumi.StringPtrInput
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime pulumi.StringPtrInput
+	// Execution environment of the function.
+	Sandbox pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
@@ -283,6 +289,8 @@ type functionArgs struct {
 	Region *string `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime string `pulumi:"runtime"`
+	// Execution environment of the function.
+	Sandbox *string `pulumi:"sandbox"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
@@ -324,6 +332,8 @@ type FunctionArgs struct {
 	Region pulumi.StringPtrInput
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 	Runtime pulumi.StringInput
+	// Execution environment of the function.
+	Sandbox pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// Holds the max duration (in seconds) the function is allowed for responding to a request
@@ -505,6 +515,11 @@ func (o FunctionOutput) Region() pulumi.StringOutput {
 // Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
 func (o FunctionOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Runtime }).(pulumi.StringOutput)
+}
+
+// Execution environment of the function.
+func (o FunctionOutput) Sandbox() pulumi.StringOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Sandbox }).(pulumi.StringOutput)
 }
 
 // The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.

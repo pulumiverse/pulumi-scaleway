@@ -204,6 +204,10 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly registrySha256!: pulumi.Output<string | undefined>;
     /**
+     * Execution environment of the container.
+     */
+    public readonly sandbox!: pulumi.Output<string>;
+    /**
      * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
      */
     public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -249,6 +253,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["registryImage"] = state ? state.registryImage : undefined;
             resourceInputs["registrySha256"] = state ? state.registrySha256 : undefined;
+            resourceInputs["sandbox"] = state ? state.sandbox : undefined;
             resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
@@ -274,6 +279,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["registryImage"] = args ? args.registryImage : undefined;
             resourceInputs["registrySha256"] = args ? args.registrySha256 : undefined;
+            resourceInputs["sandbox"] = args ? args.sandbox : undefined;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
@@ -379,6 +385,10 @@ export interface ContainerState {
      */
     registrySha256?: pulumi.Input<string>;
     /**
+     * Execution environment of the container.
+     */
+    sandbox?: pulumi.Input<string>;
+    /**
      * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -470,6 +480,10 @@ export interface ContainerArgs {
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
     registrySha256?: pulumi.Input<string>;
+    /**
+     * Execution environment of the container.
+     */
+    sandbox?: pulumi.Input<string>;
     /**
      * The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
      */

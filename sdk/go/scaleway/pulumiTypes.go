@@ -10976,9 +10976,11 @@ func (o LoadbalancerFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput
 type LoadbalancerPrivateNetwork struct {
 	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
+	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+	IpamIds *string `pulumi:"ipamIds"`
 	// (Required) The ID of the Private Network to attach to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
 	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
 	StaticConfig *string `pulumi:"staticConfig"`
@@ -11002,9 +11004,11 @@ type LoadbalancerPrivateNetworkInput interface {
 type LoadbalancerPrivateNetworkArgs struct {
 	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
+	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+	IpamIds pulumi.StringPtrInput `pulumi:"ipamIds"`
 	// (Required) The ID of the Private Network to attach to.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
 	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
@@ -11070,12 +11074,17 @@ func (o LoadbalancerPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *bool { return v.DhcpConfig }).(pulumi.BoolPtrOutput)
 }
 
+// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+func (o LoadbalancerPrivateNetworkOutput) IpamIds() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.IpamIds }).(pulumi.StringPtrOutput)
+}
+
 // (Required) The ID of the Private Network to attach to.
 func (o LoadbalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 //
 // Deprecated: static_config field is deprecated, please use dhcpConfig instead
 func (o LoadbalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
@@ -22835,6 +22844,8 @@ type GetLbIpsIp struct {
 	ProjectId string `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
 	Reverse string `pulumi:"reverse"`
+	// List of tags used as filter. IPs with these exact tags are listed.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
 	Zone string `pulumi:"zone"`
 }
@@ -22863,6 +22874,8 @@ type GetLbIpsIpArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
 	Reverse pulumi.StringInput `pulumi:"reverse"`
+	// List of tags used as filter. IPs with these exact tags are listed.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
@@ -22946,6 +22959,11 @@ func (o GetLbIpsIpOutput) ProjectId() pulumi.StringOutput {
 // The reverse domain associated with this IP.
 func (o GetLbIpsIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+// List of tags used as filter. IPs with these exact tags are listed.
+func (o GetLbIpsIpOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLbIpsIp) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // `zone`) The zone in which the IPs exist.
@@ -23870,6 +23888,8 @@ func (o GetLoadbalancerCertificateLetsencryptArrayOutput) Index(i pulumi.IntInpu
 type GetLoadbalancerPrivateNetwork struct {
 	// Set to true if you want to let DHCP assign IP addresses
 	DhcpConfig bool `pulumi:"dhcpConfig"`
+	// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+	IpamIds []string `pulumi:"ipamIds"`
 	// The Private Network ID
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
@@ -23894,6 +23914,8 @@ type GetLoadbalancerPrivateNetworkInput interface {
 type GetLoadbalancerPrivateNetworkArgs struct {
 	// Set to true if you want to let DHCP assign IP addresses
 	DhcpConfig pulumi.BoolInput `pulumi:"dhcpConfig"`
+	// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+	IpamIds pulumi.StringArrayInput `pulumi:"ipamIds"`
 	// The Private Network ID
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
 	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
@@ -23958,6 +23980,11 @@ func (o GetLoadbalancerPrivateNetworkOutput) ToGetLoadbalancerPrivateNetworkOutp
 // Set to true if you want to let DHCP assign IP addresses
 func (o GetLoadbalancerPrivateNetworkOutput) DhcpConfig() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLoadbalancerPrivateNetwork) bool { return v.DhcpConfig }).(pulumi.BoolOutput)
+}
+
+// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+func (o GetLoadbalancerPrivateNetworkOutput) IpamIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLoadbalancerPrivateNetwork) []string { return v.IpamIds }).(pulumi.StringArrayOutput)
 }
 
 // The Private Network ID
@@ -25461,6 +25488,205 @@ func (o GetVpcPrivateNetworkIpv6SubnetArrayOutput) Index(i pulumi.IntInput) GetV
 	}).(GetVpcPrivateNetworkIpv6SubnetOutput)
 }
 
+type GetVpcRoutesRoute struct {
+	// The date on which the route was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the route.
+	Description string `pulumi:"description"`
+	// The destination IP or IP range of the route.
+	Destination string `pulumi:"destination"`
+	// The ID of the route.
+	// > **Important:** route IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+	Id string `pulumi:"id"`
+	// The IP of the route's next hop.
+	NexthopIp string `pulumi:"nexthopIp"`
+	// The name of the route's next hop.
+	NexthopName string `pulumi:"nexthopName"`
+	// The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
+	NexthopPrivateNetworkId string `pulumi:"nexthopPrivateNetworkId"`
+	// The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
+	NexthopResourceId string `pulumi:"nexthopResourceId"`
+	// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+	NexthopResourceType string `pulumi:"nexthopResourceType"`
+	// `region`). The region in which the routes exist.
+	Region string `pulumi:"region"`
+	// List of tags to filter for. routes with these exact tags are listed.
+	Tags []string `pulumi:"tags"`
+	// The VPC ID to filter for. routes with a similar VPC ID are listed.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// GetVpcRoutesRouteInput is an input type that accepts GetVpcRoutesRouteArgs and GetVpcRoutesRouteOutput values.
+// You can construct a concrete instance of `GetVpcRoutesRouteInput` via:
+//
+//	GetVpcRoutesRouteArgs{...}
+type GetVpcRoutesRouteInput interface {
+	pulumi.Input
+
+	ToGetVpcRoutesRouteOutput() GetVpcRoutesRouteOutput
+	ToGetVpcRoutesRouteOutputWithContext(context.Context) GetVpcRoutesRouteOutput
+}
+
+type GetVpcRoutesRouteArgs struct {
+	// The date on which the route was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the route.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The destination IP or IP range of the route.
+	Destination pulumi.StringInput `pulumi:"destination"`
+	// The ID of the route.
+	// > **Important:** route IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+	Id pulumi.StringInput `pulumi:"id"`
+	// The IP of the route's next hop.
+	NexthopIp pulumi.StringInput `pulumi:"nexthopIp"`
+	// The name of the route's next hop.
+	NexthopName pulumi.StringInput `pulumi:"nexthopName"`
+	// The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
+	NexthopPrivateNetworkId pulumi.StringInput `pulumi:"nexthopPrivateNetworkId"`
+	// The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
+	NexthopResourceId pulumi.StringInput `pulumi:"nexthopResourceId"`
+	// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+	NexthopResourceType pulumi.StringInput `pulumi:"nexthopResourceType"`
+	// `region`). The region in which the routes exist.
+	Region pulumi.StringInput `pulumi:"region"`
+	// List of tags to filter for. routes with these exact tags are listed.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The VPC ID to filter for. routes with a similar VPC ID are listed.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (GetVpcRoutesRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcRoutesRoute)(nil)).Elem()
+}
+
+func (i GetVpcRoutesRouteArgs) ToGetVpcRoutesRouteOutput() GetVpcRoutesRouteOutput {
+	return i.ToGetVpcRoutesRouteOutputWithContext(context.Background())
+}
+
+func (i GetVpcRoutesRouteArgs) ToGetVpcRoutesRouteOutputWithContext(ctx context.Context) GetVpcRoutesRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcRoutesRouteOutput)
+}
+
+// GetVpcRoutesRouteArrayInput is an input type that accepts GetVpcRoutesRouteArray and GetVpcRoutesRouteArrayOutput values.
+// You can construct a concrete instance of `GetVpcRoutesRouteArrayInput` via:
+//
+//	GetVpcRoutesRouteArray{ GetVpcRoutesRouteArgs{...} }
+type GetVpcRoutesRouteArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcRoutesRouteArrayOutput() GetVpcRoutesRouteArrayOutput
+	ToGetVpcRoutesRouteArrayOutputWithContext(context.Context) GetVpcRoutesRouteArrayOutput
+}
+
+type GetVpcRoutesRouteArray []GetVpcRoutesRouteInput
+
+func (GetVpcRoutesRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcRoutesRoute)(nil)).Elem()
+}
+
+func (i GetVpcRoutesRouteArray) ToGetVpcRoutesRouteArrayOutput() GetVpcRoutesRouteArrayOutput {
+	return i.ToGetVpcRoutesRouteArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcRoutesRouteArray) ToGetVpcRoutesRouteArrayOutputWithContext(ctx context.Context) GetVpcRoutesRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcRoutesRouteArrayOutput)
+}
+
+type GetVpcRoutesRouteOutput struct{ *pulumi.OutputState }
+
+func (GetVpcRoutesRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcRoutesRoute)(nil)).Elem()
+}
+
+func (o GetVpcRoutesRouteOutput) ToGetVpcRoutesRouteOutput() GetVpcRoutesRouteOutput {
+	return o
+}
+
+func (o GetVpcRoutesRouteOutput) ToGetVpcRoutesRouteOutputWithContext(ctx context.Context) GetVpcRoutesRouteOutput {
+	return o
+}
+
+// The date on which the route was created (RFC 3339 format).
+func (o GetVpcRoutesRouteOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the route.
+func (o GetVpcRoutesRouteOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The destination IP or IP range of the route.
+func (o GetVpcRoutesRouteOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The ID of the route.
+// > **Important:** route IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+func (o GetVpcRoutesRouteOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IP of the route's next hop.
+func (o GetVpcRoutesRouteOutput) NexthopIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.NexthopIp }).(pulumi.StringOutput)
+}
+
+// The name of the route's next hop.
+func (o GetVpcRoutesRouteOutput) NexthopName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.NexthopName }).(pulumi.StringOutput)
+}
+
+// The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
+func (o GetVpcRoutesRouteOutput) NexthopPrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.NexthopPrivateNetworkId }).(pulumi.StringOutput)
+}
+
+// The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
+func (o GetVpcRoutesRouteOutput) NexthopResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.NexthopResourceId }).(pulumi.StringOutput)
+}
+
+// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+func (o GetVpcRoutesRouteOutput) NexthopResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.NexthopResourceType }).(pulumi.StringOutput)
+}
+
+// `region`). The region in which the routes exist.
+func (o GetVpcRoutesRouteOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// List of tags to filter for. routes with these exact tags are listed.
+func (o GetVpcRoutesRouteOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The VPC ID to filter for. routes with a similar VPC ID are listed.
+func (o GetVpcRoutesRouteOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type GetVpcRoutesRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcRoutesRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcRoutesRoute)(nil)).Elem()
+}
+
+func (o GetVpcRoutesRouteArrayOutput) ToGetVpcRoutesRouteArrayOutput() GetVpcRoutesRouteArrayOutput {
+	return o
+}
+
+func (o GetVpcRoutesRouteArrayOutput) ToGetVpcRoutesRouteArrayOutputWithContext(ctx context.Context) GetVpcRoutesRouteArrayOutput {
+	return o
+}
+
+func (o GetVpcRoutesRouteArrayOutput) Index(i pulumi.IntInput) GetVpcRoutesRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcRoutesRoute {
+		return vs[0].([]GetVpcRoutesRoute)[vs[1].(int)]
+	}).(GetVpcRoutesRouteOutput)
+}
+
 type GetVpcsVpc struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
@@ -26341,6 +26567,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcRoutesRouteInput)(nil)).Elem(), GetVpcRoutesRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcRoutesRouteArrayInput)(nil)).Elem(), GetVpcRoutesRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcInput)(nil)).Elem(), GetVpcsVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcArrayInput)(nil)).Elem(), GetVpcsVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
@@ -26690,6 +26918,8 @@ func init() {
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcRoutesRouteOutput{})
+	pulumi.RegisterOutputType(GetVpcRoutesRouteArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcsVpcOutput{})
 	pulumi.RegisterOutputType(GetVpcsVpcArrayOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})

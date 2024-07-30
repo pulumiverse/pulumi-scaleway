@@ -260,7 +260,7 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly enableIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
      *
      * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -497,7 +497,7 @@ export interface InstanceServerState {
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**
-     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
      *
      * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
@@ -651,7 +651,7 @@ export interface InstanceServerArgs {
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**
-     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
+     * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
      *
      * You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```

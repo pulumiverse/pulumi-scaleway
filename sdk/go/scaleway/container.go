@@ -168,6 +168,8 @@ type Container struct {
 	RegistryImage pulumi.StringOutput `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrOutput `pulumi:"registrySha256"`
+	// Execution environment of the container.
+	Sandbox pulumi.StringOutput `pulumi:"sandbox"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// The container status.
@@ -262,6 +264,8 @@ type containerState struct {
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 *string `pulumi:"registrySha256"`
+	// Execution environment of the container.
+	Sandbox *string `pulumi:"sandbox"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
@@ -317,6 +321,8 @@ type ContainerState struct {
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrInput
+	// Execution environment of the container.
+	Sandbox pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
@@ -370,6 +376,8 @@ type containerArgs struct {
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 *string `pulumi:"registrySha256"`
+	// Execution environment of the container.
+	Sandbox *string `pulumi:"sandbox"`
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
@@ -420,6 +428,8 @@ type ContainerArgs struct {
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrInput
+	// Execution environment of the container.
+	Sandbox pulumi.StringPtrInput
 	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
@@ -619,6 +629,11 @@ func (o ContainerOutput) RegistryImage() pulumi.StringOutput {
 // The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 func (o ContainerOutput) RegistrySha256() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.RegistrySha256 }).(pulumi.StringPtrOutput)
+}
+
+// Execution environment of the container.
+func (o ContainerOutput) Sandbox() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Sandbox }).(pulumi.StringOutput)
 }
 
 // The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.

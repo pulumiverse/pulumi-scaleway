@@ -96,6 +96,10 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      */
     public readonly reverse!: pulumi.Output<string>;
     /**
+     * The tags associated with this IP.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
      * `zone`) The zone in which the IP should be reserved.
      */
     public readonly zone!: pulumi.Output<string>;
@@ -120,12 +124,14 @@ export class LoadbalancerIp extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["reverse"] = state ? state.reverse : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as LoadbalancerIpArgs | undefined;
             resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reverse"] = args ? args.reverse : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["ipAddress"] = undefined /*out*/;
             resourceInputs["lbId"] = undefined /*out*/;
@@ -170,6 +176,10 @@ export interface LoadbalancerIpState {
      */
     reverse?: pulumi.Input<string>;
     /**
+     * The tags associated with this IP.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * `zone`) The zone in which the IP should be reserved.
      */
     zone?: pulumi.Input<string>;
@@ -191,6 +201,10 @@ export interface LoadbalancerIpArgs {
      * The reverse domain associated with this IP.
      */
     reverse?: pulumi.Input<string>;
+    /**
+     * The tags associated with this IP.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */

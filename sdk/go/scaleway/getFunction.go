@@ -85,6 +85,7 @@ type LookupFunctionResult struct {
 	ProjectId                  *string           `pulumi:"projectId"`
 	Region                     *string           `pulumi:"region"`
 	Runtime                    string            `pulumi:"runtime"`
+	Sandbox                    string            `pulumi:"sandbox"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	Timeout                    int               `pulumi:"timeout"`
 	ZipFile                    string            `pulumi:"zipFile"`
@@ -212,6 +213,10 @@ func (o LookupFunctionResultOutput) Region() pulumi.StringPtrOutput {
 
 func (o LookupFunctionResultOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionResult) string { return v.Runtime }).(pulumi.StringOutput)
+}
+
+func (o LookupFunctionResultOutput) Sandbox() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFunctionResult) string { return v.Sandbox }).(pulumi.StringOutput)
 }
 
 func (o LookupFunctionResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {

@@ -652,7 +652,7 @@ export interface IamPolicyRule {
      * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
      *
      * ```shell
-     * $ scw IAM permission-set list
+     * scw IAM permission-set list
      * ```
      */
     permissionSetNames: pulumi.Input<pulumi.Input<string>[]>;
@@ -1419,11 +1419,15 @@ export interface LoadbalancerPrivateNetwork {
      */
     dhcpConfig?: pulumi.Input<boolean>;
     /**
+     * (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+     */
+    ipamIds?: pulumi.Input<string>;
+    /**
      * (Required) The ID of the Private Network to attach to.
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+     * (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
      *
      * @deprecated static_config field is deprecated, please use dhcpConfig instead
      */

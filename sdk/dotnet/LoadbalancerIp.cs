@@ -109,6 +109,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
+        /// The tags associated with this IP.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
@@ -179,6 +185,18 @@ namespace Pulumiverse.Scaleway
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with this IP.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.
         /// </summary>
@@ -234,6 +252,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("reverse")]
         public Input<string>? Reverse { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with this IP.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// `zone`) The zone in which the IP should be reserved.

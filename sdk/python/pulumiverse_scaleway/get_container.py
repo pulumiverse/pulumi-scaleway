@@ -21,7 +21,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, secret_environment_variables=None, status=None, timeout=None):
+    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, secret_environment_variables=None, status=None, timeout=None):
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -91,6 +91,9 @@ class GetContainerResult:
         if registry_sha256 and not isinstance(registry_sha256, str):
             raise TypeError("Expected argument 'registry_sha256' to be a str")
         pulumi.set(__self__, "registry_sha256", registry_sha256)
+        if sandbox and not isinstance(sandbox, str):
+            raise TypeError("Expected argument 'sandbox' to be a str")
+        pulumi.set(__self__, "sandbox", sandbox)
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
@@ -271,6 +274,14 @@ class GetContainerResult:
         return pulumi.get(self, "registry_sha256")
 
     @property
+    @pulumi.getter
+    def sandbox(self) -> str:
+        """
+        (Optional) Execution environment of the container.
+        """
+        return pulumi.get(self, "sandbox")
+
+    @property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Mapping[str, str]:
         return pulumi.get(self, "secret_environment_variables")
@@ -321,6 +332,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             region=self.region,
             registry_image=self.registry_image,
             registry_sha256=self.registry_sha256,
+            sandbox=self.sandbox,
             secret_environment_variables=self.secret_environment_variables,
             status=self.status,
             timeout=self.timeout)
@@ -397,6 +409,7 @@ def get_container(container_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         registry_image=pulumi.get(__ret__, 'registry_image'),
         registry_sha256=pulumi.get(__ret__, 'registry_sha256'),
+        sandbox=pulumi.get(__ret__, 'sandbox'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
         status=pulumi.get(__ret__, 'status'),
         timeout=pulumi.get(__ret__, 'timeout'))
