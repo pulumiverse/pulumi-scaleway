@@ -79,6 +79,40 @@ import (
 //
 // ```
 //
+// ### With expiration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-time/sdk/go/time"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rotateAfterAYear, err := time.NewRotating(ctx, "rotateAfterAYear", &time.RotatingArgs{
+//				RotationYears: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamApiKey(ctx, "main", &scaleway.IamApiKeyArgs{
+//				ApplicationId: pulumi.Any(scaleway_iam_application.Main.Id),
+//				ExpiresAt:     rotateAfterAYear.RotationRfc3339,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Api keys can be imported using the `{id}`, e.g.

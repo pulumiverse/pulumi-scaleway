@@ -60,6 +60,31 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With expiration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rotateAfterAYear = new Time.Rotating("rotateAfterAYear", new()
+    ///     {
+    ///         RotationYears = 1,
+    ///     });
+    /// 
+    ///     var main = new Scaleway.IamApiKey("main", new()
+    ///     {
+    ///         ApplicationId = scaleway_iam_application.Main.Id,
+    ///         ExpiresAt = rotateAfterAYear.RotationRfc3339,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Api keys can be imported using the `{id}`, e.g.
