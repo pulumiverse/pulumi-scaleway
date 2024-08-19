@@ -166,11 +166,11 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
     sg01 = scaleway.InstanceSecurityGroup("sg01",
         inbound_default_policy="drop",
         outbound_default_policy="accept",
-        inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
-            action="accept",
-            port=22,
-            protocol="TCP",
-        )])
+        inbound_rules=[{
+            "action": "accept",
+            "port": 22,
+            "protocol": "TCP",
+        }])
     srv01 = scaleway.InstanceServer("srv01",
         type="PLAY2-NANO",
         image="ubuntu_jammy",
@@ -246,11 +246,11 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
     sg01 = scaleway.InstanceSecurityGroup("sg01",
         inbound_default_policy="drop",
         outbound_default_policy="accept",
-        inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
-            action="accept",
-            port=22,
-            protocol="TCP",
-        )])
+        inbound_rules=[{
+            "action": "accept",
+            "port": 22,
+            "protocol": "TCP",
+        }])
     srv01 = scaleway.InstanceServer("srv01",
         type="PLAY2-NANO",
         image="ubuntu_jammy",

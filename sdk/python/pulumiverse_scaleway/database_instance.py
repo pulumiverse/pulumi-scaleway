@@ -823,12 +823,12 @@ class DatabaseInstance(pulumi.CustomResource):
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]]] = None,
-                 logs_policy: Optional[pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']]] = None,
+                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -922,16 +922,16 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-            subnet="172.16.20.0/22",
-        ))
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet={
+            "subnet": "172.16.20.0/22",
+        })
         main = scaleway.DatabaseInstance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
-            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                ip_net="172.16.20.4/22",
-            ))
+            private_network={
+                "pn_id": pn.id,
+                "ip_net": "172.16.20.4/22",
+            })
         ```
 
         ### 1 IPAM Private Network endpoint + 1 public endpoint
@@ -944,11 +944,11 @@ class DatabaseInstance(pulumi.CustomResource):
         main = scaleway.DatabaseInstance("main",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
-            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                enable_ipam=True,
-            ),
-            load_balancers=[scaleway.DatabaseInstanceLoadBalancerArgs()])
+            private_network={
+                "pn_id": pn.id,
+                "enable_ipam": True,
+            },
+            load_balancers=[{}])
         ```
 
         ### Default: 1 public endpoint
@@ -993,8 +993,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1003,7 +1003,7 @@ class DatabaseInstance(pulumi.CustomResource):
                
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of Private Networks endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region
@@ -1109,16 +1109,16 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-            subnet="172.16.20.0/22",
-        ))
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet={
+            "subnet": "172.16.20.0/22",
+        })
         main = scaleway.DatabaseInstance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
-            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                ip_net="172.16.20.4/22",
-            ))
+            private_network={
+                "pn_id": pn.id,
+                "ip_net": "172.16.20.4/22",
+            })
         ```
 
         ### 1 IPAM Private Network endpoint + 1 public endpoint
@@ -1131,11 +1131,11 @@ class DatabaseInstance(pulumi.CustomResource):
         main = scaleway.DatabaseInstance("main",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
-            private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                enable_ipam=True,
-            ),
-            load_balancers=[scaleway.DatabaseInstanceLoadBalancerArgs()])
+            private_network={
+                "pn_id": pn.id,
+                "enable_ipam": True,
+            },
+            load_balancers=[{}])
         ```
 
         ### Default: 1 public endpoint
@@ -1189,12 +1189,12 @@ class DatabaseInstance(pulumi.CustomResource):
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]]] = None,
-                 logs_policy: Optional[pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']]] = None,
+                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -1262,15 +1262,15 @@ class DatabaseInstance(pulumi.CustomResource):
             engine: Optional[pulumi.Input[str]] = None,
             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-            load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]]] = None,
-            logs_policy: Optional[pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']]] = None,
+            load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]]] = None,
+            logs_policy: Optional[pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
-            private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']]] = None,
+            private_network: Optional[pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceReadReplicaArgs']]]]] = None,
+            read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1298,8 +1298,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceLoadBalancerArgs']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1309,10 +1309,10 @@ class DatabaseInstance(pulumi.CustomResource):
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['DatabaseInstancePrivateNetworkArgs']] private_network: List of Private Networks endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict']]]] read_replicas: List of read replicas of the Database Instance.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.

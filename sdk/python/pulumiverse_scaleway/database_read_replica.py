@@ -205,9 +205,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']]] = None,
+                 direct_access: Optional[pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -237,7 +237,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
             ])
         replica = scaleway.DatabaseReadReplica("replica",
             instance_id=instance.id,
-            direct_access=scaleway.DatabaseReadReplicaDirectAccessArgs())
+            direct_access={})
         ```
 
         ### Private network with static endpoint
@@ -256,10 +256,10 @@ class DatabaseReadReplica(pulumi.CustomResource):
         pn = scaleway.VpcPrivateNetwork("pn")
         replica = scaleway.DatabaseReadReplica("replica",
             instance_id=instance.id,
-            private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
-                private_network_id=pn.id,
-                service_ip="192.168.1.254/24",
-            ))
+            private_network={
+                "private_network_id": pn.id,
+                "service_ip": "192.168.1.254/24",
+            })
         ```
 
         ### Private network with IPAM
@@ -278,10 +278,10 @@ class DatabaseReadReplica(pulumi.CustomResource):
         pn = scaleway.VpcPrivateNetwork("pn")
         replica = scaleway.DatabaseReadReplica("replica",
             instance_id=instance.id,
-            private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
-                private_network_id=pn.id,
-                enable_ipam=True,
-            ))
+            private_network={
+                "private_network_id": pn.id,
+                "enable_ipam": True,
+            })
         ```
 
         ## Import
@@ -296,11 +296,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
+        :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
                
                > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a Private Netork.
+        :param pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[str] region: `region`) The region
                in which the Read Replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
@@ -337,7 +337,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
             ])
         replica = scaleway.DatabaseReadReplica("replica",
             instance_id=instance.id,
-            direct_access=scaleway.DatabaseReadReplicaDirectAccessArgs())
+            direct_access={})
         ```
 
         ### Private network with static endpoint
@@ -356,10 +356,10 @@ class DatabaseReadReplica(pulumi.CustomResource):
         pn = scaleway.VpcPrivateNetwork("pn")
         replica = scaleway.DatabaseReadReplica("replica",
             instance_id=instance.id,
-            private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
-                private_network_id=pn.id,
-                service_ip="192.168.1.254/24",
-            ))
+            private_network={
+                "private_network_id": pn.id,
+                "service_ip": "192.168.1.254/24",
+            })
         ```
 
         ### Private network with IPAM
@@ -378,10 +378,10 @@ class DatabaseReadReplica(pulumi.CustomResource):
         pn = scaleway.VpcPrivateNetwork("pn")
         replica = scaleway.DatabaseReadReplica("replica",
             instance_id=instance.id,
-            private_network=scaleway.DatabaseReadReplicaPrivateNetworkArgs(
-                private_network_id=pn.id,
-                enable_ipam=True,
-            ))
+            private_network={
+                "private_network_id": pn.id,
+                "enable_ipam": True,
+            })
         ```
 
         ## Import
@@ -409,9 +409,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']]] = None,
+                 direct_access: Optional[pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -440,9 +440,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            direct_access: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']]] = None,
+            direct_access: Optional[pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            private_network: Optional[pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']]] = None,
+            private_network: Optional[pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']]] = None,
             region: Optional[pulumi.Input[str]] = None,
             same_zone: Optional[pulumi.Input[bool]] = None) -> 'DatabaseReadReplica':
         """
@@ -452,11 +452,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
+        :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
                
                > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[pulumi.InputType['DatabaseReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a Private Netork.
+        :param pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[str] region: `region`) The region
                in which the Read Replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.

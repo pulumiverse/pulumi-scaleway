@@ -389,7 +389,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                  enable_dhcp: Optional[pulumi.Input[bool]] = None,
                  enable_masquerade: Optional[pulumi.Input[bool]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
-                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]]] = None,
+                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  static_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -410,18 +410,18 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.64.0/22",
-            ),
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
             vpc_id=vpc01.id)
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
-            ipam_configs=[scaleway.VpcGatewayNetworkIpamConfigArgs(
-                push_default_route=True,
-            )])
+            ipam_configs=[{
+                "push_default_route": True,
+            }])
         ```
 
         ### Create a GatewayNetwork with a booked IPAM IP
@@ -432,24 +432,24 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.64.0/22",
-            ),
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
             vpc_id=vpc01.id)
         ip01 = scaleway.IpamIp("ip01",
             address="172.16.64.7",
-            sources=[scaleway.IpamIpSourceArgs(
-                private_network_id=pn01.id,
-            )])
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
-            ipam_configs=[scaleway.VpcGatewayNetworkIpamConfigArgs(
-                push_default_route=True,
-                ipam_ip_id=ip01.id,
-            )])
+            ipam_configs=[{
+                "push_default_route": True,
+                "ipam_ip_id": ip01.id,
+            }])
         ```
 
         ### Create a GatewayNetwork with DHCP
@@ -507,7 +507,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_dhcp: WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
@@ -534,18 +534,18 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.64.0/22",
-            ),
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
             vpc_id=vpc01.id)
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
-            ipam_configs=[scaleway.VpcGatewayNetworkIpamConfigArgs(
-                push_default_route=True,
-            )])
+            ipam_configs=[{
+                "push_default_route": True,
+            }])
         ```
 
         ### Create a GatewayNetwork with a booked IPAM IP
@@ -556,24 +556,24 @@ class VpcGatewayNetwork(pulumi.CustomResource):
 
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.64.0/22",
-            ),
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
             vpc_id=vpc01.id)
         ip01 = scaleway.IpamIp("ip01",
             address="172.16.64.7",
-            sources=[scaleway.IpamIpSourceArgs(
-                private_network_id=pn01.id,
-            )])
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
         pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
-            ipam_configs=[scaleway.VpcGatewayNetworkIpamConfigArgs(
-                push_default_route=True,
-                ipam_ip_id=ip01.id,
-            )])
+            ipam_configs=[{
+                "push_default_route": True,
+                "ipam_ip_id": ip01.id,
+            }])
         ```
 
         ### Create a GatewayNetwork with DHCP
@@ -644,7 +644,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                  enable_dhcp: Optional[pulumi.Input[bool]] = None,
                  enable_masquerade: Optional[pulumi.Input[bool]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
-                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]]] = None,
+                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  static_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -690,7 +690,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             enable_dhcp: Optional[pulumi.Input[bool]] = None,
             enable_masquerade: Optional[pulumi.Input[bool]] = None,
             gateway_id: Optional[pulumi.Input[str]] = None,
-            ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]]] = None,
+            ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]]] = None,
             mac_address: Optional[pulumi.Input[str]] = None,
             private_network_id: Optional[pulumi.Input[str]] = None,
             static_address: Optional[pulumi.Input[str]] = None,
@@ -710,7 +710,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_dhcp: WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcGatewayNetworkIpamConfigArgs']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.

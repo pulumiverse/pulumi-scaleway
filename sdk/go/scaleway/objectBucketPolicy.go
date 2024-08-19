@@ -285,7 +285,7 @@ import (
 //							&iam.GetPolicyDocumentStatementPrincipalArgs{
 //								Type: pulumi.String("SCW"),
 //								Identifiers: pulumi.StringArray{
-//									pulumi.String(fmt.Sprintf("project_id:%v", _default.Id)),
+//									pulumi.Sprintf("project_id:%v", _default.Id),
 //								},
 //							},
 //						},

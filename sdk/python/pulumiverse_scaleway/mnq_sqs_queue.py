@@ -492,11 +492,11 @@ class MnqSqsQueue(pulumi.CustomResource):
         main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
-            permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_receive=False,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_receive": False,
+                "can_publish": False,
+            })
         main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
             project_id=main_mnq_sqs.project_id,
             sqs_endpoint=main_mnq_sqs.endpoint,
@@ -542,11 +542,11 @@ class MnqSqsQueue(pulumi.CustomResource):
         main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
-            permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_receive=False,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_receive": False,
+                "can_publish": False,
+            })
         main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
             project_id=main_mnq_sqs.project_id,
             sqs_endpoint=main_mnq_sqs.endpoint,

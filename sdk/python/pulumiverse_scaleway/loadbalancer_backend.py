@@ -988,12 +988,12 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  forward_port_algorithm: Optional[pulumi.Input[str]] = None,
                  forward_protocol: Optional[pulumi.Input[str]] = None,
                  health_check_delay: Optional[pulumi.Input[str]] = None,
-                 health_check_http: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpArgs']]] = None,
-                 health_check_https: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpsArgs']]] = None,
+                 health_check_http: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpArgs', 'LoadbalancerBackendHealthCheckHttpArgsDict']]] = None,
+                 health_check_https: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpsArgs', 'LoadbalancerBackendHealthCheckHttpsArgsDict']]] = None,
                  health_check_max_retries: Optional[pulumi.Input[int]] = None,
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
-                 health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']]] = None,
+                 health_check_tcp: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  health_check_transient_delay: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
@@ -1043,9 +1043,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
             lb_id=scaleway_lb["lb01"]["id"],
             forward_protocol="http",
             forward_port=80,
-            health_check_http=scaleway.LoadbalancerBackendHealthCheckHttpArgs(
-                uri="www.test.com/health",
-            ))
+            health_check_http={
+                "uri": "www.test.com/health",
+            })
         ```
 
         ## Import
@@ -1125,9 +1125,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
             lb_id=scaleway_lb["lb01"]["id"],
             forward_protocol="http",
             forward_port=80,
-            health_check_http=scaleway.LoadbalancerBackendHealthCheckHttpArgs(
-                uri="www.test.com/health",
-            ))
+            health_check_http={
+                "uri": "www.test.com/health",
+            })
         ```
 
         ## Import
@@ -1160,12 +1160,12 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  forward_port_algorithm: Optional[pulumi.Input[str]] = None,
                  forward_protocol: Optional[pulumi.Input[str]] = None,
                  health_check_delay: Optional[pulumi.Input[str]] = None,
-                 health_check_http: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpArgs']]] = None,
-                 health_check_https: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpsArgs']]] = None,
+                 health_check_http: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpArgs', 'LoadbalancerBackendHealthCheckHttpArgsDict']]] = None,
+                 health_check_https: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpsArgs', 'LoadbalancerBackendHealthCheckHttpsArgsDict']]] = None,
                  health_check_max_retries: Optional[pulumi.Input[int]] = None,
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
-                 health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']]] = None,
+                 health_check_tcp: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  health_check_transient_delay: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
@@ -1245,12 +1245,12 @@ class LoadbalancerBackend(pulumi.CustomResource):
             forward_port_algorithm: Optional[pulumi.Input[str]] = None,
             forward_protocol: Optional[pulumi.Input[str]] = None,
             health_check_delay: Optional[pulumi.Input[str]] = None,
-            health_check_http: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpArgs']]] = None,
-            health_check_https: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckHttpsArgs']]] = None,
+            health_check_http: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpArgs', 'LoadbalancerBackendHealthCheckHttpArgsDict']]] = None,
+            health_check_https: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpsArgs', 'LoadbalancerBackendHealthCheckHttpsArgsDict']]] = None,
             health_check_max_retries: Optional[pulumi.Input[int]] = None,
             health_check_port: Optional[pulumi.Input[int]] = None,
             health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
-            health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LoadbalancerBackendHealthCheckTcpArgs']]] = None,
+            health_check_tcp: Optional[pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']]] = None,
             health_check_timeout: Optional[pulumi.Input[str]] = None,
             health_check_transient_delay: Optional[pulumi.Input[str]] = None,
             ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,

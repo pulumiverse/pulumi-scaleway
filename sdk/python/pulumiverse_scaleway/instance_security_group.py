@@ -442,10 +442,10 @@ class InstanceSecurityGroup(pulumi.CustomResource):
                  enable_default_security: Optional[pulumi.Input[bool]] = None,
                  external_rules: Optional[pulumi.Input[bool]] = None,
                  inbound_default_policy: Optional[pulumi.Input[str]] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]]] = None,
+                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupInboundRuleArgs', 'InstanceSecurityGroupInboundRuleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  outbound_default_policy: Optional[pulumi.Input[str]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]]] = None,
+                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  stateful: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -469,10 +469,10 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
                If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
         :param pulumi.Input[str] inbound_default_policy: The default policy on incoming traffic. Possible values are: `accept` or `drop`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupInboundRuleArgs', 'InstanceSecurityGroupInboundRuleArgsDict']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] name: The name of the security group.
         :param pulumi.Input[str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
         :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
@@ -514,10 +514,10 @@ class InstanceSecurityGroup(pulumi.CustomResource):
                  enable_default_security: Optional[pulumi.Input[bool]] = None,
                  external_rules: Optional[pulumi.Input[bool]] = None,
                  inbound_default_policy: Optional[pulumi.Input[str]] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]]] = None,
+                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupInboundRuleArgs', 'InstanceSecurityGroupInboundRuleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  outbound_default_policy: Optional[pulumi.Input[str]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]]] = None,
+                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  stateful: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -558,11 +558,11 @@ class InstanceSecurityGroup(pulumi.CustomResource):
             enable_default_security: Optional[pulumi.Input[bool]] = None,
             external_rules: Optional[pulumi.Input[bool]] = None,
             inbound_default_policy: Optional[pulumi.Input[str]] = None,
-            inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]]] = None,
+            inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupInboundRuleArgs', 'InstanceSecurityGroupInboundRuleArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             outbound_default_policy: Optional[pulumi.Input[str]] = None,
-            outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]]] = None,
+            outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             stateful: Optional[pulumi.Input[bool]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -579,11 +579,11 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
                If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
         :param pulumi.Input[str] inbound_default_policy: The default policy on incoming traffic. Possible values are: `accept` or `drop`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupInboundRuleArgs', 'InstanceSecurityGroupInboundRuleArgsDict']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] name: The name of the security group.
         :param pulumi.Input[str] organization_id: The organization ID the security group is associated with.
         :param pulumi.Input[str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
         :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group

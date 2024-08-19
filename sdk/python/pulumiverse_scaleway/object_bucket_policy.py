@@ -181,10 +181,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         user = scaleway.get_iam_user(email="user@scaleway.com")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             user_id=user.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageFullAccess"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageFullAccess"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -221,10 +221,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         reading_app = scaleway.IamApplication("reading-app")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             application_id=reading_app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageBucketsRead"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageBucketsRead"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -276,19 +276,19 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy = aws.iam.get_policy_document_output(version="2012-10-17",
-            statements=[aws.iam.GetPolicyDocumentStatementArgs(
-                sid="Delegate access",
-                effect="Allow",
-                principals=[aws.iam.GetPolicyDocumentStatementPrincipalArgs(
-                    type="SCW",
-                    identifiers=[f"project_id:{default.id}"],
-                )],
-                actions=["s3:ListBucket"],
-                resources=[
+            statements=[{
+                "sid": "Delegate access",
+                "effect": "Allow",
+                "principals": [{
+                    "type": "SCW",
+                    "identifiers": [f"project_id:{default.id}"],
+                }],
+                "actions": ["s3:ListBucket"],
+                "resources": [
                     bucket.name,
                     bucket.name.apply(lambda name: f"{name}/*"),
                 ],
-            )])
+            }])
         main = scaleway.ObjectBucketPolicy("main",
             bucket=bucket.id,
             policy=policy.json)
@@ -379,10 +379,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         user = scaleway.get_iam_user(email="user@scaleway.com")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             user_id=user.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageFullAccess"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageFullAccess"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -419,10 +419,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         reading_app = scaleway.IamApplication("reading-app")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             application_id=reading_app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageBucketsRead"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageBucketsRead"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -474,19 +474,19 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy = aws.iam.get_policy_document_output(version="2012-10-17",
-            statements=[aws.iam.GetPolicyDocumentStatementArgs(
-                sid="Delegate access",
-                effect="Allow",
-                principals=[aws.iam.GetPolicyDocumentStatementPrincipalArgs(
-                    type="SCW",
-                    identifiers=[f"project_id:{default.id}"],
-                )],
-                actions=["s3:ListBucket"],
-                resources=[
+            statements=[{
+                "sid": "Delegate access",
+                "effect": "Allow",
+                "principals": [{
+                    "type": "SCW",
+                    "identifiers": [f"project_id:{default.id}"],
+                }],
+                "actions": ["s3:ListBucket"],
+                "resources": [
                     bucket.name,
                     bucket.name.apply(lambda name: f"{name}/*"),
                 ],
-            )])
+            }])
         main = scaleway.ObjectBucketPolicy("main",
             bucket=bucket.id,
             policy=policy.json)

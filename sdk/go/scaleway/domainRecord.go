@@ -234,7 +234,7 @@ import (
 //			_, err = scaleway.NewDomainRecord(ctx, "webCname", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
 //				Type:    pulumi.String("CNAME"),
-//				Data:    pulumi.String(fmt.Sprintf("web.%v.", dnsZone)),
+//				Data:    pulumi.Sprintf("web.%v.", dnsZone),
 //				Ttl:     pulumi.Int(3600),
 //			})
 //			if err != nil {
@@ -243,7 +243,7 @@ import (
 //			_, err = scaleway.NewDomainRecord(ctx, "webAlias", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
 //				Type:    pulumi.String("ALIAS"),
-//				Data:    pulumi.String(fmt.Sprintf("web.%v.", dnsZone)),
+//				Data:    pulumi.Sprintf("web.%v.", dnsZone),
 //				Ttl:     pulumi.Int(3600),
 //			})
 //			if err != nil {
