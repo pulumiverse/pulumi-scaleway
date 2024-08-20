@@ -129,8 +129,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]]] = None,
+                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesInboundRuleArgs', 'InstanceSecurityGroupRulesInboundRuleArgsDict']]]]] = None,
+                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesOutboundRuleArgs', 'InstanceSecurityGroupRulesOutboundRuleArgsDict']]]]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -151,11 +151,11 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         sg01 = scaleway.InstanceSecurityGroup("sg01", external_rules=True)
         sgrs01 = scaleway.InstanceSecurityGroupRules("sgrs01",
             security_group_id=sg01.id,
-            inbound_rules=[scaleway.InstanceSecurityGroupRulesInboundRuleArgs(
-                action="accept",
-                port=80,
-                ip_range="0.0.0.0/0",
-            )])
+            inbound_rules=[{
+                "action": "accept",
+                "port": 80,
+                "ip_range": "0.0.0.0/0",
+            }])
         ```
 
         ## Import
@@ -170,8 +170,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesInboundRuleArgs', 'InstanceSecurityGroupRulesInboundRuleArgsDict']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesOutboundRuleArgs', 'InstanceSecurityGroupRulesOutboundRuleArgsDict']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] security_group_id: The ID of the security group.
         """
         ...
@@ -198,11 +198,11 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         sg01 = scaleway.InstanceSecurityGroup("sg01", external_rules=True)
         sgrs01 = scaleway.InstanceSecurityGroupRules("sgrs01",
             security_group_id=sg01.id,
-            inbound_rules=[scaleway.InstanceSecurityGroupRulesInboundRuleArgs(
-                action="accept",
-                port=80,
-                ip_range="0.0.0.0/0",
-            )])
+            inbound_rules=[{
+                "action": "accept",
+                "port": 80,
+                "ip_range": "0.0.0.0/0",
+            }])
         ```
 
         ## Import
@@ -230,8 +230,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]]] = None,
+                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesInboundRuleArgs', 'InstanceSecurityGroupRulesInboundRuleArgsDict']]]]] = None,
+                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesOutboundRuleArgs', 'InstanceSecurityGroupRulesOutboundRuleArgsDict']]]]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -257,8 +257,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]]] = None,
-            outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]]] = None,
+            inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesInboundRuleArgs', 'InstanceSecurityGroupRulesInboundRuleArgsDict']]]]] = None,
+            outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesOutboundRuleArgs', 'InstanceSecurityGroupRulesOutboundRuleArgsDict']]]]] = None,
             security_group_id: Optional[pulumi.Input[str]] = None) -> 'InstanceSecurityGroupRules':
         """
         Get an existing InstanceSecurityGroupRules resource's state with the given name, id, and optional extra
@@ -267,8 +267,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesInboundRuleArgs']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupRulesOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesInboundRuleArgs', 'InstanceSecurityGroupRulesInboundRuleArgsDict']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesOutboundRuleArgs', 'InstanceSecurityGroupRulesOutboundRuleArgsDict']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] security_group_id: The ID of the security group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

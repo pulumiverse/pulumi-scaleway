@@ -729,14 +729,14 @@ class KubernetesCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 auto_upgrade: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']]] = None,
-                 autoscaler_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']]] = None,
+                 auto_upgrade: Optional[pulumi.Input[Union['KubernetesClusterAutoUpgradeArgs', 'KubernetesClusterAutoUpgradeArgsDict']]] = None,
+                 autoscaler_config: Optional[pulumi.Input[Union['KubernetesClusterAutoscalerConfigArgs', 'KubernetesClusterAutoscalerConfigArgsDict']]] = None,
                  cni: Optional[pulumi.Input[str]] = None,
                  delete_additional_resources: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+                 open_id_connect_config: Optional[pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -801,15 +801,15 @@ class KubernetesCluster(pulumi.CustomResource):
             tags=["terraform"],
             private_network_id=pn.id,
             delete_additional_resources=False,
-            autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
-                disable_scale_down=False,
-                scale_down_delay_after_add="5m",
-                estimator="binpacking",
-                expander="random",
-                ignore_daemonsets_utilization=True,
-                balance_similar_node_groups=True,
-                expendable_pods_priority_cutoff=-5,
-            ))
+            autoscaler_config={
+                "disable_scale_down": False,
+                "scale_down_delay_after_add": "5m",
+                "estimator": "binpacking",
+                "expander": "random",
+                "ignore_daemonsets_utilization": True,
+                "balance_similar_node_groups": True,
+                "expendable_pods_priority_cutoff": -5,
+            })
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
             node_type="DEV1-M",
@@ -834,8 +834,8 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']] auto_upgrade: The auto upgrade configuration.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        :param pulumi.Input[Union['KubernetesClusterAutoUpgradeArgs', 'KubernetesClusterAutoUpgradeArgsDict']] auto_upgrade: The auto upgrade configuration.
+        :param pulumi.Input[Union['KubernetesClusterAutoscalerConfigArgs', 'KubernetesClusterAutoscalerConfigArgsDict']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
@@ -844,7 +844,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                
                > **Important:** Changes to this field will recreate a new resource.
@@ -926,15 +926,15 @@ class KubernetesCluster(pulumi.CustomResource):
             tags=["terraform"],
             private_network_id=pn.id,
             delete_additional_resources=False,
-            autoscaler_config=scaleway.KubernetesClusterAutoscalerConfigArgs(
-                disable_scale_down=False,
-                scale_down_delay_after_add="5m",
-                estimator="binpacking",
-                expander="random",
-                ignore_daemonsets_utilization=True,
-                balance_similar_node_groups=True,
-                expendable_pods_priority_cutoff=-5,
-            ))
+            autoscaler_config={
+                "disable_scale_down": False,
+                "scale_down_delay_after_add": "5m",
+                "estimator": "binpacking",
+                "expander": "random",
+                "ignore_daemonsets_utilization": True,
+                "balance_similar_node_groups": True,
+                "expendable_pods_priority_cutoff": -5,
+            })
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
             node_type="DEV1-M",
@@ -972,14 +972,14 @@ class KubernetesCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 auto_upgrade: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']]] = None,
-                 autoscaler_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']]] = None,
+                 auto_upgrade: Optional[pulumi.Input[Union['KubernetesClusterAutoUpgradeArgs', 'KubernetesClusterAutoUpgradeArgsDict']]] = None,
+                 autoscaler_config: Optional[pulumi.Input[Union['KubernetesClusterAutoscalerConfigArgs', 'KubernetesClusterAutoscalerConfigArgsDict']]] = None,
                  cni: Optional[pulumi.Input[str]] = None,
                  delete_additional_resources: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+                 open_id_connect_config: Optional[pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -1040,16 +1040,16 @@ class KubernetesCluster(pulumi.CustomResource):
             admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             apiserver_url: Optional[pulumi.Input[str]] = None,
-            auto_upgrade: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']]] = None,
-            autoscaler_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']]] = None,
+            auto_upgrade: Optional[pulumi.Input[Union['KubernetesClusterAutoUpgradeArgs', 'KubernetesClusterAutoUpgradeArgsDict']]] = None,
+            autoscaler_config: Optional[pulumi.Input[Union['KubernetesClusterAutoscalerConfigArgs', 'KubernetesClusterAutoscalerConfigArgsDict']]] = None,
             cni: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             delete_additional_resources: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            kubeconfigs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterKubeconfigArgs']]]]] = None,
+            kubeconfigs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            open_id_connect_config: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']]] = None,
+            open_id_connect_config: Optional[pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             private_network_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -1071,8 +1071,8 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] admission_plugins: The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] apiserver_cert_sans: Additional Subject Alternative Names for the Kubernetes API server certificate
         :param pulumi.Input[str] apiserver_url: The URL of the Kubernetes API server.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoUpgradeArgs']] auto_upgrade: The auto upgrade configuration.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
+        :param pulumi.Input[Union['KubernetesClusterAutoUpgradeArgs', 'KubernetesClusterAutoUpgradeArgsDict']] auto_upgrade: The auto upgrade configuration.
+        :param pulumi.Input[Union['KubernetesClusterAutoscalerConfigArgs', 'KubernetesClusterAutoscalerConfigArgsDict']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
@@ -1081,9 +1081,9 @@ class KubernetesCluster(pulumi.CustomResource):
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterKubeconfigArgs']]]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesClusterKubeconfigArgs', 'KubernetesClusterKubeconfigArgsDict']]]] kubeconfigs: The kubeconfig configuration file of the Kubernetes cluster
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
-        :param pulumi.Input[pulumi.InputType['KubernetesClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
                

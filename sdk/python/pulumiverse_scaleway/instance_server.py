@@ -1004,11 +1004,11 @@ class InstanceServer(pulumi.CustomResource):
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]]] = None,
                  replace_on_type_change: Optional[pulumi.Input[bool]] = None,
-                 root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
+                 root_volume: Optional[pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']]] = None,
                  routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -1053,9 +1053,9 @@ class InstanceServer(pulumi.CustomResource):
                 "hello",
                 "public",
             ],
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                delete_on_termination=False,
-            ),
+            root_volume={
+                "delete_on_termination": False,
+            },
             additional_volume_ids=[data.id])
         ```
 
@@ -1086,24 +1086,24 @@ class InstanceServer(pulumi.CustomResource):
             inbound_default_policy="drop",
             outbound_default_policy="accept",
             inbound_rules=[
-                scaleway.InstanceSecurityGroupInboundRuleArgs(
-                    action="accept",
-                    port=22,
-                    ip="212.47.225.64",
-                ),
-                scaleway.InstanceSecurityGroupInboundRuleArgs(
-                    action="accept",
-                    port=80,
-                ),
-                scaleway.InstanceSecurityGroupInboundRuleArgs(
-                    action="accept",
-                    port=443,
-                ),
+                {
+                    "action": "accept",
+                    "port": 22,
+                    "ip": "212.47.225.64",
+                },
+                {
+                    "action": "accept",
+                    "port": 80,
+                },
+                {
+                    "action": "accept",
+                    "port": 443,
+                },
             ],
-            outbound_rules=[scaleway.InstanceSecurityGroupOutboundRuleArgs(
-                action="drop",
-                ip_range="10.20.0.0/24",
-            )])
+            outbound_rules=[{
+                "action": "drop",
+                "ip_range": "10.20.0.0/24",
+            }])
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -1135,9 +1135,9 @@ class InstanceServer(pulumi.CustomResource):
         base = scaleway.InstanceServer("base",
             image="ubuntu_jammy",
             type="DEV1-S",
-            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
-                pn_id=pn01.id,
-            )])
+            private_networks=[{
+                "pn_id": pn01.id,
+            }])
         ```
 
         ### Root volume configuration
@@ -1150,10 +1150,10 @@ class InstanceServer(pulumi.CustomResource):
 
         image = scaleway.InstanceServer("image",
             image="ubuntu_jammy",
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                size_in_gb=100,
-                volume_type="b_ssd",
-            ),
+            root_volume={
+                "size_in_gb": 100,
+                "volume_type": "b_ssd",
+            },
             type="PRO2-XXS")
         ```
 
@@ -1170,9 +1170,9 @@ class InstanceServer(pulumi.CustomResource):
             type="b_ssd")
         from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
             type="PRO2-XXS",
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                volume_id=from_snapshot_instance_volume.id,
-            ))
+            root_volume={
+                "volume_id": from_snapshot_instance_volume.id,
+            })
         ```
 
         ## Private Network
@@ -1227,12 +1227,12 @@ class InstanceServer(pulumi.CustomResource):
                
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]] public_ips: The list of public IPs of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
-        :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
+        :param pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
         :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
                
                > **Important:** Enabling routed ip will restart the server
@@ -1295,9 +1295,9 @@ class InstanceServer(pulumi.CustomResource):
                 "hello",
                 "public",
             ],
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                delete_on_termination=False,
-            ),
+            root_volume={
+                "delete_on_termination": False,
+            },
             additional_volume_ids=[data.id])
         ```
 
@@ -1328,24 +1328,24 @@ class InstanceServer(pulumi.CustomResource):
             inbound_default_policy="drop",
             outbound_default_policy="accept",
             inbound_rules=[
-                scaleway.InstanceSecurityGroupInboundRuleArgs(
-                    action="accept",
-                    port=22,
-                    ip="212.47.225.64",
-                ),
-                scaleway.InstanceSecurityGroupInboundRuleArgs(
-                    action="accept",
-                    port=80,
-                ),
-                scaleway.InstanceSecurityGroupInboundRuleArgs(
-                    action="accept",
-                    port=443,
-                ),
+                {
+                    "action": "accept",
+                    "port": 22,
+                    "ip": "212.47.225.64",
+                },
+                {
+                    "action": "accept",
+                    "port": 80,
+                },
+                {
+                    "action": "accept",
+                    "port": 443,
+                },
             ],
-            outbound_rules=[scaleway.InstanceSecurityGroupOutboundRuleArgs(
-                action="drop",
-                ip_range="10.20.0.0/24",
-            )])
+            outbound_rules=[{
+                "action": "drop",
+                "ip_range": "10.20.0.0/24",
+            }])
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -1377,9 +1377,9 @@ class InstanceServer(pulumi.CustomResource):
         base = scaleway.InstanceServer("base",
             image="ubuntu_jammy",
             type="DEV1-S",
-            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
-                pn_id=pn01.id,
-            )])
+            private_networks=[{
+                "pn_id": pn01.id,
+            }])
         ```
 
         ### Root volume configuration
@@ -1392,10 +1392,10 @@ class InstanceServer(pulumi.CustomResource):
 
         image = scaleway.InstanceServer("image",
             image="ubuntu_jammy",
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                size_in_gb=100,
-                volume_type="b_ssd",
-            ),
+            root_volume={
+                "size_in_gb": 100,
+                "volume_type": "b_ssd",
+            },
             type="PRO2-XXS")
         ```
 
@@ -1412,9 +1412,9 @@ class InstanceServer(pulumi.CustomResource):
             type="b_ssd")
         from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
             type="PRO2-XXS",
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                volume_id=from_snapshot_instance_volume.id,
-            ))
+            root_volume={
+                "volume_id": from_snapshot_instance_volume.id,
+            })
         ```
 
         ## Private Network
@@ -1467,11 +1467,11 @@ class InstanceServer(pulumi.CustomResource):
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]]] = None,
                  replace_on_type_change: Optional[pulumi.Input[bool]] = None,
-                 root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
+                 root_volume: Optional[pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']]] = None,
                  routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -1547,12 +1547,12 @@ class InstanceServer(pulumi.CustomResource):
             placement_group_id: Optional[pulumi.Input[str]] = None,
             placement_group_policy_respected: Optional[pulumi.Input[bool]] = None,
             private_ip: Optional[pulumi.Input[str]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_ip: Optional[pulumi.Input[str]] = None,
-            public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]]] = None,
+            public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]]] = None,
             replace_on_type_change: Optional[pulumi.Input[bool]] = None,
-            root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
+            root_volume: Optional[pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']]] = None,
             routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
             security_group_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
@@ -1599,13 +1599,13 @@ class InstanceServer(pulumi.CustomResource):
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[str] public_ip: The public IP address of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPublicIpArgs']]]] public_ips: The list of public IPs of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
-        :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
+        :param pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
         :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
                
                > **Important:** Enabling routed ip will restart the server

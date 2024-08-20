@@ -672,7 +672,7 @@ class TemDomain(pulumi.CustomResource):
             next_check_at: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            reputations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TemDomainReputationArgs']]]]] = None,
+            reputations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TemDomainReputationArgs', 'TemDomainReputationArgsDict']]]]] = None,
             revoked_at: Optional[pulumi.Input[str]] = None,
             smtp_host: Optional[pulumi.Input[str]] = None,
             smtp_port: Optional[pulumi.Input[int]] = None,
@@ -704,7 +704,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TemDomainReputationArgs']]]] reputations: The domain's reputation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TemDomainReputationArgs', 'TemDomainReputationArgsDict']]]] reputations: The domain's reputation.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
         :param pulumi.Input[str] smtp_host: The SMTP host to use to send emails.
         :param pulumi.Input[int] smtp_port: The SMTP port to use to send emails over TLS.

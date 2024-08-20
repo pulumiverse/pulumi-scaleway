@@ -191,7 +191,11 @@ class ContainerDomain(pulumi.CustomResource):
             ttl=3600)
         app_container_domain = scaleway.ContainerDomain("appContainerDomain",
             container_id=app_container.id,
-            hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f"{name}.{dns_zone}"))
+            hostname=pulumi.Output.all(
+                name=app_domain_record.name,
+                dns_zone=app_domain_record.dns_zone
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['name']}.{resolved_outputs['dns_zone']}")
+        )
         ```
 
         ## Import
@@ -261,7 +265,11 @@ class ContainerDomain(pulumi.CustomResource):
             ttl=3600)
         app_container_domain = scaleway.ContainerDomain("appContainerDomain",
             container_id=app_container.id,
-            hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f"{name}.{dns_zone}"))
+            hostname=pulumi.Output.all(
+                name=app_domain_record.name,
+                dns_zone=app_domain_record.dns_zone
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['name']}.{resolved_outputs['dns_zone']}")
+        )
         ```
 
         ## Import

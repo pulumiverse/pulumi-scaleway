@@ -223,11 +223,11 @@ class Cockpit(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]]] = None,
+            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             plan_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            push_urls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitPushUrlArgs']]]]] = None) -> 'Cockpit':
+            push_urls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]]] = None) -> 'Cockpit':
         """
         Get an existing Cockpit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -235,11 +235,11 @@ class Cockpit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
         :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitPushUrlArgs']]]] push_urls: Push_url
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]] push_urls: Push_url
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -195,7 +195,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']]] = None,
+                 permissions: Optional[pulumi.Input[Union['MnqSnsCredentialsPermissionsArgs', 'MnqSnsCredentialsPermissionsArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -215,11 +215,11 @@ class MnqSnsCredentials(pulumi.CustomResource):
         main_mnq_sns = scaleway.MnqSns("mainMnqSns")
         main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
             project_id=main_mnq_sns.project_id,
-            permissions=scaleway.MnqSnsCredentialsPermissionsArgs(
-                can_manage=False,
-                can_receive=True,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": False,
+                "can_receive": True,
+                "can_publish": False,
+            })
         ```
 
         ## Import
@@ -235,7 +235,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The unique name of the SNS credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[Union['MnqSnsCredentialsPermissionsArgs', 'MnqSnsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SNS is enabled.
         """
@@ -261,11 +261,11 @@ class MnqSnsCredentials(pulumi.CustomResource):
         main_mnq_sns = scaleway.MnqSns("mainMnqSns")
         main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
             project_id=main_mnq_sns.project_id,
-            permissions=scaleway.MnqSnsCredentialsPermissionsArgs(
-                can_manage=False,
-                can_receive=True,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": False,
+                "can_receive": True,
+                "can_publish": False,
+            })
         ```
 
         ## Import
@@ -294,7 +294,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']]] = None,
+                 permissions: Optional[pulumi.Input[Union['MnqSnsCredentialsPermissionsArgs', 'MnqSnsCredentialsPermissionsArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -326,7 +326,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']]] = None,
+            permissions: Optional[pulumi.Input[Union['MnqSnsCredentialsPermissionsArgs', 'MnqSnsCredentialsPermissionsArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None) -> 'MnqSnsCredentials':
@@ -339,7 +339,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The ID of the key.
         :param pulumi.Input[str] name: The unique name of the SNS credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSnsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[Union['MnqSnsCredentialsPermissionsArgs', 'MnqSnsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SNS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.

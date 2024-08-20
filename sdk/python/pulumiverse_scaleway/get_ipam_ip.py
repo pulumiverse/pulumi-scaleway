@@ -175,7 +175,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
                 private_network_id: Optional[str] = None,
                 project_id: Optional[str] = None,
                 region: Optional[str] = None,
-                resource: Optional[pulumi.InputType['GetIpamIpResourceArgs']] = None,
+                resource: Optional[Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict']] = None,
                 tags: Optional[Sequence[str]] = None,
                 type: Optional[str] = None,
                 zonal: Optional[str] = None,
@@ -211,10 +211,10 @@ def get_ipam_ip(attached: Optional[bool] = None,
         private_network_id=scaleway_vpc_private_network["pn"]["id"])
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
-    by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            id=nic.id,
-            type="instance_private_nic",
-        ),
+    by_id = scaleway.get_ipam_ip_output(resource={
+            "id": nic.id,
+            "type": "instance_private_nic",
+        },
         type="ipv4")
     ```
 
@@ -234,13 +234,13 @@ def get_ipam_ip(attached: Optional[bool] = None,
         disable_backup=True,
         user_name="my_initial_user",
         password="thiZ_is_v&ry_s3cret",
-        private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-            pn_id=pn.id,
-        ))
-    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            name=main.name,
-            type="rdb_instance",
-        ),
+        private_network={
+            "pn_id": pn.id,
+        })
+    by_name = scaleway.get_ipam_ip_output(resource={
+            "name": main.name,
+            "type": "rdb_instance",
+        },
         type="ipv4")
     ```
 
@@ -251,7 +251,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
     :param str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
     :param str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
-    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
+    :param Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
@@ -296,7 +296,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                        private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
-                       resource: Optional[pulumi.Input[Optional[pulumi.InputType['GetIpamIpResourceArgs']]]] = None,
+                       resource: Optional[pulumi.Input[Optional[Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict']]]] = None,
                        tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        type: Optional[pulumi.Input[Optional[str]]] = None,
                        zonal: Optional[pulumi.Input[Optional[str]]] = None,
@@ -332,10 +332,10 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
         private_network_id=scaleway_vpc_private_network["pn"]["id"])
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
-    by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            id=nic.id,
-            type="instance_private_nic",
-        ),
+    by_id = scaleway.get_ipam_ip_output(resource={
+            "id": nic.id,
+            "type": "instance_private_nic",
+        },
         type="ipv4")
     ```
 
@@ -355,13 +355,13 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
         disable_backup=True,
         user_name="my_initial_user",
         password="thiZ_is_v&ry_s3cret",
-        private_network=scaleway.DatabaseInstancePrivateNetworkArgs(
-            pn_id=pn.id,
-        ))
-    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            name=main.name,
-            type="rdb_instance",
-        ),
+        private_network={
+            "pn_id": pn.id,
+        })
+    by_name = scaleway.get_ipam_ip_output(resource={
+            "name": main.name,
+            "type": "rdb_instance",
+        },
         type="ipv4")
     ```
 
@@ -372,7 +372,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
     :param str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
-    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
+    :param Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.

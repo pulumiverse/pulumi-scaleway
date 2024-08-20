@@ -618,14 +618,14 @@ class RedisCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]]] = None,
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]]] = None,
                  cluster_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 public_network: Optional[pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']]] = None,
+                 public_network: Optional[pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -646,10 +646,10 @@ class RedisCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
-            acls=[scaleway.RedisClusterAclArgs(
-                description="Allow all",
-                ip="0.0.0.0/0",
-            )],
+            acls=[{
+                "description": "Allow all",
+                "ip": "0.0.0.0/0",
+            }],
             cluster_size=1,
             node_type="RED1-MICRO",
             password="thiZ_is_v&ry_s3cret",
@@ -692,10 +692,10 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             cluster_size=1,
-            private_networks=[scaleway.RedisClusterPrivateNetworkArgs(
-                id=pn.id,
-                service_ips=["10.12.1.1/20"],
-            )],
+            private_networks=[{
+                "id": pn.id,
+                "service_ips": ["10.12.1.1/20"],
+            }],
             opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
@@ -711,7 +711,7 @@ class RedisCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis™ cluster.
                
                > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
@@ -729,11 +729,11 @@ class RedisCluster(pulumi.CustomResource):
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis™ cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
                > The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
@@ -768,10 +768,10 @@ class RedisCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
-            acls=[scaleway.RedisClusterAclArgs(
-                description="Allow all",
-                ip="0.0.0.0/0",
-            )],
+            acls=[{
+                "description": "Allow all",
+                "ip": "0.0.0.0/0",
+            }],
             cluster_size=1,
             node_type="RED1-MICRO",
             password="thiZ_is_v&ry_s3cret",
@@ -814,10 +814,10 @@ class RedisCluster(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             cluster_size=1,
-            private_networks=[scaleway.RedisClusterPrivateNetworkArgs(
-                id=pn.id,
-                service_ips=["10.12.1.1/20"],
-            )],
+            private_networks=[{
+                "id": pn.id,
+                "service_ips": ["10.12.1.1/20"],
+            }],
             opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
@@ -846,14 +846,14 @@ class RedisCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]]] = None,
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]]] = None,
                  cluster_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 public_network: Optional[pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']]] = None,
+                 public_network: Optional[pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -906,16 +906,16 @@ class RedisCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]]] = None,
+            acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             cluster_size: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            public_network: Optional[pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']]] = None,
+            public_network: Optional[pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tls_enabled: Optional[pulumi.Input[bool]] = None,
@@ -930,7 +930,7 @@ class RedisCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterAclArgs']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis™ cluster.
                
@@ -950,11 +950,11 @@ class RedisCluster(pulumi.CustomResource):
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis™ cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RedisClusterPrivateNetworkArgs']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input[pulumi.InputType['RedisClusterPublicNetworkArgs']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
+        :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
                > The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI

@@ -228,9 +228,9 @@ class FunctionTrigger(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nats: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerNatsArgs']]] = None,
+                 nats: Optional[pulumi.Input[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 sqs: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerSqsArgs']]] = None,
+                 sqs: Optional[pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Function Triggers.
@@ -246,11 +246,11 @@ class FunctionTrigger(pulumi.CustomResource):
 
         main = scaleway.FunctionTrigger("main",
             function_id=scaleway_function["main"]["id"],
-            sqs=scaleway.FunctionTriggerSqsArgs(
-                project_id=scaleway_mnq_sqs["main"]["project_id"],
-                queue="MyQueue",
-                region=scaleway_mnq_sqs["main"]["region"],
-            ))
+            sqs={
+                "project_id": scaleway_mnq_sqs["main"]["project_id"],
+                "queue": "MyQueue",
+                "region": scaleway_mnq_sqs["main"]["region"],
+            })
         ```
 
         ### Nats
@@ -261,11 +261,11 @@ class FunctionTrigger(pulumi.CustomResource):
 
         main = scaleway.FunctionTrigger("main",
             function_id=scaleway_function["main"]["id"],
-            nats=scaleway.FunctionTriggerNatsArgs(
-                account_id=scaleway_mnq_nats_account["main"]["id"],
-                subject="MySubject",
-                region=scaleway_mnq_nats_account["main"]["region"],
-            ))
+            nats={
+                "account_id": scaleway_mnq_nats_account["main"]["id"],
+                "subject": "MySubject",
+                "region": scaleway_mnq_nats_account["main"]["region"],
+            })
         ```
 
         ## Import
@@ -283,9 +283,9 @@ class FunctionTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the trigger.
         :param pulumi.Input[str] function_id: The ID of the function to create a trigger for
         :param pulumi.Input[str] name: The unique name of the trigger. Default to a generated name.
-        :param pulumi.Input[pulumi.InputType['FunctionTriggerNatsArgs']] nats: The configuration for the Scaleway's Nats used by the trigger
+        :param pulumi.Input[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']] nats: The configuration for the Scaleway's Nats used by the trigger
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[pulumi.InputType['FunctionTriggerSqsArgs']] sqs: The configuration of the Scaleway's SQS used by the trigger
+        :param pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
         ...
     @overload
@@ -307,11 +307,11 @@ class FunctionTrigger(pulumi.CustomResource):
 
         main = scaleway.FunctionTrigger("main",
             function_id=scaleway_function["main"]["id"],
-            sqs=scaleway.FunctionTriggerSqsArgs(
-                project_id=scaleway_mnq_sqs["main"]["project_id"],
-                queue="MyQueue",
-                region=scaleway_mnq_sqs["main"]["region"],
-            ))
+            sqs={
+                "project_id": scaleway_mnq_sqs["main"]["project_id"],
+                "queue": "MyQueue",
+                "region": scaleway_mnq_sqs["main"]["region"],
+            })
         ```
 
         ### Nats
@@ -322,11 +322,11 @@ class FunctionTrigger(pulumi.CustomResource):
 
         main = scaleway.FunctionTrigger("main",
             function_id=scaleway_function["main"]["id"],
-            nats=scaleway.FunctionTriggerNatsArgs(
-                account_id=scaleway_mnq_nats_account["main"]["id"],
-                subject="MySubject",
-                region=scaleway_mnq_nats_account["main"]["region"],
-            ))
+            nats={
+                "account_id": scaleway_mnq_nats_account["main"]["id"],
+                "subject": "MySubject",
+                "region": scaleway_mnq_nats_account["main"]["region"],
+            })
         ```
 
         ## Import
@@ -357,9 +357,9 @@ class FunctionTrigger(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nats: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerNatsArgs']]] = None,
+                 nats: Optional[pulumi.Input[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 sqs: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerSqsArgs']]] = None,
+                 sqs: Optional[pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -390,9 +390,9 @@ class FunctionTrigger(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             function_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            nats: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerNatsArgs']]] = None,
+            nats: Optional[pulumi.Input[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            sqs: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerSqsArgs']]] = None) -> 'FunctionTrigger':
+            sqs: Optional[pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None) -> 'FunctionTrigger':
         """
         Get an existing FunctionTrigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -403,9 +403,9 @@ class FunctionTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the trigger.
         :param pulumi.Input[str] function_id: The ID of the function to create a trigger for
         :param pulumi.Input[str] name: The unique name of the trigger. Default to a generated name.
-        :param pulumi.Input[pulumi.InputType['FunctionTriggerNatsArgs']] nats: The configuration for the Scaleway's Nats used by the trigger
+        :param pulumi.Input[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']] nats: The configuration for the Scaleway's Nats used by the trigger
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[pulumi.InputType['FunctionTriggerSqsArgs']] sqs: The configuration of the Scaleway's SQS used by the trigger
+        :param pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

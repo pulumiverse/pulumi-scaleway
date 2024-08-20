@@ -163,7 +163,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  bucket: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
+                 rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         """
         Provides an Object bucket lock configuration resource.
@@ -184,12 +184,12 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             object_lock_enabled=True)
         main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
             bucket=main_object_bucket.name,
-            rule=scaleway.ObjectBucketLockConfigurationRuleArgs(
-                default_retention=scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs(
-                    mode="GOVERNANCE",
-                    days=1,
-                ),
-            ))
+            rule={
+                "default_retention": {
+                    "mode": "GOVERNANCE",
+                    "days": 1,
+                },
+            })
         ```
 
         ### Configure an Object Lock for an existing bucket
@@ -221,7 +221,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']] rule: Specifies the Object Lock rule for the specified object.
         """
         ...
     @overload
@@ -248,12 +248,12 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             object_lock_enabled=True)
         main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
             bucket=main_object_bucket.name,
-            rule=scaleway.ObjectBucketLockConfigurationRuleArgs(
-                default_retention=scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs(
-                    mode="GOVERNANCE",
-                    days=1,
-                ),
-            ))
+            rule={
+                "default_retention": {
+                    "mode": "GOVERNANCE",
+                    "days": 1,
+                },
+            })
         ```
 
         ### Configure an Object Lock for an existing bucket
@@ -298,7 +298,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  bucket: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
+                 rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -329,7 +329,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             bucket: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None) -> 'ObjectBucketLockConfiguration':
+            rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None) -> 'ObjectBucketLockConfiguration':
         """
         Get an existing ObjectBucketLockConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -340,7 +340,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']] rule: Specifies the Object Lock rule for the specified object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

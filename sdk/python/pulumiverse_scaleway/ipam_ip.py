@@ -309,7 +309,7 @@ class IpamIp(pulumi.CustomResource):
                  is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 sources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]]] = None,
+                 sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -328,12 +328,12 @@ class IpamIp(pulumi.CustomResource):
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.32.0/22",
-            ))
-        ip01 = scaleway.IpamIp("ip01", sources=[scaleway.IpamIpSourceArgs(
-            private_network_id=pn01.id,
-        )])
+            ipv4_subnet={
+                "subnet": "172.16.32.0/22",
+            })
+        ip01 = scaleway.IpamIp("ip01", sources=[{
+            "private_network_id": pn01.id,
+        }])
         ```
 
         ### Request a specific IPv4 address
@@ -345,14 +345,14 @@ class IpamIp(pulumi.CustomResource):
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.32.0/22",
-            ))
+            ipv4_subnet={
+                "subnet": "172.16.32.0/22",
+            })
         ip01 = scaleway.IpamIp("ip01",
             address="172.16.32.7",
-            sources=[scaleway.IpamIpSourceArgs(
-                private_network_id=pn01.id,
-            )])
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
         ```
 
         ### Request an IPv6 address
@@ -364,14 +364,14 @@ class IpamIp(pulumi.CustomResource):
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
-            ipv6_subnets=[scaleway.VpcPrivateNetworkIpv6SubnetArgs(
-                subnet="fd46:78ab:30b8:177c::/64",
-            )])
+            ipv6_subnets=[{
+                "subnet": "fd46:78ab:30b8:177c::/64",
+            }])
         ip01 = scaleway.IpamIp("ip01",
             is_ipv6=True,
-            sources=[scaleway.IpamIpSourceArgs(
-                private_network_id=pn01.id,
-            )])
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
         ```
 
         ## Import
@@ -390,7 +390,7 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]] sources: The source in which to book the IP.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         """
         ...
@@ -415,12 +415,12 @@ class IpamIp(pulumi.CustomResource):
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.32.0/22",
-            ))
-        ip01 = scaleway.IpamIp("ip01", sources=[scaleway.IpamIpSourceArgs(
-            private_network_id=pn01.id,
-        )])
+            ipv4_subnet={
+                "subnet": "172.16.32.0/22",
+            })
+        ip01 = scaleway.IpamIp("ip01", sources=[{
+            "private_network_id": pn01.id,
+        }])
         ```
 
         ### Request a specific IPv4 address
@@ -432,14 +432,14 @@ class IpamIp(pulumi.CustomResource):
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="172.16.32.0/22",
-            ))
+            ipv4_subnet={
+                "subnet": "172.16.32.0/22",
+            })
         ip01 = scaleway.IpamIp("ip01",
             address="172.16.32.7",
-            sources=[scaleway.IpamIpSourceArgs(
-                private_network_id=pn01.id,
-            )])
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
         ```
 
         ### Request an IPv6 address
@@ -451,14 +451,14 @@ class IpamIp(pulumi.CustomResource):
         vpc01 = scaleway.Vpc("vpc01")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
-            ipv6_subnets=[scaleway.VpcPrivateNetworkIpv6SubnetArgs(
-                subnet="fd46:78ab:30b8:177c::/64",
-            )])
+            ipv6_subnets=[{
+                "subnet": "fd46:78ab:30b8:177c::/64",
+            }])
         ip01 = scaleway.IpamIp("ip01",
             is_ipv6=True,
-            sources=[scaleway.IpamIpSourceArgs(
-                private_network_id=pn01.id,
-            )])
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
         ```
 
         ## Import
@@ -490,7 +490,7 @@ class IpamIp(pulumi.CustomResource):
                  is_ipv6: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 sources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]]] = None,
+                 sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -529,9 +529,9 @@ class IpamIp(pulumi.CustomResource):
             is_ipv6: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            resources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpResourceArgs']]]]] = None,
-            reverses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpReverseArgs']]]]] = None,
-            sources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]]] = None,
+            resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict']]]]] = None,
+            reverses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict']]]]] = None,
+            sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'IpamIp':
@@ -547,9 +547,9 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpResourceArgs']]]] resources: The IP resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpReverseArgs']]]] reverses: The reverse DNS for this IP.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]] sources: The source in which to book the IP.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict']]]] resources: The IP resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict']]]] reverses: The reverse DNS for this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         :param pulumi.Input[str] updated_at: Date and time of IP's last update (RFC 3339 format).
         :param pulumi.Input[str] zone: The zone of the IP.

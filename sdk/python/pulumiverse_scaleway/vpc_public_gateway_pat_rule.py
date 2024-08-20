@@ -288,11 +288,11 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         sg01 = scaleway.InstanceSecurityGroup("sg01",
             inbound_default_policy="drop",
             outbound_default_policy="accept",
-            inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
-                action="accept",
-                port=22,
-                protocol="TCP",
-            )])
+            inbound_rules=[{
+                "action": "accept",
+                "port": 22,
+                "protocol": "TCP",
+            }])
         srv01 = scaleway.InstanceServer("srv01",
             type="PLAY2-NANO",
             image="ubuntu_jammy",
@@ -363,11 +363,11 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         sg01 = scaleway.InstanceSecurityGroup("sg01",
             inbound_default_policy="drop",
             outbound_default_policy="accept",
-            inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
-                action="accept",
-                port=22,
-                protocol="TCP",
-            )])
+            inbound_rules=[{
+                "action": "accept",
+                "port": 22,
+                "protocol": "TCP",
+            }])
         srv01 = scaleway.InstanceServer("srv01",
             type="PLAY2-NANO",
             image="ubuntu_jammy",

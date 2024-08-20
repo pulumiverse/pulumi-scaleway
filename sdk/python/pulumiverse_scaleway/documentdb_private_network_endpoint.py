@@ -150,7 +150,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs', 'DocumentdbPrivateNetworkEndpointPrivateNetworkArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -173,10 +173,10 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
             volume_size_in_gb=20)
         main = scaleway.DocumentdbPrivateNetworkEndpoint("main",
             instance_id=instance.id,
-            private_network=scaleway.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs(
-                ip_net="172.16.32.3/22",
-                id=pn.id,
-            ),
+            private_network={
+                "ip_net": "172.16.32.3/22",
+                "id": pn.id,
+            },
             opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
@@ -193,7 +193,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
-        :param pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
+        :param pulumi.Input[Union['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs', 'DocumentdbPrivateNetworkEndpointPrivateNetworkArgsDict']] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
         :param pulumi.Input[str] region: The region of the endpoint.
                
                
@@ -227,10 +227,10 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
             volume_size_in_gb=20)
         main = scaleway.DocumentdbPrivateNetworkEndpoint("main",
             instance_id=instance.id,
-            private_network=scaleway.DocumentdbPrivateNetworkEndpointPrivateNetworkArgs(
-                ip_net="172.16.32.3/22",
-                id=pn.id,
-            ),
+            private_network={
+                "ip_net": "172.16.32.3/22",
+                "id": pn.id,
+            },
             opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
@@ -260,7 +260,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs', 'DocumentdbPrivateNetworkEndpointPrivateNetworkArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -287,7 +287,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']]] = None,
+            private_network: Optional[pulumi.Input[Union['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs', 'DocumentdbPrivateNetworkEndpointPrivateNetworkArgsDict']]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'DocumentdbPrivateNetworkEndpoint':
         """
         Get an existing DocumentdbPrivateNetworkEndpoint resource's state with the given name, id, and optional extra
@@ -297,7 +297,7 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
-        :param pulumi.Input[pulumi.InputType['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs']] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
+        :param pulumi.Input[Union['DocumentdbPrivateNetworkEndpointPrivateNetworkArgs', 'DocumentdbPrivateNetworkEndpointPrivateNetworkArgsDict']] private_network: The private network specs details. This is a list with maximum one element and supports the following attributes:
         :param pulumi.Input[str] region: The region of the endpoint.
                
                

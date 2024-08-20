@@ -136,7 +136,7 @@ class DatabaseAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseAclAclRuleArgs', 'DatabaseAclAclRuleArgsDict']]]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -161,10 +161,10 @@ class DatabaseAcl(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         main_database_acl = scaleway.DatabaseAcl("mainDatabaseAcl",
             instance_id=main_database_instance.id,
-            acl_rules=[scaleway.DatabaseAclAclRuleArgs(
-                ip="1.2.3.4/32",
-                description="foo",
-            )])
+            acl_rules=[{
+                "ip": "1.2.3.4/32",
+                "description": "foo",
+            }])
         ```
 
         ## Import
@@ -179,7 +179,7 @@ class DatabaseAcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseAclAclRuleArgs', 'DatabaseAclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
@@ -212,10 +212,10 @@ class DatabaseAcl(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         main_database_acl = scaleway.DatabaseAcl("mainDatabaseAcl",
             instance_id=main_database_instance.id,
-            acl_rules=[scaleway.DatabaseAclAclRuleArgs(
-                ip="1.2.3.4/32",
-                description="foo",
-            )])
+            acl_rules=[{
+                "ip": "1.2.3.4/32",
+                "description": "foo",
+            }])
         ```
 
         ## Import
@@ -243,7 +243,7 @@ class DatabaseAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseAclAclRuleArgs', 'DatabaseAclAclRuleArgsDict']]]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -272,7 +272,7 @@ class DatabaseAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]]] = None,
+            acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseAclAclRuleArgs', 'DatabaseAclAclRuleArgsDict']]]]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'DatabaseAcl':
         """
@@ -282,7 +282,7 @@ class DatabaseAcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseAclAclRuleArgs', 'DatabaseAclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.

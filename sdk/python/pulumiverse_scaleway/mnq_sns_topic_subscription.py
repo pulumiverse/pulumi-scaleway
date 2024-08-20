@@ -397,11 +397,11 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         main_mnq_sns = scaleway.MnqSns("mainMnqSns")
         main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
             project_id=main_mnq_sns.project_id,
-            permissions=scaleway.MnqSnsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_publish=True,
-                can_receive=True,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_publish": True,
+                "can_receive": True,
+            })
         topic = scaleway.MnqSnsTopic("topic",
             project_id=main_mnq_sns.project_id,
             access_key=main_mnq_sns_credentials.access_key,
@@ -462,11 +462,11 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         main_mnq_sns = scaleway.MnqSns("mainMnqSns")
         main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
             project_id=main_mnq_sns.project_id,
-            permissions=scaleway.MnqSnsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_publish=True,
-                can_receive=True,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_publish": True,
+                "can_receive": True,
+            })
         topic = scaleway.MnqSnsTopic("topic",
             project_id=main_mnq_sns.project_id,
             access_key=main_mnq_sns_credentials.access_key,

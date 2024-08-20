@@ -178,7 +178,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitAlertManagerContactPointArgs']]]]] = None,
+                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]]] = None,
                  enable_managed_alerts: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -200,7 +200,7 @@ class CockpitAlertManager(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitAlertManagerContactPointArgs']]]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
         :param pulumi.Input[bool] enable_managed_alerts: Indicates whether the alert manager should be enabled. Defaults to true.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         :param pulumi.Input[str] region: `region`) The region in which alert_manager should be created.
@@ -241,7 +241,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitAlertManagerContactPointArgs']]]]] = None,
+                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]]] = None,
                  enable_managed_alerts: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -270,7 +270,7 @@ class CockpitAlertManager(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             alert_manager_url: Optional[pulumi.Input[str]] = None,
-            contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitAlertManagerContactPointArgs']]]]] = None,
+            contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]]] = None,
             enable_managed_alerts: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'CockpitAlertManager':
@@ -282,7 +282,7 @@ class CockpitAlertManager(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alert_manager_url: Alert manager URL.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitAlertManagerContactPointArgs']]]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
         :param pulumi.Input[bool] enable_managed_alerts: Indicates whether the alert manager should be enabled. Defaults to true.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         :param pulumi.Input[str] region: `region`) The region in which alert_manager should be created.

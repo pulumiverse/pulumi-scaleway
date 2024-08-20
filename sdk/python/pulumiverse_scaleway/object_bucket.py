@@ -419,15 +419,15 @@ class ObjectBucket(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: Optional[pulumi.Input[str]] = None,
-                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]]] = None,
+                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
-                 lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]]] = None,
+                 lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  object_lock_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None,
+                 versioning: Optional[pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway object storage buckets.
@@ -461,53 +461,53 @@ class ObjectBucket(pulumi.CustomResource):
 
         main = scaleway.ObjectBucket("main",
             lifecycle_rules=[
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=True,
-                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
-                        days=365,
-                    ),
-                    id="id1",
-                    prefix="path1/",
-                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=120,
-                        storage_class="GLACIER",
-                    )],
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=True,
-                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
-                        days=50,
-                    ),
-                    id="id2",
-                    prefix="path2/",
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=False,
-                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
-                        days=1,
-                    ),
-                    id="id3",
-                    prefix="path3/",
-                    tags={
-                        "tagKey": "tagValue",
+                {
+                    "enabled": True,
+                    "expiration": {
+                        "days": 365,
+                    },
+                    "id": "id1",
+                    "prefix": "path1/",
+                    "transitions": [{
+                        "days": 120,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "enabled": True,
+                    "expiration": {
+                        "days": 50,
+                    },
+                    "id": "id2",
+                    "prefix": "path2/",
+                },
+                {
+                    "enabled": False,
+                    "expiration": {
+                        "days": 1,
+                    },
+                    "id": "id3",
+                    "prefix": "path3/",
+                    "tags": {
+                        "tag_key": "tagValue",
                         "terraform": "hashicorp",
                     },
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=True,
-                    id="id4",
-                    tags={
+                },
+                {
+                    "enabled": True,
+                    "id": "id4",
+                    "tags": {
                         "tag1": "value1",
                     },
-                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=1,
-                        storage_class="GLACIER",
-                    )],
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    abort_incomplete_multipart_upload_days=30,
-                    enabled=True,
-                ),
+                    "transitions": [{
+                        "days": 1,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "abort_incomplete_multipart_upload_days": 30,
+                    "enabled": True,
+                },
             ],
             region="fr-par")
         ```
@@ -533,9 +533,9 @@ class ObjectBucket(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
@@ -547,7 +547,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+        :param pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         ...
     @overload
@@ -587,53 +587,53 @@ class ObjectBucket(pulumi.CustomResource):
 
         main = scaleway.ObjectBucket("main",
             lifecycle_rules=[
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=True,
-                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
-                        days=365,
-                    ),
-                    id="id1",
-                    prefix="path1/",
-                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=120,
-                        storage_class="GLACIER",
-                    )],
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=True,
-                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
-                        days=50,
-                    ),
-                    id="id2",
-                    prefix="path2/",
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=False,
-                    expiration=scaleway.ObjectBucketLifecycleRuleExpirationArgs(
-                        days=1,
-                    ),
-                    id="id3",
-                    prefix="path3/",
-                    tags={
-                        "tagKey": "tagValue",
+                {
+                    "enabled": True,
+                    "expiration": {
+                        "days": 365,
+                    },
+                    "id": "id1",
+                    "prefix": "path1/",
+                    "transitions": [{
+                        "days": 120,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "enabled": True,
+                    "expiration": {
+                        "days": 50,
+                    },
+                    "id": "id2",
+                    "prefix": "path2/",
+                },
+                {
+                    "enabled": False,
+                    "expiration": {
+                        "days": 1,
+                    },
+                    "id": "id3",
+                    "prefix": "path3/",
+                    "tags": {
+                        "tag_key": "tagValue",
                         "terraform": "hashicorp",
                     },
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    enabled=True,
-                    id="id4",
-                    tags={
+                },
+                {
+                    "enabled": True,
+                    "id": "id4",
+                    "tags": {
                         "tag1": "value1",
                     },
-                    transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=1,
-                        storage_class="GLACIER",
-                    )],
-                ),
-                scaleway.ObjectBucketLifecycleRuleArgs(
-                    abort_incomplete_multipart_upload_days=30,
-                    enabled=True,
-                ),
+                    "transitions": [{
+                        "days": 1,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "abort_incomplete_multipart_upload_days": 30,
+                    "enabled": True,
+                },
             ],
             region="fr-par")
         ```
@@ -672,15 +672,15 @@ class ObjectBucket(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: Optional[pulumi.Input[str]] = None,
-                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]]] = None,
+                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
-                 lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]]] = None,
+                 lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  object_lock_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None,
+                 versioning: Optional[pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -714,16 +714,16 @@ class ObjectBucket(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             acl: Optional[pulumi.Input[str]] = None,
             api_endpoint: Optional[pulumi.Input[str]] = None,
-            cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]]] = None,
+            cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]]] = None,
             endpoint: Optional[pulumi.Input[str]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
-            lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]]] = None,
+            lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             object_lock_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            versioning: Optional[pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']]] = None) -> 'ObjectBucket':
+            versioning: Optional[pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None) -> 'ObjectBucket':
         """
         Get an existing ObjectBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -733,10 +733,10 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] api_endpoint: API URL of the bucket
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketLifecycleRuleArgs']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
@@ -748,7 +748,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+        :param pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

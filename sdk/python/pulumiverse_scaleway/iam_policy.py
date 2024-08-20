@@ -383,7 +383,7 @@ class IamPolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  no_principal: Optional[pulumi.Input[bool]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -406,10 +406,10 @@ class IamPolicy(pulumi.CustomResource):
         object_read_only = scaleway.IamPolicy("objectReadOnly",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageReadOnly"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageReadOnly"],
+            }])
         ```
 
         ### Create a policy for all current and future projects in an organization
@@ -422,10 +422,10 @@ class IamPolicy(pulumi.CustomResource):
         object_read_only = scaleway.IamPolicy("objectReadOnly",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                organization_id=app.organization_id,
-                permission_set_names=["ObjectStorageReadOnly"],
-            )])
+            rules=[{
+                "organization_id": app.organization_id,
+                "permission_set_names": ["ObjectStorageReadOnly"],
+            }])
         ```
 
         ## Import
@@ -448,7 +448,7 @@ class IamPolicy(pulumi.CustomResource):
                
                > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]] rules: List of rules in the policy.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]] rules: List of rules in the policy.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[str] user_id: ID of the user the policy will be linked to
         """
@@ -477,10 +477,10 @@ class IamPolicy(pulumi.CustomResource):
         object_read_only = scaleway.IamPolicy("objectReadOnly",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageReadOnly"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageReadOnly"],
+            }])
         ```
 
         ### Create a policy for all current and future projects in an organization
@@ -493,10 +493,10 @@ class IamPolicy(pulumi.CustomResource):
         object_read_only = scaleway.IamPolicy("objectReadOnly",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                organization_id=app.organization_id,
-                permission_set_names=["ObjectStorageReadOnly"],
-            )])
+            rules=[{
+                "organization_id": app.organization_id,
+                "permission_set_names": ["ObjectStorageReadOnly"],
+            }])
         ```
 
         ## Import
@@ -530,7 +530,7 @@ class IamPolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  no_principal: Optional[pulumi.Input[bool]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -574,7 +574,7 @@ class IamPolicy(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             no_principal: Optional[pulumi.Input[bool]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]]] = None,
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             user_id: Optional[pulumi.Input[str]] = None) -> 'IamPolicy':
@@ -595,7 +595,7 @@ class IamPolicy(pulumi.CustomResource):
                
                > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamPolicyRuleArgs']]]] rules: List of rules in the policy.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]] rules: List of rules in the policy.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the policy.
         :param pulumi.Input[str] user_id: ID of the user the policy will be linked to

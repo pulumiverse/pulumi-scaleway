@@ -543,7 +543,7 @@ class Loadbalancer(pulumi.CustomResource):
                  ip_id: Optional[pulumi.Input[str]] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  release_ip: Optional[pulumi.Input[bool]] = None,
                  ssl_compatibility_level: Optional[pulumi.Input[str]] = None,
@@ -626,9 +626,9 @@ class Loadbalancer(pulumi.CustomResource):
             type="DEV1-S",
             image="debian_bullseye",
             enable_ipv6=False,
-            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
-                pn_id=main_vpc_private_network.id,
-            )])
+            private_networks=[{
+                "pn_id": main_vpc_private_network.id,
+            }])
         ### IP for LB IP
         main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
         ### Scaleway Private Network
@@ -637,10 +637,10 @@ class Loadbalancer(pulumi.CustomResource):
         main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
             ip_id=main_loadbalancer_ip.id,
             type="LB-S",
-            private_networks=[scaleway.LoadbalancerPrivateNetworkArgs(
-                private_network_id=main_vpc_private_network.id,
-                dhcp_config=True,
-            )],
+            private_networks=[{
+                "private_network_id": main_vpc_private_network.id,
+                "dhcp_config": True,
+            }],
             opts = pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
         ```
 
@@ -704,7 +704,7 @@ class Loadbalancer(pulumi.CustomResource):
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: The List of IP IDs to attach to the Load Balancer.
         :param pulumi.Input[str] name: The name of the Load Balancer.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
         :param pulumi.Input[bool] release_ip: The `release_ip` allow the release of the IP address associated with the Load Balancer.
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
@@ -793,9 +793,9 @@ class Loadbalancer(pulumi.CustomResource):
             type="DEV1-S",
             image="debian_bullseye",
             enable_ipv6=False,
-            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
-                pn_id=main_vpc_private_network.id,
-            )])
+            private_networks=[{
+                "pn_id": main_vpc_private_network.id,
+            }])
         ### IP for LB IP
         main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
         ### Scaleway Private Network
@@ -804,10 +804,10 @@ class Loadbalancer(pulumi.CustomResource):
         main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
             ip_id=main_loadbalancer_ip.id,
             type="LB-S",
-            private_networks=[scaleway.LoadbalancerPrivateNetworkArgs(
-                private_network_id=main_vpc_private_network.id,
-                dhcp_config=True,
-            )],
+            private_networks=[{
+                "private_network_id": main_vpc_private_network.id,
+                "dhcp_config": True,
+            }],
             opts = pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
         ```
 
@@ -882,7 +882,7 @@ class Loadbalancer(pulumi.CustomResource):
                  ip_id: Optional[pulumi.Input[str]] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  release_ip: Optional[pulumi.Input[bool]] = None,
                  ssl_compatibility_level: Optional[pulumi.Input[str]] = None,
@@ -936,7 +936,7 @@ class Loadbalancer(pulumi.CustomResource):
             ipv6_address: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             release_ip: Optional[pulumi.Input[bool]] = None,
@@ -962,7 +962,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[str] ipv6_address: The Load Balancer public IPv6 address.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[str] organization_id: The ID of the Organization ID the Load Balancer is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadbalancerPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
         :param pulumi.Input[bool] release_ip: The `release_ip` allow the release of the IP address associated with the Load Balancer.

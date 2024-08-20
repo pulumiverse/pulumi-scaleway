@@ -225,7 +225,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_control_policy: Optional[pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']]] = None,
+                 access_control_policy: Optional[pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']]] = None,
                  acl: Optional[pulumi.Input[str]] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  expected_bucket_owner: Optional[pulumi.Input[str]] = None,
@@ -254,27 +254,27 @@ class ObjectBucketAcl(pulumi.CustomResource):
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket")
         main_object_bucket_acl = scaleway.ObjectBucketAcl("mainObjectBucketAcl",
             bucket=main_object_bucket.id,
-            access_control_policy=scaleway.ObjectBucketAclAccessControlPolicyArgs(
-                grants=[
-                    scaleway.ObjectBucketAclAccessControlPolicyGrantArgs(
-                        grantee=scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs(
-                            id="<project-id>:<project-id>",
-                            type="CanonicalUser",
-                        ),
-                        permission="FULL_CONTROL",
-                    ),
-                    scaleway.ObjectBucketAclAccessControlPolicyGrantArgs(
-                        grantee=scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs(
-                            id="<project-id>",
-                            type="CanonicalUser",
-                        ),
-                        permission="WRITE",
-                    ),
+            access_control_policy={
+                "grants": [
+                    {
+                        "grantee": {
+                            "id": "<project-id>:<project-id>",
+                            "type": "CanonicalUser",
+                        },
+                        "permission": "FULL_CONTROL",
+                    },
+                    {
+                        "grantee": {
+                            "id": "<project-id>",
+                            "type": "CanonicalUser",
+                        },
+                        "permission": "WRITE",
+                    },
                 ],
-                owner=scaleway.ObjectBucketAclAccessControlPolicyOwnerArgs(
-                    id="<project-id>",
-                ),
-            ))
+                "owner": {
+                    "id": "<project-id>",
+                },
+            })
         ```
 
         ## The ACL
@@ -339,7 +339,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
+        :param pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
@@ -374,27 +374,27 @@ class ObjectBucketAcl(pulumi.CustomResource):
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket")
         main_object_bucket_acl = scaleway.ObjectBucketAcl("mainObjectBucketAcl",
             bucket=main_object_bucket.id,
-            access_control_policy=scaleway.ObjectBucketAclAccessControlPolicyArgs(
-                grants=[
-                    scaleway.ObjectBucketAclAccessControlPolicyGrantArgs(
-                        grantee=scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs(
-                            id="<project-id>:<project-id>",
-                            type="CanonicalUser",
-                        ),
-                        permission="FULL_CONTROL",
-                    ),
-                    scaleway.ObjectBucketAclAccessControlPolicyGrantArgs(
-                        grantee=scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs(
-                            id="<project-id>",
-                            type="CanonicalUser",
-                        ),
-                        permission="WRITE",
-                    ),
+            access_control_policy={
+                "grants": [
+                    {
+                        "grantee": {
+                            "id": "<project-id>:<project-id>",
+                            "type": "CanonicalUser",
+                        },
+                        "permission": "FULL_CONTROL",
+                    },
+                    {
+                        "grantee": {
+                            "id": "<project-id>",
+                            "type": "CanonicalUser",
+                        },
+                        "permission": "WRITE",
+                    },
                 ],
-                owner=scaleway.ObjectBucketAclAccessControlPolicyOwnerArgs(
-                    id="<project-id>",
-                ),
-            ))
+                "owner": {
+                    "id": "<project-id>",
+                },
+            })
         ```
 
         ## The ACL
@@ -472,7 +472,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_control_policy: Optional[pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']]] = None,
+                 access_control_policy: Optional[pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']]] = None,
                  acl: Optional[pulumi.Input[str]] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  expected_bucket_owner: Optional[pulumi.Input[str]] = None,
@@ -505,7 +505,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_control_policy: Optional[pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']]] = None,
+            access_control_policy: Optional[pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']]] = None,
             acl: Optional[pulumi.Input[str]] = None,
             bucket: Optional[pulumi.Input[str]] = None,
             expected_bucket_owner: Optional[pulumi.Input[str]] = None,
@@ -518,7 +518,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketAclAccessControlPolicyArgs']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
+        :param pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.

@@ -386,8 +386,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ipv4_subnet: Optional[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']]] = None,
-                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]]] = None,
+                 ipv4_subnet: Optional[pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]]] = None,
                  is_regional: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -421,16 +421,16 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         pn_priv = scaleway.VpcPrivateNetwork("pnPriv",
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="192.168.0.0/24",
-            ),
+            ipv4_subnet={
+                "subnet": "192.168.0.0/24",
+            },
             ipv6_subnets=[
-                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
-                    subnet="fd46:78ab:30b8:177c::/64",
-                ),
-                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
-                    subnet="fd46:78ab:30b8:c7df::/64",
-                ),
+                {
+                    "subnet": "fd46:78ab:30b8:177c::/64",
+                },
+                {
+                    "subnet": "fd46:78ab:30b8:c7df::/64",
+                },
             ],
             tags=[
                 "demo",
@@ -450,8 +450,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
+        :param pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[bool] is_regional: Private Networks are now all necessarily regional.
         :param pulumi.Input[str] name: The name of the Private Network. If not provided, it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the private network is associated with.
@@ -491,16 +491,16 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         pn_priv = scaleway.VpcPrivateNetwork("pnPriv",
-            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-                subnet="192.168.0.0/24",
-            ),
+            ipv4_subnet={
+                "subnet": "192.168.0.0/24",
+            },
             ipv6_subnets=[
-                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
-                    subnet="fd46:78ab:30b8:177c::/64",
-                ),
-                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
-                    subnet="fd46:78ab:30b8:c7df::/64",
-                ),
+                {
+                    "subnet": "fd46:78ab:30b8:177c::/64",
+                },
+                {
+                    "subnet": "fd46:78ab:30b8:c7df::/64",
+                },
             ],
             tags=[
                 "demo",
@@ -533,8 +533,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ipv4_subnet: Optional[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']]] = None,
-                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]]] = None,
+                 ipv4_subnet: Optional[pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]]] = None,
                  is_regional: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -574,8 +574,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            ipv4_subnet: Optional[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']]] = None,
-            ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]]] = None,
+            ipv4_subnet: Optional[pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']]] = None,
+            ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]]] = None,
             is_regional: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -593,8 +593,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The date and time of the creation of the subnet.
-        :param pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
+        :param pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[bool] is_regional: Private Networks are now all necessarily regional.
         :param pulumi.Input[str] name: The name of the Private Network. If not provided, it will be randomly generated.
         :param pulumi.Input[str] organization_id: The Organization ID the Private Network is associated with.

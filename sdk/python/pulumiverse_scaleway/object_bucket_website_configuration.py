@@ -225,8 +225,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
-                 error_document: Optional[pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]] = None,
-                 index_document: Optional[pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]] = None,
+                 error_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
+                 index_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -243,9 +243,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
             bucket=main_object_bucket.id,
-            index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
-                suffix="index.html",
-            ))
+            index_document={
+                "suffix": "index.html",
+            })
         ```
 
         ### With `Policy`
@@ -271,9 +271,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
             }))
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
             bucket=main_object_bucket.id,
-            index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
-                suffix="index.html",
-            ))
+            index_document={
+                "suffix": "index.html",
+            })
         ```
 
         ## Import
@@ -299,8 +299,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] error_document: The name of the error document for the website detailed below.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationIndexDocumentArgs']] index_document: The name of the index document for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error document for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index document for the website detailed below.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -323,9 +323,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
             bucket=main_object_bucket.id,
-            index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
-                suffix="index.html",
-            ))
+            index_document={
+                "suffix": "index.html",
+            })
         ```
 
         ### With `Policy`
@@ -351,9 +351,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
             }))
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
             bucket=main_object_bucket.id,
-            index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
-                suffix="index.html",
-            ))
+            index_document={
+                "suffix": "index.html",
+            })
         ```
 
         ## Import
@@ -392,8 +392,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
-                 error_document: Optional[pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]] = None,
-                 index_document: Optional[pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]] = None,
+                 error_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
+                 index_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -427,8 +427,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: Optional[pulumi.Input[str]] = None,
-            error_document: Optional[pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]] = None,
-            index_document: Optional[pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]] = None,
+            error_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
+            index_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             website_domain: Optional[pulumi.Input[str]] = None,
@@ -441,8 +441,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] error_document: The name of the error document for the website detailed below.
-        :param pulumi.Input[pulumi.InputType['ObjectBucketWebsiteConfigurationIndexDocumentArgs']] index_document: The name of the index document for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error document for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index document for the website detailed below.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] website_domain: The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
