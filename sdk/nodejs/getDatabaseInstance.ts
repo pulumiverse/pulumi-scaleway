@@ -56,6 +56,7 @@ export interface GetDatabaseInstanceResult {
     readonly backupScheduleRetention: number;
     readonly certificate: string;
     readonly disableBackup: boolean;
+    readonly encryptionAtRest: boolean;
     readonly endpointIp: string;
     readonly endpointPort: number;
     readonly engine: string;
