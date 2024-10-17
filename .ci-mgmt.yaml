@@ -14,8 +14,8 @@ languages:
 publish:
   sdk: "all,!java"
   cdn: false
-#license:
-#  ignore:
-    # Package is licensed under Apache 2.0 but license is not picked up correctly by the license detector
-#    - github.com/OpenDNS/vegadns2client
+license:
+  ignore:
+    # Don't check for the license of the local shim package
+    - github.com/scaleway/terraform-provider-scaleway/v2/shim
 pr-assign: ringods
