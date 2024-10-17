@@ -23,12 +23,14 @@
                 "Pulumi": "3.*"
             },
             "compatibility": "tfbridge20",
-            "rootNamespace": "Pulumiverse"
+            "rootNamespace": "Pulumiverse",
+            "respectSchemaVersion": true
         },
         "go": {
             "importBasePath": "github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway",
             "generateResourceContainerTypes": true,
-            "generateExtraInputTypes": true
+            "generateExtraInputTypes": true,
+            "respectSchemaVersion": true
         },
         "nodejs": {
             "packageName": "@pulumiverse/scaleway",
@@ -42,7 +44,8 @@
                 "@types/node": "^10.0.0"
             },
             "compatibility": "tfbridge20",
-            "disableUnionOutputTypes": true
+            "disableUnionOutputTypes": true,
+            "respectSchemaVersion": true
         },
         "python": {
             "packageName": "pulumiverse_scaleway",
@@ -51,7 +54,10 @@
             },
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-scaleway` repo](https://github.com/pulumiverse/pulumi-scaleway/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-scaleway` repo](https://github.com/scaleway/terraform-provider-scaleway/issues).",
             "compatibility": "tfbridge20",
-            "pyproject": {}
+            "respectSchemaVersion": true,
+            "pyproject": {
+                "enabled": true
+            }
         }
     },
     "config": {

@@ -1286,6 +1286,7 @@ func Provider() tfbridge.ProviderInfo {
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
+			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
 			PackageName: "pulumiverse_scaleway",
@@ -1293,12 +1294,15 @@ func Provider() tfbridge.ProviderInfo {
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
+			PyProject:            struct{ Enabled bool }{true},
+			RespectSchemaVersion: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			RootNamespace: "Pulumiverse",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+			RespectSchemaVersion: true,
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
@@ -1308,6 +1312,7 @@ func Provider() tfbridge.ProviderInfo {
 				scalewayPkg,
 			),
 			GenerateResourceContainerTypes: true,
+			RespectSchemaVersion:           true,
 		},
 	}
 
