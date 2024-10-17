@@ -20,11 +20,13 @@ import (
 	"path/filepath"
 	"unicode"
 
+	shim "github.com/scaleway/terraform-provider-scaleway/v2/shim"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+
 	"github.com/pulumiverse/pulumi-scaleway/provider/pkg/version"
-	shim "github.com/scaleway/terraform-provider-scaleway/v2/shim"
 )
 
 // all of the token components used below.
