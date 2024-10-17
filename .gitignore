@@ -4,6 +4,7 @@
 **/obj/
 Pulumi.*.yaml
 sdk/nodejs/node_modules
+sdk/nodejs/package_lock.json
 **/.gradle
 
 **/command-output/
@@ -13,7 +14,7 @@ sdk/nodejs/node_modules
 
 yarn.lock
 
-**/schema.go
+provider/**/schema-embed.json
 **/version.txt
 
 **/ci-scripts
