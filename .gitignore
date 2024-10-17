@@ -1,11 +1,13 @@
-/vendor/
+.idea
+.code
+**/vendor/
 .pulumi
 **/bin/
 **/obj/
 Pulumi.*.yaml
-sdk/nodejs/node_modules
-sdk/nodejs/package_lock.json
-**/.gradle
+**/node_modules/
+.DS_Store
+go.work*
 
 **/command-output/
 
@@ -13,17 +15,16 @@ sdk/nodejs/package_lock.json
 *.iml
 
 yarn.lock
+package_lock.json
+**/pulumiManifest.go
 
+ci-scripts
 provider/**/schema-embed.json
 **/version.txt
-
-**/ci-scripts
 **/nuget
+**/dist
 
-**/node_modules
-
-dist/**
-**/.DS_store
-.vscode
-
-go.work*
+__pycache__
+venv
+sdk/python/build
+sdk/python/*.egg-info
