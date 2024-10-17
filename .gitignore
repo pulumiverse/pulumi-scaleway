@@ -25,4 +25,4 @@ dist/**
 **/.DS_store
 .vscode
 
-go.work.sum
+go.work*
