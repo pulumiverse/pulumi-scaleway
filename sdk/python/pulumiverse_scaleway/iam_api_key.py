@@ -331,6 +331,19 @@ class IamApiKey(pulumi.CustomResource):
             description="a description")
         ```
 
+        ### With expiration
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+        import pulumiverse_time as time
+
+        rotate_after_a_year = time.Rotating("rotateAfterAYear", rotation_years=1)
+        main = scaleway.IamApiKey("main",
+            application_id=scaleway_iam_application["main"]["id"],
+            expires_at=rotate_after_a_year.rotation_rfc3339)
+        ```
+
         ## Import
 
         Api keys can be imported using the `{id}`, e.g.
@@ -384,6 +397,19 @@ class IamApiKey(pulumi.CustomResource):
         main_iam_api_key = scaleway.IamApiKey("mainIamApiKey",
             user_id=main_iam_user.id,
             description="a description")
+        ```
+
+        ### With expiration
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+        import pulumiverse_time as time
+
+        rotate_after_a_year = time.Rotating("rotateAfterAYear", rotation_years=1)
+        main = scaleway.IamApiKey("main",
+            application_id=scaleway_iam_application["main"]["id"],
+            expires_at=rotate_after_a_year.rotation_rfc3339)
         ```
 
         ## Import
