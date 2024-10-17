@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
     - name: Install go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5
       with:
         # The versions of golangci-lint and setup-go here cross-depend and need to update together.
         go-version: 1.23
@@ -46,7 +46,7 @@ jobs:
       continue-on-error: true
       run: make upstream
     - name: golangci-lint
-      uses: golangci/golangci-lint-action@v6
+      uses: golangci/golangci-lint-action@971e284b6050e8a5849b72094c50ab08da042db8 # v6
       with:
         version: v1.60
         working-directory: provider
