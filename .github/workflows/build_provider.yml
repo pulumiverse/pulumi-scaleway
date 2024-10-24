@@ -30,13 +30,13 @@ jobs:
             arch: amd64
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Setup tools
         uses: ./.github/actions/setup-tools
         with:
           tools: pulumictl, go
       - name: Download schema-embed.json
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           # Use a pattern to avoid failing if the artifact doesn't exist
           pattern: schema-embed.*
@@ -49,7 +49,7 @@ jobs:
       - name: Build & package provider
         run: make provider_dist-${{ matrix.platform.os }}-${{ matrix.platform.arch }}
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
         with:
           name: pulumi-resource-scaleway-v${{ inputs.version }}-${{ matrix.platform.os }}-${{ matrix.platform.arch }}.tar.gz
           path: bin/pulumi-resource-scaleway-v${{ inputs.version }}-${{ matrix.platform.os }}-${{ matrix.platform.arch }}.tar.gz
