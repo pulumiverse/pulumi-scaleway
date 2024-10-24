@@ -46,7 +46,7 @@ jobs:
       if: inputs.skipGoSdk && inputs.isPrerelease == false
       run: echo "Can't skip Go SDK for stable releases. This is likely a bug in the calling workflow." && exit 1
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: Setup tools
       uses: ./.github/actions/setup-tools
       with:
@@ -54,7 +54,7 @@ jobs:
     - name: Create dist directory
       run: mkdir -p dist
     - name: Download provider assets
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
       with:
         pattern: pulumi-resource-scaleway-v${{ inputs.version }}-*
         path: dist
@@ -77,7 +77,7 @@ jobs:
           echo 'EOF'
         } >> "$GITHUB_OUTPUT"
     - name: Create GH Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
       if: inputs.isPrerelease == false
       with:
         tag_name: v${{ inputs.version }}
@@ -96,13 +96,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: Setup tools
       uses: ./.github/actions/setup-tools
       with:
         tools: pulumictl, pulumicli, dotnet, go, nodejs, python
     - name: Publish SDKs
-      uses: pulumi/pulumi-package-publisher@v0.0.20
+      uses: pulumi/pulumi-package-publisher@1c0359ba74243cf6651efacfd839c751d8ff87e2 # v0.0.20
       with:
         sdk: all,!java
         version: ${{ inputs.version }}
@@ -134,7 +134,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: Clean up release labels
       uses: pulumi/action-release-by-pr-label@main
       with:
