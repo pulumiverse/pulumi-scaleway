@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -228,9 +233,6 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
         public_port=pulumi.get(__ret__, 'public_port'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_public_pat_rule)
 def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = None,
                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicPatRuleResult]:
@@ -292,4 +294,20 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
     :param str zone: `zone`) The zone in which
            the rule exists.
     """
-    ...
+    __args__ = dict()
+    __args__['patRuleId'] = pat_rule_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule', __args__, opts=opts, typ=GetVpcPublicPatRuleResult)
+    return __ret__.apply(lambda __response__: GetVpcPublicPatRuleResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        gateway_id=pulumi.get(__response__, 'gateway_id'),
+        id=pulumi.get(__response__, 'id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        pat_rule_id=pulumi.get(__response__, 'pat_rule_id'),
+        private_ip=pulumi.get(__response__, 'private_ip'),
+        private_port=pulumi.get(__response__, 'private_port'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        public_port=pulumi.get(__response__, 'public_port'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        zone=pulumi.get(__response__, 'zone')))

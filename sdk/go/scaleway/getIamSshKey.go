@@ -57,14 +57,20 @@ type LookupIamSshKeyResult struct {
 
 func LookupIamSshKeyOutput(ctx *pulumi.Context, args LookupIamSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupIamSshKeyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIamSshKeyResult, error) {
+		ApplyT(func(v interface{}) (LookupIamSshKeyResultOutput, error) {
 			args := v.(LookupIamSshKeyArgs)
-			r, err := LookupIamSshKey(ctx, &args, opts...)
-			var s LookupIamSshKeyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIamSshKeyResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getIamSshKey:getIamSshKey", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIamSshKeyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupIamSshKeyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIamSshKeyResultOutput), nil
+			}
+			return output, nil
 		}).(LookupIamSshKeyResultOutput)
 }
 

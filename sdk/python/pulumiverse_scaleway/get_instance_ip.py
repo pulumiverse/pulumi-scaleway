@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -169,9 +174,6 @@ def get_instance_ip(address: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_ip)
 def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None,
                            id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIpResult]:
@@ -184,4 +186,19 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
     :param str id: The ID of the IP address to retrieve
            Only one of `address` and `id` should be specified.
     """
-    ...
+    __args__ = dict()
+    __args__['address'] = address
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceIp:getInstanceIp', __args__, opts=opts, typ=GetInstanceIpResult)
+    return __ret__.apply(lambda __response__: GetInstanceIpResult(
+        address=pulumi.get(__response__, 'address'),
+        id=pulumi.get(__response__, 'id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        prefix=pulumi.get(__response__, 'prefix'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        reverse=pulumi.get(__response__, 'reverse'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        zone=pulumi.get(__response__, 'zone')))

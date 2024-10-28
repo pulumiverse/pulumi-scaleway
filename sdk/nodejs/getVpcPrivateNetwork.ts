@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPrivateNetworkResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {
         "name": args.name,
@@ -119,7 +118,15 @@ export interface GetVpcPrivateNetworkResult {
  * ```
  */
 export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
-    return pulumi.output(args).apply((a: any) => getVpcPrivateNetwork(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {
+        "name": args.name,
+        "privateNetworkId": args.privateNetworkId,
+        "projectId": args.projectId,
+        "region": args.region,
+        "vpcId": args.vpcId,
+    }, opts);
 }
 
 /**

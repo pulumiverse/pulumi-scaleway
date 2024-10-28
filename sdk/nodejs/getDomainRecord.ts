@@ -31,7 +31,6 @@ import * as utilities from "./utilities";
  */
 export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainRecordResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainRecord:getDomainRecord", {
         "data": args.data,
@@ -143,7 +142,16 @@ export interface GetDomainRecordResult {
  * ```
  */
 export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainRecordResult> {
-    return pulumi.output(args).apply((a: any) => getDomainRecord(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDomainRecord:getDomainRecord", {
+        "data": args.data,
+        "dnsZone": args.dnsZone,
+        "name": args.name,
+        "projectId": args.projectId,
+        "recordId": args.recordId,
+        "type": args.type,
+    }, opts);
 }
 
 /**

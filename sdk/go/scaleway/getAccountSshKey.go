@@ -53,14 +53,20 @@ type LookupAccountSshKeyResult struct {
 
 func LookupAccountSshKeyOutput(ctx *pulumi.Context, args LookupAccountSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupAccountSshKeyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAccountSshKeyResult, error) {
+		ApplyT(func(v interface{}) (LookupAccountSshKeyResultOutput, error) {
 			args := v.(LookupAccountSshKeyArgs)
-			r, err := LookupAccountSshKey(ctx, &args, opts...)
-			var s LookupAccountSshKeyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAccountSshKeyResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getAccountSshKey:getAccountSshKey", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAccountSshKeyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAccountSshKeyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAccountSshKeyResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAccountSshKeyResultOutput)
 }
 

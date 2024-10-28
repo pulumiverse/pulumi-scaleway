@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -191,9 +196,6 @@ def get_registry_image(image_id: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         visibility=pulumi.get(__ret__, 'visibility'))
-
-
-@_utilities.lift_output_func(get_registry_image)
 def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = None,
                               name: Optional[pulumi.Input[Optional[str]]] = None,
                               namespace_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -214,4 +216,24 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
     :param str region: `region`) The region in which the image exists.
     :param Sequence[str] tags: The tags associated with the registry image
     """
-    ...
+    __args__ = dict()
+    __args__['imageId'] = image_id
+    __args__['name'] = name
+    __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['tags'] = tags
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getRegistryImage:getRegistryImage', __args__, opts=opts, typ=GetRegistryImageResult)
+    return __ret__.apply(lambda __response__: GetRegistryImageResult(
+        id=pulumi.get(__response__, 'id'),
+        image_id=pulumi.get(__response__, 'image_id'),
+        name=pulumi.get(__response__, 'name'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        size=pulumi.get(__response__, 'size'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        visibility=pulumi.get(__response__, 'visibility')))

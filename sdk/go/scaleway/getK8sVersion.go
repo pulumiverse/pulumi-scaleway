@@ -103,14 +103,20 @@ type GetK8sVersionResult struct {
 
 func GetK8sVersionOutput(ctx *pulumi.Context, args GetK8sVersionOutputArgs, opts ...pulumi.InvokeOption) GetK8sVersionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetK8sVersionResult, error) {
+		ApplyT(func(v interface{}) (GetK8sVersionResultOutput, error) {
 			args := v.(GetK8sVersionArgs)
-			r, err := GetK8sVersion(ctx, &args, opts...)
-			var s GetK8sVersionResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetK8sVersionResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getK8sVersion:getK8sVersion", args, &rv, "", opts...)
+			if err != nil {
+				return GetK8sVersionResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetK8sVersionResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetK8sVersionResultOutput), nil
+			}
+			return output, nil
 		}).(GetK8sVersionResultOutput)
 }
 

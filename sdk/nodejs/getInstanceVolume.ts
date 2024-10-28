@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceVolumeResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceVolume:getInstanceVolume", {
         "name": args.name,
@@ -69,7 +68,14 @@ export interface GetInstanceVolumeResult {
  * Gets information about an instance volume.
  */
 export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceVolumeResult> {
-    return pulumi.output(args).apply((a: any) => getInstanceVolume(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstanceVolume:getInstanceVolume", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "volumeId": args.volumeId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

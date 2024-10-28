@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getDocumentdbLoadBalancerEndpoint(args?: GetDocumentdbLoadBalancerEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbLoadBalancerEndpointResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", {
         "instanceId": args.instanceId,
@@ -74,7 +73,14 @@ export interface GetDocumentdbLoadBalancerEndpointResult {
  * Gets information about an DocumentDB load balancer endpoint.
  */
 export function getDocumentdbLoadBalancerEndpointOutput(args?: GetDocumentdbLoadBalancerEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbLoadBalancerEndpointResult> {
-    return pulumi.output(args).apply((a: any) => getDocumentdbLoadBalancerEndpoint(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", {
+        "instanceId": args.instanceId,
+        "instanceName": args.instanceName,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

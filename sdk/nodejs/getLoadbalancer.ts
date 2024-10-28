@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  */
 export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancer:getLoadbalancer", {
         "lbId": args.lbId,
@@ -121,7 +120,15 @@ export interface GetLoadbalancerResult {
  * ```
  */
 export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerResult> {
-    return pulumi.output(args).apply((a: any) => getLoadbalancer(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancer:getLoadbalancer", {
+        "lbId": args.lbId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "releaseIp": args.releaseIp,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

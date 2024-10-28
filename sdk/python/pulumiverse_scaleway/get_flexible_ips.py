@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -174,9 +179,6 @@ def get_flexible_ips(project_id: Optional[str] = None,
         server_ids=pulumi.get(__ret__, 'server_ids'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_flexible_ips)
 def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
                             server_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                             tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -221,4 +223,18 @@ def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = 
     :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which IPs exist.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    __args__['serverIds'] = server_ids
+    __args__['tags'] = tags
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFlexibleIps:getFlexibleIps', __args__, opts=opts, typ=GetFlexibleIpsResult)
+    return __ret__.apply(lambda __response__: GetFlexibleIpsResult(
+        id=pulumi.get(__response__, 'id'),
+        ips=pulumi.get(__response__, 'ips'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        server_ids=pulumi.get(__response__, 'server_ids'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

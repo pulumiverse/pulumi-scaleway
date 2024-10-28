@@ -57,14 +57,20 @@ type LookupDocumentdbInstanceResult struct {
 
 func LookupDocumentdbInstanceOutput(ctx *pulumi.Context, args LookupDocumentdbInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupDocumentdbInstanceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDocumentdbInstanceResult, error) {
+		ApplyT(func(v interface{}) (LookupDocumentdbInstanceResultOutput, error) {
 			args := v.(LookupDocumentdbInstanceArgs)
-			r, err := LookupDocumentdbInstance(ctx, &args, opts...)
-			var s LookupDocumentdbInstanceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDocumentdbInstanceResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDocumentdbInstanceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDocumentdbInstanceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDocumentdbInstanceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDocumentdbInstanceResultOutput)
 }
 

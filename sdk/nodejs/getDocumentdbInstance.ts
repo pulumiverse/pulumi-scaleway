@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getDocumentdbInstance(args?: GetDocumentdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbInstanceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", {
         "instanceId": args.instanceId,
@@ -69,7 +68,14 @@ export interface GetDocumentdbInstanceResult {
  * Gets information about an DocumentDB instance.
  */
 export function getDocumentdbInstanceOutput(args?: GetDocumentdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbInstanceResult> {
-    return pulumi.output(args).apply((a: any) => getDocumentdbInstance(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", {
+        "instanceId": args.instanceId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

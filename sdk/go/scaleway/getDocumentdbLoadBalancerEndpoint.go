@@ -54,14 +54,20 @@ type GetDocumentdbLoadBalancerEndpointResult struct {
 
 func GetDocumentdbLoadBalancerEndpointOutput(ctx *pulumi.Context, args GetDocumentdbLoadBalancerEndpointOutputArgs, opts ...pulumi.InvokeOption) GetDocumentdbLoadBalancerEndpointResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDocumentdbLoadBalancerEndpointResult, error) {
+		ApplyT(func(v interface{}) (GetDocumentdbLoadBalancerEndpointResultOutput, error) {
 			args := v.(GetDocumentdbLoadBalancerEndpointArgs)
-			r, err := GetDocumentdbLoadBalancerEndpoint(ctx, &args, opts...)
-			var s GetDocumentdbLoadBalancerEndpointResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDocumentdbLoadBalancerEndpointResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", args, &rv, "", opts...)
+			if err != nil {
+				return GetDocumentdbLoadBalancerEndpointResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDocumentdbLoadBalancerEndpointResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDocumentdbLoadBalancerEndpointResultOutput), nil
+			}
+			return output, nil
 		}).(GetDocumentdbLoadBalancerEndpointResultOutput)
 }
 

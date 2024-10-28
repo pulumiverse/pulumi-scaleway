@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getLbFrontends(args: GetLbFrontendsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbFrontendsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbFrontends:getLbFrontends", {
         "lbId": args.lbId,
@@ -99,7 +98,13 @@ export interface GetLbFrontendsResult {
  * ```
  */
 export function getLbFrontendsOutput(args: GetLbFrontendsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbFrontendsResult> {
-    return pulumi.output(args).apply((a: any) => getLbFrontends(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbFrontends:getLbFrontends", {
+        "lbId": args.lbId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

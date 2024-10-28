@@ -38,7 +38,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getContainer(args: GetContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getContainer:getContainer", {
         "containerId": args.containerId,
@@ -203,7 +202,14 @@ export interface GetContainerResult {
  * ```
  */
 export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerResult> {
-    return pulumi.output(args).apply((a: any) => getContainer(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getContainer:getContainer", {
+        "containerId": args.containerId,
+        "name": args.name,
+        "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

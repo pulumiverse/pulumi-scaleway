@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -311,9 +316,6 @@ def get_tem_domain(domain_id: Optional[str] = None,
         smtps_port_alternative=pulumi.get(__ret__, 'smtps_port_alternative'),
         spf_config=pulumi.get(__ret__, 'spf_config'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_tem_domain)
 def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -330,4 +332,36 @@ def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = Non
     :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str region: `region`) The region in which the domain exists.
     """
-    ...
+    __args__ = dict()
+    __args__['domainId'] = domain_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getTemDomain:getTemDomain', __args__, opts=opts, typ=GetTemDomainResult)
+    return __ret__.apply(lambda __response__: GetTemDomainResult(
+        accept_tos=pulumi.get(__response__, 'accept_tos'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dkim_config=pulumi.get(__response__, 'dkim_config'),
+        dmarc_config=pulumi.get(__response__, 'dmarc_config'),
+        dmarc_name=pulumi.get(__response__, 'dmarc_name'),
+        domain_id=pulumi.get(__response__, 'domain_id'),
+        id=pulumi.get(__response__, 'id'),
+        last_error=pulumi.get(__response__, 'last_error'),
+        last_valid_at=pulumi.get(__response__, 'last_valid_at'),
+        mx_blackhole=pulumi.get(__response__, 'mx_blackhole'),
+        name=pulumi.get(__response__, 'name'),
+        next_check_at=pulumi.get(__response__, 'next_check_at'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        reputations=pulumi.get(__response__, 'reputations'),
+        revoked_at=pulumi.get(__response__, 'revoked_at'),
+        smtp_host=pulumi.get(__response__, 'smtp_host'),
+        smtp_port=pulumi.get(__response__, 'smtp_port'),
+        smtp_port_alternative=pulumi.get(__response__, 'smtp_port_alternative'),
+        smtp_port_unsecure=pulumi.get(__response__, 'smtp_port_unsecure'),
+        smtps_auth_user=pulumi.get(__response__, 'smtps_auth_user'),
+        smtps_port=pulumi.get(__response__, 'smtps_port'),
+        smtps_port_alternative=pulumi.get(__response__, 'smtps_port_alternative'),
+        spf_config=pulumi.get(__response__, 'spf_config'),
+        status=pulumi.get(__response__, 'status')))

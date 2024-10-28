@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -160,9 +165,6 @@ def get_iam_application(application_id: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_iam_application)
 def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                organization_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -190,4 +192,19 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
     :param str organization_id: `organization_id`) The ID of the
            Organization the application is associated with.
     """
-    ...
+    __args__ = dict()
+    __args__['applicationId'] = application_id
+    __args__['name'] = name
+    __args__['organizationId'] = organization_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamApplication:getIamApplication', __args__, opts=opts, typ=GetIamApplicationResult)
+    return __ret__.apply(lambda __response__: GetIamApplicationResult(
+        application_id=pulumi.get(__response__, 'application_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        editable=pulumi.get(__response__, 'editable'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

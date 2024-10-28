@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -130,9 +135,6 @@ def get_cockpit(project_id: Optional[str] = None,
         plan_id=pulumi.get(__ret__, 'plan_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         push_urls=pulumi.get(__ret__, 'push_urls'))
-
-
-@_utilities.lift_output_func(get_cockpit)
 def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCockpitResult]:
     """
@@ -165,4 +167,13 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str project_id: `project_id`) The ID of the project the cockpit is associated with.
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getCockpit:getCockpit', __args__, opts=opts, typ=GetCockpitResult)
+    return __ret__.apply(lambda __response__: GetCockpitResult(
+        endpoints=pulumi.get(__response__, 'endpoints'),
+        id=pulumi.get(__response__, 'id'),
+        plan_id=pulumi.get(__response__, 'plan_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        push_urls=pulumi.get(__response__, 'push_urls')))

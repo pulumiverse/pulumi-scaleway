@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -263,9 +268,6 @@ def get_domain_record(data: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         views=pulumi.get(__ret__, 'views'),
         weighteds=pulumi.get(__ret__, 'weighteds'))
-
-
-@_utilities.lift_output_func(get_domain_record)
 def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
                              dns_zone: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -304,4 +306,29 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
            Cannot be used with `record_id`.
     """
-    ...
+    __args__ = dict()
+    __args__['data'] = data
+    __args__['dnsZone'] = dns_zone
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['recordId'] = record_id
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDomainRecord:getDomainRecord', __args__, opts=opts, typ=GetDomainRecordResult)
+    return __ret__.apply(lambda __response__: GetDomainRecordResult(
+        data=pulumi.get(__response__, 'data'),
+        dns_zone=pulumi.get(__response__, 'dns_zone'),
+        fqdn=pulumi.get(__response__, 'fqdn'),
+        geo_ips=pulumi.get(__response__, 'geo_ips'),
+        http_services=pulumi.get(__response__, 'http_services'),
+        id=pulumi.get(__response__, 'id'),
+        keep_empty_zone=pulumi.get(__response__, 'keep_empty_zone'),
+        name=pulumi.get(__response__, 'name'),
+        priority=pulumi.get(__response__, 'priority'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        record_id=pulumi.get(__response__, 'record_id'),
+        root_zone=pulumi.get(__response__, 'root_zone'),
+        ttl=pulumi.get(__response__, 'ttl'),
+        type=pulumi.get(__response__, 'type'),
+        views=pulumi.get(__response__, 'views'),
+        weighteds=pulumi.get(__response__, 'weighteds')))

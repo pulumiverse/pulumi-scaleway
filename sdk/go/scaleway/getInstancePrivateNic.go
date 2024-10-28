@@ -97,14 +97,20 @@ type LookupInstancePrivateNicResult struct {
 
 func LookupInstancePrivateNicOutput(ctx *pulumi.Context, args LookupInstancePrivateNicOutputArgs, opts ...pulumi.InvokeOption) LookupInstancePrivateNicResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInstancePrivateNicResult, error) {
+		ApplyT(func(v interface{}) (LookupInstancePrivateNicResultOutput, error) {
 			args := v.(LookupInstancePrivateNicArgs)
-			r, err := LookupInstancePrivateNic(ctx, &args, opts...)
-			var s LookupInstancePrivateNicResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupInstancePrivateNicResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args, &rv, "", opts...)
+			if err != nil {
+				return LookupInstancePrivateNicResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupInstancePrivateNicResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupInstancePrivateNicResultOutput), nil
+			}
+			return output, nil
 		}).(LookupInstancePrivateNicResultOutput)
 }
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -134,9 +139,6 @@ def get_database_privilege(database_name: Optional[str] = None,
         permission=pulumi.get(__ret__, 'permission'),
         region=pulumi.get(__ret__, 'region'),
         user_name=pulumi.get(__ret__, 'user_name'))
-
-
-@_utilities.lift_output_func(get_database_privilege)
 def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = None,
                                   instance_id: Optional[pulumi.Input[str]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -163,4 +165,17 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
     :param str region: `region`) The region in which the resource exists.
     :param str user_name: The user name.
     """
-    ...
+    __args__ = dict()
+    __args__['databaseName'] = database_name
+    __args__['instanceId'] = instance_id
+    __args__['region'] = region
+    __args__['userName'] = user_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabasePrivilege:getDatabasePrivilege', __args__, opts=opts, typ=GetDatabasePrivilegeResult)
+    return __ret__.apply(lambda __response__: GetDatabasePrivilegeResult(
+        database_name=pulumi.get(__response__, 'database_name'),
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        permission=pulumi.get(__response__, 'permission'),
+        region=pulumi.get(__response__, 'region'),
+        user_name=pulumi.get(__response__, 'user_name')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -243,9 +248,6 @@ def get_vpc_public_gateway(name: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         upstream_dns_servers=pulumi.get(__ret__, 'upstream_dns_servers'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_public_gateway)
 def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -275,4 +277,28 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     :param str project_id: The ID of the Project the Public Gateway is associated with.
     :param str zone: `zone`) The Public Gateway's zone.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['publicGatewayId'] = public_gateway_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGateway:getVpcPublicGateway', __args__, opts=opts, typ=GetVpcPublicGatewayResult)
+    return __ret__.apply(lambda __response__: GetVpcPublicGatewayResult(
+        bastion_enabled=pulumi.get(__response__, 'bastion_enabled'),
+        bastion_port=pulumi.get(__response__, 'bastion_port'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        enable_smtp=pulumi.get(__response__, 'enable_smtp'),
+        id=pulumi.get(__response__, 'id'),
+        ip_id=pulumi.get(__response__, 'ip_id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        public_gateway_id=pulumi.get(__response__, 'public_gateway_id'),
+        refresh_ssh_keys=pulumi.get(__response__, 'refresh_ssh_keys'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        upstream_dns_servers=pulumi.get(__response__, 'upstream_dns_servers'),
+        zone=pulumi.get(__response__, 'zone')))

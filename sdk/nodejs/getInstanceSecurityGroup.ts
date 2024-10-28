@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSecurityGroupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", {
         "name": args.name,
@@ -85,7 +84,14 @@ export interface GetInstanceSecurityGroupResult {
  * Gets information about a Security Group.
  */
 export function getInstanceSecurityGroupOutput(args?: GetInstanceSecurityGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSecurityGroupResult> {
-    return pulumi.output(args).apply((a: any) => getInstanceSecurityGroup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "securityGroupId": args.securityGroupId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

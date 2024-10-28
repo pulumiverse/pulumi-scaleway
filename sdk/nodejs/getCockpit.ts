@@ -37,7 +37,6 @@ import * as utilities from "./utilities";
  */
 export function getCockpit(args?: GetCockpitArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpit:getCockpit", {
         "projectId": args.projectId,
@@ -103,7 +102,11 @@ export interface GetCockpitResult {
  * ```
  */
 export function getCockpitOutput(args?: GetCockpitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCockpitResult> {
-    return pulumi.output(args).apply((a: any) => getCockpit(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getCockpit:getCockpit", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

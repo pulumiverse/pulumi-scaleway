@@ -49,14 +49,20 @@ type LookupAccountProjectResult struct {
 
 func LookupAccountProjectOutput(ctx *pulumi.Context, args LookupAccountProjectOutputArgs, opts ...pulumi.InvokeOption) LookupAccountProjectResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAccountProjectResult, error) {
+		ApplyT(func(v interface{}) (LookupAccountProjectResultOutput, error) {
 			args := v.(LookupAccountProjectArgs)
-			r, err := LookupAccountProject(ctx, &args, opts...)
-			var s LookupAccountProjectResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAccountProjectResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getAccountProject:getAccountProject", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAccountProjectResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAccountProjectResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAccountProjectResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAccountProjectResultOutput)
 }
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -160,9 +165,6 @@ def get_documentdb_load_balancer_endpoint(instance_id: Optional[str] = None,
         port=pulumi.get(__ret__, 'port'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_documentdb_load_balancer_endpoint)
 def get_documentdb_load_balancer_endpoint_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                                  instance_name: Optional[pulumi.Input[Optional[str]]] = None,
                                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -177,4 +179,20 @@ def get_documentdb_load_balancer_endpoint_output(instance_id: Optional[pulumi.In
     :param str project_id: The ID of the project the DocumentDB endpoint is associated with.
     :param str region: `region`) The region in which the DocumentDB endpoint exists.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['instanceName'] = instance_name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint', __args__, opts=opts, typ=GetDocumentdbLoadBalancerEndpointResult)
+    return __ret__.apply(lambda __response__: GetDocumentdbLoadBalancerEndpointResult(
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        instance_name=pulumi.get(__response__, 'instance_name'),
+        ip=pulumi.get(__response__, 'ip'),
+        name=pulumi.get(__response__, 'name'),
+        port=pulumi.get(__response__, 'port'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region')))

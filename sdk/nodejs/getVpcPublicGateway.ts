@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", {
         "name": args.name,
@@ -109,7 +108,14 @@ export interface GetVpcPublicGatewayResult {
  * ```
  */
 export function getVpcPublicGatewayOutput(args?: GetVpcPublicGatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayResult> {
-    return pulumi.output(args).apply((a: any) => getVpcPublicGateway(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "publicGatewayId": args.publicGatewayId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

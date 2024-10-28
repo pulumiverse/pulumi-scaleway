@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -402,9 +407,6 @@ def get_lb_backend(backend_id: Optional[str] = None,
         timeout_queue=pulumi.get(__ret__, 'timeout_queue'),
         timeout_server=pulumi.get(__ret__, 'timeout_server'),
         timeout_tunnel=pulumi.get(__ret__, 'timeout_tunnel'))
-
-
-@_utilities.lift_output_func(get_lb_backend)
 def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = None,
                           lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -443,4 +445,42 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     :param str name: The name of the backend.
            - When using `name` you should specify the `lb-id`
     """
-    ...
+    __args__ = dict()
+    __args__['backendId'] = backend_id
+    __args__['lbId'] = lb_id
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbBackend:getLbBackend', __args__, opts=opts, typ=GetLbBackendResult)
+    return __ret__.apply(lambda __response__: GetLbBackendResult(
+        backend_id=pulumi.get(__response__, 'backend_id'),
+        failover_host=pulumi.get(__response__, 'failover_host'),
+        forward_port=pulumi.get(__response__, 'forward_port'),
+        forward_port_algorithm=pulumi.get(__response__, 'forward_port_algorithm'),
+        forward_protocol=pulumi.get(__response__, 'forward_protocol'),
+        health_check_delay=pulumi.get(__response__, 'health_check_delay'),
+        health_check_http=pulumi.get(__response__, 'health_check_http'),
+        health_check_https=pulumi.get(__response__, 'health_check_https'),
+        health_check_max_retries=pulumi.get(__response__, 'health_check_max_retries'),
+        health_check_port=pulumi.get(__response__, 'health_check_port'),
+        health_check_send_proxy=pulumi.get(__response__, 'health_check_send_proxy'),
+        health_check_tcps=pulumi.get(__response__, 'health_check_tcps'),
+        health_check_timeout=pulumi.get(__response__, 'health_check_timeout'),
+        health_check_transient_delay=pulumi.get(__response__, 'health_check_transient_delay'),
+        id=pulumi.get(__response__, 'id'),
+        ignore_ssl_server_verify=pulumi.get(__response__, 'ignore_ssl_server_verify'),
+        lb_id=pulumi.get(__response__, 'lb_id'),
+        max_connections=pulumi.get(__response__, 'max_connections'),
+        max_retries=pulumi.get(__response__, 'max_retries'),
+        name=pulumi.get(__response__, 'name'),
+        on_marked_down_action=pulumi.get(__response__, 'on_marked_down_action'),
+        proxy_protocol=pulumi.get(__response__, 'proxy_protocol'),
+        redispatch_attempt_count=pulumi.get(__response__, 'redispatch_attempt_count'),
+        send_proxy_v2=pulumi.get(__response__, 'send_proxy_v2'),
+        server_ips=pulumi.get(__response__, 'server_ips'),
+        ssl_bridging=pulumi.get(__response__, 'ssl_bridging'),
+        sticky_sessions=pulumi.get(__response__, 'sticky_sessions'),
+        sticky_sessions_cookie_name=pulumi.get(__response__, 'sticky_sessions_cookie_name'),
+        timeout_connect=pulumi.get(__response__, 'timeout_connect'),
+        timeout_queue=pulumi.get(__response__, 'timeout_queue'),
+        timeout_server=pulumi.get(__response__, 'timeout_server'),
+        timeout_tunnel=pulumi.get(__response__, 'timeout_tunnel')))

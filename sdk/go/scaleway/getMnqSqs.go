@@ -30,7 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// For default project
-//			_, err := scaleway.LookupMnqSqs(ctx, nil, nil)
+//			_, err := scaleway.LookupMnqSqs(ctx, &scaleway.LookupMnqSqsArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -76,14 +76,20 @@ type LookupMnqSqsResult struct {
 
 func LookupMnqSqsOutput(ctx *pulumi.Context, args LookupMnqSqsOutputArgs, opts ...pulumi.InvokeOption) LookupMnqSqsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupMnqSqsResult, error) {
+		ApplyT(func(v interface{}) (LookupMnqSqsResultOutput, error) {
 			args := v.(LookupMnqSqsArgs)
-			r, err := LookupMnqSqs(ctx, &args, opts...)
-			var s LookupMnqSqsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupMnqSqsResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getMnqSqs:getMnqSqs", args, &rv, "", opts...)
+			if err != nil {
+				return LookupMnqSqsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupMnqSqsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupMnqSqsResultOutput), nil
+			}
+			return output, nil
 		}).(LookupMnqSqsResultOutput)
 }
 

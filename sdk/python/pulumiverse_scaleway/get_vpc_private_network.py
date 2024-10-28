@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -222,9 +227,6 @@ def get_vpc_private_network(name: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_private_network)
 def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                    private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -255,4 +257,26 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     :param str project_id: The ID of the Project the Private Network is associated with.
     :param str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['privateNetworkId'] = private_network_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['vpcId'] = vpc_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork', __args__, opts=opts, typ=GetVpcPrivateNetworkResult)
+    return __ret__.apply(lambda __response__: GetVpcPrivateNetworkResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        id=pulumi.get(__response__, 'id'),
+        ipv4_subnets=pulumi.get(__response__, 'ipv4_subnets'),
+        ipv6_subnets=pulumi.get(__response__, 'ipv6_subnets'),
+        is_regional=pulumi.get(__response__, 'is_regional'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        vpc_id=pulumi.get(__response__, 'vpc_id'),
+        zone=pulumi.get(__response__, 'zone')))

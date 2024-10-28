@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -22,7 +27,7 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -38,6 +43,9 @@ class GetDatabaseInstanceResult:
         if disable_backup and not isinstance(disable_backup, bool):
             raise TypeError("Expected argument 'disable_backup' to be a bool")
         pulumi.set(__self__, "disable_backup", disable_backup)
+        if encryption_at_rest and not isinstance(encryption_at_rest, bool):
+            raise TypeError("Expected argument 'encryption_at_rest' to be a bool")
+        pulumi.set(__self__, "encryption_at_rest", encryption_at_rest)
         if endpoint_ip and not isinstance(endpoint_ip, str):
             raise TypeError("Expected argument 'endpoint_ip' to be a str")
         pulumi.set(__self__, "endpoint_ip", endpoint_ip)
@@ -129,6 +137,11 @@ class GetDatabaseInstanceResult:
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> bool:
         return pulumi.get(self, "disable_backup")
+
+    @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> bool:
+        return pulumi.get(self, "encryption_at_rest")
 
     @property
     @pulumi.getter(name="endpointIp")
@@ -255,6 +268,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             backup_schedule_retention=self.backup_schedule_retention,
             certificate=self.certificate,
             disable_backup=self.disable_backup,
+            encryption_at_rest=self.encryption_at_rest,
             endpoint_ip=self.endpoint_ip,
             endpoint_port=self.endpoint_port,
             engine=self.engine,
@@ -311,6 +325,7 @@ def get_database_instance(instance_id: Optional[str] = None,
         backup_schedule_retention=pulumi.get(__ret__, 'backup_schedule_retention'),
         certificate=pulumi.get(__ret__, 'certificate'),
         disable_backup=pulumi.get(__ret__, 'disable_backup'),
+        encryption_at_rest=pulumi.get(__ret__, 'encryption_at_rest'),
         endpoint_ip=pulumi.get(__ret__, 'endpoint_ip'),
         endpoint_port=pulumi.get(__ret__, 'endpoint_port'),
         engine=pulumi.get(__ret__, 'engine'),
@@ -333,9 +348,6 @@ def get_database_instance(instance_id: Optional[str] = None,
         user_name=pulumi.get(__ret__, 'user_name'),
         volume_size_in_gb=pulumi.get(__ret__, 'volume_size_in_gb'),
         volume_type=pulumi.get(__ret__, 'volume_type'))
-
-
-@_utilities.lift_output_func(get_database_instance)
 def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -354,4 +366,39 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
     :param str project_id: The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
     :param str region: `region`) The region in which the Database Instance exists.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult)
+    return __ret__.apply(lambda __response__: GetDatabaseInstanceResult(
+        backup_same_region=pulumi.get(__response__, 'backup_same_region'),
+        backup_schedule_frequency=pulumi.get(__response__, 'backup_schedule_frequency'),
+        backup_schedule_retention=pulumi.get(__response__, 'backup_schedule_retention'),
+        certificate=pulumi.get(__response__, 'certificate'),
+        disable_backup=pulumi.get(__response__, 'disable_backup'),
+        encryption_at_rest=pulumi.get(__response__, 'encryption_at_rest'),
+        endpoint_ip=pulumi.get(__response__, 'endpoint_ip'),
+        endpoint_port=pulumi.get(__response__, 'endpoint_port'),
+        engine=pulumi.get(__response__, 'engine'),
+        id=pulumi.get(__response__, 'id'),
+        init_settings=pulumi.get(__response__, 'init_settings'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        is_ha_cluster=pulumi.get(__response__, 'is_ha_cluster'),
+        load_balancers=pulumi.get(__response__, 'load_balancers'),
+        logs_policies=pulumi.get(__response__, 'logs_policies'),
+        name=pulumi.get(__response__, 'name'),
+        node_type=pulumi.get(__response__, 'node_type'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        password=pulumi.get(__response__, 'password'),
+        private_networks=pulumi.get(__response__, 'private_networks'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        read_replicas=pulumi.get(__response__, 'read_replicas'),
+        region=pulumi.get(__response__, 'region'),
+        settings=pulumi.get(__response__, 'settings'),
+        tags=pulumi.get(__response__, 'tags'),
+        user_name=pulumi.get(__response__, 'user_name'),
+        volume_size_in_gb=pulumi.get(__response__, 'volume_size_in_gb'),
+        volume_type=pulumi.get(__response__, 'volume_type')))

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getKubernetesNodePool(args?: GetKubernetesNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesNodePoolResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {
         "clusterId": args.clusterId,
@@ -132,7 +131,15 @@ export interface GetKubernetesNodePoolResult {
  * Gets information about a Kubernetes Cluster's Pool.
  */
 export function getKubernetesNodePoolOutput(args?: GetKubernetesNodePoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesNodePoolResult> {
-    return pulumi.output(args).apply((a: any) => getKubernetesNodePool(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {
+        "clusterId": args.clusterId,
+        "name": args.name,
+        "poolId": args.poolId,
+        "region": args.region,
+        "size": args.size,
+    }, opts);
 }
 
 /**

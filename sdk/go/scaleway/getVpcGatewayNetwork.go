@@ -94,14 +94,20 @@ type LookupVpcGatewayNetworkResult struct {
 
 func LookupVpcGatewayNetworkOutput(ctx *pulumi.Context, args LookupVpcGatewayNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupVpcGatewayNetworkResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpcGatewayNetworkResult, error) {
+		ApplyT(func(v interface{}) (LookupVpcGatewayNetworkResultOutput, error) {
 			args := v.(LookupVpcGatewayNetworkArgs)
-			r, err := LookupVpcGatewayNetwork(ctx, &args, opts...)
-			var s LookupVpcGatewayNetworkResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupVpcGatewayNetworkResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args, &rv, "", opts...)
+			if err != nil {
+				return LookupVpcGatewayNetworkResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupVpcGatewayNetworkResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupVpcGatewayNetworkResultOutput), nil
+			}
+			return output, nil
 		}).(LookupVpcGatewayNetworkResultOutput)
 }
 

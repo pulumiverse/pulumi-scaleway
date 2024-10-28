@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getIotHub(args?: GetIotHubArgs, opts?: pulumi.InvokeOptions): Promise<GetIotHubResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIotHub:getIotHub", {
         "hubId": args.hubId,
@@ -76,7 +75,14 @@ export interface GetIotHubResult {
  * Gets information about an IOT Hub.
  */
 export function getIotHubOutput(args?: GetIotHubOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotHubResult> {
-    return pulumi.output(args).apply((a: any) => getIotHub(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIotHub:getIotHub", {
+        "hubId": args.hubId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

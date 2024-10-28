@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -202,9 +207,6 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
         stock=pulumi.get(__ret__, 'stock'),
         subscription_period=pulumi.get(__ret__, 'subscription_period'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_baremetal_offer)
 def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                offer_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -220,4 +222,24 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
     :param str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.
     :param str zone: `zone`) The zone in which the offer should be created.
     """
-    ...
+    __args__ = dict()
+    __args__['includeDisabled'] = include_disabled
+    __args__['name'] = name
+    __args__['offerId'] = offer_id
+    __args__['subscriptionPeriod'] = subscription_period
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalOffer:getBaremetalOffer', __args__, opts=opts, typ=GetBaremetalOfferResult)
+    return __ret__.apply(lambda __response__: GetBaremetalOfferResult(
+        bandwidth=pulumi.get(__response__, 'bandwidth'),
+        commercial_range=pulumi.get(__response__, 'commercial_range'),
+        cpu=pulumi.get(__response__, 'cpu'),
+        disks=pulumi.get(__response__, 'disks'),
+        id=pulumi.get(__response__, 'id'),
+        include_disabled=pulumi.get(__response__, 'include_disabled'),
+        memories=pulumi.get(__response__, 'memories'),
+        name=pulumi.get(__response__, 'name'),
+        offer_id=pulumi.get(__response__, 'offer_id'),
+        stock=pulumi.get(__response__, 'stock'),
+        subscription_period=pulumi.get(__response__, 'subscription_period'),
+        zone=pulumi.get(__response__, 'zone')))

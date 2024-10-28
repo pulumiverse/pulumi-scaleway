@@ -49,7 +49,6 @@ import * as utilities from "./utilities";
  */
 export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecretVersion:getSecretVersion", {
         "projectId": args.projectId,
@@ -167,7 +166,15 @@ export interface GetSecretVersionResult {
  * > **Important:**  This property is sensitive and will not be displayed in the plan.
  */
 export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretVersionResult> {
-    return pulumi.output(args).apply((a: any) => getSecretVersion(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getSecretVersion:getSecretVersion", {
+        "projectId": args.projectId,
+        "region": args.region,
+        "revision": args.revision,
+        "secretId": args.secretId,
+        "secretName": args.secretName,
+    }, opts);
 }
 
 /**

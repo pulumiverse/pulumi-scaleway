@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionNamespaceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFunctionNamespace:getFunctionNamespace", {
         "name": args.name,
@@ -81,7 +80,14 @@ export interface GetFunctionNamespaceResult {
  * Gets information about a function namespace.
  */
 export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionNamespaceResult> {
-    return pulumi.output(args).apply((a: any) => getFunctionNamespace(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", {
+        "name": args.name,
+        "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

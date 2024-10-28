@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -363,9 +368,6 @@ def get_kubernetes_cluster(cluster_id: Optional[str] = None,
         upgrade_available=pulumi.get(__ret__, 'upgrade_available'),
         version=pulumi.get(__ret__, 'version'),
         wildcard_dns=pulumi.get(__ret__, 'wildcard_dns'))
-
-
-@_utilities.lift_output_func(get_kubernetes_cluster)
 def get_kubernetes_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   name: Optional[pulumi.Input[Optional[str]]] = None,
                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -380,4 +382,36 @@ def get_kubernetes_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str
     :param str project_id: The ID of the project the cluster is associated with.
     :param str region: `region`) The region in which the cluster exists.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterId'] = cluster_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult)
+    return __ret__.apply(lambda __response__: GetKubernetesClusterResult(
+        admission_plugins=pulumi.get(__response__, 'admission_plugins'),
+        apiserver_cert_sans=pulumi.get(__response__, 'apiserver_cert_sans'),
+        apiserver_url=pulumi.get(__response__, 'apiserver_url'),
+        auto_upgrades=pulumi.get(__response__, 'auto_upgrades'),
+        autoscaler_configs=pulumi.get(__response__, 'autoscaler_configs'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        cni=pulumi.get(__response__, 'cni'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        feature_gates=pulumi.get(__response__, 'feature_gates'),
+        id=pulumi.get(__response__, 'id'),
+        kubeconfigs=pulumi.get(__response__, 'kubeconfigs'),
+        name=pulumi.get(__response__, 'name'),
+        open_id_connect_configs=pulumi.get(__response__, 'open_id_connect_configs'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        upgrade_available=pulumi.get(__response__, 'upgrade_available'),
+        version=pulumi.get(__response__, 'version'),
+        wildcard_dns=pulumi.get(__response__, 'wildcard_dns')))

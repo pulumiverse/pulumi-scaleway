@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['IamApiKeyArgs', 'IamApiKey']
@@ -331,6 +336,19 @@ class IamApiKey(pulumi.CustomResource):
             description="a description")
         ```
 
+        ### With expiration
+
+        ```python
+        import pulumi
+        import pulumi_time as time
+        import pulumiverse_scaleway as scaleway
+
+        rotate_after_a_year = time.index.Rotating("rotate_after_a_year", rotation_years=1)
+        main = scaleway.IamApiKey("main",
+            application_id=main_scaleway_iam_application["id"],
+            expires_at=rotate_after_a_year["rotationRfc3339"])
+        ```
+
         ## Import
 
         Api keys can be imported using the `{id}`, e.g.
@@ -384,6 +402,19 @@ class IamApiKey(pulumi.CustomResource):
         main_iam_api_key = scaleway.IamApiKey("main",
             user_id=main.id,
             description="a description")
+        ```
+
+        ### With expiration
+
+        ```python
+        import pulumi
+        import pulumi_time as time
+        import pulumiverse_scaleway as scaleway
+
+        rotate_after_a_year = time.index.Rotating("rotate_after_a_year", rotation_years=1)
+        main = scaleway.IamApiKey("main",
+            application_id=main_scaleway_iam_application["id"],
+            expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
 
         ## Import

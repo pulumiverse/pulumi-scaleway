@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -377,9 +382,6 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
         version=pulumi.get(__ret__, 'version'),
         wait_for_pool_ready=pulumi.get(__ret__, 'wait_for_pool_ready'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_kubernetes_node_pool)
 def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     name: Optional[pulumi.Input[Optional[str]]] = None,
                                     pool_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -396,4 +398,39 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
     :param str region: `region`) The region in which the pool exists.
     :param int size: The size of the pool.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterId'] = cluster_id
+    __args__['name'] = name
+    __args__['poolId'] = pool_id
+    __args__['region'] = region
+    __args__['size'] = size
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getKubernetesNodePool:getKubernetesNodePool', __args__, opts=opts, typ=GetKubernetesNodePoolResult)
+    return __ret__.apply(lambda __response__: GetKubernetesNodePoolResult(
+        autohealing=pulumi.get(__response__, 'autohealing'),
+        autoscaling=pulumi.get(__response__, 'autoscaling'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        container_runtime=pulumi.get(__response__, 'container_runtime'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        current_size=pulumi.get(__response__, 'current_size'),
+        id=pulumi.get(__response__, 'id'),
+        kubelet_args=pulumi.get(__response__, 'kubelet_args'),
+        max_size=pulumi.get(__response__, 'max_size'),
+        min_size=pulumi.get(__response__, 'min_size'),
+        name=pulumi.get(__response__, 'name'),
+        node_type=pulumi.get(__response__, 'node_type'),
+        nodes=pulumi.get(__response__, 'nodes'),
+        placement_group_id=pulumi.get(__response__, 'placement_group_id'),
+        pool_id=pulumi.get(__response__, 'pool_id'),
+        public_ip_disabled=pulumi.get(__response__, 'public_ip_disabled'),
+        region=pulumi.get(__response__, 'region'),
+        root_volume_size_in_gb=pulumi.get(__response__, 'root_volume_size_in_gb'),
+        root_volume_type=pulumi.get(__response__, 'root_volume_type'),
+        size=pulumi.get(__response__, 'size'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        upgrade_policies=pulumi.get(__response__, 'upgrade_policies'),
+        version=pulumi.get(__response__, 'version'),
+        wait_for_pool_ready=pulumi.get(__response__, 'wait_for_pool_ready'),
+        zone=pulumi.get(__response__, 'zone')))

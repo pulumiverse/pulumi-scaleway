@@ -35,6 +35,7 @@ namespace Pulumiverse.Scaleway
     ///         DisableBackup = true,
     ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         EncryptionAtRest = true,
     ///     });
     /// 
     /// });
@@ -260,6 +261,12 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> DisableBackup { get; private set; } = null!;
 
         /// <summary>
+        /// Enable or disable encryption at rest for the Database Instance.
+        /// </summary>
+        [Output("encryptionAtRest")]
+        public Output<bool?> EncryptionAtRest { get; private set; } = null!;
+
+        /// <summary>
         /// (Deprecated) The IP of the Database Instance.
         /// </summary>
         [Output("endpointIp")]
@@ -470,6 +477,12 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
+        /// Enable or disable encryption at rest for the Database Instance.
+        /// </summary>
+        [Input("encryptionAtRest")]
+        public Input<bool>? EncryptionAtRest { get; set; }
+
+        /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
         /// &gt; **Important** Updates to `engine` will recreate the Database Instance.
@@ -651,6 +664,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
+
+        /// <summary>
+        /// Enable or disable encryption at rest for the Database Instance.
+        /// </summary>
+        [Input("encryptionAtRest")]
+        public Input<bool>? EncryptionAtRest { get; set; }
 
         /// <summary>
         /// (Deprecated) The IP of the Database Instance.

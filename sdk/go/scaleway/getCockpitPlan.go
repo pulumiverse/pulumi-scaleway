@@ -69,14 +69,20 @@ type GetCockpitPlanResult struct {
 
 func GetCockpitPlanOutput(ctx *pulumi.Context, args GetCockpitPlanOutputArgs, opts ...pulumi.InvokeOption) GetCockpitPlanResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetCockpitPlanResult, error) {
+		ApplyT(func(v interface{}) (GetCockpitPlanResultOutput, error) {
 			args := v.(GetCockpitPlanArgs)
-			r, err := GetCockpitPlan(ctx, &args, opts...)
-			var s GetCockpitPlanResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetCockpitPlanResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getCockpitPlan:getCockpitPlan", args, &rv, "", opts...)
+			if err != nil {
+				return GetCockpitPlanResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetCockpitPlanResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetCockpitPlanResultOutput), nil
+			}
+			return output, nil
 		}).(GetCockpitPlanResultOutput)
 }
 

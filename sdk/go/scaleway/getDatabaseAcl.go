@@ -69,14 +69,20 @@ type LookupDatabaseAclResult struct {
 
 func LookupDatabaseAclOutput(ctx *pulumi.Context, args LookupDatabaseAclOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseAclResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDatabaseAclResult, error) {
+		ApplyT(func(v interface{}) (LookupDatabaseAclResultOutput, error) {
 			args := v.(LookupDatabaseAclArgs)
-			r, err := LookupDatabaseAcl(ctx, &args, opts...)
-			var s LookupDatabaseAclResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDatabaseAclResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getDatabaseAcl:getDatabaseAcl", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDatabaseAclResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDatabaseAclResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDatabaseAclResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDatabaseAclResultOutput)
 }
 

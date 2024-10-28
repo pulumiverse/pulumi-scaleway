@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -270,9 +275,6 @@ def get_iot_hub(hub_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_iot_hub)
 def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -289,4 +291,32 @@ def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: The ID of the project the hub is associated with.
     :param str region: `region`) The region in which the hub exists.
     """
-    ...
+    __args__ = dict()
+    __args__['hubId'] = hub_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIotHub:getIotHub', __args__, opts=opts, typ=GetIotHubResult)
+    return __ret__.apply(lambda __response__: GetIotHubResult(
+        connected_device_count=pulumi.get(__response__, 'connected_device_count'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        device_auto_provisioning=pulumi.get(__response__, 'device_auto_provisioning'),
+        device_count=pulumi.get(__response__, 'device_count'),
+        disable_events=pulumi.get(__response__, 'disable_events'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        endpoint=pulumi.get(__response__, 'endpoint'),
+        events_topic_prefix=pulumi.get(__response__, 'events_topic_prefix'),
+        hub_ca=pulumi.get(__response__, 'hub_ca'),
+        hub_ca_challenge=pulumi.get(__response__, 'hub_ca_challenge'),
+        hub_id=pulumi.get(__response__, 'hub_id'),
+        id=pulumi.get(__response__, 'id'),
+        mqtt_ca=pulumi.get(__response__, 'mqtt_ca'),
+        mqtt_ca_url=pulumi.get(__response__, 'mqtt_ca_url'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        product_plan=pulumi.get(__response__, 'product_plan'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        status=pulumi.get(__response__, 'status'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

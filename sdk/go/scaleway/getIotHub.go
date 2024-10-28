@@ -64,14 +64,20 @@ type LookupIotHubResult struct {
 
 func LookupIotHubOutput(ctx *pulumi.Context, args LookupIotHubOutputArgs, opts ...pulumi.InvokeOption) LookupIotHubResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIotHubResult, error) {
+		ApplyT(func(v interface{}) (LookupIotHubResultOutput, error) {
 			args := v.(LookupIotHubArgs)
-			r, err := LookupIotHub(ctx, &args, opts...)
-			var s LookupIotHubResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIotHubResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getIotHub:getIotHub", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIotHubResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupIotHubResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIotHubResultOutput), nil
+			}
+			return output, nil
 		}).(LookupIotHubResultOutput)
 }
 

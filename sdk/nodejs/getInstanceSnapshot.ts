@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSnapshotResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {
         "name": args.name,
@@ -101,7 +100,14 @@ export interface GetInstanceSnapshotResult {
  * ```
  */
 export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSnapshotResult> {
-    return pulumi.output(args).apply((a: any) => getInstanceSnapshot(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "snapshotId": args.snapshotId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

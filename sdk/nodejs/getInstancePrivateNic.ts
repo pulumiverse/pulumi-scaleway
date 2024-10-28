@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getInstancePrivateNic(args: GetInstancePrivateNicArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancePrivateNicResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", {
         "privateNetworkId": args.privateNetworkId,
@@ -108,7 +107,14 @@ export interface GetInstancePrivateNicResult {
  * ```
  */
 export function getInstancePrivateNicOutput(args: GetInstancePrivateNicOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancePrivateNicResult> {
-    return pulumi.output(args).apply((a: any) => getInstancePrivateNic(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", {
+        "privateNetworkId": args.privateNetworkId,
+        "privateNicId": args.privateNicId,
+        "serverId": args.serverId,
+        "tags": args.tags,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -149,9 +154,6 @@ def get_lbs(name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_lbs)
 def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
                    tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -168,4 +170,18 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[str] tags: List of tags to filter for. Load Balancers with these exact tags are listed.
     :param str zone: `zone`) The zone in which the Load Balancers exist.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['tags'] = tags
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbs:getLbs', __args__, opts=opts, typ=GetLbsResult)
+    return __ret__.apply(lambda __response__: GetLbsResult(
+        id=pulumi.get(__response__, 'id'),
+        lbs=pulumi.get(__response__, 'lbs'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

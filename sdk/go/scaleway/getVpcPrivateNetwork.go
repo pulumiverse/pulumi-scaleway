@@ -100,14 +100,20 @@ type LookupVpcPrivateNetworkResult struct {
 
 func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPrivateNetworkResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpcPrivateNetworkResult, error) {
+		ApplyT(func(v interface{}) (LookupVpcPrivateNetworkResultOutput, error) {
 			args := v.(LookupVpcPrivateNetworkArgs)
-			r, err := LookupVpcPrivateNetwork(ctx, &args, opts...)
-			var s LookupVpcPrivateNetworkResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupVpcPrivateNetworkResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args, &rv, "", opts...)
+			if err != nil {
+				return LookupVpcPrivateNetworkResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupVpcPrivateNetworkResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupVpcPrivateNetworkResultOutput), nil
+			}
+			return output, nil
 		}).(LookupVpcPrivateNetworkResultOutput)
 }
 

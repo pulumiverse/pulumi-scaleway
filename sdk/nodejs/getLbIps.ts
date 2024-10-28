@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  */
 export function getLbIps(args?: GetLbIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbIpsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbIps:getLbIps", {
         "ipCidrRange": args.ipCidrRange,
@@ -84,7 +83,15 @@ export interface GetLbIpsResult {
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
 export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbIpsResult> {
-    return pulumi.output(args).apply((a: any) => getLbIps(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbIps:getLbIps", {
+        "ipCidrRange": args.ipCidrRange,
+        "ipType": args.ipType,
+        "projectId": args.projectId,
+        "tags": args.tags,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

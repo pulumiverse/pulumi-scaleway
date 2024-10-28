@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getIamApiKey(args: GetIamApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetIamApiKeyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamApiKey:getIamApiKey", {
         "accessKey": args.accessKey,
@@ -72,7 +71,10 @@ export interface GetIamApiKeyResult {
  * ```
  */
 export function getIamApiKeyOutput(args: GetIamApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamApiKeyResult> {
-    return pulumi.output(args).apply((a: any) => getIamApiKey(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIamApiKey:getIamApiKey", {
+        "accessKey": args.accessKey,
+    }, opts);
 }
 
 /**

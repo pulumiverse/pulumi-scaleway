@@ -103,14 +103,20 @@ type LookupBaremetalServerResult struct {
 
 func LookupBaremetalServerOutput(ctx *pulumi.Context, args LookupBaremetalServerOutputArgs, opts ...pulumi.InvokeOption) LookupBaremetalServerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupBaremetalServerResult, error) {
+		ApplyT(func(v interface{}) (LookupBaremetalServerResultOutput, error) {
 			args := v.(LookupBaremetalServerArgs)
-			r, err := LookupBaremetalServer(ctx, &args, opts...)
-			var s LookupBaremetalServerResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupBaremetalServerResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getBaremetalServer:getBaremetalServer", args, &rv, "", opts...)
+			if err != nil {
+				return LookupBaremetalServerResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupBaremetalServerResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupBaremetalServerResultOutput), nil
+			}
+			return output, nil
 		}).(LookupBaremetalServerResultOutput)
 }
 

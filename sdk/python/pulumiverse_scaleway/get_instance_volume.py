@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -173,9 +178,6 @@ def get_instance_volume(name: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_volume)
 def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                volume_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -192,4 +194,22 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['volumeId'] = volume_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceVolume:getInstanceVolume', __args__, opts=opts, typ=GetInstanceVolumeResult)
+    return __ret__.apply(lambda __response__: GetInstanceVolumeResult(
+        from_snapshot_id=pulumi.get(__response__, 'from_snapshot_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        size_in_gb=pulumi.get(__response__, 'size_in_gb'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        volume_id=pulumi.get(__response__, 'volume_id'),
+        zone=pulumi.get(__response__, 'zone')))

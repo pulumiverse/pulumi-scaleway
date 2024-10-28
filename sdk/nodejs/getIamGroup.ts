@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getIamGroup(args?: GetIamGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetIamGroupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamGroup:getIamGroup", {
         "groupId": args.groupId,
@@ -98,7 +97,13 @@ export interface GetIamGroupResult {
  * ```
  */
 export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamGroupResult> {
-    return pulumi.output(args).apply((a: any) => getIamGroup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIamGroup:getIamGroup", {
+        "groupId": args.groupId,
+        "name": args.name,
+        "organizationId": args.organizationId,
+    }, opts);
 }
 
 /**

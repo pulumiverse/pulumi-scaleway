@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServerResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceServer:getInstanceServer", {
         "name": args.name,
@@ -149,7 +148,14 @@ export interface GetInstanceServerResult {
  * Gets information about an instance server.
  */
 export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServerResult> {
-    return pulumi.output(args).apply((a: any) => getInstanceServer(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstanceServer:getInstanceServer", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "serverId": args.serverId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

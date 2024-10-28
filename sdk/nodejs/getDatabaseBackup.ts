@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getDatabaseBackup(args?: GetDatabaseBackupArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseBackupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseBackup:getDatabaseBackup", {
         "backupId": args.backupId,
@@ -108,7 +107,15 @@ export interface GetDatabaseBackupResult {
  * ```
  */
 export function getDatabaseBackupOutput(args?: GetDatabaseBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseBackupResult> {
-    return pulumi.output(args).apply((a: any) => getDatabaseBackup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseBackup:getDatabaseBackup", {
+        "backupId": args.backupId,
+        "instanceId": args.instanceId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -131,9 +136,6 @@ def get_block_snapshot(name: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_block_snapshot)
 def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                               snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -150,4 +152,19 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
     :param str volume_id: The ID of the volume from which the snapshot has been created.
     :param str zone: `zone`) The zone in which the snapshot exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['snapshotId'] = snapshot_id
+    __args__['volumeId'] = volume_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult)
+    return __ret__.apply(lambda __response__: GetBlockSnapshotResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        volume_id=pulumi.get(__response__, 'volume_id'),
+        zone=pulumi.get(__response__, 'zone')))

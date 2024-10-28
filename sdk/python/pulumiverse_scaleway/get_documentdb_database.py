@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -154,9 +159,6 @@ def get_documentdb_database(instance_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         size=pulumi.get(__ret__, 'size'))
-
-
-@_utilities.lift_output_func(get_documentdb_database)
 def get_documentdb_database_output(instance_id: Optional[pulumi.Input[str]] = None,
                                    name: Optional[pulumi.Input[Optional[str]]] = None,
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -179,4 +181,18 @@ def get_documentdb_database_output(instance_id: Optional[pulumi.Input[str]] = No
     :param str instance_id: The DocumentDB instance ID.
     :param str name: The name of the DocumentDB instance.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase', __args__, opts=opts, typ=GetDocumentdbDatabaseResult)
+    return __ret__.apply(lambda __response__: GetDocumentdbDatabaseResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        managed=pulumi.get(__response__, 'managed'),
+        name=pulumi.get(__response__, 'name'),
+        owner=pulumi.get(__response__, 'owner'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        size=pulumi.get(__response__, 'size')))

@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseAclResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,
@@ -75,7 +74,11 @@ export interface GetDatabaseAclResult {
  * ```
  */
 export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseAclResult> {
-    return pulumi.output(args).apply((a: any) => getDatabaseAcl(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
+        "instanceId": args.instanceId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceIpResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceIp:getInstanceIp", {
         "address": args.address,
@@ -70,7 +69,12 @@ export interface GetInstanceIpResult {
  * Gets information about an instance IP.
  */
 export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceIpResult> {
-    return pulumi.output(args).apply((a: any) => getInstanceIp(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstanceIp:getInstanceIp", {
+        "address": args.address,
+        "id": args.id,
+    }, opts);
 }
 
 /**

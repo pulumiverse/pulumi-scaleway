@@ -35,7 +35,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getK8sVersion(args: GetK8sVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sVersionResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getK8sVersion:getK8sVersion", {
         "name": args.name,
@@ -111,7 +110,11 @@ export interface GetK8sVersionResult {
  * ```
  */
 export function getK8sVersionOutput(args: GetK8sVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sVersionResult> {
-    return pulumi.output(args).apply((a: any) => getK8sVersion(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getK8sVersion:getK8sVersion", {
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

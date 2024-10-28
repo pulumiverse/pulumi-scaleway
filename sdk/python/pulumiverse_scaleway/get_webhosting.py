@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -271,9 +276,6 @@ def get_webhosting(domain: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         username=pulumi.get(__ret__, 'username'),
         webhosting_id=pulumi.get(__ret__, 'webhosting_id'))
-
-
-@_utilities.lift_output_func(get_webhosting)
 def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                           organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                           project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -300,4 +302,31 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: `project_id`) The ID of the project the hosting is associated with.
     :param str webhosting_id: The hosting id. Only one of `domain` and `webhosting_id` should be specified.
     """
-    ...
+    __args__ = dict()
+    __args__['domain'] = domain
+    __args__['organizationId'] = organization_id
+    __args__['projectId'] = project_id
+    __args__['webhostingId'] = webhosting_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getWebhosting:getWebhosting', __args__, opts=opts, typ=GetWebhostingResult)
+    return __ret__.apply(lambda __response__: GetWebhostingResult(
+        cpanel_urls=pulumi.get(__response__, 'cpanel_urls'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dns_status=pulumi.get(__response__, 'dns_status'),
+        domain=pulumi.get(__response__, 'domain'),
+        email=pulumi.get(__response__, 'email'),
+        id=pulumi.get(__response__, 'id'),
+        offer_id=pulumi.get(__response__, 'offer_id'),
+        offer_name=pulumi.get(__response__, 'offer_name'),
+        option_ids=pulumi.get(__response__, 'option_ids'),
+        options=pulumi.get(__response__, 'options'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        platform_hostname=pulumi.get(__response__, 'platform_hostname'),
+        platform_number=pulumi.get(__response__, 'platform_number'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        username=pulumi.get(__response__, 'username'),
+        webhosting_id=pulumi.get(__response__, 'webhosting_id')))

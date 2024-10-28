@@ -86,14 +86,20 @@ type GetLbAclsResult struct {
 
 func GetLbAclsOutput(ctx *pulumi.Context, args GetLbAclsOutputArgs, opts ...pulumi.InvokeOption) GetLbAclsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetLbAclsResult, error) {
+		ApplyT(func(v interface{}) (GetLbAclsResultOutput, error) {
 			args := v.(GetLbAclsArgs)
-			r, err := GetLbAcls(ctx, &args, opts...)
-			var s GetLbAclsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetLbAclsResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbAcls:getLbAcls", args, &rv, "", opts...)
+			if err != nil {
+				return GetLbAclsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetLbAclsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetLbAclsResultOutput), nil
+			}
+			return output, nil
 		}).(GetLbAclsResultOutput)
 }
 

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getIotDevice(args?: GetIotDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetIotDeviceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIotDevice:getIotDevice", {
         "deviceId": args.deviceId,
@@ -72,7 +71,14 @@ export interface GetIotDeviceResult {
  * Gets information about an IOT Device.
  */
 export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotDeviceResult> {
-    return pulumi.output(args).apply((a: any) => getIotDevice(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIotDevice:getIotDevice", {
+        "deviceId": args.deviceId,
+        "hubId": args.hubId,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

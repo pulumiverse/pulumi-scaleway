@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -206,9 +211,6 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
         lb_id=pulumi.get(__ret__, 'lb_id'),
         name=pulumi.get(__ret__, 'name'),
         timeout_client=pulumi.get(__ret__, 'timeout_client'))
-
-
-@_utilities.lift_output_func(get_lb_frontend)
 def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = None,
                            lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -251,4 +253,22 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
     :param str name: The name of the frontend.
            - When using the `name` you should specify the `lb-id`
     """
-    ...
+    __args__ = dict()
+    __args__['frontendId'] = frontend_id
+    __args__['lbId'] = lb_id
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbFrontend:getLbFrontend', __args__, opts=opts, typ=GetLbFrontendResult)
+    return __ret__.apply(lambda __response__: GetLbFrontendResult(
+        acls=pulumi.get(__response__, 'acls'),
+        backend_id=pulumi.get(__response__, 'backend_id'),
+        certificate_id=pulumi.get(__response__, 'certificate_id'),
+        certificate_ids=pulumi.get(__response__, 'certificate_ids'),
+        enable_http3=pulumi.get(__response__, 'enable_http3'),
+        external_acls=pulumi.get(__response__, 'external_acls'),
+        frontend_id=pulumi.get(__response__, 'frontend_id'),
+        id=pulumi.get(__response__, 'id'),
+        inbound_port=pulumi.get(__response__, 'inbound_port'),
+        lb_id=pulumi.get(__response__, 'lb_id'),
+        name=pulumi.get(__response__, 'name'),
+        timeout_client=pulumi.get(__response__, 'timeout_client')))

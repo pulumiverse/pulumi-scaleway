@@ -38,13 +38,19 @@ type GetConfigResult struct {
 }
 
 func GetConfigOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetConfigResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetConfigResult, error) {
-		r, err := GetConfig(ctx, opts...)
-		var s GetConfigResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetConfigResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetConfigResult
+		secret, err := ctx.InvokePackageRaw("scaleway:index/getConfig:getConfig", nil, &rv, "", opts...)
+		if err != nil {
+			return GetConfigResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetConfigResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetConfigResultOutput), nil
+		}
+		return output, nil
 	}).(GetConfigResultOutput)
 }
 

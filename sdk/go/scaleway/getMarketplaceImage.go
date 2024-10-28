@@ -71,14 +71,20 @@ type GetMarketplaceImageResult struct {
 
 func GetMarketplaceImageOutput(ctx *pulumi.Context, args GetMarketplaceImageOutputArgs, opts ...pulumi.InvokeOption) GetMarketplaceImageResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetMarketplaceImageResult, error) {
+		ApplyT(func(v interface{}) (GetMarketplaceImageResultOutput, error) {
 			args := v.(GetMarketplaceImageArgs)
-			r, err := GetMarketplaceImage(ctx, &args, opts...)
-			var s GetMarketplaceImageResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetMarketplaceImageResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getMarketplaceImage:getMarketplaceImage", args, &rv, "", opts...)
+			if err != nil {
+				return GetMarketplaceImageResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetMarketplaceImageResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetMarketplaceImageResultOutput), nil
+			}
+			return output, nil
 		}).(GetMarketplaceImageResultOutput)
 }
 

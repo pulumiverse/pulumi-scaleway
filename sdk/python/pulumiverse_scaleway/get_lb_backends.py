@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -146,9 +151,6 @@ def get_lb_backends(lb_id: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_lb_backends)
 def get_lb_backends_output(lb_id: Optional[pulumi.Input[str]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -177,4 +179,18 @@ def get_lb_backends_output(lb_id: Optional[pulumi.Input[str]] = None,
     :param str name: The backend name to filter for. Backends with a matching name are listed.
     :param str zone: `zone`) The zone in which backends exist.
     """
-    ...
+    __args__ = dict()
+    __args__['lbId'] = lb_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbBackends:getLbBackends', __args__, opts=opts, typ=GetLbBackendsResult)
+    return __ret__.apply(lambda __response__: GetLbBackendsResult(
+        backends=pulumi.get(__response__, 'backends'),
+        id=pulumi.get(__response__, 'id'),
+        lb_id=pulumi.get(__response__, 'lb_id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        zone=pulumi.get(__response__, 'zone')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -181,9 +186,6 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
         reverse=pulumi.get(__ret__, 'reverse'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_loadbalancer_ip)
 def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                                ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -200,4 +202,21 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
            Only one of `ip_address` and `ip_id` should be specified.
     :param str project_id: The ID of the Project the Load Balancer IP is associated with.
     """
-    ...
+    __args__ = dict()
+    __args__['ipAddress'] = ip_address
+    __args__['ipId'] = ip_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLoadbalancerIp:getLoadbalancerIp', __args__, opts=opts, typ=GetLoadbalancerIpResult)
+    return __ret__.apply(lambda __response__: GetLoadbalancerIpResult(
+        id=pulumi.get(__response__, 'id'),
+        ip_address=pulumi.get(__response__, 'ip_address'),
+        ip_id=pulumi.get(__response__, 'ip_id'),
+        is_ipv6=pulumi.get(__response__, 'is_ipv6'),
+        lb_id=pulumi.get(__response__, 'lb_id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        reverse=pulumi.get(__response__, 'reverse'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

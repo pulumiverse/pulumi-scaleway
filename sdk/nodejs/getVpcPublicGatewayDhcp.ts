@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getVpcPublicGatewayDhcp(args: GetVpcPublicGatewayDhcpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,
@@ -80,7 +79,10 @@ export interface GetVpcPublicGatewayDhcpResult {
  * ```
  */
 export function getVpcPublicGatewayDhcpOutput(args: GetVpcPublicGatewayDhcpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpResult> {
-    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayDhcp(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
+        "dhcpId": args.dhcpId,
+    }, opts);
 }
 
 /**

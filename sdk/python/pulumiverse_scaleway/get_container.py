@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -417,9 +422,6 @@ def get_container(container_id: Optional[str] = None,
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
         status=pulumi.get(__ret__, 'status'),
         timeout=pulumi.get(__ret__, 'timeout'))
-
-
-@_utilities.lift_output_func(get_container)
 def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = None,
                          name: Optional[pulumi.Input[Optional[str]]] = None,
                          namespace_id: Optional[pulumi.Input[str]] = None,
@@ -462,4 +464,39 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
            > **Important** Updates to `name` will recreate the container.
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
-    ...
+    __args__ = dict()
+    __args__['containerId'] = container_id
+    __args__['name'] = name
+    __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getContainer:getContainer', __args__, opts=opts, typ=GetContainerResult)
+    return __ret__.apply(lambda __response__: GetContainerResult(
+        container_id=pulumi.get(__response__, 'container_id'),
+        cpu_limit=pulumi.get(__response__, 'cpu_limit'),
+        cron_status=pulumi.get(__response__, 'cron_status'),
+        deploy=pulumi.get(__response__, 'deploy'),
+        description=pulumi.get(__response__, 'description'),
+        domain_name=pulumi.get(__response__, 'domain_name'),
+        environment_variables=pulumi.get(__response__, 'environment_variables'),
+        error_message=pulumi.get(__response__, 'error_message'),
+        http_option=pulumi.get(__response__, 'http_option'),
+        id=pulumi.get(__response__, 'id'),
+        max_concurrency=pulumi.get(__response__, 'max_concurrency'),
+        max_scale=pulumi.get(__response__, 'max_scale'),
+        memory_limit=pulumi.get(__response__, 'memory_limit'),
+        min_scale=pulumi.get(__response__, 'min_scale'),
+        name=pulumi.get(__response__, 'name'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        port=pulumi.get(__response__, 'port'),
+        privacy=pulumi.get(__response__, 'privacy'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        region=pulumi.get(__response__, 'region'),
+        registry_image=pulumi.get(__response__, 'registry_image'),
+        registry_sha256=pulumi.get(__response__, 'registry_sha256'),
+        sandbox=pulumi.get(__response__, 'sandbox'),
+        secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        status=pulumi.get(__response__, 'status'),
+        timeout=pulumi.get(__response__, 'timeout')))

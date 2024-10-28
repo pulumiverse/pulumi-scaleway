@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  */
 export function getAvailabilityZones(args?: GetAvailabilityZonesArgs, opts?: pulumi.InvokeOptions): Promise<GetAvailabilityZonesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAvailabilityZones:getAvailabilityZones", {
         "region": args.region,
@@ -74,7 +73,11 @@ export interface GetAvailabilityZonesResult {
  * ```
  */
 export function getAvailabilityZonesOutput(args?: GetAvailabilityZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAvailabilityZonesResult> {
-    return pulumi.output(args).apply((a: any) => getAvailabilityZones(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getAvailabilityZones:getAvailabilityZones", {
+        "region": args.region,
+    }, opts);
 }
 
 /**

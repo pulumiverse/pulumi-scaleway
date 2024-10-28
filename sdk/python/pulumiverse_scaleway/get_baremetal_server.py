@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -342,9 +347,6 @@ def get_baremetal_server(name: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         user=pulumi.get(__ret__, 'user'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_baremetal_server)
 def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                 project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 server_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -372,4 +374,38 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
     :param str project_id: The ID of the project the baremetal server is associated with.
     :param str zone: `zone`) The zone in which the server exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['serverId'] = server_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalServer:getBaremetalServer', __args__, opts=opts, typ=GetBaremetalServerResult)
+    return __ret__.apply(lambda __response__: GetBaremetalServerResult(
+        description=pulumi.get(__response__, 'description'),
+        domain=pulumi.get(__response__, 'domain'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        install_config_afterward=pulumi.get(__response__, 'install_config_afterward'),
+        ips=pulumi.get(__response__, 'ips'),
+        ipv4s=pulumi.get(__response__, 'ipv4s'),
+        ipv6s=pulumi.get(__response__, 'ipv6s'),
+        name=pulumi.get(__response__, 'name'),
+        offer=pulumi.get(__response__, 'offer'),
+        offer_id=pulumi.get(__response__, 'offer_id'),
+        offer_name=pulumi.get(__response__, 'offer_name'),
+        options=pulumi.get(__response__, 'options'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        os=pulumi.get(__response__, 'os'),
+        os_name=pulumi.get(__response__, 'os_name'),
+        password=pulumi.get(__response__, 'password'),
+        private_networks=pulumi.get(__response__, 'private_networks'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        reinstall_on_config_changes=pulumi.get(__response__, 'reinstall_on_config_changes'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        service_password=pulumi.get(__response__, 'service_password'),
+        service_user=pulumi.get(__response__, 'service_user'),
+        ssh_key_ids=pulumi.get(__response__, 'ssh_key_ids'),
+        tags=pulumi.get(__response__, 'tags'),
+        user=pulumi.get(__response__, 'user'),
+        zone=pulumi.get(__response__, 'zone')))

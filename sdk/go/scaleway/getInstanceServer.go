@@ -95,14 +95,20 @@ type LookupInstanceServerResult struct {
 
 func LookupInstanceServerOutput(ctx *pulumi.Context, args LookupInstanceServerOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceServerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInstanceServerResult, error) {
+		ApplyT(func(v interface{}) (LookupInstanceServerResultOutput, error) {
 			args := v.(LookupInstanceServerArgs)
-			r, err := LookupInstanceServer(ctx, &args, opts...)
-			var s LookupInstanceServerResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupInstanceServerResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceServer:getInstanceServer", args, &rv, "", opts...)
+			if err != nil {
+				return LookupInstanceServerResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupInstanceServerResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupInstanceServerResultOutput), nil
+			}
+			return output, nil
 		}).(LookupInstanceServerResultOutput)
 }
 

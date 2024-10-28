@@ -89,14 +89,20 @@ type LookupIamGroupResult struct {
 
 func LookupIamGroupOutput(ctx *pulumi.Context, args LookupIamGroupOutputArgs, opts ...pulumi.InvokeOption) LookupIamGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIamGroupResult, error) {
+		ApplyT(func(v interface{}) (LookupIamGroupResultOutput, error) {
 			args := v.(LookupIamGroupArgs)
-			r, err := LookupIamGroup(ctx, &args, opts...)
-			var s LookupIamGroupResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIamGroupResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getIamGroup:getIamGroup", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIamGroupResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupIamGroupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIamGroupResultOutput), nil
+			}
+			return output, nil
 		}).(LookupIamGroupResultOutput)
 }
 

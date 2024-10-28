@@ -35,6 +35,20 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With expiration
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as time from "@pulumi/time";
+ *
+ * const rotateAfterAYear = new time.index.Rotating("rotate_after_a_year", {rotationYears: 1});
+ * const main = new scaleway.IamApiKey("main", {
+ *     applicationId: mainScalewayIamApplication.id,
+ *     expiresAt: rotateAfterAYear.rotationRfc3339,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Api keys can be imported using the `{id}`, e.g.

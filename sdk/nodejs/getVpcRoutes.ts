@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcRoutes(args?: GetVpcRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcRoutesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcRoutes:getVpcRoutes", {
         "isIpv6": args.isIpv6,
@@ -82,7 +81,17 @@ export interface GetVpcRoutesResult {
  * Gets information about multiple VPC routes.
  */
 export function getVpcRoutesOutput(args?: GetVpcRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcRoutesResult> {
-    return pulumi.output(args).apply((a: any) => getVpcRoutes(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcRoutes:getVpcRoutes", {
+        "isIpv6": args.isIpv6,
+        "nexthopPrivateNetworkId": args.nexthopPrivateNetworkId,
+        "nexthopResourceId": args.nexthopResourceId,
+        "nexthopResourceType": args.nexthopResourceType,
+        "region": args.region,
+        "tags": args.tags,
+        "vpcId": args.vpcId,
+    }, opts);
 }
 
 /**

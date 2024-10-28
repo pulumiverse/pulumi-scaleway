@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryImage:getRegistryImage", {
         "imageId": args.imageId,
@@ -91,7 +90,16 @@ export interface GetRegistryImageResult {
  * Gets information about a Container Registry image.
  */
 export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryImageResult> {
-    return pulumi.output(args).apply((a: any) => getRegistryImage(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRegistryImage:getRegistryImage", {
+        "imageId": args.imageId,
+        "name": args.name,
+        "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
+        "tags": args.tags,
+    }, opts);
 }
 
 /**

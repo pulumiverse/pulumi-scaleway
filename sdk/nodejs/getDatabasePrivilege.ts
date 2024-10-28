@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDatabasePrivilege(args: GetDatabasePrivilegeArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabasePrivilegeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
         "databaseName": args.databaseName,
@@ -90,7 +89,13 @@ export interface GetDatabasePrivilegeResult {
  * ```
  */
 export function getDatabasePrivilegeOutput(args: GetDatabasePrivilegeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabasePrivilegeResult> {
-    return pulumi.output(args).apply((a: any) => getDatabasePrivilege(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
+        "databaseName": args.databaseName,
+        "instanceId": args.instanceId,
+        "region": args.region,
+        "userName": args.userName,
+    }, opts);
 }
 
 /**

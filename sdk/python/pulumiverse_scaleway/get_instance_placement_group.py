@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -173,9 +178,6 @@ def get_instance_placement_group(name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_placement_group)
 def get_instance_placement_group_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                         placement_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -190,4 +192,21 @@ def get_instance_placement_group_output(name: Optional[pulumi.Input[Optional[str
     :param str project_id: `project_id`) The ID of the project the placement group is associated with.
     :param str zone: `zone`) The zone in which the placement group exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['placementGroupId'] = placement_group_id
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup', __args__, opts=opts, typ=GetInstancePlacementGroupResult)
+    return __ret__.apply(lambda __response__: GetInstancePlacementGroupResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        placement_group_id=pulumi.get(__response__, 'placement_group_id'),
+        policy_mode=pulumi.get(__response__, 'policy_mode'),
+        policy_respected=pulumi.get(__response__, 'policy_respected'),
+        policy_type=pulumi.get(__response__, 'policy_type'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

@@ -83,14 +83,20 @@ type LookupVpcPublicGatewayDhcpResult struct {
 
 func LookupVpcPublicGatewayDhcpOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayDhcpOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayDhcpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpcPublicGatewayDhcpResult, error) {
+		ApplyT(func(v interface{}) (LookupVpcPublicGatewayDhcpResultOutput, error) {
 			args := v.(LookupVpcPublicGatewayDhcpArgs)
-			r, err := LookupVpcPublicGatewayDhcp(ctx, &args, opts...)
-			var s LookupVpcPublicGatewayDhcpResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupVpcPublicGatewayDhcpResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args, &rv, "", opts...)
+			if err != nil {
+				return LookupVpcPublicGatewayDhcpResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupVpcPublicGatewayDhcpResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupVpcPublicGatewayDhcpResultOutput), nil
+			}
+			return output, nil
 		}).(LookupVpcPublicGatewayDhcpResultOutput)
 }
 

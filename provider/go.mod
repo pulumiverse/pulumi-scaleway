@@ -1,12 +1,12 @@
 module github.com/pulumiverse/pulumi-scaleway/provider
 
-go 1.22
+go 1.22.0
 
-toolchain go1.22.4
+toolchain go1.23.2
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.89.1
-	github.com/pulumi/pulumi/sdk/v3 v3.129.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.93.1
+	github.com/pulumi/pulumi/sdk/v3 v3.136.1
 	github.com/scaleway/terraform-provider-scaleway/v2/shim v0.0.0-00010101000000-000000000000
 )
 
@@ -43,7 +43,7 @@ require (
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
-	github.com/aws/aws-sdk-go v1.55.3 // indirect
+	github.com/aws/aws-sdk-go v1.55.5 // indirect
 	github.com/aws/aws-sdk-go-v2 v1.26.1 // indirect
 	github.com/aws/aws-sdk-go-v2/config v1.27.11 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.11 // indirect
@@ -126,7 +126,7 @@ require (
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-exec v0.21.0 // indirect
 	github.com/hashicorp/terraform-json v0.22.1 // indirect
-	github.com/hashicorp/terraform-plugin-go v0.23.0 // indirect
+	github.com/hashicorp/terraform-plugin-go v0.24.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.2.3 // indirect
@@ -180,12 +180,11 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
-	github.com/pulumi/esc v0.9.1 // indirect
+	github.com/pulumi/esc v0.10.0 // indirect
 	github.com/pulumi/inflector v0.1.1 // indirect
-	github.com/pulumi/pulumi-java/pkg v0.14.0 // indirect
-	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
-	github.com/pulumi/pulumi-yaml v1.9.2 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.129.0 // indirect
+	github.com/pulumi/pulumi-java/pkg v0.16.1 // indirect
+	github.com/pulumi/pulumi-yaml v1.10.3 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.136.1 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
@@ -195,8 +194,8 @@ require (
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.0.0 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.29 // indirect
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.42.1 // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.29.0.20240729155332-ce25a04774bb // indirect
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.43.0 // indirect
 	github.com/segmentio/asm v1.1.3 // indirect
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
@@ -209,7 +208,6 @@ require (
 	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/teekennedy/goldmark-markdown v0.3.0 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
-	github.com/tweekmonster/luser v0.0.0-20161003172636-3fa38070dbd7 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
@@ -235,7 +233,7 @@ require (
 	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
 	golang.org/x/mod v0.19.0 // indirect
 	golang.org/x/net v0.27.0 // indirect
-	golang.org/x/oauth2 v0.20.0 // indirect
+	golang.org/x/oauth2 v0.21.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/term v0.22.0 // indirect
@@ -246,9 +244,9 @@ require (
 	google.golang.org/api v0.169.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto v0.0.0-20240311173647-c811ad7063a7 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240604185151-ef581f913117 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f // indirect
-	google.golang.org/grpc v1.65.0 // indirect
+	google.golang.org/grpc v1.66.2 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

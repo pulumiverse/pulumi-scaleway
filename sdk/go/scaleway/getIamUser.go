@@ -81,14 +81,20 @@ type LookupIamUserResult struct {
 
 func LookupIamUserOutput(ctx *pulumi.Context, args LookupIamUserOutputArgs, opts ...pulumi.InvokeOption) LookupIamUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIamUserResult, error) {
+		ApplyT(func(v interface{}) (LookupIamUserResultOutput, error) {
 			args := v.(LookupIamUserArgs)
-			r, err := LookupIamUser(ctx, &args, opts...)
-			var s LookupIamUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIamUserResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getIamUser:getIamUser", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIamUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupIamUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIamUserResultOutput), nil
+			}
+			return output, nil
 		}).(LookupIamUserResultOutput)
 }
 

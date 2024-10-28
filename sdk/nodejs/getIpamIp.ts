@@ -86,7 +86,6 @@ import * as utilities from "./utilities";
  */
 export function getIpamIp(args?: GetIpamIpArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIpamIp:getIpamIp", {
         "attached": args.attached,
@@ -257,7 +256,20 @@ export interface GetIpamIpResult {
  * ```
  */
 export function getIpamIpOutput(args?: GetIpamIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpamIpResult> {
-    return pulumi.output(args).apply((a: any) => getIpamIp(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIpamIp:getIpamIp", {
+        "attached": args.attached,
+        "ipamIpId": args.ipamIpId,
+        "macAddress": args.macAddress,
+        "privateNetworkId": args.privateNetworkId,
+        "projectId": args.projectId,
+        "region": args.region,
+        "resource": args.resource,
+        "tags": args.tags,
+        "type": args.type,
+        "zonal": args.zonal,
+    }, opts);
 }
 
 /**

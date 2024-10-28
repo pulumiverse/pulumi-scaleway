@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -254,9 +259,6 @@ def get_instance_image(architecture: Optional[str] = None,
         root_volume_id=pulumi.get(__ret__, 'root_volume_id'),
         state=pulumi.get(__ret__, 'state'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_image)
 def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]] = None,
                               image_id: Optional[pulumi.Input[Optional[str]]] = None,
                               latest: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -275,4 +277,29 @@ def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]
     :param str project_id: The ID of the project the image is associated with.
     :param str zone: `zone`) The zone in which the image exists.
     """
-    ...
+    __args__ = dict()
+    __args__['architecture'] = architecture
+    __args__['imageId'] = image_id
+    __args__['latest'] = latest
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceImage:getInstanceImage', __args__, opts=opts, typ=GetInstanceImageResult)
+    return __ret__.apply(lambda __response__: GetInstanceImageResult(
+        additional_volume_ids=pulumi.get(__response__, 'additional_volume_ids'),
+        architecture=pulumi.get(__response__, 'architecture'),
+        creation_date=pulumi.get(__response__, 'creation_date'),
+        default_bootscript_id=pulumi.get(__response__, 'default_bootscript_id'),
+        from_server_id=pulumi.get(__response__, 'from_server_id'),
+        id=pulumi.get(__response__, 'id'),
+        image_id=pulumi.get(__response__, 'image_id'),
+        latest=pulumi.get(__response__, 'latest'),
+        modification_date=pulumi.get(__response__, 'modification_date'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        public=pulumi.get(__response__, 'public'),
+        root_volume_id=pulumi.get(__response__, 'root_volume_id'),
+        state=pulumi.get(__response__, 'state'),
+        zone=pulumi.get(__response__, 'zone')))

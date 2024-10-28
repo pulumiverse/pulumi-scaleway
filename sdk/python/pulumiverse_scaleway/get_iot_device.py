@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -211,9 +216,6 @@ def get_iot_device(device_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_iot_device)
 def get_iot_device_output(device_id: Optional[pulumi.Input[Optional[str]]] = None,
                           hub_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -230,4 +232,26 @@ def get_iot_device_output(device_id: Optional[pulumi.Input[Optional[str]]] = Non
            Only one of the `name` and `device_id` should be specified.
     :param str region: `region`) The region in which the hub exists.
     """
-    ...
+    __args__ = dict()
+    __args__['deviceId'] = device_id
+    __args__['hubId'] = hub_id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIotDevice:getIotDevice', __args__, opts=opts, typ=GetIotDeviceResult)
+    return __ret__.apply(lambda __response__: GetIotDeviceResult(
+        allow_insecure=pulumi.get(__response__, 'allow_insecure'),
+        allow_multiple_connections=pulumi.get(__response__, 'allow_multiple_connections'),
+        certificates=pulumi.get(__response__, 'certificates'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        device_id=pulumi.get(__response__, 'device_id'),
+        hub_id=pulumi.get(__response__, 'hub_id'),
+        id=pulumi.get(__response__, 'id'),
+        is_connected=pulumi.get(__response__, 'is_connected'),
+        last_activity_at=pulumi.get(__response__, 'last_activity_at'),
+        message_filters=pulumi.get(__response__, 'message_filters'),
+        name=pulumi.get(__response__, 'name'),
+        region=pulumi.get(__response__, 'region'),
+        status=pulumi.get(__response__, 'status'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

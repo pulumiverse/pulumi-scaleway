@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -193,9 +198,6 @@ def get_instance_snapshot(name: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_snapshot)
 def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -224,4 +226,23 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
            Only one of `name` and `snapshot_id` should be specified.
     :param str zone: `zone`) The zone in which the snapshot exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['snapshotId'] = snapshot_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceSnapshot:getInstanceSnapshot', __args__, opts=opts, typ=GetInstanceSnapshotResult)
+    return __ret__.apply(lambda __response__: GetInstanceSnapshotResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        id=pulumi.get(__response__, 'id'),
+        imports=pulumi.get(__response__, 'imports'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        size_in_gb=pulumi.get(__response__, 'size_in_gb'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        volume_id=pulumi.get(__response__, 'volume_id'),
+        zone=pulumi.get(__response__, 'zone')))
