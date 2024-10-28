@@ -26,9 +26,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var blockVolume = new Scaleway.BlockVolume("blockVolume", new()
+    ///     var blockVolume = new Scaleway.BlockVolume("block_volume", new()
     ///     {
     ///         Iops = 5000,
+    ///         Name = "some-volume-name",
     ///         SizeInGb = 20,
     ///     });
     /// 
@@ -47,19 +48,22 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var @base = new Scaleway.BlockVolume("base", new()
     ///     {
+    ///         Name = "block-volume-base",
     ///         Iops = 5000,
     ///         SizeInGb = 20,
     ///     });
     /// 
-    ///     var mainBlockSnapshot = new Scaleway.BlockSnapshot("mainBlockSnapshot", new()
+    ///     var main = new Scaleway.BlockSnapshot("main", new()
     ///     {
+    ///         Name = "block-volume-from-snapshot",
     ///         VolumeId = @base.Id,
     ///     });
     /// 
-    ///     var mainBlockVolume = new Scaleway.BlockVolume("mainBlockVolume", new()
+    ///     var mainBlockVolume = new Scaleway.BlockVolume("main", new()
     ///     {
+    ///         Name = "block-volume-from-snapshot",
     ///         Iops = 5000,
-    ///         SnapshotId = mainBlockSnapshot.Id,
+    ///         SnapshotId = main.Id,
     ///     });
     /// 
     /// });

@@ -33,11 +33,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("pn_test_network"),
 //				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
@@ -47,6 +50,7 @@ import (
 //				return err
 //			}
 //			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {
@@ -85,11 +89,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("pn_test_network"),
 //				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
@@ -110,6 +117,7 @@ import (
 //				return err
 //			}
 //			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {
@@ -149,7 +157,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("pn_test_network"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -165,6 +175,7 @@ import (
 //				return err
 //			}
 //			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //				IpId: gw01.ID(),
 //			})
@@ -201,11 +212,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("pn_test_network"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {

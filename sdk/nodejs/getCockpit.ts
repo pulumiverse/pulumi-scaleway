@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get default project's cockpit
  * const main = scaleway.getCockpit({});
  * ```
  *
@@ -28,6 +29,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get a specific project's cockpit
  * const main = scaleway.getCockpit({
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -86,6 +88,7 @@ export interface GetCockpitResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get default project's cockpit
  * const main = scaleway.getCockpit({});
  * ```
  *
@@ -93,6 +96,7 @@ export interface GetCockpitResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get a specific project's cockpit
  * const main = scaleway.getCockpit({
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });

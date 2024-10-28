@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqNatsAccount("main", {});
+ * const main = new scaleway.MnqNatsAccount("main", {name: "nats-account"});
  * ```
  *
  * ## Import

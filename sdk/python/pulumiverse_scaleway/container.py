@@ -812,11 +812,14 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace", description="test container")
-        main_container = scaleway.Container("mainContainer",
+        main = scaleway.ContainerNamespace("main",
+            name="my-ns-test",
+            description="test container")
+        main_container = scaleway.Container("main",
+            name="my-container-02",
             description="environment variables test",
-            namespace_id=main_container_namespace.id,
-            registry_image=main_container_namespace.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
+            namespace_id=main.id,
+            registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
             port=9997,
             cpu_limit=140,
             memory_limit=256,
@@ -932,11 +935,14 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace", description="test container")
-        main_container = scaleway.Container("mainContainer",
+        main = scaleway.ContainerNamespace("main",
+            name="my-ns-test",
+            description="test container")
+        main_container = scaleway.Container("main",
+            name="my-container-02",
             description="environment variables test",
-            namespace_id=main_container_namespace.id,
-            registry_image=main_container_namespace.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
+            namespace_id=main.id,
+            registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
             port=9997,
             cpu_limit=140,
             memory_limit=256,

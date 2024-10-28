@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
     ///     {
+    ///         Name = "my-vpc",
     ///         Tags = new[]
     ///         {
     ///             "demo",
@@ -50,13 +51,14 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
     ///     {
-    ///         EnableRouting = true,
+    ///         Name = "my-vpc",
     ///         Tags = new[]
     ///         {
     ///             "demo",
     ///             "terraform",
     ///             "routing",
     ///         },
+    ///         EnableRouting = true,
     ///     });
     /// 
     /// });

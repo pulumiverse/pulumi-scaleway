@@ -14,48 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about an DocumentDB load balancer endpoint.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myEndpoint = Scaleway.GetDocumentdbLoadBalancerEndpoint.Invoke(new()
-        ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetDocumentdbLoadBalancerEndpointResult> InvokeAsync(GetDocumentdbLoadBalancerEndpointArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbLoadBalancerEndpointResult>("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", args ?? new GetDocumentdbLoadBalancerEndpointArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an DocumentDB load balancer endpoint.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myEndpoint = Scaleway.GetDocumentdbLoadBalancerEndpoint.Invoke(new()
-        ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetDocumentdbLoadBalancerEndpointResult> Invoke(GetDocumentdbLoadBalancerEndpointInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentdbLoadBalancerEndpointResult>("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", args ?? new GetDocumentdbLoadBalancerEndpointInvokeArgs(), options.WithDefaults());

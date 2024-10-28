@@ -240,9 +240,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.id,
+        main = scaleway.ObjectBucket("main",
+            name="MyBucket",
+            acl="public-read")
+        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+            bucket=main.id,
             index_document={
                 "suffix": "index.html",
             })
@@ -255,9 +257,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
-        main_object_bucket_policy = scaleway.ObjectBucketPolicy("mainObjectBucketPolicy",
-            bucket=main_object_bucket.id,
+        main = scaleway.ObjectBucket("main",
+            name="MyBucket",
+            acl="public-read")
+        main_object_bucket_policy = scaleway.ObjectBucketPolicy("main",
+            bucket=main.id,
             policy=json.dumps({
                 "Version": "2012-10-17",
                 "Id": "MyPolicy",
@@ -269,8 +273,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                     "Resource": ["<bucket-name>/*"],
                 }],
             }))
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.id,
+        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+            bucket=main.id,
             index_document={
                 "suffix": "index.html",
             })
@@ -320,9 +324,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.id,
+        main = scaleway.ObjectBucket("main",
+            name="MyBucket",
+            acl="public-read")
+        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+            bucket=main.id,
             index_document={
                 "suffix": "index.html",
             })
@@ -335,9 +341,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
-        main_object_bucket_policy = scaleway.ObjectBucketPolicy("mainObjectBucketPolicy",
-            bucket=main_object_bucket.id,
+        main = scaleway.ObjectBucket("main",
+            name="MyBucket",
+            acl="public-read")
+        main_object_bucket_policy = scaleway.ObjectBucketPolicy("main",
+            bucket=main.id,
             policy=json.dumps({
                 "Version": "2012-10-17",
                 "Id": "MyPolicy",
@@ -349,8 +357,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                     "Resource": ["<bucket-name>/*"],
                 }],
             }))
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.id,
+        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+            bucket=main.id,
             index_document={
                 "suffix": "index.html",
             })

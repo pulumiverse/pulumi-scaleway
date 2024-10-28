@@ -17,13 +17,16 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Project ID
  * const default = scaleway.getAccountProject({
  *     name: "default",
  * });
+ * // IAM configuration
  * const user = scaleway.getIamUser({
  *     email: "user@scaleway.com",
  * });
- * const policyIamPolicy = new scaleway.IamPolicy("policyIamPolicy", {
+ * const policy = new scaleway.IamPolicy("policy", {
+ *     name: "object-storage-policy",
  *     userId: user.then(user => user.id),
  *     rules: [{
  *         projectIds: [_default.then(_default => _default.id)],
@@ -31,8 +34,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {});
- * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", {
+ * const bucket = new scaleway.ObjectBucket("bucket", {name: "some-unique-name"});
+ * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policy", {
  *     bucket: bucket.name,
  *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
@@ -61,12 +64,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Project ID
  * const default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // IAM configuration
- * const reading_app = new scaleway.IamApplication("reading-app", {});
- * const policyIamPolicy = new scaleway.IamPolicy("policyIamPolicy", {
+ * const reading_app = new scaleway.IamApplication("reading-app", {name: "reading-app"});
+ * const policy = new scaleway.IamPolicy("policy", {
+ *     name: "object-storage-policy",
  *     applicationId: reading_app.id,
  *     rules: [{
  *         projectIds: [_default.then(_default => _default.id)],
@@ -74,8 +79,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {});
- * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", {
+ * const bucket = new scaleway.ObjectBucket("bucket", {name: "some-unique-name"});
+ * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policy", {
  *     bucket: bucket.id,
  *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
@@ -109,10 +114,6 @@ import * as utilities from "./utilities";
  *     name: "reading-app",
  * });
  * const reading_api_key = new scaleway.IamApiKey("reading-api-key", {applicationId: reading_app.then(reading_app => reading_app.id)});
- * const reading_profile = new scaleway.Provider("reading-profile", {
- *     accessKey: reading_api_key.accessKey,
- *     secretKey: reading_api_key.secretKey,
- * });
  * const bucket = scaleway.getObjectBucket({
  *     name: "some-unique-name",
  * });
@@ -126,11 +127,13 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Scaleway project ID
  * const default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const bucket = new scaleway.ObjectBucket("bucket", {name: "some-unique-name"});
+ * // AWS data source
  * const policy = aws.iam.getPolicyDocumentOutput({
  *     version: "2012-10-17",
  *     statements: [{
@@ -160,11 +163,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Project ID
  * const default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {region: "fr-par"});
+ * const bucket = new scaleway.ObjectBucket("bucket", {
+ *     name: "mia-cross-crash-tests",
+ *     region: "fr-par",
+ * });
  * const policy = new scaleway.ObjectBucketPolicy("policy", {
  *     bucket: bucket.name,
  *     policy: pulumi.jsonStringify({

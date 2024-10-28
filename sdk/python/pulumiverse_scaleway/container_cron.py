@@ -248,10 +248,13 @@ class ContainerCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
-        main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
-        main_container_cron = scaleway.ContainerCron("mainContainerCron",
+        main = scaleway.ContainerNamespace("main")
+        main_container = scaleway.Container("main",
+            name="my-container-with-cron-tf",
+            namespace_id=main.id)
+        main_container_cron = scaleway.ContainerCron("main",
             container_id=main_container.id,
+            name="my-cron-name",
             schedule="5 4 1 * *",
             args=json.dumps({
                 "address": {
@@ -314,10 +317,13 @@ class ContainerCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
-        main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
-        main_container_cron = scaleway.ContainerCron("mainContainerCron",
+        main = scaleway.ContainerNamespace("main")
+        main_container = scaleway.Container("main",
+            name="my-container-with-cron-tf",
+            namespace_id=main.id)
+        main_container_cron = scaleway.ContainerCron("main",
             container_id=main_container.id,
+            name="my-cron-name",
             schedule="5 4 1 * *",
             args=json.dumps({
                 "address": {

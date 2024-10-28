@@ -214,10 +214,12 @@ def get_domain_record(data: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_content = scaleway.get_domain_record(data="1.2.3.4",
-        dns_zone="domain.tld",
+    # Get record by name, type and data
+    by_content = scaleway.get_domain_record(dns_zone="domain.tld",
         name="www",
-        type="A")
+        type="A",
+        data="1.2.3.4")
+    # Get info by ID
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
@@ -280,10 +282,12 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_content = scaleway.get_domain_record(data="1.2.3.4",
-        dns_zone="domain.tld",
+    # Get record by name, type and data
+    by_content = scaleway.get_domain_record(dns_zone="domain.tld",
         name="www",
-        type="A")
+        type="A",
+        data="1.2.3.4")
+    # Get info by ID
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```

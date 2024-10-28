@@ -33,6 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get default project's cockpit
 //			_, err := scaleway.LookupCockpit(ctx, nil, nil)
 //			if err != nil {
 //				return err
@@ -55,6 +56,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get a specific project's cockpit
 //			_, err := scaleway.LookupCockpit(ctx, &scaleway.LookupCockpitArgs{
 //				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

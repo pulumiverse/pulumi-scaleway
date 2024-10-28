@@ -337,7 +337,9 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSnapshot("main", volume_id="11111111-1111-1111-1111-111111111111")
+        main = scaleway.InstanceSnapshot("main",
+            name="some-snapshot-name",
+            volume_id="11111111-1111-1111-1111-111111111111")
         ```
 
         ### Example with Unified type snapshot
@@ -346,19 +348,19 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_instance_volume = scaleway.InstanceVolume("mainInstanceVolume",
+        main = scaleway.InstanceVolume("main",
             type="l_ssd",
             size_in_gb=10)
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+        main_instance_server = scaleway.InstanceServer("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             root_volume={
                 "size_in_gb": 10,
                 "volume_type": "l_ssd",
             },
-            additional_volume_ids=[main_instance_volume.id])
-        main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
-            volume_id=main_instance_volume.id,
+            additional_volume_ids=[main.id])
+        main_instance_snapshot = scaleway.InstanceSnapshot("main",
+            volume_id=main.id,
             type="unified",
             opts = pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
@@ -369,7 +371,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        bucket = scaleway.ObjectBucket("bucket")
+        bucket = scaleway.ObjectBucket("bucket", name="snapshot-qcow-import")
         qcow = scaleway.ObjectItem("qcow",
             bucket=bucket.name,
             key="server.qcow2",
@@ -422,7 +424,9 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSnapshot("main", volume_id="11111111-1111-1111-1111-111111111111")
+        main = scaleway.InstanceSnapshot("main",
+            name="some-snapshot-name",
+            volume_id="11111111-1111-1111-1111-111111111111")
         ```
 
         ### Example with Unified type snapshot
@@ -431,19 +435,19 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_instance_volume = scaleway.InstanceVolume("mainInstanceVolume",
+        main = scaleway.InstanceVolume("main",
             type="l_ssd",
             size_in_gb=10)
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+        main_instance_server = scaleway.InstanceServer("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             root_volume={
                 "size_in_gb": 10,
                 "volume_type": "l_ssd",
             },
-            additional_volume_ids=[main_instance_volume.id])
-        main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
-            volume_id=main_instance_volume.id,
+            additional_volume_ids=[main.id])
+        main_instance_snapshot = scaleway.InstanceSnapshot("main",
+            volume_id=main.id,
             type="unified",
             opts = pulumi.ResourceOptions(depends_on=[main_instance_server]))
         ```
@@ -454,7 +458,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        bucket = scaleway.ObjectBucket("bucket")
+        bucket = scaleway.ObjectBucket("bucket", name="snapshot-qcow-import")
         qcow = scaleway.ObjectItem("qcow",
             bucket=bucket.name,
             key="server.qcow2",

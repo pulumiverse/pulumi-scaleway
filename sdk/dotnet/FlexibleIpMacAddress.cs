@@ -26,11 +26,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainFlexibleIp = new Scaleway.FlexibleIp("mainFlexibleIp");
+    ///     var main = new Scaleway.FlexibleIp("main");
     /// 
-    ///     var mainFlexibleIpMacAddress = new Scaleway.FlexibleIpMacAddress("mainFlexibleIpMacAddress", new()
+    ///     var mainFlexibleIpMacAddress = new Scaleway.FlexibleIpMacAddress("main", new()
     ///     {
-    ///         FlexibleIpId = mainFlexibleIp.Id,
+    ///         FlexibleIpId = main.Id,
     ///         Type = "kvm",
     ///     });
     /// 
@@ -55,6 +55,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var @base = new Scaleway.BaremetalServer("base", new()
     ///     {
+    ///         Name = "TestAccScalewayBaremetalServer_WithoutInstallConfig",
     ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
     ///         InstallConfigAfterward = true,
     ///     });

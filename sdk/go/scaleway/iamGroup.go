@@ -31,8 +31,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewIamGroup(ctx, "basic", &scaleway.IamGroupArgs{
-//				ApplicationIds: pulumi.StringArray{},
+//				Name:           pulumi.String("iam_group_basic"),
 //				Description:    pulumi.String("basic description"),
+//				ApplicationIds: pulumi.StringArray{},
 //				UserIds:        pulumi.StringArray{},
 //			})
 //			if err != nil {
@@ -62,7 +63,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamGroup(ctx, "withApp", &scaleway.IamGroupArgs{
+//			_, err = scaleway.NewIamGroup(ctx, "with_app", &scaleway.IamGroupArgs{
+//				Name: pulumi.String("iam_group_with_app"),
 //				ApplicationIds: pulumi.StringArray{
 //					app.ID(),
 //				},

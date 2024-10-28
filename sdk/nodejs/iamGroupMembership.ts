@@ -16,8 +16,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const group = new scaleway.IamGroup("group", {externalMembership: true});
- * const app = new scaleway.IamApplication("app", {});
+ * const group = new scaleway.IamGroup("group", {
+ *     name: "my_group",
+ *     externalMembership: true,
+ * });
+ * const app = new scaleway.IamApplication("app", {name: "my_app"});
  * const member = new scaleway.IamGroupMembership("member", {
  *     groupId: group.id,
  *     applicationId: app.id,

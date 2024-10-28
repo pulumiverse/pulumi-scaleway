@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a Block Snapshot.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const mySnapshot = scaleway.getBlockSnapshot({
- *     snapshotId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockSnapshotResult> {
     args = args || {};
@@ -74,17 +63,6 @@ export interface GetBlockSnapshotResult {
 }
 /**
  * Gets information about a Block Snapshot.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const mySnapshot = scaleway.getBlockSnapshot({
- *     snapshotId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockSnapshotResult> {
     return pulumi.output(args).apply((a: any) => getBlockSnapshot(a, opts))

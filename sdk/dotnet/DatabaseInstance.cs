@@ -28,12 +28,13 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         DisableBackup = true,
+    ///         Name = "test-rdb",
+    ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
-    ///         NodeType = "DB-DEV-S",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         DisableBackup = true,
     ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
     /// });
@@ -51,14 +52,15 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         DisableBackup = true,
+    ///         Name = "test-rdb-sbs",
+    ///         NodeType = "db-play2-pico",
     ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
-    ///         NodeType = "db-play2-pico",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         DisableBackup = true,
     ///         UserName = "my_initial_user",
-    ///         VolumeSizeInGb = 10,
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         VolumeType = "sbs_15k",
+    ///         VolumeSizeInGb = 10,
     ///     });
     /// 
     /// });
@@ -76,19 +78,20 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
+    ///         Name = "test-rdb",
+    ///         NodeType = "db-dev-s",
     ///         DisableBackup = true,
     ///         Engine = "MySQL-8",
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         InitSettings = 
     ///         {
     ///             { "lower_case_table_names", "1" },
     ///         },
-    ///         NodeType = "db-dev-s",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         Settings = 
     ///         {
     ///             { "max_connections", "350" },
     ///         },
-    ///         UserName = "my_initial_user",
     ///     });
     /// 
     /// });
@@ -106,14 +109,15 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         BackupScheduleFrequency = 24,
-    ///         BackupScheduleRetention = 7,
-    ///         DisableBackup = false,
+    ///         Name = "test-rdb",
+    ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
-    ///         NodeType = "DB-DEV-S",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         DisableBackup = false,
+    ///         BackupScheduleFrequency = 24,
+    ///         BackupScheduleRetention = 7,
     ///     });
     /// 
     /// });
@@ -169,16 +173,16 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
+    ///         LoadBalancers = new[]
+    ///         {
+    ///             null,
+    ///         },
     ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
     ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
     ///         {
     ///             PnId = pn.Id,
     ///             EnableIpam = true,
-    ///         },
-    ///         LoadBalancers = new[]
-    ///         {
-    ///             null,
     ///         },
     ///     });
     /// 
@@ -197,8 +201,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
-    ///         Engine = "PostgreSQL-15",
     ///         NodeType = "db-dev-s",
+    ///         Engine = "PostgreSQL-15",
     ///     });
     /// 
     /// });

@@ -25,14 +25,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get record by name, type and data
         ///     var byContent = Scaleway.GetDomainRecord.Invoke(new()
         ///     {
-        ///         Data = "1.2.3.4",
         ///         DnsZone = "domain.tld",
         ///         Name = "www",
         ///         Type = "A",
+        ///         Data = "1.2.3.4",
         ///     });
         /// 
+        ///     // Get info by ID
         ///     var byId = Scaleway.GetDomainRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
@@ -58,14 +60,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get record by name, type and data
         ///     var byContent = Scaleway.GetDomainRecord.Invoke(new()
         ///     {
-        ///         Data = "1.2.3.4",
         ///         DnsZone = "domain.tld",
         ///         Name = "www",
         ///         Type = "A",
+        ///         Data = "1.2.3.4",
         ///     });
         /// 
+        ///     // Get info by ID
         ///     var byId = Scaleway.GetDomainRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",

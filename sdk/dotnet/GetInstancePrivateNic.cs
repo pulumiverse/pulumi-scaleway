@@ -27,14 +27,14 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var byNicId = Scaleway.GetInstancePrivateNic.Invoke(new()
         ///     {
-        ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     var byPnId = Scaleway.GetInstancePrivateNic.Invoke(new()
         ///     {
-        ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     var byTags = Scaleway.GetInstancePrivateNic.Invoke(new()
@@ -67,14 +67,14 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var byNicId = Scaleway.GetInstancePrivateNic.Invoke(new()
         ///     {
-        ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     var byPnId = Scaleway.GetInstancePrivateNic.Invoke(new()
         ///     {
-        ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     var byTags = Scaleway.GetInstancePrivateNic.Invoke(new()

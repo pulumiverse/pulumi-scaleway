@@ -28,12 +28,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by option name
 //			_, err := scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
 //				Name: pulumi.StringRef("Remote Access"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by option id
 //			_, err = scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
 //				OptionId: pulumi.StringRef("931df052-d713-4674-8b58-96a63244c8e2"),
 //			}, nil)

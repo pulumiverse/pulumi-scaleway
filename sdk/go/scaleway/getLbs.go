@@ -14,41 +14,6 @@ import (
 // Gets information about multiple Load Balancers.
 //
 // For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetLbs(ctx, &scaleway.GetLbsArgs{
-//				Name: pulumi.StringRef("foobar"),
-//				Zone: pulumi.StringRef("fr-par-2"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.GetLbs(ctx, &scaleway.GetLbsArgs{
-//				Tags: []string{
-//					"a tag",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetLbs(ctx *pulumi.Context, args *GetLbsArgs, opts ...pulumi.InvokeOption) (*GetLbsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbsResult

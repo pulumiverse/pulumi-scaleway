@@ -32,12 +32,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				DisableBackup: pulumi.Bool(true),
+//				Name:          pulumi.String("test-rdb"),
+//				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:   pulumi.Bool(true),
-//				NodeType:      pulumi.String("DB-DEV-S"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				DisableBackup: pulumi.Bool(true),
 //				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
 //			})
 //			if err != nil {
 //				return err
@@ -63,14 +64,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				DisableBackup:  pulumi.Bool(true),
+//				Name:           pulumi.String("test-rdb-sbs"),
+//				NodeType:       pulumi.String("db-play2-pico"),
 //				Engine:         pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:    pulumi.Bool(true),
-//				NodeType:       pulumi.String("db-play2-pico"),
-//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				DisableBackup:  pulumi.Bool(true),
 //				UserName:       pulumi.String("my_initial_user"),
-//				VolumeSizeInGb: pulumi.Int(10),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				VolumeType:     pulumi.String("sbs_15k"),
+//				VolumeSizeInGb: pulumi.Int(10),
 //			})
 //			if err != nil {
 //				return err
@@ -96,17 +98,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("test-rdb"),
+//				NodeType:      pulumi.String("db-dev-s"),
 //				DisableBackup: pulumi.Bool(true),
 //				Engine:        pulumi.String("MySQL-8"),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
 //				InitSettings: pulumi.StringMap{
 //					"lower_case_table_names": pulumi.String("1"),
 //				},
-//				NodeType: pulumi.String("db-dev-s"),
-//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
 //				Settings: pulumi.StringMap{
 //					"max_connections": pulumi.String("350"),
 //				},
-//				UserName: pulumi.String("my_initial_user"),
 //			})
 //			if err != nil {
 //				return err
@@ -132,14 +135,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				BackupScheduleFrequency: pulumi.Int(24),
-//				BackupScheduleRetention: pulumi.Int(7),
-//				DisableBackup:           pulumi.Bool(false),
+//				Name:                    pulumi.String("test-rdb"),
+//				NodeType:                pulumi.String("DB-DEV-S"),
 //				Engine:                  pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:             pulumi.Bool(true),
-//				NodeType:                pulumi.String("DB-DEV-S"),
-//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
 //				UserName:                pulumi.String("my_initial_user"),
+//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
+//				DisableBackup:           pulumi.Bool(false),
+//				BackupScheduleFrequency: pulumi.Int(24),
+//				BackupScheduleRetention: pulumi.Int(7),
 //			})
 //			if err != nil {
 //				return err
@@ -212,14 +216,14 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				LoadBalancers: scaleway.DatabaseInstanceLoadBalancerArray{
+//					nil,
+//				},
 //				NodeType: pulumi.String("DB-DEV-S"),
 //				Engine:   pulumi.String("PostgreSQL-15"),
 //				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
 //					PnId:       pn.ID(),
 //					EnableIpam: pulumi.Bool(true),
-//				},
-//				LoadBalancers: scaleway.DatabaseInstanceLoadBalancerArray{
-//					nil,
 //				},
 //			})
 //			if err != nil {
@@ -246,8 +250,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				Engine:   pulumi.String("PostgreSQL-15"),
 //				NodeType: pulumi.String("db-dev-s"),
+//				Engine:   pulumi.String("PostgreSQL-15"),
 //			})
 //			if err != nil {
 //				return err

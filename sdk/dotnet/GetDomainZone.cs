@@ -25,6 +25,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get zone
         ///     var main = Scaleway.GetDomainZone.Invoke(new()
         ///     {
         ///         Domain = "scaleway-terraform.com",
@@ -50,6 +51,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get zone
         ///     var main = Scaleway.GetDomainZone.Invoke(new()
         ///     {
         ///         Domain = "scaleway-terraform.com",

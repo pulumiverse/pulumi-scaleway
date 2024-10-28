@@ -25,6 +25,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.IotHub("main", new()
     ///     {
+    ///         Name = "test-iot",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 

@@ -16,24 +16,6 @@ namespace Pulumiverse.Scaleway
         /// Gets information about a Redis™ cluster.
         /// 
         /// For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myCluster = Scaleway.GetRedisCluster.Invoke(new()
-        ///     {
-        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetRedisClusterResult> InvokeAsync(GetRedisClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterArgs(), options.WithDefaults());
@@ -42,24 +24,6 @@ namespace Pulumiverse.Scaleway
         /// Gets information about a Redis™ cluster.
         /// 
         /// For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myCluster = Scaleway.GetRedisCluster.Invoke(new()
-        ///     {
-        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetRedisClusterResult> Invoke(GetRedisClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRedisClusterResult>("scaleway:index/getRedisCluster:getRedisCluster", args ?? new GetRedisClusterInvokeArgs(), options.WithDefaults());

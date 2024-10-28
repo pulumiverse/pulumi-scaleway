@@ -15,9 +15,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // For default project
  * const main = scaleway.getMnqSqs({});
+ * // For specific project
  * const forProject = scaleway.getMnqSqs({
- *     projectId: scaleway_account_project.main.id,
+ *     projectId: mainScalewayAccountProject.id,
  * });
  * ```
  */
@@ -71,9 +73,11 @@ export interface GetMnqSqsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // For default project
  * const main = scaleway.getMnqSqs({});
+ * // For specific project
  * const forProject = scaleway.getMnqSqs({
- *     projectId: scaleway_account_project.main.id,
+ *     projectId: mainScalewayAccountProject.id,
  * });
  * ```
  */

@@ -771,6 +771,69 @@ class BaremetalServer(pulumi.CustomResource):
             ssh_key_ids=[main.id])
         ```
 
+        ### With option
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.get_account_ssh_key(name="main")
+        my_os = scaleway.get_baremetal_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        private_network = scaleway.get_baremetal_option(zone="fr-par-2",
+            name="Private Network")
+        remote_access = scaleway.get_baremetal_option(zone="fr-par-2",
+            name="Remote Access")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[main.id],
+            options=[
+                {
+                    "id": private_network.option_id,
+                },
+                {
+                    "id": remote_access.option_id,
+                },
+            ])
+        ```
+
+        ### With private network
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.get_account_ssh_key(name="main")
+        my_os = scaleway.get_baremetal_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        private_network = scaleway.get_baremetal_option(zone="fr-par-2",
+            name="Private Network")
+        pn = scaleway.VpcPrivateNetwork("pn",
+            region="fr-par",
+            name="baremetal_private_network")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[main.id],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn.id,
+            }])
+        ```
+
         ### Without install config
 
         ```python
@@ -847,6 +910,69 @@ class BaremetalServer(pulumi.CustomResource):
             offer="GP-BM1-S",
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main.id])
+        ```
+
+        ### With option
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.get_account_ssh_key(name="main")
+        my_os = scaleway.get_baremetal_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        private_network = scaleway.get_baremetal_option(zone="fr-par-2",
+            name="Private Network")
+        remote_access = scaleway.get_baremetal_option(zone="fr-par-2",
+            name="Remote Access")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[main.id],
+            options=[
+                {
+                    "id": private_network.option_id,
+                },
+                {
+                    "id": remote_access.option_id,
+                },
+            ])
+        ```
+
+        ### With private network
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.get_account_ssh_key(name="main")
+        my_os = scaleway.get_baremetal_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        private_network = scaleway.get_baremetal_option(zone="fr-par-2",
+            name="Private Network")
+        pn = scaleway.VpcPrivateNetwork("pn",
+            region="fr-par",
+            name="baremetal_private_network")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[main.id],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn.id,
+            }])
         ```
 
         ### Without install config

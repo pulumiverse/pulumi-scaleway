@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about an IOT Hub.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupIotHub(ctx, &scaleway.LookupIotHubArgs{
-//				HubId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupIotHub(ctx *pulumi.Context, args *LookupIotHubArgs, opts ...pulumi.InvokeOption) (*LookupIotHubResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIotHubResult

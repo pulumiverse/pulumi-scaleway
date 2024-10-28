@@ -19,20 +19,21 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.RedisCluster("main", {
- *     acls: [{
- *         description: "Allow all",
- *         ip: "0.0.0.0/0",
- *     }],
- *     clusterSize: 1,
+ *     name: "test_redis_basic",
+ *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
+ *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     tags: [
  *         "test",
  *         "redis",
  *     ],
+ *     clusterSize: 1,
  *     tlsEnabled: true,
- *     userName: "my_initial_user",
- *     version: "6.2.7",
+ *     acls: [{
+ *         ip: "0.0.0.0/0",
+ *         description: "Allow all",
+ *     }],
  * });
  * ```
  *
@@ -43,14 +44,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.RedisCluster("main", {
+ *     name: "test_redis_basic",
+ *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
+ *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     settings: {
  *         maxclients: "1000",
  *         "tcp-keepalive": "120",
  *     },
- *     userName: "my_initial_user",
- *     version: "6.2.7",
  * });
  * ```
  *
@@ -60,8 +62,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {name: "private-network"});
  * const main = new scaleway.RedisCluster("main", {
+ *     name: "test_redis_endpoints",
  *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
  *     userName: "my_initial_user",

@@ -384,7 +384,9 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main_account_ssh_key = scaleway.AccountSshKey("mainAccountSshKey", public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
+        main = scaleway.AccountSshKey("main",
+            name="main",
+            public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
         by_id = scaleway.get_baremetal_os(zone="fr-par-2",
             name="Ubuntu",
             version="20.04 LTS (Focal Fossa)")
@@ -394,8 +396,8 @@ class FlexibleIp(pulumi.CustomResource):
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=by_id.os_id,
-            ssh_key_ids=main_account_ssh_key.id)
-        main_flexible_ip = scaleway.FlexibleIp("mainFlexibleIp",
+            ssh_key_ids=main.id)
+        main_flexible_ip = scaleway.FlexibleIp("main",
             server_id=base.id,
             zone="fr-par-2")
         ```
@@ -466,7 +468,9 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main_account_ssh_key = scaleway.AccountSshKey("mainAccountSshKey", public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
+        main = scaleway.AccountSshKey("main",
+            name="main",
+            public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
         by_id = scaleway.get_baremetal_os(zone="fr-par-2",
             name="Ubuntu",
             version="20.04 LTS (Focal Fossa)")
@@ -476,8 +480,8 @@ class FlexibleIp(pulumi.CustomResource):
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=by_id.os_id,
-            ssh_key_ids=main_account_ssh_key.id)
-        main_flexible_ip = scaleway.FlexibleIp("mainFlexibleIp",
+            ssh_key_ids=main.id)
+        main_flexible_ip = scaleway.FlexibleIp("main",
             server_id=base.id,
             zone="fr-par-2")
         ```

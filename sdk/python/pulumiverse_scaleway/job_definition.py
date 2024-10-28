@@ -408,6 +408,7 @@ class JobDefinition(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.JobDefinition("main",
+            name="testjob",
             cpu_limit=140,
             memory_limit=256,
             image_uri="docker.io/alpine:latest",
@@ -464,6 +465,7 @@ class JobDefinition(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.JobDefinition("main",
+            name="testjob",
             cpu_limit=140,
             memory_limit=256,
             image_uri="docker.io/alpine:latest",

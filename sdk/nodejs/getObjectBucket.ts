@@ -17,9 +17,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {tags: {
- *     foo: "bar",
- * }});
+ * const main = new scaleway.ObjectBucket("main", {
+ *     name: "bucket.test.com",
+ *     tags: {
+ *         foo: "bar",
+ *     },
+ * });
  * const selected = scaleway.getObjectBucketOutput({
  *     name: main.id,
  * });
@@ -98,9 +101,12 @@ export interface GetObjectBucketResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {tags: {
- *     foo: "bar",
- * }});
+ * const main = new scaleway.ObjectBucket("main", {
+ *     name: "bucket.test.com",
+ *     tags: {
+ *         foo: "bar",
+ *     },
+ * });
  * const selected = scaleway.getObjectBucketOutput({
  *     name: main.id,
  * });

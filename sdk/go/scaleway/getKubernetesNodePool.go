@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about a Kubernetes Cluster's Pool.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupKubernetesNodePool(ctx, &scaleway.LookupKubernetesNodePoolArgs{
-//				PoolId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupKubernetesNodePool(ctx *pulumi.Context, args *LookupKubernetesNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesNodePoolResult

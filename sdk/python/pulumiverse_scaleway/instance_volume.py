@@ -305,9 +305,10 @@ class InstanceVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_volume = scaleway.InstanceVolume("serverVolume",
-            size_in_gb=20,
-            type="l_ssd")
+        server_volume = scaleway.InstanceVolume("server_volume",
+            type="l_ssd",
+            name="some-volume-name",
+            size_in_gb=20)
         ```
 
         ## Import
@@ -346,9 +347,10 @@ class InstanceVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_volume = scaleway.InstanceVolume("serverVolume",
-            size_in_gb=20,
-            type="l_ssd")
+        server_volume = scaleway.InstanceVolume("server_volume",
+            type="l_ssd",
+            name="some-volume-name",
+            size_in_gb=20)
         ```
 
         ## Import

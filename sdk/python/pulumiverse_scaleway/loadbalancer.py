@@ -578,8 +578,9 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         base = scaleway.Loadbalancer("base",
-            assign_flexible_ip=False,
-            type="LB-S")
+            name="private-lb",
+            type="LB-S",
+            assign_flexible_ip=False)
         ```
 
         ### With IPv6
@@ -595,61 +596,37 @@ class Loadbalancer(pulumi.CustomResource):
                 v4.id,
                 v6.id,
             ],
+            name="ipv6-lb",
             type="LB-S")
         ```
 
-        ### Multiple configurations
+        ### With IPAM IDs
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ### IP for Public Gateway
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        ### Scaleway Private Network
-        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
-        ### VPC Public Gateway Network
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
-            type="VPC-GW-S",
-            ip_id=main_vpc_public_gateway_ip.id)
-        ### VPC Public Gateway Network DHCP config
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="10.0.0.0/24")
-        ### VPC Gateway Network
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
-            gateway_id=main_vpc_public_gateway.id,
-            private_network_id=main_vpc_private_network.id,
-            dhcp_id=main_vpc_public_gateway_dhcp.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True)
-        ### Scaleway Instance
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
-            type="DEV1-S",
-            image="debian_bullseye",
-            enable_ipv6=False,
-            private_networks=[{
-                "pn_id": main_vpc_private_network.id,
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            vpc_id=vpc01.id,
+            ipv4_subnet={
+                "subnet": "172.16.32.0/22",
+            })
+        ip01 = scaleway.IpamIp("ip01",
+            address="172.16.32.7",
+            sources=[{
+                "private_network_id": pn01.id,
             }])
-        ### IP for LB IP
-        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-        ### Scaleway Private Network
-        main_index_vpc_private_network_vpc_private_network = scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork")
-        ### Scaleway Load Balancer
-        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-            ip_id=main_loadbalancer_ip.id,
+        v4 = scaleway.LoadbalancerIp("v4")
+        main = scaleway.Loadbalancer("main",
+            ip_ids=[v4.id],
+            name="my-lb",
             type="LB-S",
             private_networks=[{
-                "private_network_id": main_vpc_private_network.id,
-                "dhcp_config": True,
-            }],
-            opts = pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
+                "private_network_id": pn01.id,
+                "ipam_ids": ip01.id,
+            }])
         ```
-
-        ## Migration
-
-        In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
-        This change will not recreate your Load Balancer.
-
-        Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
 
         ## IP ID
 
@@ -664,8 +641,8 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.Loadbalancer("main",
-            type="LB-S",
-            zone="fr-par-1")
+            zone="fr-par-1",
+            type="LB-S")
         ```
 
         You will need to update it to:
@@ -674,9 +651,9 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-            ip_id=main_loadbalancer_ip.id,
+        main = scaleway.LoadbalancerIp("main")
+        main_loadbalancer = scaleway.Loadbalancer("main",
+            ip_id=main.id,
             zone="fr-par-1",
             type="LB-S",
             release_ip=False)
@@ -745,8 +722,9 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         base = scaleway.Loadbalancer("base",
-            assign_flexible_ip=False,
-            type="LB-S")
+            name="private-lb",
+            type="LB-S",
+            assign_flexible_ip=False)
         ```
 
         ### With IPv6
@@ -762,61 +740,37 @@ class Loadbalancer(pulumi.CustomResource):
                 v4.id,
                 v6.id,
             ],
+            name="ipv6-lb",
             type="LB-S")
         ```
 
-        ### Multiple configurations
+        ### With IPAM IDs
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ### IP for Public Gateway
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        ### Scaleway Private Network
-        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
-        ### VPC Public Gateway Network
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
-            type="VPC-GW-S",
-            ip_id=main_vpc_public_gateway_ip.id)
-        ### VPC Public Gateway Network DHCP config
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="10.0.0.0/24")
-        ### VPC Gateway Network
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
-            gateway_id=main_vpc_public_gateway.id,
-            private_network_id=main_vpc_private_network.id,
-            dhcp_id=main_vpc_public_gateway_dhcp.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True)
-        ### Scaleway Instance
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
-            type="DEV1-S",
-            image="debian_bullseye",
-            enable_ipv6=False,
-            private_networks=[{
-                "pn_id": main_vpc_private_network.id,
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            vpc_id=vpc01.id,
+            ipv4_subnet={
+                "subnet": "172.16.32.0/22",
+            })
+        ip01 = scaleway.IpamIp("ip01",
+            address="172.16.32.7",
+            sources=[{
+                "private_network_id": pn01.id,
             }])
-        ### IP for LB IP
-        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-        ### Scaleway Private Network
-        main_index_vpc_private_network_vpc_private_network = scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork")
-        ### Scaleway Load Balancer
-        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-            ip_id=main_loadbalancer_ip.id,
+        v4 = scaleway.LoadbalancerIp("v4")
+        main = scaleway.Loadbalancer("main",
+            ip_ids=[v4.id],
+            name="my-lb",
             type="LB-S",
             private_networks=[{
-                "private_network_id": main_vpc_private_network.id,
-                "dhcp_config": True,
-            }],
-            opts = pulumi.ResourceOptions(depends_on=[main_vpc_public_gateway]))
+                "private_network_id": pn01.id,
+                "ipam_ids": ip01.id,
+            }])
         ```
-
-        ## Migration
-
-        In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
-        This change will not recreate your Load Balancer.
-
-        Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
 
         ## IP ID
 
@@ -831,8 +785,8 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.Loadbalancer("main",
-            type="LB-S",
-            zone="fr-par-1")
+            zone="fr-par-1",
+            type="LB-S")
         ```
 
         You will need to update it to:
@@ -841,9 +795,9 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-        main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-            ip_id=main_loadbalancer_ip.id,
+        main = scaleway.LoadbalancerIp("main")
+        main_loadbalancer = scaleway.Loadbalancer("main",
+            ip_id=main.id,
             zone="fr-par-1",
             type="LB-S",
             release_ip=False)

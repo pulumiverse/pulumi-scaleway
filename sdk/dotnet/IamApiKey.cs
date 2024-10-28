@@ -25,11 +25,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ciCd = new Scaleway.IamApplication("ciCd");
+    ///     var ciCd = new Scaleway.IamApplication("ci_cd", new()
+    ///     {
+    ///         Name = "My application",
+    ///     });
     /// 
     ///     var main = new Scaleway.IamApiKey("main", new()
     ///     {
-    ///         ApplicationId = scaleway_iam_application.Main.Id,
+    ///         ApplicationId = mainScalewayIamApplication.Id,
     ///         Description = "a description",
     ///     });
     /// 
@@ -46,14 +49,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIamUser = new Scaleway.IamUser("mainIamUser", new()
+    ///     var main = new Scaleway.IamUser("main", new()
     ///     {
     ///         Email = "test@test.com",
     ///     });
     /// 
-    ///     var mainIamApiKey = new Scaleway.IamApiKey("mainIamApiKey", new()
+    ///     var mainIamApiKey = new Scaleway.IamApiKey("main", new()
     ///     {
-    ///         UserId = mainIamUser.Id,
+    ///         UserId = main.Id,
     ///         Description = "a description",
     ///     });
     /// 

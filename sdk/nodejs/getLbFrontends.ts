@@ -17,11 +17,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find frontends that share the same LB ID
  * const byLBID = scaleway.getLbFrontends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  * });
+ * // Find frontends by LB ID and name
  * const byLBIDAndName = scaleway.getLbFrontends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  *     name: "tf-frontend-datasource",
  * });
  * ```
@@ -85,11 +87,13 @@ export interface GetLbFrontendsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find frontends that share the same LB ID
  * const byLBID = scaleway.getLbFrontends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  * });
+ * // Find frontends by LB ID and name
  * const byLBIDAndName = scaleway.getLbFrontends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  *     name: "tf-frontend-datasource",
  * });
  * ```

@@ -17,11 +17,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGateway("main", {
+ *     name: "public_gateway_demo",
+ *     type: "VPC-GW-S",
  *     tags: [
  *         "demo",
  *         "terraform",
  *     ],
- *     type: "VPC-GW-S",
  * });
  * ```
  *

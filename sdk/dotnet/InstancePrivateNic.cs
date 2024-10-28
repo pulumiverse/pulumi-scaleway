@@ -28,8 +28,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
     ///     {
-    ///         PrivateNetworkId = "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
     ///         ServerId = "fr-par-1/11111111-1111-1111-1111-111111111111",
+    ///         PrivateNetworkId = "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
     ///     });
     /// 
     /// });
@@ -47,6 +47,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
+    ///         Name = "private_network_instance",
     ///         Zone = "fr-par-2",
     ///     });
     /// 

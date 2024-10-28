@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "someBucket", &scaleway.ObjectBucketArgs{
+//			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("some-unique-name"),
 //				Tags: pulumi.StringMap{
 //					"key": pulumi.String("value"),
 //				},
@@ -56,7 +57,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "someBucket", &scaleway.ObjectBucketArgs{
+//			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
+//				Name:      pulumi.String("some-unique-name"),
 //				ProjectId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
 //			if err != nil {
@@ -83,14 +85,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Name:   pulumi.String("mybuckectid"),
+//				Region: pulumi.String("fr-par"),
 //				LifecycleRules: scaleway.ObjectBucketLifecycleRuleArray{
 //					&scaleway.ObjectBucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id1"),
+//						Prefix:  pulumi.String("path1/"),
 //						Enabled: pulumi.Bool(true),
 //						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(365),
 //						},
-//						Id:     pulumi.String("id1"),
-//						Prefix: pulumi.String("path1/"),
 //						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
 //							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
 //								Days:         pulumi.Int(120),
@@ -99,28 +103,28 @@ import (
 //						},
 //					},
 //					&scaleway.ObjectBucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id2"),
+//						Prefix:  pulumi.String("path2/"),
 //						Enabled: pulumi.Bool(true),
 //						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(50),
 //						},
-//						Id:     pulumi.String("id2"),
-//						Prefix: pulumi.String("path2/"),
 //					},
 //					&scaleway.ObjectBucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id3"),
+//						Prefix:  pulumi.String("path3/"),
 //						Enabled: pulumi.Bool(false),
-//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
-//							Days: pulumi.Int(1),
-//						},
-//						Id:     pulumi.String("id3"),
-//						Prefix: pulumi.String("path3/"),
 //						Tags: pulumi.StringMap{
 //							"tagKey":    pulumi.String("tagValue"),
 //							"terraform": pulumi.String("hashicorp"),
 //						},
+//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
+//							Days: pulumi.Int(1),
+//						},
 //					},
 //					&scaleway.ObjectBucketLifecycleRuleArgs{
-//						Enabled: pulumi.Bool(true),
 //						Id:      pulumi.String("id4"),
+//						Enabled: pulumi.Bool(true),
 //						Tags: pulumi.StringMap{
 //							"tag1": pulumi.String("value1"),
 //						},
@@ -132,11 +136,10 @@ import (
 //						},
 //					},
 //					&scaleway.ObjectBucketLifecycleRuleArgs{
-//						AbortIncompleteMultipartUploadDays: pulumi.Int(30),
 //						Enabled:                            pulumi.Bool(true),
+//						AbortIncompleteMultipartUploadDays: pulumi.Int(30),
 //					},
 //				},
-//				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
 //				return err

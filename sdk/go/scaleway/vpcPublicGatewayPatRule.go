@@ -44,6 +44,7 @@ import (
 //				return err
 //			}
 //			srv01, err := scaleway.NewInstanceServer(ctx, "srv01", &scaleway.InstanceServerArgs{
+//				Name:            pulumi.String("my-server"),
 //				Type:            pulumi.String("PLAY2-NANO"),
 //				Image:           pulumi.String("ubuntu_jammy"),
 //				SecurityGroupId: sg01.ID(),
@@ -51,7 +52,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("my-pn"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -73,6 +76,7 @@ import (
 //				return err
 //			}
 //			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("my-pg"),
 //				Type: pulumi.String("VPC-GW-S"),
 //				IpId: ip01.ID(),
 //			})

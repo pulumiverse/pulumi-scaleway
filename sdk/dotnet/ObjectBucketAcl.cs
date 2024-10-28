@@ -21,11 +21,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var someBucket = new Scaleway.ObjectBucket("someBucket");
+    ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
+    ///     {
+    ///         Name = "some-unique-name",
+    ///     });
     /// 
     ///     var main = new Scaleway.ObjectBucketAcl("main", new()
     ///     {
-    ///         Bucket = scaleway_object_bucket.Main.Id,
+    ///         Bucket = mainScalewayObjectBucket.Id,
     ///         Acl = "private",
     ///     });
     /// 
@@ -42,11 +45,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket");
-    /// 
-    ///     var mainObjectBucketAcl = new Scaleway.ObjectBucketAcl("mainObjectBucketAcl", new()
+    ///     var main = new Scaleway.ObjectBucket("main", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Id,
+    ///         Name = "your-bucket",
+    ///     });
+    /// 
+    ///     var mainObjectBucketAcl = new Scaleway.ObjectBucketAcl("main", new()
+    ///     {
+    ///         Bucket = main.Id,
     ///         AccessControlPolicy = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyArgs
     ///         {
     ///             Grants = new[]

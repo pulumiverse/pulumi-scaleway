@@ -26,8 +26,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pnPriv", new()
+    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pn_priv", new()
     ///     {
+    ///         Name = "subnet_demo",
     ///         Tags = new[]
     ///         {
     ///             "demo",
@@ -48,8 +49,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pnPriv", new()
+    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pn_priv", new()
     ///     {
+    ///         Name = "subnet_demo",
+    ///         Tags = new[]
+    ///         {
+    ///             "demo",
+    ///             "terraform",
+    ///         },
     ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "192.168.0.0/24",
@@ -64,11 +71,6 @@ namespace Pulumiverse.Scaleway
     ///             {
     ///                 Subnet = "fd46:78ab:30b8:c7df::/64",
     ///             },
-    ///         },
-    ///         Tags = new[]
-    ///         {
-    ///             "demo",
-    ///             "terraform",
     ///         },
     ///     });
     /// 

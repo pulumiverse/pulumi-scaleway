@@ -16,13 +16,17 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const instance = new scaleway.DocumentdbInstance("instance", {
+ *     name: "test-document_db-basic",
  *     nodeType: "docdb-play2-pico",
  *     engine: "FerretDB-1",
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     volumeSizeInGb: 20,
  * });
- * const main = new scaleway.DocumentdbDatabase("main", {instanceId: instance.id});
+ * const main = new scaleway.DocumentdbDatabase("main", {
+ *     instanceId: instance.id,
+ *     name: "my-new-database",
+ * });
  * ```
  *
  * ## Import

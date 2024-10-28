@@ -21,13 +21,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     var mainIotHub = new Scaleway.IotHub("main", new()
     ///     {
+    ///         Name = "main",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
-    ///     var mainIotNetwork = new Scaleway.IotNetwork("mainIotNetwork", new()
+    ///     var main = new Scaleway.IotNetwork("main", new()
     ///     {
+    ///         Name = "main",
     ///         HubId = mainIotHub.Id,
     ///         Type = "sigfox",
     ///     });

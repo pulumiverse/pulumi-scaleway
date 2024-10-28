@@ -20,7 +20,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const backend01 = new scaleway.LoadbalancerBackend("backend01", {
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
+ *     name: "backend01",
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  * });
@@ -33,7 +34,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const backend01 = new scaleway.LoadbalancerBackend("backend01", {
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
+ *     name: "backend01",
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  *     healthCheckHttp: {

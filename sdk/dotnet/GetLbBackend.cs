@@ -28,17 +28,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mainLoadbalancerIp = new Scaleway.LoadbalancerIp("mainLoadbalancerIp");
+        ///     var main = new Scaleway.LoadbalancerIp("main");
         /// 
-        ///     var mainLoadbalancer = new Scaleway.Loadbalancer("mainLoadbalancer", new()
+        ///     var mainLoadbalancer = new Scaleway.Loadbalancer("main", new()
         ///     {
-        ///         IpId = mainLoadbalancerIp.Id,
+        ///         IpId = main.Id,
+        ///         Name = "data-test-lb-backend",
         ///         Type = "LB-S",
         ///     });
         /// 
-        ///     var mainLoadbalancerBackend = new Scaleway.LoadbalancerBackend("mainLoadbalancerBackend", new()
+        ///     var mainLoadbalancerBackend = new Scaleway.LoadbalancerBackend("main", new()
         ///     {
         ///         LbId = mainLoadbalancer.Id,
+        ///         Name = "backend01",
         ///         ForwardProtocol = "http",
         ///         ForwardPort = 80,
         ///     });
@@ -76,17 +78,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mainLoadbalancerIp = new Scaleway.LoadbalancerIp("mainLoadbalancerIp");
+        ///     var main = new Scaleway.LoadbalancerIp("main");
         /// 
-        ///     var mainLoadbalancer = new Scaleway.Loadbalancer("mainLoadbalancer", new()
+        ///     var mainLoadbalancer = new Scaleway.Loadbalancer("main", new()
         ///     {
-        ///         IpId = mainLoadbalancerIp.Id,
+        ///         IpId = main.Id,
+        ///         Name = "data-test-lb-backend",
         ///         Type = "LB-S",
         ///     });
         /// 
-        ///     var mainLoadbalancerBackend = new Scaleway.LoadbalancerBackend("mainLoadbalancerBackend", new()
+        ///     var mainLoadbalancerBackend = new Scaleway.LoadbalancerBackend("main", new()
         ///     {
         ///         LbId = mainLoadbalancer.Id,
+        ///         Name = "backend01",
         ///         ForwardProtocol = "http",
         ///         ForwardPort = 80,
         ///     });

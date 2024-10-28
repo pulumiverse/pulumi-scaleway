@@ -18,9 +18,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // For default project in default region
- * const mainMnqSns = new scaleway.MnqSns("mainMnqSns", {});
- * const mainMnqSnsCredentials = new scaleway.MnqSnsCredentials("mainMnqSnsCredentials", {
- *     projectId: mainMnqSns.projectId,
+ * const main = new scaleway.MnqSns("main", {});
+ * const mainMnqSnsCredentials = new scaleway.MnqSnsCredentials("main", {
+ *     projectId: main.projectId,
  *     permissions: {
  *         canManage: true,
  *         canPublish: true,
@@ -28,12 +28,13 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const topic = new scaleway.MnqSnsTopic("topic", {
- *     projectId: mainMnqSns.projectId,
+ *     projectId: main.projectId,
+ *     name: "my-topic",
  *     accessKey: mainMnqSnsCredentials.accessKey,
  *     secretKey: mainMnqSnsCredentials.secretKey,
  * });
- * const mainMnqSnsTopicSubscription = new scaleway.MnqSnsTopicSubscription("mainMnqSnsTopicSubscription", {
- *     projectId: mainMnqSns.projectId,
+ * const mainMnqSnsTopicSubscription = new scaleway.MnqSnsTopicSubscription("main", {
+ *     projectId: main.projectId,
  *     accessKey: mainMnqSnsCredentials.accessKey,
  *     secretKey: mainMnqSnsCredentials.secretKey,
  *     topicId: topic.id,

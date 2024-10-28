@@ -10,21 +10,6 @@ import * as utilities from "./utilities";
  * Gets information about multiple Load Balancers.
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getLbs({
- *     name: "foobar",
- *     zone: "fr-par-2",
- * });
- * const lbsByTags = scaleway.getLbs({
- *     tags: ["a tag"],
- * });
- * ```
  */
 export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbsResult> {
     args = args || {};
@@ -97,21 +82,6 @@ export interface GetLbsResult {
  * Gets information about multiple Load Balancers.
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getLbs({
- *     name: "foobar",
- *     zone: "fr-par-2",
- * });
- * const lbsByTags = scaleway.getLbs({
- *     tags: ["a tag"],
- * });
- * ```
  */
 export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbsResult> {
     return pulumi.output(args).apply((a: any) => getLbs(a, opts))

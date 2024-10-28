@@ -15,9 +15,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ciCd = new scaleway.IamApplication("ciCd", {});
+ * const ciCd = new scaleway.IamApplication("ci_cd", {name: "My application"});
  * const main = new scaleway.IamApiKey("main", {
- *     applicationId: scaleway_iam_application.main.id,
+ *     applicationId: mainScalewayIamApplication.id,
  *     description: "a description",
  * });
  * ```
@@ -28,9 +28,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIamUser = new scaleway.IamUser("mainIamUser", {email: "test@test.com"});
- * const mainIamApiKey = new scaleway.IamApiKey("mainIamApiKey", {
- *     userId: mainIamUser.id,
+ * const main = new scaleway.IamUser("main", {email: "test@test.com"});
+ * const mainIamApiKey = new scaleway.IamApiKey("main", {
+ *     userId: main.id,
  *     description: "a description",
  * });
  * ```

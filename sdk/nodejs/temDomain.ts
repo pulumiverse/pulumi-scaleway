@@ -18,7 +18,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.TemDomain("main", {acceptTos: true});
+ * const main = new scaleway.TemDomain("main", {
+ *     acceptTos: true,
+ *     name: "example.com",
+ * });
  * ```
  *
  * ### Add the required records to your DNS zone
@@ -29,7 +32,10 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const domainName = config.require("domainName");
- * const main = new scaleway.TemDomain("main", {acceptTos: true});
+ * const main = new scaleway.TemDomain("main", {
+ *     name: domainName,
+ *     acceptTos: true,
+ * });
  * const spf = new scaleway.DomainRecord("spf", {
  *     dnsZone: domainName,
  *     type: "TXT",
@@ -37,6 +43,7 @@ import * as utilities from "./utilities";
  * });
  * const dkim = new scaleway.DomainRecord("dkim", {
  *     dnsZone: domainName,
+ *     name: pulumi.interpolate`${main.projectId}._domainkey`,
  *     type: "TXT",
  *     data: main.dkimConfig,
  * });
@@ -47,6 +54,7 @@ import * as utilities from "./utilities";
  * });
  * const dmarc = new scaleway.DomainRecord("dmarc", {
  *     dnsZone: domainName,
+ *     name: main.dmarcName,
  *     type: "TXT",
  *     data: main.dmarcConfig,
  * });

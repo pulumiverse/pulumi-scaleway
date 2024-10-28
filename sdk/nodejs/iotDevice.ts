@@ -15,8 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
- * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {hubId: mainIotHub.id});
+ * const main = new scaleway.IotHub("main", {
+ *     name: "test-iot",
+ *     productPlan: "plan_shared",
+ * });
+ * const mainIotDevice = new scaleway.IotDevice("main", {
+ *     hubId: main.id,
+ *     name: "test-iot",
+ * });
  * ```
  *
  * ### With custom certificate
@@ -26,12 +32,16 @@ import * as utilities from "./utilities";
  * import * as local from "@pulumi/local";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const main = new scaleway.IotHub("main", {
+ *     name: "test-iot",
+ *     productPlan: "plan_shared",
+ * });
  * const deviceCert = local.getFile({
  *     filename: "device-certificate.pem",
  * });
- * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {
- *     hubId: mainIotHub.id,
+ * const mainIotDevice = new scaleway.IotDevice("main", {
+ *     hubId: main.id,
+ *     name: "test-iot",
  *     certificate: {
  *         crt: deviceCert.then(deviceCert => deviceCert.content),
  *     },

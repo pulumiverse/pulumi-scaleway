@@ -27,12 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by snapshot name
 //			_, err := scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
 //				Name: pulumi.StringRef("my-snapshot-name"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by snapshot ID
 //			_, err = scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
 //				SnapshotId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

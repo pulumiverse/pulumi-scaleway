@@ -147,15 +147,6 @@ def get_iam_ssh_key(name: Optional[str] = None,
     """
     Use this data source to get SSH key information based on its ID or name.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_iam_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str name: The SSH key name.
     :param str project_id: `project_id`) The ID of the project the SSH
@@ -191,15 +182,6 @@ def get_iam_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamSshKeyResult]:
     """
     Use this data source to get SSH key information based on its ID or name.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_iam_ssh_key(ssh_key_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str name: The SSH key name.

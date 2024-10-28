@@ -25,11 +25,12 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * const srv01 = new scaleway.InstanceServer("srv01", {
+ *     name: "my-server",
  *     type: "PLAY2-NANO",
  *     image: "ubuntu_jammy",
  *     securityGroupId: sg01.id,
  * });
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "my-pn"});
  * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
  *     serverId: srv01.id,
  *     privateNetworkId: pn01.id,
@@ -37,6 +38,7 @@ import * as utilities from "./utilities";
  * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
  * const ip01 = new scaleway.VpcPublicGatewayIp("ip01", {});
  * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     name: "my-pg",
  *     type: "VPC-GW-S",
  *     ipId: ip01.id,
  * });
@@ -143,11 +145,12 @@ export interface GetVpcPublicPatRuleResult {
  *     }],
  * });
  * const srv01 = new scaleway.InstanceServer("srv01", {
+ *     name: "my-server",
  *     type: "PLAY2-NANO",
  *     image: "ubuntu_jammy",
  *     securityGroupId: sg01.id,
  * });
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "my-pn"});
  * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
  *     serverId: srv01.id,
  *     privateNetworkId: pn01.id,
@@ -155,6 +158,7 @@ export interface GetVpcPublicPatRuleResult {
  * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
  * const ip01 = new scaleway.VpcPublicGatewayIp("ip01", {});
  * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     name: "my-pg",
  *     type: "VPC-GW-S",
  *     ipId: ip01.id,
  * });

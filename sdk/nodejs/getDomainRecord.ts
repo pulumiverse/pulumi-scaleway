@@ -15,12 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get record by name, type and data
  * const byContent = scaleway.getDomainRecord({
- *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
+ *     data: "1.2.3.4",
  * });
+ * // Get info by ID
  * const byId = scaleway.getDomainRecord({
  *     dnsZone: "domain.tld",
  *     recordId: "11111111-1111-1111-1111-111111111111",
@@ -126,12 +128,14 @@ export interface GetDomainRecordResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get record by name, type and data
  * const byContent = scaleway.getDomainRecord({
- *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
+ *     data: "1.2.3.4",
  * });
+ * // Get info by ID
  * const byId = scaleway.getDomainRecord({
  *     dnsZone: "domain.tld",
  *     recordId: "11111111-1111-1111-1111-111111111111",

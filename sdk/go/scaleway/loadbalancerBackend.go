@@ -33,7 +33,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewLoadbalancerBackend(ctx, "backend01", &scaleway.LoadbalancerBackendArgs{
-//				LbId:            pulumi.Any(scaleway_lb.Lb01.Id),
+//				LbId:            pulumi.Any(lb01.Id),
+//				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //			})
@@ -61,7 +62,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewLoadbalancerBackend(ctx, "backend01", &scaleway.LoadbalancerBackendArgs{
-//				LbId:            pulumi.Any(scaleway_lb.Lb01.Id),
+//				LbId:            pulumi.Any(lb01.Id),
+//				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //				HealthCheckHttp: &scaleway.LoadbalancerBackendHealthCheckHttpArgs{

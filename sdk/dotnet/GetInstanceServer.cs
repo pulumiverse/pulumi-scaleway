@@ -14,48 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about an instance server.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetInstanceServer.Invoke(new()
-        ///     {
-        ///         ServerId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetInstanceServerResult> InvokeAsync(GetInstanceServerArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an instance server.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetInstanceServer.Invoke(new()
-        ///     {
-        ///         ServerId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetInstanceServerResult> Invoke(GetInstanceServerInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceServerResult>("scaleway:index/getInstanceServer:getInstanceServer", args ?? new GetInstanceServerInvokeArgs(), options.WithDefaults());

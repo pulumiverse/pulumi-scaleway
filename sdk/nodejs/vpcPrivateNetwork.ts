@@ -18,10 +18,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pnPriv = new scaleway.VpcPrivateNetwork("pnPriv", {tags: [
- *     "demo",
- *     "terraform",
- * ]});
+ * const pnPriv = new scaleway.VpcPrivateNetwork("pn_priv", {
+ *     name: "subnet_demo",
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
+ * });
  * ```
  *
  * ### With subnets
@@ -30,7 +33,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pnPriv = new scaleway.VpcPrivateNetwork("pnPriv", {
+ * const pnPriv = new scaleway.VpcPrivateNetwork("pn_priv", {
+ *     name: "subnet_demo",
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
  *     ipv4Subnet: {
  *         subnet: "192.168.0.0/24",
  *     },
@@ -41,10 +49,6 @@ import * as utilities from "./utilities";
  *         {
  *             subnet: "fd46:78ab:30b8:c7df::/64",
  *         },
- *     ],
- *     tags: [
- *         "demo",
- *         "terraform",
  *     ],
  * });
  * ```

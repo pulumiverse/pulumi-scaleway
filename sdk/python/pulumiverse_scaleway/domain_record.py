@@ -473,27 +473,31 @@ class DomainRecord(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         www = scaleway.DomainRecord("www",
+            dns_zone="domain.tld",
+            name="www",
+            type="A",
             data="1.2.3.4",
-            dns_zone="domain.tld",
-            ttl=3600,
-            type="A")
+            ttl=3600)
         www2 = scaleway.DomainRecord("www2",
+            dns_zone="domain.tld",
+            name="www",
+            type="A",
             data="1.2.3.5",
-            dns_zone="domain.tld",
-            ttl=3600,
-            type="A")
+            ttl=3600)
         mx = scaleway.DomainRecord("mx",
+            dns_zone="domain.tld",
+            name="",
+            type="MX",
             data="mx.online.net.",
-            dns_zone="domain.tld",
-            priority=10,
             ttl=3600,
-            type="MX")
+            priority=10)
         mx2 = scaleway.DomainRecord("mx2",
-            data="mx-cache.online.net.",
             dns_zone="domain.tld",
-            priority=20,
+            name="",
+            type="MX",
+            data="mx-cache.online.net.",
             ttl=3600,
-            type="MX")
+            priority=20)
         ```
 
         ### With dynamic records
@@ -502,9 +506,12 @@ class DomainRecord(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        geo_ip = scaleway.DomainRecord("geoIp",
-            data="1.2.3.4",
+        geo_ip = scaleway.DomainRecord("geo_ip",
             dns_zone="domain.tld",
+            name="images",
+            type="A",
+            data="1.2.3.4",
+            ttl=3600,
             geo_ip={
                 "matches": [
                     {
@@ -517,44 +524,45 @@ class DomainRecord(pulumi.CustomResource):
                         "data": "4.3.2.1",
                     },
                 ],
-            },
-            ttl=3600,
-            type="A")
-        http_service = scaleway.DomainRecord("httpService",
-            data="1.2.3.4",
+            })
+        http_service = scaleway.DomainRecord("http_service",
             dns_zone="domain.tld",
+            name="app",
+            type="A",
+            data="1.2.3.4",
+            ttl=3600,
             http_service={
                 "ips": [
                     "1.2.3.5",
                     "1.2.3.6",
                 ],
                 "must_contain": "up",
-                "strategy": "hashed",
                 "url": "http://mywebsite.com/health",
                 "user_agent": "scw_service_up",
-            },
-            ttl=3600,
-            type="A")
+                "strategy": "hashed",
+            })
         view = scaleway.DomainRecord("view",
-            data="1.2.3.4",
             dns_zone="domain.tld",
-            ttl=3600,
+            name="db",
             type="A",
+            data="1.2.3.4",
+            ttl=3600,
             views=[
                 {
-                    "data": "1.2.3.5",
                     "subnet": "100.0.0.0/16",
+                    "data": "1.2.3.5",
                 },
                 {
-                    "data": "1.2.3.6",
                     "subnet": "100.1.0.0/16",
+                    "data": "1.2.3.6",
                 },
             ])
         weighted = scaleway.DomainRecord("weighted",
-            data="1.2.3.4",
             dns_zone="domain.tld",
-            ttl=3600,
+            name="web",
             type="A",
+            data="1.2.3.4",
+            ttl=3600,
             weighteds=[
                 {
                     "ip": "1.2.3.5",
@@ -574,9 +582,11 @@ class DomainRecord(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         config = pulumi.Config()
+        # Your project ID.
         project_id = config.require("projectId")
+        # The DNS Zone used for testing records.
         dns_zone = config.require("dnsZone")
-        public_ip = scaleway.InstanceIp("publicIp", project_id=project_id)
+        public_ip = scaleway.InstanceIp("public_ip", project_id=project_id)
         web = scaleway.InstanceServer("web",
             project_id=project_id,
             type="DEV1-S",
@@ -589,18 +599,21 @@ class DomainRecord(pulumi.CustomResource):
             root_volume={
                 "size_in_gb": 20,
             })
-        web_a = scaleway.DomainRecord("webA",
+        web_a = scaleway.DomainRecord("web_A",
             dns_zone=dns_zone,
+            name="web",
             type="A",
             data=web.public_ip,
             ttl=3600)
-        web_cname = scaleway.DomainRecord("webCname",
+        web_cname = scaleway.DomainRecord("web_cname",
             dns_zone=dns_zone,
+            name="www",
             type="CNAME",
             data=f"web.{dns_zone}.",
             ttl=3600)
-        web_alias = scaleway.DomainRecord("webAlias",
+        web_alias = scaleway.DomainRecord("web_alias",
             dns_zone=dns_zone,
+            name="",
             type="ALIAS",
             data=f"web.{dns_zone}.",
             ttl=3600)
@@ -657,27 +670,31 @@ class DomainRecord(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         www = scaleway.DomainRecord("www",
+            dns_zone="domain.tld",
+            name="www",
+            type="A",
             data="1.2.3.4",
-            dns_zone="domain.tld",
-            ttl=3600,
-            type="A")
+            ttl=3600)
         www2 = scaleway.DomainRecord("www2",
+            dns_zone="domain.tld",
+            name="www",
+            type="A",
             data="1.2.3.5",
-            dns_zone="domain.tld",
-            ttl=3600,
-            type="A")
+            ttl=3600)
         mx = scaleway.DomainRecord("mx",
+            dns_zone="domain.tld",
+            name="",
+            type="MX",
             data="mx.online.net.",
-            dns_zone="domain.tld",
-            priority=10,
             ttl=3600,
-            type="MX")
+            priority=10)
         mx2 = scaleway.DomainRecord("mx2",
-            data="mx-cache.online.net.",
             dns_zone="domain.tld",
-            priority=20,
+            name="",
+            type="MX",
+            data="mx-cache.online.net.",
             ttl=3600,
-            type="MX")
+            priority=20)
         ```
 
         ### With dynamic records
@@ -686,9 +703,12 @@ class DomainRecord(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        geo_ip = scaleway.DomainRecord("geoIp",
-            data="1.2.3.4",
+        geo_ip = scaleway.DomainRecord("geo_ip",
             dns_zone="domain.tld",
+            name="images",
+            type="A",
+            data="1.2.3.4",
+            ttl=3600,
             geo_ip={
                 "matches": [
                     {
@@ -701,44 +721,45 @@ class DomainRecord(pulumi.CustomResource):
                         "data": "4.3.2.1",
                     },
                 ],
-            },
-            ttl=3600,
-            type="A")
-        http_service = scaleway.DomainRecord("httpService",
-            data="1.2.3.4",
+            })
+        http_service = scaleway.DomainRecord("http_service",
             dns_zone="domain.tld",
+            name="app",
+            type="A",
+            data="1.2.3.4",
+            ttl=3600,
             http_service={
                 "ips": [
                     "1.2.3.5",
                     "1.2.3.6",
                 ],
                 "must_contain": "up",
-                "strategy": "hashed",
                 "url": "http://mywebsite.com/health",
                 "user_agent": "scw_service_up",
-            },
-            ttl=3600,
-            type="A")
+                "strategy": "hashed",
+            })
         view = scaleway.DomainRecord("view",
-            data="1.2.3.4",
             dns_zone="domain.tld",
-            ttl=3600,
+            name="db",
             type="A",
+            data="1.2.3.4",
+            ttl=3600,
             views=[
                 {
-                    "data": "1.2.3.5",
                     "subnet": "100.0.0.0/16",
+                    "data": "1.2.3.5",
                 },
                 {
-                    "data": "1.2.3.6",
                     "subnet": "100.1.0.0/16",
+                    "data": "1.2.3.6",
                 },
             ])
         weighted = scaleway.DomainRecord("weighted",
-            data="1.2.3.4",
             dns_zone="domain.tld",
-            ttl=3600,
+            name="web",
             type="A",
+            data="1.2.3.4",
+            ttl=3600,
             weighteds=[
                 {
                     "ip": "1.2.3.5",
@@ -758,9 +779,11 @@ class DomainRecord(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         config = pulumi.Config()
+        # Your project ID.
         project_id = config.require("projectId")
+        # The DNS Zone used for testing records.
         dns_zone = config.require("dnsZone")
-        public_ip = scaleway.InstanceIp("publicIp", project_id=project_id)
+        public_ip = scaleway.InstanceIp("public_ip", project_id=project_id)
         web = scaleway.InstanceServer("web",
             project_id=project_id,
             type="DEV1-S",
@@ -773,18 +796,21 @@ class DomainRecord(pulumi.CustomResource):
             root_volume={
                 "size_in_gb": 20,
             })
-        web_a = scaleway.DomainRecord("webA",
+        web_a = scaleway.DomainRecord("web_A",
             dns_zone=dns_zone,
+            name="web",
             type="A",
             data=web.public_ip,
             ttl=3600)
-        web_cname = scaleway.DomainRecord("webCname",
+        web_cname = scaleway.DomainRecord("web_cname",
             dns_zone=dns_zone,
+            name="www",
             type="CNAME",
             data=f"web.{dns_zone}.",
             ttl=3600)
-        web_alias = scaleway.DomainRecord("webAlias",
+        web_alias = scaleway.DomainRecord("web_alias",
             dns_zone=dns_zone,
+            name="",
             type="ALIAS",
             data=f"web.{dns_zone}.",
             ttl=3600)

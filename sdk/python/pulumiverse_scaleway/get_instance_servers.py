@@ -127,16 +127,6 @@ def get_instance_servers(name: Optional[str] = None,
 
     ## Examples
 
-    ### Basic
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_instance_servers(name="myserver",
-        zone="fr-par-2")
-    ```
-
 
     :param str name: The server name used as filter. Servers with a name like it are listed.
     :param str project_id: The ID of the project the server is associated with.
@@ -171,16 +161,6 @@ def get_instance_servers_output(name: Optional[pulumi.Input[Optional[str]]] = No
     Gets information about multiple instance servers.
 
     ## Examples
-
-    ### Basic
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_instance_servers(name="myserver",
-        zone="fr-par-2")
-    ```
 
 
     :param str name: The server name used as filter. Servers with a name like it are listed.

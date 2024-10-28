@@ -27,10 +27,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
 //			_, err := scaleway.LookupDatabasePrivilege(ctx, &scaleway.LookupDatabasePrivilegeArgs{
-//				DatabaseName: "my-database",
 //				InstanceId:   "11111111-1111-111111111111",
 //				UserName:     "my-user",
+//				DatabaseName: "my-database",
 //			}, nil)
 //			if err != nil {
 //				return err

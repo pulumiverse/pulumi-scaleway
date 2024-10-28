@@ -174,16 +174,6 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
     """
     Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_offer = scaleway.get_baremetal_offer(offer_id="25dcf38b-c90c-4b18-97a2-6956e9d1e113",
-        zone="fr-par-2")
-    ```
-
 
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
@@ -223,16 +213,6 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOfferResult]:
     """
     Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_offer = scaleway.get_baremetal_offer(offer_id="25dcf38b-c90c-4b18-97a2-6956e9d1e113",
-        zone="fr-par-2")
-    ```
 
 
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.

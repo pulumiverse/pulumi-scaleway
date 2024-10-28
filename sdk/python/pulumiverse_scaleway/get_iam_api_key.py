@@ -145,6 +145,7 @@ def get_iam_api_key(access_key: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get api key infos by id (access_key)
     main = scaleway.get_iam_api_key(access_key="SCWABCDEFGHIJKLMNOPQ")
     ```
 
@@ -182,6 +183,7 @@ def get_iam_api_key_output(access_key: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get api key infos by id (access_key)
     main = scaleway.get_iam_api_key(access_key="SCWABCDEFGHIJKLMNOPQ")
     ```
 

@@ -34,8 +34,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const base = new scaleway.Loadbalancer("base", {
- *     assignFlexibleIp: false,
+ *     name: "private-lb",
  *     type: "LB-S",
+ *     assignFlexibleIp: false,
  * });
  * ```
  *
@@ -52,67 +53,41 @@ import * as utilities from "./utilities";
  *         v4.id,
  *         v6.id,
  *     ],
+ *     name: "ipv6-lb",
  *     type: "LB-S",
  * });
  * ```
  *
- * ### Multiple configurations
+ * ### With IPAM IDs
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * //## IP for Public Gateway
- * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
- * //## Scaleway Private Network
- * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
- * //## VPC Public Gateway Network
- * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("mainVpcPublicGateway", {
- *     type: "VPC-GW-S",
- *     ipId: mainVpcPublicGatewayIp.id,
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     vpcId: vpc01.id,
+ *     ipv4Subnet: {
+ *         subnet: "172.16.32.0/22",
+ *     },
  * });
- * //## VPC Public Gateway Network DHCP config
- * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", {subnet: "10.0.0.0/24"});
- * //## VPC Gateway Network
- * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", {
- *     gatewayId: mainVpcPublicGateway.id,
- *     privateNetworkId: mainVpcPrivateNetwork.id,
- *     dhcpId: mainVpcPublicGatewayDhcp.id,
- *     cleanupDhcp: true,
- *     enableMasquerade: true,
- * });
- * //## Scaleway Instance
- * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
- *     type: "DEV1-S",
- *     image: "debian_bullseye",
- *     enableIpv6: false,
- *     privateNetworks: [{
- *         pnId: mainVpcPrivateNetwork.id,
+ * const ip01 = new scaleway.IpamIp("ip01", {
+ *     address: "172.16.32.7",
+ *     sources: [{
+ *         privateNetworkId: pn01.id,
  *     }],
  * });
- * //## IP for LB IP
- * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
- * //## Scaleway Private Network
- * const mainIndex_vpcPrivateNetworkVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork", {});
- * //## Scaleway Load Balancer
- * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
- *     ipId: mainLoadbalancerIp.id,
+ * const v4 = new scaleway.LoadbalancerIp("v4", {});
+ * const main = new scaleway.Loadbalancer("main", {
+ *     ipIds: [v4.id],
+ *     name: "my-lb",
  *     type: "LB-S",
  *     privateNetworks: [{
- *         privateNetworkId: mainVpcPrivateNetwork.id,
- *         dhcpConfig: true,
+ *         privateNetworkId: pn01.id,
+ *         ipamIds: ip01.id,
  *     }],
- * }, {
- *     dependsOn: [mainVpcPublicGateway],
  * });
  * ```
- *
- * ## Migration
- *
- * In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
- * This change will not recreate your Load Balancer.
- *
- * Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
  *
  * ## IP ID
  *
@@ -127,8 +102,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.Loadbalancer("main", {
- *     type: "LB-S",
  *     zone: "fr-par-1",
+ *     type: "LB-S",
  * });
  * ```
  *
@@ -138,9 +113,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
- * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
- *     ipId: mainLoadbalancerIp.id,
+ * const main = new scaleway.LoadbalancerIp("main", {});
+ * const mainLoadbalancer = new scaleway.Loadbalancer("main", {
+ *     ipId: main.id,
  *     zone: "fr-par-1",
  *     type: "LB-S",
  *     releaseIp: false,

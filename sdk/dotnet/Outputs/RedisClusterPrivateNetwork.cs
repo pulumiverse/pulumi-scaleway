@@ -42,16 +42,6 @@ namespace Pulumiverse.Scaleway.Outputs
         /// configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
         /// require updating the Private Network to add IPs.
         /// Your `service_ips` must be listed as follows:
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        /// });
-        /// ```
         /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>

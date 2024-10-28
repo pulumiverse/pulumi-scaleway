@@ -17,11 +17,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find acls that share the same frontend ID
  * const byFrontID = scaleway.getLbAcls({
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
  * });
+ * // Find acls by frontend ID and name
  * const byFrontIDAndName = scaleway.getLbAcls({
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
  *     name: "tf-acls-datasource",
  * });
  * ```
@@ -86,11 +88,13 @@ export interface GetLbAclsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find acls that share the same frontend ID
  * const byFrontID = scaleway.getLbAcls({
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
  * });
+ * // Find acls by frontend ID and name
  * const byFrontIDAndName = scaleway.getLbAcls({
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
  *     name: "tf-acls-datasource",
  * });
  * ```

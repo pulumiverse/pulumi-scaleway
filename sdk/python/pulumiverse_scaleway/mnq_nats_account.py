@@ -170,7 +170,7 @@ class MnqNatsAccount(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqNatsAccount("main")
+        main = scaleway.MnqNatsAccount("main", name="nats-account")
         ```
 
         ## Import
@@ -211,7 +211,7 @@ class MnqNatsAccount(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqNatsAccount("main")
+        main = scaleway.MnqNatsAccount("main", name="nats-account")
         ```
 
         ## Import

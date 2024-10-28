@@ -27,14 +27,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find acls that share the same frontend ID
         ///     var byFrontID = Scaleway.GetLbAcls.Invoke(new()
         ///     {
-        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         FrontendId = frt01.Id,
         ///     });
         /// 
+        ///     // Find acls by frontend ID and name
         ///     var byFrontIDAndName = Scaleway.GetLbAcls.Invoke(new()
         ///     {
-        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         FrontendId = frt01.Id,
         ///         Name = "tf-acls-datasource",
         ///     });
         /// 
@@ -59,14 +61,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find acls that share the same frontend ID
         ///     var byFrontID = Scaleway.GetLbAcls.Invoke(new()
         ///     {
-        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         FrontendId = frt01.Id,
         ///     });
         /// 
+        ///     // Find acls by frontend ID and name
         ///     var byFrontIDAndName = Scaleway.GetLbAcls.Invoke(new()
         ///     {
-        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         FrontendId = frt01.Id,
         ///         Name = "tf-acls-datasource",
         ///     });
         /// 

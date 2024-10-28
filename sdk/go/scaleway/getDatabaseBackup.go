@@ -34,8 +34,8 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
-//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //				Name:       pulumi.StringRef("mybackup"),
+//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err

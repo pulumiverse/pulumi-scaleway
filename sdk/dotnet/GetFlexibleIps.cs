@@ -26,6 +26,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find ips that share the same tags
         ///     var fipsByTags = Scaleway.GetFlexibleIps.Invoke(new()
         ///     {
         ///         Tags = new[]
@@ -34,6 +35,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
+        ///     // Find ips that share the same Server ID
         ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
         ///     {
         ///         Name = "EM-B112X-SSD",
@@ -41,6 +43,7 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var @base = new Scaleway.BaremetalServer("base", new()
         ///     {
+        ///         Name = "MyServer",
         ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
         ///         InstallConfigAfterward = true,
         ///     });
@@ -93,6 +96,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find ips that share the same tags
         ///     var fipsByTags = Scaleway.GetFlexibleIps.Invoke(new()
         ///     {
         ///         Tags = new[]
@@ -101,6 +105,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
+        ///     // Find ips that share the same Server ID
         ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
         ///     {
         ///         Name = "EM-B112X-SSD",
@@ -108,6 +113,7 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var @base = new Scaleway.BaremetalServer("base", new()
         ///     {
+        ///         Name = "MyServer",
         ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
         ///         InstallConfigAfterward = true,
         ///     });

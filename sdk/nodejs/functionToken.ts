@@ -16,16 +16,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainFunctionNamespace = new scaleway.FunctionNamespace("mainFunctionNamespace", {});
- * const mainFunction = new scaleway.Function("mainFunction", {
- *     namespaceId: mainFunctionNamespace.id,
+ * const main = new scaleway.FunctionNamespace("main", {name: "test-function-token-ns"});
+ * const mainFunction = new scaleway.Function("main", {
+ *     namespaceId: main.id,
  *     runtime: "go118",
  *     handler: "Handle",
  *     privacy: "private",
  * });
  * // Namespace Token
  * const namespace = new scaleway.FunctionToken("namespace", {
- *     namespaceId: mainFunctionNamespace.id,
+ *     namespaceId: main.id,
  *     expiresAt: "2022-10-18T11:35:15+02:00",
  * });
  * // Function Token

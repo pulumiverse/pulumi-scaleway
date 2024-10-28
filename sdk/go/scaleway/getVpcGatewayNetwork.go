@@ -28,9 +28,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
-//				GatewayId:        pulumi.Any(scaleway_vpc_public_gateway.Pg01.Id),
-//				PrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn01.Id),
-//				DhcpId:           pulumi.Any(scaleway_vpc_public_gateway_dhcp.Dhcp01.Id),
+//				GatewayId:        pulumi.Any(pg01.Id),
+//				PrivateNetworkId: pulumi.Any(pn01.Id),
+//				DhcpId:           pulumi.Any(dhcp01.Id),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			})
@@ -41,8 +41,8 @@ import (
 //				GatewayNetworkId: main.ID(),
 //			}, nil)
 //			_, err = scaleway.LookupVpcGatewayNetwork(ctx, &scaleway.LookupVpcGatewayNetworkArgs{
-//				GatewayId:        pulumi.StringRef(scaleway_vpc_public_gateway.Pg01.Id),
-//				PrivateNetworkId: pulumi.StringRef(scaleway_vpc_private_network.Pn01.Id),
+//				GatewayId:        pulumi.StringRef(pg01.Id),
+//				PrivateNetworkId: pulumi.StringRef(pn01.Id),
 //			}, nil)
 //			if err != nil {
 //				return err

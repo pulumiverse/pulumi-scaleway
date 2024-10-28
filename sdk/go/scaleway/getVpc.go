@@ -27,18 +27,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by name
 //			_, err := scaleway.LookupVpc(ctx, &scaleway.LookupVpcArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by ID
 //			_, err = scaleway.LookupVpc(ctx, &scaleway.LookupVpcArgs{
 //				VpcId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get default VPC info
 //			_, err = scaleway.LookupVpc(ctx, &scaleway.LookupVpcArgs{
 //				IsDefault: pulumi.BoolRef(true),
 //			}, nil)

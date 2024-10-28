@@ -259,15 +259,6 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
 
     For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_cluster = scaleway.get_redis_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str cluster_id: The Redis cluster ID.
            
@@ -316,15 +307,6 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
     Gets information about a Redis™ cluster.
 
     For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_cluster = scaleway.get_redis_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str cluster_id: The Redis cluster ID.

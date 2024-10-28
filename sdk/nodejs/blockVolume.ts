@@ -16,8 +16,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const blockVolume = new scaleway.BlockVolume("blockVolume", {
+ * const blockVolume = new scaleway.BlockVolume("block_volume", {
  *     iops: 5000,
+ *     name: "some-volume-name",
  *     sizeInGb: 20,
  * });
  * ```
@@ -29,13 +30,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const base = new scaleway.BlockVolume("base", {
+ *     name: "block-volume-base",
  *     iops: 5000,
  *     sizeInGb: 20,
  * });
- * const mainBlockSnapshot = new scaleway.BlockSnapshot("mainBlockSnapshot", {volumeId: base.id});
- * const mainBlockVolume = new scaleway.BlockVolume("mainBlockVolume", {
+ * const main = new scaleway.BlockSnapshot("main", {
+ *     name: "block-volume-from-snapshot",
+ *     volumeId: base.id,
+ * });
+ * const mainBlockVolume = new scaleway.BlockVolume("main", {
+ *     name: "block-volume-from-snapshot",
  *     iops: 5000,
- *     snapshotId: mainBlockSnapshot.id,
+ *     snapshotId: main.id,
  * });
  * ```
  *

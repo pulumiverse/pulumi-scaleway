@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     name: "default",
  * });
  * // For specific Project in default region
- * const forProject = new scaleway.MnqSns("forProject", {projectId: project.then(project => project.id)});
+ * const forProject = new scaleway.MnqSns("for_project", {projectId: project.then(project => project.id)});
  * ```
  *
  * ## Import

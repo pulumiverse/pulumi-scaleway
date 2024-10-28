@@ -151,8 +151,10 @@ class IamGroupMembership(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        group = scaleway.IamGroup("group", external_membership=True)
-        app = scaleway.IamApplication("app")
+        group = scaleway.IamGroup("group",
+            name="my_group",
+            external_membership=True)
+        app = scaleway.IamApplication("app", name="my_app")
         member = scaleway.IamGroupMembership("member",
             group_id=group.id,
             application_id=app.id)
@@ -198,8 +200,10 @@ class IamGroupMembership(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        group = scaleway.IamGroup("group", external_membership=True)
-        app = scaleway.IamApplication("app")
+        group = scaleway.IamGroup("group",
+            name="my_group",
+            external_membership=True)
+        app = scaleway.IamApplication("app", name="my_app")
         member = scaleway.IamGroupMembership("member",
             group_id=group.id,
             application_id=app.id)

@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about a registry namespace.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupRegistryNamespace(ctx, &scaleway.LookupRegistryNamespaceArgs{
-//				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupRegistryNamespaceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryNamespaceResult

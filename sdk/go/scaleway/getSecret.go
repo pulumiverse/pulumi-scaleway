@@ -31,17 +31,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//				Name:        pulumi.String("foo"),
 //				Description: pulumi.String("barr"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by secret ID
 //			_, err = scaleway.LookupSecret(ctx, &scaleway.LookupSecretArgs{
 //				SecretId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by secret Name
 //			_, err = scaleway.LookupSecret(ctx, &scaleway.LookupSecretArgs{
 //				Name: pulumi.StringRef("your_secret_name"),
 //			}, nil)

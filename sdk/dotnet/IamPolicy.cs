@@ -33,10 +33,14 @@ namespace Pulumiverse.Scaleway
     ///         Name = "default",
     ///     });
     /// 
-    ///     var app = new Scaleway.IamApplication("app");
-    /// 
-    ///     var objectReadOnly = new Scaleway.IamPolicy("objectReadOnly", new()
+    ///     var app = new Scaleway.IamApplication("app", new()
     ///     {
+    ///         Name = "my app",
+    ///     });
+    /// 
+    ///     var objectReadOnly = new Scaleway.IamPolicy("object_read_only", new()
+    ///     {
+    ///         Name = "my policy",
     ///         Description = "gives app readonly access to object storage in project",
     ///         ApplicationId = app.Id,
     ///         Rules = new[]
@@ -68,10 +72,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var app = new Scaleway.IamApplication("app");
-    /// 
-    ///     var objectReadOnly = new Scaleway.IamPolicy("objectReadOnly", new()
+    ///     var app = new Scaleway.IamApplication("app", new()
     ///     {
+    ///         Name = "my app",
+    ///     });
+    /// 
+    ///     var objectReadOnly = new Scaleway.IamPolicy("object_read_only", new()
+    ///     {
+    ///         Name = "my policy",
     ///         Description = "gives app readonly access to object storage in project",
     ///         ApplicationId = app.Id,
     ///         Rules = new[]

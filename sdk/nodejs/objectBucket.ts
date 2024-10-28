@@ -16,9 +16,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("someBucket", {tags: {
- *     key: "value",
- * }});
+ * const someBucket = new scaleway.ObjectBucket("some_bucket", {
+ *     name: "some-unique-name",
+ *     tags: {
+ *         key: "value",
+ *     },
+ * });
  * ```
  *
  * ### Creating the bucket in a specific project
@@ -27,7 +30,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("someBucket", {projectId: "11111111-1111-1111-1111-111111111111"});
+ * const someBucket = new scaleway.ObjectBucket("some_bucket", {
+ *     name: "some-unique-name",
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ * });
  * ```
  *
  * ### Using object lifecycle
@@ -37,42 +43,44 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.ObjectBucket("main", {
+ *     name: "mybuckectid",
+ *     region: "fr-par",
  *     lifecycleRules: [
  *         {
+ *             id: "id1",
+ *             prefix: "path1/",
  *             enabled: true,
  *             expiration: {
  *                 days: 365,
  *             },
- *             id: "id1",
- *             prefix: "path1/",
  *             transitions: [{
  *                 days: 120,
  *                 storageClass: "GLACIER",
  *             }],
  *         },
  *         {
+ *             id: "id2",
+ *             prefix: "path2/",
  *             enabled: true,
  *             expiration: {
  *                 days: 50,
  *             },
- *             id: "id2",
- *             prefix: "path2/",
  *         },
  *         {
- *             enabled: false,
- *             expiration: {
- *                 days: 1,
- *             },
  *             id: "id3",
  *             prefix: "path3/",
+ *             enabled: false,
  *             tags: {
  *                 tagKey: "tagValue",
  *                 terraform: "hashicorp",
  *             },
+ *             expiration: {
+ *                 days: 1,
+ *             },
  *         },
  *         {
- *             enabled: true,
  *             id: "id4",
+ *             enabled: true,
  *             tags: {
  *                 tag1: "value1",
  *             },
@@ -82,11 +90,10 @@ import * as utilities from "./utilities";
  *             }],
  *         },
  *         {
- *             abortIncompleteMultipartUploadDays: 30,
  *             enabled: true,
+ *             abortIncompleteMultipartUploadDays: 30,
  *         },
  *     ],
- *     region: "fr-par",
  * });
  * ```
  *

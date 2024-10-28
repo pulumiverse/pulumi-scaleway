@@ -164,8 +164,9 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
+        pn = scaleway.VpcPrivateNetwork("pn", name="my_private_network")
         instance = scaleway.DocumentdbInstance("instance",
+            name="test-document_db-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",
@@ -218,8 +219,9 @@ class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
+        pn = scaleway.VpcPrivateNetwork("pn", name="my_private_network")
         instance = scaleway.DocumentdbInstance("instance",
+            name="test-document_db-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",

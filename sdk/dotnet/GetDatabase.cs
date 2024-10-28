@@ -25,6 +25,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
         ///     var myDb = Scaleway.GetDatabase.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
@@ -50,6 +51,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
         ///     var myDb = Scaleway.GetDatabase.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",

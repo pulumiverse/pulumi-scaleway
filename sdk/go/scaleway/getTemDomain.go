@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about a transactional email domain.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupTemDomain(ctx, &scaleway.LookupTemDomainArgs{
-//				DomainId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupTemDomain(ctx *pulumi.Context, args *LookupTemDomainArgs, opts ...pulumi.InvokeOption) (*LookupTemDomainResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTemDomainResult

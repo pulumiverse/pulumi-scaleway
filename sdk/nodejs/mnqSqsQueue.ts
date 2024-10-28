@@ -17,18 +17,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainMnqSqs = new scaleway.MnqSqs("mainMnqSqs", {});
- * const mainMnqSqsCredentials = new scaleway.MnqSqsCredentials("mainMnqSqsCredentials", {
- *     projectId: mainMnqSqs.projectId,
+ * const main = new scaleway.MnqSqs("main", {});
+ * const mainMnqSqsCredentials = new scaleway.MnqSqsCredentials("main", {
+ *     projectId: main.projectId,
+ *     name: "sqs-credentials",
  *     permissions: {
  *         canManage: true,
  *         canReceive: false,
  *         canPublish: false,
  *     },
  * });
- * const mainMnqSqsQueue = new scaleway.MnqSqsQueue("mainMnqSqsQueue", {
- *     projectId: mainMnqSqs.projectId,
- *     sqsEndpoint: mainMnqSqs.endpoint,
+ * const mainMnqSqsQueue = new scaleway.MnqSqsQueue("main", {
+ *     projectId: main.projectId,
+ *     name: "my-queue",
+ *     sqsEndpoint: main.endpoint,
  *     accessKey: mainMnqSqsCredentials.accessKey,
  *     secretKey: mainMnqSqsCredentials.secretKey,
  * });

@@ -28,14 +28,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//			main, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("test-iot"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotDevice(ctx, "mainIotDevice", &scaleway.IotDeviceArgs{
-//				HubId: mainIotHub.ID(),
+//			_, err = scaleway.NewIotDevice(ctx, "main", &scaleway.IotDeviceArgs{
+//				HubId: main.ID(),
+//				Name:  pulumi.String("test-iot"),
 //			})
 //			if err != nil {
 //				return err
@@ -61,7 +63,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//			main, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("test-iot"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
@@ -73,8 +76,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotDevice(ctx, "mainIotDevice", &scaleway.IotDeviceArgs{
-//				HubId: mainIotHub.ID(),
+//			_, err = scaleway.NewIotDevice(ctx, "main", &scaleway.IotDeviceArgs{
+//				HubId: main.ID(),
+//				Name:  pulumi.String("test-iot"),
 //				Certificate: &scaleway.IotDeviceCertificateArgs{
 //					Crt: pulumi.String(deviceCert.Content),
 //				},

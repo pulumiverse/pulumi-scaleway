@@ -24,14 +24,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket", new()
+    ///     var main = new Scaleway.ObjectBucket("main", new()
     ///     {
+    ///         Name = "MyBucket",
     ///         Acl = "public-read",
     ///     });
     /// 
-    ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
+    ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("main", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Id,
+    ///         Bucket = main.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
@@ -52,14 +53,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket", new()
+    ///     var main = new Scaleway.ObjectBucket("main", new()
     ///     {
+    ///         Name = "MyBucket",
     ///         Acl = "public-read",
     ///     });
     /// 
-    ///     var mainObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", new()
+    ///     var mainObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("main", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Id,
+    ///         Bucket = main.Id,
     ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["Version"] = "2012-10-17",
@@ -84,9 +86,9 @@ namespace Pulumiverse.Scaleway
     ///         }),
     ///     });
     /// 
-    ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
+    ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("main", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Id,
+    ///         Bucket = main.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",

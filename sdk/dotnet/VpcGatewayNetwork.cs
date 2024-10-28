@@ -28,10 +28,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "my vpc",
+    ///     });
     /// 
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
+    ///         Name = "pn_test_network",
     ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.64.0/22",
@@ -41,6 +45,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
     ///     {
+    ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///     });
     /// 
@@ -71,10 +76,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "my vpc",
+    ///     });
     /// 
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
+    ///         Name = "pn_test_network",
     ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.64.0/22",
@@ -96,6 +105,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
     ///     {
+    ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///     });
     /// 
@@ -127,7 +137,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "pn_test_network",
+    ///     });
     /// 
     ///     var gw01 = new Scaleway.VpcPublicGatewayIp("gw01");
     /// 
@@ -139,6 +152,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
     ///     {
+    ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///         IpId = gw01.Id,
     ///     });
@@ -165,10 +179,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "pn_test_network",
+    ///     });
     /// 
     ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
     ///     {
+    ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///     });
     /// 

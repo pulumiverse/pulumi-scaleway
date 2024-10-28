@@ -236,7 +236,9 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     by_name = scaleway.get_loadbalancer(name="foobar")
+    # Get info by ID
     by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -294,7 +296,9 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     by_name = scaleway.get_loadbalancer(name="foobar")
+    # Get info by ID
     by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
     ```
 

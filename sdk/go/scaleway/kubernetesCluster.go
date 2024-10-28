@@ -35,6 +35,7 @@ import (
 //				return err
 //			}
 //			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("cilium"),
 //				PrivateNetworkId:          pn.ID(),
@@ -45,6 +46,7 @@ import (
 //			}
 //			_, err = scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
 //				ClusterId: cluster.ID(),
+//				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
 //				Size:      pulumi.Int(1),
 //			})
@@ -72,6 +74,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//				Name:                      pulumi.String("tf-cluster"),
 //				Type:                      pulumi.String("multicloud"),
 //				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("kilo"),
@@ -82,6 +85,7 @@ import (
 //			}
 //			_, err = scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
 //				ClusterId: cluster.ID(),
+//				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("external"),
 //				Size:      pulumi.Int(0),
 //				MinSize:   pulumi.Int(0),
@@ -116,6 +120,7 @@ import (
 //				return err
 //			}
 //			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//				Name:        pulumi.String("tf-cluster"),
 //				Description: pulumi.String("cluster made in terraform"),
 //				Version:     pulumi.String("1.29.1"),
 //				Cni:         pulumi.String("calico"),
@@ -139,12 +144,179 @@ import (
 //			}
 //			_, err = scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
 //				ClusterId:   cluster.ID(),
+//				Name:        pulumi.String("tf-pool"),
 //				NodeType:    pulumi.String("DEV1-M"),
 //				Size:        pulumi.Int(3),
 //				Autoscaling: pulumi.Bool(true),
 //				Autohealing: pulumi.Bool(true),
 //				MinSize:     pulumi.Int(1),
 //				MaxSize:     pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With the kubernetes provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-null/sdk/go/null"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//				Name:                      pulumi.String("tf-cluster"),
+//				Version:                   pulumi.String("1.29.1"),
+//				Cni:                       pulumi.String("cilium"),
+//				PrivateNetworkId:          pn.ID(),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pool, err := scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//				ClusterId: cluster.ID(),
+//				Name:      pulumi.String("tf-pool"),
+//				NodeType:  pulumi.String("DEV1-M"),
+//				Size:      pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
+//				Triggers: pulumi.StringMap{
+//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].Host, nil
+//					}).(pulumi.StringPtrOutput)),
+//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].Token, nil
+//					}).(pulumi.StringPtrOutput)),
+//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].ClusterCaCertificate, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pool,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// The `nullResource` is needed because when the cluster is created, it's status is `poolRequired`, but the kubeconfig can already be downloaded.
+// It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+//
+// ### With the Helm provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-helm/sdk/go/helm"
+//	"github.com/pulumi/pulumi-null/sdk/go/null"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//				Name:                      pulumi.String("tf-cluster"),
+//				Version:                   pulumi.String("1.29.1"),
+//				Cni:                       pulumi.String("cilium"),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//				PrivateNetworkId:          pn.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pool, err := scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//				ClusterId: cluster.ID(),
+//				Name:      pulumi.String("tf-pool"),
+//				NodeType:  pulumi.String("DEV1-M"),
+//				Size:      pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
+//				Triggers: pulumi.StringMap{
+//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].Host, nil
+//					}).(pulumi.StringPtrOutput)),
+//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].Token, nil
+//					}).(pulumi.StringPtrOutput)),
+//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].ClusterCaCertificate, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pool,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			nginxIp, err := scaleway.NewLoadbalancerIp(ctx, "nginx_ip", &scaleway.LoadbalancerIpArgs{
+//				Zone:      pulumi.String("fr-par-1"),
+//				ProjectId: cluster.ProjectId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = helm.NewRelease(ctx, "nginx_ingress", &helm.ReleaseArgs{
+//				Name:       "nginx-ingress",
+//				Namespace:  "kube-system",
+//				Repository: "https://kubernetes.github.io/ingress-nginx",
+//				Chart:      "ingress-nginx",
+//				Set: []map[string]interface{}{
+//					map[string]interface{}{
+//						"name":  "controller.service.loadBalancerIP",
+//						"value": nginxIp.IpAddress,
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.config.use-proxy-protocol",
+//						"value": "true",
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2",
+//						"value": "true",
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone",
+//						"value": nginxIp.Zone,
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.service.externalTrafficPolicy",
+//						"value": "Local",
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err

@@ -104,6 +104,7 @@ def get_cockpit(project_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get default project's cockpit
     main = scaleway.get_cockpit()
     ```
 
@@ -111,6 +112,7 @@ def get_cockpit(project_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get a specific project's cockpit
     main = scaleway.get_cockpit(project_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -148,6 +150,7 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get default project's cockpit
     main = scaleway.get_cockpit()
     ```
 
@@ -155,6 +158,7 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get a specific project's cockpit
     main = scaleway.get_cockpit(project_id="11111111-1111-1111-1111-111111111111")
     ```
 

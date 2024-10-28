@@ -30,7 +30,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pnPriv", &scaleway.VpcPrivateNetworkArgs{
+//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pn_priv", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("subnet_demo"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
 //					pulumi.String("terraform"),
@@ -59,7 +60,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pnPriv", &scaleway.VpcPrivateNetworkArgs{
+//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pn_priv", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("subnet_demo"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("demo"),
+//					pulumi.String("terraform"),
+//				},
 //				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("192.168.0.0/24"),
 //				},
@@ -70,10 +76,6 @@ import (
 //					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
 //						Subnet: pulumi.String("fd46:78ab:30b8:c7df::/64"),
 //					},
-//				},
-//				Tags: pulumi.StringArray{
-//					pulumi.String("demo"),
-//					pulumi.String("terraform"),
 //				},
 //			})
 //			if err != nil {

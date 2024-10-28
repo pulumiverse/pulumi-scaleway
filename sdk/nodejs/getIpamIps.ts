@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
@@ -39,6 +39,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const redis01 = new scaleway.RedisCluster("redis01", {
+ *     name: "my_redis_cluster",
  *     version: "7.0.5",
  *     nodeType: "RED1-XS",
  *     userName: "my_initial_user",
@@ -182,7 +183,7 @@ export interface GetIpamIpsResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
@@ -190,6 +191,7 @@ export interface GetIpamIpsResult {
  *     },
  * });
  * const redis01 = new scaleway.RedisCluster("redis01", {
+ *     name: "my_redis_cluster",
  *     version: "7.0.5",
  *     nodeType: "RED1-XS",
  *     userName: "my_initial_user",

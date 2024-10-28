@@ -243,9 +243,9 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_flexible_ip = scaleway.FlexibleIp("mainFlexibleIp")
-        main_flexible_ip_mac_address = scaleway.FlexibleIpMacAddress("mainFlexibleIpMacAddress",
-            flexible_ip_id=main_flexible_ip.id,
+        main = scaleway.FlexibleIp("main")
+        main_flexible_ip_mac_address = scaleway.FlexibleIpMacAddress("main",
+            flexible_ip_id=main.id,
             type="kvm")
         ```
 
@@ -258,6 +258,7 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
 
         my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
         base = scaleway.BaremetalServer("base",
+            name="TestAccScalewayBaremetalServer_WithoutInstallConfig",
             offer=my_offer.offer_id,
             install_config_afterward=True)
         ip01 = scaleway.FlexibleIp("ip01", server_id=base.id)
@@ -308,9 +309,9 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_flexible_ip = scaleway.FlexibleIp("mainFlexibleIp")
-        main_flexible_ip_mac_address = scaleway.FlexibleIpMacAddress("mainFlexibleIpMacAddress",
-            flexible_ip_id=main_flexible_ip.id,
+        main = scaleway.FlexibleIp("main")
+        main_flexible_ip_mac_address = scaleway.FlexibleIpMacAddress("main",
+            flexible_ip_id=main.id,
             type="kvm")
         ```
 
@@ -323,6 +324,7 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
 
         my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
         base = scaleway.BaremetalServer("base",
+            name="TestAccScalewayBaremetalServer_WithoutInstallConfig",
             offer=my_offer.offer_id,
             install_config_afterward=True)
         ip01 = scaleway.FlexibleIp("ip01", server_id=base.id)

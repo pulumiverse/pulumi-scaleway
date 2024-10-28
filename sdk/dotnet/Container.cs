@@ -29,16 +29,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainContainerNamespace = new Scaleway.ContainerNamespace("mainContainerNamespace", new()
+    ///     var main = new Scaleway.ContainerNamespace("main", new()
     ///     {
+    ///         Name = "my-ns-test",
     ///         Description = "test container",
     ///     });
     /// 
-    ///     var mainContainer = new Scaleway.Container("mainContainer", new()
+    ///     var mainContainer = new Scaleway.Container("main", new()
     ///     {
+    ///         Name = "my-container-02",
     ///         Description = "environment variables test",
-    ///         NamespaceId = mainContainerNamespace.Id,
-    ///         RegistryImage = mainContainerNamespace.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/alpine:test"),
+    ///         NamespaceId = main.Id,
+    ///         RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/alpine:test"),
     ///         Port = 9997,
     ///         CpuLimit = 140,
     ///         MemoryLimit = 256,

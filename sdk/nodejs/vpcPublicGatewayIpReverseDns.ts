@@ -14,16 +14,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
- * const tfA = new scaleway.DomainRecord("tfA", {
+ * const main = new scaleway.VpcPublicGatewayIp("main", {});
+ * const tfA = new scaleway.DomainRecord("tf_A", {
  *     dnsZone: "example.com",
+ *     name: "tf",
  *     type: "A",
- *     data: mainVpcPublicGatewayIp.address,
+ *     data: main.address,
  *     ttl: 3600,
  *     priority: 1,
  * });
- * const mainVpcPublicGatewayIpReverseDns = new scaleway.VpcPublicGatewayIpReverseDns("mainVpcPublicGatewayIpReverseDns", {
- *     gatewayIpId: mainVpcPublicGatewayIp.id,
+ * const mainVpcPublicGatewayIpReverseDns = new scaleway.VpcPublicGatewayIpReverseDns("main", {
+ *     gatewayIpId: main.id,
  *     reverse: "tf.example.com",
  * });
  * ```

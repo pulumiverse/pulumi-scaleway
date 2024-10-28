@@ -28,12 +28,13 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.FunctionTrigger("main", new()
     ///     {
-    ///         FunctionId = scaleway_function.Main.Id,
+    ///         FunctionId = mainScalewayFunction.Id,
+    ///         Name = "my-trigger",
     ///         Sqs = new Scaleway.Inputs.FunctionTriggerSqsArgs
     ///         {
-    ///             ProjectId = scaleway_mnq_sqs.Main.Project_id,
+    ///             ProjectId = mainScalewayMnqSqs.ProjectId,
     ///             Queue = "MyQueue",
-    ///             Region = scaleway_mnq_sqs.Main.Region,
+    ///             Region = mainScalewayMnqSqs.Region,
     ///         },
     ///     });
     /// 
@@ -52,12 +53,13 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.FunctionTrigger("main", new()
     ///     {
-    ///         FunctionId = scaleway_function.Main.Id,
+    ///         FunctionId = mainScalewayFunction.Id,
+    ///         Name = "my-trigger",
     ///         Nats = new Scaleway.Inputs.FunctionTriggerNatsArgs
     ///         {
-    ///             AccountId = scaleway_mnq_nats_account.Main.Id,
+    ///             AccountId = mainScalewayMnqNatsAccount.Id,
     ///             Subject = "MySubject",
-    ///             Region = scaleway_mnq_nats_account.Main.Region,
+    ///             Region = mainScalewayMnqNatsAccount.Region,
     ///         },
     ///     });
     /// 

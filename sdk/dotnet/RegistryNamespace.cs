@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.RegistryNamespace("main", new()
     ///     {
+    ///         Name = "main-cr",
     ///         Description = "Main container registry",
     ///         IsPublic = false,
     ///     });

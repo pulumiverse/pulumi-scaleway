@@ -17,8 +17,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {name: "my_private_network"});
  * const instance = new scaleway.DocumentdbInstance("instance", {
+ *     name: "test-document_db-basic",
  *     nodeType: "docdb-play2-pico",
  *     engine: "FerretDB-1",
  *     userName: "my_initial_user",

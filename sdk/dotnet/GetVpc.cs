@@ -25,16 +25,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by name
         ///     var byName = Scaleway.GetVpc.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
+        ///     // Get info by ID
         ///     var byId = Scaleway.GetVpc.Invoke(new()
         ///     {
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
+        ///     // Get default VPC info
         ///     var @default = Scaleway.GetVpc.Invoke(new()
         ///     {
         ///         IsDefault = true,
@@ -59,16 +62,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by name
         ///     var byName = Scaleway.GetVpc.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
+        ///     // Get info by ID
         ///     var byId = Scaleway.GetVpc.Invoke(new()
         ///     {
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
+        ///     // Get default VPC info
         ///     var @default = Scaleway.GetVpc.Invoke(new()
         ///     {
         ///         IsDefault = true,

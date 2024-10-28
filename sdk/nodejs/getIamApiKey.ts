@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get api key infos by id (access_key)
  * const main = scaleway.getIamApiKey({
  *     accessKey: "SCWABCDEFGHIJKLMNOPQ",
  * });
@@ -64,6 +65,7 @@ export interface GetIamApiKeyResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get api key infos by id (access_key)
  * const main = scaleway.getIamApiKey({
  *     accessKey: "SCWABCDEFGHIJKLMNOPQ",
  * });

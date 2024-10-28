@@ -17,9 +17,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find routes that share the same frontend ID
  * const byFrontendID = scaleway.getLbRoutes({
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
  * });
+ * // Find routes by frontend ID and zone
  * const myKey = scaleway.getLbRoutes({
  *     frontendId: "11111111-1111-1111-1111-111111111111",
  *     zone: "fr-par-2",
@@ -80,9 +82,11 @@ export interface GetLbRoutesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find routes that share the same frontend ID
  * const byFrontendID = scaleway.getLbRoutes({
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
  * });
+ * // Find routes by frontend ID and zone
  * const myKey = scaleway.getLbRoutes({
  *     frontendId: "11111111-1111-1111-1111-111111111111",
  *     zone: "fr-par-2",

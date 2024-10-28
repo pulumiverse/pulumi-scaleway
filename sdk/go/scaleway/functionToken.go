@@ -30,12 +30,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, "mainFunctionNamespace", nil)
+//			main, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//				Name: pulumi.String("test-function-token-ns"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			mainFunction, err := scaleway.NewFunction(ctx, "mainFunction", &scaleway.FunctionArgs{
-//				NamespaceId: mainFunctionNamespace.ID(),
+//			mainFunction, err := scaleway.NewFunction(ctx, "main", &scaleway.FunctionArgs{
+//				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
@@ -45,7 +47,7 @@ import (
 //			}
 //			// Namespace Token
 //			_, err = scaleway.NewFunctionToken(ctx, "namespace", &scaleway.FunctionTokenArgs{
-//				NamespaceId: mainFunctionNamespace.ID(),
+//				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {

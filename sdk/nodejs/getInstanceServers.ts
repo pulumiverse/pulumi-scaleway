@@ -10,18 +10,6 @@ import * as utilities from "./utilities";
  * Gets information about multiple instance servers.
  *
  * ## Examples
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getInstanceServers({
- *     name: "myserver",
- *     zone: "fr-par-2",
- * });
- * ```
  */
 export function getInstanceServers(args?: GetInstanceServersArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServersResult> {
     args = args || {};
@@ -94,18 +82,6 @@ export interface GetInstanceServersResult {
  * Gets information about multiple instance servers.
  *
  * ## Examples
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getInstanceServers({
- *     name: "myserver",
- *     zone: "fr-par-2",
- * });
- * ```
  */
 export function getInstanceServersOutput(args?: GetInstanceServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServersResult> {
     return pulumi.output(args).apply((a: any) => getInstanceServers(a, opts))

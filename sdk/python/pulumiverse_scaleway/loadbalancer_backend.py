@@ -1028,7 +1028,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         backend01 = scaleway.LoadbalancerBackend("backend01",
-            lb_id=scaleway_lb["lb01"]["id"],
+            lb_id=lb01["id"],
+            name="backend01",
             forward_protocol="http",
             forward_port=80)
         ```
@@ -1040,7 +1041,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         backend01 = scaleway.LoadbalancerBackend("backend01",
-            lb_id=scaleway_lb["lb01"]["id"],
+            lb_id=lb01["id"],
+            name="backend01",
             forward_protocol="http",
             forward_port=80,
             health_check_http={
@@ -1110,7 +1112,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         backend01 = scaleway.LoadbalancerBackend("backend01",
-            lb_id=scaleway_lb["lb01"]["id"],
+            lb_id=lb01["id"],
+            name="backend01",
             forward_protocol="http",
             forward_port=80)
         ```
@@ -1122,7 +1125,8 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         backend01 = scaleway.LoadbalancerBackend("backend01",
-            lb_id=scaleway_lb["lb01"]["id"],
+            lb_id=lb01["id"],
+            name="backend01",
             forward_protocol="http",
             forward_port=80,
             health_check_http={

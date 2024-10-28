@@ -219,15 +219,6 @@ def get_instance_image(architecture: Optional[str] = None,
     """
     Gets information about an instance image.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_instance_image(image_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
     :param str image_id: The image id. Only one of `name` and `image_id` should be specified.
@@ -275,15 +266,6 @@ def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceImageResult]:
     """
     Gets information about an instance image.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_instance_image(image_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.

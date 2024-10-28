@@ -24,27 +24,27 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const config = new pulumi.Config();
- * const userData = config.getObject("userData") || {
+ * const userData = config.getObject<Record<string, any>>("userData") || {
  *     "cloud-init": `#cloud-config
  * apt-update: true
  * apt-upgrade: true
  * `,
  *     foo: "bar",
  * };
- * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
+ * const mainInstanceServer = new scaleway.InstanceServer("main", {
  *     image: "ubuntu_focal",
  *     type: "DEV1-S",
  * });
  * // User data with a single value
- * const mainInstanceUserData = new scaleway.InstanceUserData("mainInstanceUserData", {
+ * const main = new scaleway.InstanceUserData("main", {
  *     serverId: mainInstanceServer.id,
  *     key: "foo",
  *     value: "bar",
  * });
  * // User Data with many keys.
  * const data: scaleway.InstanceUserData[] = [];
- * for (const range = {value: 0}; range.value < userData; range.value++) {
- *     data.push(new scaleway.InstanceUserData(`data-${range.value}`, {
+ * for (const range of Object.entries(userData).map(([k, v]) => ({key: k, value: v}))) {
+ *     data.push(new scaleway.InstanceUserData(`data-${range.key}`, {
  *         serverId: mainInstanceServer.id,
  *         key: range.key,
  *         value: range.value,

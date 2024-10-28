@@ -20,7 +20,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const acl01 = new scaleway.LoadbalancerAcl("acl01", {
- *     frontendId: scaleway_lb_frontend.frt01.id,
+ *     frontendId: frt01.id,
+ *     name: "acl01",
  *     description: "Exclude well-known IPs",
  *     index: 0,
  *     action: {

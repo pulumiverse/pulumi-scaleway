@@ -26,6 +26,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.IamSshKey("main", new()
     ///     {
+    ///         Name = "main",
     ///         PublicKey = "&lt;YOUR-PUBLIC-SSH-KEY&gt;",
     ///     });
     /// 

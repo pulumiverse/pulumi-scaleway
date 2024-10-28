@@ -145,7 +145,7 @@ class MnqSqs(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.get_account_project(name="default")
-        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
+        for_project = scaleway.MnqSqs("for_project", project_id=project.id)
         ```
 
         ## Import
@@ -196,7 +196,7 @@ class MnqSqs(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.get_account_project(name="default")
-        for_project = scaleway.MnqSqs("forProject", project_id=project.id)
+        for_project = scaleway.MnqSqs("for_project", project_id=project.id)
         ```
 
         ## Import

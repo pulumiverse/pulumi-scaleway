@@ -28,15 +28,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.LookupInstancePrivateNic(ctx, &scaleway.LookupInstancePrivateNicArgs{
-//				PrivateNicId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //				ServerId:     "11111111-1111-1111-1111-111111111111",
+//				PrivateNicId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.LookupInstancePrivateNic(ctx, &scaleway.LookupInstancePrivateNicArgs{
-//				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //				ServerId:         "11111111-1111-1111-1111-111111111111",
+//				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err

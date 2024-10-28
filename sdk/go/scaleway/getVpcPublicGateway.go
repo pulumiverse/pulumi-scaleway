@@ -28,6 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("demo"),
 //				Type: pulumi.String("VPC-GW-S"),
 //				Zone: pulumi.String("nl-ams-1"),
 //			})

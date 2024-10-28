@@ -24,10 +24,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serverVolume = new Scaleway.InstanceVolume("serverVolume", new()
+    ///     var serverVolume = new Scaleway.InstanceVolume("server_volume", new()
     ///     {
-    ///         SizeInGb = 20,
     ///         Type = "l_ssd",
+    ///         Name = "some-volume-name",
+    ///         SizeInGb = 20,
     ///     });
     /// 
     /// });

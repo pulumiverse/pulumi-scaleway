@@ -32,13 +32,14 @@ namespace Pulumiverse.Scaleway
     ///         SizeInGb = 20,
     ///     });
     /// 
-    ///     var volumeSnapshot = new Scaleway.InstanceSnapshot("volumeSnapshot", new()
+    ///     var volumeSnapshot = new Scaleway.InstanceSnapshot("volume_snapshot", new()
     ///     {
     ///         VolumeId = volume.Id,
     ///     });
     /// 
-    ///     var volumeImage = new Scaleway.InstanceImage("volumeImage", new()
+    ///     var volumeImage = new Scaleway.InstanceImage("volume_image", new()
     ///     {
+    ///         Name = "image_from_volume",
     ///         RootVolumeId = volumeSnapshot.Id,
     ///     });
     /// 
@@ -61,13 +62,14 @@ namespace Pulumiverse.Scaleway
     ///         Type = "DEV1-S",
     ///     });
     /// 
-    ///     var serverSnapshot = new Scaleway.InstanceSnapshot("serverSnapshot", new()
+    ///     var serverSnapshot = new Scaleway.InstanceSnapshot("server_snapshot", new()
     ///     {
-    ///         VolumeId = scaleway_instance_server.Main.Root_volume[0].Volume_id,
+    ///         VolumeId = main.RootVolume[0].VolumeId,
     ///     });
     /// 
-    ///     var serverImage = new Scaleway.InstanceImage("serverImage", new()
+    ///     var serverImage = new Scaleway.InstanceImage("server_image", new()
     ///     {
+    ///         Name = "image_from_server",
     ///         RootVolumeId = serverSnapshot.Id,
     ///     });
     /// 

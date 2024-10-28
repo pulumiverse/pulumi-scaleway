@@ -29,7 +29,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainDatabaseInstance, err := scaleway.NewDatabaseInstance(ctx, "mainDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-11"),
 //				IsHaCluster:   pulumi.Bool(true),
@@ -40,22 +41,24 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainDatabase, err := scaleway.NewDatabase(ctx, "mainDatabase", &scaleway.DatabaseArgs{
-//				InstanceId: mainDatabaseInstance.ID(),
+//			mainDatabase, err := scaleway.NewDatabase(ctx, "main", &scaleway.DatabaseArgs{
+//				InstanceId: main.ID(),
+//				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainDatabaseUser, err := scaleway.NewDatabaseUser(ctx, "mainDatabaseUser", &scaleway.DatabaseUserArgs{
-//				InstanceId: mainDatabaseInstance.ID(),
+//			mainDatabaseUser, err := scaleway.NewDatabaseUser(ctx, "main", &scaleway.DatabaseUserArgs{
+//				InstanceId: main.ID(),
+//				Name:       pulumi.String("my-db-user"),
 //				Password:   pulumi.String("thiZ_is_v&ry_s3cret"),
 //				IsAdmin:    pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabasePrivilege(ctx, "mainDatabasePrivilege", &scaleway.DatabasePrivilegeArgs{
-//				InstanceId:   mainDatabaseInstance.ID(),
+//			_, err = scaleway.NewDatabasePrivilege(ctx, "main", &scaleway.DatabasePrivilegeArgs{
+//				InstanceId:   main.ID(),
 //				UserName:     mainDatabaseUser.Name,
 //				DatabaseName: mainDatabase.Name,
 //				Permission:   pulumi.String("all"),

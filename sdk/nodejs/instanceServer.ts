@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const publicIp = new scaleway.InstanceIp("publicIp", {});
+ * const publicIp = new scaleway.InstanceIp("public_ip", {});
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
  *     image: "ubuntu_jammy",
@@ -105,30 +105,13 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With user data and cloud-init
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const web = new scaleway.InstanceServer("web", {
- *     type: "DEV1-S",
- *     image: "ubuntu_jammy",
- *     userData: {
- *         foo: "bar",
- *         "cloud-init": fs.readFileSync(`${path.module}/cloud-init.yml`, "utf8"),
- *     },
- * });
- * ```
- *
  * ### With private network
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "private_network_instance"});
  * const base = new scaleway.InstanceServer("base", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
@@ -147,12 +130,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const image = new scaleway.InstanceServer("image", {
+ *     type: "PRO2-XXS",
  *     image: "ubuntu_jammy",
  *     rootVolume: {
- *         sizeInGb: 100,
  *         volumeType: "b_ssd",
+ *         sizeInGb: 100,
  *     },
- *     type: "PRO2-XXS",
  * });
  * ```
  *
@@ -166,14 +149,14 @@ import * as utilities from "./utilities";
  * const snapshot = scaleway.getInstanceSnapshot({
  *     name: "my_snapshot",
  * });
- * const fromSnapshotInstanceVolume = new scaleway.InstanceVolume("fromSnapshotInstanceVolume", {
+ * const fromSnapshot = new scaleway.InstanceVolume("from_snapshot", {
  *     fromSnapshotId: snapshot.then(snapshot => snapshot.id),
  *     type: "b_ssd",
  * });
- * const fromSnapshotInstanceServer = new scaleway.InstanceServer("fromSnapshotInstanceServer", {
+ * const fromSnapshotInstanceServer = new scaleway.InstanceServer("from_snapshot", {
  *     type: "PRO2-XXS",
  *     rootVolume: {
- *         volumeId: fromSnapshotInstanceVolume.id,
+ *         volumeId: fromSnapshot.id,
  *     },
  * });
  * ```

@@ -14,42 +14,6 @@ import (
 // Gets information about multiple Load Balancer IP addresses.
 //
 // For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetLbIps(ctx, &scaleway.GetLbIpsArgs{
-//				IpCidrRange: pulumi.StringRef("0.0.0.0/0"),
-//				Zone:        pulumi.StringRef("fr-par-2"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.GetLbIps(ctx, &scaleway.GetLbIpsArgs{
-//				IpType: pulumi.StringRef("ipv4"),
-//				Tags: []string{
-//					"a tag",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetLbIps(ctx *pulumi.Context, args *GetLbIpsArgs, opts ...pulumi.InvokeOption) (*GetLbIpsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbIpsResult

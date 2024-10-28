@@ -13,9 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by namespace name
  * const byName = scaleway.getContainerNamespace({
  *     name: "my-namespace-name",
  * });
+ * // Get info by namespace ID
  * const byId = scaleway.getContainerNamespace({
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -101,9 +103,11 @@ export interface GetContainerNamespaceResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by namespace name
  * const byName = scaleway.getContainerNamespace({
  *     name: "my-namespace-name",
  * });
+ * // Get info by namespace ID
  * const byId = scaleway.getContainerNamespace({
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });

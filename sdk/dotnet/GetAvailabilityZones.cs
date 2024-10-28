@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by Region key
         ///     var main = Scaleway.GetAvailabilityZones.Invoke(new()
         ///     {
         ///         Region = "nl-ams",
@@ -55,6 +56,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by Region key
         ///     var main = Scaleway.GetAvailabilityZones.Invoke(new()
         ///     {
         ///         Region = "nl-ams",

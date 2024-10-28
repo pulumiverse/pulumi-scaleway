@@ -294,8 +294,10 @@ def get_baremetal_server(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by server name
     by_name = scaleway.get_baremetal_server(name="foobar",
         zone="fr-par-2")
+    # Get info by server id
     by_id = scaleway.get_baremetal_server(server_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -358,8 +360,10 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by server name
     by_name = scaleway.get_baremetal_server(name="foobar",
         zone="fr-par-2")
+    # Get info by server id
     by_id = scaleway.get_baremetal_server(server_id="11111111-1111-1111-1111-111111111111")
     ```
 

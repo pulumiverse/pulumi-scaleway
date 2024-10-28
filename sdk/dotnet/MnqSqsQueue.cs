@@ -27,11 +27,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainMnqSqs = new Scaleway.MnqSqs("mainMnqSqs");
+    ///     var main = new Scaleway.MnqSqs("main");
     /// 
-    ///     var mainMnqSqsCredentials = new Scaleway.MnqSqsCredentials("mainMnqSqsCredentials", new()
+    ///     var mainMnqSqsCredentials = new Scaleway.MnqSqsCredentials("main", new()
     ///     {
-    ///         ProjectId = mainMnqSqs.ProjectId,
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "sqs-credentials",
     ///         Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = true,
@@ -40,10 +41,11 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainMnqSqsQueue = new Scaleway.MnqSqsQueue("mainMnqSqsQueue", new()
+    ///     var mainMnqSqsQueue = new Scaleway.MnqSqsQueue("main", new()
     ///     {
-    ///         ProjectId = mainMnqSqs.ProjectId,
-    ///         SqsEndpoint = mainMnqSqs.Endpoint,
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "my-queue",
+    ///         SqsEndpoint = main.Endpoint,
     ///         AccessKey = mainMnqSqsCredentials.AccessKey,
     ///         SecretKey = mainMnqSqsCredentials.SecretKey,
     ///     });

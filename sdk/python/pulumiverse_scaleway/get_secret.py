@@ -172,8 +172,12 @@ def get_secret(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.Secret("main", description="barr")
+    main = scaleway.Secret("main",
+        name="foo",
+        description="barr")
+    # Get info by secret ID
     my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
+    # Get info by secret Name
     by_name = scaleway.get_secret(name="your_secret_name")
     ```
 
@@ -237,8 +241,12 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.Secret("main", description="barr")
+    main = scaleway.Secret("main",
+        name="foo",
+        description="barr")
+    # Get info by secret ID
     my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
+    # Get info by secret Name
     by_name = scaleway.get_secret(name="your_secret_name")
     ```
 

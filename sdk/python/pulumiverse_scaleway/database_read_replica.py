@@ -224,6 +224,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
+            name="test-rdb-rr-update",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
             is_ha_cluster=False,
@@ -247,6 +248,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
+            name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
             is_ha_cluster=False,
@@ -269,6 +271,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
+            name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
             is_ha_cluster=False,
@@ -324,6 +327,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
+            name="test-rdb-rr-update",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
             is_ha_cluster=False,
@@ -347,6 +351,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
+            name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
             is_ha_cluster=False,
@@ -369,6 +374,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DatabaseInstance("instance",
+            name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
             is_ha_cluster=False,

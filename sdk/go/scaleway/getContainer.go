@@ -33,22 +33,25 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainContainerNamespace, err := scaleway.NewContainerNamespace(ctx, "mainContainerNamespace", nil)
+//			main, err := scaleway.NewContainerNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainContainer, err := scaleway.NewContainer(ctx, "mainContainer", &scaleway.ContainerArgs{
-//				NamespaceId: mainContainerNamespace.ID(),
+//			mainContainer, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//				Name:        pulumi.String("test-container-data"),
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by container name
 //			_ = scaleway.LookupContainerOutput(ctx, scaleway.GetContainerOutputArgs{
-//				NamespaceId: mainContainerNamespace.ID(),
+//				NamespaceId: main.ID(),
 //				Name:        mainContainer.Name,
 //			}, nil)
+//			// Get info by container ID
 //			_ = scaleway.LookupContainerOutput(ctx, scaleway.GetContainerOutputArgs{
-//				NamespaceId: mainContainerNamespace.ID(),
+//				NamespaceId: main.ID(),
 //				ContainerId: mainContainer.ID(),
 //			}, nil)
 //			return nil

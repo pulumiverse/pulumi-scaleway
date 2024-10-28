@@ -170,15 +170,15 @@ class FunctionDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
-        main_function = scaleway.Function("mainFunction",
+        main_function_namespace = scaleway.FunctionNamespace("main")
+        main_function = scaleway.Function("main",
             namespace_id=main_function_namespace.id,
             runtime="go118",
             privacy="private",
             handler="Handle",
             zip_file="testfixture/gofunction.zip",
             deploy=True)
-        main_function_domain = scaleway.FunctionDomain("mainFunctionDomain",
+        main = scaleway.FunctionDomain("main",
             function_id=main_function.id,
             hostname="example.com",
             opts = pulumi.ResourceOptions(depends_on=[main_function]))
@@ -221,15 +221,15 @@ class FunctionDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
-        main_function = scaleway.Function("mainFunction",
+        main_function_namespace = scaleway.FunctionNamespace("main")
+        main_function = scaleway.Function("main",
             namespace_id=main_function_namespace.id,
             runtime="go118",
             privacy="private",
             handler="Handle",
             zip_file="testfixture/gofunction.zip",
             deploy=True)
-        main_function_domain = scaleway.FunctionDomain("mainFunctionDomain",
+        main = scaleway.FunctionDomain("main",
             function_id=main_function.id,
             hostname="example.com",
             opts = pulumi.ResourceOptions(depends_on=[main_function]))

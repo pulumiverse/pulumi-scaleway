@@ -325,7 +325,7 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
@@ -342,7 +342,7 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
@@ -361,7 +361,7 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv6_subnets=[{
@@ -412,7 +412,7 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
@@ -429,7 +429,7 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
@@ -448,7 +448,7 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv6_subnets=[{

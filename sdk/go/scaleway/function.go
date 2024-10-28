@@ -31,14 +31,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, "mainFunctionNamespace", &scaleway.FunctionNamespaceArgs{
+//			main, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//				Name:        pulumi.String("main-function-namespace"),
 //				Description: pulumi.String("Main function namespace"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFunction(ctx, "mainFunction", &scaleway.FunctionArgs{
-//				NamespaceId: mainFunctionNamespace.ID(),
+//			_, err = scaleway.NewFunction(ctx, "main", &scaleway.FunctionArgs{
+//				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),

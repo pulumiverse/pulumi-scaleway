@@ -29,9 +29,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceVolume(ctx, "serverVolume", &scaleway.InstanceVolumeArgs{
-//				SizeInGb: pulumi.Int(20),
+//			_, err := scaleway.NewInstanceVolume(ctx, "server_volume", &scaleway.InstanceVolumeArgs{
 //				Type:     pulumi.String("l_ssd"),
+//				Name:     pulumi.String("some-volume-name"),
+//				SizeInGb: pulumi.Int(20),
 //			})
 //			if err != nil {
 //				return err

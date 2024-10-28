@@ -27,7 +27,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "my vpc",
+    ///     });
     /// 
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
@@ -62,7 +65,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "my vpc",
+    ///     });
     /// 
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
@@ -98,7 +104,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "my vpc",
+    ///     });
     /// 
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {

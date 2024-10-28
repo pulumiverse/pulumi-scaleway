@@ -25,11 +25,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project");
+    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     {
+    ///         Name = "my-project",
+    ///     });
     /// 
     ///     var main = new Scaleway.CockpitToken("main", new()
     ///     {
     ///         ProjectId = project.Id,
+    ///         Name = "my-awesome-token",
     ///     });
     /// 
     /// });
@@ -43,12 +47,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project");
+    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     {
+    ///         Name = "my-project",
+    ///     });
     /// 
     ///     // Create a token that can read metrics and logs but not write
     ///     var main = new Scaleway.CockpitToken("main", new()
     ///     {
     ///         ProjectId = project.Id,
+    ///         Name = "my-awesome-token",
     ///         Scopes = new Scaleway.Inputs.CockpitTokenScopesArgs
     ///         {
     ///             QueryMetrics = true,

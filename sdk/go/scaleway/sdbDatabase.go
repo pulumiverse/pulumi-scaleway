@@ -30,8 +30,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewSdbDatabase(ctx, "database", &scaleway.SdbDatabaseArgs{
-//				MaxCpu: pulumi.Int(8),
+//				Name:   pulumi.String("my-database"),
 //				MinCpu: pulumi.Int(0),
+//				MaxCpu: pulumi.Int(8),
 //			})
 //			if err != nil {
 //				return err

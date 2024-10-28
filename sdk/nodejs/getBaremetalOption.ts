@@ -14,9 +14,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by option name 
  * const byName = scaleway.getBaremetalOption({
  *     name: "Remote Access",
  * });
+ * // Get info by option id
  * const byId = scaleway.getBaremetalOption({
  *     optionId: "931df052-d713-4674-8b58-96a63244c8e2",
  * });
@@ -80,9 +82,11 @@ export interface GetBaremetalOptionResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by option name 
  * const byName = scaleway.getBaremetalOption({
  *     name: "Remote Access",
  * });
+ * // Get info by option id
  * const byId = scaleway.getBaremetalOption({
  *     optionId: "931df052-d713-4674-8b58-96a63244c8e2",
  * });

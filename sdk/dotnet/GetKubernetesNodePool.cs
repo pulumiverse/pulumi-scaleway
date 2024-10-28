@@ -14,48 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a Kubernetes Cluster's Pool.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetKubernetesNodePool.Invoke(new()
-        ///     {
-        ///         PoolId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetKubernetesNodePoolResult> InvokeAsync(GetKubernetesNodePoolArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Kubernetes Cluster's Pool.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetKubernetesNodePool.Invoke(new()
-        ///     {
-        ///         PoolId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetKubernetesNodePoolResult> Invoke(GetKubernetesNodePoolInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolInvokeArgs(), options.WithDefaults());

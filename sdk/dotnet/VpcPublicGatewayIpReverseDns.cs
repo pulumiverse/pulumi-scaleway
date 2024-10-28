@@ -24,20 +24,21 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
+    ///     var main = new Scaleway.VpcPublicGatewayIp("main");
     /// 
-    ///     var tfA = new Scaleway.DomainRecord("tfA", new()
+    ///     var tfA = new Scaleway.DomainRecord("tf_A", new()
     ///     {
     ///         DnsZone = "example.com",
+    ///         Name = "tf",
     ///         Type = "A",
-    ///         Data = mainVpcPublicGatewayIp.Address,
+    ///         Data = main.Address,
     ///         Ttl = 3600,
     ///         Priority = 1,
     ///     });
     /// 
-    ///     var mainVpcPublicGatewayIpReverseDns = new Scaleway.VpcPublicGatewayIpReverseDns("mainVpcPublicGatewayIpReverseDns", new()
+    ///     var mainVpcPublicGatewayIpReverseDns = new Scaleway.VpcPublicGatewayIpReverseDns("main", new()
     ///     {
-    ///         GatewayIpId = mainVpcPublicGatewayIp.Id,
+    ///         GatewayIpId = main.Id,
     ///         Reverse = "tf.example.com",
     ///     });
     /// 

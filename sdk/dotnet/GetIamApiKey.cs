@@ -25,6 +25,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get api key infos by id (access_key)
         ///     var main = Scaleway.GetIamApiKey.Invoke(new()
         ///     {
         ///         AccessKey = "SCWABCDEFGHIJKLMNOPQ",
@@ -49,6 +50,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get api key infos by id (access_key)
         ///     var main = Scaleway.GetIamApiKey.Invoke(new()
         ///     {
         ///         AccessKey = "SCWABCDEFGHIJKLMNOPQ",

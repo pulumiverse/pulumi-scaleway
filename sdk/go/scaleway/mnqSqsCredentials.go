@@ -31,12 +31,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainMnqSqs, err := scaleway.NewMnqSqs(ctx, "mainMnqSqs", nil)
+//			main, err := scaleway.NewMnqSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSqsCredentials(ctx, "mainMnqSqsCredentials", &scaleway.MnqSqsCredentialsArgs{
-//				ProjectId: mainMnqSqs.ProjectId,
+//			_, err = scaleway.NewMnqSqsCredentials(ctx, "main", &scaleway.MnqSqsCredentialsArgs{
+//				ProjectId: main.ProjectId,
+//				Name:      pulumi.String("sqs-credentials"),
 //				Permissions: &scaleway.MnqSqsCredentialsPermissionsArgs{
 //					CanManage:  pulumi.Bool(false),
 //					CanReceive: pulumi.Bool(true),

@@ -31,6 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by ipam ip id
 //			_, err := scaleway.LookupIpamIp(ctx, &scaleway.LookupIpamIpArgs{
 //				IpamIpId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
@@ -61,16 +62,18 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Connect your instance to a private network using a private nic.
 //			nic, err := scaleway.NewInstancePrivateNic(ctx, "nic", &scaleway.InstancePrivateNicArgs{
-//				ServerId:         pulumi.Any(scaleway_instance_server.Server.Id),
-//				PrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn.Id),
+//				ServerId:         pulumi.Any(server.Id),
+//				PrivateNetworkId: pulumi.Any(pn.Id),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Find server private IPv4 using private-nic mac address
 //			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
 //				MacAddress: nic.MacAddress,
 //				Type:       pulumi.String("ipv4"),
 //			}, nil)
+//			// Find server private IPv4 using private-nic id
 //			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
 //				Resource: &scaleway.GetIpamIpResourceArgs{
 //					Id:   nic.ID(),
@@ -104,6 +107,7 @@ import (
 //				return err
 //			}
 //			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:   pulumi.Bool(true),

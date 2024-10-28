@@ -79,6 +79,7 @@ def get_availability_zones(region: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by Region key
     main = scaleway.get_availability_zones(region="nl-ams")
     ```
 
@@ -111,6 +112,7 @@ def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by Region key
     main = scaleway.get_availability_zones(region="nl-ams")
     ```
 

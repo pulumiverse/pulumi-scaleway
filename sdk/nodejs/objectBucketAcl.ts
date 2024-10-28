@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("someBucket", {});
+ * const someBucket = new scaleway.ObjectBucket("some_bucket", {name: "some-unique-name"});
  * const main = new scaleway.ObjectBucketAcl("main", {
- *     bucket: scaleway_object_bucket.main.id,
+ *     bucket: mainScalewayObjectBucket.id,
  *     acl: "private",
  * });
  * ```
@@ -26,9 +26,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {});
- * const mainObjectBucketAcl = new scaleway.ObjectBucketAcl("mainObjectBucketAcl", {
- *     bucket: mainObjectBucket.id,
+ * const main = new scaleway.ObjectBucket("main", {name: "your-bucket"});
+ * const mainObjectBucketAcl = new scaleway.ObjectBucketAcl("main", {
+ *     bucket: main.id,
  *     accessControlPolicy: {
  *         grants: [
  *             {

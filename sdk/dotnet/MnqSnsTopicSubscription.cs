@@ -28,11 +28,11 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // For default project in default region
-    ///     var mainMnqSns = new Scaleway.MnqSns("mainMnqSns");
+    ///     var main = new Scaleway.MnqSns("main");
     /// 
-    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("mainMnqSnsCredentials", new()
+    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("main", new()
     ///     {
-    ///         ProjectId = mainMnqSns.ProjectId,
+    ///         ProjectId = main.ProjectId,
     ///         Permissions = new Scaleway.Inputs.MnqSnsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = true,
@@ -43,14 +43,15 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var topic = new Scaleway.MnqSnsTopic("topic", new()
     ///     {
-    ///         ProjectId = mainMnqSns.ProjectId,
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "my-topic",
     ///         AccessKey = mainMnqSnsCredentials.AccessKey,
     ///         SecretKey = mainMnqSnsCredentials.SecretKey,
     ///     });
     /// 
-    ///     var mainMnqSnsTopicSubscription = new Scaleway.MnqSnsTopicSubscription("mainMnqSnsTopicSubscription", new()
+    ///     var mainMnqSnsTopicSubscription = new Scaleway.MnqSnsTopicSubscription("main", new()
     ///     {
-    ///         ProjectId = mainMnqSns.ProjectId,
+    ///         ProjectId = main.ProjectId,
     ///         AccessKey = mainMnqSnsCredentials.AccessKey,
     ///         SecretKey = mainMnqSnsCredentials.SecretKey,
     ///         TopicId = topic.Id,

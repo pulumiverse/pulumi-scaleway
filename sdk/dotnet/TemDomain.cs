@@ -29,6 +29,7 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.TemDomain("main", new()
     ///     {
     ///         AcceptTos = true,
+    ///         Name = "example.com",
     ///     });
     /// 
     /// });
@@ -48,6 +49,7 @@ namespace Pulumiverse.Scaleway
     ///     var domainName = config.Require("domainName");
     ///     var main = new Scaleway.TemDomain("main", new()
     ///     {
+    ///         Name = domainName,
     ///         AcceptTos = true,
     ///     });
     /// 
@@ -61,6 +63,7 @@ namespace Pulumiverse.Scaleway
     ///     var dkim = new Scaleway.DomainRecord("dkim", new()
     ///     {
     ///         DnsZone = domainName,
+    ///         Name = main.ProjectId.Apply(projectId =&gt; $"{projectId}._domainkey"),
     ///         Type = "TXT",
     ///         Data = main.DkimConfig,
     ///     });
@@ -75,6 +78,7 @@ namespace Pulumiverse.Scaleway
     ///     var dmarc = new Scaleway.DomainRecord("dmarc", new()
     ///     {
     ///         DnsZone = domainName,
+    ///         Name = main.DmarcName,
     ///         Type = "TXT",
     ///         Data = main.DmarcConfig,
     ///     });

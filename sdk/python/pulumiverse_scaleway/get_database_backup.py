@@ -159,8 +159,8 @@ def get_database_backup(backup_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     find_by_name = scaleway.get_database_backup(name="mybackup")
-    find_by_name_and_instance = scaleway.get_database_backup(instance_id="11111111-1111-1111-1111-111111111111",
-        name="mybackup")
+    find_by_name_and_instance = scaleway.get_database_backup(name="mybackup",
+        instance_id="11111111-1111-1111-1111-111111111111")
     find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -214,8 +214,8 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     import pulumi_scaleway as scaleway
 
     find_by_name = scaleway.get_database_backup(name="mybackup")
-    find_by_name_and_instance = scaleway.get_database_backup(instance_id="11111111-1111-1111-1111-111111111111",
-        name="mybackup")
+    find_by_name_and_instance = scaleway.get_database_backup(name="mybackup",
+        instance_id="11111111-1111-1111-1111-111111111111")
     find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
 

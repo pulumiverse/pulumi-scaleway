@@ -16,7 +16,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {description: "Main container namespace"});
+ * const main = new scaleway.ContainerNamespace("main", {
+ *     name: "main-container-namespace",
+ *     description: "Main container namespace",
+ * });
  * ```
  *
  * ## Import

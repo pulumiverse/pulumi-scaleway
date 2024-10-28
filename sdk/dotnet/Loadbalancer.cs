@@ -57,8 +57,9 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var @base = new Scaleway.Loadbalancer("base", new()
     ///     {
-    ///         AssignFlexibleIp = false,
+    ///         Name = "private-lb",
     ///         Type = "LB-S",
+    ///         AssignFlexibleIp = false,
     ///     });
     /// 
     /// });
@@ -88,13 +89,14 @@ namespace Pulumiverse.Scaleway
     ///             v4.Id,
     ///             v6.Id,
     ///         },
+    ///         Name = "ipv6-lb",
     ///         Type = "LB-S",
     ///     });
     /// 
     /// });
     /// ```
     /// 
-    /// ### Multiple configurations
+    /// ### With IPAM IDs
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -104,86 +106,54 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     //## IP for Public Gateway
-    ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
-    /// 
-    ///     //## Scaleway Private Network
-    ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
-    /// 
-    ///     //## VPC Public Gateway Network
-    ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new()
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
     ///     {
-    ///         Type = "VPC-GW-S",
-    ///         IpId = mainVpcPublicGatewayIp.Id,
+    ///         Name = "my vpc",
     ///     });
     /// 
-    ///     //## VPC Public Gateway Network DHCP config
-    ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
-    ///         Subnet = "10.0.0.0/24",
-    ///     });
-    /// 
-    ///     //## VPC Gateway Network
-    ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new()
-    ///     {
-    ///         GatewayId = mainVpcPublicGateway.Id,
-    ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
-    ///         DhcpId = mainVpcPublicGatewayDhcp.Id,
-    ///         CleanupDhcp = true,
-    ///         EnableMasquerade = true,
-    ///     });
-    /// 
-    ///     //## Scaleway Instance
-    ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
-    ///     {
-    ///         Type = "DEV1-S",
-    ///         Image = "debian_bullseye",
-    ///         EnableIpv6 = false,
-    ///         PrivateNetworks = new[]
+    ///         VpcId = vpc01.Id,
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
     ///         {
-    ///             new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
+    ///             Subnet = "172.16.32.0/22",
+    ///         },
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     {
+    ///         Address = "172.16.32.7",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpSourceArgs
     ///             {
-    ///                 PnId = mainVpcPrivateNetwork.Id,
+    ///                 PrivateNetworkId = pn01.Id,
     ///             },
     ///         },
     ///     });
     /// 
-    ///     //## IP for LB IP
-    ///     var mainLoadbalancerIp = new Scaleway.LoadbalancerIp("mainLoadbalancerIp");
+    ///     var v4 = new Scaleway.LoadbalancerIp("v4");
     /// 
-    ///     //## Scaleway Private Network
-    ///     var mainIndex_vpcPrivateNetworkVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork");
-    /// 
-    ///     //## Scaleway Load Balancer
-    ///     var mainLoadbalancer = new Scaleway.Loadbalancer("mainLoadbalancer", new()
+    ///     var main = new Scaleway.Loadbalancer("main", new()
     ///     {
-    ///         IpId = mainLoadbalancerIp.Id,
+    ///         IpIds = new[]
+    ///         {
+    ///             v4.Id,
+    ///         },
+    ///         Name = "my-lb",
     ///         Type = "LB-S",
     ///         PrivateNetworks = new[]
     ///         {
     ///             new Scaleway.Inputs.LoadbalancerPrivateNetworkArgs
     ///             {
-    ///                 PrivateNetworkId = mainVpcPrivateNetwork.Id,
-    ///                 DhcpConfig = true,
+    ///                 PrivateNetworkId = pn01.Id,
+    ///                 IpamIds = ip01.Id,
     ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             mainVpcPublicGateway,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// 
-    /// ## Migration
-    /// 
-    /// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
-    /// This change will not recreate your Load Balancer.
-    /// 
-    /// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
     /// 
     /// ## IP ID
     /// 
@@ -203,8 +173,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.Loadbalancer("main", new()
     ///     {
-    ///         Type = "LB-S",
     ///         Zone = "fr-par-1",
+    ///         Type = "LB-S",
     ///     });
     /// 
     /// });
@@ -220,11 +190,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainLoadbalancerIp = new Scaleway.LoadbalancerIp("mainLoadbalancerIp");
+    ///     var main = new Scaleway.LoadbalancerIp("main");
     /// 
-    ///     var mainLoadbalancer = new Scaleway.Loadbalancer("mainLoadbalancer", new()
+    ///     var mainLoadbalancer = new Scaleway.Loadbalancer("main", new()
     ///     {
-    ///         IpId = mainLoadbalancerIp.Id,
+    ///         IpId = main.Id,
     ///         Zone = "fr-par-1",
     ///         Type = "LB-S",
     ///         ReleaseIp = false,

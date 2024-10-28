@@ -490,7 +490,9 @@ class TemDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main", accept_tos=True)
+        main = scaleway.TemDomain("main",
+            accept_tos=True,
+            name="example.com")
         ```
 
         ### Add the required records to your DNS zone
@@ -501,13 +503,16 @@ class TemDomain(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        main = scaleway.TemDomain("main", accept_tos=True)
+        main = scaleway.TemDomain("main",
+            name=domain_name,
+            accept_tos=True)
         spf = scaleway.DomainRecord("spf",
             dns_zone=domain_name,
             type="TXT",
             data=main.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
         dkim = scaleway.DomainRecord("dkim",
             dns_zone=domain_name,
+            name=main.project_id.apply(lambda project_id: f"{project_id}._domainkey"),
             type="TXT",
             data=main.dkim_config)
         mx = scaleway.DomainRecord("mx",
@@ -516,6 +521,7 @@ class TemDomain(pulumi.CustomResource):
             data=".")
         dmarc = scaleway.DomainRecord("dmarc",
             dns_zone=domain_name,
+            name=main.dmarc_name,
             type="TXT",
             data=main.dmarc_config)
         ```
@@ -557,7 +563,9 @@ class TemDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main", accept_tos=True)
+        main = scaleway.TemDomain("main",
+            accept_tos=True,
+            name="example.com")
         ```
 
         ### Add the required records to your DNS zone
@@ -568,13 +576,16 @@ class TemDomain(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        main = scaleway.TemDomain("main", accept_tos=True)
+        main = scaleway.TemDomain("main",
+            name=domain_name,
+            accept_tos=True)
         spf = scaleway.DomainRecord("spf",
             dns_zone=domain_name,
             type="TXT",
             data=main.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
         dkim = scaleway.DomainRecord("dkim",
             dns_zone=domain_name,
+            name=main.project_id.apply(lambda project_id: f"{project_id}._domainkey"),
             type="TXT",
             data=main.dkim_config)
         mx = scaleway.DomainRecord("mx",
@@ -583,6 +594,7 @@ class TemDomain(pulumi.CustomResource):
             data=".")
         dmarc = scaleway.DomainRecord("dmarc",
             dns_zone=domain_name,
+            name=main.dmarc_name,
             type="TXT",
             data=main.dmarc_config)
         ```

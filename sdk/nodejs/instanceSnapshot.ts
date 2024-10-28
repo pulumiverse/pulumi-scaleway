@@ -17,7 +17,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.InstanceSnapshot("main", {volumeId: "11111111-1111-1111-1111-111111111111"});
+ * const main = new scaleway.InstanceSnapshot("main", {
+ *     name: "some-snapshot-name",
+ *     volumeId: "11111111-1111-1111-1111-111111111111",
+ * });
  * ```
  *
  * ### Example with Unified type snapshot
@@ -26,21 +29,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainInstanceVolume = new scaleway.InstanceVolume("mainInstanceVolume", {
+ * const main = new scaleway.InstanceVolume("main", {
  *     type: "l_ssd",
  *     sizeInGb: 10,
  * });
- * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
+ * const mainInstanceServer = new scaleway.InstanceServer("main", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     rootVolume: {
  *         sizeInGb: 10,
  *         volumeType: "l_ssd",
  *     },
- *     additionalVolumeIds: [mainInstanceVolume.id],
+ *     additionalVolumeIds: [main.id],
  * });
- * const mainInstanceSnapshot = new scaleway.InstanceSnapshot("mainInstanceSnapshot", {
- *     volumeId: mainInstanceVolume.id,
+ * const mainInstanceSnapshot = new scaleway.InstanceSnapshot("main", {
+ *     volumeId: main.id,
  *     type: "unified",
  * }, {
  *     dependsOn: [mainInstanceServer],
@@ -53,7 +56,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const bucket = new scaleway.ObjectBucket("bucket", {name: "snapshot-qcow-import"});
  * const qcow = new scaleway.ObjectItem("qcow", {
  *     bucket: bucket.name,
  *     key: "server.qcow2",

@@ -85,7 +85,9 @@ def get_iam_user(email: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by user id
     find_by_id = scaleway.get_iam_user(user_id="11111111-1111-1111-1111-111111111111")
+    # Get info by email address
     find_by_email = scaleway.get_iam_user(email="foo@bar.com")
     ```
 
@@ -126,7 +128,9 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by user id
     find_by_id = scaleway.get_iam_user(user_id="11111111-1111-1111-1111-111111111111")
+    # Get info by email address
     find_by_email = scaleway.get_iam_user(email="foo@bar.com")
     ```
 

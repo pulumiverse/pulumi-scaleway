@@ -25,11 +25,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by name
         ///     var findByName = Scaleway.GetIamApplication.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
+        ///     // Get info by application ID
         ///     var findById = Scaleway.GetIamApplication.Invoke(new()
         ///     {
         ///         ApplicationId = "11111111-1111-1111-1111-111111111111",
@@ -54,11 +56,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by name
         ///     var findByName = Scaleway.GetIamApplication.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
+        ///     // Get info by application ID
         ///     var findById = Scaleway.GetIamApplication.Invoke(new()
         ///     {
         ///         ApplicationId = "11111111-1111-1111-1111-111111111111",

@@ -6,18 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a Container Registry image.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myImage = scaleway.getRegistryImage({
- *     imageId: "11111111-1111-1111-1111-111111111111",
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
     args = args || {};
@@ -101,18 +89,6 @@ export interface GetRegistryImageResult {
 }
 /**
  * Gets information about a Container Registry image.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myImage = scaleway.getRegistryImage({
- *     imageId: "11111111-1111-1111-1111-111111111111",
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryImageResult> {
     return pulumi.output(args).apply((a: any) => getRegistryImage(a, opts))

@@ -105,16 +105,6 @@ def get_account_project(name: Optional[str] = None,
     """
     Gets information about an existing Project.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    by_name = scaleway.get_account_project(name="default")
-    by_id = scaleway.get_account_project(project_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
-    ```
-
 
     :param str name: The name of the Project.
            Only one of the `name` and `project_id` should be specified.
@@ -147,16 +137,6 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountProjectResult]:
     """
     Gets information about an existing Project.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    by_name = scaleway.get_account_project(name="default")
-    by_id = scaleway.get_account_project(project_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
-    ```
 
 
     :param str name: The name of the Project.

@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewRegistryNamespace(ctx, "main", &scaleway.RegistryNamespaceArgs{
+//				Name:        pulumi.String("main-cr"),
 //				Description: pulumi.String("Main container registry"),
 //				IsPublic:    pulumi.Bool(false),
 //			})

@@ -16,25 +16,6 @@ namespace Pulumiverse.Scaleway
         /// Gets information about multiple instance servers.
         /// 
         /// ## Examples
-        /// 
-        /// ### Basic
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetInstanceServers.Invoke(new()
-        ///     {
-        ///         Name = "myserver",
-        ///         Zone = "fr-par-2",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetInstanceServersResult> InvokeAsync(GetInstanceServersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceServersResult>("scaleway:index/getInstanceServers:getInstanceServers", args ?? new GetInstanceServersArgs(), options.WithDefaults());
@@ -43,25 +24,6 @@ namespace Pulumiverse.Scaleway
         /// Gets information about multiple instance servers.
         /// 
         /// ## Examples
-        /// 
-        /// ### Basic
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetInstanceServers.Invoke(new()
-        ///     {
-        ///         Name = "myserver",
-        ///         Zone = "fr-par-2",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetInstanceServersResult> Invoke(GetInstanceServersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceServersResult>("scaleway:index/getInstanceServers:getInstanceServers", args ?? new GetInstanceServersInvokeArgs(), options.WithDefaults());

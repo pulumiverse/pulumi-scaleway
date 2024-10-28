@@ -19,9 +19,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainMnqSns = new scaleway.MnqSns("mainMnqSns", {});
- * const mainMnqSnsCredentials = new scaleway.MnqSnsCredentials("mainMnqSnsCredentials", {
- *     projectId: mainMnqSns.projectId,
+ * const main = new scaleway.MnqSns("main", {});
+ * const mainMnqSnsCredentials = new scaleway.MnqSnsCredentials("main", {
+ *     projectId: main.projectId,
+ *     name: "sns-credentials",
  *     permissions: {
  *         canManage: false,
  *         canReceive: true,

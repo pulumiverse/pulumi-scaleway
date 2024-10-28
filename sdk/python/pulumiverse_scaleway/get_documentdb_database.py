@@ -129,6 +129,7 @@ def get_documentdb_database(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
     main = scaleway.get_documentdb_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```
@@ -169,6 +170,7 @@ def get_documentdb_database_output(instance_id: Optional[pulumi.Input[str]] = No
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
     main = scaleway.get_documentdb_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```

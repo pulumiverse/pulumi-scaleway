@@ -262,7 +262,7 @@ class InstanceIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("serverIp")
+        server_ip = scaleway.InstanceIp("server_ip")
         ```
 
         ## Import
@@ -299,7 +299,7 @@ class InstanceIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("serverIp")
+        server_ip = scaleway.InstanceIp("server_ip")
         ```
 
         ## Import

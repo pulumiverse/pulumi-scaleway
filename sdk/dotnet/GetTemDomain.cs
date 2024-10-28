@@ -14,48 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a transactional email domain.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myDomain = Scaleway.GetTemDomain.Invoke(new()
-        ///     {
-        ///         DomainId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetTemDomainResult> InvokeAsync(GetTemDomainArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a transactional email domain.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myDomain = Scaleway.GetTemDomain.Invoke(new()
-        ///     {
-        ///         DomainId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetTemDomainResult> Invoke(GetTemDomainInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainInvokeArgs(), options.WithDefaults());

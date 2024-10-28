@@ -28,12 +28,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by user id
 //			_, err := scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
 //				UserId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by email address
 //			_, err = scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
 //				Email: pulumi.StringRef("foo@bar.com"),
 //			}, nil)

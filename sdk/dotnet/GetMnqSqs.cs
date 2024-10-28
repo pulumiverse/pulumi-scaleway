@@ -27,11 +27,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // For default project
         ///     var main = Scaleway.GetMnqSqs.Invoke();
         /// 
+        ///     // For specific project
         ///     var forProject = Scaleway.GetMnqSqs.Invoke(new()
         ///     {
-        ///         ProjectId = scaleway_account_project.Main.Id,
+        ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });
         /// 
         /// });
@@ -55,11 +57,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // For default project
         ///     var main = Scaleway.GetMnqSqs.Invoke();
         /// 
+        ///     // For specific project
         ///     var forProject = Scaleway.GetMnqSqs.Invoke(new()
         ///     {
-        ///         ProjectId = scaleway_account_project.Main.Id,
+        ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });
         /// 
         /// });

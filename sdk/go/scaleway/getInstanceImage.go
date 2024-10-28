@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about an instance image.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupInstanceImage(ctx, &scaleway.LookupInstanceImageArgs{
-//				ImageId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupInstanceImage(ctx *pulumi.Context, args *LookupInstanceImageArgs, opts ...pulumi.InvokeOption) (*LookupInstanceImageResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceImageResult

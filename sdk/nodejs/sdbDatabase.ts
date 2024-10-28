@@ -16,8 +16,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const database = new scaleway.SdbDatabase("database", {
- *     maxCpu: 8,
+ *     name: "my-database",
  *     minCpu: 0,
+ *     maxCpu: 8,
  * });
  * ```
  *

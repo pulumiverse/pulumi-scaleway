@@ -16,7 +16,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
@@ -24,9 +25,12 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const mainDatabase = new scaleway.Database("mainDatabase", {instanceId: mainDatabaseInstance.id});
- * const mainDatabaseBackup = new scaleway.DatabaseBackup("mainDatabaseBackup", {
- *     instanceId: mainDatabaseInstance.id,
+ * const mainDatabase = new scaleway.Database("main", {
+ *     instanceId: main.id,
+ *     name: "database",
+ * });
+ * const mainDatabaseBackup = new scaleway.DatabaseBackup("main", {
+ *     instanceId: main.id,
  *     databaseName: mainDatabase.name,
  * });
  * ```
@@ -38,8 +42,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseBackup("main", {
- *     instanceId: data.scaleway_rdb_instance.main.id,
- *     databaseName: data.scaleway_rdb_database.main.name,
+ *     instanceId: mainScalewayRdbInstance.id,
+ *     databaseName: mainScalewayRdbDatabase.name,
  *     expiresAt: "2022-06-16T07:48:44Z",
  * });
  * ```

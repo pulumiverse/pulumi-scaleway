@@ -97,8 +97,10 @@ def get_baremetal_os(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by os name and version
     by_name = scaleway.get_baremetal_os(name="Ubuntu",
         version="20.04 LTS (Focal Fossa)")
+    # Get info by os id
     by_id = scaleway.get_baremetal_os(os_id="03b7f4ba-a6a1-4305-984e-b54fafbf1681")
     ```
 
@@ -142,8 +144,10 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by os name and version
     by_name = scaleway.get_baremetal_os(name="Ubuntu",
         version="20.04 LTS (Focal Fossa)")
+    # Get info by os id
     by_id = scaleway.get_baremetal_os(os_id="03b7f4ba-a6a1-4305-984e-b54fafbf1681")
     ```
 

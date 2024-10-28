@@ -8,17 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about your Scaleway invoices.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const my-invoices = scaleway.getBillingInvoices({
- *     invoiceType: "periodic",
- * });
- * ```
  */
 export function getBillingInvoices(args?: GetBillingInvoicesArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingInvoicesResult> {
     args = args || {};
@@ -71,17 +60,6 @@ export interface GetBillingInvoicesResult {
 }
 /**
  * Gets information about your Scaleway invoices.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const my-invoices = scaleway.getBillingInvoices({
- *     invoiceType: "periodic",
- * });
- * ```
  */
 export function getBillingInvoicesOutput(args?: GetBillingInvoicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingInvoicesResult> {
     return pulumi.output(args).apply((a: any) => getBillingInvoices(a, opts))

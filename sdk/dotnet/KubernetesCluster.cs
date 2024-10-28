@@ -29,6 +29,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
     ///     {
+    ///         Name = "tf-cluster",
     ///         Version = "1.29.1",
     ///         Cni = "cilium",
     ///         PrivateNetworkId = pn.Id,
@@ -38,6 +39,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
     ///         NodeType = "DEV1-M",
     ///         Size = 1,
     ///     });
@@ -57,6 +59,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
     ///     {
+    ///         Name = "tf-cluster",
     ///         Type = "multicloud",
     ///         Version = "1.29.1",
     ///         Cni = "kilo",
@@ -66,6 +69,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
     ///         NodeType = "external",
     ///         Size = 0,
     ///         MinSize = 0,
@@ -90,6 +94,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
     ///     {
+    ///         Name = "tf-cluster",
     ///         Description = "cluster made in terraform",
     ///         Version = "1.29.1",
     ///         Cni = "calico",
@@ -114,12 +119,157 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
     ///         NodeType = "DEV1-M",
     ///         Size = 3,
     ///         Autoscaling = true,
     ///         Autohealing = true,
     ///         MinSize = 1,
     ///         MaxSize = 5,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With the kubernetes provider
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Null = Pulumi.Null;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     {
+    ///         Name = "tf-cluster",
+    ///         Version = "1.29.1",
+    ///         Cni = "cilium",
+    ///         PrivateNetworkId = pn.Id,
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     {
+    ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
+    ///         NodeType = "DEV1-M",
+    ///         Size = 1,
+    ///     });
+    /// 
+    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
+    ///     {
+    ///         Triggers = 
+    ///         {
+    ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
+    ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
+    ///             { "cluster_ca_certificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             pool,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// The `null_resource` is needed because when the cluster is created, it's status is `pool_required`, but the kubeconfig can already be downloaded.
+    /// It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+    /// 
+    /// ### With the Helm provider
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Helm = Pulumi.Helm;
+    /// using Null = Pulumi.Null;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     {
+    ///         Name = "tf-cluster",
+    ///         Version = "1.29.1",
+    ///         Cni = "cilium",
+    ///         DeleteAdditionalResources = false,
+    ///         PrivateNetworkId = pn.Id,
+    ///     });
+    /// 
+    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     {
+    ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
+    ///         NodeType = "DEV1-M",
+    ///         Size = 1,
+    ///     });
+    /// 
+    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
+    ///     {
+    ///         Triggers = 
+    ///         {
+    ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
+    ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
+    ///             { "cluster_ca_certificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             pool,
+    ///         },
+    ///     });
+    /// 
+    ///     var nginxIp = new Scaleway.LoadbalancerIp("nginx_ip", new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         ProjectId = cluster.ProjectId,
+    ///     });
+    /// 
+    ///     var nginxIngress = new Helm.Index.Release("nginx_ingress", new()
+    ///     {
+    ///         Name = "nginx-ingress",
+    ///         Namespace = "kube-system",
+    ///         Repository = "https://kubernetes.github.io/ingress-nginx",
+    ///         Chart = "ingress-nginx",
+    ///         Set = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.loadBalancerIP" },
+    ///                 { "value", nginxIp.IpAddress },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.config.use-proxy-protocol" },
+    ///                 { "value", "true" },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2" },
+    ///                 { "value", "true" },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone" },
+    ///                 { "value", nginxIp.Zone },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.externalTrafficPolicy" },
+    ///                 { "value", "Local" },
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });

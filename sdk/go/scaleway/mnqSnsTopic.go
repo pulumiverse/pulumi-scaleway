@@ -32,12 +32,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainMnqSns, err := scaleway.NewMnqSns(ctx, "mainMnqSns", nil)
+//			main, err := scaleway.NewMnqSns(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainMnqSnsCredentials, err := scaleway.NewMnqSnsCredentials(ctx, "mainMnqSnsCredentials", &scaleway.MnqSnsCredentialsArgs{
-//				ProjectId: mainMnqSns.ProjectId,
+//			mainMnqSnsCredentials, err := scaleway.NewMnqSnsCredentials(ctx, "main", &scaleway.MnqSnsCredentialsArgs{
+//				ProjectId: main.ProjectId,
 //				Permissions: &scaleway.MnqSnsCredentialsPermissionsArgs{
 //					CanManage: pulumi.Bool(true),
 //				},
@@ -46,7 +46,8 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewMnqSnsTopic(ctx, "topic", &scaleway.MnqSnsTopicArgs{
-//				ProjectId: mainMnqSns.ProjectId,
+//				ProjectId: main.ProjectId,
+//				Name:      pulumi.String("my-topic"),
 //				AccessKey: mainMnqSnsCredentials.AccessKey,
 //				SecretKey: mainMnqSnsCredentials.SecretKey,
 //			})

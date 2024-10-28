@@ -25,11 +25,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by offer name
         ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///     });
         /// 
+        ///     // Get info by offer id
         ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
@@ -54,11 +56,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by offer name
         ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///     });
         /// 
+        ///     // Get info by offer id
         ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",

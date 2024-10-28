@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const instance = new scaleway.DatabaseInstance("instance", {
+ *     name: "test-rdb-rr-update",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-14",
  *     isHaCluster: false,
@@ -44,6 +45,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const instance = new scaleway.DatabaseInstance("instance", {
+ *     name: "rdb_instance",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-14",
  *     isHaCluster: false,
@@ -68,6 +70,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const instance = new scaleway.DatabaseInstance("instance", {
+ *     name: "rdb_instance",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-14",
  *     isHaCluster: false,

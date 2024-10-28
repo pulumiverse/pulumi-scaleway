@@ -87,6 +87,7 @@ def get_database_acl(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
     my_acl = scaleway.get_database_acl(instance_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -120,6 +121,7 @@ def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
     my_acl = scaleway.get_database_acl(instance_id="11111111-1111-1111-1111-111111111111")
     ```
 

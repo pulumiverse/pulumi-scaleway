@@ -29,22 +29,23 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
+//			main, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "tfA", &scaleway.DomainRecordArgs{
+//			_, err = scaleway.NewDomainRecord(ctx, "tf_A", &scaleway.DomainRecordArgs{
 //				DnsZone:  pulumi.String("example.com"),
+//				Name:     pulumi.String("tf"),
 //				Type:     pulumi.String("A"),
-//				Data:     mainVpcPublicGatewayIp.Address,
+//				Data:     main.Address,
 //				Ttl:      pulumi.Int(3600),
 //				Priority: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcPublicGatewayIpReverseDns(ctx, "mainVpcPublicGatewayIpReverseDns", &scaleway.VpcPublicGatewayIpReverseDnsArgs{
-//				GatewayIpId: mainVpcPublicGatewayIp.ID(),
+//			_, err = scaleway.NewVpcPublicGatewayIpReverseDns(ctx, "main", &scaleway.VpcPublicGatewayIpReverseDnsArgs{
+//				GatewayIpId: main.ID(),
 //				Reverse:     pulumi.String("tf.example.com"),
 //			})
 //			if err != nil {

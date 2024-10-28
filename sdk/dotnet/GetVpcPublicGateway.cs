@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.VpcPublicGateway("main", new()
         ///     {
+        ///         Name = "demo",
         ///         Type = "VPC-GW-S",
         ///         Zone = "nl-ams-1",
         ///     });
@@ -65,6 +66,7 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.VpcPublicGateway("main", new()
         ///     {
+        ///         Name = "demo",
         ///         Type = "VPC-GW-S",
         ///         Zone = "nl-ams-1",
         ///     });

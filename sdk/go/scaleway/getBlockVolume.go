@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about a Block Volume.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupBlockVolume(ctx, &scaleway.LookupBlockVolumeArgs{
-//				VolumeId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ...pulumi.InvokeOption) (*LookupBlockVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockVolumeResult

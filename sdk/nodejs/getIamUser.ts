@@ -14,9 +14,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by user id
  * const findById = scaleway.getIamUser({
  *     userId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get info by email address
  * const findByEmail = scaleway.getIamUser({
  *     email: "foo@bar.com",
  * });
@@ -76,9 +78,11 @@ export interface GetIamUserResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by user id
  * const findById = scaleway.getIamUser({
  *     userId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get info by email address
  * const findByEmail = scaleway.getIamUser({
  *     email: "foo@bar.com",
  * });

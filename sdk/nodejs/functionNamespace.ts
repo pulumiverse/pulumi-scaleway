@@ -16,7 +16,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FunctionNamespace("main", {description: "Main function namespace"});
+ * const main = new scaleway.FunctionNamespace("main", {
+ *     name: "main-function-namespace",
+ *     description: "Main function namespace",
+ * });
  * ```
  *
  * ## Import

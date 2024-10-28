@@ -28,6 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewIamApplication(ctx, "main", &scaleway.IamApplicationArgs{
+//				Name:        pulumi.String("My application"),
 //				Description: pulumi.String("a description"),
 //			})
 //			if err != nil {

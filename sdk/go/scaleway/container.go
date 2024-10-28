@@ -36,16 +36,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainContainerNamespace, err := scaleway.NewContainerNamespace(ctx, "mainContainerNamespace", &scaleway.ContainerNamespaceArgs{
+//			main, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//				Name:        pulumi.String("my-ns-test"),
 //				Description: pulumi.String("test container"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewContainer(ctx, "mainContainer", &scaleway.ContainerArgs{
+//			_, err = scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//				Name:        pulumi.String("my-container-02"),
 //				Description: pulumi.String("environment variables test"),
-//				NamespaceId: mainContainerNamespace.ID(),
-//				RegistryImage: mainContainerNamespace.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
+//				NamespaceId: main.ID(),
+//				RegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
 //					return fmt.Sprintf("%v/alpine:test", registryEndpoint), nil
 //				}).(pulumi.StringOutput),
 //				Port:           pulumi.Int(9997),

@@ -124,15 +124,6 @@ def get_block_volume(name: Optional[str] = None,
     """
     Gets information about a Block Volume.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_volume = scaleway.get_block_volume(volume_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
     :param str project_id: The ID of the project the volume is associated with.
@@ -167,15 +158,6 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
     Gets information about a Block Volume.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_volume = scaleway.get_block_volume(volume_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.

@@ -27,11 +27,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainMnqNatsAccount = new Scaleway.MnqNatsAccount("mainMnqNatsAccount");
-    /// 
-    ///     var mainMnqNatsCredentials = new Scaleway.MnqNatsCredentials("mainMnqNatsCredentials", new()
+    ///     var main = new Scaleway.MnqNatsAccount("main", new()
     ///     {
-    ///         AccountId = mainMnqNatsAccount.Id,
+    ///         Name = "nats-account",
+    ///     });
+    /// 
+    ///     var mainMnqNatsCredentials = new Scaleway.MnqNatsCredentials("main", new()
+    ///     {
+    ///         AccountId = main.Id,
     ///     });
     /// 
     /// });

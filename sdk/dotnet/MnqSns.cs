@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway
     ///     });
     /// 
     ///     // For specific Project in default region
-    ///     var forProject = new Scaleway.MnqSns("forProject", new()
+    ///     var forProject = new Scaleway.MnqSns("for_project", new()
     ///     {
     ///         ProjectId = project.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id),
     ///     });

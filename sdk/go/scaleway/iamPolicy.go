@@ -38,11 +38,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			app, err := scaleway.NewIamApplication(ctx, "app", nil)
+//			app, err := scaleway.NewIamApplication(ctx, "app", &scaleway.IamApplicationArgs{
+//				Name: pulumi.String("my app"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamPolicy(ctx, "objectReadOnly", &scaleway.IamPolicyArgs{
+//			_, err = scaleway.NewIamPolicy(ctx, "object_read_only", &scaleway.IamPolicyArgs{
+//				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
 //				ApplicationId: app.ID(),
 //				Rules: scaleway.IamPolicyRuleArray{
@@ -79,11 +82,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			app, err := scaleway.NewIamApplication(ctx, "app", nil)
+//			app, err := scaleway.NewIamApplication(ctx, "app", &scaleway.IamApplicationArgs{
+//				Name: pulumi.String("my app"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamPolicy(ctx, "objectReadOnly", &scaleway.IamPolicyArgs{
+//			_, err = scaleway.NewIamPolicy(ctx, "object_read_only", &scaleway.IamPolicyArgs{
+//				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
 //				ApplicationId: app.ID(),
 //				Rules: scaleway.IamPolicyRuleArray{

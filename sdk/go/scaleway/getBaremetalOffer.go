@@ -12,33 +12,6 @@ import (
 )
 
 // Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
-//				OfferId: pulumi.StringRef("25dcf38b-c90c-4b18-97a2-6956e9d1e113"),
-//				Zone:    pulumi.StringRef("fr-par-2"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOfferResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOfferResult

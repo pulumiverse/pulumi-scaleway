@@ -15,7 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.AccountSshKey("main", {publicKey: "<YOUR-PUBLIC-SSH-KEY>"});
+ * const main = new scaleway.AccountSshKey("main", {
+ *     name: "main",
+ *     publicKey: "<YOUR-PUBLIC-SSH-KEY>",
+ * });
  * ```
  *
  * ## Import

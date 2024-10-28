@@ -32,12 +32,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			group, err := scaleway.NewIamGroup(ctx, "group", &scaleway.IamGroupArgs{
+//				Name:               pulumi.String("my_group"),
 //				ExternalMembership: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			app, err := scaleway.NewIamApplication(ctx, "app", nil)
+//			app, err := scaleway.NewIamApplication(ctx, "app", &scaleway.IamApplicationArgs{
+//				Name: pulumi.String("my_app"),
+//			})
 //			if err != nil {
 //				return err
 //			}

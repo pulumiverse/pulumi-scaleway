@@ -33,6 +33,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
 //				AcceptTos: pulumi.Bool(true),
+//				Name:      pulumi.String("example.com"),
 //			})
 //			if err != nil {
 //				return err
@@ -63,6 +64,7 @@ import (
 //			cfg := config.New(ctx, "")
 //			domainName := cfg.Require("domainName")
 //			main, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//				Name:      pulumi.String(domainName),
 //				AcceptTos: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -80,8 +82,11 @@ import (
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "dkim", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(domainName),
-//				Type:    pulumi.String("TXT"),
-//				Data:    main.DkimConfig,
+//				Name: main.ProjectId.ApplyT(func(projectId string) (string, error) {
+//					return fmt.Sprintf("%v._domainkey", projectId), nil
+//				}).(pulumi.StringOutput),
+//				Type: pulumi.String("TXT"),
+//				Data: main.DkimConfig,
 //			})
 //			if err != nil {
 //				return err
@@ -96,6 +101,7 @@ import (
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "dmarc", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(domainName),
+//				Name:    main.DmarcName,
 //				Type:    pulumi.String("TXT"),
 //				Data:    main.DmarcConfig,
 //			})

@@ -242,15 +242,15 @@ class FunctionToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
-        main_function = scaleway.Function("mainFunction",
-            namespace_id=main_function_namespace.id,
+        main = scaleway.FunctionNamespace("main", name="test-function-token-ns")
+        main_function = scaleway.Function("main",
+            namespace_id=main.id,
             runtime="go118",
             handler="Handle",
             privacy="private")
         # Namespace Token
         namespace = scaleway.FunctionToken("namespace",
-            namespace_id=main_function_namespace.id,
+            namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Function Token
         function = scaleway.FunctionToken("function", function_id=main_function.id)
@@ -296,15 +296,15 @@ class FunctionToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
-        main_function = scaleway.Function("mainFunction",
-            namespace_id=main_function_namespace.id,
+        main = scaleway.FunctionNamespace("main", name="test-function-token-ns")
+        main_function = scaleway.Function("main",
+            namespace_id=main.id,
             runtime="go118",
             handler="Handle",
             privacy="private")
         # Namespace Token
         namespace = scaleway.FunctionToken("namespace",
-            namespace_id=main_function_namespace.id,
+            namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Function Token
         function = scaleway.FunctionToken("function", function_id=main_function.id)

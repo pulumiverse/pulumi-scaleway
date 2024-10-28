@@ -27,8 +27,9 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var database = new Scaleway.SdbDatabase("database", new()
     ///     {
-    ///         MaxCpu = 8,
+    ///         Name = "my-database",
     ///         MinCpu = 0,
+    ///         MaxCpu = 8,
     ///     });
     /// 
     /// });

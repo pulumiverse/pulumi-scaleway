@@ -20,8 +20,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const frontend01 = new scaleway.LoadbalancerFrontend("frontend01", {
- *     lbId: scaleway_lb.lb01.id,
- *     backendId: scaleway_lb_backend.backend01.id,
+ *     lbId: lb01.id,
+ *     backendId: backend01.id,
+ *     name: "frontend01",
  *     inboundPort: 80,
  * });
  * ```
@@ -33,8 +34,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const frontend01 = new scaleway.LoadbalancerFrontend("frontend01", {
- *     lbId: scaleway_lb.lb01.id,
- *     backendId: scaleway_lb_backend.backend01.id,
+ *     lbId: lb01.id,
+ *     backendId: backend01.id,
+ *     name: "frontend01",
  *     inboundPort: 80,
  *     acls: [
  *         {

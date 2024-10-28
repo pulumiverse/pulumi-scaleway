@@ -16,7 +16,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const server = new scaleway.AppleSiliconServer("server", {type: "M1-M"});
+ * const server = new scaleway.AppleSiliconServer("server", {
+ *     name: "test-m1",
+ *     type: "M1-M",
+ * });
  * ```
  *
  * ## Import

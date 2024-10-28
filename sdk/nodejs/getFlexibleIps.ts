@@ -16,13 +16,16 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Find ips that share the same tags
  * const fipsByTags = scaleway.getFlexibleIps({
  *     tags: ["a tag"],
  * });
+ * // Find ips that share the same Server ID
  * const myOffer = scaleway.getBaremetalOffer({
  *     name: "EM-B112X-SSD",
  * });
  * const base = new scaleway.BaremetalServer("base", {
+ *     name: "MyServer",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
  * });
@@ -119,13 +122,16 @@ export interface GetFlexibleIpsResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Find ips that share the same tags
  * const fipsByTags = scaleway.getFlexibleIps({
  *     tags: ["a tag"],
  * });
+ * // Find ips that share the same Server ID
  * const myOffer = scaleway.getBaremetalOffer({
  *     name: "EM-B112X-SSD",
  * });
  * const base = new scaleway.BaremetalServer("base", {
+ *     name: "MyServer",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
  * });

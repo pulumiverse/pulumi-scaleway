@@ -10,22 +10,6 @@ import * as utilities from "./utilities";
  * Gets information about multiple Load Balancer IP addresses.
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getLbIps({
- *     ipCidrRange: "0.0.0.0/0",
- *     zone: "fr-par-2",
- * });
- * const ipsByTagsAndType = scaleway.getLbIps({
- *     ipType: "ipv4",
- *     tags: ["a tag"],
- * });
- * ```
  */
 export function getLbIps(args?: GetLbIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbIpsResult> {
     args = args || {};
@@ -98,22 +82,6 @@ export interface GetLbIpsResult {
  * Gets information about multiple Load Balancer IP addresses.
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getLbIps({
- *     ipCidrRange: "0.0.0.0/0",
- *     zone: "fr-par-2",
- * });
- * const ipsByTagsAndType = scaleway.getLbIps({
- *     ipType: "ipv4",
- *     tags: ["a tag"],
- * });
- * ```
  */
 export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbIpsResult> {
     return pulumi.output(args).apply((a: any) => getLbIps(a, opts))

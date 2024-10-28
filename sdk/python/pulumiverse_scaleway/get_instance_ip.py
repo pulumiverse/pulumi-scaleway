@@ -146,15 +146,6 @@ def get_instance_ip(address: Optional[str] = None,
     """
     Gets information about an instance IP.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str address: The IPv4 address to retrieve
            Only one of `address` and `id` should be specified.
@@ -186,15 +177,6 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIpResult]:
     """
     Gets information about an instance IP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_instance_ip(id="fr-par-1/11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str address: The IPv4 address to retrieve

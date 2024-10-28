@@ -25,11 +25,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serverIp = new Scaleway.InstanceIp("serverIp");
+    ///     var serverIp = new Scaleway.InstanceIp("server_ip");
     /// 
-    ///     var tfA = new Scaleway.DomainRecord("tfA", new()
+    ///     var tfA = new Scaleway.DomainRecord("tf_A", new()
     ///     {
     ///         DnsZone = "scaleway.com",
+    ///         Name = "www",
     ///         Type = "A",
     ///         Data = serverIp.Address,
     ///         Ttl = 3600,

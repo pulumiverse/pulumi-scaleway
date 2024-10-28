@@ -14,50 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
-        ///     {
-        ///         OfferId = "25dcf38b-c90c-4b18-97a2-6956e9d1e113",
-        ///         Zone = "fr-par-2",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetBaremetalOfferResult> InvokeAsync(GetBaremetalOfferArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalOfferResult>("scaleway:index/getBaremetalOffer:getBaremetalOffer", args ?? new GetBaremetalOfferArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
-        ///     {
-        ///         OfferId = "25dcf38b-c90c-4b18-97a2-6956e9d1e113",
-        ///         Zone = "fr-par-2",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetBaremetalOfferResult> Invoke(GetBaremetalOfferInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOfferResult>("scaleway:index/getBaremetalOffer:getBaremetalOffer", args ?? new GetBaremetalOfferInvokeArgs(), options.WithDefaults());

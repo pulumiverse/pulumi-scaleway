@@ -18,7 +18,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainDatabaseInstance = new scaleway.DatabaseInstance("mainDatabaseInstance", {
+ * const main = new scaleway.DatabaseInstance("main", {
+ *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
@@ -26,8 +27,8 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const mainDatabaseAcl = new scaleway.DatabaseAcl("mainDatabaseAcl", {
- *     instanceId: mainDatabaseInstance.id,
+ * const mainDatabaseAcl = new scaleway.DatabaseAcl("main", {
+ *     instanceId: main.id,
  *     aclRules: [{
  *         ip: "1.2.3.4/32",
  *         description: "foo",

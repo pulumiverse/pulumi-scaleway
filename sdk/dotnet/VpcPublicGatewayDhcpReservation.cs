@@ -31,9 +31,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
+    ///     var main = new Scaleway.VpcPrivateNetwork("main", new()
+    ///     {
+    ///         Name = "your_private_network",
+    ///     });
     /// 
-    ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
+    ///     var mainInstanceServer = new Scaleway.InstanceServer("main", new()
     ///     {
     ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
@@ -42,28 +45,29 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
     ///             {
-    ///                 PnId = mainVpcPrivateNetwork.Id,
+    ///                 PnId = main.Id,
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
+    ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("main");
     /// 
-    ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
+    ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("main", new()
     ///     {
     ///         Subnet = "192.168.1.0/24",
     ///     });
     /// 
-    ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new()
+    ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("main", new()
     ///     {
+    ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///         IpId = mainVpcPublicGatewayIp.Id,
     ///     });
     /// 
-    ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new()
+    ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("main", new()
     ///     {
     ///         GatewayId = mainVpcPublicGateway.Id,
-    ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
+    ///         PrivateNetworkId = main.Id,
     ///         DhcpId = mainVpcPublicGatewayDhcp.Id,
     ///         CleanupDhcp = true,
     ///         EnableMasquerade = true,
@@ -72,11 +76,11 @@ namespace Pulumiverse.Scaleway
     ///         DependsOn =
     ///         {
     ///             mainVpcPublicGatewayIp,
-    ///             mainVpcPrivateNetwork,
+    ///             main,
     ///         },
     ///     });
     /// 
-    ///     var mainVpcPublicGatewayDhcpReservation = new Scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation", new()
+    ///     var mainVpcPublicGatewayDhcpReservation = new Scaleway.VpcPublicGatewayDhcpReservation("main", new()
     ///     {
     ///         GatewayNetworkId = mainVpcGatewayNetwork.Id,
     ///         MacAddress = mainInstanceServer.PrivateNetworks.Apply(privateNetworks =&gt; privateNetworks[0]?.MacAddress),

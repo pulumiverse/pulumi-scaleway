@@ -17,10 +17,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.Secret("main", {description: "barr"});
+ * const main = new scaleway.Secret("main", {
+ *     name: "foo",
+ *     description: "barr",
+ * });
+ * // Get info by secret ID
  * const mySecret = scaleway.getSecret({
  *     secretId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get info by secret Name
  * const byName = scaleway.getSecret({
  *     name: "your_secret_name",
  * });
@@ -109,10 +114,15 @@ export interface GetSecretResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.Secret("main", {description: "barr"});
+ * const main = new scaleway.Secret("main", {
+ *     name: "foo",
+ *     description: "barr",
+ * });
+ * // Get info by secret ID
  * const mySecret = scaleway.getSecret({
  *     secretId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get info by secret Name
  * const byName = scaleway.getSecret({
  *     name: "your_secret_name",
  * });

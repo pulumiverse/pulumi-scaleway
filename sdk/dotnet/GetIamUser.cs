@@ -26,11 +26,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by user id
         ///     var findById = Scaleway.GetIamUser.Invoke(new()
         ///     {
         ///         UserId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
+        ///     // Get info by email address
         ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
         ///     {
         ///         Email = "foo@bar.com",
@@ -56,11 +58,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by user id
         ///     var findById = Scaleway.GetIamUser.Invoke(new()
         ///     {
         ///         UserId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
+        ///     // Get info by email address
         ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
         ///     {
         ///         Email = "foo@bar.com",

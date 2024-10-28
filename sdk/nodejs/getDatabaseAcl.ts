@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
  * const myAcl = scaleway.getDatabaseAcl({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -67,6 +68,7 @@ export interface GetDatabaseAclResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
  * const myAcl = scaleway.getDatabaseAcl({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });

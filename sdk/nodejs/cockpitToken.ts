@@ -17,18 +17,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {});
- * const main = new scaleway.CockpitToken("main", {projectId: project.id});
+ * const project = new scaleway.AccountProject("project", {name: "my-project"});
+ * const main = new scaleway.CockpitToken("main", {
+ *     projectId: project.id,
+ *     name: "my-awesome-token",
+ * });
  * ```
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {});
+ * const project = new scaleway.AccountProject("project", {name: "my-project"});
  * // Create a token that can read metrics and logs but not write
  * const main = new scaleway.CockpitToken("main", {
  *     projectId: project.id,
+ *     name: "my-awesome-token",
  *     scopes: {
  *         queryMetrics: true,
  *         writeMetrics: false,

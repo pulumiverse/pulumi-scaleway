@@ -32,7 +32,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewMnqNatsAccount(ctx, "main", nil)
+//			_, err := scaleway.NewMnqNatsAccount(ctx, "main", &scaleway.MnqNatsAccountArgs{
+//				Name: pulumi.String("nats-account"),
+//			})
 //			if err != nil {
 //				return err
 //			}

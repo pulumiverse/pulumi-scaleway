@@ -33,15 +33,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "mainObjectBucket", &scaleway.ObjectBucketArgs{
+//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Name:              pulumi.String("MyBucket"),
 //				Acl:               pulumi.String("public-read"),
 //				ObjectLockEnabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketLockConfiguration(ctx, "mainObjectBucketLockConfiguration", &scaleway.ObjectBucketLockConfigurationArgs{
-//				Bucket: mainObjectBucket.Name,
+//			_, err = scaleway.NewObjectBucketLockConfiguration(ctx, "main", &scaleway.ObjectBucketLockConfigurationArgs{
+//				Bucket: main.Name,
 //				Rule: &scaleway.ObjectBucketLockConfigurationRuleArgs{
 //					DefaultRetention: &scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs{
 //						Mode: pulumi.String("GOVERNANCE"),

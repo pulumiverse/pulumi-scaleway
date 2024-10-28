@@ -15,9 +15,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by offer name
  * const byName = scaleway.getWebHostOffer({
  *     name: "performance",
  * });
+ * // Get info by offer id
  * const byId = scaleway.getWebHostOffer({
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
@@ -85,9 +87,11 @@ export interface GetWebHostOfferResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by offer name
  * const byName = scaleway.getWebHostOffer({
  *     name: "performance",
  * });
+ * // Get info by offer id
  * const byId = scaleway.getWebHostOffer({
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });

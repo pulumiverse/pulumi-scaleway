@@ -26,14 +26,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainFunctionNamespace = new Scaleway.FunctionNamespace("mainFunctionNamespace", new()
+    ///     var main = new Scaleway.FunctionNamespace("main", new()
     ///     {
+    ///         Name = "main-function-namespace",
     ///         Description = "Main function namespace",
     ///     });
     /// 
-    ///     var mainFunction = new Scaleway.Function("mainFunction", new()
+    ///     var mainFunction = new Scaleway.Function("main", new()
     ///     {
-    ///         NamespaceId = mainFunctionNamespace.Id,
+    ///         NamespaceId = main.Id,
     ///         Runtime = "go118",
     ///         Handler = "Handle",
     ///         Privacy = "private",

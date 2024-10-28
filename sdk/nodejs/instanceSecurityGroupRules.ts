@@ -32,6 +32,74 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Simplify your rules using dynamic block and `forEach` loop
+ *
+ * You can use `forEach` syntax to simplify the definition of your rules.
+ * Let's suppose that your inbound default policy is to drop, but you want to build a list of exceptions to accept.
+ * Create a local containing your exceptions (`locals.trusted`) and use the `forEach` syntax in a dynamic block:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.InstanceSecurityGroup("main", {
+ *     description: "test",
+ *     name: "terraform test",
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "accept",
+ * });
+ * const trusted = [
+ *     "1.2.3.4",
+ *     "4.5.6.7",
+ *     "7.8.9.10",
+ * ];
+ * const mainInstanceSecurityGroupRules = new scaleway.InstanceSecurityGroupRules("main", {
+ *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         action: "accept",
+ *         ip: entry.value,
+ *         port: 80,
+ *     })),
+ *     securityGroupId: main.id,
+ * });
+ * ```
+ *
+ * You can also use object to assign IP and port in the same time.
+ * In your locals, you can use objects to encapsulate several values that will be used later on in the loop:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.InstanceSecurityGroup("main", {
+ *     description: "test",
+ *     name: "terraform test",
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "accept",
+ * });
+ * const trusted = [
+ *     {
+ *         ip: "1.2.3.4",
+ *         port: "80",
+ *     },
+ *     {
+ *         ip: "5.6.7.8",
+ *         port: "81",
+ *     },
+ *     {
+ *         ip: "9.10.11.12",
+ *         port: "81",
+ *     },
+ * ];
+ * const mainInstanceSecurityGroupRules = new scaleway.InstanceSecurityGroupRules("main", {
+ *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         action: "accept",
+ *         ip: entry.value.ip,
+ *         port: entry.value.port,
+ *     })),
+ *     securityGroupId: main.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Instance security group rules can be imported using the `{zone}/{id}`, e.g.

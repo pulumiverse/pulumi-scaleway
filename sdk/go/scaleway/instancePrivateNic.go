@@ -32,8 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
-//				PrivateNetworkId: pulumi.String("fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
 //				ServerId:         pulumi.String("fr-par-1/11111111-1111-1111-1111-111111111111"),
+//				PrivateNetworkId: pulumi.String("fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
 //			})
 //			if err != nil {
 //				return err
@@ -59,6 +59,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("private_network_instance"),
 //				Zone: pulumi.String("fr-par-2"),
 //			})
 //			if err != nil {

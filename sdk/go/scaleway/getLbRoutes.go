@@ -29,12 +29,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Find routes that share the same frontend ID
 //			_, err := scaleway.GetLbRoutes(ctx, &scaleway.GetLbRoutesArgs{
-//				FrontendId: pulumi.StringRef(scaleway_lb_frontend.Frt01.Id),
+//				FrontendId: pulumi.StringRef(frt01.Id),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Find routes by frontend ID and zone
 //			_, err = scaleway.GetLbRoutes(ctx, &scaleway.GetLbRoutesArgs{
 //				FrontendId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //				Zone:       pulumi.StringRef("fr-par-2"),

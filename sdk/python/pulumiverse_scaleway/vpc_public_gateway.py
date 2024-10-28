@@ -472,11 +472,12 @@ class VpcPublicGateway(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGateway("main",
+            name="public_gateway_demo",
+            type="VPC-GW-S",
             tags=[
                 "demo",
                 "terraform",
-            ],
-            type="VPC-GW-S")
+            ])
         ```
 
         ## Import
@@ -522,11 +523,12 @@ class VpcPublicGateway(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGateway("main",
+            name="public_gateway_demo",
+            type="VPC-GW-S",
             tags=[
                 "demo",
                 "terraform",
-            ],
-            type="VPC-GW-S")
+            ])
         ```
 
         ## Import

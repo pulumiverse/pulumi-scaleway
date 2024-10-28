@@ -24,10 +24,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {});
- * const mainContainer = new scaleway.Container("mainContainer", {namespaceId: mainContainerNamespace.id});
- * const mainContainerCron = new scaleway.ContainerCron("mainContainerCron", {
+ * const main = new scaleway.ContainerNamespace("main", {});
+ * const mainContainer = new scaleway.Container("main", {
+ *     name: "my-container-with-cron-tf",
+ *     namespaceId: main.id,
+ * });
+ * const mainContainerCron = new scaleway.ContainerCron("main", {
  *     containerId: mainContainer.id,
+ *     name: "my-cron-name",
  *     schedule: "5 4 1 * *",
  *     args: JSON.stringify({
  *         address: {

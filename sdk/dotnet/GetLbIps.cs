@@ -16,34 +16,6 @@ namespace Pulumiverse.Scaleway
         /// Gets information about multiple Load Balancer IP addresses.
         /// 
         /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetLbIps.Invoke(new()
-        ///     {
-        ///         IpCidrRange = "0.0.0.0/0",
-        ///         Zone = "fr-par-2",
-        ///     });
-        /// 
-        ///     var ipsByTagsAndType = Scaleway.GetLbIps.Invoke(new()
-        ///     {
-        ///         IpType = "ipv4",
-        ///         Tags = new[]
-        ///         {
-        ///             "a tag",
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetLbIpsResult> InvokeAsync(GetLbIpsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsArgs(), options.WithDefaults());
@@ -52,34 +24,6 @@ namespace Pulumiverse.Scaleway
         /// Gets information about multiple Load Balancer IP addresses.
         /// 
         /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetLbIps.Invoke(new()
-        ///     {
-        ///         IpCidrRange = "0.0.0.0/0",
-        ///         Zone = "fr-par-2",
-        ///     });
-        /// 
-        ///     var ipsByTagsAndType = Scaleway.GetLbIps.Invoke(new()
-        ///     {
-        ///         IpType = "ipv4",
-        ///         Tags = new[]
-        ///         {
-        ///             "a tag",
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetLbIpsResult> Invoke(GetLbIpsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsInvokeArgs(), options.WithDefaults());

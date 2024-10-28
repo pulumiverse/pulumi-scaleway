@@ -14,33 +14,6 @@ import (
 // Gets information about multiple instance servers.
 //
 // ## Examples
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetInstanceServers(ctx, &scaleway.GetInstanceServersArgs{
-//				Name: pulumi.StringRef("myserver"),
-//				Zone: pulumi.StringRef("fr-par-2"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetInstanceServers(ctx *pulumi.Context, args *GetInstanceServersArgs, opts ...pulumi.InvokeOption) (*GetInstanceServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInstanceServersResult

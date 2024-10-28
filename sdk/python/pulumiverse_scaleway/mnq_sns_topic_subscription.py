@@ -394,20 +394,21 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         # For default project in default region
-        main_mnq_sns = scaleway.MnqSns("mainMnqSns")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
-            project_id=main_mnq_sns.project_id,
+        main = scaleway.MnqSns("main")
+        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+            project_id=main.project_id,
             permissions={
                 "can_manage": True,
                 "can_publish": True,
                 "can_receive": True,
             })
         topic = scaleway.MnqSnsTopic("topic",
-            project_id=main_mnq_sns.project_id,
+            project_id=main.project_id,
+            name="my-topic",
             access_key=main_mnq_sns_credentials.access_key,
             secret_key=main_mnq_sns_credentials.secret_key)
-        main_mnq_sns_topic_subscription = scaleway.MnqSnsTopicSubscription("mainMnqSnsTopicSubscription",
-            project_id=main_mnq_sns.project_id,
+        main_mnq_sns_topic_subscription = scaleway.MnqSnsTopicSubscription("main",
+            project_id=main.project_id,
             access_key=main_mnq_sns_credentials.access_key,
             secret_key=main_mnq_sns_credentials.secret_key,
             topic_id=topic.id,
@@ -459,20 +460,21 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         # For default project in default region
-        main_mnq_sns = scaleway.MnqSns("mainMnqSns")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
-            project_id=main_mnq_sns.project_id,
+        main = scaleway.MnqSns("main")
+        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+            project_id=main.project_id,
             permissions={
                 "can_manage": True,
                 "can_publish": True,
                 "can_receive": True,
             })
         topic = scaleway.MnqSnsTopic("topic",
-            project_id=main_mnq_sns.project_id,
+            project_id=main.project_id,
+            name="my-topic",
             access_key=main_mnq_sns_credentials.access_key,
             secret_key=main_mnq_sns_credentials.secret_key)
-        main_mnq_sns_topic_subscription = scaleway.MnqSnsTopicSubscription("mainMnqSnsTopicSubscription",
-            project_id=main_mnq_sns.project_id,
+        main_mnq_sns_topic_subscription = scaleway.MnqSnsTopicSubscription("main",
+            project_id=main.project_id,
             access_key=main_mnq_sns_credentials.access_key,
             secret_key=main_mnq_sns_credentials.secret_key,
             topic_id=topic.id,

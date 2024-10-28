@@ -164,8 +164,8 @@ class MnqNatsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_nats_account = scaleway.MnqNatsAccount("mainMnqNatsAccount")
-        main_mnq_nats_credentials = scaleway.MnqNatsCredentials("mainMnqNatsCredentials", account_id=main_mnq_nats_account.id)
+        main = scaleway.MnqNatsAccount("main", name="nats-account")
+        main_mnq_nats_credentials = scaleway.MnqNatsCredentials("main", account_id=main.id)
         ```
 
         ## Import
@@ -204,8 +204,8 @@ class MnqNatsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_nats_account = scaleway.MnqNatsAccount("mainMnqNatsAccount")
-        main_mnq_nats_credentials = scaleway.MnqNatsCredentials("mainMnqNatsCredentials", account_id=main_mnq_nats_account.id)
+        main = scaleway.MnqNatsAccount("main", name="nats-account")
+        main_mnq_nats_credentials = scaleway.MnqNatsCredentials("main", account_id=main.id)
         ```
 
         ## Import

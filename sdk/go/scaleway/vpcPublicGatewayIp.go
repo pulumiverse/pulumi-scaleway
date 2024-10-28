@@ -34,12 +34,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "tfA", &scaleway.DomainRecordArgs{
-//				Data:     main.Address,
+//			_, err = scaleway.NewDomainRecord(ctx, "tf_A", &scaleway.DomainRecordArgs{
 //				DnsZone:  pulumi.String("example.com"),
-//				Priority: pulumi.Int(1),
-//				Ttl:      pulumi.Int(3600),
+//				Name:     pulumi.String("tf"),
 //				Type:     pulumi.String("A"),
+//				Data:     main.Address,
+//				Ttl:      pulumi.Int(3600),
+//				Priority: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err

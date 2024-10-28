@@ -199,13 +199,14 @@ def get_ipam_ips(attached: Optional[bool] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    vpc01 = scaleway.Vpc("vpc01")
+    vpc01 = scaleway.Vpc("vpc01", name="my vpc")
     pn01 = scaleway.VpcPrivateNetwork("pn01",
         vpc_id=vpc01.id,
         ipv4_subnet={
             "subnet": "172.16.32.0/22",
         })
     redis01 = scaleway.RedisCluster("redis01",
+        name="my_redis_cluster",
         version="7.0.5",
         node_type="RED1-XS",
         user_name="my_initial_user",
@@ -294,13 +295,14 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    vpc01 = scaleway.Vpc("vpc01")
+    vpc01 = scaleway.Vpc("vpc01", name="my vpc")
     pn01 = scaleway.VpcPrivateNetwork("pn01",
         vpc_id=vpc01.id,
         ipv4_subnet={
             "subnet": "172.16.32.0/22",
         })
     redis01 = scaleway.RedisCluster("redis01",
+        name="my_redis_cluster",
         version="7.0.5",
         node_type="RED1-XS",
         user_name="my_initial_user",

@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.FunctionNamespace("main", new()
     ///     {
+    ///         Name = "main-function-namespace",
     ///         Description = "Main function namespace",
     ///     });
     /// 

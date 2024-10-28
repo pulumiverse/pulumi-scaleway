@@ -17,6 +17,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.Secret("main", {
+ *     name: "foo",
  *     description: "barr",
  *     tags: [
  *         "foo",

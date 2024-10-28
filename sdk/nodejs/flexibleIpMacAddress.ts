@@ -16,9 +16,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainFlexibleIp = new scaleway.FlexibleIp("mainFlexibleIp", {});
- * const mainFlexibleIpMacAddress = new scaleway.FlexibleIpMacAddress("mainFlexibleIpMacAddress", {
- *     flexibleIpId: mainFlexibleIp.id,
+ * const main = new scaleway.FlexibleIp("main", {});
+ * const mainFlexibleIpMacAddress = new scaleway.FlexibleIpMacAddress("main", {
+ *     flexibleIpId: main.id,
  *     type: "kvm",
  * });
  * ```
@@ -34,6 +34,7 @@ import * as utilities from "./utilities";
  *     name: "EM-B112X-SSD",
  * });
  * const base = new scaleway.BaremetalServer("base", {
+ *     name: "TestAccScalewayBaremetalServer_WithoutInstallConfig",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
  * });

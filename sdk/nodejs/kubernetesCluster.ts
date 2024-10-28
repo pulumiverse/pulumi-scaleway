@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     name: "tf-cluster",
  *     version: "1.29.1",
  *     cni: "cilium",
  *     privateNetworkId: pn.id,
@@ -26,6 +27,7 @@ import * as utilities from "./utilities";
  * });
  * const pool = new scaleway.KubernetesNodePool("pool", {
  *     clusterId: cluster.id,
+ *     name: "tf-pool",
  *     nodeType: "DEV1-M",
  *     size: 1,
  * });
@@ -38,6 +40,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     name: "tf-cluster",
  *     type: "multicloud",
  *     version: "1.29.1",
  *     cni: "kilo",
@@ -45,6 +48,7 @@ import * as utilities from "./utilities";
  * });
  * const pool = new scaleway.KubernetesNodePool("pool", {
  *     clusterId: cluster.id,
+ *     name: "tf-pool",
  *     nodeType: "external",
  *     size: 0,
  *     minSize: 0,
@@ -61,6 +65,7 @@ import * as utilities from "./utilities";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     name: "tf-cluster",
  *     description: "cluster made in terraform",
  *     version: "1.29.1",
  *     cni: "calico",
@@ -79,12 +84,109 @@ import * as utilities from "./utilities";
  * });
  * const pool = new scaleway.KubernetesNodePool("pool", {
  *     clusterId: cluster.id,
+ *     name: "tf-pool",
  *     nodeType: "DEV1-M",
  *     size: 3,
  *     autoscaling: true,
  *     autohealing: true,
  *     minSize: 1,
  *     maxSize: 5,
+ * });
+ * ```
+ *
+ * ### With the kubernetes provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _null from "@pulumi/null";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     name: "tf-cluster",
+ *     version: "1.29.1",
+ *     cni: "cilium",
+ *     privateNetworkId: pn.id,
+ *     deleteAdditionalResources: false,
+ * });
+ * const pool = new scaleway.KubernetesNodePool("pool", {
+ *     clusterId: cluster.id,
+ *     name: "tf-pool",
+ *     nodeType: "DEV1-M",
+ *     size: 1,
+ * });
+ * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
+ *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
+ *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
+ *     cluster_ca_certificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ * }}, {
+ *     dependsOn: [pool],
+ * });
+ * ```
+ *
+ * The `nullResource` is needed because when the cluster is created, it's status is `poolRequired`, but the kubeconfig can already be downloaded.
+ * It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+ *
+ * ### With the Helm provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _null from "@pulumi/null";
+ * import * as helm from "@pulumi/helm";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const cluster = new scaleway.KubernetesCluster("cluster", {
+ *     name: "tf-cluster",
+ *     version: "1.29.1",
+ *     cni: "cilium",
+ *     deleteAdditionalResources: false,
+ *     privateNetworkId: pn.id,
+ * });
+ * const pool = new scaleway.KubernetesNodePool("pool", {
+ *     clusterId: cluster.id,
+ *     name: "tf-pool",
+ *     nodeType: "DEV1-M",
+ *     size: 1,
+ * });
+ * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
+ *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
+ *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
+ *     cluster_ca_certificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ * }}, {
+ *     dependsOn: [pool],
+ * });
+ * const nginxIp = new scaleway.LoadbalancerIp("nginx_ip", {
+ *     zone: "fr-par-1",
+ *     projectId: cluster.projectId,
+ * });
+ * const nginxIngress = new helm.index.Release("nginx_ingress", {
+ *     name: "nginx-ingress",
+ *     namespace: "kube-system",
+ *     repository: "https://kubernetes.github.io/ingress-nginx",
+ *     chart: "ingress-nginx",
+ *     set: [
+ *         {
+ *             name: "controller.service.loadBalancerIP",
+ *             value: nginxIp.ipAddress,
+ *         },
+ *         {
+ *             name: "controller.config.use-proxy-protocol",
+ *             value: "true",
+ *         },
+ *         {
+ *             name: "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2",
+ *             value: "true",
+ *         },
+ *         {
+ *             name: "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone",
+ *             value: nginxIp.zone,
+ *         },
+ *         {
+ *             name: "controller.service.externalTrafficPolicy",
+ *             value: "Local",
+ *         },
+ *     ],
  * });
  * ```
  *

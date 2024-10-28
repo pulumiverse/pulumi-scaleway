@@ -21,34 +21,35 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
- * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
+ * const main = new scaleway.VpcPrivateNetwork("main", {name: "your_private_network"});
+ * const mainInstanceServer = new scaleway.InstanceServer("main", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     zone: "fr-par-1",
  *     privateNetworks: [{
- *         pnId: mainVpcPrivateNetwork.id,
+ *         pnId: main.id,
  *     }],
  * });
- * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
- * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", {subnet: "192.168.1.0/24"});
- * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("mainVpcPublicGateway", {
+ * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("main", {});
+ * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
+ * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("main", {
+ *     name: "foobar",
  *     type: "VPC-GW-S",
  *     ipId: mainVpcPublicGatewayIp.id,
  * });
- * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", {
+ * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("main", {
  *     gatewayId: mainVpcPublicGateway.id,
- *     privateNetworkId: mainVpcPrivateNetwork.id,
+ *     privateNetworkId: main.id,
  *     dhcpId: mainVpcPublicGatewayDhcp.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * }, {
  *     dependsOn: [
  *         mainVpcPublicGatewayIp,
- *         mainVpcPrivateNetwork,
+ *         main,
  *     ],
  * });
- * const mainVpcPublicGatewayDhcpReservation = new scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation", {
+ * const mainVpcPublicGatewayDhcpReservation = new scaleway.VpcPublicGatewayDhcpReservation("main", {
  *     gatewayNetworkId: mainVpcGatewayNetwork.id,
  *     macAddress: mainInstanceServer.privateNetworks.apply(privateNetworks => privateNetworks?.[0]?.macAddress),
  *     ipAddress: "192.168.1.1",

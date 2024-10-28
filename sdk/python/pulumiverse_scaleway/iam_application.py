@@ -222,7 +222,9 @@ class IamApplication(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamApplication("main", description="a description")
+        main = scaleway.IamApplication("main",
+            name="My application",
+            description="a description")
         ```
 
         ## Import
@@ -257,7 +259,9 @@ class IamApplication(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamApplication("main", description="a description")
+        main = scaleway.IamApplication("main",
+            name="My application",
+            description="a description")
         ```
 
         ## Import

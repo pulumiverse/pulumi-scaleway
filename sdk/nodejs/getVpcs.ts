@@ -8,18 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about multiple Virtual Private Clouds.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getVpcs({
- *     name: "tf-vpc-datasource",
- *     region: "nl-ams",
- * });
- * ```
  */
 export function getVpcs(args?: GetVpcsArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcsResult> {
     args = args || {};
@@ -81,18 +69,6 @@ export interface GetVpcsResult {
 }
 /**
  * Gets information about multiple Virtual Private Clouds.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getVpcs({
- *     name: "tf-vpc-datasource",
- *     region: "nl-ams",
- * });
- * ```
  */
 export function getVpcsOutput(args?: GetVpcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcsResult> {
     return pulumi.output(args).apply((a: any) => getVpcs(a, opts))

@@ -3603,10 +3603,6 @@ export interface RedisClusterPrivateNetwork {
      * configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
      * require updating the Private Network to add IPs.
      * Your `serviceIps` must be listed as follows:
-     *
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * ```
      */
     serviceIps: string[];
     /**

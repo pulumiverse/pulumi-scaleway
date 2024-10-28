@@ -157,15 +157,6 @@ def get_function_namespace(name: Optional[str] = None,
     """
     Gets information about a function namespace.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_namespace = scaleway.get_function_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str name: The namespace name.
            Only one of `name` and `namespace_id` should be specified.
@@ -204,15 +195,6 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
     Gets information about a function namespace.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_namespace = scaleway.get_function_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str name: The namespace name.

@@ -38,13 +38,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			volumeSnapshot, err := scaleway.NewInstanceSnapshot(ctx, "volumeSnapshot", &scaleway.InstanceSnapshotArgs{
+//			volumeSnapshot, err := scaleway.NewInstanceSnapshot(ctx, "volume_snapshot", &scaleway.InstanceSnapshotArgs{
 //				VolumeId: volume.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceImage(ctx, "volumeImage", &scaleway.InstanceImageArgs{
+//			_, err = scaleway.NewInstanceImage(ctx, "volume_image", &scaleway.InstanceImageArgs{
+//				Name:         pulumi.String("image_from_volume"),
 //				RootVolumeId: volumeSnapshot.ID(),
 //			})
 //			if err != nil {
@@ -77,13 +78,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			serverSnapshot, err := scaleway.NewInstanceSnapshot(ctx, "serverSnapshot", &scaleway.InstanceSnapshotArgs{
-//				VolumeId: pulumi.Any(scaleway_instance_server.Main.Root_volume[0].Volume_id),
+//			serverSnapshot, err := scaleway.NewInstanceSnapshot(ctx, "server_snapshot", &scaleway.InstanceSnapshotArgs{
+//				VolumeId: pulumi.Any(main.RootVolume[0].VolumeId),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceImage(ctx, "serverImage", &scaleway.InstanceImageArgs{
+//			_, err = scaleway.NewInstanceImage(ctx, "server_image", &scaleway.InstanceImageArgs{
+//				Name:         pulumi.String("image_from_server"),
 //				RootVolumeId: serverSnapshot.ID(),
 //			})
 //			if err != nil {

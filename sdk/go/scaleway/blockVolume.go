@@ -31,8 +31,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewBlockVolume(ctx, "blockVolume", &scaleway.BlockVolumeArgs{
+//			_, err := scaleway.NewBlockVolume(ctx, "block_volume", &scaleway.BlockVolumeArgs{
 //				Iops:     pulumi.Int(5000),
+//				Name:     pulumi.String("some-volume-name"),
 //				SizeInGb: pulumi.Int(20),
 //			})
 //			if err != nil {
@@ -59,21 +60,24 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			base, err := scaleway.NewBlockVolume(ctx, "base", &scaleway.BlockVolumeArgs{
+//				Name:     pulumi.String("block-volume-base"),
 //				Iops:     pulumi.Int(5000),
 //				SizeInGb: pulumi.Int(20),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainBlockSnapshot, err := scaleway.NewBlockSnapshot(ctx, "mainBlockSnapshot", &scaleway.BlockSnapshotArgs{
+//			main, err := scaleway.NewBlockSnapshot(ctx, "main", &scaleway.BlockSnapshotArgs{
+//				Name:     pulumi.String("block-volume-from-snapshot"),
 //				VolumeId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewBlockVolume(ctx, "mainBlockVolume", &scaleway.BlockVolumeArgs{
+//			_, err = scaleway.NewBlockVolume(ctx, "main", &scaleway.BlockVolumeArgs{
+//				Name:       pulumi.String("block-volume-from-snapshot"),
 //				Iops:       pulumi.Int(5000),
-//				SnapshotId: mainBlockSnapshot.ID(),
+//				SnapshotId: main.ID(),
 //			})
 //			if err != nil {
 //				return err

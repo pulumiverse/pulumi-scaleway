@@ -27,12 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by offer name
 //			_, err := scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
 //				Name: pulumi.StringRef("performance"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by offer id
 //			_, err = scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
 //				OfferId: pulumi.StringRef("de2426b4-a9e9-11ec-b909-0242ac120002"),
 //			}, nil)

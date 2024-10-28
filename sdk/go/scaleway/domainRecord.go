@@ -32,39 +32,43 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDomainRecord(ctx, "www", &scaleway.DomainRecordArgs{
-//				Data:    pulumi.String("1.2.3.4"),
 //				DnsZone: pulumi.String("domain.tld"),
-//				Ttl:     pulumi.Int(3600),
+//				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("A"),
+//				Data:    pulumi.String("1.2.3.4"),
+//				Ttl:     pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "www2", &scaleway.DomainRecordArgs{
-//				Data:    pulumi.String("1.2.3.5"),
 //				DnsZone: pulumi.String("domain.tld"),
-//				Ttl:     pulumi.Int(3600),
+//				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("A"),
+//				Data:    pulumi.String("1.2.3.5"),
+//				Ttl:     pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "mx", &scaleway.DomainRecordArgs{
-//				Data:     pulumi.String("mx.online.net."),
 //				DnsZone:  pulumi.String("domain.tld"),
-//				Priority: pulumi.Int(10),
-//				Ttl:      pulumi.Int(3600),
+//				Name:     pulumi.String(""),
 //				Type:     pulumi.String("MX"),
+//				Data:     pulumi.String("mx.online.net."),
+//				Ttl:      pulumi.Int(3600),
+//				Priority: pulumi.Int(10),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "mx2", &scaleway.DomainRecordArgs{
-//				Data:     pulumi.String("mx-cache.online.net."),
 //				DnsZone:  pulumi.String("domain.tld"),
-//				Priority: pulumi.Int(20),
-//				Ttl:      pulumi.Int(3600),
+//				Name:     pulumi.String(""),
 //				Type:     pulumi.String("MX"),
+//				Data:     pulumi.String("mx-cache.online.net."),
+//				Ttl:      pulumi.Int(3600),
+//				Priority: pulumi.Int(20),
 //			})
 //			if err != nil {
 //				return err
@@ -89,9 +93,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDomainRecord(ctx, "geoIp", &scaleway.DomainRecordArgs{
-//				Data:    pulumi.String("1.2.3.4"),
+//			_, err := scaleway.NewDomainRecord(ctx, "geo_ip", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
+//				Name:    pulumi.String("images"),
+//				Type:    pulumi.String("A"),
+//				Data:    pulumi.String("1.2.3.4"),
+//				Ttl:     pulumi.Int(3600),
 //				GeoIp: &scaleway.DomainRecordGeoIpArgs{
 //					Matches: scaleway.DomainRecordGeoIpMatchArray{
 //						&scaleway.DomainRecordGeoIpMatchArgs{
@@ -111,44 +118,44 @@ import (
 //						},
 //					},
 //				},
-//				Ttl:  pulumi.Int(3600),
-//				Type: pulumi.String("A"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "httpService", &scaleway.DomainRecordArgs{
-//				Data:    pulumi.String("1.2.3.4"),
+//			_, err = scaleway.NewDomainRecord(ctx, "http_service", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
+//				Name:    pulumi.String("app"),
+//				Type:    pulumi.String("A"),
+//				Data:    pulumi.String("1.2.3.4"),
+//				Ttl:     pulumi.Int(3600),
 //				HttpService: &scaleway.DomainRecordHttpServiceArgs{
 //					Ips: pulumi.StringArray{
 //						pulumi.String("1.2.3.5"),
 //						pulumi.String("1.2.3.6"),
 //					},
 //					MustContain: pulumi.String("up"),
-//					Strategy:    pulumi.String("hashed"),
 //					Url:         pulumi.String("http://mywebsite.com/health"),
 //					UserAgent:   pulumi.String("scw_service_up"),
+//					Strategy:    pulumi.String("hashed"),
 //				},
-//				Ttl:  pulumi.Int(3600),
-//				Type: pulumi.String("A"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "view", &scaleway.DomainRecordArgs{
-//				Data:    pulumi.String("1.2.3.4"),
 //				DnsZone: pulumi.String("domain.tld"),
-//				Ttl:     pulumi.Int(3600),
+//				Name:    pulumi.String("db"),
 //				Type:    pulumi.String("A"),
+//				Data:    pulumi.String("1.2.3.4"),
+//				Ttl:     pulumi.Int(3600),
 //				Views: scaleway.DomainRecordViewArray{
 //					&scaleway.DomainRecordViewArgs{
-//						Data:   pulumi.String("1.2.3.5"),
 //						Subnet: pulumi.String("100.0.0.0/16"),
+//						Data:   pulumi.String("1.2.3.5"),
 //					},
 //					&scaleway.DomainRecordViewArgs{
-//						Data:   pulumi.String("1.2.3.6"),
 //						Subnet: pulumi.String("100.1.0.0/16"),
+//						Data:   pulumi.String("1.2.3.6"),
 //					},
 //				},
 //			})
@@ -156,10 +163,11 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewDomainRecord(ctx, "weighted", &scaleway.DomainRecordArgs{
-//				Data:    pulumi.String("1.2.3.4"),
 //				DnsZone: pulumi.String("domain.tld"),
-//				Ttl:     pulumi.Int(3600),
+//				Name:    pulumi.String("web"),
 //				Type:    pulumi.String("A"),
+//				Data:    pulumi.String("1.2.3.4"),
+//				Ttl:     pulumi.Int(3600),
 //				Weighteds: scaleway.DomainRecordWeightedArray{
 //					&scaleway.DomainRecordWeightedArgs{
 //						Ip:     pulumi.String("1.2.3.5"),
@@ -198,9 +206,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
+//			// Your project ID.
 //			projectId := cfg.Require("projectId")
+//			// The DNS Zone used for testing records.
 //			dnsZone := cfg.Require("dnsZone")
-//			publicIp, err := scaleway.NewInstanceIp(ctx, "publicIp", &scaleway.InstanceIpArgs{
+//			publicIp, err := scaleway.NewInstanceIp(ctx, "public_ip", &scaleway.InstanceIpArgs{
 //				ProjectId: pulumi.String(projectId),
 //			})
 //			if err != nil {
@@ -222,8 +232,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "webA", &scaleway.DomainRecordArgs{
+//			_, err = scaleway.NewDomainRecord(ctx, "web_A", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
+//				Name:    pulumi.String("web"),
 //				Type:    pulumi.String("A"),
 //				Data:    web.PublicIp,
 //				Ttl:     pulumi.Int(3600),
@@ -231,8 +242,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "webCname", &scaleway.DomainRecordArgs{
+//			_, err = scaleway.NewDomainRecord(ctx, "web_cname", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
+//				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("CNAME"),
 //				Data:    pulumi.Sprintf("web.%v.", dnsZone),
 //				Ttl:     pulumi.Int(3600),
@@ -240,8 +252,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "webAlias", &scaleway.DomainRecordArgs{
+//			_, err = scaleway.NewDomainRecord(ctx, "web_alias", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
+//				Name:    pulumi.String(""),
 //				Type:    pulumi.String("ALIAS"),
 //				Data:    pulumi.Sprintf("web.%v.", dnsZone),
 //				Ttl:     pulumi.Int(3600),

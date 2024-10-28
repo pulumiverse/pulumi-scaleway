@@ -29,19 +29,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainLoadbalancerIp, err := scaleway.NewLoadbalancerIp(ctx, "mainLoadbalancerIp", nil)
+//			main, err := scaleway.NewLoadbalancerIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainLoadbalancer, err := scaleway.NewLoadbalancer(ctx, "mainLoadbalancer", &scaleway.LoadbalancerArgs{
-//				IpId: mainLoadbalancerIp.ID(),
+//			mainLoadbalancer, err := scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//				IpId: main.ID(),
+//				Name: pulumi.String("data-test-lb-backend"),
 //				Type: pulumi.String("LB-S"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainLoadbalancerBackend, err := scaleway.NewLoadbalancerBackend(ctx, "mainLoadbalancerBackend", &scaleway.LoadbalancerBackendArgs{
+//			mainLoadbalancerBackend, err := scaleway.NewLoadbalancerBackend(ctx, "main", &scaleway.LoadbalancerBackendArgs{
 //				LbId:            mainLoadbalancer.ID(),
+//				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //			})

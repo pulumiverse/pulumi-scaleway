@@ -27,6 +27,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.JobDefinition("main", new()
     ///     {
+    ///         Name = "testjob",
     ///         CpuLimit = 140,
     ///         MemoryLimit = 256,
     ///         ImageUri = "docker.io/alpine:latest",

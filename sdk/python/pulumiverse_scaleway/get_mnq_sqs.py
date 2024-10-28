@@ -88,8 +88,10 @@ def get_mnq_sqs(project_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # For default project
     main = scaleway.get_mnq_sqs()
-    for_project = scaleway.get_mnq_sqs(project_id=scaleway_account_project["main"]["id"])
+    # For specific project
+    for_project = scaleway.get_mnq_sqs(project_id=main_scaleway_account_project["id"])
     ```
 
 
@@ -124,8 +126,10 @@ def get_mnq_sqs_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # For default project
     main = scaleway.get_mnq_sqs()
-    for_project = scaleway.get_mnq_sqs(project_id=scaleway_account_project["main"]["id"])
+    # For specific project
+    for_project = scaleway.get_mnq_sqs(project_id=main_scaleway_account_project["id"])
     ```
 
 

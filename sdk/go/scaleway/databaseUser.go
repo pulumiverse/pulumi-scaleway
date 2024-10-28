@@ -33,6 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:   pulumi.Bool(true),
@@ -43,15 +44,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			dbPassword, err := random.NewRandomPassword(ctx, "dbPassword", &random.RandomPasswordArgs{
+//			dbPassword, err := random.NewRandomPassword(ctx, "db_password", &random.RandomPasswordArgs{
 //				Length:  pulumi.Int(16),
 //				Special: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseUser(ctx, "dbAdmin", &scaleway.DatabaseUserArgs{
+//			_, err = scaleway.NewDatabaseUser(ctx, "db_admin", &scaleway.DatabaseUserArgs{
 //				InstanceId: main.ID(),
+//				Name:       pulumi.String("devtools"),
 //				Password:   dbPassword.Result,
 //				IsAdmin:    pulumi.Bool(true),
 //			})

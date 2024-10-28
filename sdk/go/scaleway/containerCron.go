@@ -41,12 +41,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainContainerNamespace, err := scaleway.NewContainerNamespace(ctx, "mainContainerNamespace", nil)
+//			main, err := scaleway.NewContainerNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainContainer, err := scaleway.NewContainer(ctx, "mainContainer", &scaleway.ContainerArgs{
-//				NamespaceId: mainContainerNamespace.ID(),
+//			mainContainer, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//				Name:        pulumi.String("my-container-with-cron-tf"),
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -65,8 +66,9 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = scaleway.NewContainerCron(ctx, "mainContainerCron", &scaleway.ContainerCronArgs{
+//			_, err = scaleway.NewContainerCron(ctx, "main", &scaleway.ContainerCronArgs{
 //				ContainerId: mainContainer.ID(),
+//				Name:        pulumi.String("my-cron-name"),
 //				Schedule:    pulumi.String("5 4 1 * *"),
 //				Args:        pulumi.String(json0),
 //			})

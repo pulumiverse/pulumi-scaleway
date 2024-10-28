@@ -25,11 +25,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by namespace name
         ///     var byName = Scaleway.GetContainerNamespace.Invoke(new()
         ///     {
         ///         Name = "my-namespace-name",
         ///     });
         /// 
+        ///     // Get info by namespace ID
         ///     var byId = Scaleway.GetContainerNamespace.Invoke(new()
         ///     {
         ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
@@ -54,11 +56,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by namespace name
         ///     var byName = Scaleway.GetContainerNamespace.Invoke(new()
         ///     {
         ///         Name = "my-namespace-name",
         ///     });
         /// 
+        ///     // Get info by namespace ID
         ///     var byId = Scaleway.GetContainerNamespace.Invoke(new()
         ///     {
         ///         NamespaceId = "11111111-1111-1111-1111-111111111111",

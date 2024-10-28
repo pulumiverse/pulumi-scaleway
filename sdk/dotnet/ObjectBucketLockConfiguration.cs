@@ -28,15 +28,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket", new()
+    ///     var main = new Scaleway.ObjectBucket("main", new()
     ///     {
+    ///         Name = "MyBucket",
     ///         Acl = "public-read",
     ///         ObjectLockEnabled = true,
     ///     });
     /// 
-    ///     var mainObjectBucketLockConfiguration = new Scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration", new()
+    ///     var mainObjectBucketLockConfiguration = new Scaleway.ObjectBucketLockConfiguration("main", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = main.Name,
     ///         Rule = new Scaleway.Inputs.ObjectBucketLockConfigurationRuleArgs
     ///         {
     ///             DefaultRetention = new Scaleway.Inputs.ObjectBucketLockConfigurationRuleDefaultRetentionArgs

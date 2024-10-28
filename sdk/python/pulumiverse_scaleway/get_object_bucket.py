@@ -171,9 +171,11 @@ def get_object_bucket(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.ObjectBucket("main", tags={
-        "foo": "bar",
-    })
+    main = scaleway.ObjectBucket("main",
+        name="bucket.test.com",
+        tags={
+            "foo": "bar",
+        })
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
 
@@ -230,9 +232,11 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.ObjectBucket("main", tags={
-        "foo": "bar",
-    })
+    main = scaleway.ObjectBucket("main",
+        name="bucket.test.com",
+        tags={
+            "foo": "bar",
+        })
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
 

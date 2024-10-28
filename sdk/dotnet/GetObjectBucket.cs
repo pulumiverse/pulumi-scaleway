@@ -29,6 +29,7 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.ObjectBucket("main", new()
         ///     {
+        ///         Name = "bucket.test.com",
         ///         Tags = 
         ///         {
         ///             { "foo", "bar" },
@@ -83,6 +84,7 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.ObjectBucket("main", new()
         ///     {
+        ///         Name = "bucket.test.com",
         ///         Tags = 
         ///         {
         ///             { "foo", "bar" },

@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.JobDefinition("main", {
+ *     name: "testjob",
  *     cpuLimit: 140,
  *     memoryLimit: 256,
  *     imageUri: "docker.io/alpine:latest",

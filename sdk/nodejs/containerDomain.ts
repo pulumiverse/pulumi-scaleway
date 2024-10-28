@@ -16,9 +16,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const appContainer = new scaleway.Container("appContainer", {});
- * const appContainerDomain = new scaleway.ContainerDomain("appContainerDomain", {
- *     containerId: appContainer.id,
+ * const app = new scaleway.Container("app", {});
+ * const appContainerDomain = new scaleway.ContainerDomain("app", {
+ *     containerId: app.id,
  *     hostname: "container.domain.tld",
  * });
  * ```
@@ -29,8 +29,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {description: "test container"});
- * const appContainer = new scaleway.Container("appContainer", {
+ * const main = new scaleway.ContainerNamespace("main", {
+ *     name: "my-ns-test",
+ *     description: "test container",
+ * });
+ * const app = new scaleway.Container("app", {
+ *     name: "app",
  *     namespaceId: main.id,
  *     registryImage: pulumi.interpolate`${main.registryEndpoint}/nginx:alpine`,
  *     port: 80,
@@ -44,14 +48,15 @@ import * as utilities from "./utilities";
  *     protocol: "http1",
  *     deploy: true,
  * });
- * const appDomainRecord = new scaleway.DomainRecord("appDomainRecord", {
+ * const appDomainRecord = new scaleway.DomainRecord("app", {
  *     dnsZone: "domain.tld",
+ *     name: "subdomain",
  *     type: "CNAME",
- *     data: pulumi.interpolate`${appContainer.domainName}.`,
+ *     data: pulumi.interpolate`${app.domainName}.`,
  *     ttl: 3600,
  * });
- * const appContainerDomain = new scaleway.ContainerDomain("appContainerDomain", {
- *     containerId: appContainer.id,
+ * const appContainerDomain = new scaleway.ContainerDomain("app", {
+ *     containerId: app.id,
  *     hostname: pulumi.interpolate`${appDomainRecord.name}.${appDomainRecord.dnsZone}`,
  * });
  * ```

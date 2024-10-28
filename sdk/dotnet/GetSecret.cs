@@ -31,14 +31,17 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.Secret("main", new()
         ///     {
+        ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
+        ///     // Get info by secret ID
         ///     var mySecret = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
+        ///     // Get info by secret Name
         ///     var byName = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",
@@ -69,14 +72,17 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.Secret("main", new()
         ///     {
+        ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
+        ///     // Get info by secret ID
         ///     var mySecret = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
+        ///     // Get info by secret Name
         ///     var byName = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",

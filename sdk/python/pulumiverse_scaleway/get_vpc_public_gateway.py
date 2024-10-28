@@ -204,6 +204,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcPublicGateway("main",
+        name="demo",
         type="VPC-GW-S",
         zone="nl-ams-1")
     pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
@@ -261,6 +262,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcPublicGateway("main",
+        name="demo",
         type="VPC-GW-S",
         zone="nl-ams-1")
     pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,

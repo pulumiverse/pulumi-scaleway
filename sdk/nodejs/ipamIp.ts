@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
@@ -58,7 +58,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv6Subnets: [{

@@ -29,7 +29,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var acl01 = new Scaleway.LoadbalancerAcl("acl01", new()
     ///     {
-    ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+    ///         FrontendId = frt01.Id,
+    ///         Name = "acl01",
     ///         Description = "Exclude well-known IPs",
     ///         Index = 0,
     ///         Action = new Scaleway.Inputs.LoadbalancerAclActionArgs

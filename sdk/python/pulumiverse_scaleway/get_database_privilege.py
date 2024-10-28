@@ -107,9 +107,10 @@ def get_database_privilege(database_name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.get_database_privilege(database_name="my-database",
-        instance_id="11111111-1111-111111111111",
-        user_name="my-user")
+    # Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
+    main = scaleway.get_database_privilege(instance_id="11111111-1111-111111111111",
+        user_name="my-user",
+        database_name="my-database")
     ```
 
 
@@ -150,9 +151,10 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.get_database_privilege(database_name="my-database",
-        instance_id="11111111-1111-111111111111",
-        user_name="my-user")
+    # Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
+    main = scaleway.get_database_privilege(instance_id="11111111-1111-111111111111",
+        user_name="my-user",
+        database_name="my-database")
     ```
 
 

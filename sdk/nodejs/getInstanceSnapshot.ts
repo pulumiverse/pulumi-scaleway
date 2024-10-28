@@ -15,9 +15,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by snapshot name
  * const byName = scaleway.getInstanceSnapshot({
  *     name: "my-snapshot-name",
  * });
+ * // Get info by snapshot ID
  * const byId = scaleway.getInstanceSnapshot({
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -88,9 +90,11 @@ export interface GetInstanceSnapshotResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by snapshot name
  * const byName = scaleway.getInstanceSnapshot({
  *     name: "my-snapshot-name",
  * });
+ * // Get info by snapshot ID
  * const byId = scaleway.getInstanceSnapshot({
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });

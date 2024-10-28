@@ -28,8 +28,9 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var basic = new Scaleway.IamGroup("basic", new()
     ///     {
-    ///         ApplicationIds = new[] {},
+    ///         Name = "iam_group_basic",
     ///         Description = "basic description",
+    ///         ApplicationIds = new[] {},
     ///         UserIds = new[] {},
     ///     });
     /// 
@@ -48,8 +49,9 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var app = new Scaleway.IamApplication("app");
     /// 
-    ///     var withApp = new Scaleway.IamGroup("withApp", new()
+    ///     var withApp = new Scaleway.IamGroup("with_app", new()
     ///     {
+    ///         Name = "iam_group_with_app",
     ///         ApplicationIds = new[]
     ///         {
     ///             app.Id,

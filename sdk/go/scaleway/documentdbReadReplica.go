@@ -31,8 +31,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDocumentdbReadReplica(ctx, "replica", &scaleway.DocumentdbReadReplicaArgs{
-//				DirectAccess: nil,
 //				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
+//				DirectAccess: nil,
 //			})
 //			if err != nil {
 //				return err
@@ -62,6 +62,7 @@ import (
 //				return err
 //			}
 //			instance, err := scaleway.NewDocumentdbInstance(ctx, "instance", &scaleway.DocumentdbInstanceArgs{
+//				Name:           pulumi.String("document_db-read-replica-basic"),
 //				NodeType:       pulumi.String("docdb-play2-pico"),
 //				Engine:         pulumi.String("FerretDB-1"),
 //				UserName:       pulumi.String("my_initial_user"),

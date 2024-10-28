@@ -28,7 +28,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqNatsAccount("main");
+    ///     var main = new Scaleway.MnqNatsAccount("main", new()
+    ///     {
+    ///         Name = "nats-account",
+    ///     });
     /// 
     /// });
     /// ```

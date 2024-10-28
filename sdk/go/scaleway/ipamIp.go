@@ -32,7 +32,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -75,7 +77,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -119,7 +123,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
 //			if err != nil {
 //				return err
 //			}

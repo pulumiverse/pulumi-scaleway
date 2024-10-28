@@ -225,16 +225,18 @@ class DocumentdbUser(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DocumentdbInstance("instance",
+            name="test-document_db-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=20)
-        db_password = random.RandomPassword("dbPassword",
+        db_password = random.RandomPassword("db_password",
             length=16,
             special=True)
-        db_admin = scaleway.DocumentdbUser("dbAdmin",
+        db_admin = scaleway.DocumentdbUser("db_admin",
             instance_id=instance.id,
+            name="devtools",
             password=db_password.result,
             is_admin=True)
         ```
@@ -280,16 +282,18 @@ class DocumentdbUser(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DocumentdbInstance("instance",
+            name="test-document_db-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=20)
-        db_password = random.RandomPassword("dbPassword",
+        db_password = random.RandomPassword("db_password",
             length=16,
             special=True)
-        db_admin = scaleway.DocumentdbUser("dbAdmin",
+        db_admin = scaleway.DocumentdbUser("db_admin",
             instance_id=instance.id,
+            name="devtools",
             password=db_password.result,
             is_admin=True)
         ```

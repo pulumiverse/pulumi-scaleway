@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var publicIp = new Scaleway.InstanceIp("publicIp");
+    ///     var publicIp = new Scaleway.InstanceIp("public_ip");
     /// 
     ///     var web = new Scaleway.InstanceServer("web", new()
     ///     {
@@ -157,31 +157,6 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With user data and cloud-init
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.IO;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var web = new Scaleway.InstanceServer("web", new()
-    ///     {
-    ///         Type = "DEV1-S",
-    ///         Image = "ubuntu_jammy",
-    ///         UserData = 
-    ///         {
-    ///             { "foo", "bar" },
-    ///             { "cloud-init", File.ReadAllText($"{path.Module}/cloud-init.yml") },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ### With private network
     /// 
     /// ```csharp
@@ -192,7 +167,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "private_network_instance",
+    ///     });
     /// 
     ///     var @base = new Scaleway.InstanceServer("base", new()
     ///     {
@@ -224,13 +202,13 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var image = new Scaleway.InstanceServer("image", new()
     ///     {
+    ///         Type = "PRO2-XXS",
     ///         Image = "ubuntu_jammy",
     ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
     ///         {
-    ///             SizeInGb = 100,
     ///             VolumeType = "b_ssd",
+    ///             SizeInGb = 100,
     ///         },
-    ///         Type = "PRO2-XXS",
     ///     });
     /// 
     /// });
@@ -252,18 +230,18 @@ namespace Pulumiverse.Scaleway
     ///         Name = "my_snapshot",
     ///     });
     /// 
-    ///     var fromSnapshotInstanceVolume = new Scaleway.InstanceVolume("fromSnapshotInstanceVolume", new()
+    ///     var fromSnapshot = new Scaleway.InstanceVolume("from_snapshot", new()
     ///     {
     ///         FromSnapshotId = snapshot.Apply(getInstanceSnapshotResult =&gt; getInstanceSnapshotResult.Id),
     ///         Type = "b_ssd",
     ///     });
     /// 
-    ///     var fromSnapshotInstanceServer = new Scaleway.InstanceServer("fromSnapshotInstanceServer", new()
+    ///     var fromSnapshotInstanceServer = new Scaleway.InstanceServer("from_snapshot", new()
     ///     {
     ///         Type = "PRO2-XXS",
     ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
     ///         {
-    ///             VolumeId = fromSnapshotInstanceVolume.Id,
+    ///             VolumeId = fromSnapshot.Id,
     ///         },
     ///     });
     /// 

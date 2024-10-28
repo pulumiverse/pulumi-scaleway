@@ -29,7 +29,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var backend01 = new Scaleway.LoadbalancerBackend("backend01", new()
     ///     {
-    ///         LbId = scaleway_lb.Lb01.Id,
+    ///         LbId = lb01.Id,
+    ///         Name = "backend01",
     ///         ForwardProtocol = "http",
     ///         ForwardPort = 80,
     ///     });
@@ -49,7 +50,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var backend01 = new Scaleway.LoadbalancerBackend("backend01", new()
     ///     {
-    ///         LbId = scaleway_lb.Lb01.Id,
+    ///         LbId = lb01.Id,
+    ///         Name = "backend01",
     ///         ForwardProtocol = "http",
     ///         ForwardPort = 80,
     ///         HealthCheckHttp = new Scaleway.Inputs.LoadbalancerBackendHealthCheckHttpArgs

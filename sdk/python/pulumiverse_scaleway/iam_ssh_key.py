@@ -242,7 +242,9 @@ class IamSshKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamSshKey("main", public_key="<YOUR-PUBLIC-SSH-KEY>")
+        main = scaleway.IamSshKey("main",
+            name="main",
+            public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
 
         ## Import
@@ -279,7 +281,9 @@ class IamSshKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamSshKey("main", public_key="<YOUR-PUBLIC-SSH-KEY>")
+        main = scaleway.IamSshKey("main",
+            name="main",
+            public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
 
         ## Import

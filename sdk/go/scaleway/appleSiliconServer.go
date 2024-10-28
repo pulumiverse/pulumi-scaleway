@@ -32,6 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewAppleSiliconServer(ctx, "server", &scaleway.AppleSiliconServerArgs{
+//				Name: pulumi.String("test-m1"),
 //				Type: pulumi.String("M1-M"),
 //			})
 //			if err != nil {

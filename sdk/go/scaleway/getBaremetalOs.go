@@ -30,6 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by os name and version
 //			_, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
 //				Name:    pulumi.StringRef("Ubuntu"),
 //				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
@@ -37,6 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by os id
 //			_, err = scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
 //				OsId: pulumi.StringRef("03b7f4ba-a6a1-4305-984e-b54fafbf1681"),
 //			}, nil)

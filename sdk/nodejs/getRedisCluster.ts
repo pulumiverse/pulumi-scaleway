@@ -10,17 +10,6 @@ import * as utilities from "./utilities";
  * Gets information about a Redis™ cluster.
  *
  * For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myCluster = scaleway.getRedisCluster({
- *     clusterId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getRedisCluster(args?: GetRedisClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisClusterResult> {
     args = args || {};
@@ -131,17 +120,6 @@ export interface GetRedisClusterResult {
  * Gets information about a Redis™ cluster.
  *
  * For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myCluster = scaleway.getRedisCluster({
- *     clusterId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisClusterResult> {
     return pulumi.output(args).apply((a: any) => getRedisCluster(a, opts))

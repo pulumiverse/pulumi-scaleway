@@ -127,17 +127,6 @@ def get_lbs(name: Optional[str] = None,
 
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_lbs(name="foobar",
-        zone="fr-par-2")
-    lbs_by_tags = scaleway.get_lbs(tags=["a tag"])
-    ```
-
 
     :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.
     :param str project_id: The ID of the Project the Load Balancer is associated with.
@@ -172,17 +161,6 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     Gets information about multiple Load Balancers.
 
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_lbs(name="foobar",
-        zone="fr-par-2")
-    lbs_by_tags = scaleway.get_lbs(tags=["a tag"])
-    ```
 
 
     :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.

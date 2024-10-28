@@ -16,9 +16,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
- * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.id,
+ * const main = new scaleway.ObjectBucket("main", {
+ *     name: "MyBucket",
+ *     acl: "public-read",
+ * });
+ * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("main", {
+ *     bucket: main.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },
@@ -31,9 +34,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
- * const mainObjectBucketPolicy = new scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", {
- *     bucket: mainObjectBucket.id,
+ * const main = new scaleway.ObjectBucket("main", {
+ *     name: "MyBucket",
+ *     acl: "public-read",
+ * });
+ * const mainObjectBucketPolicy = new scaleway.ObjectBucketPolicy("main", {
+ *     bucket: main.id,
  *     policy: JSON.stringify({
  *         Version: "2012-10-17",
  *         Id: "MyPolicy",
@@ -46,8 +52,8 @@ import * as utilities from "./utilities";
  *         }],
  *     }),
  * });
- * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.id,
+ * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("main", {
+ *     bucket: main.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },

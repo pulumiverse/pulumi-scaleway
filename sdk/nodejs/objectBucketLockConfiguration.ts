@@ -20,12 +20,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {
+ * const main = new scaleway.ObjectBucket("main", {
+ *     name: "MyBucket",
  *     acl: "public-read",
  *     objectLockEnabled: true,
  * });
- * const mainObjectBucketLockConfiguration = new scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration", {
- *     bucket: mainObjectBucket.name,
+ * const mainObjectBucketLockConfiguration = new scaleway.ObjectBucketLockConfiguration("main", {
+ *     bucket: main.name,
  *     rule: {
  *         defaultRetention: {
  *             mode: "GOVERNANCE",

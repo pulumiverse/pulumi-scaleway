@@ -408,10 +408,12 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pnPriv", tags=[
-            "demo",
-            "terraform",
-        ])
+        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+            name="subnet_demo",
+            tags=[
+                "demo",
+                "terraform",
+            ])
         ```
 
         ### With subnets
@@ -420,7 +422,12 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pnPriv",
+        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+            name="subnet_demo",
+            tags=[
+                "demo",
+                "terraform",
+            ],
             ipv4_subnet={
                 "subnet": "192.168.0.0/24",
             },
@@ -431,10 +438,6 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                 {
                     "subnet": "fd46:78ab:30b8:c7df::/64",
                 },
-            ],
-            tags=[
-                "demo",
-                "terraform",
             ])
         ```
 
@@ -478,10 +481,12 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pnPriv", tags=[
-            "demo",
-            "terraform",
-        ])
+        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+            name="subnet_demo",
+            tags=[
+                "demo",
+                "terraform",
+            ])
         ```
 
         ### With subnets
@@ -490,7 +495,12 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pnPriv",
+        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+            name="subnet_demo",
+            tags=[
+                "demo",
+                "terraform",
+            ],
             ipv4_subnet={
                 "subnet": "192.168.0.0/24",
             },
@@ -501,10 +511,6 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                 {
                     "subnet": "fd46:78ab:30b8:c7df::/64",
                 },
-            ],
-            tags=[
-                "demo",
-                "terraform",
             ])
         ```
 

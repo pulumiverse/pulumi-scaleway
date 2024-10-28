@@ -183,9 +183,12 @@ def get_vpc_private_network(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     my_name = scaleway.get_vpc_private_network(name="foobar")
+    # Get info by name and VPC ID
     my_name_and_vpc_id = scaleway.get_vpc_private_network(name="foobar",
         vpc_id="11111111-1111-1111-1111-111111111111")
+    # Get info by IP ID
     my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -237,9 +240,12 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     my_name = scaleway.get_vpc_private_network(name="foobar")
+    # Get info by name and VPC ID
     my_name_and_vpc_id = scaleway.get_vpc_private_network(name="foobar",
         vpc_id="11111111-1111-1111-1111-111111111111")
+    # Get info by IP ID
     my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
 

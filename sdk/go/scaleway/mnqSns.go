@@ -64,7 +64,7 @@ import (
 //				return err
 //			}
 //			// For specific Project in default region
-//			_, err = scaleway.NewMnqSns(ctx, "forProject", &scaleway.MnqSnsArgs{
+//			_, err = scaleway.NewMnqSns(ctx, "for_project", &scaleway.MnqSnsArgs{
 //				ProjectId: pulumi.String(project.Id),
 //			})
 //			if err != nil {

@@ -172,7 +172,9 @@ def get_container_namespace(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by namespace name
     by_name = scaleway.get_container_namespace(name="my-namespace-name")
+    # Get info by namespace ID
     by_id = scaleway.get_container_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -222,7 +224,9 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by namespace name
     by_name = scaleway.get_container_namespace(name="my-namespace-name")
+    # Get info by namespace ID
     by_id = scaleway.get_container_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
     ```
 

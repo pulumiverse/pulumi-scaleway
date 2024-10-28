@@ -13,6 +13,63 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Example Usage
     /// 
+    /// ### Database Route
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("main", new()
+    ///     {
+    ///         Name = "main",
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var iot = new Scaleway.DatabaseInstance("iot", new()
+    ///     {
+    ///         Name = "iot",
+    ///         NodeType = "db-dev-s",
+    ///         Engine = "PostgreSQL-12",
+    ///         UserName = "root",
+    ///         Password = "T3stP4ssw0rdD0N0tUs3!",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.IotRoute("main", new()
+    ///     {
+    ///         Name = "default",
+    ///         HubId = mainIotHub.Id,
+    ///         Topic = "#",
+    ///         Database = new Scaleway.Inputs.IotRouteDatabaseArgs
+    ///         {
+    ///             Query = @"INSERT INTO measurements(
+    /// 	push_time,
+    /// 	report_time,
+    /// 	station_id,
+    /// 	temperature,
+    /// 	humidity
+    /// ) VALUES (
+    /// 	NOW(),
+    /// 	TIMESTAMP 'epoch' + (($PAYLOAD::jsonb-&gt;'last_reported')::integer * INTERVAL '1 second'),
+    /// 	($PAYLOAD::jsonb-&gt;'station_id')::uuid,
+    /// 	($PAYLOAD::jsonb-&gt;'temperature')::decimal,
+    /// 	($PAYLOAD::jsonb-&gt;'humidity'):decimal:
+    /// );
+    /// ",
+    ///             Host = iot.EndpointIp,
+    ///             Port = iot.EndpointPort,
+    ///             Dbname = "rdb",
+    ///             Username = iot.UserName,
+    ///             Password = iot.Password,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### S3 Route
     /// 
     /// ```csharp
@@ -23,18 +80,21 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     var mainIotHub = new Scaleway.IotHub("main", new()
     ///     {
+    ///         Name = "main",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
-    ///     var mainObjectBucket = new Scaleway.ObjectBucket("mainObjectBucket", new()
+    ///     var mainObjectBucket = new Scaleway.ObjectBucket("main", new()
     ///     {
     ///         Region = "fr-par",
+    ///         Name = "my_awesome-bucket",
     ///     });
     /// 
-    ///     var mainIotRoute = new Scaleway.IotRoute("mainIotRoute", new()
+    ///     var main = new Scaleway.IotRoute("main", new()
     ///     {
+    ///         Name = "main",
     ///         HubId = mainIotHub.Id,
     ///         Topic = "#",
     ///         S3 = new Scaleway.Inputs.IotRouteS3Args
@@ -59,13 +119,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     var mainIotHub = new Scaleway.IotHub("main", new()
     ///     {
+    ///         Name = "main",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
-    ///     var mainIotRoute = new Scaleway.IotRoute("mainIotRoute", new()
+    ///     var main = new Scaleway.IotRoute("main", new()
     ///     {
+    ///         Name = "main",
     ///         HubId = mainIotHub.Id,
     ///         Topic = "#",
     ///         Rest = new Scaleway.Inputs.IotRouteRestArgs

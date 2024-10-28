@@ -283,15 +283,62 @@ class IotRoute(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### Database Route
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        iot = scaleway.DatabaseInstance("iot",
+            name="iot",
+            node_type="db-dev-s",
+            engine="PostgreSQL-12",
+            user_name="root",
+            password="T3stP4ssw0rdD0N0tUs3!")
+        main = scaleway.IotRoute("main",
+            name="default",
+            hub_id=main_iot_hub.id,
+            topic="#",
+            database={
+                "query": \"\"\"INSERT INTO measurements(
+        \\x09push_time,
+        \\x09report_time,
+        \\x09station_id,
+        \\x09temperature,
+        \\x09humidity
+        ) VALUES (
+        \\x09NOW(),
+        \\x09TIMESTAMP 'epoch' + (($PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
+        \\x09($PAYLOAD::jsonb->'station_id')::uuid,
+        \\x09($PAYLOAD::jsonb->'temperature')::decimal,
+        \\x09($PAYLOAD::jsonb->'humidity'):decimal:
+        );
+        \"\"\",
+                "host": iot.endpoint_ip,
+                "port": iot.endpoint_port,
+                "dbname": "rdb",
+                "username": iot.user_name,
+                "password": iot.password,
+            })
+        ```
+
         ### S3 Route
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", region="fr-par")
-        main_iot_route = scaleway.IotRoute("mainIotRoute",
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        main_object_bucket = scaleway.ObjectBucket("main",
+            region="fr-par",
+            name="my_awesome-bucket")
+        main = scaleway.IotRoute("main",
+            name="main",
             hub_id=main_iot_hub.id,
             topic="#",
             s3={
@@ -308,8 +355,11 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_iot_route = scaleway.IotRoute("mainIotRoute",
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        main = scaleway.IotRoute("main",
+            name="main",
             hub_id=main_iot_hub.id,
             topic="#",
             rest={
@@ -350,15 +400,62 @@ class IotRoute(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### Database Route
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        iot = scaleway.DatabaseInstance("iot",
+            name="iot",
+            node_type="db-dev-s",
+            engine="PostgreSQL-12",
+            user_name="root",
+            password="T3stP4ssw0rdD0N0tUs3!")
+        main = scaleway.IotRoute("main",
+            name="default",
+            hub_id=main_iot_hub.id,
+            topic="#",
+            database={
+                "query": \"\"\"INSERT INTO measurements(
+        \\x09push_time,
+        \\x09report_time,
+        \\x09station_id,
+        \\x09temperature,
+        \\x09humidity
+        ) VALUES (
+        \\x09NOW(),
+        \\x09TIMESTAMP 'epoch' + (($PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
+        \\x09($PAYLOAD::jsonb->'station_id')::uuid,
+        \\x09($PAYLOAD::jsonb->'temperature')::decimal,
+        \\x09($PAYLOAD::jsonb->'humidity'):decimal:
+        );
+        \"\"\",
+                "host": iot.endpoint_ip,
+                "port": iot.endpoint_port,
+                "dbname": "rdb",
+                "username": iot.user_name,
+                "password": iot.password,
+            })
+        ```
+
         ### S3 Route
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", region="fr-par")
-        main_iot_route = scaleway.IotRoute("mainIotRoute",
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        main_object_bucket = scaleway.ObjectBucket("main",
+            region="fr-par",
+            name="my_awesome-bucket")
+        main = scaleway.IotRoute("main",
+            name="main",
             hub_id=main_iot_hub.id,
             topic="#",
             s3={
@@ -375,8 +472,11 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_iot_route = scaleway.IotRoute("mainIotRoute",
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        main = scaleway.IotRoute("main",
+            name="main",
             hub_id=main_iot_hub.id,
             topic="#",
             rest={

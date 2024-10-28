@@ -6,20 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about an existing Project.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const byName = scaleway.getAccountProject({
- *     name: "default",
- * });
- * const byId = scaleway.getAccountProject({
- *     projectId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
- * });
- * ```
  */
 export function getAccountProject(args?: GetAccountProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountProjectResult> {
     args = args || {};
@@ -70,20 +56,6 @@ export interface GetAccountProjectResult {
 }
 /**
  * Gets information about an existing Project.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const byName = scaleway.getAccountProject({
- *     name: "default",
- * });
- * const byId = scaleway.getAccountProject({
- *     projectId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
- * });
- * ```
  */
 export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountProjectResult> {
     return pulumi.output(args).apply((a: any) => getAccountProject(a, opts))

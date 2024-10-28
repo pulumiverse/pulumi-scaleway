@@ -26,11 +26,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var appContainer = new Scaleway.Container("appContainer");
+    ///     var app = new Scaleway.Container("app");
     /// 
-    ///     var appContainerDomain = new Scaleway.ContainerDomain("appContainerDomain", new()
+    ///     var appContainerDomain = new Scaleway.ContainerDomain("app", new()
     ///     {
-    ///         ContainerId = appContainer.Id,
+    ///         ContainerId = app.Id,
     ///         Hostname = "container.domain.tld",
     ///     });
     /// 
@@ -49,11 +49,13 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.ContainerNamespace("main", new()
     ///     {
+    ///         Name = "my-ns-test",
     ///         Description = "test container",
     ///     });
     /// 
-    ///     var appContainer = new Scaleway.Container("appContainer", new()
+    ///     var app = new Scaleway.Container("app", new()
     ///     {
+    ///         Name = "app",
     ///         NamespaceId = main.Id,
     ///         RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/nginx:alpine"),
     ///         Port = 80,
@@ -68,17 +70,18 @@ namespace Pulumiverse.Scaleway
     ///         Deploy = true,
     ///     });
     /// 
-    ///     var appDomainRecord = new Scaleway.DomainRecord("appDomainRecord", new()
+    ///     var appDomainRecord = new Scaleway.DomainRecord("app", new()
     ///     {
     ///         DnsZone = "domain.tld",
+    ///         Name = "subdomain",
     ///         Type = "CNAME",
-    ///         Data = appContainer.DomainName.Apply(domainName =&gt; $"{domainName}."),
+    ///         Data = app.DomainName.Apply(domainName =&gt; $"{domainName}."),
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var appContainerDomain = new Scaleway.ContainerDomain("appContainerDomain", new()
+    ///     var appContainerDomain = new Scaleway.ContainerDomain("app", new()
     ///     {
-    ///         ContainerId = appContainer.Id,
+    ///         ContainerId = app.Id,
     ///         Hostname = Output.Tuple(appDomainRecord.Name, appDomainRecord.DnsZone).Apply(values =&gt;
     ///         {
     ///             var name = values.Item1;

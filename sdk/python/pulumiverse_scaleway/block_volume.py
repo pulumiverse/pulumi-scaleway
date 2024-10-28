@@ -275,8 +275,9 @@ class BlockVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("blockVolume",
+        block_volume = scaleway.BlockVolume("block_volume",
             iops=5000,
+            name="some-volume-name",
             size_in_gb=20)
         ```
 
@@ -287,12 +288,16 @@ class BlockVolume(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         base = scaleway.BlockVolume("base",
+            name="block-volume-base",
             iops=5000,
             size_in_gb=20)
-        main_block_snapshot = scaleway.BlockSnapshot("mainBlockSnapshot", volume_id=base.id)
-        main_block_volume = scaleway.BlockVolume("mainBlockVolume",
+        main = scaleway.BlockSnapshot("main",
+            name="block-volume-from-snapshot",
+            volume_id=base.id)
+        main_block_volume = scaleway.BlockVolume("main",
+            name="block-volume-from-snapshot",
             iops=5000,
-            snapshot_id=main_block_snapshot.id)
+            snapshot_id=main.id)
         ```
 
         ## Import
@@ -333,8 +338,9 @@ class BlockVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("blockVolume",
+        block_volume = scaleway.BlockVolume("block_volume",
             iops=5000,
+            name="some-volume-name",
             size_in_gb=20)
         ```
 
@@ -345,12 +351,16 @@ class BlockVolume(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         base = scaleway.BlockVolume("base",
+            name="block-volume-base",
             iops=5000,
             size_in_gb=20)
-        main_block_snapshot = scaleway.BlockSnapshot("mainBlockSnapshot", volume_id=base.id)
-        main_block_volume = scaleway.BlockVolume("mainBlockVolume",
+        main = scaleway.BlockSnapshot("main",
+            name="block-volume-from-snapshot",
+            volume_id=base.id)
+        main_block_volume = scaleway.BlockVolume("main",
+            name="block-volume-from-snapshot",
             iops=5000,
-            snapshot_id=main_block_snapshot.id)
+            snapshot_id=main.id)
         ```
 
         ## Import

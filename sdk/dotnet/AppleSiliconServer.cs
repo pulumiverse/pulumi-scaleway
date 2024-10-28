@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var server = new Scaleway.AppleSiliconServer("server", new()
     ///     {
+    ///         Name = "test-m1",
     ///         Type = "M1-M",
     ///     });
     /// 

@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by ipam ip id
  * const byId = scaleway.getIpamIp({
  *     ipamIpId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -35,13 +36,15 @@ import * as utilities from "./utilities";
  *
  * // Connect your instance to a private network using a private nic.
  * const nic = new scaleway.InstancePrivateNic("nic", {
- *     serverId: scaleway_instance_server.server.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn.id,
+ *     serverId: server.id,
+ *     privateNetworkId: pn.id,
  * });
+ * // Find server private IPv4 using private-nic mac address
  * const byMac = scaleway.getIpamIpOutput({
  *     macAddress: nic.macAddress,
  *     type: "ipv4",
  * });
+ * // Find server private IPv4 using private-nic id
  * const byId = scaleway.getIpamIpOutput({
  *     resource: {
  *         id: nic.id,
@@ -61,6 +64,7 @@ import * as utilities from "./utilities";
  * // Find the private IPv4 using resource name
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const main = new scaleway.DatabaseInstance("main", {
+ *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
@@ -187,6 +191,7 @@ export interface GetIpamIpResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by ipam ip id
  * const byId = scaleway.getIpamIp({
  *     ipamIpId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -203,13 +208,15 @@ export interface GetIpamIpResult {
  *
  * // Connect your instance to a private network using a private nic.
  * const nic = new scaleway.InstancePrivateNic("nic", {
- *     serverId: scaleway_instance_server.server.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn.id,
+ *     serverId: server.id,
+ *     privateNetworkId: pn.id,
  * });
+ * // Find server private IPv4 using private-nic mac address
  * const byMac = scaleway.getIpamIpOutput({
  *     macAddress: nic.macAddress,
  *     type: "ipv4",
  * });
+ * // Find server private IPv4 using private-nic id
  * const byId = scaleway.getIpamIpOutput({
  *     resource: {
  *         id: nic.id,
@@ -229,6 +236,7 @@ export interface GetIpamIpResult {
  * // Find the private IPv4 using resource name
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const main = new scaleway.DatabaseInstance("main", {
+ *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,

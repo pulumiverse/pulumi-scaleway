@@ -26,11 +26,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainFunctionNamespace = new Scaleway.FunctionNamespace("mainFunctionNamespace");
-    /// 
-    ///     var mainFunction = new Scaleway.Function("mainFunction", new()
+    ///     var main = new Scaleway.FunctionNamespace("main", new()
     ///     {
-    ///         NamespaceId = mainFunctionNamespace.Id,
+    ///         Name = "test-function-token-ns",
+    ///     });
+    /// 
+    ///     var mainFunction = new Scaleway.Function("main", new()
+    ///     {
+    ///         NamespaceId = main.Id,
     ///         Runtime = "go118",
     ///         Handler = "Handle",
     ///         Privacy = "private",
@@ -39,7 +42,7 @@ namespace Pulumiverse.Scaleway
     ///     // Namespace Token
     ///     var @namespace = new Scaleway.FunctionToken("namespace", new()
     ///     {
-    ///         NamespaceId = mainFunctionNamespace.Id,
+    ///         NamespaceId = main.Id,
     ///         ExpiresAt = "2022-10-18T11:35:15+02:00",
     ///     });
     /// 

@@ -17,11 +17,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find backends that share the same LB ID
  * const byLBID = scaleway.getLbBackends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  * });
+ * // Find backends by LB ID and name
  * const byLBIDAndName = scaleway.getLbBackends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  *     name: "tf-backend-datasource",
  * });
  * ```
@@ -85,11 +87,13 @@ export interface GetLbBackendsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Find backends that share the same LB ID
  * const byLBID = scaleway.getLbBackends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  * });
+ * // Find backends by LB ID and name
  * const byLBIDAndName = scaleway.getLbBackends({
- *     lbId: scaleway_lb.lb01.id,
+ *     lbId: lb01.id,
  *     name: "tf-backend-datasource",
  * });
  * ```

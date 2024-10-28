@@ -230,7 +230,9 @@ def get_webhosting(domain: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by offer domain
     by_domain = scaleway.get_webhosting(domain="foobar.com")
+    # Get info by id
     by_id = scaleway.get_webhosting(webhosting_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -286,7 +288,9 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by offer domain
     by_domain = scaleway.get_webhosting(domain="foobar.com")
+    # Get info by id
     by_id = scaleway.get_webhosting(webhosting_id="11111111-1111-1111-1111-111111111111")
     ```
 

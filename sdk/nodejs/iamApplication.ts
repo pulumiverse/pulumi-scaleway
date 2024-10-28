@@ -13,7 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IamApplication("main", {description: "a description"});
+ * const main = new scaleway.IamApplication("main", {
+ *     name: "My application",
+ *     description: "a description",
+ * });
  * ```
  *
  * ## Import

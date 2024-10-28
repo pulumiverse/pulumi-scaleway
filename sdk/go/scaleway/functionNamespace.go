@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//				Name:        pulumi.String("main-function-namespace"),
 //				Description: pulumi.String("Main function namespace"),
 //			})
 //			if err != nil {

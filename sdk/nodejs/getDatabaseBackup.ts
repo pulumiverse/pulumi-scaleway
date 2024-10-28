@@ -17,8 +17,8 @@ import * as utilities from "./utilities";
  *     name: "mybackup",
  * });
  * const findByNameAndInstance = scaleway.getDatabaseBackup({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "mybackup",
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * const findById = scaleway.getDatabaseBackup({
  *     backupId: "11111111-1111-1111-1111-111111111111",
@@ -99,8 +99,8 @@ export interface GetDatabaseBackupResult {
  *     name: "mybackup",
  * });
  * const findByNameAndInstance = scaleway.getDatabaseBackup({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "mybackup",
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * const findById = scaleway.getDatabaseBackup({
  *     backupId: "11111111-1111-1111-1111-111111111111",

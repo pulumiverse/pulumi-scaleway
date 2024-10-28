@@ -13,7 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.TemDomain("main", {acceptTos: true});
+ * const main = new scaleway.TemDomain("main", {
+ *     acceptTos: true,
+ *     name: "example.com",
+ * });
  * const example = new scaleway.TemDomainValidation("example", {
  *     domainId: main.id,
  *     region: "fr-par",

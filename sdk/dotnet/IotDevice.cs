@@ -23,14 +23,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     var main = new Scaleway.IotHub("main", new()
     ///     {
+    ///         Name = "test-iot",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
-    ///     var mainIotDevice = new Scaleway.IotDevice("mainIotDevice", new()
+    ///     var mainIotDevice = new Scaleway.IotDevice("main", new()
     ///     {
-    ///         HubId = mainIotHub.Id,
+    ///         HubId = main.Id,
+    ///         Name = "test-iot",
     ///     });
     /// 
     /// });
@@ -47,8 +49,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     var main = new Scaleway.IotHub("main", new()
     ///     {
+    ///         Name = "test-iot",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
@@ -57,9 +60,10 @@ namespace Pulumiverse.Scaleway
     ///         Filename = "device-certificate.pem",
     ///     });
     /// 
-    ///     var mainIotDevice = new Scaleway.IotDevice("mainIotDevice", new()
+    ///     var mainIotDevice = new Scaleway.IotDevice("main", new()
     ///     {
-    ///         HubId = mainIotHub.Id,
+    ///         HubId = main.Id,
+    ///         Name = "test-iot",
     ///         Certificate = new Scaleway.Inputs.IotDeviceCertificateArgs
     ///         {
     ///             Crt = deviceCert.Apply(getFileResult =&gt; getFileResult.Content),

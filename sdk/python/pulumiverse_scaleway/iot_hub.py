@@ -531,7 +531,9 @@ class IotHub(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main", product_plan="plan_shared")
+        main = scaleway.IotHub("main",
+            name="test-iot",
+            product_plan="plan_shared")
         ```
 
         ## Import
@@ -576,7 +578,9 @@ class IotHub(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main", product_plan="plan_shared")
+        main = scaleway.IotHub("main",
+            name="test-iot",
+            product_plan="plan_shared")
         ```
 
         ## Import

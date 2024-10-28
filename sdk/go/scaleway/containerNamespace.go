@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//				Name:        pulumi.String("main-container-namespace"),
 //				Description: pulumi.String("Main container namespace"),
 //			})
 //			if err != nil {

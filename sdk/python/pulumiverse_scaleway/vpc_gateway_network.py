@@ -408,13 +408,16 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
+            type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
@@ -430,8 +433,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
@@ -441,7 +445,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
+            type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
@@ -458,12 +464,13 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
         gw01 = scaleway.VpcPublicGatewayIp("gw01")
         dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
             subnet="192.168.1.0/24",
             push_default_route=True)
         pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
             type="VPC-GW-S",
             ip_id=gw01.id)
         main = scaleway.VpcGatewayNetwork("main",
@@ -480,8 +487,10 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
+            type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
@@ -532,13 +541,16 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
+            type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
@@ -554,8 +566,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01")
+        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
         pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
@@ -565,7 +578,9 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
+            type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
@@ -582,12 +597,13 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
         gw01 = scaleway.VpcPublicGatewayIp("gw01")
         dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
             subnet="192.168.1.0/24",
             push_default_route=True)
         pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
             type="VPC-GW-S",
             ip_id=gw01.id)
         main = scaleway.VpcGatewayNetwork("main",
@@ -604,8 +620,10 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
-        pg01 = scaleway.VpcPublicGateway("pg01", type="VPC-GW-S")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
+        pg01 = scaleway.VpcPublicGateway("pg01",
+            name="foobar",
+            type="VPC-GW-S")
         main = scaleway.VpcGatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,

@@ -235,6 +235,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         ip01 = scaleway.LoadbalancerIp("ip01")
         lb01 = scaleway.Loadbalancer("lb01",
             ip_id=ip01.id,
+            name="test-lb",
             type="lb-s")
         bkd01 = scaleway.LoadbalancerBackend("bkd01",
             lb_id=lb01.id,
@@ -260,6 +261,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         ip01 = scaleway.LoadbalancerIp("ip01")
         lb01 = scaleway.Loadbalancer("lb01",
             ip_id=ip01.id,
+            name="test-lb",
             type="lb-s")
         bkd01 = scaleway.LoadbalancerBackend("bkd01",
             lb_id=lb01.id,
@@ -321,6 +323,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         ip01 = scaleway.LoadbalancerIp("ip01")
         lb01 = scaleway.Loadbalancer("lb01",
             ip_id=ip01.id,
+            name="test-lb",
             type="lb-s")
         bkd01 = scaleway.LoadbalancerBackend("bkd01",
             lb_id=lb01.id,
@@ -346,6 +349,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         ip01 = scaleway.LoadbalancerIp("ip01")
         lb01 = scaleway.Loadbalancer("lb01",
             ip_id=ip01.id,
+            name="test-lb",
             type="lb-s")
         bkd01 = scaleway.LoadbalancerBackend("bkd01",
             lb_id=lb01.id,

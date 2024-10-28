@@ -31,11 +31,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, "mainFunctionNamespace", nil)
+//			mainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainFunction, err := scaleway.NewFunction(ctx, "mainFunction", &scaleway.FunctionArgs{
+//			mainFunction, err := scaleway.NewFunction(ctx, "main", &scaleway.FunctionArgs{
 //				NamespaceId: mainFunctionNamespace.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Privacy:     pulumi.String("private"),
@@ -46,7 +46,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFunctionDomain(ctx, "mainFunctionDomain", &scaleway.FunctionDomainArgs{
+//			_, err = scaleway.NewFunctionDomain(ctx, "main", &scaleway.FunctionDomainArgs{
 //				FunctionId: mainFunction.ID(),
 //				Hostname:   pulumi.String("example.com"),
 //			}, pulumi.DependsOn([]pulumi.Resource{

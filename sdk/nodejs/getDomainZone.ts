@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get zone
  * const main = scaleway.getDomainZone({
  *     domain: "scaleway-terraform.com",
  *     subdomain: "test",
@@ -88,6 +89,7 @@ export interface GetDomainZoneResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get zone
  * const main = scaleway.getDomainZone({
  *     domain: "scaleway-terraform.com",
  *     subdomain: "test",

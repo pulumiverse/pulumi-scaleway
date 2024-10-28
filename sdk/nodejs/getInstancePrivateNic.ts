@@ -14,12 +14,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const byNicId = scaleway.getInstancePrivateNic({
- *     privateNicId: "11111111-1111-1111-1111-111111111111",
  *     serverId: "11111111-1111-1111-1111-111111111111",
+ *     privateNicId: "11111111-1111-1111-1111-111111111111",
  * });
  * const byPnId = scaleway.getInstancePrivateNic({
- *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  *     serverId: "11111111-1111-1111-1111-111111111111",
+ *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
  * const byTags = scaleway.getInstancePrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
@@ -94,12 +94,12 @@ export interface GetInstancePrivateNicResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * const byNicId = scaleway.getInstancePrivateNic({
- *     privateNicId: "11111111-1111-1111-1111-111111111111",
  *     serverId: "11111111-1111-1111-1111-111111111111",
+ *     privateNicId: "11111111-1111-1111-1111-111111111111",
  * });
  * const byPnId = scaleway.getInstancePrivateNic({
- *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  *     serverId: "11111111-1111-1111-1111-111111111111",
+ *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
  * const byTags = scaleway.getInstancePrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",

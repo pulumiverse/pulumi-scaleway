@@ -25,11 +25,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by offer domain
         ///     var byDomain = Scaleway.GetWebhosting.Invoke(new()
         ///     {
         ///         Domain = "foobar.com",
         ///     });
         /// 
+        ///     // Get info by id
         ///     var byId = Scaleway.GetWebhosting.Invoke(new()
         ///     {
         ///         WebhostingId = "11111111-1111-1111-1111-111111111111",
@@ -54,11 +56,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by offer domain
         ///     var byDomain = Scaleway.GetWebhosting.Invoke(new()
         ///     {
         ///         Domain = "foobar.com",
         ///     });
         /// 
+        ///     // Get info by id
         ///     var byId = Scaleway.GetWebhosting.Invoke(new()
         ///     {
         ///         WebhostingId = "11111111-1111-1111-1111-111111111111",

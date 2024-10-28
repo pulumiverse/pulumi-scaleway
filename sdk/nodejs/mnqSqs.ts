@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  * const project = scaleway.getAccountProject({
  *     name: "default",
  * });
- * const forProject = new scaleway.MnqSqs("forProject", {projectId: project.then(project => project.id)});
+ * const forProject = new scaleway.MnqSqs("for_project", {projectId: project.then(project => project.id)});
  * ```
  *
  * ## Import

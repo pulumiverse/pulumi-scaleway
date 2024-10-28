@@ -30,7 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//				Name: pulumi.String("test project grafana user"),
+//			})
 //			if err != nil {
 //				return err
 //			}

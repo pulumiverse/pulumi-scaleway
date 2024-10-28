@@ -18,8 +18,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const replica = new scaleway.DocumentdbReadReplica("replica", {
- *     directAccess: {},
  *     instanceId: "11111111-1111-1111-1111-111111111111",
+ *     directAccess: {},
  * });
  * ```
  *
@@ -31,6 +31,7 @@ import * as utilities from "./utilities";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const instance = new scaleway.DocumentdbInstance("instance", {
+ *     name: "document_db-read-replica-basic",
  *     nodeType: "docdb-play2-pico",
  *     engine: "FerretDB-1",
  *     userName: "my_initial_user",

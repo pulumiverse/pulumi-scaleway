@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var availabilityGroup = new Scaleway.InstancePlacementGroup("availabilityGroup");
+    ///     var availabilityGroup = new Scaleway.InstancePlacementGroup("availability_group");
     /// 
     /// });
     /// ```

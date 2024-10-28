@@ -140,15 +140,16 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        tf_a = scaleway.DomainRecord("tfA",
+        main = scaleway.VpcPublicGatewayIp("main")
+        tf_a = scaleway.DomainRecord("tf_A",
             dns_zone="example.com",
+            name="tf",
             type="A",
-            data=main_vpc_public_gateway_ip.address,
+            data=main.address,
             ttl=3600,
             priority=1)
-        main_vpc_public_gateway_ip_reverse_dns = scaleway.VpcPublicGatewayIpReverseDns("mainVpcPublicGatewayIpReverseDns",
-            gateway_ip_id=main_vpc_public_gateway_ip.id,
+        main_vpc_public_gateway_ip_reverse_dns = scaleway.VpcPublicGatewayIpReverseDns("main",
+            gateway_ip_id=main.id,
             reverse="tf.example.com")
         ```
 
@@ -184,15 +185,16 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        tf_a = scaleway.DomainRecord("tfA",
+        main = scaleway.VpcPublicGatewayIp("main")
+        tf_a = scaleway.DomainRecord("tf_A",
             dns_zone="example.com",
+            name="tf",
             type="A",
-            data=main_vpc_public_gateway_ip.address,
+            data=main.address,
             ttl=3600,
             priority=1)
-        main_vpc_public_gateway_ip_reverse_dns = scaleway.VpcPublicGatewayIpReverseDns("mainVpcPublicGatewayIpReverseDns",
-            gateway_ip_id=main_vpc_public_gateway_ip.id,
+        main_vpc_public_gateway_ip_reverse_dns = scaleway.VpcPublicGatewayIpReverseDns("main",
+            gateway_ip_id=main.id,
             reverse="tf.example.com")
         ```
 

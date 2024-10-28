@@ -244,6 +244,7 @@ class SecretVersion(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.Secret("main",
+            name="foo",
             description="barr",
             tags=[
                 "foo",
@@ -294,6 +295,7 @@ class SecretVersion(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.Secret("main",
+            name="foo",
             description="barr",
             tags=[
                 "foo",

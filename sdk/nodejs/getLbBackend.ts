@@ -18,13 +18,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
- * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
- *     ipId: mainLoadbalancerIp.id,
+ * const main = new scaleway.LoadbalancerIp("main", {});
+ * const mainLoadbalancer = new scaleway.Loadbalancer("main", {
+ *     ipId: main.id,
+ *     name: "data-test-lb-backend",
  *     type: "LB-S",
  * });
- * const mainLoadbalancerBackend = new scaleway.LoadbalancerBackend("mainLoadbalancerBackend", {
+ * const mainLoadbalancerBackend = new scaleway.LoadbalancerBackend("main", {
  *     lbId: mainLoadbalancer.id,
+ *     name: "backend01",
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  * });
@@ -120,13 +122,15 @@ export interface GetLbBackendResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainLoadbalancerIp = new scaleway.LoadbalancerIp("mainLoadbalancerIp", {});
- * const mainLoadbalancer = new scaleway.Loadbalancer("mainLoadbalancer", {
- *     ipId: mainLoadbalancerIp.id,
+ * const main = new scaleway.LoadbalancerIp("main", {});
+ * const mainLoadbalancer = new scaleway.Loadbalancer("main", {
+ *     ipId: main.id,
+ *     name: "data-test-lb-backend",
  *     type: "LB-S",
  * });
- * const mainLoadbalancerBackend = new scaleway.LoadbalancerBackend("mainLoadbalancerBackend", {
+ * const mainLoadbalancerBackend = new scaleway.LoadbalancerBackend("main", {
  *     lbId: mainLoadbalancer.id,
+ *     name: "backend01",
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  * });

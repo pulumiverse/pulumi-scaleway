@@ -402,8 +402,9 @@ class IamPolicy(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         default = scaleway.get_account_project(name="default")
-        app = scaleway.IamApplication("app")
-        object_read_only = scaleway.IamPolicy("objectReadOnly",
+        app = scaleway.IamApplication("app", name="my app")
+        object_read_only = scaleway.IamPolicy("object_read_only",
+            name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
             rules=[{
@@ -418,8 +419,9 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.IamApplication("app")
-        object_read_only = scaleway.IamPolicy("objectReadOnly",
+        app = scaleway.IamApplication("app", name="my app")
+        object_read_only = scaleway.IamPolicy("object_read_only",
+            name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
             rules=[{
@@ -473,8 +475,9 @@ class IamPolicy(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         default = scaleway.get_account_project(name="default")
-        app = scaleway.IamApplication("app")
-        object_read_only = scaleway.IamPolicy("objectReadOnly",
+        app = scaleway.IamApplication("app", name="my app")
+        object_read_only = scaleway.IamPolicy("object_read_only",
+            name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
             rules=[{
@@ -489,8 +492,9 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.IamApplication("app")
-        object_read_only = scaleway.IamPolicy("objectReadOnly",
+        app = scaleway.IamApplication("app", name="my app")
+        object_read_only = scaleway.IamPolicy("object_read_only",
+            name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
             rules=[{

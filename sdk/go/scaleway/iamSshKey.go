@@ -30,6 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewIamSshKey(ctx, "main", &scaleway.IamSshKeyArgs{
+//				Name:      pulumi.String("main"),
 //				PublicKey: pulumi.String("<YOUR-PUBLIC-SSH-KEY>"),
 //			})
 //			if err != nil {

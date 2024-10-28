@@ -19,30 +19,34 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const www = new scaleway.DomainRecord("www", {
- *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
- *     ttl: 3600,
+ *     name: "www",
  *     type: "A",
+ *     data: "1.2.3.4",
+ *     ttl: 3600,
  * });
  * const www2 = new scaleway.DomainRecord("www2", {
- *     data: "1.2.3.5",
  *     dnsZone: "domain.tld",
- *     ttl: 3600,
+ *     name: "www",
  *     type: "A",
+ *     data: "1.2.3.5",
+ *     ttl: 3600,
  * });
  * const mx = new scaleway.DomainRecord("mx", {
- *     data: "mx.online.net.",
  *     dnsZone: "domain.tld",
- *     priority: 10,
- *     ttl: 3600,
+ *     name: "",
  *     type: "MX",
+ *     data: "mx.online.net.",
+ *     ttl: 3600,
+ *     priority: 10,
  * });
  * const mx2 = new scaleway.DomainRecord("mx2", {
- *     data: "mx-cache.online.net.",
  *     dnsZone: "domain.tld",
- *     priority: 20,
- *     ttl: 3600,
+ *     name: "",
  *     type: "MX",
+ *     data: "mx-cache.online.net.",
+ *     ttl: 3600,
+ *     priority: 20,
  * });
  * ```
  *
@@ -52,9 +56,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const geoIp = new scaleway.DomainRecord("geoIp", {
- *     data: "1.2.3.4",
+ * const geoIp = new scaleway.DomainRecord("geo_ip", {
  *     dnsZone: "domain.tld",
+ *     name: "images",
+ *     type: "A",
+ *     data: "1.2.3.4",
+ *     ttl: 3600,
  *     geoIp: {
  *         matches: [
  *             {
@@ -68,46 +75,47 @@ import * as utilities from "./utilities";
  *             },
  *         ],
  *     },
- *     ttl: 3600,
- *     type: "A",
  * });
- * const httpService = new scaleway.DomainRecord("httpService", {
- *     data: "1.2.3.4",
+ * const httpService = new scaleway.DomainRecord("http_service", {
  *     dnsZone: "domain.tld",
+ *     name: "app",
+ *     type: "A",
+ *     data: "1.2.3.4",
+ *     ttl: 3600,
  *     httpService: {
  *         ips: [
  *             "1.2.3.5",
  *             "1.2.3.6",
  *         ],
  *         mustContain: "up",
- *         strategy: "hashed",
  *         url: "http://mywebsite.com/health",
  *         userAgent: "scw_service_up",
+ *         strategy: "hashed",
  *     },
- *     ttl: 3600,
- *     type: "A",
  * });
  * const view = new scaleway.DomainRecord("view", {
- *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
- *     ttl: 3600,
+ *     name: "db",
  *     type: "A",
+ *     data: "1.2.3.4",
+ *     ttl: 3600,
  *     views: [
  *         {
- *             data: "1.2.3.5",
  *             subnet: "100.0.0.0/16",
+ *             data: "1.2.3.5",
  *         },
  *         {
- *             data: "1.2.3.6",
  *             subnet: "100.1.0.0/16",
+ *             data: "1.2.3.6",
  *         },
  *     ],
  * });
  * const weighted = new scaleway.DomainRecord("weighted", {
- *     data: "1.2.3.4",
  *     dnsZone: "domain.tld",
- *     ttl: 3600,
+ *     name: "web",
  *     type: "A",
+ *     data: "1.2.3.4",
+ *     ttl: 3600,
  *     weighteds: [
  *         {
  *             ip: "1.2.3.5",
@@ -128,9 +136,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const config = new pulumi.Config();
+ * // Your project ID.
  * const projectId = config.require("projectId");
+ * // The DNS Zone used for testing records.
  * const dnsZone = config.require("dnsZone");
- * const publicIp = new scaleway.InstanceIp("publicIp", {projectId: projectId});
+ * const publicIp = new scaleway.InstanceIp("public_ip", {projectId: projectId});
  * const web = new scaleway.InstanceServer("web", {
  *     projectId: projectId,
  *     type: "DEV1-S",
@@ -144,20 +154,23 @@ import * as utilities from "./utilities";
  *         sizeInGb: 20,
  *     },
  * });
- * const webA = new scaleway.DomainRecord("webA", {
+ * const webA = new scaleway.DomainRecord("web_A", {
  *     dnsZone: dnsZone,
+ *     name: "web",
  *     type: "A",
  *     data: web.publicIp,
  *     ttl: 3600,
  * });
- * const webCname = new scaleway.DomainRecord("webCname", {
+ * const webCname = new scaleway.DomainRecord("web_cname", {
  *     dnsZone: dnsZone,
+ *     name: "www",
  *     type: "CNAME",
  *     data: `web.${dnsZone}.`,
  *     ttl: 3600,
  * });
- * const webAlias = new scaleway.DomainRecord("webAlias", {
+ * const webAlias = new scaleway.DomainRecord("web_alias", {
  *     dnsZone: dnsZone,
+ *     name: "",
  *     type: "ALIAS",
  *     data: `web.${dnsZone}.`,
  *     ttl: 3600,

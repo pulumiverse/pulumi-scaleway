@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var instance = new Scaleway.DocumentdbInstance("instance", new()
     ///     {
+    ///         Name = "test-document_db-basic",
     ///         NodeType = "docdb-play2-pico",
     ///         Engine = "FerretDB-1",
     ///         UserName = "my_initial_user",
@@ -35,15 +36,16 @@ namespace Pulumiverse.Scaleway
     ///         VolumeSizeInGb = 20,
     ///     });
     /// 
-    ///     var dbPassword = new Random.RandomPassword("dbPassword", new()
+    ///     var dbPassword = new Random.RandomPassword("db_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
     ///     });
     /// 
-    ///     var dbAdmin = new Scaleway.DocumentdbUser("dbAdmin", new()
+    ///     var dbAdmin = new Scaleway.DocumentdbUser("db_admin", new()
     ///     {
     ///         InstanceId = instance.Id,
+    ///         Name = "devtools",
     ///         Password = dbPassword.Result,
     ///         IsAdmin = true,
     ///     });

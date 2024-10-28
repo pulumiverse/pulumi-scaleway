@@ -16,10 +16,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {tags: [
- *     "demo",
- *     "terraform",
- * ]});
+ * const vpc01 = new scaleway.Vpc("vpc01", {
+ *     name: "my-vpc",
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
+ * });
  * ```
  *
  * ### Enable routing
@@ -29,12 +32,13 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const vpc01 = new scaleway.Vpc("vpc01", {
- *     enableRouting: true,
+ *     name: "my-vpc",
  *     tags: [
  *         "demo",
  *         "terraform",
  *         "routing",
  *     ],
+ *     enableRouting: true,
  * });
  * ```
  *

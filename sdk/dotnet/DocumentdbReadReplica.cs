@@ -27,8 +27,8 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var replica = new Scaleway.DocumentdbReadReplica("replica", new()
     ///     {
-    ///         DirectAccess = null,
     ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+    ///         DirectAccess = null,
     ///     });
     /// 
     /// });
@@ -48,6 +48,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var instance = new Scaleway.DocumentdbInstance("instance", new()
     ///     {
+    ///         Name = "document_db-read-replica-basic",
     ///         NodeType = "docdb-play2-pico",
     ///         Engine = "FerretDB-1",
     ///         UserName = "my_initial_user",

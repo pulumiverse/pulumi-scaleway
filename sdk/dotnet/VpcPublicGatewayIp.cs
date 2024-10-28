@@ -29,13 +29,14 @@ namespace Pulumiverse.Scaleway
     ///         Reverse = "tf.example.com",
     ///     });
     /// 
-    ///     var tfA = new Scaleway.DomainRecord("tfA", new()
+    ///     var tfA = new Scaleway.DomainRecord("tf_A", new()
     ///     {
-    ///         Data = main.Address,
     ///         DnsZone = "example.com",
-    ///         Priority = 1,
-    ///         Ttl = 3600,
+    ///         Name = "tf",
     ///         Type = "A",
+    ///         Data = main.Address,
+    ///         Ttl = 3600,
+    ///         Priority = 1,
     ///     });
     /// 
     /// });

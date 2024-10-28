@@ -27,12 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by name
 //			_, err := scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by name and VPC ID
 //			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
 //				Name:  pulumi.StringRef("foobar"),
 //				VpcId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
@@ -40,6 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by IP ID
 //			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
 //				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

@@ -30,19 +30,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainContainerNamespace, err := scaleway.NewContainerNamespace(ctx, "mainContainerNamespace", nil)
+//			main, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//				Name: pulumi.String("test-container-token-ns"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			mainContainer, err := scaleway.NewContainer(ctx, "mainContainer", &scaleway.ContainerArgs{
-//				NamespaceId: mainContainerNamespace.ID(),
+//			mainContainer, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Namespace Token
 //			_, err = scaleway.NewContainerToken(ctx, "namespace", &scaleway.ContainerTokenArgs{
-//				NamespaceId: mainContainerNamespace.ID(),
+//				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {

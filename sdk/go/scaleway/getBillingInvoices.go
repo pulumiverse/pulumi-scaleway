@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about your Scaleway invoices.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetBillingInvoices(ctx, &scaleway.GetBillingInvoicesArgs{
-//				InvoiceType: pulumi.StringRef("periodic"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetBillingInvoices(ctx *pulumi.Context, args *GetBillingInvoicesArgs, opts ...pulumi.InvokeOption) (*GetBillingInvoicesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBillingInvoicesResult

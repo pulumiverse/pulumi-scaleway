@@ -212,9 +212,10 @@ class MnqSnsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_sns = scaleway.MnqSns("mainMnqSns")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
-            project_id=main_mnq_sns.project_id,
+        main = scaleway.MnqSns("main")
+        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+            project_id=main.project_id,
+            name="sns-credentials",
             permissions={
                 "can_manage": False,
                 "can_receive": True,
@@ -258,9 +259,10 @@ class MnqSnsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_sns = scaleway.MnqSns("mainMnqSns")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
-            project_id=main_mnq_sns.project_id,
+        main = scaleway.MnqSns("main")
+        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+            project_id=main.project_id,
+            name="sns-credentials",
             permissions={
                 "can_manage": False,
                 "can_receive": True,

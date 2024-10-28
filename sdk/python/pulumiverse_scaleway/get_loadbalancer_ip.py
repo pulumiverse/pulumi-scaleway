@@ -155,15 +155,6 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
 
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_loadbalancer_ip(ip_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str ip_address: The IP address.
            Only one of `ip_address` and `ip_id` should be specified.
@@ -201,15 +192,6 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
     Gets information about a Load Balancer IP address.
 
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_ip = scaleway.get_loadbalancer_ip(ip_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str ip_address: The IP address.

@@ -27,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get api key infos by id (access_key)
 //			_, err := scaleway.LookupIamApiKey(ctx, &scaleway.LookupIamApiKeyArgs{
 //				AccessKey: "SCWABCDEFGHIJKLMNOPQ",
 //			}, nil)

@@ -288,16 +288,19 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+        main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
-        main_database_backup = scaleway.DatabaseBackup("mainDatabaseBackup",
-            instance_id=main_database_instance.id,
+        main_database = scaleway.Database("main",
+            instance_id=main.id,
+            name="database")
+        main_database_backup = scaleway.DatabaseBackup("main",
+            instance_id=main.id,
             database_name=main_database.name)
         ```
 
@@ -308,8 +311,8 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseBackup("main",
-            instance_id=data["scaleway_rdb_instance"]["main"]["id"],
-            database_name=data["scaleway_rdb_database"]["main"]["name"],
+            instance_id=main_scaleway_rdb_instance["id"],
+            database_name=main_scaleway_rdb_database["name"],
             expires_at="2022-06-16T07:48:44Z")
         ```
 
@@ -353,16 +356,19 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+        main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
-        main_database_backup = scaleway.DatabaseBackup("mainDatabaseBackup",
-            instance_id=main_database_instance.id,
+        main_database = scaleway.Database("main",
+            instance_id=main.id,
+            name="database")
+        main_database_backup = scaleway.DatabaseBackup("main",
+            instance_id=main.id,
             database_name=main_database.name)
         ```
 
@@ -373,8 +379,8 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseBackup("main",
-            instance_id=data["scaleway_rdb_instance"]["main"]["id"],
-            database_name=data["scaleway_rdb_database"]["main"]["name"],
+            instance_id=main_scaleway_rdb_instance["id"],
+            database_name=main_scaleway_rdb_database["name"],
             expires_at="2022-06-16T07:48:44Z")
         ```
 

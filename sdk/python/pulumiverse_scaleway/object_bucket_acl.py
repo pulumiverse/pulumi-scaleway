@@ -239,9 +239,9 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("someBucket")
+        some_bucket = scaleway.ObjectBucket("some_bucket", name="some-unique-name")
         main = scaleway.ObjectBucketAcl("main",
-            bucket=scaleway_object_bucket["main"]["id"],
+            bucket=main_scaleway_object_bucket["id"],
             acl="private")
         ```
 
@@ -251,9 +251,9 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket")
-        main_object_bucket_acl = scaleway.ObjectBucketAcl("mainObjectBucketAcl",
-            bucket=main_object_bucket.id,
+        main = scaleway.ObjectBucket("main", name="your-bucket")
+        main_object_bucket_acl = scaleway.ObjectBucketAcl("main",
+            bucket=main.id,
             access_control_policy={
                 "grants": [
                     {
@@ -359,9 +359,9 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("someBucket")
+        some_bucket = scaleway.ObjectBucket("some_bucket", name="some-unique-name")
         main = scaleway.ObjectBucketAcl("main",
-            bucket=scaleway_object_bucket["main"]["id"],
+            bucket=main_scaleway_object_bucket["id"],
             acl="private")
         ```
 
@@ -371,9 +371,9 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket")
-        main_object_bucket_acl = scaleway.ObjectBucketAcl("mainObjectBucketAcl",
-            bucket=main_object_bucket.id,
+        main = scaleway.ObjectBucket("main", name="your-bucket")
+        main_object_bucket_acl = scaleway.ObjectBucketAcl("main",
+            bucket=main.id,
             access_control_policy={
                 "grants": [
                     {

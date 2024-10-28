@@ -411,8 +411,12 @@ class IotDevice(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_iot_device = scaleway.IotDevice("mainIotDevice", hub_id=main_iot_hub.id)
+        main = scaleway.IotHub("main",
+            name="test-iot",
+            product_plan="plan_shared")
+        main_iot_device = scaleway.IotDevice("main",
+            hub_id=main.id,
+            name="test-iot")
         ```
 
         ### With custom certificate
@@ -422,10 +426,13 @@ class IotDevice(pulumi.CustomResource):
         import pulumi_local as local
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main = scaleway.IotHub("main",
+            name="test-iot",
+            product_plan="plan_shared")
         device_cert = local.get_file(filename="device-certificate.pem")
-        main_iot_device = scaleway.IotDevice("mainIotDevice",
-            hub_id=main_iot_hub.id,
+        main_iot_device = scaleway.IotDevice("main",
+            hub_id=main.id,
+            name="test-iot",
             certificate={
                 "crt": device_cert.content,
             })
@@ -473,8 +480,12 @@ class IotDevice(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_iot_device = scaleway.IotDevice("mainIotDevice", hub_id=main_iot_hub.id)
+        main = scaleway.IotHub("main",
+            name="test-iot",
+            product_plan="plan_shared")
+        main_iot_device = scaleway.IotDevice("main",
+            hub_id=main.id,
+            name="test-iot")
         ```
 
         ### With custom certificate
@@ -484,10 +495,13 @@ class IotDevice(pulumi.CustomResource):
         import pulumi_local as local
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main = scaleway.IotHub("main",
+            name="test-iot",
+            product_plan="plan_shared")
         device_cert = local.get_file(filename="device-certificate.pem")
-        main_iot_device = scaleway.IotDevice("mainIotDevice",
-            hub_id=main_iot_hub.id,
+        main_iot_device = scaleway.IotDevice("main",
+            hub_id=main.id,
+            name="test-iot",
             certificate={
                 "crt": device_cert.content,
             })

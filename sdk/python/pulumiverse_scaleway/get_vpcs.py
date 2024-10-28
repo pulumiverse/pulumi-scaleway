@@ -116,16 +116,6 @@ def get_vpcs(name: Optional[str] = None,
     """
     Gets information about multiple Virtual Private Clouds.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_vpcs(name="tf-vpc-datasource",
-        region="nl-ams")
-    ```
-
 
     :param str name: The VPC name to filter for. VPCs with a similar name are listed.
     :param str project_id: The ID of the Project the VPC is associated with.
@@ -158,16 +148,6 @@ def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcsResult]:
     """
     Gets information about multiple Virtual Private Clouds.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_vpcs(name="tf-vpc-datasource",
-        region="nl-ams")
-    ```
 
 
     :param str name: The VPC name to filter for. VPCs with a similar name are listed.

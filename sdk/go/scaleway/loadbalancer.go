@@ -69,8 +69,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewLoadbalancer(ctx, "base", &scaleway.LoadbalancerArgs{
-//				AssignFlexibleIp: pulumi.Bool(false),
+//				Name:             pulumi.String("private-lb"),
 //				Type:             pulumi.String("LB-S"),
+//				AssignFlexibleIp: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -110,6 +111,7 @@ import (
 //					v4.ID(),
 //					v6.ID(),
 //				},
+//				Name: pulumi.String("ipv6-lb"),
 //				Type: pulumi.String("LB-S"),
 //			})
 //			if err != nil {
@@ -121,7 +123,7 @@ import (
 //
 // ```
 //
-// ### Multiple configurations
+// ### With IPAM IDs
 //
 // ```go
 // package main
@@ -135,79 +137,49 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## IP for Public Gateway
-//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "mainVpcPublicGatewayIp", nil)
-//			if err != nil {
-//				return err
-//			}
-//			// ## Scaleway Private Network
-//			mainVpcPrivateNetwork, err := scaleway.NewVpcPrivateNetwork(ctx, "mainVpcPrivateNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			// ## VPC Public Gateway Network
-//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "mainVpcPublicGateway", &scaleway.VpcPublicGatewayArgs{
-//				Type: pulumi.String("VPC-GW-S"),
-//				IpId: mainVpcPublicGatewayIp.ID(),
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			// ## VPC Public Gateway Network DHCP config
-//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "mainVpcPublicGatewayDhcp", &scaleway.VpcPublicGatewayDhcpArgs{
-//				Subnet: pulumi.String("10.0.0.0/24"),
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				VpcId: vpc01.ID(),
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.32.0/22"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			// ## VPC Gateway Network
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "mainVpcGatewayNetwork", &scaleway.VpcGatewayNetworkArgs{
-//				GatewayId:        mainVpcPublicGateway.ID(),
-//				PrivateNetworkId: mainVpcPrivateNetwork.ID(),
-//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
-//				CleanupDhcp:      pulumi.Bool(true),
-//				EnableMasquerade: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// ## Scaleway Instance
-//			_, err = scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
-//				Type:       pulumi.String("DEV1-S"),
-//				Image:      pulumi.String("debian_bullseye"),
-//				EnableIpv6: pulumi.Bool(false),
-//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
-//					&scaleway.InstanceServerPrivateNetworkArgs{
-//						PnId: mainVpcPrivateNetwork.ID(),
+//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//				Address: pulumi.String("172.16.32.7"),
+//				Sources: scaleway.IpamIpSourceArray{
+//					&scaleway.IpamIpSourceArgs{
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			// ## IP for LB IP
-//			mainLoadbalancerIp, err := scaleway.NewLoadbalancerIp(ctx, "mainLoadbalancerIp", nil)
+//			v4, err := scaleway.NewLoadbalancerIp(ctx, "v4", nil)
 //			if err != nil {
 //				return err
 //			}
-//			// ## Scaleway Private Network
-//			_, err = scaleway.NewVpcPrivateNetwork(ctx, "mainIndex/vpcPrivateNetworkVpcPrivateNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			// ## Scaleway Load Balancer
-//			_, err = scaleway.NewLoadbalancer(ctx, "mainLoadbalancer", &scaleway.LoadbalancerArgs{
-//				IpId: mainLoadbalancerIp.ID(),
+//			_, err = scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//				IpIds: pulumi.StringArray{
+//					v4.ID(),
+//				},
+//				Name: pulumi.String("my-lb"),
 //				Type: pulumi.String("LB-S"),
 //				PrivateNetworks: scaleway.LoadbalancerPrivateNetworkArray{
 //					&scaleway.LoadbalancerPrivateNetworkArgs{
-//						PrivateNetworkId: mainVpcPrivateNetwork.ID(),
-//						DhcpConfig:       pulumi.Bool(true),
+//						PrivateNetworkId: pn01.ID(),
+//						IpamIds:          ip01.ID(),
 //					},
 //				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainVpcPublicGateway,
-//			}))
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -216,13 +188,6 @@ import (
 //	}
 //
 // ```
-//
-// ## Migration
-//
-// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
-// This change will not recreate your Load Balancer.
-//
-// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
 //
 // ## IP ID
 //
@@ -245,8 +210,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
-//				Type: pulumi.String("LB-S"),
 //				Zone: pulumi.String("fr-par-1"),
+//				Type: pulumi.String("LB-S"),
 //			})
 //			if err != nil {
 //				return err
@@ -271,12 +236,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainLoadbalancerIp, err := scaleway.NewLoadbalancerIp(ctx, "mainLoadbalancerIp", nil)
+//			main, err := scaleway.NewLoadbalancerIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "mainLoadbalancer", &scaleway.LoadbalancerArgs{
-//				IpId:      mainLoadbalancerIp.ID(),
+//			_, err = scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//				IpId:      main.ID(),
 //				Zone:      pulumi.String("fr-par-1"),
 //				Type:      pulumi.String("LB-S"),
 //				ReleaseIp: pulumi.Bool(false),

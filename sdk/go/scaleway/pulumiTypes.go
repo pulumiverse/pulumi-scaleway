@@ -13492,20 +13492,6 @@ type RedisClusterPrivateNetwork struct {
 	// configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
 	// require updating the Private Network to add IPs.
 	// Your `serviceIps` must be listed as follows:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
 	// Redis™ cluster should be created.
@@ -13547,20 +13533,6 @@ type RedisClusterPrivateNetworkArgs struct {
 	// configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
 	// require updating the Private Network to add IPs.
 	// Your `serviceIps` must be listed as follows:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
 	// Redis™ cluster should be created.
@@ -13647,23 +13619,6 @@ func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 // configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
 // require updating the Private Network to add IPs.
 // Your `serviceIps` must be listed as follows:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
 func (o RedisClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
 }

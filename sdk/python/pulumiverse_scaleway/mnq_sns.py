@@ -146,7 +146,7 @@ class MnqSns(pulumi.CustomResource):
 
         project = scaleway.get_account_project(name="default")
         # For specific Project in default region
-        for_project = scaleway.MnqSns("forProject", project_id=project.id)
+        for_project = scaleway.MnqSns("for_project", project_id=project.id)
         ```
 
         ## Import
@@ -198,7 +198,7 @@ class MnqSns(pulumi.CustomResource):
 
         project = scaleway.get_account_project(name="default")
         # For specific Project in default region
-        for_project = scaleway.MnqSns("forProject", project_id=project.id)
+        for_project = scaleway.MnqSns("for_project", project_id=project.id)
         ```
 
         ## Import

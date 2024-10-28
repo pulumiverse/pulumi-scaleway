@@ -32,11 +32,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
+//				Name: pulumi.String("public_gateway_demo"),
+//				Type: pulumi.String("VPC-GW-S"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
 //					pulumi.String("terraform"),
 //				},
-//				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {
 //				return err

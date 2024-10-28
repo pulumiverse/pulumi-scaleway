@@ -13,9 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const findByName = scaleway.getIamApplication({
  *     name: "foobar",
  * });
+ * // Get info by application ID
  * const findById = scaleway.getIamApplication({
  *     applicationId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -79,9 +81,11 @@ export interface GetIamApplicationResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const findByName = scaleway.getIamApplication({
  *     name: "foobar",
  * });
+ * // Get info by application ID
  * const findById = scaleway.getIamApplication({
  *     applicationId: "11111111-1111-1111-1111-111111111111",
  * });

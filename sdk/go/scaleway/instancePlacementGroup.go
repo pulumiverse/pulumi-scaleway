@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstancePlacementGroup(ctx, "availabilityGroup", nil)
+//			_, err := scaleway.NewInstancePlacementGroup(ctx, "availability_group", nil)
 //			if err != nil {
 //				return err
 //			}

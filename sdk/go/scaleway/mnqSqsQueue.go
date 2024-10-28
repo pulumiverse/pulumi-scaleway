@@ -32,12 +32,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainMnqSqs, err := scaleway.NewMnqSqs(ctx, "mainMnqSqs", nil)
+//			main, err := scaleway.NewMnqSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainMnqSqsCredentials, err := scaleway.NewMnqSqsCredentials(ctx, "mainMnqSqsCredentials", &scaleway.MnqSqsCredentialsArgs{
-//				ProjectId: mainMnqSqs.ProjectId,
+//			mainMnqSqsCredentials, err := scaleway.NewMnqSqsCredentials(ctx, "main", &scaleway.MnqSqsCredentialsArgs{
+//				ProjectId: main.ProjectId,
+//				Name:      pulumi.String("sqs-credentials"),
 //				Permissions: &scaleway.MnqSqsCredentialsPermissionsArgs{
 //					CanManage:  pulumi.Bool(true),
 //					CanReceive: pulumi.Bool(false),
@@ -47,9 +48,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSqsQueue(ctx, "mainMnqSqsQueue", &scaleway.MnqSqsQueueArgs{
-//				ProjectId:   mainMnqSqs.ProjectId,
-//				SqsEndpoint: mainMnqSqs.Endpoint,
+//			_, err = scaleway.NewMnqSqsQueue(ctx, "main", &scaleway.MnqSqsQueueArgs{
+//				ProjectId:   main.ProjectId,
+//				Name:        pulumi.String("my-queue"),
+//				SqsEndpoint: main.Endpoint,
 //				AccessKey:   mainMnqSqsCredentials.AccessKey,
 //				SecretKey:   mainMnqSqsCredentials.SecretKey,
 //			})

@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			publicIp, err := scaleway.NewInstanceIp(ctx, "publicIp", nil)
+//			publicIp, err := scaleway.NewInstanceIp(ctx, "public_ip", nil)
 //			if err != nil {
 //				return err
 //			}
@@ -186,48 +186,6 @@ import (
 //
 // ```
 //
-// ### With user data and cloud-init
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"fmt"
-//	"os"
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
-//				Type:  pulumi.String("DEV1-S"),
-//				Image: pulumi.String("ubuntu_jammy"),
-//				UserData: pulumi.StringMap{
-//					"foo":        pulumi.String("bar"),
-//					"cloud-init": pulumi.String(readFileOrPanic(fmt.Sprintf("%v/cloud-init.yml", path.Module))),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ### With private network
 //
 // ```go
@@ -242,7 +200,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("private_network_instance"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -281,12 +241,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewInstanceServer(ctx, "image", &scaleway.InstanceServerArgs{
+//				Type:  pulumi.String("PRO2-XXS"),
 //				Image: pulumi.String("ubuntu_jammy"),
 //				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
-//					SizeInGb:   pulumi.Int(100),
 //					VolumeType: pulumi.String("b_ssd"),
+//					SizeInGb:   pulumi.Int(100),
 //				},
-//				Type: pulumi.String("PRO2-XXS"),
 //			})
 //			if err != nil {
 //				return err
@@ -317,17 +277,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fromSnapshotInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "fromSnapshotInstanceVolume", &scaleway.InstanceVolumeArgs{
+//			fromSnapshot, err := scaleway.NewInstanceVolume(ctx, "from_snapshot", &scaleway.InstanceVolumeArgs{
 //				FromSnapshotId: pulumi.String(snapshot.Id),
 //				Type:           pulumi.String("b_ssd"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "fromSnapshotInstanceServer", &scaleway.InstanceServerArgs{
+//			_, err = scaleway.NewInstanceServer(ctx, "from_snapshot", &scaleway.InstanceServerArgs{
 //				Type: pulumi.String("PRO2-XXS"),
 //				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
-//					VolumeId: fromSnapshotInstanceVolume.ID(),
+//					VolumeId: fromSnapshot.ID(),
 //				},
 //			})
 //			if err != nil {

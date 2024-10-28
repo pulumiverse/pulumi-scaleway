@@ -51,7 +51,10 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpc01 = new Scaleway.Vpc("vpc01");
+        ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+        ///     {
+        ///         Name = "my vpc",
+        ///     });
         /// 
         ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
         ///     {
@@ -64,6 +67,7 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var redis01 = new Scaleway.RedisCluster("redis01", new()
         ///     {
+        ///         Name = "my_redis_cluster",
         ///         Version = "7.0.5",
         ///         NodeType = "RED1-XS",
         ///         UserName = "my_initial_user",
@@ -133,7 +137,10 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpc01 = new Scaleway.Vpc("vpc01");
+        ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+        ///     {
+        ///         Name = "my vpc",
+        ///     });
         /// 
         ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
         ///     {
@@ -146,6 +153,7 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var redis01 = new Scaleway.RedisCluster("redis01", new()
         ///     {
+        ///         Name = "my_redis_cluster",
         ///         Version = "7.0.5",
         ///         NodeType = "RED1-XS",
         ///         UserName = "my_initial_user",

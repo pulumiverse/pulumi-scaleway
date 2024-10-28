@@ -9,15 +9,67 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * ### Database Route
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("main", {
+ *     name: "main",
+ *     productPlan: "plan_shared",
+ * });
+ * const iot = new scaleway.DatabaseInstance("iot", {
+ *     name: "iot",
+ *     nodeType: "db-dev-s",
+ *     engine: "PostgreSQL-12",
+ *     userName: "root",
+ *     password: "T3stP4ssw0rdD0N0tUs3!",
+ * });
+ * const main = new scaleway.IotRoute("main", {
+ *     name: "default",
+ *     hubId: mainIotHub.id,
+ *     topic: "#",
+ *     database: {
+ *         query: `INSERT INTO measurements(
+ * \x09push_time,
+ * \x09report_time,
+ * \x09station_id,
+ * \x09temperature,
+ * \x09humidity
+ * ) VALUES (
+ * \x09NOW(),
+ * \x09TIMESTAMP 'epoch' + ((PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
+ * \x09(PAYLOAD::jsonb->'station_id')::uuid,
+ * \x09(PAYLOAD::jsonb->'temperature')::decimal,
+ * \x09(PAYLOAD::jsonb->'humidity'):decimal:
+ * );
+ * `,
+ *         host: iot.endpointIp,
+ *         port: iot.endpointPort,
+ *         dbname: "rdb",
+ *         username: iot.userName,
+ *         password: iot.password,
+ *     },
+ * });
+ * ```
+ *
  * ### S3 Route
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
- * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {region: "fr-par"});
- * const mainIotRoute = new scaleway.IotRoute("mainIotRoute", {
+ * const mainIotHub = new scaleway.IotHub("main", {
+ *     name: "main",
+ *     productPlan: "plan_shared",
+ * });
+ * const mainObjectBucket = new scaleway.ObjectBucket("main", {
+ *     region: "fr-par",
+ *     name: "my_awesome-bucket",
+ * });
+ * const main = new scaleway.IotRoute("main", {
+ *     name: "main",
  *     hubId: mainIotHub.id,
  *     topic: "#",
  *     s3: {
@@ -35,8 +87,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
- * const mainIotRoute = new scaleway.IotRoute("mainIotRoute", {
+ * const mainIotHub = new scaleway.IotHub("main", {
+ *     name: "main",
+ *     productPlan: "plan_shared",
+ * });
+ * const main = new scaleway.IotRoute("main", {
+ *     name: "main",
  *     hubId: mainIotHub.id,
  *     topic: "#",
  *     rest: {

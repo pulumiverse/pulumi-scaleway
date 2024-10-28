@@ -28,12 +28,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by os name and version
         ///     var byName = Scaleway.GetBaremetalOs.Invoke(new()
         ///     {
         ///         Name = "Ubuntu",
         ///         Version = "20.04 LTS (Focal Fossa)",
         ///     });
         /// 
+        ///     // Get info by os id
         ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
         ///     {
         ///         OsId = "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
@@ -61,12 +63,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by os name and version
         ///     var byName = Scaleway.GetBaremetalOs.Invoke(new()
         ///     {
         ///         Name = "Ubuntu",
         ///         Version = "20.04 LTS (Focal Fossa)",
         ///     });
         /// 
+        ///     // Get info by os id
         ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
         ///     {
         ///         OsId = "03b7f4ba-a6a1-4305-984e-b54fafbf1681",

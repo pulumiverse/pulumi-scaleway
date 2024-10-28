@@ -32,22 +32,25 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mainContainerNamespace = new Scaleway.ContainerNamespace("mainContainerNamespace");
+        ///     var main = new Scaleway.ContainerNamespace("main");
         /// 
-        ///     var mainContainer = new Scaleway.Container("mainContainer", new()
+        ///     var mainContainer = new Scaleway.Container("main", new()
         ///     {
-        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         Name = "test-container-data",
+        ///         NamespaceId = main.Id,
         ///     });
         /// 
+        ///     // Get info by container name
         ///     var byName = Scaleway.GetContainer.Invoke(new()
         ///     {
-        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         NamespaceId = main.Id,
         ///         Name = mainContainer.Name,
         ///     });
         /// 
+        ///     // Get info by container ID
         ///     var byId = Scaleway.GetContainer.Invoke(new()
         ///     {
-        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         NamespaceId = main.Id,
         ///         ContainerId = mainContainer.Id,
         ///     });
         /// 
@@ -77,22 +80,25 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mainContainerNamespace = new Scaleway.ContainerNamespace("mainContainerNamespace");
+        ///     var main = new Scaleway.ContainerNamespace("main");
         /// 
-        ///     var mainContainer = new Scaleway.Container("mainContainer", new()
+        ///     var mainContainer = new Scaleway.Container("main", new()
         ///     {
-        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         Name = "test-container-data",
+        ///         NamespaceId = main.Id,
         ///     });
         /// 
+        ///     // Get info by container name
         ///     var byName = Scaleway.GetContainer.Invoke(new()
         ///     {
-        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         NamespaceId = main.Id,
         ///         Name = mainContainer.Name,
         ///     });
         /// 
+        ///     // Get info by container ID
         ///     var byId = Scaleway.GetContainer.Invoke(new()
         ///     {
-        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         NamespaceId = main.Id,
         ///         ContainerId = mainContainer.Id,
         ///     });
         /// 

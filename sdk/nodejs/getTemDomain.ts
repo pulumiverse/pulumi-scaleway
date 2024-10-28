@@ -8,17 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a transactional email domain.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myDomain = scaleway.getTemDomain({
- *     domainId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getTemDomain(args?: GetTemDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTemDomainResult> {
     args = args || {};
@@ -91,17 +80,6 @@ export interface GetTemDomainResult {
 }
 /**
  * Gets information about a transactional email domain.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myDomain = scaleway.getTemDomain({
- *     domainId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getTemDomainOutput(args?: GetTemDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTemDomainResult> {
     return pulumi.output(args).apply((a: any) => getTemDomain(a, opts))

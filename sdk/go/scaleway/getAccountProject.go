@@ -12,38 +12,6 @@ import (
 )
 
 // Gets information about an existing Project.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
-//				Name: pulumi.StringRef("default"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
-//				ProjectId: pulumi.StringRef("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupAccountProject(ctx *pulumi.Context, args *LookupAccountProjectArgs, opts ...pulumi.InvokeOption) (*LookupAccountProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountProjectResult

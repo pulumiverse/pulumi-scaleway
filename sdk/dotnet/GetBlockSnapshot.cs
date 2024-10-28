@@ -14,48 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a Block Snapshot.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var mySnapshot = Scaleway.GetBlockSnapshot.Invoke(new()
-        ///     {
-        ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetBlockSnapshotResult> InvokeAsync(GetBlockSnapshotArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Block Snapshot.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var mySnapshot = Scaleway.GetBlockSnapshot.Invoke(new()
-        ///     {
-        ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());

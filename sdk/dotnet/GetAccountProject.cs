@@ -14,58 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about an existing Project.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var byName = Scaleway.GetAccountProject.Invoke(new()
-        ///     {
-        ///         Name = "default",
-        ///     });
-        /// 
-        ///     var byId = Scaleway.GetAccountProject.Invoke(new()
-        ///     {
-        ///         ProjectId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetAccountProjectResult> InvokeAsync(GetAccountProjectArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an existing Project.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var byName = Scaleway.GetAccountProject.Invoke(new()
-        ///     {
-        ///         Name = "default",
-        ///     });
-        /// 
-        ///     var byId = Scaleway.GetAccountProject.Invoke(new()
-        ///     {
-        ///         ProjectId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetAccountProjectResult> Invoke(GetAccountProjectInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectInvokeArgs(), options.WithDefaults());

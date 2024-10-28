@@ -81,8 +81,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainAccountSshKey = new Scaleway.AccountSshKey("mainAccountSshKey", new()
+    ///     var main = new Scaleway.AccountSshKey("main", new()
     ///     {
+    ///         Name = "main",
     ///         PublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com",
     ///     });
     /// 
@@ -104,10 +105,10 @@ namespace Pulumiverse.Scaleway
     ///         Zone = "fr-par-2",
     ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
     ///         Os = byId.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
-    ///         SshKeyIds = mainAccountSshKey.Id,
+    ///         SshKeyIds = main.Id,
     ///     });
     /// 
-    ///     var mainFlexibleIp = new Scaleway.FlexibleIp("mainFlexibleIp", new()
+    ///     var mainFlexibleIp = new Scaleway.FlexibleIp("main", new()
     ///     {
     ///         ServerId = @base.Id,
     ///         Zone = "fr-par-2",

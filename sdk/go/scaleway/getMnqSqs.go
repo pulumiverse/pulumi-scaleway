@@ -29,12 +29,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// For default project
 //			_, err := scaleway.LookupMnqSqs(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// For specific project
 //			_, err = scaleway.LookupMnqSqs(ctx, &scaleway.LookupMnqSqsArgs{
-//				ProjectId: pulumi.StringRef(scaleway_account_project.Main.Id),
+//				ProjectId: pulumi.StringRef(mainScalewayAccountProject.Id),
 //			}, nil)
 //			if err != nil {
 //				return err

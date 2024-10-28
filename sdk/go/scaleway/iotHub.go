@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("test-iot"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {

@@ -29,6 +29,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
+    ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
@@ -37,15 +38,16 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var dbPassword = new Random.RandomPassword("dbPassword", new()
+    ///     var dbPassword = new Random.RandomPassword("db_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
     ///     });
     /// 
-    ///     var dbAdmin = new Scaleway.DatabaseUser("dbAdmin", new()
+    ///     var dbAdmin = new Scaleway.DatabaseUser("db_admin", new()
     ///     {
     ///         InstanceId = main.Id,
+    ///         Name = "devtools",
     ///         Password = dbPassword.Result,
     ///         IsAdmin = true,
     ///     });

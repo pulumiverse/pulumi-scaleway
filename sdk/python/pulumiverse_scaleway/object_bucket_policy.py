@@ -177,17 +177,20 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Project ID
         default = scaleway.get_account_project(name="default")
+        # IAM configuration
         user = scaleway.get_iam_user(email="user@scaleway.com")
-        policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
+        policy = scaleway.IamPolicy("policy",
+            name="object-storage-policy",
             user_id=user.id,
             rules=[{
                 "project_ids": [default.id],
                 "permission_set_names": ["ObjectStorageFullAccess"],
             }])
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket")
-        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
+        bucket = scaleway.ObjectBucket("bucket", name="some-unique-name")
+        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
             policy=pulumi.Output.json_dumps({
                 "Version": "2023-04-17",
@@ -216,18 +219,20 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Project ID
         default = scaleway.get_account_project(name="default")
         # IAM configuration
-        reading_app = scaleway.IamApplication("reading-app")
-        policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
+        reading_app = scaleway.IamApplication("reading-app", name="reading-app")
+        policy = scaleway.IamPolicy("policy",
+            name="object-storage-policy",
             application_id=reading_app.id,
             rules=[{
                 "project_ids": [default.id],
                 "permission_set_names": ["ObjectStorageBucketsRead"],
             }])
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket")
-        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
+        bucket = scaleway.ObjectBucket("bucket", name="some-unique-name")
+        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.id,
             policy=pulumi.Output.json_dumps({
                 "Version": "2023-04-17",
@@ -258,9 +263,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         reading_app = scaleway.get_iam_application(name="reading-app")
         reading_api_key = scaleway.IamApiKey("reading-api-key", application_id=reading_app.id)
-        reading_profile = scaleway.Provider("reading-profile",
-            access_key=reading_api_key.access_key,
-            secret_key=reading_api_key.secret_key)
         bucket = scaleway.get_object_bucket(name="some-unique-name")
         ```
 
@@ -272,9 +274,11 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Scaleway project ID
         default = scaleway.get_account_project(name="default")
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket")
+        bucket = scaleway.ObjectBucket("bucket", name="some-unique-name")
+        # AWS data source
         policy = aws.iam.get_policy_document_output(version="2012-10-17",
             statements=[{
                 "sid": "Delegate access",
@@ -302,9 +306,12 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Project ID
         default = scaleway.get_account_project(name="default")
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket", region="fr-par")
+        bucket = scaleway.ObjectBucket("bucket",
+            name="mia-cross-crash-tests",
+            region="fr-par")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
             policy=pulumi.Output.json_dumps({
@@ -375,17 +382,20 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Project ID
         default = scaleway.get_account_project(name="default")
+        # IAM configuration
         user = scaleway.get_iam_user(email="user@scaleway.com")
-        policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
+        policy = scaleway.IamPolicy("policy",
+            name="object-storage-policy",
             user_id=user.id,
             rules=[{
                 "project_ids": [default.id],
                 "permission_set_names": ["ObjectStorageFullAccess"],
             }])
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket")
-        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
+        bucket = scaleway.ObjectBucket("bucket", name="some-unique-name")
+        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
             policy=pulumi.Output.json_dumps({
                 "Version": "2023-04-17",
@@ -414,18 +424,20 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Project ID
         default = scaleway.get_account_project(name="default")
         # IAM configuration
-        reading_app = scaleway.IamApplication("reading-app")
-        policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
+        reading_app = scaleway.IamApplication("reading-app", name="reading-app")
+        policy = scaleway.IamPolicy("policy",
+            name="object-storage-policy",
             application_id=reading_app.id,
             rules=[{
                 "project_ids": [default.id],
                 "permission_set_names": ["ObjectStorageBucketsRead"],
             }])
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket")
-        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
+        bucket = scaleway.ObjectBucket("bucket", name="some-unique-name")
+        policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.id,
             policy=pulumi.Output.json_dumps({
                 "Version": "2023-04-17",
@@ -456,9 +468,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
 
         reading_app = scaleway.get_iam_application(name="reading-app")
         reading_api_key = scaleway.IamApiKey("reading-api-key", application_id=reading_app.id)
-        reading_profile = scaleway.Provider("reading-profile",
-            access_key=reading_api_key.access_key,
-            secret_key=reading_api_key.secret_key)
         bucket = scaleway.get_object_bucket(name="some-unique-name")
         ```
 
@@ -470,9 +479,11 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Scaleway project ID
         default = scaleway.get_account_project(name="default")
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket")
+        bucket = scaleway.ObjectBucket("bucket", name="some-unique-name")
+        # AWS data source
         policy = aws.iam.get_policy_document_output(version="2012-10-17",
             statements=[{
                 "sid": "Delegate access",
@@ -500,9 +511,12 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
+        # Project ID
         default = scaleway.get_account_project(name="default")
         # Object storage configuration
-        bucket = scaleway.ObjectBucket("bucket", region="fr-par")
+        bucket = scaleway.ObjectBucket("bucket",
+            name="mia-cross-crash-tests",
+            region="fr-par")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
             policy=pulumi.Output.json_dumps({

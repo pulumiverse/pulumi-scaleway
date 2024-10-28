@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serverIp = new Scaleway.InstanceIp("serverIp");
+    ///     var serverIp = new Scaleway.InstanceIp("server_ip");
     /// 
     /// });
     /// ```

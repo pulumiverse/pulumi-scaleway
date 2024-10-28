@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var instance = new Scaleway.DatabaseInstance("instance", new()
     ///     {
+    ///         Name = "test-rdb-rr-update",
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-14",
     ///         IsHaCluster = false,
@@ -63,6 +64,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var instance = new Scaleway.DatabaseInstance("instance", new()
     ///     {
+    ///         Name = "rdb_instance",
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-14",
     ///         IsHaCluster = false,
@@ -98,6 +100,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var instance = new Scaleway.DatabaseInstance("instance", new()
     ///     {
+    ///         Name = "rdb_instance",
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-14",
     ///         IsHaCluster = false,

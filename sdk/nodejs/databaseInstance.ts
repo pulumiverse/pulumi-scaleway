@@ -19,12 +19,13 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
- *     disableBackup: true,
+ *     name: "test-rdb",
+ *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
- *     nodeType: "DB-DEV-S",
- *     password: "thiZ_is_v&ry_s3cret",
+ *     disableBackup: true,
  *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
  * });
  * ```
  *
@@ -35,14 +36,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
- *     disableBackup: true,
+ *     name: "test-rdb-sbs",
+ *     nodeType: "db-play2-pico",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
- *     nodeType: "db-play2-pico",
- *     password: "thiZ_is_v&ry_s3cret",
+ *     disableBackup: true,
  *     userName: "my_initial_user",
- *     volumeSizeInGb: 10,
+ *     password: "thiZ_is_v&ry_s3cret",
  *     volumeType: "sbs_15k",
+ *     volumeSizeInGb: 10,
  * });
  * ```
  *
@@ -53,17 +55,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
+ *     name: "test-rdb",
+ *     nodeType: "db-dev-s",
  *     disableBackup: true,
  *     engine: "MySQL-8",
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
  *     initSettings: {
  *         lower_case_table_names: "1",
  *     },
- *     nodeType: "db-dev-s",
- *     password: "thiZ_is_v&ry_s3cret",
  *     settings: {
  *         max_connections: "350",
  *     },
- *     userName: "my_initial_user",
  * });
  * ```
  *
@@ -74,14 +77,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
- *     backupScheduleFrequency: 24,
- *     backupScheduleRetention: 7,
- *     disableBackup: false,
+ *     name: "test-rdb",
+ *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
- *     nodeType: "DB-DEV-S",
- *     password: "thiZ_is_v&ry_s3cret",
  *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     disableBackup: false,
+ *     backupScheduleFrequency: 24,
+ *     backupScheduleRetention: 7,
  * });
  * ```
  *
@@ -116,13 +120,13 @@ import * as utilities from "./utilities";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
  * const main = new scaleway.DatabaseInstance("main", {
+ *     loadBalancers: [{}],
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     privateNetwork: {
  *         pnId: pn.id,
  *         enableIpam: true,
  *     },
- *     loadBalancers: [{}],
  * });
  * ```
  *
@@ -133,8 +137,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
- *     engine: "PostgreSQL-15",
  *     nodeType: "db-dev-s",
+ *     engine: "PostgreSQL-15",
  * });
  * ```
  *

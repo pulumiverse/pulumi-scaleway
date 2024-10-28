@@ -30,18 +30,23 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainFunctionNamespace = new Scaleway.FunctionNamespace("mainFunctionNamespace");
-    /// 
-    ///     var mainFunction = new Scaleway.Function("mainFunction", new()
+    ///     var main = new Scaleway.FunctionNamespace("main", new()
     ///     {
-    ///         NamespaceId = mainFunctionNamespace.Id,
+    ///         Name = "test-cron",
+    ///     });
+    /// 
+    ///     var mainFunction = new Scaleway.Function("main", new()
+    ///     {
+    ///         Name = "test-cron",
+    ///         NamespaceId = main.Id,
     ///         Runtime = "node14",
     ///         Privacy = "private",
     ///         Handler = "handler.handle",
     ///     });
     /// 
-    ///     var mainFunctionCron = new Scaleway.FunctionCron("mainFunctionCron", new()
+    ///     var mainFunctionCron = new Scaleway.FunctionCron("main", new()
     ///     {
+    ///         Name = "test-cron",
     ///         FunctionId = mainFunction.Id,
     ///         Schedule = "0 0 * * *",
     ///         Args = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;

@@ -17,9 +17,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcGatewayNetwork("main", {
- *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
- *     dhcpId: scaleway_vpc_public_gateway_dhcp.dhcp01.id,
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * });
@@ -27,8 +27,8 @@ import * as utilities from "./utilities";
  *     gatewayNetworkId: main.id,
  * });
  * const byGatewayAndPn = scaleway.getVpcGatewayNetwork({
- *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
  * });
  * ```
  */
@@ -93,9 +93,9 @@ export interface GetVpcGatewayNetworkResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcGatewayNetwork("main", {
- *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
- *     dhcpId: scaleway_vpc_public_gateway_dhcp.dhcp01.id,
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * });
@@ -103,8 +103,8 @@ export interface GetVpcGatewayNetworkResult {
  *     gatewayNetworkId: main.id,
  * });
  * const byGatewayAndPn = scaleway.getVpcGatewayNetwork({
- *     gatewayId: scaleway_vpc_public_gateway.pg01.id,
- *     privateNetworkId: scaleway_vpc_private_network.pn01.id,
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
  * });
  * ```
  */

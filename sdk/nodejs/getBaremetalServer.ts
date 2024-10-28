@@ -16,10 +16,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by server name
  * const byName = scaleway.getBaremetalServer({
  *     name: "foobar",
  *     zone: "fr-par-2",
  * });
+ * // Get info by server id
  * const byId = scaleway.getBaremetalServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -101,10 +103,12 @@ export interface GetBaremetalServerResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by server name
  * const byName = scaleway.getBaremetalServer({
  *     name: "foobar",
  *     zone: "fr-par-2",
  * });
+ * // Get info by server id
  * const byId = scaleway.getBaremetalServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });

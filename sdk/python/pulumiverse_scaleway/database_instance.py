@@ -850,12 +850,13 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            disable_backup=True,
+            name="test-rdb",
+            node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
-            node_type="DB-DEV-S",
-            password="thiZ_is_v&ry_s3cret",
-            user_name="my_initial_user")
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
         ```
 
         ### Example Block Storage Low Latency
@@ -865,14 +866,15 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            disable_backup=True,
+            name="test-rdb-sbs",
+            node_type="db-play2-pico",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
-            node_type="db-play2-pico",
-            password="thiZ_is_v&ry_s3cret",
+            disable_backup=True,
             user_name="my_initial_user",
-            volume_size_in_gb=10,
-            volume_type="sbs_15k")
+            password="thiZ_is_v&ry_s3cret",
+            volume_type="sbs_15k",
+            volume_size_in_gb=10)
         ```
 
         ### Example with Settings
@@ -882,17 +884,18 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
+            node_type="db-dev-s",
             disable_backup=True,
             engine="MySQL-8",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
             init_settings={
                 "lower_case_table_names": "1",
             },
-            node_type="db-dev-s",
-            password="thiZ_is_v&ry_s3cret",
             settings={
                 "max_connections": "350",
-            },
-            user_name="my_initial_user")
+            })
         ```
 
         ### Example with backup schedule
@@ -902,14 +905,15 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            backup_schedule_frequency=24,
-            backup_schedule_retention=7,
-            disable_backup=False,
+            name="test-rdb",
+            node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
-            node_type="DB-DEV-S",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
-            user_name="my_initial_user")
+            disable_backup=False,
+            backup_schedule_frequency=24,
+            backup_schedule_retention=7)
         ```
 
         ### Examples of endpoint configuration
@@ -942,13 +946,13 @@ class DatabaseInstance(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.DatabaseInstance("main",
+            load_balancers=[{}],
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             private_network={
                 "pn_id": pn.id,
                 "enable_ipam": True,
-            },
-            load_balancers=[{}])
+            })
         ```
 
         ### Default: 1 public endpoint
@@ -958,8 +962,8 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            engine="PostgreSQL-15",
-            node_type="db-dev-s")
+            node_type="db-dev-s",
+            engine="PostgreSQL-15")
         ```
 
         > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
@@ -1037,12 +1041,13 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            disable_backup=True,
+            name="test-rdb",
+            node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
-            node_type="DB-DEV-S",
-            password="thiZ_is_v&ry_s3cret",
-            user_name="my_initial_user")
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
         ```
 
         ### Example Block Storage Low Latency
@@ -1052,14 +1057,15 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            disable_backup=True,
+            name="test-rdb-sbs",
+            node_type="db-play2-pico",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
-            node_type="db-play2-pico",
-            password="thiZ_is_v&ry_s3cret",
+            disable_backup=True,
             user_name="my_initial_user",
-            volume_size_in_gb=10,
-            volume_type="sbs_15k")
+            password="thiZ_is_v&ry_s3cret",
+            volume_type="sbs_15k",
+            volume_size_in_gb=10)
         ```
 
         ### Example with Settings
@@ -1069,17 +1075,18 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
+            node_type="db-dev-s",
             disable_backup=True,
             engine="MySQL-8",
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
             init_settings={
                 "lower_case_table_names": "1",
             },
-            node_type="db-dev-s",
-            password="thiZ_is_v&ry_s3cret",
             settings={
                 "max_connections": "350",
-            },
-            user_name="my_initial_user")
+            })
         ```
 
         ### Example with backup schedule
@@ -1089,14 +1096,15 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            backup_schedule_frequency=24,
-            backup_schedule_retention=7,
-            disable_backup=False,
+            name="test-rdb",
+            node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
-            node_type="DB-DEV-S",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
-            user_name="my_initial_user")
+            disable_backup=False,
+            backup_schedule_frequency=24,
+            backup_schedule_retention=7)
         ```
 
         ### Examples of endpoint configuration
@@ -1129,13 +1137,13 @@ class DatabaseInstance(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         main = scaleway.DatabaseInstance("main",
+            load_balancers=[{}],
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             private_network={
                 "pn_id": pn.id,
                 "enable_ipam": True,
-            },
-            load_balancers=[{}])
+            })
         ```
 
         ### Default: 1 public endpoint
@@ -1145,8 +1153,8 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
-            engine="PostgreSQL-15",
-            node_type="db-dev-s")
+            node_type="db-dev-s",
+            engine="PostgreSQL-15")
         ```
 
         > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.

@@ -5910,10 +5910,6 @@ class RedisClusterPrivateNetworkArgs:
                configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
                require updating the Private Network to add IPs.
                Your `service_ips` must be listed as follows:
-               
-               ```python
-               import pulumi
-               ```
         :param pulumi.Input[str] zone: `zone`) The zone in which the
                Redis™ cluster should be created.
         """
@@ -5972,10 +5968,6 @@ class RedisClusterPrivateNetworkArgs:
         configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
         require updating the Private Network to add IPs.
         Your `service_ips` must be listed as follows:
-
-        ```python
-        import pulumi
-        ```
         """
         return pulumi.get(self, "service_ips")
 

@@ -6,18 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a function.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myFunction = scaleway.getFunction({
- *     functionId: "11111111-1111-1111-1111-111111111111",
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
 
@@ -91,18 +79,6 @@ export interface GetFunctionResult {
 }
 /**
  * Gets information about a function.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myFunction = scaleway.getFunction({
- *     functionId: "11111111-1111-1111-1111-111111111111",
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionResult> {
     return pulumi.output(args).apply((a: any) => getFunction(a, opts))

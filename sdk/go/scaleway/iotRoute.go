@@ -14,6 +14,76 @@ import (
 
 // ## Example Usage
 //
+// ### Database Route
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("main"),
+//				ProductPlan: pulumi.String("plan_shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			iot, err := scaleway.NewDatabaseInstance(ctx, "iot", &scaleway.DatabaseInstanceArgs{
+//				Name:     pulumi.String("iot"),
+//				NodeType: pulumi.String("db-dev-s"),
+//				Engine:   pulumi.String("PostgreSQL-12"),
+//				UserName: pulumi.String("root"),
+//				Password: pulumi.String("T3stP4ssw0rdD0N0tUs3!"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIotRoute(ctx, "main", &scaleway.IotRouteArgs{
+//				Name:  pulumi.String("default"),
+//				HubId: mainIotHub.ID(),
+//				Topic: pulumi.String("#"),
+//				Database: &scaleway.IotRouteDatabaseArgs{
+//					Query: pulumi.String(`INSERT INTO measurements(
+//		push_time,
+//		report_time,
+//		station_id,
+//		temperature,
+//		humidity
+//
+// ) VALUES (
+//
+//	NOW(),
+//	TIMESTAMP 'epoch' + (($PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
+//	($PAYLOAD::jsonb->'station_id')::uuid,
+//	($PAYLOAD::jsonb->'temperature')::decimal,
+//	($PAYLOAD::jsonb->'humidity'):decimal:
+//
+// );
+// `),
+//
+//					Host:     iot.EndpointIp,
+//					Port:     iot.EndpointPort,
+//					Dbname:   pulumi.String("rdb"),
+//					Username: iot.UserName,
+//					Password: iot.Password,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### S3 Route
 //
 // ```go
@@ -28,19 +98,22 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "mainObjectBucket", &scaleway.ObjectBucketArgs{
+//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
 //				Region: pulumi.String("fr-par"),
+//				Name:   pulumi.String("my_awesome-bucket"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotRoute(ctx, "mainIotRoute", &scaleway.IotRouteArgs{
+//			_, err = scaleway.NewIotRoute(ctx, "main", &scaleway.IotRouteArgs{
+//				Name:  pulumi.String("main"),
 //				HubId: mainIotHub.ID(),
 //				Topic: pulumi.String("#"),
 //				S3: &scaleway.IotRouteS3Args{
@@ -73,13 +146,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotRoute(ctx, "mainIotRoute", &scaleway.IotRouteArgs{
+//			_, err = scaleway.NewIotRoute(ctx, "main", &scaleway.IotRouteArgs{
+//				Name:  pulumi.String("main"),
 //				HubId: mainIotHub.ID(),
 //				Topic: pulumi.String("#"),
 //				Rest: &scaleway.IotRouteRestArgs{

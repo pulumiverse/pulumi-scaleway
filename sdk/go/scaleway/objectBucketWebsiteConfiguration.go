@@ -29,14 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "mainObjectBucket", &scaleway.ObjectBucketArgs{
-//				Acl: pulumi.String("public-read"),
+//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("MyBucket"),
+//				Acl:  pulumi.String("public-read"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "mainObjectBucketWebsiteConfiguration", &scaleway.ObjectBucketWebsiteConfigurationArgs{
-//				Bucket: mainObjectBucket.ID(),
+//			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "main", &scaleway.ObjectBucketWebsiteConfigurationArgs{
+//				Bucket: main.ID(),
 //				IndexDocument: &scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},
@@ -66,8 +67,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "mainObjectBucket", &scaleway.ObjectBucketArgs{
-//				Acl: pulumi.String("public-read"),
+//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("MyBucket"),
+//				Acl:  pulumi.String("public-read"),
 //			})
 //			if err != nil {
 //				return err
@@ -93,15 +95,15 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "mainObjectBucketPolicy", &scaleway.ObjectBucketPolicyArgs{
-//				Bucket: mainObjectBucket.ID(),
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: main.ID(),
 //				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "mainObjectBucketWebsiteConfiguration", &scaleway.ObjectBucketWebsiteConfigurationArgs{
-//				Bucket: mainObjectBucket.ID(),
+//			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "main", &scaleway.ObjectBucketWebsiteConfigurationArgs{
+//				Bucket: main.ID(),
 //				IndexDocument: &scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},

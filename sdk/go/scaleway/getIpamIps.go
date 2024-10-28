@@ -59,7 +59,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -73,6 +75,7 @@ import (
 //				return err
 //			}
 //			redis01, err := scaleway.NewRedisCluster(ctx, "redis01", &scaleway.RedisClusterArgs{
+//				Name:        pulumi.String("my_redis_cluster"),
 //				Version:     pulumi.String("7.0.5"),
 //				NodeType:    pulumi.String("RED1-XS"),
 //				UserName:    pulumi.String("my_initial_user"),

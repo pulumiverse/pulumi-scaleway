@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
  * const lb01 = new scaleway.Loadbalancer("lb01", {
  *     ipId: ip01.id,
+ *     name: "test-lb",
  *     type: "lb-s",
  * });
  * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
@@ -91,6 +92,7 @@ export interface GetLbRouteResult {
  * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
  * const lb01 = new scaleway.Loadbalancer("lb01", {
  *     ipId: ip01.id,
+ *     name: "test-lb",
  *     type: "lb-s",
  * });
  * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {

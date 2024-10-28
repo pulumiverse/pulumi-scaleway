@@ -239,13 +239,15 @@ class FunctionCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
-        main_function = scaleway.Function("mainFunction",
-            namespace_id=main_function_namespace.id,
+        main = scaleway.FunctionNamespace("main", name="test-cron")
+        main_function = scaleway.Function("main",
+            name="test-cron",
+            namespace_id=main.id,
             runtime="node14",
             privacy="private",
             handler="handler.handle")
-        main_function_cron = scaleway.FunctionCron("mainFunctionCron",
+        main_function_cron = scaleway.FunctionCron("main",
+            name="test-cron",
             function_id=main_function.id,
             schedule="0 0 * * *",
             args=json.dumps({
@@ -302,13 +304,15 @@ class FunctionCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace")
-        main_function = scaleway.Function("mainFunction",
-            namespace_id=main_function_namespace.id,
+        main = scaleway.FunctionNamespace("main", name="test-cron")
+        main_function = scaleway.Function("main",
+            name="test-cron",
+            namespace_id=main.id,
             runtime="node14",
             privacy="private",
             handler="handler.handle")
-        main_function_cron = scaleway.FunctionCron("mainFunctionCron",
+        main_function_cron = scaleway.FunctionCron("main",
+            name="test-cron",
             function_id=main_function.id,
             schedule="0 0 * * *",
             args=json.dumps({

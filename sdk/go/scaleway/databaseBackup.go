@@ -31,7 +31,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainDatabaseInstance, err := scaleway.NewDatabaseInstance(ctx, "mainDatabaseInstance", &scaleway.DatabaseInstanceArgs{
+//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
 //				IsHaCluster:   pulumi.Bool(true),
@@ -42,14 +43,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainDatabase, err := scaleway.NewDatabase(ctx, "mainDatabase", &scaleway.DatabaseArgs{
-//				InstanceId: mainDatabaseInstance.ID(),
+//			mainDatabase, err := scaleway.NewDatabase(ctx, "main", &scaleway.DatabaseArgs{
+//				InstanceId: main.ID(),
+//				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseBackup(ctx, "mainDatabaseBackup", &scaleway.DatabaseBackupArgs{
-//				InstanceId:   mainDatabaseInstance.ID(),
+//			_, err = scaleway.NewDatabaseBackup(ctx, "main", &scaleway.DatabaseBackupArgs{
+//				InstanceId:   main.ID(),
 //				DatabaseName: mainDatabase.Name,
 //			})
 //			if err != nil {
@@ -76,8 +78,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseBackup(ctx, "main", &scaleway.DatabaseBackupArgs{
-//				InstanceId:   pulumi.Any(data.Scaleway_rdb_instance.Main.Id),
-//				DatabaseName: pulumi.Any(data.Scaleway_rdb_database.Main.Name),
+//				InstanceId:   pulumi.Any(mainScalewayRdbInstance.Id),
+//				DatabaseName: pulumi.Any(mainScalewayRdbDatabase.Name),
 //				ExpiresAt:    pulumi.String("2022-06-16T07:48:44Z"),
 //			})
 //			if err != nil {

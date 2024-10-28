@@ -17,8 +17,9 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const basic = new scaleway.IamGroup("basic", {
- *     applicationIds: [],
+ *     name: "iam_group_basic",
  *     description: "basic description",
+ *     applicationIds: [],
  *     userIds: [],
  * });
  * ```
@@ -30,7 +31,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const app = new scaleway.IamApplication("app", {});
- * const withApp = new scaleway.IamGroup("withApp", {
+ * const withApp = new scaleway.IamGroup("with_app", {
+ *     name: "iam_group_with_app",
  *     applicationIds: [app.id],
  *     userIds: [],
  * });

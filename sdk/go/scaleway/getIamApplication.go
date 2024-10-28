@@ -27,12 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by name
 //			_, err := scaleway.LookupIamApplication(ctx, &scaleway.LookupIamApplicationArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by application ID
 //			_, err = scaleway.LookupIamApplication(ctx, &scaleway.LookupIamApplicationArgs{
 //				ApplicationId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

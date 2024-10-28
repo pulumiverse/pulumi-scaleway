@@ -360,11 +360,15 @@ def get_container(container_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
-    main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
-    by_name = scaleway.get_container_output(namespace_id=main_container_namespace.id,
+    main = scaleway.ContainerNamespace("main")
+    main_container = scaleway.Container("main",
+        name="test-container-data",
+        namespace_id=main.id)
+    # Get info by container name
+    by_name = scaleway.get_container_output(namespace_id=main.id,
         name=main_container.name)
-    by_id = scaleway.get_container_output(namespace_id=main_container_namespace.id,
+    # Get info by container ID
+    by_id = scaleway.get_container_output(namespace_id=main.id,
         container_id=main_container.id)
     ```
 
@@ -438,11 +442,15 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
-    main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
-    by_name = scaleway.get_container_output(namespace_id=main_container_namespace.id,
+    main = scaleway.ContainerNamespace("main")
+    main_container = scaleway.Container("main",
+        name="test-container-data",
+        namespace_id=main.id)
+    # Get info by container name
+    by_name = scaleway.get_container_output(namespace_id=main.id,
         name=main_container.name)
-    by_id = scaleway.get_container_output(namespace_id=main_container_namespace.id,
+    # Get info by container ID
+    by_id = scaleway.get_container_output(namespace_id=main.id,
         container_id=main_container.id)
     ```
 

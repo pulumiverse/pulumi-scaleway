@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my-vpc"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
 //					pulumi.String("terraform"),
@@ -60,12 +61,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
-//				EnableRouting: pulumi.Bool(true),
+//				Name: pulumi.String("my-vpc"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
 //					pulumi.String("terraform"),
 //					pulumi.String("routing"),
 //				},
+//				EnableRouting: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err

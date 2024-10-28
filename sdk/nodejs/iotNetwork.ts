@@ -11,8 +11,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
- * const mainIotNetwork = new scaleway.IotNetwork("mainIotNetwork", {
+ * const mainIotHub = new scaleway.IotHub("main", {
+ *     name: "main",
+ *     productPlan: "plan_shared",
+ * });
+ * const main = new scaleway.IotNetwork("main", {
+ *     name: "main",
  *     hubId: mainIotHub.id,
  *     type: "sigfox",
  * });

@@ -32,12 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainMnqNatsAccount, err := scaleway.NewMnqNatsAccount(ctx, "mainMnqNatsAccount", nil)
+//			main, err := scaleway.NewMnqNatsAccount(ctx, "main", &scaleway.MnqNatsAccountArgs{
+//				Name: pulumi.String("nats-account"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqNatsCredentials(ctx, "mainMnqNatsCredentials", &scaleway.MnqNatsCredentialsArgs{
-//				AccountId: mainMnqNatsAccount.ID(),
+//			_, err = scaleway.NewMnqNatsCredentials(ctx, "main", &scaleway.MnqNatsCredentialsArgs{
+//				AccountId: main.ID(),
 //			})
 //			if err != nil {
 //				return err

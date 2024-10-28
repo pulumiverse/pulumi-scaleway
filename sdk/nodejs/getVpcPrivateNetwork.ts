@@ -15,13 +15,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const myName = scaleway.getVpcPrivateNetwork({
  *     name: "foobar",
  * });
+ * // Get info by name and VPC ID
  * const myNameAndVpcId = scaleway.getVpcPrivateNetwork({
  *     name: "foobar",
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get info by IP ID
  * const myId = scaleway.getVpcPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -100,13 +103,16 @@ export interface GetVpcPrivateNetworkResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const myName = scaleway.getVpcPrivateNetwork({
  *     name: "foobar",
  * });
+ * // Get info by name and VPC ID
  * const myNameAndVpcId = scaleway.getVpcPrivateNetwork({
  *     name: "foobar",
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get info by IP ID
  * const myId = scaleway.getVpcPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });

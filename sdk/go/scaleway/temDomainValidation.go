@@ -30,6 +30,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
 //				AcceptTos: pulumi.Bool(true),
+//				Name:      pulumi.String("example.com"),
 //			})
 //			if err != nil {
 //				return err

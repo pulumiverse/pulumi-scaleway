@@ -1030,7 +1030,7 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        public_ip = scaleway.InstanceIp("publicIp")
+        public_ip = scaleway.InstanceIp("public_ip")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -1110,28 +1110,13 @@ class InstanceServer(pulumi.CustomResource):
             security_group_id=www.id)
         ```
 
-        ### With user data and cloud-init
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        web = scaleway.InstanceServer("web",
-            type="DEV1-S",
-            image="ubuntu_jammy",
-            user_data={
-                "foo": "bar",
-                "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
-            })
-        ```
-
         ### With private network
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="private_network_instance")
         base = scaleway.InstanceServer("base",
             image="ubuntu_jammy",
             type="DEV1-S",
@@ -1149,12 +1134,12 @@ class InstanceServer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         image = scaleway.InstanceServer("image",
+            type="PRO2-XXS",
             image="ubuntu_jammy",
             root_volume={
-                "size_in_gb": 100,
                 "volume_type": "b_ssd",
-            },
-            type="PRO2-XXS")
+                "size_in_gb": 100,
+            })
         ```
 
         ### From snapshot
@@ -1165,13 +1150,13 @@ class InstanceServer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
-        from_snapshot_instance_volume = scaleway.InstanceVolume("fromSnapshotInstanceVolume",
+        from_snapshot = scaleway.InstanceVolume("from_snapshot",
             from_snapshot_id=snapshot.id,
             type="b_ssd")
-        from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
+        from_snapshot_instance_server = scaleway.InstanceServer("from_snapshot",
             type="PRO2-XXS",
             root_volume={
-                "volume_id": from_snapshot_instance_volume.id,
+                "volume_id": from_snapshot.id,
             })
         ```
 
@@ -1272,7 +1257,7 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        public_ip = scaleway.InstanceIp("publicIp")
+        public_ip = scaleway.InstanceIp("public_ip")
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -1352,28 +1337,13 @@ class InstanceServer(pulumi.CustomResource):
             security_group_id=www.id)
         ```
 
-        ### With user data and cloud-init
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        web = scaleway.InstanceServer("web",
-            type="DEV1-S",
-            image="ubuntu_jammy",
-            user_data={
-                "foo": "bar",
-                "cloud-init": (lambda path: open(path).read())(f"{path['module']}/cloud-init.yml"),
-            })
-        ```
-
         ### With private network
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="private_network_instance")
         base = scaleway.InstanceServer("base",
             image="ubuntu_jammy",
             type="DEV1-S",
@@ -1391,12 +1361,12 @@ class InstanceServer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         image = scaleway.InstanceServer("image",
+            type="PRO2-XXS",
             image="ubuntu_jammy",
             root_volume={
-                "size_in_gb": 100,
                 "volume_type": "b_ssd",
-            },
-            type="PRO2-XXS")
+                "size_in_gb": 100,
+            })
         ```
 
         ### From snapshot
@@ -1407,13 +1377,13 @@ class InstanceServer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
-        from_snapshot_instance_volume = scaleway.InstanceVolume("fromSnapshotInstanceVolume",
+        from_snapshot = scaleway.InstanceVolume("from_snapshot",
             from_snapshot_id=snapshot.id,
             type="b_ssd")
-        from_snapshot_instance_server = scaleway.InstanceServer("fromSnapshotInstanceServer",
+        from_snapshot_instance_server = scaleway.InstanceServer("from_snapshot",
             type="PRO2-XXS",
             root_volume={
-                "volume_id": from_snapshot_instance_volume.id,
+                "volume_id": from_snapshot.id,
             })
         ```
 

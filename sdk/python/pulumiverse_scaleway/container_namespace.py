@@ -340,7 +340,9 @@ class ContainerNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main", description="Main container namespace")
+        main = scaleway.ContainerNamespace("main",
+            name="main-container-namespace",
+            description="Main container namespace")
         ```
 
         ## Import
@@ -383,7 +385,9 @@ class ContainerNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main", description="Main container namespace")
+        main = scaleway.ContainerNamespace("main",
+            name="main-container-namespace",
+            description="Main container namespace")
         ```
 
         ## Import

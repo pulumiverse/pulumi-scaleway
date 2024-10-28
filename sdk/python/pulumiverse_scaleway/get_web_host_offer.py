@@ -121,7 +121,9 @@ def get_web_host_offer(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by offer name
     by_name = scaleway.get_web_host_offer(name="performance")
+    # Get info by offer id
     by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
@@ -161,7 +163,9 @@ def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by offer name
     by_name = scaleway.get_web_host_offer(name="performance")
+    # Get info by offer id
     by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 

@@ -25,10 +25,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     {
+    ///         Name = "my_private_network",
+    ///     });
     /// 
     ///     var instance = new Scaleway.DocumentdbInstance("instance", new()
     ///     {
+    ///         Name = "test-document_db-basic",
     ///         NodeType = "docdb-play2-pico",
     ///         Engine = "FerretDB-1",
     ///         UserName = "my_initial_user",

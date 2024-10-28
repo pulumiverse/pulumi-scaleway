@@ -207,10 +207,13 @@ class BlockSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("blockVolume",
+        block_volume = scaleway.BlockVolume("block_volume",
             iops=5000,
+            name="some-volume-name",
             size_in_gb=20)
-        block_snapshot = scaleway.BlockSnapshot("blockSnapshot", volume_id=block_volume.id)
+        block_snapshot = scaleway.BlockSnapshot("block_snapshot",
+            name="some-snapshot-name",
+            volume_id=block_volume.id)
         ```
 
         ## Import
@@ -247,10 +250,13 @@ class BlockSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("blockVolume",
+        block_volume = scaleway.BlockVolume("block_volume",
             iops=5000,
+            name="some-volume-name",
             size_in_gb=20)
-        block_snapshot = scaleway.BlockSnapshot("blockSnapshot", volume_id=block_volume.id)
+        block_snapshot = scaleway.BlockSnapshot("block_snapshot",
+            name="some-snapshot-name",
+            volume_id=block_volume.id)
         ```
 
         ## Import

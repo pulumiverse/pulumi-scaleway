@@ -226,17 +226,19 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        db_password = random.RandomPassword("dbPassword",
+        db_password = random.RandomPassword("db_password",
             length=16,
             special=True)
-        db_admin = scaleway.DatabaseUser("dbAdmin",
+        db_admin = scaleway.DatabaseUser("db_admin",
             instance_id=main.id,
+            name="devtools",
             password=db_password.result,
             is_admin=True)
         ```
@@ -283,17 +285,19 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        db_password = random.RandomPassword("dbPassword",
+        db_password = random.RandomPassword("db_password",
             length=16,
             special=True)
-        db_admin = scaleway.DatabaseUser("dbAdmin",
+        db_admin = scaleway.DatabaseUser("db_admin",
             instance_id=main.id,
+            name="devtools",
             password=db_password.result,
             is_admin=True)
         ```

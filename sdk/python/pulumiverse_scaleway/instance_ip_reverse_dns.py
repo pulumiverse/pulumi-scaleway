@@ -141,9 +141,10 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("serverIp")
-        tf_a = scaleway.DomainRecord("tfA",
+        server_ip = scaleway.InstanceIp("server_ip")
+        tf_a = scaleway.DomainRecord("tf_A",
             dns_zone="scaleway.com",
+            name="www",
             type="A",
             data=server_ip.address,
             ttl=3600,
@@ -186,9 +187,10 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("serverIp")
-        tf_a = scaleway.DomainRecord("tfA",
+        server_ip = scaleway.InstanceIp("server_ip")
+        tf_a = scaleway.DomainRecord("tf_A",
             dns_zone="scaleway.com",
+            name="www",
             type="A",
             data=server_ip.address,
             ttl=3600,

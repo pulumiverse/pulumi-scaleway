@@ -27,8 +27,10 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.DocumentdbInstance("main", new()
     ///     {
-    ///         Engine = "FerretDB-1",
+    ///         Name = "test-documentdb-instance-basic",
     ///         NodeType = "docdb-play2-pico",
+    ///         Engine = "FerretDB-1",
+    ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         Tags = new[]
     ///         {
@@ -36,7 +38,6 @@ namespace Pulumiverse.Scaleway
     ///             "scaleway_documentdb_instance",
     ///             "minimal",
     ///         },
-    ///         UserName = "my_initial_user",
     ///         VolumeSizeInGb = 20,
     ///     });
     /// 

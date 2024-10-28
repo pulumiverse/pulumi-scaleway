@@ -8,17 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about an IOT Device.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myDevice = scaleway.getIotDevice({
- *     deviceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getIotDevice(args?: GetIotDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetIotDeviceResult> {
     args = args || {};
@@ -81,17 +70,6 @@ export interface GetIotDeviceResult {
 }
 /**
  * Gets information about an IOT Device.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myDevice = scaleway.getIotDevice({
- *     deviceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotDeviceResult> {
     return pulumi.output(args).apply((a: any) => getIotDevice(a, opts))

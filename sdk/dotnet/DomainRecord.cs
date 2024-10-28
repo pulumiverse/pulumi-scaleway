@@ -28,36 +28,40 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var www = new Scaleway.DomainRecord("www", new()
     ///     {
-    ///         Data = "1.2.3.4",
     ///         DnsZone = "domain.tld",
-    ///         Ttl = 3600,
+    ///         Name = "www",
     ///         Type = "A",
+    ///         Data = "1.2.3.4",
+    ///         Ttl = 3600,
     ///     });
     /// 
     ///     var www2 = new Scaleway.DomainRecord("www2", new()
     ///     {
-    ///         Data = "1.2.3.5",
     ///         DnsZone = "domain.tld",
-    ///         Ttl = 3600,
+    ///         Name = "www",
     ///         Type = "A",
+    ///         Data = "1.2.3.5",
+    ///         Ttl = 3600,
     ///     });
     /// 
     ///     var mx = new Scaleway.DomainRecord("mx", new()
     ///     {
-    ///         Data = "mx.online.net.",
     ///         DnsZone = "domain.tld",
-    ///         Priority = 10,
-    ///         Ttl = 3600,
+    ///         Name = "",
     ///         Type = "MX",
+    ///         Data = "mx.online.net.",
+    ///         Ttl = 3600,
+    ///         Priority = 10,
     ///     });
     /// 
     ///     var mx2 = new Scaleway.DomainRecord("mx2", new()
     ///     {
-    ///         Data = "mx-cache.online.net.",
     ///         DnsZone = "domain.tld",
-    ///         Priority = 20,
-    ///         Ttl = 3600,
+    ///         Name = "",
     ///         Type = "MX",
+    ///         Data = "mx-cache.online.net.",
+    ///         Ttl = 3600,
+    ///         Priority = 20,
     ///     });
     /// 
     /// });
@@ -73,10 +77,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var geoIp = new Scaleway.DomainRecord("geoIp", new()
+    ///     var geoIp = new Scaleway.DomainRecord("geo_ip", new()
     ///     {
-    ///         Data = "1.2.3.4",
     ///         DnsZone = "domain.tld",
+    ///         Name = "images",
+    ///         Type = "A",
+    ///         Data = "1.2.3.4",
+    ///         Ttl = 3600,
     ///         GeoIp = new Scaleway.Inputs.DomainRecordGeoIpArgs
     ///         {
     ///             Matches = new[]
@@ -103,14 +110,15 @@ namespace Pulumiverse.Scaleway
     ///                 },
     ///             },
     ///         },
-    ///         Ttl = 3600,
-    ///         Type = "A",
     ///     });
     /// 
-    ///     var httpService = new Scaleway.DomainRecord("httpService", new()
+    ///     var httpService = new Scaleway.DomainRecord("http_service", new()
     ///     {
-    ///         Data = "1.2.3.4",
     ///         DnsZone = "domain.tld",
+    ///         Name = "app",
+    ///         Type = "A",
+    ///         Data = "1.2.3.4",
+    ///         Ttl = 3600,
     ///         HttpService = new Scaleway.Inputs.DomainRecordHttpServiceArgs
     ///         {
     ///             Ips = new[]
@@ -119,41 +127,41 @@ namespace Pulumiverse.Scaleway
     ///                 "1.2.3.6",
     ///             },
     ///             MustContain = "up",
-    ///             Strategy = "hashed",
     ///             Url = "http://mywebsite.com/health",
     ///             UserAgent = "scw_service_up",
+    ///             Strategy = "hashed",
     ///         },
-    ///         Ttl = 3600,
-    ///         Type = "A",
     ///     });
     /// 
     ///     var view = new Scaleway.DomainRecord("view", new()
     ///     {
-    ///         Data = "1.2.3.4",
     ///         DnsZone = "domain.tld",
-    ///         Ttl = 3600,
+    ///         Name = "db",
     ///         Type = "A",
+    ///         Data = "1.2.3.4",
+    ///         Ttl = 3600,
     ///         Views = new[]
     ///         {
     ///             new Scaleway.Inputs.DomainRecordViewArgs
     ///             {
-    ///                 Data = "1.2.3.5",
     ///                 Subnet = "100.0.0.0/16",
+    ///                 Data = "1.2.3.5",
     ///             },
     ///             new Scaleway.Inputs.DomainRecordViewArgs
     ///             {
-    ///                 Data = "1.2.3.6",
     ///                 Subnet = "100.1.0.0/16",
+    ///                 Data = "1.2.3.6",
     ///             },
     ///         },
     ///     });
     /// 
     ///     var weighted = new Scaleway.DomainRecord("weighted", new()
     ///     {
-    ///         Data = "1.2.3.4",
     ///         DnsZone = "domain.tld",
-    ///         Ttl = 3600,
+    ///         Name = "web",
     ///         Type = "A",
+    ///         Data = "1.2.3.4",
+    ///         Ttl = 3600,
     ///         Weighteds = new[]
     ///         {
     ///             new Scaleway.Inputs.DomainRecordWeightedArgs
@@ -183,9 +191,11 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
+    ///     // Your project ID.
     ///     var projectId = config.Require("projectId");
+    ///     // The DNS Zone used for testing records.
     ///     var dnsZone = config.Require("dnsZone");
-    ///     var publicIp = new Scaleway.InstanceIp("publicIp", new()
+    ///     var publicIp = new Scaleway.InstanceIp("public_ip", new()
     ///     {
     ///         ProjectId = projectId,
     ///     });
@@ -207,25 +217,28 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var webA = new Scaleway.DomainRecord("webA", new()
+    ///     var webA = new Scaleway.DomainRecord("web_A", new()
     ///     {
     ///         DnsZone = dnsZone,
+    ///         Name = "web",
     ///         Type = "A",
     ///         Data = web.PublicIp,
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var webCname = new Scaleway.DomainRecord("webCname", new()
+    ///     var webCname = new Scaleway.DomainRecord("web_cname", new()
     ///     {
     ///         DnsZone = dnsZone,
+    ///         Name = "www",
     ///         Type = "CNAME",
     ///         Data = $"web.{dnsZone}.",
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var webAlias = new Scaleway.DomainRecord("webAlias", new()
+    ///     var webAlias = new Scaleway.DomainRecord("web_alias", new()
     ///     {
     ///         DnsZone = dnsZone,
+    ///         Name = "",
     ///         Type = "ALIAS",
     ///         Data = $"web.{dnsZone}.",
     ///         Ttl = 3600,

@@ -25,7 +25,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project");
+    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     {
+    ///         Name = "test project grafana user",
+    ///     });
     /// 
     ///     var main = new Scaleway.CockpitGrafanaUser("main", new()
     ///     {

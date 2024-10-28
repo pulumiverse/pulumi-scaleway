@@ -211,18 +211,18 @@ class InstanceUserData(pulumi.CustomResource):
         \"\"\",
                 "foo": "bar",
             }
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+        main_instance_server = scaleway.InstanceServer("main",
             image="ubuntu_focal",
             type="DEV1-S")
         # User data with a single value
-        main_instance_user_data = scaleway.InstanceUserData("mainInstanceUserData",
+        main = scaleway.InstanceUserData("main",
             server_id=main_instance_server.id,
             key="foo",
             value="bar")
         # User Data with many keys.
         data = []
-        for range in [{"value": i} for i in range(0, user_data)]:
-            data.append(scaleway.InstanceUserData(f"data-{range['value']}",
+        for range in [{"key": k, "value": v} for [k, v] in enumerate(user_data)]:
+            data.append(scaleway.InstanceUserData(f"data-{range['key']}",
                 server_id=main_instance_server.id,
                 key=range["key"],
                 value=range["value"]))
@@ -285,18 +285,18 @@ class InstanceUserData(pulumi.CustomResource):
         \"\"\",
                 "foo": "bar",
             }
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+        main_instance_server = scaleway.InstanceServer("main",
             image="ubuntu_focal",
             type="DEV1-S")
         # User data with a single value
-        main_instance_user_data = scaleway.InstanceUserData("mainInstanceUserData",
+        main = scaleway.InstanceUserData("main",
             server_id=main_instance_server.id,
             key="foo",
             value="bar")
         # User Data with many keys.
         data = []
-        for range in [{"value": i} for i in range(0, user_data)]:
-            data.append(scaleway.InstanceUserData(f"data-{range['value']}",
+        for range in [{"key": k, "value": v} for [k, v] in enumerate(user_data)]:
+            data.append(scaleway.InstanceUserData(f"data-{range['key']}",
                 server_id=main_instance_server.id,
                 key=range["key"],
                 value=range["value"]))

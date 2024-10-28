@@ -30,11 +30,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("my_private_network"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			instance, err := scaleway.NewDocumentdbInstance(ctx, "instance", &scaleway.DocumentdbInstanceArgs{
+//				Name:           pulumi.String("test-document_db-basic"),
 //				NodeType:       pulumi.String("docdb-play2-pico"),
 //				Engine:         pulumi.String("FerretDB-1"),
 //				UserName:       pulumi.String("my_initial_user"),

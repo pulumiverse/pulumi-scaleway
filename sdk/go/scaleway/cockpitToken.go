@@ -29,12 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//				Name: pulumi.String("my-project"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewCockpitToken(ctx, "main", &scaleway.CockpitTokenArgs{
 //				ProjectId: project.ID(),
+//				Name:      pulumi.String("my-awesome-token"),
 //			})
 //			if err != nil {
 //				return err
@@ -57,13 +60,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//				Name: pulumi.String("my-project"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			// Create a token that can read metrics and logs but not write
 //			_, err = scaleway.NewCockpitToken(ctx, "main", &scaleway.CockpitTokenArgs{
 //				ProjectId: project.ID(),
+//				Name:      pulumi.String("my-awesome-token"),
 //				Scopes: &scaleway.CockpitTokenScopesArgs{
 //					QueryMetrics: pulumi.Bool(true),
 //					WriteMetrics: pulumi.Bool(false),

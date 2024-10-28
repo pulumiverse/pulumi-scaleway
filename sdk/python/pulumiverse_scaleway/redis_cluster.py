@@ -646,20 +646,21 @@ class RedisCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
-            acls=[{
-                "description": "Allow all",
-                "ip": "0.0.0.0/0",
-            }],
-            cluster_size=1,
+            name="test_redis_basic",
+            version="6.2.7",
             node_type="RED1-MICRO",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             tags=[
                 "test",
                 "redis",
             ],
+            cluster_size=1,
             tls_enabled=True,
-            user_name="my_initial_user",
-            version="6.2.7")
+            acls=[{
+                "ip": "0.0.0.0/0",
+                "description": "Allow all",
+            }])
         ```
 
         ### With settings
@@ -669,14 +670,15 @@ class RedisCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
+            name="test_redis_basic",
+            version="6.2.7",
             node_type="RED1-MICRO",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             settings={
                 "maxclients": "1000",
                 "tcp-keepalive": "120",
-            },
-            user_name="my_initial_user",
-            version="6.2.7")
+            })
         ```
 
         ### With a Private Network
@@ -685,8 +687,9 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
+        pn = scaleway.VpcPrivateNetwork("pn", name="private-network")
         main = scaleway.RedisCluster("main",
+            name="test_redis_endpoints",
             version="6.2.7",
             node_type="RED1-MICRO",
             user_name="my_initial_user",
@@ -768,20 +771,21 @@ class RedisCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
-            acls=[{
-                "description": "Allow all",
-                "ip": "0.0.0.0/0",
-            }],
-            cluster_size=1,
+            name="test_redis_basic",
+            version="6.2.7",
             node_type="RED1-MICRO",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             tags=[
                 "test",
                 "redis",
             ],
+            cluster_size=1,
             tls_enabled=True,
-            user_name="my_initial_user",
-            version="6.2.7")
+            acls=[{
+                "ip": "0.0.0.0/0",
+                "description": "Allow all",
+            }])
         ```
 
         ### With settings
@@ -791,14 +795,15 @@ class RedisCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RedisCluster("main",
+            name="test_redis_basic",
+            version="6.2.7",
             node_type="RED1-MICRO",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             settings={
                 "maxclients": "1000",
                 "tcp-keepalive": "120",
-            },
-            user_name="my_initial_user",
-            version="6.2.7")
+            })
         ```
 
         ### With a Private Network
@@ -807,8 +812,9 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
+        pn = scaleway.VpcPrivateNetwork("pn", name="private-network")
         main = scaleway.RedisCluster("main",
+            name="test_redis_endpoints",
             version="6.2.7",
             node_type="RED1-MICRO",
             user_name="my_initial_user",

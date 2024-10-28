@@ -29,27 +29,28 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mainSecret = new Scaleway.Secret("mainSecret", new()
+        ///     var main = new Scaleway.Secret("main", new()
         ///     {
+        ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
-        ///     var mainSecretVersion = new Scaleway.SecretVersion("mainSecretVersion", new()
+        ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
         ///     {
         ///         Description = "your description",
-        ///         SecretId = mainSecret.Id,
+        ///         SecretId = main.Id,
         ///         Data = "your_secret",
         ///     });
         /// 
         ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
-        ///         SecretId = mainSecret.Id,
+        ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
         ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
-        ///         SecretName = mainSecret.Name,
+        ///         SecretName = main.Name,
         ///         Revision = "1",
         ///     });
         /// 
@@ -90,27 +91,28 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mainSecret = new Scaleway.Secret("mainSecret", new()
+        ///     var main = new Scaleway.Secret("main", new()
         ///     {
+        ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
-        ///     var mainSecretVersion = new Scaleway.SecretVersion("mainSecretVersion", new()
+        ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
         ///     {
         ///         Description = "your description",
-        ///         SecretId = mainSecret.Id,
+        ///         SecretId = main.Id,
         ///         Data = "your_secret",
         ///     });
         /// 
         ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
-        ///         SecretId = mainSecret.Id,
+        ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
         ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
-        ///         SecretName = mainSecret.Name,
+        ///         SecretName = main.Name,
         ///         Revision = "1",
         ///     });
         /// 

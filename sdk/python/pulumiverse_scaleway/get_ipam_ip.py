@@ -193,6 +193,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by ipam ip id
     by_id = scaleway.get_ipam_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -207,10 +208,12 @@ def get_ipam_ip(attached: Optional[bool] = None,
 
     # Connect your instance to a private network using a private nic.
     nic = scaleway.InstancePrivateNic("nic",
-        server_id=scaleway_instance_server["server"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn"]["id"])
+        server_id=server["id"],
+        private_network_id=pn["id"])
+    # Find server private IPv4 using private-nic mac address
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
+    # Find server private IPv4 using private-nic id
     by_id = scaleway.get_ipam_ip_output(resource={
             "id": nic.id,
             "type": "instance_private_nic",
@@ -228,6 +231,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
     # Find the private IPv4 using resource name
     pn = scaleway.VpcPrivateNetwork("pn")
     main = scaleway.DatabaseInstance("main",
+        name="test-rdb",
         node_type="DB-DEV-S",
         engine="PostgreSQL-15",
         is_ha_cluster=True,
@@ -314,6 +318,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by ipam ip id
     by_id = scaleway.get_ipam_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -328,10 +333,12 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
 
     # Connect your instance to a private network using a private nic.
     nic = scaleway.InstancePrivateNic("nic",
-        server_id=scaleway_instance_server["server"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn"]["id"])
+        server_id=server["id"],
+        private_network_id=pn["id"])
+    # Find server private IPv4 using private-nic mac address
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
+    # Find server private IPv4 using private-nic id
     by_id = scaleway.get_ipam_ip_output(resource={
             "id": nic.id,
             "type": "instance_private_nic",
@@ -349,6 +356,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     # Find the private IPv4 using resource name
     pn = scaleway.VpcPrivateNetwork("pn")
     main = scaleway.DatabaseInstance("main",
+        name="test-rdb",
         node_type="DB-DEV-S",
         engine="PostgreSQL-15",
         is_ha_cluster=True,

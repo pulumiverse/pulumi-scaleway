@@ -313,9 +313,9 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ci_cd = scaleway.IamApplication("ciCd")
+        ci_cd = scaleway.IamApplication("ci_cd", name="My application")
         main = scaleway.IamApiKey("main",
-            application_id=scaleway_iam_application["main"]["id"],
+            application_id=main_scaleway_iam_application["id"],
             description="a description")
         ```
 
@@ -325,9 +325,9 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iam_user = scaleway.IamUser("mainIamUser", email="test@test.com")
-        main_iam_api_key = scaleway.IamApiKey("mainIamApiKey",
-            user_id=main_iam_user.id,
+        main = scaleway.IamUser("main", email="test@test.com")
+        main_iam_api_key = scaleway.IamApiKey("main",
+            user_id=main.id,
             description="a description")
         ```
 
@@ -368,9 +368,9 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ci_cd = scaleway.IamApplication("ciCd")
+        ci_cd = scaleway.IamApplication("ci_cd", name="My application")
         main = scaleway.IamApiKey("main",
-            application_id=scaleway_iam_application["main"]["id"],
+            application_id=main_scaleway_iam_application["id"],
             description="a description")
         ```
 
@@ -380,9 +380,9 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iam_user = scaleway.IamUser("mainIamUser", email="test@test.com")
-        main_iam_api_key = scaleway.IamApiKey("mainIamApiKey",
-            user_id=main_iam_user.id,
+        main = scaleway.IamUser("main", email="test@test.com")
+        main_iam_api_key = scaleway.IamApiKey("main",
+            user_id=main.id,
             description="a description")
         ```
 

@@ -234,8 +234,9 @@ class SdbDatabase(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         database = scaleway.SdbDatabase("database",
-            max_cpu=8,
-            min_cpu=0)
+            name="my-database",
+            min_cpu=0,
+            max_cpu=8)
         ```
 
         ## Import
@@ -276,8 +277,9 @@ class SdbDatabase(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         database = scaleway.SdbDatabase("database",
-            max_cpu=8,
-            min_cpu=0)
+            name="my-database",
+            min_cpu=0,
+            max_cpu=8)
         ```
 
         ## Import

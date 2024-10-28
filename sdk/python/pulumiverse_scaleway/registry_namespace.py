@@ -251,6 +251,7 @@ class RegistryNamespace(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RegistryNamespace("main",
+            name="main-cr",
             description="Main container registry",
             is_public=False)
         ```
@@ -294,6 +295,7 @@ class RegistryNamespace(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.RegistryNamespace("main",
+            name="main-cr",
             description="Main container registry",
             is_public=False)
         ```

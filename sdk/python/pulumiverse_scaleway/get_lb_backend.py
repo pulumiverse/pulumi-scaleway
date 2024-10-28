@@ -340,12 +340,14 @@ def get_lb_backend(backend_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-    main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-        ip_id=main_loadbalancer_ip.id,
+    main = scaleway.LoadbalancerIp("main")
+    main_loadbalancer = scaleway.Loadbalancer("main",
+        ip_id=main.id,
+        name="data-test-lb-backend",
         type="LB-S")
-    main_loadbalancer_backend = scaleway.LoadbalancerBackend("mainLoadbalancerBackend",
+    main_loadbalancer_backend = scaleway.LoadbalancerBackend("main",
         lb_id=main_loadbalancer.id,
+        name="backend01",
         forward_protocol="http",
         forward_port=80)
     by_id = scaleway.get_lb_backend_output(backend_id=main_loadbalancer_backend.id)
@@ -419,12 +421,14 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main_loadbalancer_ip = scaleway.LoadbalancerIp("mainLoadbalancerIp")
-    main_loadbalancer = scaleway.Loadbalancer("mainLoadbalancer",
-        ip_id=main_loadbalancer_ip.id,
+    main = scaleway.LoadbalancerIp("main")
+    main_loadbalancer = scaleway.Loadbalancer("main",
+        ip_id=main.id,
+        name="data-test-lb-backend",
         type="LB-S")
-    main_loadbalancer_backend = scaleway.LoadbalancerBackend("mainLoadbalancerBackend",
+    main_loadbalancer_backend = scaleway.LoadbalancerBackend("main",
         lb_id=main_loadbalancer.id,
+        name="backend01",
         forward_protocol="http",
         forward_port=80)
     by_id = scaleway.get_lb_backend_output(backend_id=main_loadbalancer_backend.id)

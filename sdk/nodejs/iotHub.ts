@@ -13,7 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IotHub("main", {productPlan: "plan_shared"});
+ * const main = new scaleway.IotHub("main", {
+ *     name: "test-iot",
+ *     productPlan: "plan_shared",
+ * });
  * ```
  *
  * ## Import

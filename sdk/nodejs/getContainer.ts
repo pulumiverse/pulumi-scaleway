@@ -20,14 +20,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {});
- * const mainContainer = new scaleway.Container("mainContainer", {namespaceId: mainContainerNamespace.id});
+ * const main = new scaleway.ContainerNamespace("main", {});
+ * const mainContainer = new scaleway.Container("main", {
+ *     name: "test-container-data",
+ *     namespaceId: main.id,
+ * });
+ * // Get info by container name
  * const byName = scaleway.getContainerOutput({
- *     namespaceId: mainContainerNamespace.id,
+ *     namespaceId: main.id,
  *     name: mainContainer.name,
  * });
+ * // Get info by container ID
  * const byId = scaleway.getContainerOutput({
- *     namespaceId: mainContainerNamespace.id,
+ *     namespaceId: main.id,
  *     containerId: mainContainer.id,
  * });
  * ```
@@ -180,14 +185,19 @@ export interface GetContainerResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {});
- * const mainContainer = new scaleway.Container("mainContainer", {namespaceId: mainContainerNamespace.id});
+ * const main = new scaleway.ContainerNamespace("main", {});
+ * const mainContainer = new scaleway.Container("main", {
+ *     name: "test-container-data",
+ *     namespaceId: main.id,
+ * });
+ * // Get info by container name
  * const byName = scaleway.getContainerOutput({
- *     namespaceId: mainContainerNamespace.id,
+ *     namespaceId: main.id,
  *     name: mainContainer.name,
  * });
+ * // Get info by container ID
  * const byId = scaleway.getContainerOutput({
- *     namespaceId: mainContainerNamespace.id,
+ *     namespaceId: main.id,
  *     containerId: mainContainer.id,
  * });
  * ```

@@ -29,6 +29,90 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With option
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.getAccountSshKey({
+ *     name: "main",
+ * });
+ * const myOs = scaleway.getBaremetalOs({
+ *     zone: "fr-par-2",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.getBaremetalOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-B112X-SSD",
+ * });
+ * const privateNetwork = scaleway.getBaremetalOption({
+ *     zone: "fr-par-2",
+ *     name: "Private Network",
+ * });
+ * const remoteAccess = scaleway.getBaremetalOption({
+ *     zone: "fr-par-2",
+ *     name: "Remote Access",
+ * });
+ * const base = new scaleway.BaremetalServer("base", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [main.then(main => main.id)],
+ *     options: [
+ *         {
+ *             id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
+ *         },
+ *         {
+ *             id: remoteAccess.then(remoteAccess => remoteAccess.optionId),
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### With private network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.getAccountSshKey({
+ *     name: "main",
+ * });
+ * const myOs = scaleway.getBaremetalOs({
+ *     zone: "fr-par-2",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.getBaremetalOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-B112X-SSD",
+ * });
+ * const privateNetwork = scaleway.getBaremetalOption({
+ *     zone: "fr-par-2",
+ *     name: "Private Network",
+ * });
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {
+ *     region: "fr-par",
+ *     name: "baremetal_private_network",
+ * });
+ * const base = new scaleway.BaremetalServer("base", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [main.then(main => main.id)],
+ *     options: [{
+ *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
+ *     }],
+ *     privateNetworks: [{
+ *         id: pn.id,
+ *     }],
+ * });
+ * ```
+ *
  * ### Without install config
  *
  * ```typescript

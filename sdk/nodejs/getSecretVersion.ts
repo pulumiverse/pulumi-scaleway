@@ -17,18 +17,21 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainSecret = new scaleway.Secret("mainSecret", {description: "barr"});
- * const mainSecretVersion = new scaleway.SecretVersion("mainSecretVersion", {
+ * const main = new scaleway.Secret("main", {
+ *     name: "fooii",
+ *     description: "barr",
+ * });
+ * const mainSecretVersion = new scaleway.SecretVersion("main", {
  *     description: "your description",
- *     secretId: mainSecret.id,
+ *     secretId: main.id,
  *     data: "your_secret",
  * });
  * const dataBySecretId = scaleway.getSecretVersionOutput({
- *     secretId: mainSecret.id,
+ *     secretId: main.id,
  *     revision: "1",
  * });
  * const dataBySecretName = scaleway.getSecretVersionOutput({
- *     secretName: mainSecret.name,
+ *     secretName: main.name,
  *     revision: "1",
  * });
  * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
@@ -133,18 +136,21 @@ export interface GetSecretVersionResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainSecret = new scaleway.Secret("mainSecret", {description: "barr"});
- * const mainSecretVersion = new scaleway.SecretVersion("mainSecretVersion", {
+ * const main = new scaleway.Secret("main", {
+ *     name: "fooii",
+ *     description: "barr",
+ * });
+ * const mainSecretVersion = new scaleway.SecretVersion("main", {
  *     description: "your description",
- *     secretId: mainSecret.id,
+ *     secretId: main.id,
  *     data: "your_secret",
  * });
  * const dataBySecretId = scaleway.getSecretVersionOutput({
- *     secretId: mainSecret.id,
+ *     secretId: main.id,
  *     revision: "1",
  * });
  * const dataBySecretName = scaleway.getSecretVersionOutput({
- *     secretName: mainSecret.name,
+ *     secretName: main.name,
  *     revision: "1",
  * });
  * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);

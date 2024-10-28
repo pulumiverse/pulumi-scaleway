@@ -108,7 +108,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainAccountSshKey, err := scaleway.NewAccountSshKey(ctx, "mainAccountSshKey", &scaleway.AccountSshKeyArgs{
+//			main, err := scaleway.NewAccountSshKey(ctx, "main", &scaleway.AccountSshKeyArgs{
+//				Name:      pulumi.String("main"),
 //				PublicKey: pulumi.String("ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com"),
 //			})
 //			if err != nil {
@@ -133,12 +134,12 @@ import (
 //				Zone:      pulumi.String("fr-par-2"),
 //				Offer:     pulumi.String(myOffer.OfferId),
 //				Os:        pulumi.String(byId.OsId),
-//				SshKeyIds: mainAccountSshKey.ID(),
+//				SshKeyIds: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIp(ctx, "mainFlexibleIp", &scaleway.FlexibleIpArgs{
+//			_, err = scaleway.NewFlexibleIp(ctx, "main", &scaleway.FlexibleIpArgs{
 //				ServerId: base.ID(),
 //				Zone:     pulumi.String("fr-par-2"),
 //			})

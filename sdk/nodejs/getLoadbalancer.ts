@@ -17,9 +17,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const byName = scaleway.getLoadbalancer({
  *     name: "foobar",
  * });
+ * // Get info by ID
  * const byId = scaleway.getLoadbalancer({
  *     lbId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -108,9 +110,11 @@ export interface GetLoadbalancerResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const byName = scaleway.getLoadbalancer({
  *     name: "foobar",
  * });
+ * // Get info by ID
  * const byId = scaleway.getLoadbalancer({
  *     lbId: "11111111-1111-1111-1111-111111111111",
  * });

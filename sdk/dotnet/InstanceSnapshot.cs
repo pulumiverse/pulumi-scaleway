@@ -27,6 +27,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.InstanceSnapshot("main", new()
     ///     {
+    ///         Name = "some-snapshot-name",
     ///         VolumeId = "11111111-1111-1111-1111-111111111111",
     ///     });
     /// 
@@ -43,13 +44,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainInstanceVolume = new Scaleway.InstanceVolume("mainInstanceVolume", new()
+    ///     var main = new Scaleway.InstanceVolume("main", new()
     ///     {
     ///         Type = "l_ssd",
     ///         SizeInGb = 10,
     ///     });
     /// 
-    ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
+    ///     var mainInstanceServer = new Scaleway.InstanceServer("main", new()
     ///     {
     ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
@@ -60,13 +61,13 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///         AdditionalVolumeIds = new[]
     ///         {
-    ///             mainInstanceVolume.Id,
+    ///             main.Id,
     ///         },
     ///     });
     /// 
-    ///     var mainInstanceSnapshot = new Scaleway.InstanceSnapshot("mainInstanceSnapshot", new()
+    ///     var mainInstanceSnapshot = new Scaleway.InstanceSnapshot("main", new()
     ///     {
-    ///         VolumeId = mainInstanceVolume.Id,
+    ///         VolumeId = main.Id,
     ///         Type = "unified",
     ///     }, new CustomResourceOptions
     ///     {
@@ -89,7 +90,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     {
+    ///         Name = "snapshot-qcow-import",
+    ///     });
     /// 
     ///     var qcow = new Scaleway.ObjectItem("qcow", new()
     ///     {

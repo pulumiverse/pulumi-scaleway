@@ -29,12 +29,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIamApplication(ctx, "ciCd", nil)
+//			_, err := scaleway.NewIamApplication(ctx, "ci_cd", &scaleway.IamApplicationArgs{
+//				Name: pulumi.String("My application"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewIamApiKey(ctx, "main", &scaleway.IamApiKeyArgs{
-//				ApplicationId: pulumi.Any(scaleway_iam_application.Main.Id),
+//				ApplicationId: pulumi.Any(mainScalewayIamApplication.Id),
 //				Description:   pulumi.String("a description"),
 //			})
 //			if err != nil {
@@ -60,14 +62,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIamUser, err := scaleway.NewIamUser(ctx, "mainIamUser", &scaleway.IamUserArgs{
+//			main, err := scaleway.NewIamUser(ctx, "main", &scaleway.IamUserArgs{
 //				Email: pulumi.String("test@test.com"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamApiKey(ctx, "mainIamApiKey", &scaleway.IamApiKeyArgs{
-//				UserId:      mainIamUser.ID(),
+//			_, err = scaleway.NewIamApiKey(ctx, "main", &scaleway.IamApiKeyArgs{
+//				UserId:      main.ID(),
 //				Description: pulumi.String("a description"),
 //			})
 //			if err != nil {

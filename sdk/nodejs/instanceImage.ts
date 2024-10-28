@@ -22,8 +22,11 @@ import * as utilities from "./utilities";
  *     type: "b_ssd",
  *     sizeInGb: 20,
  * });
- * const volumeSnapshot = new scaleway.InstanceSnapshot("volumeSnapshot", {volumeId: volume.id});
- * const volumeImage = new scaleway.InstanceImage("volumeImage", {rootVolumeId: volumeSnapshot.id});
+ * const volumeSnapshot = new scaleway.InstanceSnapshot("volume_snapshot", {volumeId: volume.id});
+ * const volumeImage = new scaleway.InstanceImage("volume_image", {
+ *     name: "image_from_volume",
+ *     rootVolumeId: volumeSnapshot.id,
+ * });
  * ```
  *
  * ### From a server
@@ -36,8 +39,11 @@ import * as utilities from "./utilities";
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  * });
- * const serverSnapshot = new scaleway.InstanceSnapshot("serverSnapshot", {volumeId: scaleway_instance_server.main.root_volume[0].volume_id});
- * const serverImage = new scaleway.InstanceImage("serverImage", {rootVolumeId: serverSnapshot.id});
+ * const serverSnapshot = new scaleway.InstanceSnapshot("server_snapshot", {volumeId: main.rootVolume[0].volumeId});
+ * const serverImage = new scaleway.InstanceImage("server_image", {
+ *     name: "image_from_server",
+ *     rootVolumeId: serverSnapshot.id,
+ * });
  * ```
  *
  * ## Import

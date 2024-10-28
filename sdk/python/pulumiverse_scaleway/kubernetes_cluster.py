@@ -757,12 +757,14 @@ class KubernetesCluster(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
+            name="tf-pool",
             node_type="DEV1-M",
             size=1)
         ```
@@ -774,12 +776,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
             type="multicloud",
             version="1.29.1",
             cni="kilo",
             delete_additional_resources=False)
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
+            name="tf-pool",
             node_type="external",
             size=0,
             min_size=0)
@@ -795,6 +799,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
             description="cluster made in terraform",
             version="1.29.1",
             cni="calico",
@@ -812,12 +817,101 @@ class KubernetesCluster(pulumi.CustomResource):
             })
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
+            name="tf-pool",
             node_type="DEV1-M",
             size=3,
             autoscaling=True,
             autohealing=True,
             min_size=1,
             max_size=5)
+        ```
+
+        ### With the kubernetes provider
+
+        ```python
+        import pulumi
+        import pulumi_null as null
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
+            version="1.29.1",
+            cni="cilium",
+            private_network_id=pn.id,
+            delete_additional_resources=False)
+        pool = scaleway.KubernetesNodePool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="DEV1-M",
+            size=1)
+        kubeconfig = null.Resource("kubeconfig", triggers={
+            "host": cluster.kubeconfigs[0].host,
+            "token": cluster.kubeconfigs[0].token,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[pool]))
+        ```
+
+        The `null_resource` is needed because when the cluster is created, it's status is `pool_required`, but the kubeconfig can already be downloaded.
+        It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+
+        ### With the Helm provider
+
+        ```python
+        import pulumi
+        import pulumi_helm as helm
+        import pulumi_null as null
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
+            version="1.29.1",
+            cni="cilium",
+            delete_additional_resources=False,
+            private_network_id=pn.id)
+        pool = scaleway.KubernetesNodePool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="DEV1-M",
+            size=1)
+        kubeconfig = null.Resource("kubeconfig", triggers={
+            "host": cluster.kubeconfigs[0].host,
+            "token": cluster.kubeconfigs[0].token,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[pool]))
+        nginx_ip = scaleway.LoadbalancerIp("nginx_ip",
+            zone="fr-par-1",
+            project_id=cluster.project_id)
+        nginx_ingress = helm.index.Release("nginx_ingress",
+            name=nginx-ingress,
+            namespace=kube-system,
+            repository=https://kubernetes.github.io/ingress-nginx,
+            chart=ingress-nginx,
+            set=[
+                {
+                    name: controller.service.loadBalancerIP,
+                    value: nginx_ip.ip_address,
+                },
+                {
+                    name: controller.config.use-proxy-protocol,
+                    value: true,
+                },
+                {
+                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2,
+                    value: true,
+                },
+                {
+                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone,
+                    value: nginx_ip.zone,
+                },
+                {
+                    name: controller.service.externalTrafficPolicy,
+                    value: Local,
+                },
+            ])
         ```
 
         ## Import
@@ -882,12 +976,14 @@ class KubernetesCluster(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
+            name="tf-pool",
             node_type="DEV1-M",
             size=1)
         ```
@@ -899,12 +995,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
             type="multicloud",
             version="1.29.1",
             cni="kilo",
             delete_additional_resources=False)
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
+            name="tf-pool",
             node_type="external",
             size=0,
             min_size=0)
@@ -920,6 +1018,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
             description="cluster made in terraform",
             version="1.29.1",
             cni="calico",
@@ -937,12 +1036,101 @@ class KubernetesCluster(pulumi.CustomResource):
             })
         pool = scaleway.KubernetesNodePool("pool",
             cluster_id=cluster.id,
+            name="tf-pool",
             node_type="DEV1-M",
             size=3,
             autoscaling=True,
             autohealing=True,
             min_size=1,
             max_size=5)
+        ```
+
+        ### With the kubernetes provider
+
+        ```python
+        import pulumi
+        import pulumi_null as null
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
+            version="1.29.1",
+            cni="cilium",
+            private_network_id=pn.id,
+            delete_additional_resources=False)
+        pool = scaleway.KubernetesNodePool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="DEV1-M",
+            size=1)
+        kubeconfig = null.Resource("kubeconfig", triggers={
+            "host": cluster.kubeconfigs[0].host,
+            "token": cluster.kubeconfigs[0].token,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[pool]))
+        ```
+
+        The `null_resource` is needed because when the cluster is created, it's status is `pool_required`, but the kubeconfig can already be downloaded.
+        It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+
+        ### With the Helm provider
+
+        ```python
+        import pulumi
+        import pulumi_helm as helm
+        import pulumi_null as null
+        import pulumiverse_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.KubernetesCluster("cluster",
+            name="tf-cluster",
+            version="1.29.1",
+            cni="cilium",
+            delete_additional_resources=False,
+            private_network_id=pn.id)
+        pool = scaleway.KubernetesNodePool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="DEV1-M",
+            size=1)
+        kubeconfig = null.Resource("kubeconfig", triggers={
+            "host": cluster.kubeconfigs[0].host,
+            "token": cluster.kubeconfigs[0].token,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[pool]))
+        nginx_ip = scaleway.LoadbalancerIp("nginx_ip",
+            zone="fr-par-1",
+            project_id=cluster.project_id)
+        nginx_ingress = helm.index.Release("nginx_ingress",
+            name=nginx-ingress,
+            namespace=kube-system,
+            repository=https://kubernetes.github.io/ingress-nginx,
+            chart=ingress-nginx,
+            set=[
+                {
+                    name: controller.service.loadBalancerIP,
+                    value: nginx_ip.ip_address,
+                },
+                {
+                    name: controller.config.use-proxy-protocol,
+                    value: true,
+                },
+                {
+                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2,
+                    value: true,
+                },
+                {
+                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone,
+                    value: nginx_ip.zone,
+                },
+                {
+                    name: controller.service.externalTrafficPolicy,
+                    value: Local,
+                },
+            ])
         ```
 
         ## Import

@@ -232,12 +232,15 @@ class DocumentdbDatabase(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DocumentdbInstance("instance",
+            name="test-document_db-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=20)
-        main = scaleway.DocumentdbDatabase("main", instance_id=instance.id)
+        main = scaleway.DocumentdbDatabase("main",
+            instance_id=instance.id,
+            name="my-new-database")
         ```
 
         ## Import
@@ -277,12 +280,15 @@ class DocumentdbDatabase(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         instance = scaleway.DocumentdbInstance("instance",
+            name="test-document_db-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=20)
-        main = scaleway.DocumentdbDatabase("main", instance_id=instance.id)
+        main = scaleway.DocumentdbDatabase("main",
+            instance_id=instance.id,
+            name="my-new-database")
         ```
 
         ## Import

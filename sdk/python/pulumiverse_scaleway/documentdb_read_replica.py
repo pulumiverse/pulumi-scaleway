@@ -190,8 +190,8 @@ class DocumentdbReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         replica = scaleway.DocumentdbReadReplica("replica",
-            direct_access={},
-            instance_id="11111111-1111-1111-1111-111111111111")
+            instance_id="11111111-1111-1111-1111-111111111111",
+            direct_access={})
         ```
 
         ### Private network
@@ -202,6 +202,7 @@ class DocumentdbReadReplica(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         instance = scaleway.DocumentdbInstance("instance",
+            name="document_db-read-replica-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",
@@ -253,8 +254,8 @@ class DocumentdbReadReplica(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         replica = scaleway.DocumentdbReadReplica("replica",
-            direct_access={},
-            instance_id="11111111-1111-1111-1111-111111111111")
+            instance_id="11111111-1111-1111-1111-111111111111",
+            direct_access={})
         ```
 
         ### Private network
@@ -265,6 +266,7 @@ class DocumentdbReadReplica(pulumi.CustomResource):
 
         pn = scaleway.VpcPrivateNetwork("pn")
         instance = scaleway.DocumentdbInstance("instance",
+            name="document_db-read-replica-basic",
             node_type="docdb-play2-pico",
             engine="FerretDB-1",
             user_name="my_initial_user",

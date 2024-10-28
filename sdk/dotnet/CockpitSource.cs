@@ -25,11 +25,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project");
+    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     {
+    ///         Name = "test project data source",
+    ///     });
     /// 
     ///     var main = new Scaleway.CockpitSource("main", new()
     ///     {
     ///         ProjectId = project.Id,
+    ///         Name = "my-data-source",
     ///         Type = "metrics",
     ///     });
     /// 

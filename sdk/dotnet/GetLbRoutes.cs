@@ -27,11 +27,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find routes that share the same frontend ID
         ///     var byFrontendID = Scaleway.GetLbRoutes.Invoke(new()
         ///     {
-        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         FrontendId = frt01.Id,
         ///     });
         /// 
+        ///     // Find routes by frontend ID and zone
         ///     var myKey = Scaleway.GetLbRoutes.Invoke(new()
         ///     {
         ///         FrontendId = "11111111-1111-1111-1111-111111111111",
@@ -59,11 +61,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find routes that share the same frontend ID
         ///     var byFrontendID = Scaleway.GetLbRoutes.Invoke(new()
         ///     {
-        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         FrontendId = frt01.Id,
         ///     });
         /// 
+        ///     // Find routes by frontend ID and zone
         ///     var myKey = Scaleway.GetLbRoutes.Invoke(new()
         ///     {
         ///         FrontendId = "11111111-1111-1111-1111-111111111111",

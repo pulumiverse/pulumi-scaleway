@@ -32,22 +32,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
-//				Acls: scaleway.RedisClusterAclArray{
-//					&scaleway.RedisClusterAclArgs{
-//						Description: pulumi.String("Allow all"),
-//						Ip:          pulumi.String("0.0.0.0/0"),
-//					},
-//				},
-//				ClusterSize: pulumi.Int(1),
-//				NodeType:    pulumi.String("RED1-MICRO"),
-//				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
+//				Name:     pulumi.String("test_redis_basic"),
+//				Version:  pulumi.String("6.2.7"),
+//				NodeType: pulumi.String("RED1-MICRO"),
+//				UserName: pulumi.String("my_initial_user"),
+//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("test"),
 //					pulumi.String("redis"),
 //				},
-//				TlsEnabled: pulumi.Bool(true),
-//				UserName:   pulumi.String("my_initial_user"),
-//				Version:    pulumi.String("6.2.7"),
+//				ClusterSize: pulumi.Int(1),
+//				TlsEnabled:  pulumi.Bool(true),
+//				Acls: scaleway.RedisClusterAclArray{
+//					&scaleway.RedisClusterAclArgs{
+//						Ip:          pulumi.String("0.0.0.0/0"),
+//						Description: pulumi.String("Allow all"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -73,14 +74,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
+//				Name:     pulumi.String("test_redis_basic"),
+//				Version:  pulumi.String("6.2.7"),
 //				NodeType: pulumi.String("RED1-MICRO"),
+//				UserName: pulumi.String("my_initial_user"),
 //				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
 //				Settings: pulumi.StringMap{
 //					"maxclients":    pulumi.String("1000"),
 //					"tcp-keepalive": pulumi.String("120"),
 //				},
-//				UserName: pulumi.String("my_initial_user"),
-//				Version:  pulumi.String("6.2.7"),
 //			})
 //			if err != nil {
 //				return err
@@ -105,11 +107,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("private-network"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
+//				Name:        pulumi.String("test_redis_endpoints"),
 //				Version:     pulumi.String("6.2.7"),
 //				NodeType:    pulumi.String("RED1-MICRO"),
 //				UserName:    pulumi.String("my_initial_user"),

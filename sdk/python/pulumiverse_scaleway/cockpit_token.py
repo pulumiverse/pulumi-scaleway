@@ -226,18 +226,21 @@ class CockpitToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
-        main = scaleway.CockpitToken("main", project_id=project.id)
+        project = scaleway.AccountProject("project", name="my-project")
+        main = scaleway.CockpitToken("main",
+            project_id=project.id,
+            name="my-awesome-token")
         ```
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
+        project = scaleway.AccountProject("project", name="my-project")
         # Create a token that can read metrics and logs but not write
         main = scaleway.CockpitToken("main",
             project_id=project.id,
+            name="my-awesome-token",
             scopes={
                 "query_metrics": True,
                 "write_metrics": False,
@@ -280,18 +283,21 @@ class CockpitToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
-        main = scaleway.CockpitToken("main", project_id=project.id)
+        project = scaleway.AccountProject("project", name="my-project")
+        main = scaleway.CockpitToken("main",
+            project_id=project.id,
+            name="my-awesome-token")
         ```
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
+        project = scaleway.AccountProject("project", name="my-project")
         # Create a token that can read metrics and logs but not write
         main = scaleway.CockpitToken("main",
             project_id=project.id,
+            name="my-awesome-token",
             scopes={
                 "query_metrics": True,
                 "write_metrics": False,

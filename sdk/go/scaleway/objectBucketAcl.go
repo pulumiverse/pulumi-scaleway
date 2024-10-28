@@ -26,12 +26,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "someBucket", nil)
+//			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("some-unique-name"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
-//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Id),
+//				Bucket: pulumi.Any(mainScalewayObjectBucket.Id),
 //				Acl:    pulumi.String("private"),
 //			})
 //			if err != nil {
@@ -57,12 +59,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "mainObjectBucket", nil)
+//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("your-bucket"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketAcl(ctx, "mainObjectBucketAcl", &scaleway.ObjectBucketAclArgs{
-//				Bucket: mainObjectBucket.ID(),
+//			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
+//				Bucket: main.ID(),
 //				AccessControlPolicy: &scaleway.ObjectBucketAclAccessControlPolicyArgs{
 //					Grants: scaleway.ObjectBucketAclAccessControlPolicyGrantArray{
 //						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{

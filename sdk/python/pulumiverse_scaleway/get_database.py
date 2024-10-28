@@ -120,6 +120,7 @@ def get_database(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
     my_db = scaleway.get_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```
@@ -159,6 +160,7 @@ def get_database_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
     my_db = scaleway.get_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```

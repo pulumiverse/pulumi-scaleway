@@ -131,18 +131,6 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
 
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_lb_ips(ip_cidr_range="0.0.0.0/0",
-        zone="fr-par-2")
-    ips_by_tags_and_type = scaleway.get_lb_ips(ip_type="ipv4",
-        tags=["a tag"])
-    ```
-
 
     :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
     :param str ip_type: The IP type used as a filter.
@@ -181,18 +169,6 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     Gets information about multiple Load Balancer IP addresses.
 
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_lb_ips(ip_cidr_range="0.0.0.0/0",
-        zone="fr-par-2")
-    ips_by_tags_and_type = scaleway.get_lb_ips(ip_type="ipv4",
-        tags=["a tag"])
-    ```
 
 
     :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.

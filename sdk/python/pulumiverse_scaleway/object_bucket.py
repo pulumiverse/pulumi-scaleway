@@ -439,9 +439,11 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("someBucket", tags={
-            "key": "value",
-        })
+        some_bucket = scaleway.ObjectBucket("some_bucket",
+            name="some-unique-name",
+            tags={
+                "key": "value",
+            })
         ```
 
         ### Creating the bucket in a specific project
@@ -450,7 +452,9 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("someBucket", project_id="11111111-1111-1111-1111-111111111111")
+        some_bucket = scaleway.ObjectBucket("some_bucket",
+            name="some-unique-name",
+            project_id="11111111-1111-1111-1111-111111111111")
         ```
 
         ### Using object lifecycle
@@ -460,42 +464,44 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.ObjectBucket("main",
+            name="mybuckectid",
+            region="fr-par",
             lifecycle_rules=[
                 {
+                    "id": "id1",
+                    "prefix": "path1/",
                     "enabled": True,
                     "expiration": {
                         "days": 365,
                     },
-                    "id": "id1",
-                    "prefix": "path1/",
                     "transitions": [{
                         "days": 120,
                         "storage_class": "GLACIER",
                     }],
                 },
                 {
+                    "id": "id2",
+                    "prefix": "path2/",
                     "enabled": True,
                     "expiration": {
                         "days": 50,
                     },
-                    "id": "id2",
-                    "prefix": "path2/",
                 },
                 {
-                    "enabled": False,
-                    "expiration": {
-                        "days": 1,
-                    },
                     "id": "id3",
                     "prefix": "path3/",
+                    "enabled": False,
                     "tags": {
                         "tag_key": "tagValue",
                         "terraform": "hashicorp",
                     },
+                    "expiration": {
+                        "days": 1,
+                    },
                 },
                 {
-                    "enabled": True,
                     "id": "id4",
+                    "enabled": True,
                     "tags": {
                         "tag1": "value1",
                     },
@@ -505,11 +511,10 @@ class ObjectBucket(pulumi.CustomResource):
                     }],
                 },
                 {
-                    "abort_incomplete_multipart_upload_days": 30,
                     "enabled": True,
+                    "abort_incomplete_multipart_upload_days": 30,
                 },
-            ],
-            region="fr-par")
+            ])
         ```
 
         ## Import
@@ -565,9 +570,11 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("someBucket", tags={
-            "key": "value",
-        })
+        some_bucket = scaleway.ObjectBucket("some_bucket",
+            name="some-unique-name",
+            tags={
+                "key": "value",
+            })
         ```
 
         ### Creating the bucket in a specific project
@@ -576,7 +583,9 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("someBucket", project_id="11111111-1111-1111-1111-111111111111")
+        some_bucket = scaleway.ObjectBucket("some_bucket",
+            name="some-unique-name",
+            project_id="11111111-1111-1111-1111-111111111111")
         ```
 
         ### Using object lifecycle
@@ -586,42 +595,44 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.ObjectBucket("main",
+            name="mybuckectid",
+            region="fr-par",
             lifecycle_rules=[
                 {
+                    "id": "id1",
+                    "prefix": "path1/",
                     "enabled": True,
                     "expiration": {
                         "days": 365,
                     },
-                    "id": "id1",
-                    "prefix": "path1/",
                     "transitions": [{
                         "days": 120,
                         "storage_class": "GLACIER",
                     }],
                 },
                 {
+                    "id": "id2",
+                    "prefix": "path2/",
                     "enabled": True,
                     "expiration": {
                         "days": 50,
                     },
-                    "id": "id2",
-                    "prefix": "path2/",
                 },
                 {
-                    "enabled": False,
-                    "expiration": {
-                        "days": 1,
-                    },
                     "id": "id3",
                     "prefix": "path3/",
+                    "enabled": False,
                     "tags": {
                         "tag_key": "tagValue",
                         "terraform": "hashicorp",
                     },
+                    "expiration": {
+                        "days": 1,
+                    },
                 },
                 {
-                    "enabled": True,
                     "id": "id4",
+                    "enabled": True,
                     "tags": {
                         "tag1": "value1",
                     },
@@ -631,11 +642,10 @@ class ObjectBucket(pulumi.CustomResource):
                     }],
                 },
                 {
-                    "abort_incomplete_multipart_upload_days": 30,
                     "enabled": True,
+                    "abort_incomplete_multipart_upload_days": 30,
                 },
-            ],
-            region="fr-par")
+            ])
         ```
 
         ## Import

@@ -24,14 +24,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var blockVolume = new Scaleway.BlockVolume("blockVolume", new()
+    ///     var blockVolume = new Scaleway.BlockVolume("block_volume", new()
     ///     {
     ///         Iops = 5000,
+    ///         Name = "some-volume-name",
     ///         SizeInGb = 20,
     ///     });
     /// 
-    ///     var blockSnapshot = new Scaleway.BlockSnapshot("blockSnapshot", new()
+    ///     var blockSnapshot = new Scaleway.BlockSnapshot("block_snapshot", new()
     ///     {
+    ///         Name = "some-snapshot-name",
     ///         VolumeId = blockVolume.Id,
     ///     });
     /// 

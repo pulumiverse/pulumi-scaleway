@@ -19,11 +19,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.ContainerTrigger("main", {
- *     containerId: scaleway_container.main.id,
+ *     containerId: mainScalewayContainer.id,
+ *     name: "my-trigger",
  *     sqs: {
- *         projectId: scaleway_mnq_sqs.main.project_id,
+ *         projectId: mainScalewayMnqSqs.projectId,
  *         queue: "MyQueue",
- *         region: scaleway_mnq_sqs.main.region,
+ *         region: mainScalewayMnqSqs.region,
  *     },
  * });
  * ```
@@ -35,11 +36,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.ContainerTrigger("main", {
- *     containerId: scaleway_container.main.id,
+ *     containerId: mainScalewayContainer.id,
+ *     name: "my-trigger",
  *     nats: {
- *         accountId: scaleway_mnq_nats_account.main.id,
+ *         accountId: mainScalewayMnqNatsAccount.id,
  *         subject: "MySubject",
- *         region: scaleway_mnq_nats_account.main.region,
+ *         region: mainScalewayMnqNatsAccount.region,
  *     },
  * });
  * ```

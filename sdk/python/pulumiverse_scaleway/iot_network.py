@@ -218,8 +218,11 @@ class IotNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_iot_network = scaleway.IotNetwork("mainIotNetwork",
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        main = scaleway.IotNetwork("main",
+            name="main",
             hub_id=main_iot_hub.id,
             type="sigfox")
         ```
@@ -254,8 +257,11 @@ class IotNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
-        main_iot_network = scaleway.IotNetwork("mainIotNetwork",
+        main_iot_hub = scaleway.IotHub("main",
+            name="main",
+            product_plan="plan_shared")
+        main = scaleway.IotNetwork("main",
+            name="main",
             hub_id=main_iot_hub.id,
             type="sigfox")
         ```

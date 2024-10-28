@@ -225,8 +225,8 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         pnic01 = scaleway.InstancePrivateNic("pnic01",
-            private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-            server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
+            server_id="fr-par-1/11111111-1111-1111-1111-111111111111",
+            private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
         ```
 
         ### With zone
@@ -235,7 +235,9 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01", zone="fr-par-2")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="private_network_instance",
+            zone="fr-par-2")
         base = scaleway.InstanceServer("base",
             image="ubuntu_jammy",
             type="DEV1-S",
@@ -283,8 +285,8 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         pnic01 = scaleway.InstancePrivateNic("pnic01",
-            private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-            server_id="fr-par-1/11111111-1111-1111-1111-111111111111")
+            server_id="fr-par-1/11111111-1111-1111-1111-111111111111",
+            private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
         ```
 
         ### With zone
@@ -293,7 +295,9 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01", zone="fr-par-2")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="private_network_instance",
+            zone="fr-par-2")
         base = scaleway.InstanceServer("base",
             image="ubuntu_jammy",
             type="DEV1-S",

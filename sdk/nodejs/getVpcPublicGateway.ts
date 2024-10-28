@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGateway("main", {
+ *     name: "demo",
  *     type: "VPC-GW-S",
  *     zone: "nl-ams-1",
  * });
@@ -94,6 +95,7 @@ export interface GetVpcPublicGatewayResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGateway("main", {
+ *     name: "demo",
  *     type: "VPC-GW-S",
  *     zone: "nl-ams-1",
  * });

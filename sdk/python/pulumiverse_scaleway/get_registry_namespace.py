@@ -133,15 +133,6 @@ def get_registry_namespace(name: Optional[str] = None,
     """
     Gets information about a registry namespace.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_namespace = scaleway.get_registry_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str name: The namespace name.
     :param str namespace_id: The namespace id.
@@ -178,15 +169,6 @@ def get_registry_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryNamespaceResult]:
     """
     Gets information about a registry namespace.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_namespace = scaleway.get_registry_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str name: The namespace name.

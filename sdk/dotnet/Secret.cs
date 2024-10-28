@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.Secret("main", new()
     ///     {
+    ///         Name = "foo",
     ///         Description = "barr",
     ///         Tags = new[]
     ///         {

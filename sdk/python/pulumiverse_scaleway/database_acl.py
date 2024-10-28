@@ -152,15 +152,16 @@ class DatabaseAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+        main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database_acl = scaleway.DatabaseAcl("mainDatabaseAcl",
-            instance_id=main_database_instance.id,
+        main_database_acl = scaleway.DatabaseAcl("main",
+            instance_id=main.id,
             acl_rules=[{
                 "ip": "1.2.3.4/32",
                 "description": "foo",
@@ -203,15 +204,16 @@ class DatabaseAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+        main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database_acl = scaleway.DatabaseAcl("mainDatabaseAcl",
-            instance_id=main_database_instance.id,
+        main_database_acl = scaleway.DatabaseAcl("main",
+            instance_id=main.id,
             acl_rules=[{
                 "ip": "1.2.3.4/32",
                 "description": "foo",

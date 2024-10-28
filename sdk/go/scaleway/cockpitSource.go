@@ -29,12 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", nil)
+//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//				Name: pulumi.String("test project data source"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = scaleway.NewCockpitSource(ctx, "main", &scaleway.CockpitSourceArgs{
 //				ProjectId: project.ID(),
+//				Name:      pulumi.String("my-data-source"),
 //				Type:      pulumi.String("metrics"),
 //			})
 //			if err != nil {

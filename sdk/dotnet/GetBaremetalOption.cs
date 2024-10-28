@@ -26,11 +26,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by option name 
         ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
         ///     });
         /// 
+        ///     // Get info by option id
         ///     var byId = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         OptionId = "931df052-d713-4674-8b58-96a63244c8e2",
@@ -56,11 +58,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by option name 
         ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
         ///     });
         /// 
+        ///     // Get info by option id
         ///     var byId = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         OptionId = "931df052-d713-4674-8b58-96a63244c8e2",

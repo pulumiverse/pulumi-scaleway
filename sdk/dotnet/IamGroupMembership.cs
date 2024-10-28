@@ -28,10 +28,14 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var @group = new Scaleway.IamGroup("group", new()
     ///     {
+    ///         Name = "my_group",
     ///         ExternalMembership = true,
     ///     });
     /// 
-    ///     var app = new Scaleway.IamApplication("app");
+    ///     var app = new Scaleway.IamApplication("app", new()
+    ///     {
+    ///         Name = "my_app",
+    ///     });
     /// 
     ///     var member = new Scaleway.IamGroupMembership("member", new()
     ///     {

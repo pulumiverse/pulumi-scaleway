@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {});
+ * const project = new scaleway.AccountProject("project", {name: "test project grafana user"});
  * const main = new scaleway.CockpitGrafanaUser("main", {
  *     projectId: project.id,
  *     login: "my-awesome-user",

@@ -276,7 +276,8 @@ class LoadbalancerAcl(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         acl01 = scaleway.LoadbalancerAcl("acl01",
-            frontend_id=scaleway_lb_frontend["frt01"]["id"],
+            frontend_id=frt01["id"],
+            name="acl01",
             description="Exclude well-known IPs",
             index=0,
             action={
@@ -330,7 +331,8 @@ class LoadbalancerAcl(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         acl01 = scaleway.LoadbalancerAcl("acl01",
-            frontend_id=scaleway_lb_frontend["frt01"]["id"],
+            frontend_id=frt01["id"],
+            name="acl01",
             description="Exclude well-known IPs",
             index=0,
             action={

@@ -27,14 +27,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find backends that share the same LB ID
         ///     var byLBID = Scaleway.GetLbBackends.Invoke(new()
         ///     {
-        ///         LbId = scaleway_lb.Lb01.Id,
+        ///         LbId = lb01.Id,
         ///     });
         /// 
+        ///     // Find backends by LB ID and name
         ///     var byLBIDAndName = Scaleway.GetLbBackends.Invoke(new()
         ///     {
-        ///         LbId = scaleway_lb.Lb01.Id,
+        ///         LbId = lb01.Id,
         ///         Name = "tf-backend-datasource",
         ///     });
         /// 
@@ -59,14 +61,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Find backends that share the same LB ID
         ///     var byLBID = Scaleway.GetLbBackends.Invoke(new()
         ///     {
-        ///         LbId = scaleway_lb.Lb01.Id,
+        ///         LbId = lb01.Id,
         ///     });
         /// 
+        ///     // Find backends by LB ID and name
         ///     var byLBIDAndName = Scaleway.GetLbBackends.Invoke(new()
         ///     {
-        ///         LbId = scaleway_lb.Lb01.Id,
+        ///         LbId = lb01.Id,
         ///         Name = "tf-backend-datasource",
         ///     });
         /// 

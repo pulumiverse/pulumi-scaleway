@@ -157,7 +157,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
+        project = scaleway.AccountProject("project", name="test project grafana user")
         main = scaleway.CockpitGrafanaUser("main",
             project_id=project.id,
             login="my-awesome-user",
@@ -197,7 +197,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
+        project = scaleway.AccountProject("project", name="test project grafana user")
         main = scaleway.CockpitGrafanaUser("main",
             project_id=project.id,
             login="my-awesome-user",

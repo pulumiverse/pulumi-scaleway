@@ -30,12 +30,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			serverIp, err := scaleway.NewInstanceIp(ctx, "serverIp", nil)
+//			serverIp, err := scaleway.NewInstanceIp(ctx, "server_ip", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "tfA", &scaleway.DomainRecordArgs{
+//			_, err = scaleway.NewDomainRecord(ctx, "tf_A", &scaleway.DomainRecordArgs{
 //				DnsZone:  pulumi.String("scaleway.com"),
+//				Name:     pulumi.String("www"),
 //				Type:     pulumi.String("A"),
 //				Data:     serverIp.Address,
 //				Ttl:      pulumi.Int(3600),

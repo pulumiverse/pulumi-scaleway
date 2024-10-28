@@ -32,6 +32,7 @@ namespace Pulumiverse.Scaleway
     ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
     ///     {
     ///         IpId = ip01.Id,
+    ///         Name = "test-lb",
     ///         Type = "lb-s",
     ///     });
     /// 
@@ -75,6 +76,7 @@ namespace Pulumiverse.Scaleway
     ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
     ///     {
     ///         IpId = ip01.Id,
+    ///         Name = "test-lb",
     ///         Type = "lb-s",
     ///     });
     /// 

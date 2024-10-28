@@ -16,11 +16,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {});
- * const mainContainer = new scaleway.Container("mainContainer", {namespaceId: mainContainerNamespace.id});
+ * const main = new scaleway.ContainerNamespace("main", {name: "test-container-token-ns"});
+ * const mainContainer = new scaleway.Container("main", {namespaceId: main.id});
  * // Namespace Token
  * const namespace = new scaleway.ContainerToken("namespace", {
- *     namespaceId: mainContainerNamespace.id,
+ *     namespaceId: main.id,
  *     expiresAt: "2022-10-18T11:35:15+02:00",
  * });
  * // Container Token

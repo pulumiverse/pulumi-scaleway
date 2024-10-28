@@ -8,18 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myOffer = scaleway.getBaremetalOffer({
- *     offerId: "25dcf38b-c90c-4b18-97a2-6956e9d1e113",
- *     zone: "fr-par-2",
- * });
- * ```
  */
 export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOfferResult> {
     args = args || {};
@@ -100,18 +88,6 @@ export interface GetBaremetalOfferResult {
 }
 /**
  * Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myOffer = scaleway.getBaremetalOffer({
- *     offerId: "25dcf38b-c90c-4b18-97a2-6956e9d1e113",
- *     zone: "fr-par-2",
- * });
- * ```
  */
 export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOfferResult> {
     return pulumi.output(args).apply((a: any) => getBaremetalOffer(a, opts))

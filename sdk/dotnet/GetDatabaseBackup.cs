@@ -32,8 +32,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var findByNameAndInstance = Scaleway.GetDatabaseBackup.Invoke(new()
         ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///         Name = "mybackup",
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     var findById = Scaleway.GetDatabaseBackup.Invoke(new()
@@ -67,8 +67,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var findByNameAndInstance = Scaleway.GetDatabaseBackup.Invoke(new()
         ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///         Name = "mybackup",
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     var findById = Scaleway.GetDatabaseBackup.Invoke(new()

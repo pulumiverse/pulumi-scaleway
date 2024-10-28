@@ -27,11 +27,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainMnqSns = new Scaleway.MnqSns("mainMnqSns");
+    ///     var main = new Scaleway.MnqSns("main");
     /// 
-    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("mainMnqSnsCredentials", new()
+    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("main", new()
     ///     {
-    ///         ProjectId = mainMnqSns.ProjectId,
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "sns-credentials",
     ///         Permissions = new Scaleway.Inputs.MnqSnsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = false,

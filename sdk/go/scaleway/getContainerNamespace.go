@@ -27,12 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by namespace name
 //			_, err := scaleway.LookupContainerNamespace(ctx, &scaleway.LookupContainerNamespaceArgs{
 //				Name: pulumi.StringRef("my-namespace-name"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by namespace ID
 //			_, err = scaleway.LookupContainerNamespace(ctx, &scaleway.LookupContainerNamespaceArgs{
 //				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

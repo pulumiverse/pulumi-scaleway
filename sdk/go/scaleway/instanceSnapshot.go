@@ -30,6 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewInstanceSnapshot(ctx, "main", &scaleway.InstanceSnapshotArgs{
+//				Name:     pulumi.String("some-snapshot-name"),
 //				VolumeId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
 //			if err != nil {
@@ -55,14 +56,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "mainInstanceVolume", &scaleway.InstanceVolumeArgs{
+//			main, err := scaleway.NewInstanceVolume(ctx, "main", &scaleway.InstanceVolumeArgs{
 //				Type:     pulumi.String("l_ssd"),
 //				SizeInGb: pulumi.Int(10),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
+//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "main", &scaleway.InstanceServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
@@ -70,14 +71,14 @@ import (
 //					VolumeType: pulumi.String("l_ssd"),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					mainInstanceVolume.ID(),
+//					main.ID(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceSnapshot(ctx, "mainInstanceSnapshot", &scaleway.InstanceSnapshotArgs{
-//				VolumeId: mainInstanceVolume.ID(),
+//			_, err = scaleway.NewInstanceSnapshot(ctx, "main", &scaleway.InstanceSnapshotArgs{
+//				VolumeId: main.ID(),
 //				Type:     pulumi.String("unified"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				mainInstanceServer,
@@ -105,7 +106,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("snapshot-qcow-import"),
+//			})
 //			if err != nil {
 //				return err
 //			}

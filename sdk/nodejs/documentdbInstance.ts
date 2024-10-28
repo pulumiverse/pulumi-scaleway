@@ -16,15 +16,16 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DocumentdbInstance("main", {
- *     engine: "FerretDB-1",
+ *     name: "test-documentdb-instance-basic",
  *     nodeType: "docdb-play2-pico",
+ *     engine: "FerretDB-1",
+ *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     tags: [
  *         "terraform-test",
  *         "scaleway_documentdb_instance",
  *         "minimal",
  *     ],
- *     userName: "my_initial_user",
  *     volumeSizeInGb: 20,
  * });
  * ```

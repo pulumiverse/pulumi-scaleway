@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by Region key
  * const main = scaleway.getAvailabilityZones({
  *     region: "nl-ams",
  * });
@@ -66,6 +67,7 @@ export interface GetAvailabilityZonesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by Region key
  * const main = scaleway.getAvailabilityZones({
  *     region: "nl-ams",
  * });

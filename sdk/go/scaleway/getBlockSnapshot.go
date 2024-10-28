@@ -12,32 +12,6 @@ import (
 )
 
 // Gets information about a Block Snapshot.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupBlockSnapshot(ctx, &scaleway.LookupBlockSnapshotArgs{
-//				SnapshotId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupBlockSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockSnapshotResult

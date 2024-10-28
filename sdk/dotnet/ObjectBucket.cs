@@ -24,8 +24,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var someBucket = new Scaleway.ObjectBucket("someBucket", new()
+    ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
     ///     {
+    ///         Name = "some-unique-name",
     ///         Tags = 
     ///         {
     ///             { "key", "value" },
@@ -45,8 +46,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var someBucket = new Scaleway.ObjectBucket("someBucket", new()
+    ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
     ///     {
+    ///         Name = "some-unique-name",
     ///         ProjectId = "11111111-1111-1111-1111-111111111111",
     ///     });
     /// 
@@ -65,17 +67,19 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.ObjectBucket("main", new()
     ///     {
+    ///         Name = "mybuckectid",
+    ///         Region = "fr-par",
     ///         LifecycleRules = new[]
     ///         {
     ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
     ///             {
+    ///                 Id = "id1",
+    ///                 Prefix = "path1/",
     ///                 Enabled = true,
     ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
     ///                 {
     ///                     Days = 365,
     ///                 },
-    ///                 Id = "id1",
-    ///                 Prefix = "path1/",
     ///                 Transitions = new[]
     ///                 {
     ///                     new Scaleway.Inputs.ObjectBucketLifecycleRuleTransitionArgs
@@ -87,33 +91,33 @@ namespace Pulumiverse.Scaleway
     ///             },
     ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
     ///             {
+    ///                 Id = "id2",
+    ///                 Prefix = "path2/",
     ///                 Enabled = true,
     ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
     ///                 {
     ///                     Days = 50,
     ///                 },
-    ///                 Id = "id2",
-    ///                 Prefix = "path2/",
     ///             },
     ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
     ///             {
-    ///                 Enabled = false,
-    ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
-    ///                 {
-    ///                     Days = 1,
-    ///                 },
     ///                 Id = "id3",
     ///                 Prefix = "path3/",
+    ///                 Enabled = false,
     ///                 Tags = 
     ///                 {
     ///                     { "tagKey", "tagValue" },
     ///                     { "terraform", "hashicorp" },
     ///                 },
+    ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 1,
+    ///                 },
     ///             },
     ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
     ///             {
-    ///                 Enabled = true,
     ///                 Id = "id4",
+    ///                 Enabled = true,
     ///                 Tags = 
     ///                 {
     ///                     { "tag1", "value1" },
@@ -129,11 +133,10 @@ namespace Pulumiverse.Scaleway
     ///             },
     ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
     ///             {
-    ///                 AbortIncompleteMultipartUploadDays = 30,
     ///                 Enabled = true,
+    ///                 AbortIncompleteMultipartUploadDays = 30,
     ///             },
     ///         },
-    ///         Region = "fr-par",
     ///     });
     /// 
     /// });

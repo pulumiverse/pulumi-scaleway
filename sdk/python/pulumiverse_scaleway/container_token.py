@@ -242,11 +242,11 @@ class ContainerToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
-        main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
+        main = scaleway.ContainerNamespace("main", name="test-container-token-ns")
+        main_container = scaleway.Container("main", namespace_id=main.id)
         # Namespace Token
         namespace = scaleway.ContainerToken("namespace",
-            namespace_id=main_container_namespace.id,
+            namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Container Token
         container = scaleway.ContainerToken("container", container_id=main_container.id)
@@ -292,11 +292,11 @@ class ContainerToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_container_namespace = scaleway.ContainerNamespace("mainContainerNamespace")
-        main_container = scaleway.Container("mainContainer", namespace_id=main_container_namespace.id)
+        main = scaleway.ContainerNamespace("main", name="test-container-token-ns")
+        main_container = scaleway.Container("main", namespace_id=main.id)
         # Namespace Token
         namespace = scaleway.ContainerToken("namespace",
-            namespace_id=main_container_namespace.id,
+            namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Container Token
         container = scaleway.ContainerToken("container", container_id=main_container.id)

@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a function namespace.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myNamespace = scaleway.getFunctionNamespace({
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionNamespaceResult> {
     args = args || {};
@@ -90,17 +79,6 @@ export interface GetFunctionNamespaceResult {
 }
 /**
  * Gets information about a function namespace.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myNamespace = scaleway.getFunctionNamespace({
- *     namespaceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionNamespaceResult> {
     return pulumi.output(args).apply((a: any) => getFunctionNamespace(a, opts))

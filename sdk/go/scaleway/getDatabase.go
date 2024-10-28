@@ -27,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
 //			_, err := scaleway.LookupDatabase(ctx, &scaleway.LookupDatabaseArgs{
 //				InstanceId: "11111111-1111-1111-1111-111111111111",
 //				Name:       "foobar",

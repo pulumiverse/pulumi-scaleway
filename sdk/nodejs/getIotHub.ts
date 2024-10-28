@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about an IOT Hub.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myHub = scaleway.getIotHub({
- *     hubId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getIotHub(args?: GetIotHubArgs, opts?: pulumi.InvokeOptions): Promise<GetIotHubResult> {
     args = args || {};
@@ -85,17 +74,6 @@ export interface GetIotHubResult {
 }
 /**
  * Gets information about an IOT Hub.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myHub = scaleway.getIotHub({
- *     hubId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getIotHubOutput(args?: GetIotHubOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotHubResult> {
     return pulumi.output(args).apply((a: any) => getIotHub(a, opts))

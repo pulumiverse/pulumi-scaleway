@@ -26,13 +26,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotNetwork(ctx, "mainIotNetwork", &scaleway.IotNetworkArgs{
+//			_, err = scaleway.NewIotNetwork(ctx, "main", &scaleway.IotNetworkArgs{
+//				Name:  pulumi.String("main"),
 //				HubId: mainIotHub.ID(),
 //				Type:  pulumi.String("sigfox"),
 //			})

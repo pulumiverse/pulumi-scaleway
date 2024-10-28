@@ -179,11 +179,12 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket",
+        main = scaleway.ObjectBucket("main",
+            name="MyBucket",
             acl="public-read",
             object_lock_enabled=True)
-        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
-            bucket=main_object_bucket.name,
+        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("main",
+            bucket=main.name,
             rule={
                 "default_retention": {
                     "mode": "GOVERNANCE",
@@ -243,11 +244,12 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket",
+        main = scaleway.ObjectBucket("main",
+            name="MyBucket",
             acl="public-read",
             object_lock_enabled=True)
-        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
-            bucket=main_object_bucket.name,
+        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("main",
+            bucket=main.name,
             rule={
                 "default_retention": {
                     "mode": "GOVERNANCE",

@@ -14,50 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a function.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myFunction = Scaleway.GetFunction.Invoke(new()
-        ///     {
-        ///         FunctionId = "11111111-1111-1111-1111-111111111111",
-        ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a function.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myFunction = Scaleway.GetFunction.Invoke(new()
-        ///     {
-        ///         FunctionId = "11111111-1111-1111-1111-111111111111",
-        ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetFunctionResult> Invoke(GetFunctionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());

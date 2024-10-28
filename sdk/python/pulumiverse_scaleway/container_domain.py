@@ -158,9 +158,9 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app_container = scaleway.Container("appContainer")
-        app_container_domain = scaleway.ContainerDomain("appContainerDomain",
-            container_id=app_container.id,
+        app = scaleway.Container("app")
+        app_container_domain = scaleway.ContainerDomain("app",
+            container_id=app.id,
             hostname="container.domain.tld")
         ```
 
@@ -170,8 +170,11 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main", description="test container")
-        app_container = scaleway.Container("appContainer",
+        main = scaleway.ContainerNamespace("main",
+            name="my-ns-test",
+            description="test container")
+        app = scaleway.Container("app",
+            name="app",
             namespace_id=main.id,
             registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/nginx:alpine"),
             port=80,
@@ -184,13 +187,14 @@ class ContainerDomain(pulumi.CustomResource):
             privacy="public",
             protocol="http1",
             deploy=True)
-        app_domain_record = scaleway.DomainRecord("appDomainRecord",
+        app_domain_record = scaleway.DomainRecord("app",
             dns_zone="domain.tld",
+            name="subdomain",
             type="CNAME",
-            data=app_container.domain_name.apply(lambda domain_name: f"{domain_name}."),
+            data=app.domain_name.apply(lambda domain_name: f"{domain_name}."),
             ttl=3600)
-        app_container_domain = scaleway.ContainerDomain("appContainerDomain",
-            container_id=app_container.id,
+        app_container_domain = scaleway.ContainerDomain("app",
+            container_id=app.id,
             hostname=pulumi.Output.all(
                 name=app_domain_record.name,
                 dns_zone=app_domain_record.dns_zone
@@ -232,9 +236,9 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app_container = scaleway.Container("appContainer")
-        app_container_domain = scaleway.ContainerDomain("appContainerDomain",
-            container_id=app_container.id,
+        app = scaleway.Container("app")
+        app_container_domain = scaleway.ContainerDomain("app",
+            container_id=app.id,
             hostname="container.domain.tld")
         ```
 
@@ -244,8 +248,11 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main", description="test container")
-        app_container = scaleway.Container("appContainer",
+        main = scaleway.ContainerNamespace("main",
+            name="my-ns-test",
+            description="test container")
+        app = scaleway.Container("app",
+            name="app",
             namespace_id=main.id,
             registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/nginx:alpine"),
             port=80,
@@ -258,13 +265,14 @@ class ContainerDomain(pulumi.CustomResource):
             privacy="public",
             protocol="http1",
             deploy=True)
-        app_domain_record = scaleway.DomainRecord("appDomainRecord",
+        app_domain_record = scaleway.DomainRecord("app",
             dns_zone="domain.tld",
+            name="subdomain",
             type="CNAME",
-            data=app_container.domain_name.apply(lambda domain_name: f"{domain_name}."),
+            data=app.domain_name.apply(lambda domain_name: f"{domain_name}."),
             ttl=3600)
-        app_container_domain = scaleway.ContainerDomain("appContainerDomain",
-            container_id=app_container.id,
+        app_container_domain = scaleway.ContainerDomain("app",
+            container_id=app.id,
             hostname=pulumi.Output.all(
                 name=app_domain_record.name,
                 dns_zone=app_domain_record.dns_zone

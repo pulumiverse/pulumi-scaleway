@@ -27,11 +27,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by name
         ///     var byName = Scaleway.GetLoadbalancer.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
+        ///     // Get info by ID
         ///     var byId = Scaleway.GetLoadbalancer.Invoke(new()
         ///     {
         ///         LbId = "11111111-1111-1111-1111-111111111111",
@@ -58,11 +60,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by name
         ///     var byName = Scaleway.GetLoadbalancer.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
+        ///     // Get info by ID
         ///     var byId = Scaleway.GetLoadbalancer.Invoke(new()
         ///     {
         ///         LbId = "11111111-1111-1111-1111-111111111111",

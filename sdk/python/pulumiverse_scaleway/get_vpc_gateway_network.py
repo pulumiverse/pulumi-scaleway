@@ -188,14 +188,14 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcGatewayNetwork("main",
-        gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn01"]["id"],
-        dhcp_id=scaleway_vpc_public_gateway_dhcp["dhcp01"]["id"],
+        gateway_id=pg01["id"],
+        private_network_id=pn01["id"],
+        dhcp_id=dhcp01["id"],
         cleanup_dhcp=True,
         enable_masquerade=True)
     by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn01"]["id"])
+    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=pg01["id"],
+        private_network_id=pn01["id"])
     ```
 
 
@@ -246,14 +246,14 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     import pulumiverse_scaleway as scaleway
 
     main = scaleway.VpcGatewayNetwork("main",
-        gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn01"]["id"],
-        dhcp_id=scaleway_vpc_public_gateway_dhcp["dhcp01"]["id"],
+        gateway_id=pg01["id"],
+        private_network_id=pn01["id"],
+        dhcp_id=dhcp01["id"],
         cleanup_dhcp=True,
         enable_masquerade=True)
     by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn01"]["id"])
+    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=pg01["id"],
+        private_network_id=pn01["id"])
     ```
 
 

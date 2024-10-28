@@ -28,9 +28,9 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
         ///     {
-        ///         GatewayId = scaleway_vpc_public_gateway.Pg01.Id,
-        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,
-        ///         DhcpId = scaleway_vpc_public_gateway_dhcp.Dhcp01.Id,
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
         ///         CleanupDhcp = true,
         ///         EnableMasquerade = true,
         ///     });
@@ -42,8 +42,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()
         ///     {
-        ///         GatewayId = scaleway_vpc_public_gateway.Pg01.Id,
-        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
         ///     });
         /// 
         /// });
@@ -68,9 +68,9 @@ namespace Pulumiverse.Scaleway
         /// {
         ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
         ///     {
-        ///         GatewayId = scaleway_vpc_public_gateway.Pg01.Id,
-        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,
-        ///         DhcpId = scaleway_vpc_public_gateway_dhcp.Dhcp01.Id,
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
         ///         CleanupDhcp = true,
         ///         EnableMasquerade = true,
         ///     });
@@ -82,8 +82,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()
         ///     {
-        ///         GatewayId = scaleway_vpc_public_gateway.Pg01.Id,
-        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
         ///     });
         /// 
         /// });

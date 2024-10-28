@@ -294,16 +294,18 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                 "protocol": "TCP",
             }])
         srv01 = scaleway.InstanceServer("srv01",
+            name="my-server",
             type="PLAY2-NANO",
             image="ubuntu_jammy",
             security_group_id=sg01.id)
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="my-pn")
         pnic01 = scaleway.InstancePrivateNic("pnic01",
             server_id=srv01.id,
             private_network_id=pn01.id)
         dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
         ip01 = scaleway.VpcPublicGatewayIp("ip01")
         pg01 = scaleway.VpcPublicGateway("pg01",
+            name="my-pg",
             type="VPC-GW-S",
             ip_id=ip01.id)
         gn01 = scaleway.VpcGatewayNetwork("gn01",
@@ -369,16 +371,18 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                 "protocol": "TCP",
             }])
         srv01 = scaleway.InstanceServer("srv01",
+            name="my-server",
             type="PLAY2-NANO",
             image="ubuntu_jammy",
             security_group_id=sg01.id)
-        pn01 = scaleway.VpcPrivateNetwork("pn01")
+        pn01 = scaleway.VpcPrivateNetwork("pn01", name="my-pn")
         pnic01 = scaleway.InstancePrivateNic("pnic01",
             server_id=srv01.id,
             private_network_id=pn01.id)
         dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
         ip01 = scaleway.VpcPublicGatewayIp("ip01")
         pg01 = scaleway.VpcPublicGateway("pg01",
+            name="my-pg",
             type="VPC-GW-S",
             ip_id=ip01.id)
         gn01 = scaleway.VpcGatewayNetwork("gn01",

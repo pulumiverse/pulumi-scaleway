@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewJobDefinition(ctx, "main", &scaleway.JobDefinitionArgs{
+//				Name:        pulumi.String("testjob"),
 //				CpuLimit:    pulumi.Int(140),
 //				MemoryLimit: pulumi.Int(256),
 //				ImageUri:    pulumi.String("docker.io/alpine:latest"),

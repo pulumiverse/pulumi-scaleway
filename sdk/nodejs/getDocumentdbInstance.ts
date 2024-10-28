@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about an DocumentDB instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const db = scaleway.getDocumentdbInstance({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getDocumentdbInstance(args?: GetDocumentdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbInstanceResult> {
     args = args || {};
@@ -78,17 +67,6 @@ export interface GetDocumentdbInstanceResult {
 }
 /**
  * Gets information about an DocumentDB instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const db = scaleway.getDocumentdbInstance({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getDocumentdbInstanceOutput(args?: GetDocumentdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbInstanceResult> {
     return pulumi.output(args).apply((a: any) => getDocumentdbInstance(a, opts))

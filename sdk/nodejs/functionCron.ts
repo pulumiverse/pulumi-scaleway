@@ -19,14 +19,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainFunctionNamespace = new scaleway.FunctionNamespace("mainFunctionNamespace", {});
- * const mainFunction = new scaleway.Function("mainFunction", {
- *     namespaceId: mainFunctionNamespace.id,
+ * const main = new scaleway.FunctionNamespace("main", {name: "test-cron"});
+ * const mainFunction = new scaleway.Function("main", {
+ *     name: "test-cron",
+ *     namespaceId: main.id,
  *     runtime: "node14",
  *     privacy: "private",
  *     handler: "handler.handle",
  * });
- * const mainFunctionCron = new scaleway.FunctionCron("mainFunctionCron", {
+ * const mainFunctionCron = new scaleway.FunctionCron("main", {
+ *     name: "test-cron",
  *     functionId: mainFunction.id,
  *     schedule: "0 0 * * *",
  *     args: JSON.stringify({

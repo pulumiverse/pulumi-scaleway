@@ -155,6 +155,7 @@ def get_domain_zone(domain: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get zone
     main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
         subdomain="test")
     ```
@@ -195,6 +196,7 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get zone
     main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
         subdomain="test")
     ```

@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const serverIp = new scaleway.InstanceIp("serverIp", {});
- * const tfA = new scaleway.DomainRecord("tfA", {
+ * const serverIp = new scaleway.InstanceIp("server_ip", {});
+ * const tfA = new scaleway.DomainRecord("tf_A", {
  *     dnsZone: "scaleway.com",
+ *     name: "www",
  *     type: "A",
  *     data: serverIp.address,
  *     ttl: 3600,

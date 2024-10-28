@@ -47,7 +47,7 @@ import (
 //			if param := cfg.GetObject("userData"); param != nil {
 //				userData = param
 //			}
-//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{
+//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "main", &scaleway.InstanceServerArgs{
 //				Image: pulumi.String("ubuntu_focal"),
 //				Type:  pulumi.String("DEV1-S"),
 //			})
@@ -55,7 +55,7 @@ import (
 //				return err
 //			}
 //			// User data with a single value
-//			_, err = scaleway.NewInstanceUserData(ctx, "mainInstanceUserData", &scaleway.InstanceUserDataArgs{
+//			_, err = scaleway.NewInstanceUserData(ctx, "main", &scaleway.InstanceUserDataArgs{
 //				ServerId: mainInstanceServer.ID(),
 //				Key:      pulumi.String("foo"),
 //				Value:    pulumi.String("bar"),
@@ -65,12 +65,10 @@ import (
 //			}
 //			// User Data with many keys.
 //			var data []*scaleway.InstanceUserData
-//			for index := 0; index < userData; index++ {
-//				key0 := index
-//				val0 := index
+//			for key0, val0 := range userData {
 //				__res, err := scaleway.NewInstanceUserData(ctx, fmt.Sprintf("data-%v", key0), &scaleway.InstanceUserDataArgs{
 //					ServerId: mainInstanceServer.ID(),
-//					Key:      pulumi.Any(key0),
+//					Key:      pulumi.String(key0),
 //					Value:    pulumi.Any(val0),
 //				})
 //				if err != nil {

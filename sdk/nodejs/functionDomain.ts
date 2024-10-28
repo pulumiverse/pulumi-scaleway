@@ -16,8 +16,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainFunctionNamespace = new scaleway.FunctionNamespace("mainFunctionNamespace", {});
- * const mainFunction = new scaleway.Function("mainFunction", {
+ * const mainFunctionNamespace = new scaleway.FunctionNamespace("main", {});
+ * const mainFunction = new scaleway.Function("main", {
  *     namespaceId: mainFunctionNamespace.id,
  *     runtime: "go118",
  *     privacy: "private",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  *     zipFile: "testfixture/gofunction.zip",
  *     deploy: true,
  * });
- * const mainFunctionDomain = new scaleway.FunctionDomain("mainFunctionDomain", {
+ * const main = new scaleway.FunctionDomain("main", {
  *     functionId: mainFunction.id,
  *     hostname: "example.com",
  * }, {

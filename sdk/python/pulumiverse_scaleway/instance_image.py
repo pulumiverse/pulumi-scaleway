@@ -417,8 +417,10 @@ class InstanceImage(pulumi.CustomResource):
         volume = scaleway.InstanceVolume("volume",
             type="b_ssd",
             size_in_gb=20)
-        volume_snapshot = scaleway.InstanceSnapshot("volumeSnapshot", volume_id=volume.id)
-        volume_image = scaleway.InstanceImage("volumeImage", root_volume_id=volume_snapshot.id)
+        volume_snapshot = scaleway.InstanceSnapshot("volume_snapshot", volume_id=volume.id)
+        volume_image = scaleway.InstanceImage("volume_image",
+            name="image_from_volume",
+            root_volume_id=volume_snapshot.id)
         ```
 
         ### From a server
@@ -430,8 +432,10 @@ class InstanceImage(pulumi.CustomResource):
         server = scaleway.InstanceServer("server",
             image="ubuntu_jammy",
             type="DEV1-S")
-        server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
-        server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
+        server_snapshot = scaleway.InstanceSnapshot("server_snapshot", volume_id=main["rootVolume"][0]["volumeId"])
+        server_image = scaleway.InstanceImage("server_image",
+            name="image_from_server",
+            root_volume_id=server_snapshot.id)
         ```
 
         ## Import
@@ -478,8 +482,10 @@ class InstanceImage(pulumi.CustomResource):
         volume = scaleway.InstanceVolume("volume",
             type="b_ssd",
             size_in_gb=20)
-        volume_snapshot = scaleway.InstanceSnapshot("volumeSnapshot", volume_id=volume.id)
-        volume_image = scaleway.InstanceImage("volumeImage", root_volume_id=volume_snapshot.id)
+        volume_snapshot = scaleway.InstanceSnapshot("volume_snapshot", volume_id=volume.id)
+        volume_image = scaleway.InstanceImage("volume_image",
+            name="image_from_volume",
+            root_volume_id=volume_snapshot.id)
         ```
 
         ### From a server
@@ -491,8 +497,10 @@ class InstanceImage(pulumi.CustomResource):
         server = scaleway.InstanceServer("server",
             image="ubuntu_jammy",
             type="DEV1-S")
-        server_snapshot = scaleway.InstanceSnapshot("serverSnapshot", volume_id=scaleway_instance_server["main"]["root_volume"][0]["volume_id"])
-        server_image = scaleway.InstanceImage("serverImage", root_volume_id=server_snapshot.id)
+        server_snapshot = scaleway.InstanceSnapshot("server_snapshot", volume_id=main["rootVolume"][0]["volumeId"])
+        server_image = scaleway.InstanceImage("server_image",
+            name="image_from_server",
+            root_volume_id=server_snapshot.id)
         ```
 
         ## Import

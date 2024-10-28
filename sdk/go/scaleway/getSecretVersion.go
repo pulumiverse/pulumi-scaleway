@@ -30,26 +30,27 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainSecret, err := scaleway.NewSecret(ctx, "mainSecret", &scaleway.SecretArgs{
+//			main, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//				Name:        pulumi.String("fooii"),
 //				Description: pulumi.String("barr"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewSecretVersion(ctx, "mainSecretVersion", &scaleway.SecretVersionArgs{
+//			_, err = scaleway.NewSecretVersion(ctx, "main", &scaleway.SecretVersionArgs{
 //				Description: pulumi.String("your description"),
-//				SecretId:    mainSecret.ID(),
+//				SecretId:    main.ID(),
 //				Data:        pulumi.String("your_secret"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			dataBySecretId := scaleway.LookupSecretVersionOutput(ctx, scaleway.GetSecretVersionOutputArgs{
-//				SecretId: mainSecret.ID(),
+//				SecretId: main.ID(),
 //				Revision: pulumi.String("1"),
 //			}, nil)
 //			dataBySecretName := scaleway.LookupSecretVersionOutput(ctx, scaleway.GetSecretVersionOutputArgs{
-//				SecretName: mainSecret.Name,
+//				SecretName: main.Name,
 //				Revision:   pulumi.String("1"),
 //			}, nil)
 //			ctx.Export("scalewaySecretAccessPayload", dataBySecretName.ApplyT(func(dataBySecretName scaleway.GetSecretVersionResult) (*string, error) {

@@ -15,9 +15,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const findByName = scaleway.getIamGroup({
  *     name: "foobar",
  * });
+ * // Get info by group ID
  * const findById = scaleway.getIamGroup({
  *     groupId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -85,9 +87,11 @@ export interface GetIamGroupResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const findByName = scaleway.getIamGroup({
  *     name: "foobar",
  * });
+ * // Get info by group ID
  * const findById = scaleway.getIamGroup({
  *     groupId: "11111111-1111-1111-1111-111111111111",
  * });

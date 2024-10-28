@@ -309,8 +309,9 @@ class IamGroup(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         basic = scaleway.IamGroup("basic",
-            application_ids=[],
+            name="iam_group_basic",
             description="basic description",
+            application_ids=[],
             user_ids=[])
         ```
 
@@ -321,7 +322,8 @@ class IamGroup(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         app = scaleway.IamApplication("app")
-        with_app = scaleway.IamGroup("withApp",
+        with_app = scaleway.IamGroup("with_app",
+            name="iam_group_with_app",
             application_ids=[app.id],
             user_ids=[])
         ```
@@ -365,8 +367,9 @@ class IamGroup(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         basic = scaleway.IamGroup("basic",
-            application_ids=[],
+            name="iam_group_basic",
             description="basic description",
+            application_ids=[],
             user_ids=[])
         ```
 
@@ -377,7 +380,8 @@ class IamGroup(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         app = scaleway.IamApplication("app")
-        with_app = scaleway.IamGroup("withApp",
+        with_app = scaleway.IamGroup("with_app",
+            name="iam_group_with_app",
             application_ids=[app.id],
             user_ids=[])
         ```

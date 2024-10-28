@@ -25,11 +25,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by snapshot name
         ///     var byName = Scaleway.GetInstanceSnapshot.Invoke(new()
         ///     {
         ///         Name = "my-snapshot-name",
         ///     });
         /// 
+        ///     // Get info by snapshot ID
         ///     var byId = Scaleway.GetInstanceSnapshot.Invoke(new()
         ///     {
         ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
@@ -54,11 +56,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get info by snapshot name
         ///     var byName = Scaleway.GetInstanceSnapshot.Invoke(new()
         ///     {
         ///         Name = "my-snapshot-name",
         ///     });
         /// 
+        ///     // Get info by snapshot ID
         ///     var byId = Scaleway.GetInstanceSnapshot.Invoke(new()
         ///     {
         ///         SnapshotId = "11111111-1111-1111-1111-111111111111",

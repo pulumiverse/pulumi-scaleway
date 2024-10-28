@@ -41,12 +41,16 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
     ///     {
+    ///         Name = "my-server",
     ///         Type = "PLAY2-NANO",
     ///         Image = "ubuntu_jammy",
     ///         SecurityGroupId = sg01.Id,
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "my-pn",
+    ///     });
     /// 
     ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
     ///     {
@@ -63,6 +67,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
     ///     {
+    ///         Name = "my-pg",
     ///         Type = "VPC-GW-S",
     ///         IpId = ip01.Id,
     ///     });

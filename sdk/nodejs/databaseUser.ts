@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.DatabaseInstance("main", {
+ *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
@@ -25,12 +26,13 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const dbPassword = new random.RandomPassword("dbPassword", {
+ * const dbPassword = new random.RandomPassword("db_password", {
  *     length: 16,
  *     special: true,
  * });
- * const dbAdmin = new scaleway.DatabaseUser("dbAdmin", {
+ * const dbAdmin = new scaleway.DatabaseUser("db_admin", {
  *     instanceId: main.id,
+ *     name: "devtools",
  *     password: dbPassword.result,
  *     isAdmin: true,
  * });

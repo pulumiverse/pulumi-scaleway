@@ -31,15 +31,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDocumentdbInstance(ctx, "main", &scaleway.DocumentdbInstanceArgs{
-//				Engine:   pulumi.String("FerretDB-1"),
+//				Name:     pulumi.String("test-documentdb-instance-basic"),
 //				NodeType: pulumi.String("docdb-play2-pico"),
+//				Engine:   pulumi.String("FerretDB-1"),
+//				UserName: pulumi.String("my_initial_user"),
 //				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform-test"),
 //					pulumi.String("scaleway_documentdb_instance"),
 //					pulumi.String("minimal"),
 //				},
-//				UserName:       pulumi.String("my_initial_user"),
 //				VolumeSizeInGb: pulumi.Int(20),
 //			})
 //			if err != nil {

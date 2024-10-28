@@ -489,17 +489,19 @@ class MnqSqsQueue(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
-            project_id=main_mnq_sqs.project_id,
+        main = scaleway.MnqSqs("main")
+        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+            project_id=main.project_id,
+            name="sqs-credentials",
             permissions={
                 "can_manage": True,
                 "can_receive": False,
                 "can_publish": False,
             })
-        main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
-            project_id=main_mnq_sqs.project_id,
-            sqs_endpoint=main_mnq_sqs.endpoint,
+        main_mnq_sqs_queue = scaleway.MnqSqsQueue("main",
+            project_id=main.project_id,
+            name="my-queue",
+            sqs_endpoint=main.endpoint,
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```
@@ -539,17 +541,19 @@ class MnqSqsQueue(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
-            project_id=main_mnq_sqs.project_id,
+        main = scaleway.MnqSqs("main")
+        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+            project_id=main.project_id,
+            name="sqs-credentials",
             permissions={
                 "can_manage": True,
                 "can_receive": False,
                 "can_publish": False,
             })
-        main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
-            project_id=main_mnq_sqs.project_id,
-            sqs_endpoint=main_mnq_sqs.endpoint,
+        main_mnq_sqs_queue = scaleway.MnqSqsQueue("main",
+            project_id=main.project_id,
+            name="my-queue",
+            sqs_endpoint=main.endpoint,
             access_key=main_mnq_sqs_credentials.access_key,
             secret_key=main_mnq_sqs_credentials.secret_key)
         ```

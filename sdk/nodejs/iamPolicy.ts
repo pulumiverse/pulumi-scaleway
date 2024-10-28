@@ -23,8 +23,9 @@ import * as utilities from "./utilities";
  * const default = scaleway.getAccountProject({
  *     name: "default",
  * });
- * const app = new scaleway.IamApplication("app", {});
- * const objectReadOnly = new scaleway.IamPolicy("objectReadOnly", {
+ * const app = new scaleway.IamApplication("app", {name: "my app"});
+ * const objectReadOnly = new scaleway.IamPolicy("object_read_only", {
+ *     name: "my policy",
  *     description: "gives app readonly access to object storage in project",
  *     applicationId: app.id,
  *     rules: [{
@@ -40,8 +41,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const app = new scaleway.IamApplication("app", {});
- * const objectReadOnly = new scaleway.IamPolicy("objectReadOnly", {
+ * const app = new scaleway.IamApplication("app", {name: "my app"});
+ * const objectReadOnly = new scaleway.IamPolicy("object_read_only", {
+ *     name: "my policy",
  *     description: "gives app readonly access to object storage in project",
  *     applicationId: app.id,
  *     rules: [{

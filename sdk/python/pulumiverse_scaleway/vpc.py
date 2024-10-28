@@ -274,10 +274,12 @@ class Vpc(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", tags=[
-            "demo",
-            "terraform",
-        ])
+        vpc01 = scaleway.Vpc("vpc01",
+            name="my-vpc",
+            tags=[
+                "demo",
+                "terraform",
+            ])
         ```
 
         ### Enable routing
@@ -287,12 +289,13 @@ class Vpc(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         vpc01 = scaleway.Vpc("vpc01",
-            enable_routing=True,
+            name="my-vpc",
             tags=[
                 "demo",
                 "terraform",
                 "routing",
-            ])
+            ],
+            enable_routing=True)
         ```
 
         ## Import
@@ -331,10 +334,12 @@ class Vpc(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", tags=[
-            "demo",
-            "terraform",
-        ])
+        vpc01 = scaleway.Vpc("vpc01",
+            name="my-vpc",
+            tags=[
+                "demo",
+                "terraform",
+            ])
         ```
 
         ### Enable routing
@@ -344,12 +349,13 @@ class Vpc(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         vpc01 = scaleway.Vpc("vpc01",
-            enable_routing=True,
+            name="my-vpc",
             tags=[
                 "demo",
                 "terraform",
                 "routing",
-            ])
+            ],
+            enable_routing=True)
         ```
 
         ## Import

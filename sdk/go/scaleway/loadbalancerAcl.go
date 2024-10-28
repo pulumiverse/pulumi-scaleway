@@ -33,7 +33,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewLoadbalancerAcl(ctx, "acl01", &scaleway.LoadbalancerAclArgs{
-//				FrontendId:  pulumi.Any(scaleway_lb_frontend.Frt01.Id),
+//				FrontendId:  pulumi.Any(frt01.Id),
+//				Name:        pulumi.String("acl01"),
 //				Description: pulumi.String("Exclude well-known IPs"),
 //				Index:       pulumi.Int(0),
 //				Action: &scaleway.LoadbalancerAclActionArgs{

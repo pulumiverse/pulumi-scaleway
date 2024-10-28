@@ -333,15 +333,6 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
     """
     Gets information about a Kubernetes Cluster's Pool.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str cluster_id: The cluster ID. Required when `name` is set.
     :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
@@ -397,15 +388,6 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesNodePoolResult]:
     """
     Gets information about a Kubernetes Cluster's Pool.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_key = scaleway.get_kubernetes_node_pool(pool_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str cluster_id: The cluster ID. Required when `name` is set.

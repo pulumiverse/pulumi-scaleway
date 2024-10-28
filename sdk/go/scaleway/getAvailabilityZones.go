@@ -30,6 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get info by Region key
 //			_, err := scaleway.GetAvailabilityZones(ctx, &scaleway.GetAvailabilityZonesArgs{
 //				Region: pulumi.StringRef("nl-ams"),
 //			}, nil)

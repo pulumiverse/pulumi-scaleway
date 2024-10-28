@@ -63,7 +63,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSqs(ctx, "forProject", &scaleway.MnqSqsArgs{
+//			_, err = scaleway.NewMnqSqs(ctx, "for_project", &scaleway.MnqSqsArgs{
 //				ProjectId: pulumi.String(project.Id),
 //			})
 //			if err != nil {

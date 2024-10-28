@@ -31,6 +31,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get default project's cockpit
         ///     var main = Scaleway.GetCockpit.Invoke();
         /// 
         /// });
@@ -44,6 +45,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get a specific project's cockpit
         ///     var main = Scaleway.GetCockpit.Invoke(new()
         ///     {
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",
@@ -74,6 +76,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get default project's cockpit
         ///     var main = Scaleway.GetCockpit.Invoke();
         /// 
         /// });
@@ -87,6 +90,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Get a specific project's cockpit
         ///     var main = Scaleway.GetCockpit.Invoke(new()
         ///     {
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",

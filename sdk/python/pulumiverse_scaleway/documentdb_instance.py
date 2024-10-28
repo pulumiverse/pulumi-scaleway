@@ -483,15 +483,16 @@ class DocumentdbInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DocumentdbInstance("main",
-            engine="FerretDB-1",
+            name="test-documentdb-instance-basic",
             node_type="docdb-play2-pico",
+            engine="FerretDB-1",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             tags=[
                 "terraform-test",
                 "scaleway_documentdb_instance",
                 "minimal",
             ],
-            user_name="my_initial_user",
             volume_size_in_gb=20)
         ```
 
@@ -549,15 +550,16 @@ class DocumentdbInstance(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.DocumentdbInstance("main",
-            engine="FerretDB-1",
+            name="test-documentdb-instance-basic",
             node_type="docdb-play2-pico",
+            engine="FerretDB-1",
+            user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             tags=[
                 "terraform-test",
                 "scaleway_documentdb_instance",
                 "minimal",
             ],
-            user_name="my_initial_user",
             volume_size_in_gb=20)
         ```
 

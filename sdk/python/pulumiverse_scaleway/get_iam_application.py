@@ -129,7 +129,9 @@ def get_iam_application(application_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     find_by_name = scaleway.get_iam_application(name="foobar")
+    # Get info by application ID
     find_by_id = scaleway.get_iam_application(application_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -174,7 +176,9 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     find_by_name = scaleway.get_iam_application(name="foobar")
+    # Get info by application ID
     find_by_id = scaleway.get_iam_application(application_id="11111111-1111-1111-1111-111111111111")
     ```
 

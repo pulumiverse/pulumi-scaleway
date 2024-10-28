@@ -17,6 +17,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.RegistryNamespace("main", {
+ *     name: "main-cr",
  *     description: "Main container registry",
  *     isPublic: false,
  * });

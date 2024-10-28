@@ -35,6 +35,7 @@ import (
 //			}
 //			lb01, err := scaleway.NewLoadbalancer(ctx, "lb01", &scaleway.LoadbalancerArgs{
 //				IpId: ip01.ID(),
+//				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
 //			})
 //			if err != nil {

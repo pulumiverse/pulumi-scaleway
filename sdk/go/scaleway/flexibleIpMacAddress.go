@@ -31,12 +31,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainFlexibleIp, err := scaleway.NewFlexibleIp(ctx, "mainFlexibleIp", nil)
+//			main, err := scaleway.NewFlexibleIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIpMacAddress(ctx, "mainFlexibleIpMacAddress", &scaleway.FlexibleIpMacAddressArgs{
-//				FlexibleIpId: mainFlexibleIp.ID(),
+//			_, err = scaleway.NewFlexibleIpMacAddress(ctx, "main", &scaleway.FlexibleIpMacAddressArgs{
+//				FlexibleIpId: main.ID(),
 //				Type:         pulumi.String("kvm"),
 //			})
 //			if err != nil {
@@ -69,6 +69,7 @@ import (
 //				return err
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//				Name:                   pulumi.String("TestAccScalewayBaremetalServer_WithoutInstallConfig"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})

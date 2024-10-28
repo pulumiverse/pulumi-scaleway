@@ -245,11 +245,12 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.ContainerTrigger("main",
-            container_id=scaleway_container["main"]["id"],
+            container_id=main_scaleway_container["id"],
+            name="my-trigger",
             sqs={
-                "project_id": scaleway_mnq_sqs["main"]["project_id"],
+                "project_id": main_scaleway_mnq_sqs["projectId"],
                 "queue": "MyQueue",
-                "region": scaleway_mnq_sqs["main"]["region"],
+                "region": main_scaleway_mnq_sqs["region"],
             })
         ```
 
@@ -260,11 +261,12 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.ContainerTrigger("main",
-            container_id=scaleway_container["main"]["id"],
+            container_id=main_scaleway_container["id"],
+            name="my-trigger",
             nats={
-                "account_id": scaleway_mnq_nats_account["main"]["id"],
+                "account_id": main_scaleway_mnq_nats_account["id"],
                 "subject": "MySubject",
-                "region": scaleway_mnq_nats_account["main"]["region"],
+                "region": main_scaleway_mnq_nats_account["region"],
             })
         ```
 
@@ -306,11 +308,12 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.ContainerTrigger("main",
-            container_id=scaleway_container["main"]["id"],
+            container_id=main_scaleway_container["id"],
+            name="my-trigger",
             sqs={
-                "project_id": scaleway_mnq_sqs["main"]["project_id"],
+                "project_id": main_scaleway_mnq_sqs["projectId"],
                 "queue": "MyQueue",
-                "region": scaleway_mnq_sqs["main"]["region"],
+                "region": main_scaleway_mnq_sqs["region"],
             })
         ```
 
@@ -321,11 +324,12 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.ContainerTrigger("main",
-            container_id=scaleway_container["main"]["id"],
+            container_id=main_scaleway_container["id"],
+            name="my-trigger",
             nats={
-                "account_id": scaleway_mnq_nats_account["main"]["id"],
+                "account_id": main_scaleway_mnq_nats_account["id"],
                 "subject": "MySubject",
-                "region": scaleway_mnq_nats_account["main"]["region"],
+                "region": main_scaleway_mnq_nats_account["region"],
             })
         ```
 

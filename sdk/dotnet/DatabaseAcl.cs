@@ -26,8 +26,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
+    ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
@@ -36,9 +37,9 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var mainDatabaseAcl = new Scaleway.DatabaseAcl("mainDatabaseAcl", new()
+    ///     var mainDatabaseAcl = new Scaleway.DatabaseAcl("main", new()
     ///     {
-    ///         InstanceId = mainDatabaseInstance.Id,
+    ///         InstanceId = main.Id,
     ///         AclRules = new[]
     ///         {
     ///             new Scaleway.Inputs.DatabaseAclAclRuleArgs

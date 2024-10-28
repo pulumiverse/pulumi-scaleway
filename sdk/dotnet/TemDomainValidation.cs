@@ -26,6 +26,7 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.TemDomain("main", new()
     ///     {
     ///         AcceptTos = true,
+    ///         Name = "example.com",
     ///     });
     /// 
     ///     var example = new Scaleway.TemDomainValidation("example", new()

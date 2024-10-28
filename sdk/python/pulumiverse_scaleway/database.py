@@ -199,14 +199,17 @@ class Database(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+        main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
+        main_database = scaleway.Database("main",
+            instance_id=main.id,
+            name="my-new-database")
         ```
 
         ## Import
@@ -245,14 +248,17 @@ class Database(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_database_instance = scaleway.DatabaseInstance("mainDatabaseInstance",
+        main = scaleway.DatabaseInstance("main",
+            name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("mainDatabase", instance_id=main_database_instance.id)
+        main_database = scaleway.Database("main",
+            instance_id=main.id,
+            name="my-new-database")
         ```
 
         ## Import

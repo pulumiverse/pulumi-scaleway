@@ -27,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Find ips that share the same tags
 //			_, err := scaleway.GetFlexibleIps(ctx, &scaleway.GetFlexibleIpsArgs{
 //				Tags: []string{
 //					"a tag",
@@ -35,6 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Find ips that share the same Server ID
 //			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
 //				Name: pulumi.StringRef("EM-B112X-SSD"),
 //			}, nil)
@@ -42,6 +44,7 @@ import (
 //				return err
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//				Name:                   pulumi.String("MyServer"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})

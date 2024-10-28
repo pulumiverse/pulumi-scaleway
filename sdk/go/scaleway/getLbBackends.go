@@ -29,14 +29,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Find backends that share the same LB ID
 //			_, err := scaleway.GetLbBackends(ctx, &scaleway.GetLbBackendsArgs{
-//				LbId: scaleway_lb.Lb01.Id,
+//				LbId: lb01.Id,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Find backends by LB ID and name
 //			_, err = scaleway.GetLbBackends(ctx, &scaleway.GetLbBackendsArgs{
-//				LbId: scaleway_lb.Lb01.Id,
+//				LbId: lb01.Id,
 //				Name: pulumi.StringRef("tf-backend-datasource"),
 //			}, nil)
 //			if err != nil {

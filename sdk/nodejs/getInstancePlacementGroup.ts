@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a Security Group.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getInstancePlacementGroup({
- *     placementGroupId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getInstancePlacementGroup(args?: GetInstancePlacementGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancePlacementGroupResult> {
     args = args || {};
@@ -87,17 +76,6 @@ export interface GetInstancePlacementGroupResult {
 }
 /**
  * Gets information about a Security Group.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getInstancePlacementGroup({
- *     placementGroupId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getInstancePlacementGroupOutput(args?: GetInstancePlacementGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancePlacementGroupResult> {
     return pulumi.output(args).apply((a: any) => getInstancePlacementGroup(a, opts))

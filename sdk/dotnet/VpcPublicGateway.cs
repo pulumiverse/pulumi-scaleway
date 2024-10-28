@@ -28,12 +28,13 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.VpcPublicGateway("main", new()
     ///     {
+    ///         Name = "public_gateway_demo",
+    ///         Type = "VPC-GW-S",
     ///         Tags = new[]
     ///         {
     ///             "demo",
     ///             "terraform",
     ///         },
-    ///         Type = "VPC-GW-S",
     ///     });
     /// 
     /// });

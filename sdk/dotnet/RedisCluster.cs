@@ -28,25 +28,26 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.RedisCluster("main", new()
     ///     {
-    ///         Acls = new[]
-    ///         {
-    ///             new Scaleway.Inputs.RedisClusterAclArgs
-    ///             {
-    ///                 Description = "Allow all",
-    ///                 Ip = "0.0.0.0/0",
-    ///             },
-    ///         },
-    ///         ClusterSize = 1,
+    ///         Name = "test_redis_basic",
+    ///         Version = "6.2.7",
     ///         NodeType = "RED1-MICRO",
+    ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         Tags = new[]
     ///         {
     ///             "test",
     ///             "redis",
     ///         },
+    ///         ClusterSize = 1,
     ///         TlsEnabled = true,
-    ///         UserName = "my_initial_user",
-    ///         Version = "6.2.7",
+    ///         Acls = new[]
+    ///         {
+    ///             new Scaleway.Inputs.RedisClusterAclArgs
+    ///             {
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Description = "Allow all",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -64,15 +65,16 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.RedisCluster("main", new()
     ///     {
+    ///         Name = "test_redis_basic",
+    ///         Version = "6.2.7",
     ///         NodeType = "RED1-MICRO",
+    ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         Settings = 
     ///         {
     ///             { "maxclients", "1000" },
     ///             { "tcp-keepalive", "120" },
     ///         },
-    ///         UserName = "my_initial_user",
-    ///         Version = "6.2.7",
     ///     });
     /// 
     /// });
@@ -88,10 +90,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     {
+    ///         Name = "private-network",
+    ///     });
     /// 
     ///     var main = new Scaleway.RedisCluster("main", new()
     ///     {
+    ///         Name = "test_redis_endpoints",
     ///         Version = "6.2.7",
     ///         NodeType = "RED1-MICRO",
     ///         UserName = "my_initial_user",

@@ -13,12 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const byName = scaleway.getVpc({
  *     name: "foobar",
  * });
+ * // Get info by ID
  * const byId = scaleway.getVpc({
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get default VPC info
  * const default = scaleway.getVpc({
  *     isDefault: true,
  * });
@@ -93,12 +96,15 @@ export interface GetVpcResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by name
  * const byName = scaleway.getVpc({
  *     name: "foobar",
  * });
+ * // Get info by ID
  * const byId = scaleway.getVpc({
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
+ * // Get default VPC info
  * const default = scaleway.getVpc({
  *     isDefault: true,
  * });

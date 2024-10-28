@@ -122,10 +122,10 @@ def get_instance_private_nic(private_network_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_nic_id = scaleway.get_instance_private_nic(private_nic_id="11111111-1111-1111-1111-111111111111",
-        server_id="11111111-1111-1111-1111-111111111111")
-    by_pn_id = scaleway.get_instance_private_nic(private_network_id="11111111-1111-1111-1111-111111111111",
-        server_id="11111111-1111-1111-1111-111111111111")
+    by_nic_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+        private_nic_id="11111111-1111-1111-1111-111111111111")
+    by_pn_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+        private_network_id="11111111-1111-1111-1111-111111111111")
     by_tags = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         tags=["mytag"])
     ```
@@ -176,10 +176,10 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_nic_id = scaleway.get_instance_private_nic(private_nic_id="11111111-1111-1111-1111-111111111111",
-        server_id="11111111-1111-1111-1111-111111111111")
-    by_pn_id = scaleway.get_instance_private_nic(private_network_id="11111111-1111-1111-1111-111111111111",
-        server_id="11111111-1111-1111-1111-111111111111")
+    by_nic_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+        private_nic_id="11111111-1111-1111-1111-111111111111")
+    by_pn_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+        private_network_id="11111111-1111-1111-1111-111111111111")
     by_tags = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         tags=["mytag"])
     ```

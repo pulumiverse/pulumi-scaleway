@@ -14,48 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a Security Group.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetInstancePlacementGroup.Invoke(new()
-        ///     {
-        ///         PlacementGroupId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetInstancePlacementGroupResult> InvokeAsync(GetInstancePlacementGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstancePlacementGroupResult>("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", args ?? new GetInstancePlacementGroupArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a Security Group.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetInstancePlacementGroup.Invoke(new()
-        ///     {
-        ///         PlacementGroupId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetInstancePlacementGroupResult> Invoke(GetInstancePlacementGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancePlacementGroupResult>("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", args ?? new GetInstancePlacementGroupInvokeArgs(), options.WithDefaults());

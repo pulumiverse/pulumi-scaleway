@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const serverIp = new scaleway.InstanceIp("serverIp", {});
+ * const serverIp = new scaleway.InstanceIp("server_ip", {});
  * ```
  *
  * ## Import

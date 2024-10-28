@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get SSH key information based on its ID or name.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getIamSshKey({
- *     sshKeyId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getIamSshKey(args?: GetIamSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetIamSshKeyResult> {
     args = args || {};
@@ -85,17 +74,6 @@ export interface GetIamSshKeyResult {
 }
 /**
  * Use this data source to get SSH key information based on its ID or name.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getIamSshKey({
- *     sshKeyId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getIamSshKeyOutput(args?: GetIamSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamSshKeyResult> {
     return pulumi.output(args).apply((a: any) => getIamSshKey(a, opts))

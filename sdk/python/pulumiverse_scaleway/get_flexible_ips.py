@@ -129,9 +129,12 @@ def get_flexible_ips(project_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
+    # Find ips that share the same tags
     fips_by_tags = scaleway.get_flexible_ips(tags=["a tag"])
+    # Find ips that share the same Server ID
     my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
     base = scaleway.BaremetalServer("base",
+        name="MyServer",
         offer=my_offer.offer_id,
         install_config_afterward=True)
     first = scaleway.FlexibleIp("first",
@@ -189,9 +192,12 @@ def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
+    # Find ips that share the same tags
     fips_by_tags = scaleway.get_flexible_ips(tags=["a tag"])
+    # Find ips that share the same Server ID
     my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
     base = scaleway.BaremetalServer("base",
+        name="MyServer",
         offer=my_offer.offer_id,
         install_config_afterward=True)
     first = scaleway.FlexibleIp("first",

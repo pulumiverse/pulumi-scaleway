@@ -25,6 +25,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var main = new Scaleway.IamApplication("main", new()
     ///     {
+    ///         Name = "My application",
     ///         Description = "a description",
     ///     });
     /// 

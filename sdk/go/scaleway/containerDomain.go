@@ -31,12 +31,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			appContainer, err := scaleway.NewContainer(ctx, "appContainer", nil)
+//			app, err := scaleway.NewContainer(ctx, "app", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewContainerDomain(ctx, "appContainerDomain", &scaleway.ContainerDomainArgs{
-//				ContainerId: appContainer.ID(),
+//			_, err = scaleway.NewContainerDomain(ctx, "app", &scaleway.ContainerDomainArgs{
+//				ContainerId: app.ID(),
 //				Hostname:    pulumi.String("container.domain.tld"),
 //			})
 //			if err != nil {
@@ -65,12 +65,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//				Name:        pulumi.String("my-ns-test"),
 //				Description: pulumi.String("test container"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			appContainer, err := scaleway.NewContainer(ctx, "appContainer", &scaleway.ContainerArgs{
+//			app, err := scaleway.NewContainer(ctx, "app", &scaleway.ContainerArgs{
+//				Name:        pulumi.String("app"),
 //				NamespaceId: main.ID(),
 //				RegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
 //					return fmt.Sprintf("%v/nginx:alpine", registryEndpoint), nil
@@ -89,10 +91,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			appDomainRecord, err := scaleway.NewDomainRecord(ctx, "appDomainRecord", &scaleway.DomainRecordArgs{
+//			appDomainRecord, err := scaleway.NewDomainRecord(ctx, "app", &scaleway.DomainRecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
+//				Name:    pulumi.String("subdomain"),
 //				Type:    pulumi.String("CNAME"),
-//				Data: appContainer.DomainName.ApplyT(func(domainName string) (string, error) {
+//				Data: app.DomainName.ApplyT(func(domainName string) (string, error) {
 //					return fmt.Sprintf("%v.", domainName), nil
 //				}).(pulumi.StringOutput),
 //				Ttl: pulumi.Int(3600),
@@ -100,8 +103,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewContainerDomain(ctx, "appContainerDomain", &scaleway.ContainerDomainArgs{
-//				ContainerId: appContainer.ID(),
+//			_, err = scaleway.NewContainerDomain(ctx, "app", &scaleway.ContainerDomainArgs{
+//				ContainerId: app.ID(),
 //				Hostname: pulumi.All(appDomainRecord.Name, appDomainRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {
 //					name := _args[0].(string)
 //					dnsZone := _args[1].(string)

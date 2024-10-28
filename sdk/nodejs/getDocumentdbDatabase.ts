@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
  * const main = scaleway.getDocumentdbDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",
@@ -78,6 +79,7 @@ export interface GetDocumentdbDatabaseResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
  * const main = scaleway.getDocumentdbDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",

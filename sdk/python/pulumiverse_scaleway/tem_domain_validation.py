@@ -156,7 +156,9 @@ class TemDomainValidation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main", accept_tos=True)
+        main = scaleway.TemDomain("main",
+            accept_tos=True,
+            name="example.com")
         example = scaleway.TemDomainValidation("example",
             domain_id=main.id,
             region="fr-par",
@@ -184,7 +186,9 @@ class TemDomainValidation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main", accept_tos=True)
+        main = scaleway.TemDomain("main",
+            accept_tos=True,
+            name="example.com")
         example = scaleway.TemDomainValidation("example",
             domain_id=main.id,
             region="fr-par",

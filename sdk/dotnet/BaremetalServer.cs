@@ -45,6 +45,141 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With option
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.GetBaremetalOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-B112X-SSD",
+    ///     });
+    /// 
+    ///     var privateNetwork = Scaleway.GetBaremetalOption.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Private Network",
+    ///     });
+    /// 
+    ///     var remoteAccess = Scaleway.GetBaremetalOption.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Remote Access",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
+    ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///         },
+    ///         Options = new[]
+    ///         {
+    ///             new Scaleway.Inputs.BaremetalServerOptionArgs
+    ///             {
+    ///                 Id = privateNetwork.Apply(getBaremetalOptionResult =&gt; getBaremetalOptionResult.OptionId),
+    ///             },
+    ///             new Scaleway.Inputs.BaremetalServerOptionArgs
+    ///             {
+    ///                 Id = remoteAccess.Apply(getBaremetalOptionResult =&gt; getBaremetalOptionResult.OptionId),
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With private network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.GetBaremetalOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-B112X-SSD",
+    ///     });
+    /// 
+    ///     var privateNetwork = Scaleway.GetBaremetalOption.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Private Network",
+    ///     });
+    /// 
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     {
+    ///         Region = "fr-par",
+    ///         Name = "baremetal_private_network",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
+    ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///         },
+    ///         Options = new[]
+    ///         {
+    ///             new Scaleway.Inputs.BaremetalServerOptionArgs
+    ///             {
+    ///                 Id = privateNetwork.Apply(getBaremetalOptionResult =&gt; getBaremetalOptionResult.OptionId),
+    ///             },
+    ///         },
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Inputs.BaremetalServerPrivateNetworkArgs
+    ///             {
+    ///                 Id = pn.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Without install config
     /// 
     /// ```csharp

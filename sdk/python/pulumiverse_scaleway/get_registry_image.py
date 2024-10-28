@@ -159,16 +159,6 @@ def get_registry_image(image_id: Optional[str] = None,
     """
     Gets information about a Container Registry image.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_registry_image(image_id="11111111-1111-1111-1111-111111111111",
-        namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str image_id: The image ID.
            
@@ -213,16 +203,6 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryImageResult]:
     """
     Gets information about a Container Registry image.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_image = scaleway.get_registry_image(image_id="11111111-1111-1111-1111-111111111111",
-        namespace_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str image_id: The image ID.

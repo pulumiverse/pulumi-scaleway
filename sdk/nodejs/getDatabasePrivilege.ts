@@ -13,10 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
  * const main = scaleway.getDatabasePrivilege({
- *     databaseName: "my-database",
  *     instanceId: "11111111-1111-111111111111",
  *     userName: "my-user",
+ *     databaseName: "my-database",
  * });
  * ```
  */
@@ -80,10 +81,11 @@ export interface GetDatabasePrivilegeResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
  * const main = scaleway.getDatabasePrivilege({
- *     databaseName: "my-database",
  *     instanceId: "11111111-1111-111111111111",
  *     userName: "my-user",
+ *     databaseName: "my-database",
  * });
  * ```
  */

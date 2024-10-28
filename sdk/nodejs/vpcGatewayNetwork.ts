@@ -20,14 +20,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     name: "pn_test_network",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
  *     vpcId: vpc01.id,
  * });
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     name: "foobar",
+ *     type: "VPC-GW-S",
+ * });
  * const main = new scaleway.VpcGatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
@@ -44,8 +48,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     name: "pn_test_network",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
@@ -57,7 +62,10 @@ import * as utilities from "./utilities";
  *         privateNetworkId: pn01.id,
  *     }],
  * });
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     name: "foobar",
+ *     type: "VPC-GW-S",
+ * });
  * const main = new scaleway.VpcGatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
@@ -75,13 +83,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "pn_test_network"});
  * const gw01 = new scaleway.VpcPublicGatewayIp("gw01", {});
  * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {
  *     subnet: "192.168.1.0/24",
  *     pushDefaultRoute: true,
  * });
  * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     name: "foobar",
  *     type: "VPC-GW-S",
  *     ipId: gw01.id,
  * });
@@ -100,8 +109,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {type: "VPC-GW-S"});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "pn_test_network"});
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     name: "foobar",
+ *     type: "VPC-GW-S",
+ * });
  * const main = new scaleway.VpcGatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,

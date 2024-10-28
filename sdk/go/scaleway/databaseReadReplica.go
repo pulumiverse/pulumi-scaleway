@@ -32,6 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("test-rdb-rr-update"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-14"),
 //				IsHaCluster:   pulumi.Bool(false),
@@ -75,6 +76,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("rdb_instance"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-14"),
 //				IsHaCluster:   pulumi.Bool(false),
@@ -120,6 +122,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//				Name:          pulumi.String("rdb_instance"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-14"),
 //				IsHaCluster:   pulumi.Bool(false),

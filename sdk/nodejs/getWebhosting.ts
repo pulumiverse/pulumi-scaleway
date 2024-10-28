@@ -15,9 +15,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by offer domain
  * const byDomain = scaleway.getWebhosting({
  *     domain: "foobar.com",
  * });
+ * // Get info by id
  * const byId = scaleway.getWebhosting({
  *     webhostingId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -94,9 +96,11 @@ export interface GetWebhostingResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Get info by offer domain
  * const byDomain = scaleway.getWebhosting({
  *     domain: "foobar.com",
  * });
+ * // Get info by id
  * const byId = scaleway.getWebhosting({
  *     webhostingId: "11111111-1111-1111-1111-111111111111",
  * });

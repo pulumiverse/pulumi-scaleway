@@ -44,7 +44,10 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainAccountSshKey = new scaleway.AccountSshKey("mainAccountSshKey", {publicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com"});
+ * const main = new scaleway.AccountSshKey("main", {
+ *     name: "main",
+ *     publicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com",
+ * });
  * const byId = scaleway.getBaremetalOs({
  *     zone: "fr-par-2",
  *     name: "Ubuntu",
@@ -58,9 +61,9 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: byId.then(byId => byId.osId),
- *     sshKeyIds: mainAccountSshKey.id,
+ *     sshKeyIds: main.id,
  * });
- * const mainFlexibleIp = new scaleway.FlexibleIp("mainFlexibleIp", {
+ * const mainFlexibleIp = new scaleway.FlexibleIp("main", {
  *     serverId: base.id,
  *     zone: "fr-par-2",
  * });

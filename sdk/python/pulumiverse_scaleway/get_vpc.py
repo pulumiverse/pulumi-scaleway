@@ -150,8 +150,11 @@ def get_vpc(is_default: Optional[bool] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     by_name = scaleway.get_vpc(name="foobar")
+    # Get info by ID
     by_id = scaleway.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
+    # Get default VPC info
     default = scaleway.get_vpc(is_default=True)
     ```
 
@@ -203,8 +206,11 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Get info by name
     by_name = scaleway.get_vpc(name="foobar")
+    # Get info by ID
     by_id = scaleway.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
+    # Get default VPC info
     default = scaleway.get_vpc(is_default=True)
     ```
 

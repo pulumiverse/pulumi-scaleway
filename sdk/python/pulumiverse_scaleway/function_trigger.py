@@ -245,11 +245,12 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FunctionTrigger("main",
-            function_id=scaleway_function["main"]["id"],
+            function_id=main_scaleway_function["id"],
+            name="my-trigger",
             sqs={
-                "project_id": scaleway_mnq_sqs["main"]["project_id"],
+                "project_id": main_scaleway_mnq_sqs["projectId"],
                 "queue": "MyQueue",
-                "region": scaleway_mnq_sqs["main"]["region"],
+                "region": main_scaleway_mnq_sqs["region"],
             })
         ```
 
@@ -260,11 +261,12 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FunctionTrigger("main",
-            function_id=scaleway_function["main"]["id"],
+            function_id=main_scaleway_function["id"],
+            name="my-trigger",
             nats={
-                "account_id": scaleway_mnq_nats_account["main"]["id"],
+                "account_id": main_scaleway_mnq_nats_account["id"],
                 "subject": "MySubject",
-                "region": scaleway_mnq_nats_account["main"]["region"],
+                "region": main_scaleway_mnq_nats_account["region"],
             })
         ```
 
@@ -306,11 +308,12 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FunctionTrigger("main",
-            function_id=scaleway_function["main"]["id"],
+            function_id=main_scaleway_function["id"],
+            name="my-trigger",
             sqs={
-                "project_id": scaleway_mnq_sqs["main"]["project_id"],
+                "project_id": main_scaleway_mnq_sqs["projectId"],
                 "queue": "MyQueue",
-                "region": scaleway_mnq_sqs["main"]["region"],
+                "region": main_scaleway_mnq_sqs["region"],
             })
         ```
 
@@ -321,11 +324,12 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.FunctionTrigger("main",
-            function_id=scaleway_function["main"]["id"],
+            function_id=main_scaleway_function["id"],
+            name="my-trigger",
             nats={
-                "account_id": scaleway_mnq_nats_account["main"]["id"],
+                "account_id": main_scaleway_mnq_nats_account["id"],
                 "subject": "MySubject",
-                "region": scaleway_mnq_nats_account["main"]["region"],
+                "region": main_scaleway_mnq_nats_account["region"],
             })
         ```
 

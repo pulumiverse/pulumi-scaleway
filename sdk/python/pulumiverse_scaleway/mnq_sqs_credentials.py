@@ -212,9 +212,10 @@ class MnqSqsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
-            project_id=main_mnq_sqs.project_id,
+        main = scaleway.MnqSqs("main")
+        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+            project_id=main.project_id,
+            name="sqs-credentials",
             permissions={
                 "can_manage": False,
                 "can_receive": True,
@@ -258,9 +259,10 @@ class MnqSqsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
-            project_id=main_mnq_sqs.project_id,
+        main = scaleway.MnqSqs("main")
+        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+            project_id=main.project_id,
+            name="sqs-credentials",
             permissions={
                 "can_manage": False,
                 "can_receive": True,

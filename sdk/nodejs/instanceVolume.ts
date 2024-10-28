@@ -14,9 +14,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const serverVolume = new scaleway.InstanceVolume("serverVolume", {
- *     sizeInGb: 20,
+ * const serverVolume = new scaleway.InstanceVolume("server_volume", {
  *     type: "l_ssd",
+ *     name: "some-volume-name",
+ *     sizeInGb: 20,
  * });
  * ```
  *

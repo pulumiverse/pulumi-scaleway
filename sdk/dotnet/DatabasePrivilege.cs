@@ -24,8 +24,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainDatabaseInstance = new Scaleway.DatabaseInstance("mainDatabaseInstance", new()
+    ///     var main = new Scaleway.DatabaseInstance("main", new()
     ///     {
+    ///         Name = "rdb",
     ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-11",
     ///         IsHaCluster = true,
@@ -34,21 +35,23 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var mainDatabase = new Scaleway.Database("mainDatabase", new()
+    ///     var mainDatabase = new Scaleway.Database("main", new()
     ///     {
-    ///         InstanceId = mainDatabaseInstance.Id,
+    ///         InstanceId = main.Id,
+    ///         Name = "database",
     ///     });
     /// 
-    ///     var mainDatabaseUser = new Scaleway.DatabaseUser("mainDatabaseUser", new()
+    ///     var mainDatabaseUser = new Scaleway.DatabaseUser("main", new()
     ///     {
-    ///         InstanceId = mainDatabaseInstance.Id,
+    ///         InstanceId = main.Id,
+    ///         Name = "my-db-user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         IsAdmin = false,
     ///     });
     /// 
-    ///     var mainDatabasePrivilege = new Scaleway.DatabasePrivilege("mainDatabasePrivilege", new()
+    ///     var mainDatabasePrivilege = new Scaleway.DatabasePrivilege("main", new()
     ///     {
-    ///         InstanceId = mainDatabaseInstance.Id,
+    ///         InstanceId = main.Id,
     ///         UserName = mainDatabaseUser.Name,
     ///         DatabaseName = mainDatabase.Name,
     ///         Permission = "all",

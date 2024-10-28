@@ -243,30 +243,31 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+        main = scaleway.VpcPrivateNetwork("main", name="your_private_network")
+        main_instance_server = scaleway.InstanceServer("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
             private_networks=[{
-                "pn_id": main_vpc_private_network.id,
+                "pn_id": main.id,
             }])
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
+        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("main")
+        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
+        main_vpc_public_gateway = scaleway.VpcPublicGateway("main",
+            name="foobar",
             type="VPC-GW-S",
             ip_id=main_vpc_public_gateway_ip.id)
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
+        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("main",
             gateway_id=main_vpc_public_gateway.id,
-            private_network_id=main_vpc_private_network.id,
+            private_network_id=main.id,
             dhcp_id=main_vpc_public_gateway_dhcp.id,
             cleanup_dhcp=True,
             enable_masquerade=True,
             opts = pulumi.ResourceOptions(depends_on=[
                     main_vpc_public_gateway_ip,
-                    main_vpc_private_network,
+                    main,
                 ]))
-        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation",
+        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("main",
             gateway_network_id=main_vpc_gateway_network.id,
             mac_address=main_instance_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
@@ -312,30 +313,31 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_vpc_private_network = scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork")
-        main_instance_server = scaleway.InstanceServer("mainInstanceServer",
+        main = scaleway.VpcPrivateNetwork("main", name="your_private_network")
+        main_instance_server = scaleway.InstanceServer("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
             private_networks=[{
-                "pn_id": main_vpc_private_network.id,
+                "pn_id": main.id,
             }])
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
+        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("main")
+        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
+        main_vpc_public_gateway = scaleway.VpcPublicGateway("main",
+            name="foobar",
             type="VPC-GW-S",
             ip_id=main_vpc_public_gateway_ip.id)
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork",
+        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("main",
             gateway_id=main_vpc_public_gateway.id,
-            private_network_id=main_vpc_private_network.id,
+            private_network_id=main.id,
             dhcp_id=main_vpc_public_gateway_dhcp.id,
             cleanup_dhcp=True,
             enable_masquerade=True,
             opts = pulumi.ResourceOptions(depends_on=[
                     main_vpc_public_gateway_ip,
-                    main_vpc_private_network,
+                    main,
                 ]))
-        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation",
+        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("main",
             gateway_network_id=main_vpc_gateway_network.id,
             mac_address=main_instance_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")

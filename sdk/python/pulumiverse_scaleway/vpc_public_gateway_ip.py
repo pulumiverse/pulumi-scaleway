@@ -240,12 +240,13 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
-        tf_a = scaleway.DomainRecord("tfA",
-            data=main.address,
+        tf_a = scaleway.DomainRecord("tf_A",
             dns_zone="example.com",
-            priority=1,
+            name="tf",
+            type="A",
+            data=main.address,
             ttl=3600,
-            type="A")
+            priority=1)
         ```
 
         ## Import
@@ -282,12 +283,13 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
-        tf_a = scaleway.DomainRecord("tfA",
-            data=main.address,
+        tf_a = scaleway.DomainRecord("tf_A",
             dns_zone="example.com",
-            priority=1,
+            name="tf",
+            type="A",
+            data=main.address,
             ttl=3600,
-            type="A")
+            priority=1)
         ```
 
         ## Import

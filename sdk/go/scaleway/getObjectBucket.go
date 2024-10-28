@@ -29,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//				Name: pulumi.String("bucket.test.com"),
 //				Tags: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},

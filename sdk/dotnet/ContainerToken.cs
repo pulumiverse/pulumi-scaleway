@@ -26,17 +26,20 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainContainerNamespace = new Scaleway.ContainerNamespace("mainContainerNamespace");
-    /// 
-    ///     var mainContainer = new Scaleway.Container("mainContainer", new()
+    ///     var main = new Scaleway.ContainerNamespace("main", new()
     ///     {
-    ///         NamespaceId = mainContainerNamespace.Id,
+    ///         Name = "test-container-token-ns",
+    ///     });
+    /// 
+    ///     var mainContainer = new Scaleway.Container("main", new()
+    ///     {
+    ///         NamespaceId = main.Id,
     ///     });
     /// 
     ///     // Namespace Token
     ///     var @namespace = new Scaleway.ContainerToken("namespace", new()
     ///     {
-    ///         NamespaceId = mainContainerNamespace.Id,
+    ///         NamespaceId = main.Id,
     ///         ExpiresAt = "2022-10-18T11:35:15+02:00",
     ///     });
     /// 

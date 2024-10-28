@@ -168,14 +168,16 @@ def get_secret_version(project_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main_secret = scaleway.Secret("mainSecret", description="barr")
-    main_secret_version = scaleway.SecretVersion("mainSecretVersion",
+    main = scaleway.Secret("main",
+        name="fooii",
+        description="barr")
+    main_secret_version = scaleway.SecretVersion("main",
         description="your description",
-        secret_id=main_secret.id,
+        secret_id=main.id,
         data="your_secret")
-    data_by_secret_id = scaleway.get_secret_version_output(secret_id=main_secret.id,
+    data_by_secret_id = scaleway.get_secret_version_output(secret_id=main.id,
         revision="1")
-    data_by_secret_name = scaleway.get_secret_version_output(secret_name=main_secret.name,
+    data_by_secret_name = scaleway.get_secret_version_output(secret_name=main.name,
         revision="1")
     pulumi.export("scalewaySecretAccessPayload", data_by_secret_name.data)
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
@@ -243,14 +245,16 @@ def get_secret_version_output(project_id: Optional[pulumi.Input[Optional[str]]] 
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main_secret = scaleway.Secret("mainSecret", description="barr")
-    main_secret_version = scaleway.SecretVersion("mainSecretVersion",
+    main = scaleway.Secret("main",
+        name="fooii",
+        description="barr")
+    main_secret_version = scaleway.SecretVersion("main",
         description="your description",
-        secret_id=main_secret.id,
+        secret_id=main.id,
         data="your_secret")
-    data_by_secret_id = scaleway.get_secret_version_output(secret_id=main_secret.id,
+    data_by_secret_id = scaleway.get_secret_version_output(secret_id=main.id,
         revision="1")
-    data_by_secret_name = scaleway.get_secret_version_output(secret_name=main_secret.name,
+    data_by_secret_name = scaleway.get_secret_version_output(secret_name=main.name,
         revision="1")
     pulumi.export("scalewaySecretAccessPayload", data_by_secret_name.data)
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)

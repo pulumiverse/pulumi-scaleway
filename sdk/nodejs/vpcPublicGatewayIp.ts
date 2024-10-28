@@ -15,12 +15,13 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const main = new scaleway.VpcPublicGatewayIp("main", {reverse: "tf.example.com"});
- * const tfA = new scaleway.DomainRecord("tfA", {
- *     data: main.address,
+ * const tfA = new scaleway.DomainRecord("tf_A", {
  *     dnsZone: "example.com",
- *     priority: 1,
- *     ttl: 3600,
+ *     name: "tf",
  *     type: "A",
+ *     data: main.address,
+ *     ttl: 3600,
+ *     priority: 1,
  * });
  * ```
  *

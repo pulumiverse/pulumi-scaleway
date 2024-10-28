@@ -256,9 +256,10 @@ class CockpitSource(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
+        project = scaleway.AccountProject("project", name="test project data source")
         main = scaleway.CockpitSource("main",
             project_id=project.id,
+            name="my-data-source",
             type="metrics")
         ```
 
@@ -296,9 +297,10 @@ class CockpitSource(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project")
+        project = scaleway.AccountProject("project", name="test project data source")
         main = scaleway.CockpitSource("main",
             project_id=project.id,
+            name="my-data-source",
             type="metrics")
         ```
 

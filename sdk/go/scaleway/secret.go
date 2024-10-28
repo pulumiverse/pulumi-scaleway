@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//				Name:        pulumi.String("foo"),
 //				Description: pulumi.String("barr"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),

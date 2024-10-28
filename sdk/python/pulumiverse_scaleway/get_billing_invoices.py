@@ -103,15 +103,6 @@ def get_billing_invoices(invoice_type: Optional[str] = None,
     """
     Gets information about your Scaleway invoices.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_invoices = scaleway.get_billing_invoices(invoice_type="periodic")
-    ```
-
 
     :param str invoice_type: Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
     :param str started_after: Invoices with a start date that are greater or equal to `started_after` are listed (RFC 3339 format).
@@ -140,15 +131,6 @@ def get_billing_invoices_output(invoice_type: Optional[pulumi.Input[Optional[str
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBillingInvoicesResult]:
     """
     Gets information about your Scaleway invoices.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_invoices = scaleway.get_billing_invoices(invoice_type="periodic")
-    ```
 
 
     :param str invoice_type: Invoices with the given type are listed. Valid values are `periodic` and `purchase`.

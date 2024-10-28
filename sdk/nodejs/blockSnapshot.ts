@@ -14,11 +14,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const blockVolume = new scaleway.BlockVolume("blockVolume", {
+ * const blockVolume = new scaleway.BlockVolume("block_volume", {
  *     iops: 5000,
+ *     name: "some-volume-name",
  *     sizeInGb: 20,
  * });
- * const blockSnapshot = new scaleway.BlockSnapshot("blockSnapshot", {volumeId: blockVolume.id});
+ * const blockSnapshot = new scaleway.BlockSnapshot("block_snapshot", {
+ *     name: "some-snapshot-name",
+ *     volumeId: blockVolume.id,
+ * });
  * ```
  *
  * ## Import

@@ -118,8 +118,10 @@ def get_lb_frontends(lb_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_lbid = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"])
-    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"],
+    # Find frontends that share the same LB ID
+    by_lbid = scaleway.get_lb_frontends(lb_id=lb01["id"])
+    # Find frontends by LB ID and name
+    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=lb01["id"],
         name="tf-frontend-datasource")
     ```
 
@@ -163,8 +165,10 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_lbid = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"])
-    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=scaleway_lb["lb01"]["id"],
+    # Find frontends that share the same LB ID
+    by_lbid = scaleway.get_lb_frontends(lb_id=lb01["id"])
+    # Find frontends by LB ID and name
+    by_lbid_and_name = scaleway.get_lb_frontends(lb_id=lb01["id"],
         name="tf-frontend-datasource")
     ```
 

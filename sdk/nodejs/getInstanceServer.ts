@@ -8,17 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about an instance server.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getInstanceServer({
- *     serverId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getInstanceServer(args?: GetInstanceServerArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServerResult> {
     args = args || {};
@@ -158,17 +147,6 @@ export interface GetInstanceServerResult {
 }
 /**
  * Gets information about an instance server.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myKey = scaleway.getInstanceServer({
- *     serverId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
  */
 export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServerResult> {
     return pulumi.output(args).apply((a: any) => getInstanceServer(a, opts))

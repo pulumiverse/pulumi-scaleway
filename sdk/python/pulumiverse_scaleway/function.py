@@ -716,9 +716,11 @@ class Function(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace", description="Main function namespace")
-        main_function = scaleway.Function("mainFunction",
-            namespace_id=main_function_namespace.id,
+        main = scaleway.FunctionNamespace("main",
+            name="main-function-namespace",
+            description="Main function namespace")
+        main_function = scaleway.Function("main",
+            namespace_id=main.id,
             runtime="go118",
             handler="Handle",
             privacy="private")
@@ -775,9 +777,11 @@ class Function(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("mainFunctionNamespace", description="Main function namespace")
-        main_function = scaleway.Function("mainFunction",
-            namespace_id=main_function_namespace.id,
+        main = scaleway.FunctionNamespace("main",
+            name="main-function-namespace",
+            description="Main function namespace")
+        main_function = scaleway.Function("main",
+            namespace_id=main.id,
             runtime="go118",
             handler="Handle",
             privacy="private")

@@ -304,7 +304,9 @@ class AppleSiliconServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server = scaleway.AppleSiliconServer("server", type="M1-M")
+        server = scaleway.AppleSiliconServer("server",
+            name="test-m1",
+            type="M1-M")
         ```
 
         ## Import
@@ -346,7 +348,9 @@ class AppleSiliconServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server = scaleway.AppleSiliconServer("server", type="M1-M")
+        server = scaleway.AppleSiliconServer("server",
+            name="test-m1",
+            type="M1-M")
         ```
 
         ## Import

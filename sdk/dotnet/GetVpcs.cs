@@ -14,50 +14,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about multiple Virtual Private Clouds.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetVpcs.Invoke(new()
-        ///     {
-        ///         Name = "tf-vpc-datasource",
-        ///         Region = "nl-ams",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetVpcsResult> InvokeAsync(GetVpcsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcsResult>("scaleway:index/getVpcs:getVpcs", args ?? new GetVpcsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about multiple Virtual Private Clouds.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myKey = Scaleway.GetVpcs.Invoke(new()
-        ///     {
-        ///         Name = "tf-vpc-datasource",
-        ///         Region = "nl-ams",
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetVpcsResult> Invoke(GetVpcsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcsResult>("scaleway:index/getVpcs:getVpcs", args ?? new GetVpcsInvokeArgs(), options.WithDefaults());

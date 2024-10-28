@@ -17,8 +17,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
- *     privateNetworkId: "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
  *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
+ *     privateNetworkId: "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
  * });
  * ```
  *
@@ -28,7 +28,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {zone: "fr-par-2"});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     name: "private_network_instance",
+ *     zone: "fr-par-2",
+ * });
  * const base = new scaleway.InstanceServer("base", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",

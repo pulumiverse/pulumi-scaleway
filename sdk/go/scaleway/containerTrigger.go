@@ -32,11 +32,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewContainerTrigger(ctx, "main", &scaleway.ContainerTriggerArgs{
-//				ContainerId: pulumi.Any(scaleway_container.Main.Id),
+//				ContainerId: pulumi.Any(mainScalewayContainer.Id),
+//				Name:        pulumi.String("my-trigger"),
 //				Sqs: &scaleway.ContainerTriggerSqsArgs{
-//					ProjectId: pulumi.Any(scaleway_mnq_sqs.Main.Project_id),
+//					ProjectId: pulumi.Any(mainScalewayMnqSqs.ProjectId),
 //					Queue:     pulumi.String("MyQueue"),
-//					Region:    pulumi.Any(scaleway_mnq_sqs.Main.Region),
+//					Region:    pulumi.Any(mainScalewayMnqSqs.Region),
 //				},
 //			})
 //			if err != nil {
@@ -63,11 +64,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewContainerTrigger(ctx, "main", &scaleway.ContainerTriggerArgs{
-//				ContainerId: pulumi.Any(scaleway_container.Main.Id),
+//				ContainerId: pulumi.Any(mainScalewayContainer.Id),
+//				Name:        pulumi.String("my-trigger"),
 //				Nats: &scaleway.ContainerTriggerNatsArgs{
-//					AccountId: pulumi.Any(scaleway_mnq_nats_account.Main.Id),
+//					AccountId: pulumi.Any(mainScalewayMnqNatsAccount.Id),
 //					Subject:   pulumi.String("MySubject"),
-//					Region:    pulumi.Any(scaleway_mnq_nats_account.Main.Region),
+//					Region:    pulumi.Any(mainScalewayMnqNatsAccount.Region),
 //				},
 //			})
 //			if err != nil {

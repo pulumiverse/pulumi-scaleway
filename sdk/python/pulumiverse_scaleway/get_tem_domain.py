@@ -269,15 +269,6 @@ def get_tem_domain(domain_id: Optional[str] = None,
     """
     Gets information about a transactional email domain.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_domain = scaleway.get_tem_domain(domain_id="11111111-1111-1111-1111-111111111111")
-    ```
-
 
     :param str domain_id: The domain id.
            Only one of `name` and `domain_id` should be specified.
@@ -330,15 +321,6 @@ def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = Non
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTemDomainResult]:
     """
     Gets information about a transactional email domain.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_domain = scaleway.get_tem_domain(domain_id="11111111-1111-1111-1111-111111111111")
-    ```
 
 
     :param str domain_id: The domain id.

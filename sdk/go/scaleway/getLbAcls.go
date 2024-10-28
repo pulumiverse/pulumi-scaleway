@@ -29,14 +29,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Find acls that share the same frontend ID
 //			_, err := scaleway.GetLbAcls(ctx, &scaleway.GetLbAclsArgs{
-//				FrontendId: scaleway_lb_frontend.Frt01.Id,
+//				FrontendId: frt01.Id,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Find acls by frontend ID and name
 //			_, err = scaleway.GetLbAcls(ctx, &scaleway.GetLbAclsArgs{
-//				FrontendId: scaleway_lb_frontend.Frt01.Id,
+//				FrontendId: frt01.Id,
 //				Name:       pulumi.StringRef("tf-acls-datasource"),
 //			}, nil)
 //			if err != nil {

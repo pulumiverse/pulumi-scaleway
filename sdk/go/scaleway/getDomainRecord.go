@@ -27,15 +27,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get record by name, type and data
 //			_, err := scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
-//				Data:    pulumi.StringRef("1.2.3.4"),
 //				DnsZone: pulumi.StringRef("domain.tld"),
 //				Name:    pulumi.StringRef("www"),
 //				Type:    pulumi.StringRef("A"),
+//				Data:    pulumi.StringRef("1.2.3.4"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			// Get info by ID
 //			_, err = scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
 //				DnsZone:  pulumi.StringRef("domain.tld"),
 //				RecordId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),

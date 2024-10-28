@@ -19,11 +19,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainContainerNamespace = new scaleway.ContainerNamespace("mainContainerNamespace", {description: "test container"});
- * const mainContainer = new scaleway.Container("mainContainer", {
+ * const main = new scaleway.ContainerNamespace("main", {
+ *     name: "my-ns-test",
+ *     description: "test container",
+ * });
+ * const mainContainer = new scaleway.Container("main", {
+ *     name: "my-container-02",
  *     description: "environment variables test",
- *     namespaceId: mainContainerNamespace.id,
- *     registryImage: pulumi.interpolate`${mainContainerNamespace.registryEndpoint}/alpine:test`,
+ *     namespaceId: main.id,
+ *     registryImage: pulumi.interpolate`${main.registryEndpoint}/alpine:test`,
  *     port: 9997,
  *     cpuLimit: 140,
  *     memoryLimit: 256,
