@@ -3,7 +3,7 @@ module github.com/pulumiverse/pulumi-scaleway/examples/go/server
 go 1.18
 
 require (
-	github.com/pulumi/pulumi/sdk/v3 v3.17.0
+	github.com/pulumi/pulumi/sdk/v3 v3.137.0
 	github.com/pulumiverse/pulumi-scaleway/sdk v1.12.1
 )
 
