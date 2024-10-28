@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -184,9 +189,6 @@ def get_loadbalancer_certificate(certificate_id: Optional[str] = None,
         not_valid_before=pulumi.get(__ret__, 'not_valid_before'),
         status=pulumi.get(__ret__, 'status'),
         subject_alternative_names=pulumi.get(__ret__, 'subject_alternative_names'))
-
-
-@_utilities.lift_output_func(get_loadbalancer_certificate)
 def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -207,4 +209,22 @@ def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Op
     :param str name: The name of the Load Balancer certificate.
            - When using a certificate `name` you should specify the `lb-id`
     """
-    ...
+    __args__ = dict()
+    __args__['certificateId'] = certificate_id
+    __args__['lbId'] = lb_id
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate', __args__, opts=opts, typ=GetLoadbalancerCertificateResult)
+    return __ret__.apply(lambda __response__: GetLoadbalancerCertificateResult(
+        certificate_id=pulumi.get(__response__, 'certificate_id'),
+        common_name=pulumi.get(__response__, 'common_name'),
+        custom_certificates=pulumi.get(__response__, 'custom_certificates'),
+        fingerprint=pulumi.get(__response__, 'fingerprint'),
+        id=pulumi.get(__response__, 'id'),
+        lb_id=pulumi.get(__response__, 'lb_id'),
+        letsencrypts=pulumi.get(__response__, 'letsencrypts'),
+        name=pulumi.get(__response__, 'name'),
+        not_valid_after=pulumi.get(__response__, 'not_valid_after'),
+        not_valid_before=pulumi.get(__response__, 'not_valid_before'),
+        status=pulumi.get(__response__, 'status'),
+        subject_alternative_names=pulumi.get(__response__, 'subject_alternative_names')))

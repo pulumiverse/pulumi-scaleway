@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -147,9 +152,6 @@ def get_web_host_offer(name: Optional[str] = None,
         price=pulumi.get(__ret__, 'price'),
         products=pulumi.get(__ret__, 'products'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_web_host_offer)
 def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                               offer_id: Optional[pulumi.Input[Optional[str]]] = None,
                               region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -174,4 +176,17 @@ def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param str region: `region`) The region in which offer exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['offerId'] = offer_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getWebHostOffer:getWebHostOffer', __args__, opts=opts, typ=GetWebHostOfferResult)
+    return __ret__.apply(lambda __response__: GetWebHostOfferResult(
+        billing_operation_path=pulumi.get(__response__, 'billing_operation_path'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        offer_id=pulumi.get(__response__, 'offer_id'),
+        price=pulumi.get(__response__, 'price'),
+        products=pulumi.get(__response__, 'products'),
+        region=pulumi.get(__response__, 'region')))

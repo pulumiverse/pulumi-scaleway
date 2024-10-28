@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -187,9 +192,6 @@ def get_vpc(is_default: Optional[bool] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-
-
-@_utilities.lift_output_func(get_vpc)
 def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
                    name: Optional[pulumi.Input[Optional[str]]] = None,
                    organization_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -221,4 +223,24 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str project_id: `project_id`) The ID of the Project the VPC is associated with.
     :param str vpc_id: ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
     """
-    ...
+    __args__ = dict()
+    __args__['isDefault'] = is_default
+    __args__['name'] = name
+    __args__['organizationId'] = organization_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['vpcId'] = vpc_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpc:getVpc', __args__, opts=opts, typ=GetVpcResult)
+    return __ret__.apply(lambda __response__: GetVpcResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        enable_routing=pulumi.get(__response__, 'enable_routing'),
+        id=pulumi.get(__response__, 'id'),
+        is_default=pulumi.get(__response__, 'is_default'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        vpc_id=pulumi.get(__response__, 'vpc_id')))

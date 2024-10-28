@@ -94,14 +94,20 @@ type LookupContainerNamespaceResult struct {
 
 func LookupContainerNamespaceOutput(ctx *pulumi.Context, args LookupContainerNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupContainerNamespaceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupContainerNamespaceResult, error) {
+		ApplyT(func(v interface{}) (LookupContainerNamespaceResultOutput, error) {
 			args := v.(LookupContainerNamespaceArgs)
-			r, err := LookupContainerNamespace(ctx, &args, opts...)
-			var s LookupContainerNamespaceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupContainerNamespaceResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getContainerNamespace:getContainerNamespace", args, &rv, "", opts...)
+			if err != nil {
+				return LookupContainerNamespaceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupContainerNamespaceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupContainerNamespaceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupContainerNamespaceResultOutput)
 }
 

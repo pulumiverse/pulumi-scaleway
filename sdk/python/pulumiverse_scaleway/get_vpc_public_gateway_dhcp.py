@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -257,9 +262,6 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         valid_lifetime=pulumi.get(__ret__, 'valid_lifetime'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_public_gateway_dhcp)
 def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
     """
@@ -276,4 +278,28 @@ def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = No
     dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['dhcpId'] = dhcp_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpResult)
+    return __ret__.apply(lambda __response__: GetVpcPublicGatewayDhcpResult(
+        address=pulumi.get(__response__, 'address'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dhcp_id=pulumi.get(__response__, 'dhcp_id'),
+        dns_local_name=pulumi.get(__response__, 'dns_local_name'),
+        dns_searches=pulumi.get(__response__, 'dns_searches'),
+        dns_servers_overrides=pulumi.get(__response__, 'dns_servers_overrides'),
+        enable_dynamic=pulumi.get(__response__, 'enable_dynamic'),
+        id=pulumi.get(__response__, 'id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        pool_high=pulumi.get(__response__, 'pool_high'),
+        pool_low=pulumi.get(__response__, 'pool_low'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        push_default_route=pulumi.get(__response__, 'push_default_route'),
+        push_dns_server=pulumi.get(__response__, 'push_dns_server'),
+        rebind_timer=pulumi.get(__response__, 'rebind_timer'),
+        renew_timer=pulumi.get(__response__, 'renew_timer'),
+        subnet=pulumi.get(__response__, 'subnet'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        valid_lifetime=pulumi.get(__response__, 'valid_lifetime'),
+        zone=pulumi.get(__response__, 'zone')))

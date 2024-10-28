@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -124,9 +129,6 @@ def get_baremetal_option(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         option_id=pulumi.get(__ret__, 'option_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_baremetal_option)
 def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                 option_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 zone: Optional[pulumi.Input[Optional[str]]] = None,
@@ -152,4 +154,15 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
     :param str option_id: The option id. Only one of `name` and `option_id` should be specified.
     :param str zone: `zone`) The zone in which the option exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['optionId'] = option_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalOption:getBaremetalOption', __args__, opts=opts, typ=GetBaremetalOptionResult)
+    return __ret__.apply(lambda __response__: GetBaremetalOptionResult(
+        id=pulumi.get(__response__, 'id'),
+        manageable=pulumi.get(__response__, 'manageable'),
+        name=pulumi.get(__response__, 'name'),
+        option_id=pulumi.get(__response__, 'option_id'),
+        zone=pulumi.get(__response__, 'zone')))

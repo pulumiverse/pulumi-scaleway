@@ -26,7 +26,6 @@ import * as utilities from "./utilities";
  */
 export function getBaremetalOption(args?: GetBaremetalOptionArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOptionResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOption:getBaremetalOption", {
         "name": args.name,
@@ -93,7 +92,13 @@ export interface GetBaremetalOptionResult {
  * ```
  */
 export function getBaremetalOptionOutput(args?: GetBaremetalOptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOptionResult> {
-    return pulumi.output(args).apply((a: any) => getBaremetalOption(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOption:getBaremetalOption", {
+        "name": args.name,
+        "optionId": args.optionId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

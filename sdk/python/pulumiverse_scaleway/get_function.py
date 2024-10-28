@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -301,9 +306,6 @@ def get_function(function_id: Optional[str] = None,
         timeout=pulumi.get(__ret__, 'timeout'),
         zip_file=pulumi.get(__ret__, 'zip_file'),
         zip_hash=pulumi.get(__ret__, 'zip_hash'))
-
-
-@_utilities.lift_output_func(get_function)
 def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         namespace_id: Optional[pulumi.Input[str]] = None,
@@ -320,4 +322,36 @@ def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = Non
     :param str project_id: The ID of the project the function is associated with.
     :param str region: `region`) The region in which the function exists.
     """
-    ...
+    __args__ = dict()
+    __args__['functionId'] = function_id
+    __args__['name'] = name
+    __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFunction:getFunction', __args__, opts=opts, typ=GetFunctionResult)
+    return __ret__.apply(lambda __response__: GetFunctionResult(
+        cpu_limit=pulumi.get(__response__, 'cpu_limit'),
+        deploy=pulumi.get(__response__, 'deploy'),
+        description=pulumi.get(__response__, 'description'),
+        domain_name=pulumi.get(__response__, 'domain_name'),
+        environment_variables=pulumi.get(__response__, 'environment_variables'),
+        function_id=pulumi.get(__response__, 'function_id'),
+        handler=pulumi.get(__response__, 'handler'),
+        http_option=pulumi.get(__response__, 'http_option'),
+        id=pulumi.get(__response__, 'id'),
+        max_scale=pulumi.get(__response__, 'max_scale'),
+        memory_limit=pulumi.get(__response__, 'memory_limit'),
+        min_scale=pulumi.get(__response__, 'min_scale'),
+        name=pulumi.get(__response__, 'name'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        privacy=pulumi.get(__response__, 'privacy'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        runtime=pulumi.get(__response__, 'runtime'),
+        sandbox=pulumi.get(__response__, 'sandbox'),
+        secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        timeout=pulumi.get(__response__, 'timeout'),
+        zip_file=pulumi.get(__response__, 'zip_file'),
+        zip_hash=pulumi.get(__response__, 'zip_hash')))

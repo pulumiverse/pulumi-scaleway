@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getKubernetesCluster:getKubernetesCluster", {
         "clusterId": args.clusterId,
@@ -134,7 +133,14 @@ export interface GetKubernetesClusterResult {
  * Gets information about a Kubernetes Cluster.
  */
 export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
-    return pulumi.output(args).apply((a: any) => getKubernetesCluster(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getKubernetesCluster:getKubernetesCluster", {
+        "clusterId": args.clusterId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -50,14 +50,20 @@ type LookupBlockSnapshotResult struct {
 
 func LookupBlockSnapshotOutput(ctx *pulumi.Context, args LookupBlockSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupBlockSnapshotResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupBlockSnapshotResult, error) {
+		ApplyT(func(v interface{}) (LookupBlockSnapshotResultOutput, error) {
 			args := v.(LookupBlockSnapshotArgs)
-			r, err := LookupBlockSnapshot(ctx, &args, opts...)
-			var s LookupBlockSnapshotResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupBlockSnapshotResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getBlockSnapshot:getBlockSnapshot", args, &rv, "", opts...)
+			if err != nil {
+				return LookupBlockSnapshotResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupBlockSnapshotResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupBlockSnapshotResultOutput), nil
+			}
+			return output, nil
 		}).(LookupBlockSnapshotResultOutput)
 }
 

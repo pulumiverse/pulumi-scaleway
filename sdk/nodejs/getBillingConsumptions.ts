@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getBillingConsumptions(args?: GetBillingConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingConsumptionsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBillingConsumptions:getBillingConsumptions", {
         "projectId": args.projectId,
@@ -54,7 +53,11 @@ export interface GetBillingConsumptionsResult {
  * Gets information about your Consumptions.
  */
 export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingConsumptionsResult> {
-    return pulumi.output(args).apply((a: any) => getBillingConsumptions(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBillingConsumptions:getBillingConsumptions", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

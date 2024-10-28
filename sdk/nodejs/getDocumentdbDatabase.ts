@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDocumentdbDatabase(args: GetDocumentdbDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbDatabaseResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", {
         "instanceId": args.instanceId,
@@ -87,7 +86,12 @@ export interface GetDocumentdbDatabaseResult {
  * ```
  */
 export function getDocumentdbDatabaseOutput(args: GetDocumentdbDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbDatabaseResult> {
-    return pulumi.output(args).apply((a: any) => getDocumentdbDatabase(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", {
+        "instanceId": args.instanceId,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  */
 export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecret:getSecret", {
         "name": args.name,
@@ -129,7 +128,16 @@ export interface GetSecretResult {
  * ```
  */
 export function getSecretOutput(args?: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
-    return pulumi.output(args).apply((a: any) => getSecret(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getSecret:getSecret", {
+        "name": args.name,
+        "organizationId": args.organizationId,
+        "path": args.path,
+        "projectId": args.projectId,
+        "region": args.region,
+        "secretId": args.secretId,
+    }, opts);
 }
 
 /**

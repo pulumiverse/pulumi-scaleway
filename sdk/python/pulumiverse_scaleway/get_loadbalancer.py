@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -276,9 +281,6 @@ def get_loadbalancer(lb_id: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_loadbalancer)
 def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -307,4 +309,31 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: The ID of the Project the Load Balancer is associated with.
     :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
-    ...
+    __args__ = dict()
+    __args__['lbId'] = lb_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['releaseIp'] = release_ip
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLoadbalancer:getLoadbalancer', __args__, opts=opts, typ=GetLoadbalancerResult)
+    return __ret__.apply(lambda __response__: GetLoadbalancerResult(
+        assign_flexible_ip=pulumi.get(__response__, 'assign_flexible_ip'),
+        assign_flexible_ipv6=pulumi.get(__response__, 'assign_flexible_ipv6'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        ip_address=pulumi.get(__response__, 'ip_address'),
+        ip_id=pulumi.get(__response__, 'ip_id'),
+        ip_ids=pulumi.get(__response__, 'ip_ids'),
+        ipv6_address=pulumi.get(__response__, 'ipv6_address'),
+        lb_id=pulumi.get(__response__, 'lb_id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        private_networks=pulumi.get(__response__, 'private_networks'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        release_ip=pulumi.get(__response__, 'release_ip'),
+        ssl_compatibility_level=pulumi.get(__response__, 'ssl_compatibility_level'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        zone=pulumi.get(__response__, 'zone')))

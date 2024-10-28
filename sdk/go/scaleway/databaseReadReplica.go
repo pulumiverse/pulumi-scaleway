@@ -50,7 +50,7 @@ import (
 //			}
 //			_, err = scaleway.NewDatabaseReadReplica(ctx, "replica", &scaleway.DatabaseReadReplicaArgs{
 //				InstanceId:   instance.ID(),
-//				DirectAccess: nil,
+//				DirectAccess: &scaleway.DatabaseReadReplicaDirectAccessArgs{},
 //			})
 //			if err != nil {
 //				return err

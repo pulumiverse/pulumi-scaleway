@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -22,6 +27,7 @@ class DatabaseInstanceArgs:
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]] = None,
@@ -51,6 +57,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -84,6 +91,8 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if encryption_at_rest is not None:
+            pulumi.set(__self__, "encryption_at_rest", encryption_at_rest)
         if init_settings is not None:
             pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
@@ -191,6 +200,18 @@ class DatabaseInstanceArgs:
     @disable_backup.setter
     def disable_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_backup", value)
+
+    @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable encryption at rest for the Database Instance.
+        """
+        return pulumi.get(self, "encryption_at_rest")
+
+    @encryption_at_rest.setter
+    def encryption_at_rest(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "encryption_at_rest", value)
 
     @property
     @pulumi.getter(name="initSettings")
@@ -377,6 +398,7 @@ class _DatabaseInstanceState:
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  endpoint_ip: Optional[pulumi.Input[str]] = None,
                  endpoint_port: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
@@ -404,6 +426,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
@@ -450,6 +473,8 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "certificate", certificate)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if encryption_at_rest is not None:
+            pulumi.set(__self__, "encryption_at_rest", encryption_at_rest)
         if endpoint_ip is not None:
             warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
             pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
@@ -553,6 +578,18 @@ class _DatabaseInstanceState:
     @disable_backup.setter
     def disable_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_backup", value)
+
+    @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable encryption at rest for the Database Instance.
+        """
+        return pulumi.get(self, "encryption_at_rest")
+
+    @encryption_at_rest.setter
+    def encryption_at_rest(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "encryption_at_rest", value)
 
     @property
     @pulumi.getter(name="endpointIp")
@@ -820,6 +857,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
@@ -856,7 +894,8 @@ class DatabaseInstance(pulumi.CustomResource):
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret")
+            password="thiZ_is_v&ry_s3cret",
+            encryption_at_rest=True)
         ```
 
         ### Example Block Storage Low Latency
@@ -990,6 +1029,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important** Updates to `engine` will recreate the Database Instance.
@@ -1047,7 +1087,8 @@ class DatabaseInstance(pulumi.CustomResource):
             is_ha_cluster=True,
             disable_backup=True,
             user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret")
+            password="thiZ_is_v&ry_s3cret",
+            encryption_at_rest=True)
         ```
 
         ### Example Block Storage Low Latency
@@ -1194,6 +1235,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
@@ -1223,6 +1265,7 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
             __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
             __props__.__dict__["disable_backup"] = disable_backup
+            __props__.__dict__["encryption_at_rest"] = encryption_at_rest
             if engine is None and not opts.urn:
                 raise TypeError("Missing required property 'engine'")
             __props__.__dict__["engine"] = engine
@@ -1265,6 +1308,7 @@ class DatabaseInstance(pulumi.CustomResource):
             backup_schedule_retention: Optional[pulumi.Input[int]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             disable_backup: Optional[pulumi.Input[bool]] = None,
+            encryption_at_rest: Optional[pulumi.Input[bool]] = None,
             endpoint_ip: Optional[pulumi.Input[str]] = None,
             endpoint_port: Optional[pulumi.Input[int]] = None,
             engine: Optional[pulumi.Input[str]] = None,
@@ -1297,6 +1341,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
@@ -1342,6 +1387,7 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["disable_backup"] = disable_backup
+        __props__.__dict__["encryption_at_rest"] = encryption_at_rest
         __props__.__dict__["endpoint_ip"] = endpoint_ip
         __props__.__dict__["endpoint_port"] = endpoint_port
         __props__.__dict__["engine"] = engine
@@ -1403,6 +1449,14 @@ class DatabaseInstance(pulumi.CustomResource):
         Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
+
+    @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enable or disable encryption at rest for the Database Instance.
+        """
+        return pulumi.get(self, "encryption_at_rest")
 
     @property
     @pulumi.getter(name="endpointIp")

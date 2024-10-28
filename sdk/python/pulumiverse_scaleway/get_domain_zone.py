@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -181,9 +186,6 @@ def get_domain_zone(domain: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         subdomain=pulumi.get(__ret__, 'subdomain'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_domain_zone)
 def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                            subdomain: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainZoneResult]:
@@ -205,4 +207,19 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     :param str domain: The domain where the DNS zone will be created.
     :param str subdomain: The subdomain(zone name) to create in the domain.
     """
-    ...
+    __args__ = dict()
+    __args__['domain'] = domain
+    __args__['subdomain'] = subdomain
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDomainZone:getDomainZone', __args__, opts=opts, typ=GetDomainZoneResult)
+    return __ret__.apply(lambda __response__: GetDomainZoneResult(
+        domain=pulumi.get(__response__, 'domain'),
+        id=pulumi.get(__response__, 'id'),
+        message=pulumi.get(__response__, 'message'),
+        ns=pulumi.get(__response__, 'ns'),
+        ns_defaults=pulumi.get(__response__, 'ns_defaults'),
+        ns_masters=pulumi.get(__response__, 'ns_masters'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        status=pulumi.get(__response__, 'status'),
+        subdomain=pulumi.get(__response__, 'subdomain'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

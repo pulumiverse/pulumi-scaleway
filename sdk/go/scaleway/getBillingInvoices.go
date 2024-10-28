@@ -47,14 +47,20 @@ type GetBillingInvoicesResult struct {
 
 func GetBillingInvoicesOutput(ctx *pulumi.Context, args GetBillingInvoicesOutputArgs, opts ...pulumi.InvokeOption) GetBillingInvoicesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetBillingInvoicesResult, error) {
+		ApplyT(func(v interface{}) (GetBillingInvoicesResultOutput, error) {
 			args := v.(GetBillingInvoicesArgs)
-			r, err := GetBillingInvoices(ctx, &args, opts...)
-			var s GetBillingInvoicesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetBillingInvoicesResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getBillingInvoices:getBillingInvoices", args, &rv, "", opts...)
+			if err != nil {
+				return GetBillingInvoicesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetBillingInvoicesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetBillingInvoicesResultOutput), nil
+			}
+			return output, nil
 		}).(GetBillingInvoicesResultOutput)
 }
 

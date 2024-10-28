@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetMarketplaceImageResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getMarketplaceImage:getMarketplaceImage", {
         "instanceType": args.instanceType,
@@ -75,7 +74,12 @@ export interface GetMarketplaceImageResult {
  * ```
  */
 export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMarketplaceImageResult> {
-    return pulumi.output(args).apply((a: any) => getMarketplaceImage(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getMarketplaceImage:getMarketplaceImage", {
+        "instanceType": args.instanceType,
+        "label": args.label,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

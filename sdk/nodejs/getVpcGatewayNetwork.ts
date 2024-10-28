@@ -34,7 +34,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcGatewayNetwork(args?: GetVpcGatewayNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGatewayNetworkResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", {
         "dhcpId": args.dhcpId,
@@ -109,7 +108,15 @@ export interface GetVpcGatewayNetworkResult {
  * ```
  */
 export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcGatewayNetworkResult> {
-    return pulumi.output(args).apply((a: any) => getVpcGatewayNetwork(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", {
+        "dhcpId": args.dhcpId,
+        "enableMasquerade": args.enableMasquerade,
+        "gatewayId": args.gatewayId,
+        "gatewayNetworkId": args.gatewayNetworkId,
+        "privateNetworkId": args.privateNetworkId,
+    }, opts);
 }
 
 /**

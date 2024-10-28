@@ -59,14 +59,20 @@ type LookupFunctionNamespaceResult struct {
 
 func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionNamespaceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFunctionNamespaceResult, error) {
+		ApplyT(func(v interface{}) (LookupFunctionNamespaceResultOutput, error) {
 			args := v.(LookupFunctionNamespaceArgs)
-			r, err := LookupFunctionNamespace(ctx, &args, opts...)
-			var s LookupFunctionNamespaceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupFunctionNamespaceResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, &rv, "", opts...)
+			if err != nil {
+				return LookupFunctionNamespaceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupFunctionNamespaceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupFunctionNamespaceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupFunctionNamespaceResultOutput)
 }
 

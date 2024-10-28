@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -133,9 +138,6 @@ def get_lb_routes(frontend_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         routes=pulumi.get(__ret__, 'routes'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_lb_routes)
 def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = None,
                          project_id: Optional[pulumi.Input[Optional[str]]] = None,
                          zone: Optional[pulumi.Input[Optional[str]]] = None,
@@ -162,4 +164,16 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     :param str frontend_id: The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
     :param str zone: `zone`) The zone in which the routes exist.
     """
-    ...
+    __args__ = dict()
+    __args__['frontendId'] = frontend_id
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbRoutes:getLbRoutes', __args__, opts=opts, typ=GetLbRoutesResult)
+    return __ret__.apply(lambda __response__: GetLbRoutesResult(
+        frontend_id=pulumi.get(__response__, 'frontend_id'),
+        id=pulumi.get(__response__, 'id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        routes=pulumi.get(__response__, 'routes'),
+        zone=pulumi.get(__response__, 'zone')))

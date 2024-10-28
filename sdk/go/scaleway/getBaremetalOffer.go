@@ -61,14 +61,20 @@ type GetBaremetalOfferResult struct {
 
 func GetBaremetalOfferOutput(ctx *pulumi.Context, args GetBaremetalOfferOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOfferResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetBaremetalOfferResult, error) {
+		ApplyT(func(v interface{}) (GetBaremetalOfferResultOutput, error) {
 			args := v.(GetBaremetalOfferArgs)
-			r, err := GetBaremetalOffer(ctx, &args, opts...)
-			var s GetBaremetalOfferResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetBaremetalOfferResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getBaremetalOffer:getBaremetalOffer", args, &rv, "", opts...)
+			if err != nil {
+				return GetBaremetalOfferResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetBaremetalOfferResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetBaremetalOfferResultOutput), nil
+			}
+			return output, nil
 		}).(GetBaremetalOfferResultOutput)
 }
 

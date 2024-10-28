@@ -50,7 +50,6 @@ import * as utilities from "./utilities";
  */
 export function getFlexibleIps(args?: GetFlexibleIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetFlexibleIpsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFlexibleIps:getFlexibleIps", {
         "projectId": args.projectId,
@@ -155,7 +154,14 @@ export interface GetFlexibleIpsResult {
  * ```
  */
 export function getFlexibleIpsOutput(args?: GetFlexibleIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFlexibleIpsResult> {
-    return pulumi.output(args).apply((a: any) => getFlexibleIps(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getFlexibleIps:getFlexibleIps", {
+        "projectId": args.projectId,
+        "serverIds": args.serverIds,
+        "tags": args.tags,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

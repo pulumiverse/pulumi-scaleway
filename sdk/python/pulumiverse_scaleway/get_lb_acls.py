@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -147,9 +152,6 @@ def get_lb_acls(frontend_id: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_lb_acls)
 def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -179,4 +181,18 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     :param str name: The ACL name to filter for. ACLs with a matching name are listed.
     :param str zone: `zone`) The zone in which the ACLs exist.
     """
-    ...
+    __args__ = dict()
+    __args__['frontendId'] = frontend_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbAcls:getLbAcls', __args__, opts=opts, typ=GetLbAclsResult)
+    return __ret__.apply(lambda __response__: GetLbAclsResult(
+        acls=pulumi.get(__response__, 'acls'),
+        frontend_id=pulumi.get(__response__, 'frontend_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        zone=pulumi.get(__response__, 'zone')))

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIpResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
         "ipAddress": args.ipAddress,
@@ -77,7 +76,13 @@ export interface GetLoadbalancerIpResult {
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
 export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerIpResult> {
-    return pulumi.output(args).apply((a: any) => getLoadbalancerIp(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
+        "ipAddress": args.ipAddress,
+        "ipId": args.ipId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

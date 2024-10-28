@@ -89,14 +89,20 @@ type LookupInstanceSnapshotResult struct {
 
 func LookupInstanceSnapshotOutput(ctx *pulumi.Context, args LookupInstanceSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceSnapshotResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInstanceSnapshotResult, error) {
+		ApplyT(func(v interface{}) (LookupInstanceSnapshotResultOutput, error) {
 			args := v.(LookupInstanceSnapshotArgs)
-			r, err := LookupInstanceSnapshot(ctx, &args, opts...)
-			var s LookupInstanceSnapshotResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupInstanceSnapshotResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args, &rv, "", opts...)
+			if err != nil {
+				return LookupInstanceSnapshotResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupInstanceSnapshotResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupInstanceSnapshotResultOutput), nil
+			}
+			return output, nil
 		}).(LookupInstanceSnapshotResultOutput)
 }
 

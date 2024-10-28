@@ -122,14 +122,20 @@ type GetFlexibleIpsResult struct {
 
 func GetFlexibleIpsOutput(ctx *pulumi.Context, args GetFlexibleIpsOutputArgs, opts ...pulumi.InvokeOption) GetFlexibleIpsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetFlexibleIpsResult, error) {
+		ApplyT(func(v interface{}) (GetFlexibleIpsResultOutput, error) {
 			args := v.(GetFlexibleIpsArgs)
-			r, err := GetFlexibleIps(ctx, &args, opts...)
-			var s GetFlexibleIpsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetFlexibleIpsResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getFlexibleIps:getFlexibleIps", args, &rv, "", opts...)
+			if err != nil {
+				return GetFlexibleIpsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetFlexibleIpsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetFlexibleIpsResultOutput), nil
+			}
+			return output, nil
 		}).(GetFlexibleIpsResultOutput)
 }
 

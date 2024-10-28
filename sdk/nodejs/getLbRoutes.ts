@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  */
 export function getLbRoutes(args?: GetLbRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GetLbRoutesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbRoutes:getLbRoutes", {
         "frontendId": args.frontendId,
@@ -94,7 +93,13 @@ export interface GetLbRoutesResult {
  * ```
  */
 export function getLbRoutesOutput(args?: GetLbRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbRoutesResult> {
-    return pulumi.output(args).apply((a: any) => getLbRoutes(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbRoutes:getLbRoutes", {
+        "frontendId": args.frontendId,
+        "projectId": args.projectId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

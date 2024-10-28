@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -106,9 +111,6 @@ def get_marketplace_image(instance_type: Optional[str] = None,
         instance_type=pulumi.get(__ret__, 'instance_type'),
         label=pulumi.get(__ret__, 'label'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_marketplace_image)
 def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[str]]] = None,
                                  label: Optional[pulumi.Input[str]] = None,
                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
@@ -132,4 +134,14 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
            to find the right `label`.
     :param str zone: `zone`) The zone in which the image exists.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceType'] = instance_type
+    __args__['label'] = label
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getMarketplaceImage:getMarketplaceImage', __args__, opts=opts, typ=GetMarketplaceImageResult)
+    return __ret__.apply(lambda __response__: GetMarketplaceImageResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_type=pulumi.get(__response__, 'instance_type'),
+        label=pulumi.get(__response__, 'label'),
+        zone=pulumi.get(__response__, 'zone')))

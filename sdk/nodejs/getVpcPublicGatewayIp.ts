@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcPublicGatewayIp(args?: GetVpcPublicGatewayIpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayIpResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", {
         "ipId": args.ipId,
@@ -75,7 +74,11 @@ export interface GetVpcPublicGatewayIpResult {
  * ```
  */
 export function getVpcPublicGatewayIpOutput(args?: GetVpcPublicGatewayIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayIpResult> {
-    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayIp(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", {
+        "ipId": args.ipId,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -124,9 +129,6 @@ def get_baremetal_os(name: Optional[str] = None,
         os_id=pulumi.get(__ret__, 'os_id'),
         version=pulumi.get(__ret__, 'version'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_baremetal_os)
 def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             os_id: Optional[pulumi.Input[Optional[str]]] = None,
                             version: Optional[pulumi.Input[Optional[str]]] = None,
@@ -157,4 +159,16 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str version: The os version.
     :param str zone: `zone`) The zone in which the os exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['osId'] = os_id
+    __args__['version'] = version
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalOs:getBaremetalOs', __args__, opts=opts, typ=GetBaremetalOsResult)
+    return __ret__.apply(lambda __response__: GetBaremetalOsResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        os_id=pulumi.get(__response__, 'os_id'),
+        version=pulumi.get(__response__, 'version'),
+        zone=pulumi.get(__response__, 'zone')))

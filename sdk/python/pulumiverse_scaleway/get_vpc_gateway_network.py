@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -226,9 +231,6 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_gateway_network)
 def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    enable_masquerade: Optional[pulumi.Input[Optional[bool]]] = None,
                                    gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -259,4 +261,27 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
 
     :param str gateway_network_id: ID of the GatewayNetwork.
     """
-    ...
+    __args__ = dict()
+    __args__['dhcpId'] = dhcp_id
+    __args__['enableMasquerade'] = enable_masquerade
+    __args__['gatewayId'] = gateway_id
+    __args__['gatewayNetworkId'] = gateway_network_id
+    __args__['privateNetworkId'] = private_network_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork', __args__, opts=opts, typ=GetVpcGatewayNetworkResult)
+    return __ret__.apply(lambda __response__: GetVpcGatewayNetworkResult(
+        cleanup_dhcp=pulumi.get(__response__, 'cleanup_dhcp'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dhcp_id=pulumi.get(__response__, 'dhcp_id'),
+        enable_dhcp=pulumi.get(__response__, 'enable_dhcp'),
+        enable_masquerade=pulumi.get(__response__, 'enable_masquerade'),
+        gateway_id=pulumi.get(__response__, 'gateway_id'),
+        gateway_network_id=pulumi.get(__response__, 'gateway_network_id'),
+        id=pulumi.get(__response__, 'id'),
+        ipam_configs=pulumi.get(__response__, 'ipam_configs'),
+        mac_address=pulumi.get(__response__, 'mac_address'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        static_address=pulumi.get(__response__, 'static_address'),
+        status=pulumi.get(__response__, 'status'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        zone=pulumi.get(__response__, 'zone')))

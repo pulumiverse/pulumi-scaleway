@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainZoneResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainZone:getDomainZone", {
         "domain": args.domain,
@@ -97,7 +96,12 @@ export interface GetDomainZoneResult {
  * ```
  */
 export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainZoneResult> {
-    return pulumi.output(args).apply((a: any) => getDomainZone(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDomainZone:getDomainZone", {
+        "domain": args.domain,
+        "subdomain": args.subdomain,
+    }, opts);
 }
 
 /**

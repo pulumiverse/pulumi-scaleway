@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -156,9 +161,6 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_lb_ips)
 def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = None,
                       ip_type: Optional[pulumi.Input[Optional[str]]] = None,
                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -177,4 +179,20 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which the IPs exist.
     """
-    ...
+    __args__ = dict()
+    __args__['ipCidrRange'] = ip_cidr_range
+    __args__['ipType'] = ip_type
+    __args__['projectId'] = project_id
+    __args__['tags'] = tags
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbIps:getLbIps', __args__, opts=opts, typ=GetLbIpsResult)
+    return __ret__.apply(lambda __response__: GetLbIpsResult(
+        id=pulumi.get(__response__, 'id'),
+        ip_cidr_range=pulumi.get(__response__, 'ip_cidr_range'),
+        ip_type=pulumi.get(__response__, 'ip_type'),
+        ips=pulumi.get(__response__, 'ips'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

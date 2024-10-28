@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -441,9 +446,6 @@ def get_instance_server(name: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         user_data=pulumi.get(__ret__, 'user_data'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_server)
 def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                server_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -458,4 +460,43 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
     :param str zone: `zone`) The zone in which the server exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['serverId'] = server_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceServer:getInstanceServer', __args__, opts=opts, typ=GetInstanceServerResult)
+    return __ret__.apply(lambda __response__: GetInstanceServerResult(
+        additional_volume_ids=pulumi.get(__response__, 'additional_volume_ids'),
+        boot_type=pulumi.get(__response__, 'boot_type'),
+        bootscript_id=pulumi.get(__response__, 'bootscript_id'),
+        cloud_init=pulumi.get(__response__, 'cloud_init'),
+        enable_dynamic_ip=pulumi.get(__response__, 'enable_dynamic_ip'),
+        enable_ipv6=pulumi.get(__response__, 'enable_ipv6'),
+        id=pulumi.get(__response__, 'id'),
+        image=pulumi.get(__response__, 'image'),
+        ip_id=pulumi.get(__response__, 'ip_id'),
+        ip_ids=pulumi.get(__response__, 'ip_ids'),
+        ipv6_address=pulumi.get(__response__, 'ipv6_address'),
+        ipv6_gateway=pulumi.get(__response__, 'ipv6_gateway'),
+        ipv6_prefix_length=pulumi.get(__response__, 'ipv6_prefix_length'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        placement_group_id=pulumi.get(__response__, 'placement_group_id'),
+        placement_group_policy_respected=pulumi.get(__response__, 'placement_group_policy_respected'),
+        private_ip=pulumi.get(__response__, 'private_ip'),
+        private_networks=pulumi.get(__response__, 'private_networks'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        public_ip=pulumi.get(__response__, 'public_ip'),
+        public_ips=pulumi.get(__response__, 'public_ips'),
+        replace_on_type_change=pulumi.get(__response__, 'replace_on_type_change'),
+        root_volumes=pulumi.get(__response__, 'root_volumes'),
+        routed_ip_enabled=pulumi.get(__response__, 'routed_ip_enabled'),
+        security_group_id=pulumi.get(__response__, 'security_group_id'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        state=pulumi.get(__response__, 'state'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        user_data=pulumi.get(__response__, 'user_data'),
+        zone=pulumi.get(__response__, 'zone')))

@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountSshKeyResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAccountSshKey:getAccountSshKey", {
         "name": args.name,
@@ -66,7 +65,13 @@ export interface GetAccountSshKeyResult {
  * Use this data source to get SSH key information based on its ID or name.
  */
 export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountSshKeyResult> {
-    return pulumi.output(args).apply((a: any) => getAccountSshKey(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getAccountSshKey:getAccountSshKey", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "sshKeyId": args.sshKeyId,
+    }, opts);
 }
 
 /**

@@ -34,7 +34,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get default project's cockpit
-//			_, err := scaleway.LookupCockpit(ctx, nil, nil)
+//			_, err := scaleway.LookupCockpit(ctx, &scaleway.LookupCockpitArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -98,14 +98,20 @@ type LookupCockpitResult struct {
 
 func LookupCockpitOutput(ctx *pulumi.Context, args LookupCockpitOutputArgs, opts ...pulumi.InvokeOption) LookupCockpitResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCockpitResult, error) {
+		ApplyT(func(v interface{}) (LookupCockpitResultOutput, error) {
 			args := v.(LookupCockpitArgs)
-			r, err := LookupCockpit(ctx, &args, opts...)
-			var s LookupCockpitResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupCockpitResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getCockpit:getCockpit", args, &rv, "", opts...)
+			if err != nil {
+				return LookupCockpitResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupCockpitResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupCockpitResultOutput), nil
+			}
+			return output, nil
 		}).(LookupCockpitResultOutput)
 }
 

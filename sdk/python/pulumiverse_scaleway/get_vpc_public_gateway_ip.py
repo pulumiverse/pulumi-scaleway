@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -159,9 +164,6 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_public_gateway_ip)
 def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayIpResult]:
     """
@@ -180,4 +182,18 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['ipId'] = ip_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp', __args__, opts=opts, typ=GetVpcPublicGatewayIpResult)
+    return __ret__.apply(lambda __response__: GetVpcPublicGatewayIpResult(
+        address=pulumi.get(__response__, 'address'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        id=pulumi.get(__response__, 'id'),
+        ip_id=pulumi.get(__response__, 'ip_id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        reverse=pulumi.get(__response__, 'reverse'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        zone=pulumi.get(__response__, 'zone')))

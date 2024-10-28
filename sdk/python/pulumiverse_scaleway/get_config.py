@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -154,11 +159,22 @@ def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfi
         secret_key_source=pulumi.get(__ret__, 'secret_key_source'),
         zone=pulumi.get(__ret__, 'zone'),
         zone_source=pulumi.get(__ret__, 'zone_source'))
-
-
-@_utilities.lift_output_func(get_config)
 def get_config_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getConfig:getConfig', __args__, opts=opts, typ=GetConfigResult)
+    return __ret__.apply(lambda __response__: GetConfigResult(
+        access_key=pulumi.get(__response__, 'access_key'),
+        access_key_source=pulumi.get(__response__, 'access_key_source'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        project_id_source=pulumi.get(__response__, 'project_id_source'),
+        region=pulumi.get(__response__, 'region'),
+        region_source=pulumi.get(__response__, 'region_source'),
+        secret_key=pulumi.get(__response__, 'secret_key'),
+        secret_key_source=pulumi.get(__response__, 'secret_key_source'),
+        zone=pulumi.get(__response__, 'zone'),
+        zone_source=pulumi.get(__response__, 'zone_source')))

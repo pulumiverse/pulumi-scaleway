@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  */
 export function getLoadbalancerCertificate(args?: GetLoadbalancerCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerCertificateResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", {
         "certificateId": args.certificateId,
@@ -76,7 +75,13 @@ export interface GetLoadbalancerCertificateResult {
  * ## Examples
  */
 export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerCertificateResult> {
-    return pulumi.output(args).apply((a: any) => getLoadbalancerCertificate(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", {
+        "certificateId": args.certificateId,
+        "lbId": args.lbId,
+        "name": args.name,
+    }, opts);
 }
 
 /**

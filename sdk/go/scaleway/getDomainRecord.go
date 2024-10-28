@@ -109,14 +109,20 @@ type LookupDomainRecordResult struct {
 
 func LookupDomainRecordOutput(ctx *pulumi.Context, args LookupDomainRecordOutputArgs, opts ...pulumi.InvokeOption) LookupDomainRecordResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDomainRecordResult, error) {
+		ApplyT(func(v interface{}) (LookupDomainRecordResultOutput, error) {
 			args := v.(LookupDomainRecordArgs)
-			r, err := LookupDomainRecord(ctx, &args, opts...)
-			var s LookupDomainRecordResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDomainRecordResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getDomainRecord:getDomainRecord", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDomainRecordResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDomainRecordResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDomainRecordResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDomainRecordResultOutput)
 }
 

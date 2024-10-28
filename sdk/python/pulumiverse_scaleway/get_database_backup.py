@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -195,9 +200,6 @@ def get_database_backup(backup_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         size=pulumi.get(__ret__, 'size'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_database_backup)
 def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] = None,
                                instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -228,4 +230,24 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     :param str project_id: The ID of the project the Database Backup is associated with.
     :param str region: `region`) The region in which the Database Backup is associated with.
     """
-    ...
+    __args__ = dict()
+    __args__['backupId'] = backup_id
+    __args__['instanceId'] = instance_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabaseBackup:getDatabaseBackup', __args__, opts=opts, typ=GetDatabaseBackupResult)
+    return __ret__.apply(lambda __response__: GetDatabaseBackupResult(
+        backup_id=pulumi.get(__response__, 'backup_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        database_name=pulumi.get(__response__, 'database_name'),
+        expires_at=pulumi.get(__response__, 'expires_at'),
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        instance_name=pulumi.get(__response__, 'instance_name'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        size=pulumi.get(__response__, 'size'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

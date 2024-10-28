@@ -41,7 +41,6 @@ import * as utilities from "./utilities";
  */
 export function getLbBackend(args?: GetLbBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetLbBackendResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbBackend:getLbBackend", {
         "backendId": args.backendId,
@@ -144,7 +143,13 @@ export interface GetLbBackendResult {
  * ```
  */
 export function getLbBackendOutput(args?: GetLbBackendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbBackendResult> {
-    return pulumi.output(args).apply((a: any) => getLbBackend(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbBackend:getLbBackend", {
+        "backendId": args.backendId,
+        "lbId": args.lbId,
+        "name": args.name,
+    }, opts);
 }
 
 /**

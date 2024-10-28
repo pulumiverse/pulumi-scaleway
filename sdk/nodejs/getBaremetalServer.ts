@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  */
 export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalServerResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalServer:getBaremetalServer", {
         "name": args.name,
@@ -115,7 +114,14 @@ export interface GetBaremetalServerResult {
  * ```
  */
 export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalServerResult> {
-    return pulumi.output(args).apply((a: any) => getBaremetalServer(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalServer:getBaremetalServer", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "serverId": args.serverId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

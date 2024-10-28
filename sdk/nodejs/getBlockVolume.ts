@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getBlockVolume(args?: GetBlockVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockVolumeResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBlockVolume:getBlockVolume", {
         "name": args.name,
@@ -62,7 +61,14 @@ export interface GetBlockVolumeResult {
  * Gets information about a Block Volume.
  */
 export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockVolumeResult> {
-    return pulumi.output(args).apply((a: any) => getBlockVolume(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBlockVolume:getBlockVolume", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "volumeId": args.volumeId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -169,9 +174,6 @@ def get_iam_api_key(access_key: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         user_id=pulumi.get(__ret__, 'user_id'))
-
-
-@_utilities.lift_output_func(get_iam_api_key)
 def get_iam_api_key_output(access_key: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamApiKeyResult]:
     """
@@ -190,4 +192,19 @@ def get_iam_api_key_output(access_key: Optional[pulumi.Input[str]] = None,
 
     :param str access_key: The access key of the IAM API key which is also the ID of the API key.
     """
-    ...
+    __args__ = dict()
+    __args__['accessKey'] = access_key
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamApiKey:getIamApiKey', __args__, opts=opts, typ=GetIamApiKeyResult)
+    return __ret__.apply(lambda __response__: GetIamApiKeyResult(
+        access_key=pulumi.get(__response__, 'access_key'),
+        application_id=pulumi.get(__response__, 'application_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        creation_ip=pulumi.get(__response__, 'creation_ip'),
+        default_project_id=pulumi.get(__response__, 'default_project_id'),
+        description=pulumi.get(__response__, 'description'),
+        editable=pulumi.get(__response__, 'editable'),
+        expires_at=pulumi.get(__response__, 'expires_at'),
+        id=pulumi.get(__response__, 'id'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        user_id=pulumi.get(__response__, 'user_id')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -207,9 +212,6 @@ def get_flexible_ip(flexible_ip_id: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_flexible_ip)
 def get_flexible_ip_output(flexible_ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                            ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -222,4 +224,24 @@ def get_flexible_ip_output(flexible_ip_id: Optional[pulumi.Input[Optional[str]]]
            Only one of `ip_address` and `ip_id` should be specified.
     :param str project_id: (Defaults to provider `project_id`) The ID of the project the IP is in.
     """
-    ...
+    __args__ = dict()
+    __args__['flexibleIpId'] = flexible_ip_id
+    __args__['ipAddress'] = ip_address
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFlexibleIp:getFlexibleIp', __args__, opts=opts, typ=GetFlexibleIpResult)
+    return __ret__.apply(lambda __response__: GetFlexibleIpResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        flexible_ip_id=pulumi.get(__response__, 'flexible_ip_id'),
+        id=pulumi.get(__response__, 'id'),
+        ip_address=pulumi.get(__response__, 'ip_address'),
+        is_ipv6=pulumi.get(__response__, 'is_ipv6'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        reverse=pulumi.get(__response__, 'reverse'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        zone=pulumi.get(__response__, 'zone')))

@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getFlexibleIp(args?: GetFlexibleIpArgs, opts?: pulumi.InvokeOptions): Promise<GetFlexibleIpResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFlexibleIp:getFlexibleIp", {
         "flexibleIpId": args.flexibleIpId,
@@ -72,7 +71,13 @@ export interface GetFlexibleIpResult {
  * Gets information about a Flexible IP.
  */
 export function getFlexibleIpOutput(args?: GetFlexibleIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFlexibleIpResult> {
-    return pulumi.output(args).apply((a: any) => getFlexibleIp(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getFlexibleIp:getFlexibleIp", {
+        "flexibleIpId": args.flexibleIpId,
+        "ipAddress": args.ipAddress,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

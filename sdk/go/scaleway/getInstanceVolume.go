@@ -55,14 +55,20 @@ type LookupInstanceVolumeResult struct {
 
 func LookupInstanceVolumeOutput(ctx *pulumi.Context, args LookupInstanceVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceVolumeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInstanceVolumeResult, error) {
+		ApplyT(func(v interface{}) (LookupInstanceVolumeResultOutput, error) {
 			args := v.(LookupInstanceVolumeArgs)
-			r, err := LookupInstanceVolume(ctx, &args, opts...)
-			var s LookupInstanceVolumeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupInstanceVolumeResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceVolume:getInstanceVolume", args, &rv, "", opts...)
+			if err != nil {
+				return LookupInstanceVolumeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupInstanceVolumeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupInstanceVolumeResultOutput), nil
+			}
+			return output, nil
 		}).(LookupInstanceVolumeResultOutput)
 }
 

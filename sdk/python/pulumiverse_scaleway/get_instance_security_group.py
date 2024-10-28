@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -224,9 +229,6 @@ def get_instance_security_group(name: Optional[str] = None,
         stateful=pulumi.get(__ret__, 'stateful'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_security_group)
 def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        security_group_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -241,4 +243,26 @@ def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]
     :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
     :param str zone: `zone`) The zone in which the security group exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['securityGroupId'] = security_group_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup', __args__, opts=opts, typ=GetInstanceSecurityGroupResult)
+    return __ret__.apply(lambda __response__: GetInstanceSecurityGroupResult(
+        description=pulumi.get(__response__, 'description'),
+        enable_default_security=pulumi.get(__response__, 'enable_default_security'),
+        external_rules=pulumi.get(__response__, 'external_rules'),
+        id=pulumi.get(__response__, 'id'),
+        inbound_default_policy=pulumi.get(__response__, 'inbound_default_policy'),
+        inbound_rules=pulumi.get(__response__, 'inbound_rules'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        outbound_default_policy=pulumi.get(__response__, 'outbound_default_policy'),
+        outbound_rules=pulumi.get(__response__, 'outbound_rules'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        security_group_id=pulumi.get(__response__, 'security_group_id'),
+        stateful=pulumi.get(__response__, 'stateful'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

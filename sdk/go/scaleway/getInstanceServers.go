@@ -56,14 +56,20 @@ type GetInstanceServersResult struct {
 
 func GetInstanceServersOutput(ctx *pulumi.Context, args GetInstanceServersOutputArgs, opts ...pulumi.InvokeOption) GetInstanceServersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetInstanceServersResult, error) {
+		ApplyT(func(v interface{}) (GetInstanceServersResultOutput, error) {
 			args := v.(GetInstanceServersArgs)
-			r, err := GetInstanceServers(ctx, &args, opts...)
-			var s GetInstanceServersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetInstanceServersResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceServers:getInstanceServers", args, &rv, "", opts...)
+			if err != nil {
+				return GetInstanceServersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetInstanceServersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetInstanceServersResultOutput), nil
+			}
+			return output, nil
 		}).(GetInstanceServersResultOutput)
 }
 

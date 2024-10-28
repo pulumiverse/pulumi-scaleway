@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -255,9 +260,6 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
         updated_at=pulumi.get(__ret__, 'updated_at'),
         wait_for_dhcp=pulumi.get(__ret__, 'wait_for_dhcp'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_vpc_public_gateway_dhcp_reservation)
 def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                                    mac_address: Optional[pulumi.Input[Optional[str]]] = None,
                                                    reservation_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -358,4 +360,23 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
     :param bool wait_for_dhcp: Whether to wait for `mac_address` to exist in DHCP.
     :param str zone: `zone`). The zone in which the reservation exists.
     """
-    ...
+    __args__ = dict()
+    __args__['gatewayNetworkId'] = gateway_network_id
+    __args__['macAddress'] = mac_address
+    __args__['reservationId'] = reservation_id
+    __args__['waitForDhcp'] = wait_for_dhcp
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpReservationResult)
+    return __ret__.apply(lambda __response__: GetVpcPublicGatewayDhcpReservationResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        gateway_network_id=pulumi.get(__response__, 'gateway_network_id'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        ip_address=pulumi.get(__response__, 'ip_address'),
+        mac_address=pulumi.get(__response__, 'mac_address'),
+        reservation_id=pulumi.get(__response__, 'reservation_id'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        wait_for_dhcp=pulumi.get(__response__, 'wait_for_dhcp'),
+        zone=pulumi.get(__response__, 'zone')))

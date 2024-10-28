@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -138,9 +143,6 @@ def get_vpcs(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'),
         vpcs=pulumi.get(__ret__, 'vpcs'))
-
-
-@_utilities.lift_output_func(get_vpcs)
 def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                     project_id: Optional[pulumi.Input[Optional[str]]] = None,
                     region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -155,4 +157,18 @@ def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str region: `region`). The region in which the VPCs exist.
     :param Sequence[str] tags: List of tags to filter for. VPCs with these exact tags are listed.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['tags'] = tags
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcs:getVpcs', __args__, opts=opts, typ=GetVpcsResult)
+    return __ret__.apply(lambda __response__: GetVpcsResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        tags=pulumi.get(__response__, 'tags'),
+        vpcs=pulumi.get(__response__, 'vpcs')))

@@ -32,7 +32,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDocumentdbReadReplica(ctx, "replica", &scaleway.DocumentdbReadReplicaArgs{
 //				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
-//				DirectAccess: nil,
+//				DirectAccess: &scaleway.DocumentdbReadReplicaDirectAccessArgs{},
 //			})
 //			if err != nil {
 //				return err

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -295,9 +300,6 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
         user_name=pulumi.get(__ret__, 'user_name'),
         version=pulumi.get(__ret__, 'version'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_redis_cluster)
 def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -316,4 +318,30 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
     :param str project_id: The ID of the project the Redis cluster is associated with.
     :param str zone: `region`) The zone in which the server exists.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterId'] = cluster_id
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getRedisCluster:getRedisCluster', __args__, opts=opts, typ=GetRedisClusterResult)
+    return __ret__.apply(lambda __response__: GetRedisClusterResult(
+        acls=pulumi.get(__response__, 'acls'),
+        certificate=pulumi.get(__response__, 'certificate'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        cluster_size=pulumi.get(__response__, 'cluster_size'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        node_type=pulumi.get(__response__, 'node_type'),
+        password=pulumi.get(__response__, 'password'),
+        private_networks=pulumi.get(__response__, 'private_networks'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        public_networks=pulumi.get(__response__, 'public_networks'),
+        settings=pulumi.get(__response__, 'settings'),
+        tags=pulumi.get(__response__, 'tags'),
+        tls_enabled=pulumi.get(__response__, 'tls_enabled'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        user_name=pulumi.get(__response__, 'user_name'),
+        version=pulumi.get(__response__, 'version'),
+        zone=pulumi.get(__response__, 'zone')))

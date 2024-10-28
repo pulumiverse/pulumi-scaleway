@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  */
 export function getAccountProject(args?: GetAccountProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountProjectResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAccountProject:getAccountProject", {
         "name": args.name,
@@ -58,7 +57,13 @@ export interface GetAccountProjectResult {
  * Gets information about an existing Project.
  */
 export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountProjectResult> {
-    return pulumi.output(args).apply((a: any) => getAccountProject(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getAccountProject:getAccountProject", {
+        "name": args.name,
+        "organizationId": args.organizationId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

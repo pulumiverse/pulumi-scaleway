@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -291,9 +296,6 @@ def get_ipam_ip(attached: Optional[bool] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zonal=pulumi.get(__ret__, 'zonal'))
-
-
-@_utilities.lift_output_func(get_ipam_ip)
 def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                        ipam_ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                        mac_address: Optional[pulumi.Input[Optional[str]]] = None,
@@ -387,4 +389,31 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str type: The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
-    ...
+    __args__ = dict()
+    __args__['attached'] = attached
+    __args__['ipamIpId'] = ipam_ip_id
+    __args__['macAddress'] = mac_address
+    __args__['privateNetworkId'] = private_network_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['resource'] = resource
+    __args__['tags'] = tags
+    __args__['type'] = type
+    __args__['zonal'] = zonal
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIpamIp:getIpamIp', __args__, opts=opts, typ=GetIpamIpResult)
+    return __ret__.apply(lambda __response__: GetIpamIpResult(
+        address=pulumi.get(__response__, 'address'),
+        address_cidr=pulumi.get(__response__, 'address_cidr'),
+        attached=pulumi.get(__response__, 'attached'),
+        id=pulumi.get(__response__, 'id'),
+        ipam_ip_id=pulumi.get(__response__, 'ipam_ip_id'),
+        mac_address=pulumi.get(__response__, 'mac_address'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        resource=pulumi.get(__response__, 'resource'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        zonal=pulumi.get(__response__, 'zonal')))

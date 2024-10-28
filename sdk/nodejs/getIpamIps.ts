@@ -60,7 +60,6 @@ import * as utilities from "./utilities";
  */
 export function getIpamIps(args?: GetIpamIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIpamIps:getIpamIps", {
         "attached": args.attached,
@@ -211,7 +210,19 @@ export interface GetIpamIpsResult {
  * ```
  */
 export function getIpamIpsOutput(args?: GetIpamIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpamIpsResult> {
-    return pulumi.output(args).apply((a: any) => getIpamIps(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIpamIps:getIpamIps", {
+        "attached": args.attached,
+        "macAddress": args.macAddress,
+        "privateNetworkId": args.privateNetworkId,
+        "projectId": args.projectId,
+        "region": args.region,
+        "resource": args.resource,
+        "tags": args.tags,
+        "type": args.type,
+        "zonal": args.zonal,
+    }, opts);
 }
 
 /**

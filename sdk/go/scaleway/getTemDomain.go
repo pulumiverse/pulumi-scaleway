@@ -68,14 +68,20 @@ type LookupTemDomainResult struct {
 
 func LookupTemDomainOutput(ctx *pulumi.Context, args LookupTemDomainOutputArgs, opts ...pulumi.InvokeOption) LookupTemDomainResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTemDomainResult, error) {
+		ApplyT(func(v interface{}) (LookupTemDomainResultOutput, error) {
 			args := v.(LookupTemDomainArgs)
-			r, err := LookupTemDomain(ctx, &args, opts...)
-			var s LookupTemDomainResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupTemDomainResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getTemDomain:getTemDomain", args, &rv, "", opts...)
+			if err != nil {
+				return LookupTemDomainResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupTemDomainResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupTemDomainResultOutput), nil
+			}
+			return output, nil
 		}).(LookupTemDomainResultOutput)
 }
 

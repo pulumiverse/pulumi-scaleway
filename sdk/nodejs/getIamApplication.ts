@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  */
 export function getIamApplication(args?: GetIamApplicationArgs, opts?: pulumi.InvokeOptions): Promise<GetIamApplicationResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamApplication:getIamApplication", {
         "applicationId": args.applicationId,
@@ -92,7 +91,13 @@ export interface GetIamApplicationResult {
  * ```
  */
 export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamApplicationResult> {
-    return pulumi.output(args).apply((a: any) => getIamApplication(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIamApplication:getIamApplication", {
+        "applicationId": args.applicationId,
+        "name": args.name,
+        "organizationId": args.organizationId,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -218,9 +223,6 @@ def get_secret(name: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version_count=pulumi.get(__ret__, 'version_count'))
-
-
-@_utilities.lift_output_func(get_secret)
 def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                       organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[Optional[str]]] = None,
@@ -263,4 +265,26 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str secret_id: The secret id.
            Only one of `name` and `secret_id` should be specified.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['organizationId'] = organization_id
+    __args__['path'] = path
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['secretId'] = secret_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult)
+    return __ret__.apply(lambda __response__: GetSecretResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        path=pulumi.get(__response__, 'path'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        secret_id=pulumi.get(__response__, 'secret_id'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        version_count=pulumi.get(__response__, 'version_count')))

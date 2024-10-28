@@ -32,13 +32,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				Name:          pulumi.String("test-rdb"),
-//				NodeType:      pulumi.String("DB-DEV-S"),
-//				Engine:        pulumi.String("PostgreSQL-15"),
-//				IsHaCluster:   pulumi.Bool(true),
-//				DisableBackup: pulumi.Bool(true),
-//				UserName:      pulumi.String("my_initial_user"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				Name:             pulumi.String("test-rdb"),
+//				NodeType:         pulumi.String("DB-DEV-S"),
+//				Engine:           pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:      pulumi.Bool(true),
+//				DisableBackup:    pulumi.Bool(true),
+//				UserName:         pulumi.String("my_initial_user"),
+//				Password:         pulumi.String("thiZ_is_v&ry_s3cret"),
+//				EncryptionAtRest: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -217,7 +218,7 @@ import (
 //			}
 //			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
 //				LoadBalancers: scaleway.DatabaseInstanceLoadBalancerArray{
-//					nil,
+//					&scaleway.DatabaseInstanceLoadBalancerArgs{},
 //				},
 //				NodeType: pulumi.String("DB-DEV-S"),
 //				Engine:   pulumi.String("PostgreSQL-15"),
@@ -292,6 +293,8 @@ type DatabaseInstance struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest pulumi.BoolPtrOutput `pulumi:"encryptionAtRest"`
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
@@ -404,6 +407,8 @@ type databaseInstanceState struct {
 	Certificate *string `pulumi:"certificate"`
 	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest *bool `pulumi:"encryptionAtRest"`
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
@@ -474,6 +479,8 @@ type DatabaseInstanceState struct {
 	Certificate pulumi.StringPtrInput
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest pulumi.BoolPtrInput
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
@@ -546,6 +553,8 @@ type databaseInstanceArgs struct {
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
 	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest *bool `pulumi:"encryptionAtRest"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important** Updates to `engine` will recreate the Database Instance.
@@ -605,6 +614,8 @@ type DatabaseInstanceArgs struct {
 	BackupScheduleRetention pulumi.IntPtrInput
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important** Updates to `engine` will recreate the Database Instance.
@@ -764,6 +775,11 @@ func (o DatabaseInstanceOutput) Certificate() pulumi.StringOutput {
 // Disable automated backup for the database instance
 func (o DatabaseInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
+}
+
+// Enable or disable encryption at rest for the Database Instance.
+func (o DatabaseInstanceOutput) EncryptionAtRest() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.EncryptionAtRest }).(pulumi.BoolPtrOutput)
 }
 
 // (Deprecated) The IP of the Database Instance.

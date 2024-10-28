@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCockpitPlan(args: GetCockpitPlanArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitPlanResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpitPlan:getCockpitPlan", {
         "name": args.name,
@@ -65,7 +64,10 @@ export interface GetCockpitPlanResult {
  * ```
  */
 export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCockpitPlanResult> {
-    return pulumi.output(args).apply((a: any) => getCockpitPlan(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getCockpitPlan:getCockpitPlan", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

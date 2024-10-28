@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getBillingInvoices(args?: GetBillingInvoicesArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingInvoicesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBillingInvoices:getBillingInvoices", {
         "invoiceType": args.invoiceType,
@@ -62,7 +61,13 @@ export interface GetBillingInvoicesResult {
  * Gets information about your Scaleway invoices.
  */
 export function getBillingInvoicesOutput(args?: GetBillingInvoicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingInvoicesResult> {
-    return pulumi.output(args).apply((a: any) => getBillingInvoices(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBillingInvoices:getBillingInvoices", {
+        "invoiceType": args.invoiceType,
+        "startedAfter": args.startedAfter,
+        "startedBefore": args.startedBefore,
+    }, opts);
 }
 
 /**

@@ -82,14 +82,20 @@ type GetLbRoutesResult struct {
 
 func GetLbRoutesOutput(ctx *pulumi.Context, args GetLbRoutesOutputArgs, opts ...pulumi.InvokeOption) GetLbRoutesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetLbRoutesResult, error) {
+		ApplyT(func(v interface{}) (GetLbRoutesResultOutput, error) {
 			args := v.(GetLbRoutesArgs)
-			r, err := GetLbRoutes(ctx, &args, opts...)
-			var s GetLbRoutesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetLbRoutesResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbRoutes:getLbRoutes", args, &rv, "", opts...)
+			if err != nil {
+				return GetLbRoutesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetLbRoutesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetLbRoutesResultOutput), nil
+			}
+			return output, nil
 		}).(GetLbRoutesResultOutput)
 }
 

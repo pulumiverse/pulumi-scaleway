@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getObjectBucketPolicy(args: GetObjectBucketPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketPolicyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", {
         "bucket": args.bucket,
@@ -76,7 +75,12 @@ export interface GetObjectBucketPolicyResult {
  * ```
  */
 export function getObjectBucketPolicyOutput(args: GetObjectBucketPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketPolicyResult> {
-    return pulumi.output(args).apply((a: any) => getObjectBucketPolicy(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", {
+        "bucket": args.bucket,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -192,14 +192,20 @@ type LookupIpamIpResult struct {
 
 func LookupIpamIpOutput(ctx *pulumi.Context, args LookupIpamIpOutputArgs, opts ...pulumi.InvokeOption) LookupIpamIpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIpamIpResult, error) {
+		ApplyT(func(v interface{}) (LookupIpamIpResultOutput, error) {
 			args := v.(LookupIpamIpArgs)
-			r, err := LookupIpamIp(ctx, &args, opts...)
-			var s LookupIpamIpResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIpamIpResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getIpamIp:getIpamIp", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIpamIpResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupIpamIpResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIpamIpResultOutput), nil
+			}
+			return output, nil
 		}).(LookupIpamIpResultOutput)
 }
 

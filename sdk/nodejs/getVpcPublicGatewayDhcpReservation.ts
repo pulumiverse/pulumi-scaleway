@@ -106,7 +106,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcPublicGatewayDhcpReservation(args?: GetVpcPublicGatewayDhcpReservationArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpReservationResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", {
         "gatewayNetworkId": args.gatewayNetworkId,
@@ -265,7 +264,15 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
  * ```
  */
 export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGatewayDhcpReservationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpReservationResult> {
-    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayDhcpReservation(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", {
+        "gatewayNetworkId": args.gatewayNetworkId,
+        "macAddress": args.macAddress,
+        "reservationId": args.reservationId,
+        "waitForDhcp": args.waitForDhcp,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

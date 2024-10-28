@@ -42,7 +42,6 @@ import * as utilities from "./utilities";
  */
 export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getObjectBucket:getObjectBucket", {
         "name": args.name,
@@ -125,7 +124,13 @@ export interface GetObjectBucketResult {
  * ```
  */
 export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketResult> {
-    return pulumi.output(args).apply((a: any) => getObjectBucket(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getObjectBucket:getObjectBucket", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcs(args?: GetVpcsArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcs:getVpcs", {
         "name": args.name,
@@ -71,7 +70,14 @@ export interface GetVpcsResult {
  * Gets information about multiple Virtual Private Clouds.
  */
 export function getVpcsOutput(args?: GetVpcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcsResult> {
-    return pulumi.output(args).apply((a: any) => getVpcs(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcs:getVpcs", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+        "tags": args.tags,
+    }, opts);
 }
 
 /**

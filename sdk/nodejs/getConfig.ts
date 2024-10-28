@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getConfig(opts?: pulumi.InvokeOptions): Promise<GetConfigResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getConfig:getConfig", {
     }, opts);
@@ -31,5 +30,7 @@ export interface GetConfigResult {
     readonly zoneSource: string;
 }
 export function getConfigOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetConfigResult> {
-    return pulumi.output(getConfig(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getConfig:getConfig", {
+    }, opts);
 }
