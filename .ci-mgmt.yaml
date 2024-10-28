@@ -6,6 +6,12 @@ providerDefaultBranch: main
 upstreamProviderOrg: scaleway
 publishRegistry: false
 enableAutoRelease: false
+plugins:
+  - name: terraform
+    version: "1.0.19"
+    kind: converter
+  - name: random
+    version: "4.16.7"
 languages:
   - dotnet
   - go
