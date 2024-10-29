@@ -11,13 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Cockpit Alert Managers.
+    /// The `scaleway.CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
     /// 
-    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+    /// 
+    /// ## Example Usage
     /// 
     /// ## Import
     /// 
-    /// Alert managers can be imported using the project ID, e.g.
+    /// This section explains how to import alert managers using the ID of the Project associated with Cockpit.
     /// 
     /// bash
     /// 
@@ -29,31 +31,31 @@ namespace Pulumiverse.Scaleway
     public partial class CockpitAlertManager : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Alert manager URL.
+        /// The URL of the alert manager.
         /// </summary>
         [Output("alertManagerUrl")]
         public Output<string> AlertManagerUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
         /// </summary>
         [Output("contactPoints")]
         public Output<ImmutableArray<Outputs.CockpitAlertManagerContactPoint>> ContactPoints { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the alert manager should be enabled. Defaults to true.
+        /// Specifies whether the alert manager should be enabled. Defaults to true.
         /// </summary>
         [Output("enableManagedAlerts")]
         public Output<bool?> EnableManagedAlerts { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which alert_manager should be created.
+        /// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -109,7 +111,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitAlertManagerContactPointArgs>? _contactPoints;
 
         /// <summary>
-        /// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
         /// </summary>
         public InputList<Inputs.CockpitAlertManagerContactPointArgs> ContactPoints
         {
@@ -118,19 +120,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Indicates whether the alert manager should be enabled. Defaults to true.
+        /// Specifies whether the alert manager should be enabled. Defaults to true.
         /// </summary>
         [Input("enableManagedAlerts")]
         public Input<bool>? EnableManagedAlerts { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which alert_manager should be created.
+        /// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -144,7 +146,7 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitAlertManagerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Alert manager URL.
+        /// The URL of the alert manager.
         /// </summary>
         [Input("alertManagerUrl")]
         public Input<string>? AlertManagerUrl { get; set; }
@@ -153,7 +155,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitAlertManagerContactPointGetArgs>? _contactPoints;
 
         /// <summary>
-        /// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
         /// </summary>
         public InputList<Inputs.CockpitAlertManagerContactPointGetArgs> ContactPoints
         {
@@ -162,19 +164,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Indicates whether the alert manager should be enabled. Defaults to true.
+        /// Specifies whether the alert manager should be enabled. Defaults to true.
         /// </summary>
         [Input("enableManagedAlerts")]
         public Input<bool>? EnableManagedAlerts { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which alert_manager should be created.
+        /// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

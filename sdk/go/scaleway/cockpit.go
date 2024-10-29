@@ -13,7 +13,7 @@ import (
 
 // ## Import
 //
-// Cockpits can be imported using the `{project_id}`, e.g.
+// This section explains how to import a Cockpit using its `{project_id}`.
 //
 // bash
 //
@@ -23,15 +23,21 @@ import (
 type Cockpit struct {
 	pulumi.CustomResourceState
 
-	// Endpoints.
+	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+	//
+	// Deprecated: Please use `CockpitSource` instead
 	Endpoints CockpitEndpointArrayOutput `pulumi:"endpoints"`
-	// Name or ID of the plan to use.
+	// Name of the plan to use. Available plans are: free, premium, and custom.
 	Plan pulumi.StringPtrOutput `pulumi:"plan"`
-	// The ID of the current plan.
+	// (Deprecated) The ID of the current pricing plan.
+	//
+	// Deprecated: Please use Name only
 	PlanId pulumi.StringOutput `pulumi:"planId"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Push_url
+	//
+	// Deprecated: Please use `CockpitSource` instead
 	PushUrls CockpitPushUrlArrayOutput `pulumi:"pushUrls"`
 }
 
@@ -65,28 +71,40 @@ func GetCockpit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cockpit resources.
 type cockpitState struct {
-	// Endpoints.
+	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+	//
+	// Deprecated: Please use `CockpitSource` instead
 	Endpoints []CockpitEndpoint `pulumi:"endpoints"`
-	// Name or ID of the plan to use.
+	// Name of the plan to use. Available plans are: free, premium, and custom.
 	Plan *string `pulumi:"plan"`
-	// The ID of the current plan.
+	// (Deprecated) The ID of the current pricing plan.
+	//
+	// Deprecated: Please use Name only
 	PlanId *string `pulumi:"planId"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// Push_url
+	//
+	// Deprecated: Please use `CockpitSource` instead
 	PushUrls []CockpitPushUrl `pulumi:"pushUrls"`
 }
 
 type CockpitState struct {
-	// Endpoints.
+	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+	//
+	// Deprecated: Please use `CockpitSource` instead
 	Endpoints CockpitEndpointArrayInput
-	// Name or ID of the plan to use.
+	// Name of the plan to use. Available plans are: free, premium, and custom.
 	Plan pulumi.StringPtrInput
-	// The ID of the current plan.
+	// (Deprecated) The ID of the current pricing plan.
+	//
+	// Deprecated: Please use Name only
 	PlanId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
 	// Push_url
+	//
+	// Deprecated: Please use `CockpitSource` instead
 	PushUrls CockpitPushUrlArrayInput
 }
 
@@ -95,17 +113,17 @@ func (CockpitState) ElementType() reflect.Type {
 }
 
 type cockpitArgs struct {
-	// Name or ID of the plan to use.
+	// Name of the plan to use. Available plans are: free, premium, and custom.
 	Plan *string `pulumi:"plan"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 // The set of arguments for constructing a Cockpit resource.
 type CockpitArgs struct {
-	// Name or ID of the plan to use.
+	// Name of the plan to use. Available plans are: free, premium, and custom.
 	Plan pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -196,27 +214,33 @@ func (o CockpitOutput) ToCockpitOutputWithContext(ctx context.Context) CockpitOu
 	return o
 }
 
-// Endpoints.
+// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+//
+// Deprecated: Please use `CockpitSource` instead
 func (o CockpitOutput) Endpoints() CockpitEndpointArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitEndpointArrayOutput { return v.Endpoints }).(CockpitEndpointArrayOutput)
 }
 
-// Name or ID of the plan to use.
+// Name of the plan to use. Available plans are: free, premium, and custom.
 func (o CockpitOutput) Plan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringPtrOutput { return v.Plan }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the current plan.
+// (Deprecated) The ID of the current pricing plan.
+//
+// Deprecated: Please use Name only
 func (o CockpitOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the cockpit is associated with.
+// ) The ID of the Project the Cockpit is associated with.
 func (o CockpitOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Push_url
+//
+// Deprecated: Please use `CockpitSource` instead
 func (o CockpitOutput) PushUrls() CockpitPushUrlArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitPushUrlArrayOutput { return v.PushUrls }).(CockpitPushUrlArrayOutput)
 }

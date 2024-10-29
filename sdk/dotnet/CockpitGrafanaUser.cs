@@ -11,11 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Cockpit Grafana Users.
+    /// The `scaleway.CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
     /// 
-    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// ### Create a Grafana user
+    /// 
+    /// The following command allows you to create a Grafana user within a specific Scaleway Project.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -42,7 +46,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+    /// This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
     /// 
     /// bash
     /// 
@@ -54,25 +58,25 @@ namespace Pulumiverse.Scaleway
     public partial class CockpitGrafanaUser : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The login of the grafana user.
+        /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Output("login")]
         public Output<string> Login { get; private set; } = null!;
 
         /// <summary>
-        /// The password of the grafana user
+        /// The password of the Grafana user.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The role of the grafana user. Must be `editor` or `viewer`.
+        /// The role assigned to the Grafana user. Must be `editor` or `viewer`.
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
@@ -129,19 +133,19 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitGrafanaUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The login of the grafana user.
+        /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Input("login", required: true)]
         public Input<string> Login { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The role of the grafana user. Must be `editor` or `viewer`.
+        /// The role assigned to the Grafana user. Must be `editor` or `viewer`.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
@@ -155,7 +159,7 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitGrafanaUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The login of the grafana user.
+        /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Input("login")]
         public Input<string>? Login { get; set; }
@@ -164,7 +168,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// The password of the grafana user
+        /// The password of the Grafana user.
         /// </summary>
         public Input<string>? Password
         {
@@ -177,13 +181,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The role of the grafana user. Must be `editor` or `viewer`.
+        /// The role assigned to the Grafana user. Must be `editor` or `viewer`.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

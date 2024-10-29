@@ -11,13 +11,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Cockpit Alert Managers.
+// The `CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 //
-// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+//
+// ## Example Usage
 //
 // ## Import
 //
-// Alert managers can be imported using the project ID, e.g.
+// This section explains how to import alert managers using the ID of the Project associated with Cockpit.
 //
 // bash
 //
@@ -27,15 +29,15 @@ import (
 type CockpitAlertManager struct {
 	pulumi.CustomResourceState
 
-	// Alert manager URL.
+	// The URL of the alert manager.
 	AlertManagerUrl pulumi.StringOutput `pulumi:"alertManagerUrl"`
-	// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+	// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
 	ContactPoints CockpitAlertManagerContactPointArrayOutput `pulumi:"contactPoints"`
-	// Indicates whether the alert manager should be enabled. Defaults to true.
+	// Specifies whether the alert manager should be enabled. Defaults to true.
 	EnableManagedAlerts pulumi.BoolPtrOutput `pulumi:"enableManagedAlerts"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`) The region in which alertManager should be created.
+	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -69,28 +71,28 @@ func GetCockpitAlertManager(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitAlertManager resources.
 type cockpitAlertManagerState struct {
-	// Alert manager URL.
+	// The URL of the alert manager.
 	AlertManagerUrl *string `pulumi:"alertManagerUrl"`
-	// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+	// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
 	ContactPoints []CockpitAlertManagerContactPoint `pulumi:"contactPoints"`
-	// Indicates whether the alert manager should be enabled. Defaults to true.
+	// Specifies whether the alert manager should be enabled. Defaults to true.
 	EnableManagedAlerts *bool `pulumi:"enableManagedAlerts"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which alertManager should be created.
+	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region *string `pulumi:"region"`
 }
 
 type CockpitAlertManagerState struct {
-	// Alert manager URL.
+	// The URL of the alert manager.
 	AlertManagerUrl pulumi.StringPtrInput
-	// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+	// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
 	ContactPoints CockpitAlertManagerContactPointArrayInput
-	// Indicates whether the alert manager should be enabled. Defaults to true.
+	// Specifies whether the alert manager should be enabled. Defaults to true.
 	EnableManagedAlerts pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region in which alertManager should be created.
+	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -99,25 +101,25 @@ func (CockpitAlertManagerState) ElementType() reflect.Type {
 }
 
 type cockpitAlertManagerArgs struct {
-	// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+	// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
 	ContactPoints []CockpitAlertManagerContactPoint `pulumi:"contactPoints"`
-	// Indicates whether the alert manager should be enabled. Defaults to true.
+	// Specifies whether the alert manager should be enabled. Defaults to true.
 	EnableManagedAlerts *bool `pulumi:"enableManagedAlerts"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which alertManager should be created.
+	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a CockpitAlertManager resource.
 type CockpitAlertManagerArgs struct {
-	// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+	// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
 	ContactPoints CockpitAlertManagerContactPointArrayInput
-	// Indicates whether the alert manager should be enabled. Defaults to true.
+	// Specifies whether the alert manager should be enabled. Defaults to true.
 	EnableManagedAlerts pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region in which alertManager should be created.
+	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringPtrInput
 }
 
@@ -208,27 +210,27 @@ func (o CockpitAlertManagerOutput) ToCockpitAlertManagerOutputWithContext(ctx co
 	return o
 }
 
-// Alert manager URL.
+// The URL of the alert manager.
 func (o CockpitAlertManagerOutput) AlertManagerUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitAlertManager) pulumi.StringOutput { return v.AlertManagerUrl }).(pulumi.StringOutput)
 }
 
-// A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
 func (o CockpitAlertManagerOutput) ContactPoints() CockpitAlertManagerContactPointArrayOutput {
 	return o.ApplyT(func(v *CockpitAlertManager) CockpitAlertManagerContactPointArrayOutput { return v.ContactPoints }).(CockpitAlertManagerContactPointArrayOutput)
 }
 
-// Indicates whether the alert manager should be enabled. Defaults to true.
+// Specifies whether the alert manager should be enabled. Defaults to true.
 func (o CockpitAlertManagerOutput) EnableManagedAlerts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitAlertManager) pulumi.BoolPtrOutput { return v.EnableManagedAlerts }).(pulumi.BoolPtrOutput)
 }
 
-// `projectId`) The ID of the project the cockpit is associated with.
+// ) The ID of the Project the Cockpit is associated with.
 func (o CockpitAlertManagerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitAlertManager) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`) The region in which alertManager should be created.
+// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 func (o CockpitAlertManagerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitAlertManager) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

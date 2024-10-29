@@ -109,6 +109,7 @@ from .get_loadbalancer import *
 from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
 from .get_marketplace_image import *
+from .get_mnq_sns import *
 from .get_mnq_sqs import *
 from .get_object_bucket import *
 from .get_object_bucket_policy import *
@@ -187,6 +188,7 @@ from .secret import *
 from .secret_version import *
 from .tem_domain import *
 from .tem_domain_validation import *
+from .tem_webhook import *
 from .vpc import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
@@ -976,6 +978,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/temDomainValidation:TemDomainValidation": "TemDomainValidation"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/temWebhook",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/temWebhook:TemWebhook": "TemWebhook"
   }
  },
  {

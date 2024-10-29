@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetSecretResult',
@@ -26,13 +27,16 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, path=None, project_id=None, region=None, secret_id=None, status=None, tags=None, updated_at=None, version_count=None):
+    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, status=None, tags=None, type=None, updated_at=None, version_count=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if ephemeral_policies and not isinstance(ephemeral_policies, list):
+            raise TypeError("Expected argument 'ephemeral_policies' to be a list")
+        pulumi.set(__self__, "ephemeral_policies", ephemeral_policies)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -48,6 +52,9 @@ class GetSecretResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if protected and not isinstance(protected, bool):
+            raise TypeError("Expected argument 'protected' to be a bool")
+        pulumi.set(__self__, "protected", protected)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -60,6 +67,9 @@ class GetSecretResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -76,6 +86,11 @@ class GetSecretResult:
     @pulumi.getter
     def description(self) -> str:
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="ephemeralPolicies")
+    def ephemeral_policies(self) -> Sequence['outputs.GetSecretEphemeralPolicyResult']:
+        return pulumi.get(self, "ephemeral_policies")
 
     @property
     @pulumi.getter
@@ -107,6 +122,11 @@ class GetSecretResult:
 
     @property
     @pulumi.getter
+    def protected(self) -> bool:
+        return pulumi.get(self, "protected")
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
@@ -124,6 +144,11 @@ class GetSecretResult:
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -144,15 +169,18 @@ class AwaitableGetSecretResult(GetSecretResult):
         return GetSecretResult(
             created_at=self.created_at,
             description=self.description,
+            ephemeral_policies=self.ephemeral_policies,
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
             path=self.path,
             project_id=self.project_id,
+            protected=self.protected,
             region=self.region,
             secret_id=self.secret_id,
             status=self.status,
             tags=self.tags,
+            type=self.type,
             updated_at=self.updated_at,
             version_count=self.version_count)
 
@@ -165,38 +193,45 @@ def get_secret(name: Optional[str] = None,
                secret_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
-    Gets information about Scaleway Secrets.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+    The `Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
 
-    ## Examples
+    Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
-    ### Basic
+    ## Example Usage
+
+    ### Create a secret and get its information
+
+    The following commands allow you to:
+
+    - create a secret named `foo` with the description `barr`
+    - retrieve the secret's information using the secret's ID
+    - retrieve the secret's information using the secret's name
 
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
+    # Create a secret
     main = scaleway.Secret("main",
         name="foo",
         description="barr")
-    # Get info by secret ID
+    # Get the secret information specified by the secret ID
     my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
-    # Get info by secret Name
+    # Get the secret information specified by the secret name
     by_name = scaleway.get_secret(name="your_secret_name")
     ```
 
 
-    :param str name: The secret name.
+    :param str name: The name of the secret.
            Only one of `name` and `secret_id` should be specified.
-    :param str organization_id: The organization ID the Project is associated with.
-           If no default organization_id is set, one must be set explicitly in this datasource
-    :param str path: The secret path.
+    :param str organization_id: The ID of the Scaleway Organization the Project is associated with. If no default `organization_id` is set, it must be set explicitly in this data source.
+    :param str path: The path of the secret.
            Conflicts with `secret_id`.
-    :param str project_id: `project_id`) The ID of the
-           project the secret is associated with.
-    :param str region: `region`) The region in which the secret exists.
-    :param str secret_id: The secret id.
+    :param str project_id: ). The ID of the
+           Project the secret is associated with.
+    :param str region: ). The region in which the secret exists.
+    :param str secret_id: The ID of the secret.
            Only one of `name` and `secret_id` should be specified.
     """
     __args__ = dict()
@@ -212,15 +247,18 @@ def get_secret(name: Optional[str] = None,
     return AwaitableGetSecretResult(
         created_at=pulumi.get(__ret__, 'created_at'),
         description=pulumi.get(__ret__, 'description'),
+        ephemeral_policies=pulumi.get(__ret__, 'ephemeral_policies'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         path=pulumi.get(__ret__, 'path'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        protected=pulumi.get(__ret__, 'protected'),
         region=pulumi.get(__ret__, 'region'),
         secret_id=pulumi.get(__ret__, 'secret_id'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
+        type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version_count=pulumi.get(__ret__, 'version_count'))
 def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -231,38 +269,45 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                       secret_id: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
     """
-    Gets information about Scaleway Secrets.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+    The `Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
 
-    ## Examples
+    Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
-    ### Basic
+    ## Example Usage
+
+    ### Create a secret and get its information
+
+    The following commands allow you to:
+
+    - create a secret named `foo` with the description `barr`
+    - retrieve the secret's information using the secret's ID
+    - retrieve the secret's information using the secret's name
 
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
+    # Create a secret
     main = scaleway.Secret("main",
         name="foo",
         description="barr")
-    # Get info by secret ID
+    # Get the secret information specified by the secret ID
     my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
-    # Get info by secret Name
+    # Get the secret information specified by the secret name
     by_name = scaleway.get_secret(name="your_secret_name")
     ```
 
 
-    :param str name: The secret name.
+    :param str name: The name of the secret.
            Only one of `name` and `secret_id` should be specified.
-    :param str organization_id: The organization ID the Project is associated with.
-           If no default organization_id is set, one must be set explicitly in this datasource
-    :param str path: The secret path.
+    :param str organization_id: The ID of the Scaleway Organization the Project is associated with. If no default `organization_id` is set, it must be set explicitly in this data source.
+    :param str path: The path of the secret.
            Conflicts with `secret_id`.
-    :param str project_id: `project_id`) The ID of the
-           project the secret is associated with.
-    :param str region: `region`) The region in which the secret exists.
-    :param str secret_id: The secret id.
+    :param str project_id: ). The ID of the
+           Project the secret is associated with.
+    :param str region: ). The region in which the secret exists.
+    :param str secret_id: The ID of the secret.
            Only one of `name` and `secret_id` should be specified.
     """
     __args__ = dict()
@@ -277,14 +322,17 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     return __ret__.apply(lambda __response__: GetSecretResult(
         created_at=pulumi.get(__response__, 'created_at'),
         description=pulumi.get(__response__, 'description'),
+        ephemeral_policies=pulumi.get(__response__, 'ephemeral_policies'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         path=pulumi.get(__response__, 'path'),
         project_id=pulumi.get(__response__, 'project_id'),
+        protected=pulumi.get(__response__, 'protected'),
         region=pulumi.get(__response__, 'region'),
         secret_id=pulumi.get(__response__, 'secret_id'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         version_count=pulumi.get(__response__, 'version_count')))

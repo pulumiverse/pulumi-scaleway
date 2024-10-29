@@ -127,13 +127,14 @@ def get_block_volume(name: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockVolumeResult:
     """
-    Gets information about a Block Volume.
+    The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str project_id: The ID of the project the volume is associated with.
-    :param str volume_id: The ID of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str zone: `zone`) The zone in which the volume exists.
+    :param str project_id: The unique identifier of the Project to which the volume is associated.
+    :param str volume_id: The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str zone: ). The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -159,13 +160,14 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
-    Gets information about a Block Volume.
+    The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str project_id: The ID of the project the volume is associated with.
-    :param str volume_id: The ID of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str zone: `zone`) The zone in which the volume exists.
+    :param str project_id: The unique identifier of the Project to which the volume is associated.
+    :param str volume_id: The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str zone: ). The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name

@@ -25,8 +25,8 @@ class CockpitArgs:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Cockpit resource.
-        :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         """
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
@@ -37,7 +37,7 @@ class CockpitArgs:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
-        Name or ID of the plan to use.
+        Name of the plan to use. Available plans are: free, premium, and custom.
         """
         return pulumi.get(self, "plan")
 
@@ -49,7 +49,7 @@ class CockpitArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -68,28 +68,38 @@ class _CockpitState:
                  push_urls: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]] = None):
         """
         Input properties used for looking up and filtering Cockpit resources.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints.
-        :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+        :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+        :param pulumi.Input[str] plan_id: (Deprecated) The ID of the current pricing plan.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]] push_urls: Push_url
         """
+        if endpoints is not None:
+            warnings.warn("""Please use `CockpitSource` instead""", DeprecationWarning)
+            pulumi.log.warn("""endpoints is deprecated: Please use `CockpitSource` instead""")
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
         if plan_id is not None:
+            warnings.warn("""Please use Name only""", DeprecationWarning)
+            pulumi.log.warn("""plan_id is deprecated: Please use Name only""")
+        if plan_id is not None:
             pulumi.set(__self__, "plan_id", plan_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if push_urls is not None:
+            warnings.warn("""Please use `CockpitSource` instead""", DeprecationWarning)
+            pulumi.log.warn("""push_urls is deprecated: Please use `CockpitSource` instead""")
         if push_urls is not None:
             pulumi.set(__self__, "push_urls", push_urls)
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Please use `CockpitSource` instead""")
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
         """
-        Endpoints.
+        (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         """
         return pulumi.get(self, "endpoints")
 
@@ -101,7 +111,7 @@ class _CockpitState:
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
-        Name or ID of the plan to use.
+        Name of the plan to use. Available plans are: free, premium, and custom.
         """
         return pulumi.get(self, "plan")
 
@@ -111,9 +121,10 @@ class _CockpitState:
 
     @property
     @pulumi.getter(name="planId")
+    @_utilities.deprecated("""Please use Name only""")
     def plan_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the current plan.
+        (Deprecated) The ID of the current pricing plan.
         """
         return pulumi.get(self, "plan_id")
 
@@ -125,7 +136,7 @@ class _CockpitState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -135,6 +146,7 @@ class _CockpitState:
 
     @property
     @pulumi.getter(name="pushUrls")
+    @_utilities.deprecated("""Please use `CockpitSource` instead""")
     def push_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]:
         """
         Push_url
@@ -157,7 +169,7 @@ class Cockpit(pulumi.CustomResource):
         """
         ## Import
 
-        Cockpits can be imported using the `{project_id}`, e.g.
+        This section explains how to import a Cockpit using its `{project_id}`.
 
         bash
 
@@ -167,8 +179,8 @@ class Cockpit(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         """
         ...
     @overload
@@ -179,7 +191,7 @@ class Cockpit(pulumi.CustomResource):
         """
         ## Import
 
-        Cockpits can be imported using the `{project_id}`, e.g.
+        This section explains how to import a Cockpit using its `{project_id}`.
 
         bash
 
@@ -240,10 +252,10 @@ class Cockpit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]] endpoints: Endpoints.
-        :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]] endpoints: (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+        :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+        :param pulumi.Input[str] plan_id: (Deprecated) The ID of the current pricing plan.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]] push_urls: Push_url
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -259,9 +271,10 @@ class Cockpit(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Please use `CockpitSource` instead""")
     def endpoints(self) -> pulumi.Output[Sequence['outputs.CockpitEndpoint']]:
         """
-        Endpoints.
+        (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         """
         return pulumi.get(self, "endpoints")
 
@@ -269,15 +282,16 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output[Optional[str]]:
         """
-        Name or ID of the plan to use.
+        Name of the plan to use. Available plans are: free, premium, and custom.
         """
         return pulumi.get(self, "plan")
 
     @property
     @pulumi.getter(name="planId")
+    @_utilities.deprecated("""Please use Name only""")
     def plan_id(self) -> pulumi.Output[str]:
         """
-        The ID of the current plan.
+        (Deprecated) The ID of the current pricing plan.
         """
         return pulumi.get(self, "plan_id")
 
@@ -285,12 +299,13 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="pushUrls")
+    @_utilities.deprecated("""Please use `CockpitSource` instead""")
     def push_urls(self) -> pulumi.Output[Sequence['outputs.CockpitPushUrl']]:
         """
         Push_url

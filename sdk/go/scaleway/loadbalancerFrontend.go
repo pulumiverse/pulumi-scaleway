@@ -179,7 +179,7 @@ type LoadbalancerFrontend struct {
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
-	// (Deprecated) First certificate ID used by the frontend.
+	// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
@@ -247,7 +247,7 @@ type loadbalancerFrontendState struct {
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId *string `pulumi:"backendId"`
-	// (Deprecated) First certificate ID used by the frontend.
+	// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId *string `pulumi:"certificateId"`
@@ -277,7 +277,7 @@ type LoadbalancerFrontendState struct {
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringPtrInput
-	// (Deprecated) First certificate ID used by the frontend.
+	// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringPtrInput
@@ -456,7 +456,7 @@ func (o LoadbalancerFrontendOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
 
-// (Deprecated) First certificate ID used by the frontend.
+// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 //
 // Deprecated: Please use certificate_ids
 func (o LoadbalancerFrontendOutput) CertificateId() pulumi.StringOutput {

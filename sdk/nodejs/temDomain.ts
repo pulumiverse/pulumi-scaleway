@@ -120,7 +120,9 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public /*out*/ readonly dmarcName!: pulumi.Output<string>;
     /**
-     * The error message if the last check failed.
+     * (Deprecated) The error message if the last check failed.
+     *
+     * @deprecated last_error is deprecated
      */
     public /*out*/ readonly lastError!: pulumi.Output<string>;
     /**
@@ -289,7 +291,9 @@ export interface TemDomainState {
      */
     dmarcName?: pulumi.Input<string>;
     /**
-     * The error message if the last check failed.
+     * (Deprecated) The error message if the last check failed.
+     *
+     * @deprecated last_error is deprecated
      */
     lastError?: pulumi.Input<string>;
     /**

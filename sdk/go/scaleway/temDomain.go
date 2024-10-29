@@ -137,7 +137,9 @@ type TemDomain struct {
 	DmarcConfig pulumi.StringOutput `pulumi:"dmarcConfig"`
 	// DMARC name for the domain, as should be recorded in the DNS zone.
 	DmarcName pulumi.StringOutput `pulumi:"dmarcName"`
-	// The error message if the last check failed.
+	// (Deprecated) The error message if the last check failed.
+	//
+	// Deprecated: last_error is deprecated
 	LastError pulumi.StringOutput `pulumi:"lastError"`
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt pulumi.StringOutput `pulumi:"lastValidAt"`
@@ -220,7 +222,9 @@ type temDomainState struct {
 	DmarcConfig *string `pulumi:"dmarcConfig"`
 	// DMARC name for the domain, as should be recorded in the DNS zone.
 	DmarcName *string `pulumi:"dmarcName"`
-	// The error message if the last check failed.
+	// (Deprecated) The error message if the last check failed.
+	//
+	// Deprecated: last_error is deprecated
 	LastError *string `pulumi:"lastError"`
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt *string `pulumi:"lastValidAt"`
@@ -271,7 +275,9 @@ type TemDomainState struct {
 	DmarcConfig pulumi.StringPtrInput
 	// DMARC name for the domain, as should be recorded in the DNS zone.
 	DmarcName pulumi.StringPtrInput
-	// The error message if the last check failed.
+	// (Deprecated) The error message if the last check failed.
+	//
+	// Deprecated: last_error is deprecated
 	LastError pulumi.StringPtrInput
 	// The date and time the domain was last found to be valid (RFC 3339 format).
 	LastValidAt pulumi.StringPtrInput
@@ -454,7 +460,9 @@ func (o TemDomainOutput) DmarcName() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DmarcName }).(pulumi.StringOutput)
 }
 
-// The error message if the last check failed.
+// (Deprecated) The error message if the last check failed.
+//
+// Deprecated: last_error is deprecated
 func (o TemDomainOutput) LastError() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.LastError }).(pulumi.StringOutput)
 }

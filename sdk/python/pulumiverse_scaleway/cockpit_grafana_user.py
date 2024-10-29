@@ -24,9 +24,9 @@ class CockpitGrafanaUserArgs:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CockpitGrafanaUser resource.
-        :param pulumi.Input[str] login: The login of the grafana user.
-        :param pulumi.Input[str] role: The role of the grafana user. Must be `editor` or `viewer`.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
+        :param pulumi.Input[str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        :param pulumi.Input[str] role: The role assigned to the Grafana user. Must be `editor` or `viewer`.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         """
         pulumi.set(__self__, "login", login)
         pulumi.set(__self__, "role", role)
@@ -37,7 +37,7 @@ class CockpitGrafanaUserArgs:
     @pulumi.getter
     def login(self) -> pulumi.Input[str]:
         """
-        The login of the grafana user.
+        The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         """
         return pulumi.get(self, "login")
 
@@ -49,7 +49,7 @@ class CockpitGrafanaUserArgs:
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
         """
-        The role of the grafana user. Must be `editor` or `viewer`.
+        The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
         return pulumi.get(self, "role")
 
@@ -61,7 +61,7 @@ class CockpitGrafanaUserArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -79,10 +79,10 @@ class _CockpitGrafanaUserState:
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CockpitGrafanaUser resources.
-        :param pulumi.Input[str] login: The login of the grafana user.
-        :param pulumi.Input[str] password: The password of the grafana user
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] role: The role of the grafana user. Must be `editor` or `viewer`.
+        :param pulumi.Input[str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        :param pulumi.Input[str] password: The password of the Grafana user.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] role: The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
         if login is not None:
             pulumi.set(__self__, "login", login)
@@ -97,7 +97,7 @@ class _CockpitGrafanaUserState:
     @pulumi.getter
     def login(self) -> Optional[pulumi.Input[str]]:
         """
-        The login of the grafana user.
+        The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         """
         return pulumi.get(self, "login")
 
@@ -109,7 +109,7 @@ class _CockpitGrafanaUserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password of the grafana user
+        The password of the Grafana user.
         """
         return pulumi.get(self, "password")
 
@@ -121,7 +121,7 @@ class _CockpitGrafanaUserState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -133,7 +133,7 @@ class _CockpitGrafanaUserState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        The role of the grafana user. Must be `editor` or `viewer`.
+        The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
         return pulumi.get(self, "role")
 
@@ -152,11 +152,15 @@ class CockpitGrafanaUser(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Cockpit Grafana Users.
+        The `CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Create a Grafana user
+
+        The following command allows you to create a Grafana user within a specific Scaleway Project.
 
         ```python
         import pulumi
@@ -171,7 +175,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
 
         ## Import
 
-        Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+        This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
 
         bash
 
@@ -181,9 +185,9 @@ class CockpitGrafanaUser(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] login: The login of the grafana user.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] role: The role of the grafana user. Must be `editor` or `viewer`.
+        :param pulumi.Input[str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] role: The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
         ...
     @overload
@@ -192,11 +196,15 @@ class CockpitGrafanaUser(pulumi.CustomResource):
                  args: CockpitGrafanaUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Cockpit Grafana Users.
+        The `CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Create a Grafana user
+
+        The following command allows you to create a Grafana user within a specific Scaleway Project.
 
         ```python
         import pulumi
@@ -211,7 +219,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
 
         ## Import
 
-        Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+        This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
 
         bash
 
@@ -277,10 +285,10 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] login: The login of the grafana user.
-        :param pulumi.Input[str] password: The password of the grafana user
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] role: The role of the grafana user. Must be `editor` or `viewer`.
+        :param pulumi.Input[str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        :param pulumi.Input[str] password: The password of the Grafana user.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] role: The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -296,7 +304,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
     @pulumi.getter
     def login(self) -> pulumi.Output[str]:
         """
-        The login of the grafana user.
+        The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         """
         return pulumi.get(self, "login")
 
@@ -304,7 +312,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
         """
-        The password of the grafana user
+        The password of the Grafana user.
         """
         return pulumi.get(self, "password")
 
@@ -312,7 +320,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -320,7 +328,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
         """
-        The role of the grafana user. Must be `editor` or `viewer`.
+        The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
         return pulumi.get(self, "role")
 

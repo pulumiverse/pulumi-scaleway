@@ -11,31 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Domain zone.\
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Scaleway.DomainZone("test", new()
-    ///     {
-    ///         Domain = "scaleway-terraform.com",
-    ///         Subdomain = "test",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
-    /// Zone can be imported using the `{subdomain}.{domain}`, e.g.
+    /// This section explains how to import a zone using the `{subdomain}.{domain}` format.
     /// 
     /// bash
     /// 
@@ -47,55 +25,55 @@ namespace Pulumiverse.Scaleway
     public partial class DomainZone : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The domain where the DNS zone will be created.
+        /// The main domain where the DNS zone will be created.
         /// </summary>
         [Output("domain")]
         public Output<string> Domain { get; private set; } = null!;
 
         /// <summary>
-        /// Message
+        /// Message.
         /// </summary>
         [Output("message")]
         public Output<string> Message { get; private set; } = null!;
 
         /// <summary>
-        /// NameServer list for zone.
+        /// The list of same servers for the zone.
         /// </summary>
         [Output("ns")]
         public Output<ImmutableArray<string>> Ns { get; private set; } = null!;
 
         /// <summary>
-        /// NameServer default list for zone.
+        /// The default list of same servers for the zone.
         /// </summary>
         [Output("nsDefaults")]
         public Output<ImmutableArray<string>> NsDefaults { get; private set; } = null!;
 
         /// <summary>
-        /// NameServer master list for zone.
+        /// The master list of same servers for the zone.
         /// </summary>
         [Output("nsMasters")]
         public Output<ImmutableArray<string>> NsMasters { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `project_id`) The ID of the Project associated with the domain.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The domain zone status.
+        /// The status of the domain zone.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The subdomain(zone name) to create in the domain.
+        /// The name of the subdomain (zone name) to create within the domain.
         /// </summary>
         [Output("subdomain")]
         public Output<string> Subdomain { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the DNS zone.
+        /// The date and time at which the DNS zone was last updated.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -148,19 +126,19 @@ namespace Pulumiverse.Scaleway
     public sealed class DomainZoneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The domain where the DNS zone will be created.
+        /// The main domain where the DNS zone will be created.
         /// </summary>
         [Input("domain", required: true)]
         public Input<string> Domain { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `project_id`) The ID of the Project associated with the domain.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The subdomain(zone name) to create in the domain.
+        /// The name of the subdomain (zone name) to create within the domain.
         /// </summary>
         [Input("subdomain", required: true)]
         public Input<string> Subdomain { get; set; } = null!;
@@ -174,13 +152,13 @@ namespace Pulumiverse.Scaleway
     public sealed class DomainZoneState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The domain where the DNS zone will be created.
+        /// The main domain where the DNS zone will be created.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
         /// <summary>
-        /// Message
+        /// Message.
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
@@ -189,7 +167,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _ns;
 
         /// <summary>
-        /// NameServer list for zone.
+        /// The list of same servers for the zone.
         /// </summary>
         public InputList<string> Ns
         {
@@ -201,7 +179,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _nsDefaults;
 
         /// <summary>
-        /// NameServer default list for zone.
+        /// The default list of same servers for the zone.
         /// </summary>
         public InputList<string> NsDefaults
         {
@@ -213,7 +191,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _nsMasters;
 
         /// <summary>
-        /// NameServer master list for zone.
+        /// The master list of same servers for the zone.
         /// </summary>
         public InputList<string> NsMasters
         {
@@ -222,25 +200,25 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `project_id`) The ID of the Project associated with the domain.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The domain zone status.
+        /// The status of the domain zone.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The subdomain(zone name) to create in the domain.
+        /// The name of the subdomain (zone name) to create within the domain.
         /// </summary>
         [Input("subdomain")]
         public Input<string>? Subdomain { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the DNS zone.
+        /// The date and time at which the DNS zone was last updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a Block Snapshot.
+// The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+//
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupBlockSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockSnapshotResult
@@ -24,15 +26,15 @@ func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opt
 
 // A collection of arguments for invoking getBlockSnapshot.
 type LookupBlockSnapshotArgs struct {
-	// The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+	// The name of the snapshot. Only one of name or snapshotId should be specified.
 	Name *string `pulumi:"name"`
-	// The ID of the project the snapshot is associated with.
+	// The unique identifier of the Project to which the snapshot is associated.
 	ProjectId *string `pulumi:"projectId"`
-	// The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
+	// The unique identifier of the snapshot. Only one of `name` and `snapshotId` should be specified.
 	SnapshotId *string `pulumi:"snapshotId"`
-	// The ID of the volume from which the snapshot has been created.
+	// The unique identifier of the volume from which the snapshot was created.
 	VolumeId *string `pulumi:"volumeId"`
-	// `zone`) The zone in which the snapshot exists.
+	// ) The zone in which the snapshot exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -69,15 +71,15 @@ func LookupBlockSnapshotOutput(ctx *pulumi.Context, args LookupBlockSnapshotOutp
 
 // A collection of arguments for invoking getBlockSnapshot.
 type LookupBlockSnapshotOutputArgs struct {
-	// The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+	// The name of the snapshot. Only one of name or snapshotId should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the snapshot is associated with.
+	// The unique identifier of the Project to which the snapshot is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
+	// The unique identifier of the snapshot. Only one of `name` and `snapshotId` should be specified.
 	SnapshotId pulumi.StringPtrInput `pulumi:"snapshotId"`
-	// The ID of the volume from which the snapshot has been created.
+	// The unique identifier of the volume from which the snapshot was created.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	// `zone`) The zone in which the snapshot exists.
+	// ) The zone in which the snapshot exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 

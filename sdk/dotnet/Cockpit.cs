@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// Cockpits can be imported using the `{project_id}`, e.g.
+    /// This section explains how to import a Cockpit using its `{project_id}`.
     /// 
     /// bash
     /// 
@@ -25,25 +25,25 @@ namespace Pulumiverse.Scaleway
     public partial class Cockpit : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Endpoints.
+        /// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         /// </summary>
         [Output("endpoints")]
         public Output<ImmutableArray<Outputs.CockpitEndpoint>> Endpoints { get; private set; } = null!;
 
         /// <summary>
-        /// Name or ID of the plan to use.
+        /// Name of the plan to use. Available plans are: free, premium, and custom.
         /// </summary>
         [Output("plan")]
         public Output<string?> Plan { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the current plan.
+        /// (Deprecated) The ID of the current pricing plan.
         /// </summary>
         [Output("planId")]
         public Output<string> PlanId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -102,13 +102,13 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name or ID of the plan to use.
+        /// Name of the plan to use. Available plans are: free, premium, and custom.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -125,8 +125,9 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitEndpointGetArgs>? _endpoints;
 
         /// <summary>
-        /// Endpoints.
+        /// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         /// </summary>
+        [Obsolete(@"Please use `scaleway.CockpitSource` instead")]
         public InputList<Inputs.CockpitEndpointGetArgs> Endpoints
         {
             get => _endpoints ?? (_endpoints = new InputList<Inputs.CockpitEndpointGetArgs>());
@@ -134,19 +135,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Name or ID of the plan to use.
+        /// Name of the plan to use. Available plans are: free, premium, and custom.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
 
         /// <summary>
-        /// The ID of the current plan.
+        /// (Deprecated) The ID of the current pricing plan.
         /// </summary>
         [Input("planId")]
         public Input<string>? PlanId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -157,6 +158,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Push_url
         /// </summary>
+        [Obsolete(@"Please use `scaleway.CockpitSource` instead")]
         public InputList<Inputs.CockpitPushUrlGetArgs> PushUrls
         {
             get => _pushUrls ?? (_pushUrls = new InputList<Inputs.CockpitPushUrlGetArgs>());

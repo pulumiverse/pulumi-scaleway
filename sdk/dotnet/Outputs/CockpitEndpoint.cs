@@ -15,23 +15,23 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class CockpitEndpoint
     {
         /// <summary>
-        /// The alertmanager URL.
+        /// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
         /// </summary>
         public readonly string? AlertmanagerUrl;
         /// <summary>
-        /// The grafana URL.
+        /// (Deprecated) URL for Grafana.
         /// </summary>
         public readonly string? GrafanaUrl;
         /// <summary>
-        /// The logs URL.
+        /// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         /// </summary>
         public readonly string? LogsUrl;
         /// <summary>
-        /// The metrics URL.
+        /// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         /// </summary>
         public readonly string? MetricsUrl;
         /// <summary>
-        /// The traces URL.
+        /// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         /// </summary>
         public readonly string? TracesUrl;
 

@@ -435,6 +435,29 @@ class IamPolicy(pulumi.CustomResource):
             }])
         ```
 
+        ### Create a policy with a particular condition
+
+        IAM policy rule can use a condition to be applied.
+        The following variables are available:
+
+        - `request.ip`
+        - `request.user_agent`
+        - `request.time`
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.IamPolicy("main",
+            name="tf_tests_policy_condition",
+            no_principal=True,
+            rules=[{
+                "organization_id": "%s",
+                "permission_set_names": ["AllProductsFullAccess"],
+                "condition": "request.user_agent == 'My User Agent'",
+            }])
+        ```
+
         ## Import
 
         Policies can be imported using the `{id}`, e.g.
@@ -505,6 +528,29 @@ class IamPolicy(pulumi.CustomResource):
             rules=[{
                 "organization_id": app.organization_id,
                 "permission_set_names": ["ObjectStorageReadOnly"],
+            }])
+        ```
+
+        ### Create a policy with a particular condition
+
+        IAM policy rule can use a condition to be applied.
+        The following variables are available:
+
+        - `request.ip`
+        - `request.user_agent`
+        - `request.time`
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.IamPolicy("main",
+            name="tf_tests_policy_condition",
+            no_principal=True,
+            rules=[{
+                "organization_id": "%s",
+                "permission_set_names": ["AllProductsFullAccess"],
+                "condition": "request.user_agent == 'My User Agent'",
             }])
         ```
 

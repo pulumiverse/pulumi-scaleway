@@ -7,22 +7,29 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a domain record.
+ * The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
  *
- * ## Example Usage
+ * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+ *
+ * ## Query domain records
+ *
+ * The following commands allow you to:
+ *
+ * - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+ * - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get record by name, type and data
+ * // Query record by DNS zone, record name, type and content
  * const byContent = scaleway.getDomainRecord({
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
  *     data: "1.2.3.4",
  * });
- * // Get info by ID
+ * // Query record by DNS zone and record ID
  * const byId = scaleway.getDomainRecord({
  *     dnsZone: "domain.tld",
  *     recordId: "11111111-1111-1111-1111-111111111111",
@@ -47,31 +54,27 @@ export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.Invoke
  */
 export interface GetDomainRecordArgs {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-     * Cannot be used with `recordId`.
+     * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
     data?: string;
     /**
-     * The IP address.
+     * The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
      */
     dnsZone?: string;
     /**
-     * The name of the record (can be an empty string for a root record).
-     * Cannot be used with `recordId`.
+     * The name of the record, which can be an empty string for a root record. Cannot be used with `recordId`.
      */
     name?: string;
     /**
-     * `projectId`) The ID of the project the domain is associated with.
+     * ). The ID of the Project associated with the domain.
      */
     projectId?: string;
     /**
-     * The record ID.
-     * Cannot be used with `name`, `type` and `data`.
+     * The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
      */
     recordId?: string;
     /**
-     * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-     * Cannot be used with `recordId`.
+     * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `recordId`.
      */
     type?: string;
 }
@@ -84,11 +87,11 @@ export interface GetDomainRecordResult {
     readonly dnsZone?: string;
     readonly fqdn: string;
     /**
-     * Dynamic record base on user geolocalisation (More information about dynamic records)
+     * Information about dynamic records based on user geolocation. Find out more about dynamic records.
      */
     readonly geoIps: outputs.GetDomainRecordGeoIp[];
     /**
-     * Dynamic record base on URL resolve (More information about dynamic records)
+     * Information about dynamic records based on URL resolution. Find out more about dynamic records.
      */
     readonly httpServices: outputs.GetDomainRecordHttpService[];
     /**
@@ -98,43 +101,50 @@ export interface GetDomainRecordResult {
     readonly keepEmptyZone: boolean;
     readonly name?: string;
     /**
-     * The priority of the record (mostly used with an `MX` record)
+     * The priority of the record, mainly used with `MX` records.
      */
     readonly priority: number;
     readonly projectId?: string;
     readonly recordId?: string;
     readonly rootZone: boolean;
     /**
-     * Time To Live of the record in seconds.
+     * The Time To Live (TTL) of the record in seconds.
      */
     readonly ttl: number;
     readonly type?: string;
     /**
-     * Dynamic record based on the client’s (resolver) subnet (More information about dynamic records)
+     * Information about dynamic records based on the client’s (resolver) subnet. Find out more about dynamic records.
      */
     readonly views: outputs.GetDomainRecordView[];
     /**
-     * Dynamic record base on IP weights (More information about dynamic records)
+     * Information about dynamic records based on IP weights. Find out more about dynamic records.
      */
     readonly weighteds: outputs.GetDomainRecordWeighted[];
 }
 /**
- * Gets information about a domain record.
+ * The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
  *
- * ## Example Usage
+ * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+ *
+ * ## Query domain records
+ *
+ * The following commands allow you to:
+ *
+ * - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+ * - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get record by name, type and data
+ * // Query record by DNS zone, record name, type and content
  * const byContent = scaleway.getDomainRecord({
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
  *     data: "1.2.3.4",
  * });
- * // Get info by ID
+ * // Query record by DNS zone and record ID
  * const byId = scaleway.getDomainRecord({
  *     dnsZone: "domain.tld",
  *     recordId: "11111111-1111-1111-1111-111111111111",
@@ -159,31 +169,27 @@ export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: p
  */
 export interface GetDomainRecordOutputArgs {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-     * Cannot be used with `recordId`.
+     * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
     data?: pulumi.Input<string>;
     /**
-     * The IP address.
+     * The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
      */
     dnsZone?: pulumi.Input<string>;
     /**
-     * The name of the record (can be an empty string for a root record).
-     * Cannot be used with `recordId`.
+     * The name of the record, which can be an empty string for a root record. Cannot be used with `recordId`.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the domain is associated with.
+     * ). The ID of the Project associated with the domain.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The record ID.
-     * Cannot be used with `name`, `type` and `data`.
+     * The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
      */
     recordId?: pulumi.Input<string>;
     /**
-     * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-     * Cannot be used with `recordId`.
+     * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `recordId`.
      */
     type?: pulumi.Input<string>;
 }

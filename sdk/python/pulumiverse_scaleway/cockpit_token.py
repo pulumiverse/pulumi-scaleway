@@ -28,9 +28,9 @@ class CockpitTokenArgs:
         """
         The set of arguments for constructing a CockpitToken resource.
         :param pulumi.Input[str] name: The name of the token.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit token.
-        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Allowed scopes.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the Cockpit token is located.
+        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Scopes allowed, each with default values:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -57,7 +57,7 @@ class CockpitTokenArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -69,7 +69,7 @@ class CockpitTokenArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region of the cockpit token.
+        ) The region where the Cockpit token is located.
         """
         return pulumi.get(self, "region")
 
@@ -81,7 +81,7 @@ class CockpitTokenArgs:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input['CockpitTokenScopesArgs']]:
         """
-        Allowed scopes.
+        Scopes allowed, each with default values:
         """
         return pulumi.get(self, "scopes")
 
@@ -104,9 +104,9 @@ class _CockpitTokenState:
         Input properties used for looking up and filtering CockpitToken resources.
         :param pulumi.Input[str] created_at: The date and time of the creation of the Cockpit Token (Format ISO 8601)
         :param pulumi.Input[str] name: The name of the token.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit token.
-        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Allowed scopes.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the Cockpit token is located.
+        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Scopes allowed, each with default values:
         :param pulumi.Input[str] secret_key: The secret key of the token.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Cockpit Token (Format ISO 8601)
         """
@@ -153,7 +153,7 @@ class _CockpitTokenState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -165,7 +165,7 @@ class _CockpitTokenState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region of the cockpit token.
+        ) The region where the Cockpit token is located.
         """
         return pulumi.get(self, "region")
 
@@ -177,7 +177,7 @@ class _CockpitTokenState:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input['CockpitTokenScopesArgs']]:
         """
-        Allowed scopes.
+        Scopes allowed, each with default values:
         """
         return pulumi.get(self, "scopes")
 
@@ -221,11 +221,20 @@ class CockpitToken(pulumi.CustomResource):
                  scopes: Optional[pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Cockpit Tokens.
+        The `CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Use a Cockpit token
+
+        The following commands allow you to:
+
+        - create a Scaleway Project named `my-project`
+        - create a Cockpit token named `my-awesome-token` inside the Project
+        - assign `read` permissions to the token for metrics and logs
+        - disable `write` permissions for metrics and logs
 
         ```python
         import pulumi
@@ -256,7 +265,7 @@ class CockpitToken(pulumi.CustomResource):
 
         ## Import
 
-        Cockpits tokens can be imported using the `{region}/{id}`, e.g.
+        This section explains how to import a Cockpit token using the `{region}/{id}` format.
 
         bash
 
@@ -267,9 +276,9 @@ class CockpitToken(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the token.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit token.
-        :param pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']] scopes: Allowed scopes.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the Cockpit token is located.
+        :param pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']] scopes: Scopes allowed, each with default values:
         """
         ...
     @overload
@@ -278,11 +287,20 @@ class CockpitToken(pulumi.CustomResource):
                  args: Optional[CockpitTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Cockpit Tokens.
+        The `CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Use a Cockpit token
+
+        The following commands allow you to:
+
+        - create a Scaleway Project named `my-project`
+        - create a Cockpit token named `my-awesome-token` inside the Project
+        - assign `read` permissions to the token for metrics and logs
+        - disable `write` permissions for metrics and logs
 
         ```python
         import pulumi
@@ -313,7 +331,7 @@ class CockpitToken(pulumi.CustomResource):
 
         ## Import
 
-        Cockpits tokens can be imported using the `{region}/{id}`, e.g.
+        This section explains how to import a Cockpit token using the `{region}/{id}` format.
 
         bash
 
@@ -384,9 +402,9 @@ class CockpitToken(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The date and time of the creation of the Cockpit Token (Format ISO 8601)
         :param pulumi.Input[str] name: The name of the token.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit token.
-        :param pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']] scopes: Allowed scopes.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the Cockpit token is located.
+        :param pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']] scopes: Scopes allowed, each with default values:
         :param pulumi.Input[str] secret_key: The secret key of the token.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Cockpit Token (Format ISO 8601)
         """
@@ -423,7 +441,7 @@ class CockpitToken(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -431,7 +449,7 @@ class CockpitToken(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region of the cockpit token.
+        ) The region where the Cockpit token is located.
         """
         return pulumi.get(self, "region")
 
@@ -439,7 +457,7 @@ class CockpitToken(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output['outputs.CockpitTokenScopes']:
         """
-        Allowed scopes.
+        Scopes allowed, each with default values:
         """
         return pulumi.get(self, "scopes")
 

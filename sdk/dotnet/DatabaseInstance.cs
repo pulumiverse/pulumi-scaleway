@@ -267,13 +267,13 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> EncryptionAtRest { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) The IP of the Database Instance.
+        /// (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Output("endpointIp")]
         public Output<string> EndpointIp { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) The port of the Database Instance.
+        /// (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Output("endpointPort")]
         public Output<int> EndpointPort { get; private set; } = null!;
@@ -672,13 +672,13 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EncryptionAtRest { get; set; }
 
         /// <summary>
-        /// (Deprecated) The IP of the Database Instance.
+        /// (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Input("endpointIp")]
         public Input<string>? EndpointIp { get; set; }
 
         /// <summary>
-        /// (Deprecated) The port of the Database Instance.
+        /// (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Input("endpointPort")]
         public Input<int>? EndpointPort { get; set; }

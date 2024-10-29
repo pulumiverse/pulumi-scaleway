@@ -12,11 +12,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Cockpit Grafana Users.
+// The `CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
 //
-// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
 // ## Example Usage
+//
+// ### Create a Grafana user
+//
+// The following command allows you to create a Grafana user within a specific Scaleway Project.
 //
 // ```go
 // package main
@@ -52,7 +56,7 @@ import (
 //
 // ## Import
 //
-// Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+// This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
 //
 // bash
 //
@@ -62,13 +66,13 @@ import (
 type CockpitGrafanaUser struct {
 	pulumi.CustomResourceState
 
-	// The login of the grafana user.
+	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login pulumi.StringOutput `pulumi:"login"`
-	// The password of the grafana user
+	// The password of the Grafana user.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The role of the grafana user. Must be `editor` or `viewer`.
+	// The role assigned to the Grafana user. Must be `editor` or `viewer`.
 	Role pulumi.StringOutput `pulumi:"role"`
 }
 
@@ -112,24 +116,24 @@ func GetCockpitGrafanaUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitGrafanaUser resources.
 type cockpitGrafanaUserState struct {
-	// The login of the grafana user.
+	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login *string `pulumi:"login"`
-	// The password of the grafana user
+	// The password of the Grafana user.
 	Password *string `pulumi:"password"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The role of the grafana user. Must be `editor` or `viewer`.
+	// The role assigned to the Grafana user. Must be `editor` or `viewer`.
 	Role *string `pulumi:"role"`
 }
 
 type CockpitGrafanaUserState struct {
-	// The login of the grafana user.
+	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login pulumi.StringPtrInput
-	// The password of the grafana user
+	// The password of the Grafana user.
 	Password pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The role of the grafana user. Must be `editor` or `viewer`.
+	// The role assigned to the Grafana user. Must be `editor` or `viewer`.
 	Role pulumi.StringPtrInput
 }
 
@@ -138,21 +142,21 @@ func (CockpitGrafanaUserState) ElementType() reflect.Type {
 }
 
 type cockpitGrafanaUserArgs struct {
-	// The login of the grafana user.
+	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login string `pulumi:"login"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The role of the grafana user. Must be `editor` or `viewer`.
+	// The role assigned to the Grafana user. Must be `editor` or `viewer`.
 	Role string `pulumi:"role"`
 }
 
 // The set of arguments for constructing a CockpitGrafanaUser resource.
 type CockpitGrafanaUserArgs struct {
-	// The login of the grafana user.
+	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login pulumi.StringInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The role of the grafana user. Must be `editor` or `viewer`.
+	// The role assigned to the Grafana user. Must be `editor` or `viewer`.
 	Role pulumi.StringInput
 }
 
@@ -243,22 +247,22 @@ func (o CockpitGrafanaUserOutput) ToCockpitGrafanaUserOutputWithContext(ctx cont
 	return o
 }
 
-// The login of the grafana user.
+// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 func (o CockpitGrafanaUserOutput) Login() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitGrafanaUser) pulumi.StringOutput { return v.Login }).(pulumi.StringOutput)
 }
 
-// The password of the grafana user
+// The password of the Grafana user.
 func (o CockpitGrafanaUserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitGrafanaUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the cockpit is associated with.
+// ) The ID of the Project the Cockpit is associated with.
 func (o CockpitGrafanaUserOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitGrafanaUser) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The role of the grafana user. Must be `editor` or `viewer`.
+// The role assigned to the Grafana user. Must be `editor` or `viewer`.
 func (o CockpitGrafanaUserOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitGrafanaUser) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }

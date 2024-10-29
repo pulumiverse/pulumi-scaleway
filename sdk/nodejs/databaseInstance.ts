@@ -214,13 +214,15 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly encryptionAtRest!: pulumi.Output<boolean | undefined>;
     /**
-     * (Deprecated) The IP of the Database Instance.
+     * (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     public /*out*/ readonly endpointIp!: pulumi.Output<string>;
     /**
-     * (Deprecated) The port of the Database Instance.
+     * (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+     *
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     public /*out*/ readonly endpointPort!: pulumi.Output<number>;
     /**
@@ -421,13 +423,15 @@ export interface DatabaseInstanceState {
      */
     encryptionAtRest?: pulumi.Input<boolean>;
     /**
-     * (Deprecated) The IP of the Database Instance.
+     * (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     endpointIp?: pulumi.Input<string>;
     /**
-     * (Deprecated) The port of the Database Instance.
+     * (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+     *
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     endpointPort?: pulumi.Input<number>;
     /**

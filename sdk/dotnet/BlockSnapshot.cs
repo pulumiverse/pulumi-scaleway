@@ -11,10 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Block Snapshots.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+    /// The `scaleway.BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+    /// 
+    /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// ### Create a snapshot of a Block Storage volume
+    /// 
+    /// The following command allows you to create a snapshot (`some-snapshot-name`) from a Block Storage volume specified by its ID.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -42,7 +47,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Block Snapshots can be imported using the `{zone}/{id}`, e.g.
+    /// This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
     /// 
     /// bash
     /// 
@@ -54,13 +59,13 @@ namespace Pulumiverse.Scaleway
     public partial class BlockSnapshot : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the snapshot. If not provided it will be randomly generated.
+        /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// ). The ID of the Scaleway Project the snapshot is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -78,7 +83,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> VolumeId { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot should be created.
+        /// ). The zone in which the snapshot should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -131,13 +136,13 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockSnapshotArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the snapshot. If not provided it will be randomly generated.
+        /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// ). The ID of the Scaleway Project the snapshot is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -161,7 +166,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> VolumeId { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot should be created.
+        /// ). The zone in which the snapshot should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -175,13 +180,13 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockSnapshotState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the snapshot. If not provided it will be randomly generated.
+        /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// ). The ID of the Scaleway Project the snapshot is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -205,7 +210,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot should be created.
+        /// ). The zone in which the snapshot should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

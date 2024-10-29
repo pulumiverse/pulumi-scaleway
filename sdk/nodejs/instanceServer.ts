@@ -228,6 +228,8 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly bootType!: pulumi.Output<string | undefined>;
     /**
      * The ID of the bootscript to use  (set bootType to `bootscript`).
+     *
+     * @deprecated bootscript is not supported anymore.
      */
     public readonly bootscriptId!: pulumi.Output<string>;
     /**
@@ -240,6 +242,9 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly enableDynamicIp!: pulumi.Output<boolean | undefined>;
     /**
      * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     public readonly enableIpv6!: pulumi.Output<boolean | undefined>;
     /**
@@ -263,14 +268,21 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly ipIds!: pulumi.Output<string[] | undefined>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
     /**
      * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     public /*out*/ readonly ipv6Gateway!: pulumi.Output<string>;
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
      */
     public /*out*/ readonly ipv6PrefixLength!: pulumi.Output<number>;
     /**
@@ -306,7 +318,9 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The public IP address of the server.
+     * The public IP address of the server (Deprecated use `publicIps` instead).
+     *
+     * @deprecated Use publicIps instead
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
@@ -465,6 +479,8 @@ export interface InstanceServerState {
     bootType?: pulumi.Input<string>;
     /**
      * The ID of the bootscript to use  (set bootType to `bootscript`).
+     *
+     * @deprecated bootscript is not supported anymore.
      */
     bootscriptId?: pulumi.Input<string>;
     /**
@@ -477,6 +493,9 @@ export interface InstanceServerState {
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
      * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**
@@ -500,14 +519,21 @@ export interface InstanceServerState {
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     ipv6Address?: pulumi.Input<string>;
     /**
      * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     ipv6Gateway?: pulumi.Input<string>;
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
      */
     ipv6PrefixLength?: pulumi.Input<number>;
     /**
@@ -543,7 +569,9 @@ export interface InstanceServerState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The public IP address of the server.
+     * The public IP address of the server (Deprecated use `publicIps` instead).
+     *
+     * @deprecated Use publicIps instead
      */
     publicIp?: pulumi.Input<string>;
     /**
@@ -619,6 +647,8 @@ export interface InstanceServerArgs {
     bootType?: pulumi.Input<string>;
     /**
      * The ID of the bootscript to use  (set bootType to `bootscript`).
+     *
+     * @deprecated bootscript is not supported anymore.
      */
     bootscriptId?: pulumi.Input<string>;
     /**
@@ -631,6 +661,9 @@ export interface InstanceServerArgs {
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
      * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**

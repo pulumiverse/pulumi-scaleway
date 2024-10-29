@@ -12,55 +12,9 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetDomainZone
     {
-        /// <summary>
-        /// Gets information about a domain zone.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     // Get zone
-        ///     var main = Scaleway.GetDomainZone.Invoke(new()
-        ///     {
-        ///         Domain = "scaleway-terraform.com",
-        ///         Subdomain = "test",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetDomainZoneResult> InvokeAsync(GetDomainZoneArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDomainZoneResult>("scaleway:index/getDomainZone:getDomainZone", args ?? new GetDomainZoneArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Gets information about a domain zone.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     // Get zone
-        ///     var main = Scaleway.GetDomainZone.Invoke(new()
-        ///     {
-        ///         Domain = "scaleway-terraform.com",
-        ///         Subdomain = "test",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetDomainZoneResult> Invoke(GetDomainZoneInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainZoneResult>("scaleway:index/getDomainZone:getDomainZone", args ?? new GetDomainZoneInvokeArgs(), options.WithDefaults());
     }
@@ -69,13 +23,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetDomainZoneArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The domain where the DNS zone will be created.
+        /// The primary domain name where the DNS zone is located. This is a mandatory field.
         /// </summary>
         [Input("domain")]
         public string? Domain { get; set; }
 
         /// <summary>
-        /// The subdomain(zone name) to create in the domain.
+        /// The subdomain (or zone name) within the primary domain. This is a mandatory field.
         /// </summary>
         [Input("subdomain")]
         public string? Subdomain { get; set; }
@@ -89,13 +43,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetDomainZoneInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The domain where the DNS zone will be created.
+        /// The primary domain name where the DNS zone is located. This is a mandatory field.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
         /// <summary>
-        /// The subdomain(zone name) to create in the domain.
+        /// The subdomain (or zone name) within the primary domain. This is a mandatory field.
         /// </summary>
         [Input("subdomain")]
         public Input<string>? Subdomain { get; set; }
@@ -116,29 +70,29 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Message
+        /// Message associated with the domain zone (typically used for status or error messages).
         /// </summary>
         public readonly string Message;
         /// <summary>
-        /// NameServer list for zone.
+        /// The list of name servers for the zone.
         /// </summary>
         public readonly ImmutableArray<string> Ns;
         /// <summary>
-        /// NameServer default list for zone.
+        /// The default list of name servers for the zone.
         /// </summary>
         public readonly ImmutableArray<string> NsDefaults;
         /// <summary>
-        /// NameServer master list for zone.
+        /// The master list of name servers for the zone.
         /// </summary>
         public readonly ImmutableArray<string> NsMasters;
         public readonly string ProjectId;
         /// <summary>
-        /// The domain zone status.
+        /// The status of the domain zone.
         /// </summary>
         public readonly string Status;
         public readonly string? Subdomain;
         /// <summary>
-        /// The date and time of the last update of the DNS zone.
+        /// The date and time of the last update to the DNS zone.
         /// </summary>
         public readonly string UpdatedAt;
 

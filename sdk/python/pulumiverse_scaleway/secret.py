@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecretArgs', 'Secret']
 
@@ -20,33 +22,45 @@ __all__ = ['SecretArgs', 'Secret']
 class SecretArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 ephemeral_policies: Optional[pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 protected: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Secret resource.
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
+        :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
+        :param pulumi.Input[bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
+        :param pulumi.Input[str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if ephemeral_policies is not None:
+            pulumi.set(__self__, "ephemeral_policies", ephemeral_policies)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if protected is not None:
+            pulumi.set(__self__, "protected", protected)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -59,6 +73,18 @@ class SecretArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="ephemeralPolicies")
+    def ephemeral_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]:
+        """
+        Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        """
+        return pulumi.get(self, "ephemeral_policies")
+
+    @ephemeral_policies.setter
+    def ephemeral_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]):
+        pulumi.set(self, "ephemeral_policies", value)
 
     @property
     @pulumi.getter
@@ -98,6 +124,18 @@ class SecretArgs:
 
     @property
     @pulumi.getter
+    def protected(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        """
+        return pulumi.get(self, "protected")
+
+    @protected.setter
+    def protected(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "protected", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region
@@ -121,50 +159,74 @@ class SecretArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class _SecretState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ephemeral_policies: Optional[pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 protected: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  version_count: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
-        :param pulumi.Input[str] created_at: Date and time of secret's creation (RFC 3339 format).
+        :param pulumi.Input[str] created_at: Date and time of the secret's creation (in RFC 3339 format).
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
+        :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
+        :param pulumi.Input[bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
-        :param pulumi.Input[str] status: The status of the Secret.
+        :param pulumi.Input[str] status: The status of the secret.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
-        :param pulumi.Input[str] updated_at: Date and time of secret's last update (RFC 3339 format).
-        :param pulumi.Input[int] version_count: The number of versions for this Secret.
+        :param pulumi.Input[str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        :param pulumi.Input[str] updated_at: Date and time of the secret's last update (in RFC 3339 format).
+        :param pulumi.Input[int] version_count: The amount of secret versions.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if ephemeral_policies is not None:
+            pulumi.set(__self__, "ephemeral_policies", ephemeral_policies)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if protected is not None:
+            pulumi.set(__self__, "protected", protected)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if version_count is not None:
@@ -174,7 +236,7 @@ class _SecretState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of secret's creation (RFC 3339 format).
+        Date and time of the secret's creation (in RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -195,6 +257,18 @@ class _SecretState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="ephemeralPolicies")
+    def ephemeral_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]:
+        """
+        Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        """
+        return pulumi.get(self, "ephemeral_policies")
+
+    @ephemeral_policies.setter
+    def ephemeral_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]):
+        pulumi.set(self, "ephemeral_policies", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -232,6 +306,18 @@ class _SecretState:
 
     @property
     @pulumi.getter
+    def protected(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        """
+        return pulumi.get(self, "protected")
+
+    @protected.setter
+    def protected(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "protected", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region
@@ -247,7 +333,7 @@ class _SecretState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the Secret.
+        The status of the secret.
         """
         return pulumi.get(self, "status")
 
@@ -268,10 +354,22 @@ class _SecretState:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of secret's last update (RFC 3339 format).
+        Date and time of the secret's last update (in RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
@@ -283,7 +381,7 @@ class _SecretState:
     @pulumi.getter(name="versionCount")
     def version_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of versions for this Secret.
+        The amount of secret versions.
         """
         return pulumi.get(self, "version_count")
 
@@ -298,36 +396,19 @@ class Secret(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ephemeral_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 protected: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Secrets.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
-
-        ## Example Usage
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.Secret("main",
-            name="foo",
-            description="barr",
-            tags=[
-                "foo",
-                "terraform",
-            ])
-        ```
-
         ## Import
 
-        The Secret can be imported using the `{region}/{id}`, e.g.
+        This section explains how to import a secret using the `{region}/{id}` format.
 
         bash
 
@@ -338,12 +419,15 @@ class Secret(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
+        :param pulumi.Input[bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
+        :param pulumi.Input[str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
         """
         ...
     @overload
@@ -352,29 +436,9 @@ class Secret(pulumi.CustomResource):
                  args: Optional[SecretArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Secrets.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
-
-        ## Example Usage
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.Secret("main",
-            name="foo",
-            description="barr",
-            tags=[
-                "foo",
-                "terraform",
-            ])
-        ```
-
         ## Import
 
-        The Secret can be imported using the `{region}/{id}`, e.g.
+        This section explains how to import a secret using the `{region}/{id}` format.
 
         bash
 
@@ -398,11 +462,14 @@ class Secret(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ephemeral_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 protected: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -413,11 +480,14 @@ class Secret(pulumi.CustomResource):
             __props__ = SecretArgs.__new__(SecretArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["ephemeral_policies"] = ephemeral_policies
             __props__.__dict__["name"] = name
             __props__.__dict__["path"] = path
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["protected"] = protected
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
@@ -434,12 +504,15 @@ class Secret(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            ephemeral_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            protected: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             version_count: Optional[pulumi.Input[int]] = None) -> 'Secret':
         """
@@ -449,17 +522,20 @@ class Secret(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: Date and time of secret's creation (RFC 3339 format).
+        :param pulumi.Input[str] created_at: Date and time of the secret's creation (in RFC 3339 format).
         :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[str] project_id: The project ID containing is the secret.
+        :param pulumi.Input[bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
-        :param pulumi.Input[str] status: The status of the Secret.
+        :param pulumi.Input[str] status: The status of the secret.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
-        :param pulumi.Input[str] updated_at: Date and time of secret's last update (RFC 3339 format).
-        :param pulumi.Input[int] version_count: The number of versions for this Secret.
+        :param pulumi.Input[str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        :param pulumi.Input[str] updated_at: Date and time of the secret's last update (in RFC 3339 format).
+        :param pulumi.Input[int] version_count: The amount of secret versions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -467,12 +543,15 @@ class Secret(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["ephemeral_policies"] = ephemeral_policies
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["protected"] = protected
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["version_count"] = version_count
         return Secret(resource_name, opts=opts, __props__=__props__)
@@ -481,7 +560,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        Date and time of secret's creation (RFC 3339 format).
+        Date and time of the secret's creation (in RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -492,6 +571,14 @@ class Secret(pulumi.CustomResource):
         Description of the secret (e.g. `my-new-description`).
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="ephemeralPolicies")
+    def ephemeral_policies(self) -> pulumi.Output[Optional[Sequence['outputs.SecretEphemeralPolicy']]]:
+        """
+        Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        """
+        return pulumi.get(self, "ephemeral_policies")
 
     @property
     @pulumi.getter
@@ -519,6 +606,14 @@ class Secret(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def protected(self) -> pulumi.Output[Optional[bool]]:
+        """
+        True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        """
+        return pulumi.get(self, "protected")
+
+    @property
+    @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
         `region`) The region
@@ -530,7 +625,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the Secret.
+        The status of the secret.
         """
         return pulumi.get(self, "status")
 
@@ -543,10 +638,18 @@ class Secret(pulumi.CustomResource):
         return pulumi.get(self, "tags")
 
     @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        """
+        return pulumi.get(self, "type")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        Date and time of secret's last update (RFC 3339 format).
+        Date and time of the secret's last update (in RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
@@ -554,7 +657,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter(name="versionCount")
     def version_count(self) -> pulumi.Output[int]:
         """
-        The number of versions for this Secret.
+        The amount of secret versions.
         """
         return pulumi.get(self, "version_count")
 

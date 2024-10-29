@@ -11,12 +11,19 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about Scaleway Secrets.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+// The `Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
 //
-// ## Examples
+// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 //
-// ### Basic
+// ## Example Usage
+//
+// ### Create a secret and get its information
+//
+// The following commands allow you to:
+//
+// - create a secret named `foo` with the description `barr`
+// - retrieve the secret's information using the secret's ID
+// - retrieve the secret's information using the secret's name
 //
 // ```go
 // package main
@@ -30,6 +37,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a secret
 //			_, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
 //				Name:        pulumi.String("foo"),
 //				Description: pulumi.String("barr"),
@@ -37,14 +45,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Get info by secret ID
+//			// Get the secret information specified by the secret ID
 //			_, err = scaleway.LookupSecret(ctx, &scaleway.LookupSecretArgs{
 //				SecretId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			// Get info by secret Name
+//			// Get the secret information specified by the secret name
 //			_, err = scaleway.LookupSecret(ctx, &scaleway.LookupSecretArgs{
 //				Name: pulumi.StringRef("your_secret_name"),
 //			}, nil)
@@ -68,39 +76,41 @@ func LookupSecret(ctx *pulumi.Context, args *LookupSecretArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getSecret.
 type LookupSecretArgs struct {
-	// The secret name.
+	// The name of the secret.
 	// Only one of `name` and `secretId` should be specified.
 	Name *string `pulumi:"name"`
-	// The organization ID the Project is associated with.
-	// If no default organizationId is set, one must be set explicitly in this datasource
+	// The ID of the Scaleway Organization the Project is associated with. If no default `organizationId` is set, it must be set explicitly in this data source.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The secret path.
+	// The path of the secret.
 	// Conflicts with `secretId`.
 	Path *string `pulumi:"path"`
-	// `projectId`) The ID of the
-	// project the secret is associated with.
+	// ). The ID of the
+	// Project the secret is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the secret exists.
+	// ). The region in which the secret exists.
 	Region *string `pulumi:"region"`
-	// The secret id.
+	// The ID of the secret.
 	// Only one of `name` and `secretId` should be specified.
 	SecretId *string `pulumi:"secretId"`
 }
 
 // A collection of values returned by getSecret.
 type LookupSecretResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
-	Description string `pulumi:"description"`
+	CreatedAt         string                     `pulumi:"createdAt"`
+	Description       string                     `pulumi:"description"`
+	EphemeralPolicies []GetSecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
 	OrganizationId string   `pulumi:"organizationId"`
 	Path           *string  `pulumi:"path"`
 	ProjectId      *string  `pulumi:"projectId"`
+	Protected      bool     `pulumi:"protected"`
 	Region         *string  `pulumi:"region"`
 	SecretId       *string  `pulumi:"secretId"`
 	Status         string   `pulumi:"status"`
 	Tags           []string `pulumi:"tags"`
+	Type           string   `pulumi:"type"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 	VersionCount   int      `pulumi:"versionCount"`
 }
@@ -126,21 +136,20 @@ func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts .
 
 // A collection of arguments for invoking getSecret.
 type LookupSecretOutputArgs struct {
-	// The secret name.
+	// The name of the secret.
 	// Only one of `name` and `secretId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The organization ID the Project is associated with.
-	// If no default organizationId is set, one must be set explicitly in this datasource
+	// The ID of the Scaleway Organization the Project is associated with. If no default `organizationId` is set, it must be set explicitly in this data source.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
-	// The secret path.
+	// The path of the secret.
 	// Conflicts with `secretId`.
 	Path pulumi.StringPtrInput `pulumi:"path"`
-	// `projectId`) The ID of the
-	// project the secret is associated with.
+	// ). The ID of the
+	// Project the secret is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`) The region in which the secret exists.
+	// ). The region in which the secret exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The secret id.
+	// The ID of the secret.
 	// Only one of `name` and `secretId` should be specified.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 }
@@ -172,6 +181,10 @@ func (o LookupSecretResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+func (o LookupSecretResultOutput) EphemeralPolicies() GetSecretEphemeralPolicyArrayOutput {
+	return o.ApplyT(func(v LookupSecretResult) []GetSecretEphemeralPolicy { return v.EphemeralPolicies }).(GetSecretEphemeralPolicyArrayOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSecretResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretResult) string { return v.Id }).(pulumi.StringOutput)
@@ -193,6 +206,10 @@ func (o LookupSecretResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSecretResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupSecretResultOutput) Protected() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupSecretResult) bool { return v.Protected }).(pulumi.BoolOutput)
+}
+
 func (o LookupSecretResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSecretResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -207,6 +224,10 @@ func (o LookupSecretResultOutput) Status() pulumi.StringOutput {
 
 func (o LookupSecretResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupSecretResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupSecretResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 func (o LookupSecretResultOutput) UpdatedAt() pulumi.StringOutput {

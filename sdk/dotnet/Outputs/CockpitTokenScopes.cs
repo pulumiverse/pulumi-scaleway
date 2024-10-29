@@ -15,39 +15,39 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class CockpitTokenScopes
     {
         /// <summary>
-        /// Query logs.
+        /// Permission to query logs.
         /// </summary>
         public readonly bool? QueryLogs;
         /// <summary>
-        /// Query metrics.
+        /// Permission to query metrics.
         /// </summary>
         public readonly bool? QueryMetrics;
         /// <summary>
-        /// Query traces.
+        /// Permission to query traces.
         /// </summary>
         public readonly bool? QueryTraces;
         /// <summary>
-        /// Setup alerts.
+        /// Permission to set up alerts.
         /// </summary>
         public readonly bool? SetupAlerts;
         /// <summary>
-        /// Setup logs rules.
+        /// Permission to set up logs rules.
         /// </summary>
         public readonly bool? SetupLogsRules;
         /// <summary>
-        /// Setup metrics rules.
+        /// Permission to set up metrics rules.
         /// </summary>
         public readonly bool? SetupMetricsRules;
         /// <summary>
-        /// Write logs.
+        /// Permission to write logs.
         /// </summary>
         public readonly bool? WriteLogs;
         /// <summary>
-        /// Write metrics.
+        /// Permission to write metrics.
         /// </summary>
         public readonly bool? WriteMetrics;
         /// <summary>
-        /// Write traces.
+        /// Permission to write traces.
         /// </summary>
         public readonly bool? WriteTraces;
 

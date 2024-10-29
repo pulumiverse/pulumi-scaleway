@@ -13,12 +13,24 @@ namespace Pulumiverse.Scaleway
     public static class GetSecretVersion
     {
         /// <summary>
-        /// Gets information about Scaleway a Secret Version.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+        /// The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
         /// 
-        /// ## Examples
+        /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// ### Basic
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Use Secret Manager
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - create a secret named `fooii`
+        /// - create a new version of `fooii` containing data (`your_secret`)
+        /// - retrieve the secret version specified by the secret ID and the desired version
+        /// - retrieve the secret version specified by the secret name and the desired version
+        /// 
+        /// The output blocks display the sensitive data contained in your secret version.
+        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,12 +41,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Create a secret named fooii
         ///     var main = new Scaleway.Secret("main", new()
         ///     {
         ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
+        ///     // Create a version of fooii containing data
         ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
         ///     {
         ///         Description = "your description",
@@ -42,12 +56,14 @@ namespace Pulumiverse.Scaleway
         ///         Data = "your_secret",
         ///     });
         /// 
+        ///     // Retrieve the secret version specified by the secret ID and the desired version
         ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
         ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
+        ///     // Retrieve the secret version specified by the secret name and the desired version
         ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
         ///         SecretName = main.Name,
@@ -62,25 +78,37 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Data
+        /// ## Data information
         /// 
-        /// Note: This Data Source give you **access** to the secret payload encoded en base64.
+        /// Note: This data source provides you with access to the secret payload, which is encoded in base64.
         /// 
-        /// Be aware that this is a sensitive attribute. For more information,
+        /// Keep in mind that this is a sensitive attribute. For more information,
         /// see Sensitive Data in State.
         /// 
-        /// &gt; **Important:**  This property is sensitive and will not be displayed in the plan.
+        /// &gt; **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
         /// </summary>
         public static Task<GetSecretVersionResult> InvokeAsync(GetSecretVersionArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about Scaleway a Secret Version.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+        /// The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
         /// 
-        /// ## Examples
+        /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// ### Basic
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Use Secret Manager
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - create a secret named `fooii`
+        /// - create a new version of `fooii` containing data (`your_secret`)
+        /// - retrieve the secret version specified by the secret ID and the desired version
+        /// - retrieve the secret version specified by the secret name and the desired version
+        /// 
+        /// The output blocks display the sensitive data contained in your secret version.
+        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -91,12 +119,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Create a secret named fooii
         ///     var main = new Scaleway.Secret("main", new()
         ///     {
         ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
+        ///     // Create a version of fooii containing data
         ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
         ///     {
         ///         Description = "your description",
@@ -104,12 +134,14 @@ namespace Pulumiverse.Scaleway
         ///         Data = "your_secret",
         ///     });
         /// 
+        ///     // Retrieve the secret version specified by the secret ID and the desired version
         ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
         ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
+        ///     // Retrieve the secret version specified by the secret name and the desired version
         ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
         ///     {
         ///         SecretName = main.Name,
@@ -124,14 +156,14 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Data
+        /// ## Data information
         /// 
-        /// Note: This Data Source give you **access** to the secret payload encoded en base64.
+        /// Note: This data source provides you with access to the secret payload, which is encoded in base64.
         /// 
-        /// Be aware that this is a sensitive attribute. For more information,
+        /// Keep in mind that this is a sensitive attribute. For more information,
         /// see Sensitive Data in State.
         /// 
-        /// &gt; **Important:**  This property is sensitive and will not be displayed in the plan.
+        /// &gt; **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
         /// </summary>
         public static Output<GetSecretVersionResult> Invoke(GetSecretVersionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());
@@ -140,34 +172,32 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetSecretVersionArgs : global::Pulumi.InvokeArgs
     {
+        [Input("organizationId")]
+        public string? OrganizationId { get; set; }
+
         /// <summary>
-        /// The ID of the project the Secret version is associated with.
+        /// The ID of the Scaleway Project associated with the secret version.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
-        /// <summary>
-        /// `region`) The region
-        /// in which the resource exists.
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         /// <summary>
-        /// The revision for this Secret Version.
+        /// The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
         /// </summary>
         [Input("revision")]
         public string? Revision { get; set; }
 
         /// <summary>
-        /// The Secret ID associated wit the secret version.
-        /// Only one of `secret_id` and `secret_name` should be specified.
+        /// The ID of the secret associated with the secret version. Only one of `secret_id` and `secret_name` should be specified.
         /// </summary>
         [Input("secretId")]
         public string? SecretId { get; set; }
 
         /// <summary>
-        /// The Name of Secret associated wit the secret version.
+        /// The name of the secret associated with the secret version.
         /// Only one of `secret_id` and `secret_name` should be specified.
         /// </summary>
         [Input("secretName")]
@@ -181,34 +211,32 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetSecretVersionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
         /// <summary>
-        /// The ID of the project the Secret version is associated with.
+        /// The ID of the Scaleway Project associated with the secret version.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
-        /// <summary>
-        /// `region`) The region
-        /// in which the resource exists.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The revision for this Secret Version.
+        /// The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
         /// </summary>
         [Input("revision")]
         public Input<string>? Revision { get; set; }
 
         /// <summary>
-        /// The Secret ID associated wit the secret version.
-        /// Only one of `secret_id` and `secret_name` should be specified.
+        /// The ID of the secret associated with the secret version. Only one of `secret_id` and `secret_name` should be specified.
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// The Name of Secret associated wit the secret version.
+        /// The name of the secret associated with the secret version.
         /// Only one of `secret_id` and `secret_name` should be specified.
         /// </summary>
         [Input("secretName")]
@@ -225,32 +253,33 @@ namespace Pulumiverse.Scaleway
     public sealed class GetSecretVersionResult
     {
         /// <summary>
-        /// Date and time of secret version's creation (RFC 3339 format).
+        /// The date and time of the secret version's creation in RFC 3339 format.
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The data payload of the secret version. more on the data section
+        /// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         public readonly string Data;
         /// <summary>
-        /// (Optional) Description of the secret version (e.g. `my-new-description`).
+        /// (Optional) The description of the secret version (e.g. `my-new-description`).
         /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string OrganizationId;
         public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string? Revision;
         public readonly string? SecretId;
         public readonly string? SecretName;
         /// <summary>
-        /// The status of the Secret Version.
+        /// The status of the secret version.
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// Date and time of secret version's last update (RFC 3339 format).
+        /// The date and time of the secret version's last update in RFC 3339 format.
         /// </summary>
         public readonly string UpdatedAt;
 
@@ -263,6 +292,8 @@ namespace Pulumiverse.Scaleway
             string description,
 
             string id,
+
+            string organizationId,
 
             string? projectId,
 
@@ -282,6 +313,7 @@ namespace Pulumiverse.Scaleway
             Data = data;
             Description = description;
             Id = id;
+            OrganizationId = organizationId;
             ProjectId = projectId;
             Region = region;
             Revision = revision;

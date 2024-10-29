@@ -5,11 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Cockpit Grafana Users.
+ * The `scaleway.CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
  *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
  * ## Example Usage
+ *
+ * ### Create a Grafana user
+ *
+ * The following command allows you to create a Grafana user within a specific Scaleway Project.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,7 +29,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+ * This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
  *
  * bash
  *
@@ -62,19 +66,19 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
     }
 
     /**
-     * The login of the grafana user.
+     * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */
     public readonly login!: pulumi.Output<string>;
     /**
-     * The password of the grafana user
+     * The password of the Grafana user.
      */
     public /*out*/ readonly password!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * ) The ID of the Project the Cockpit is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The role of the grafana user. Must be `editor` or `viewer`.
+     * The role assigned to the Grafana user. Must be `editor` or `viewer`.
      */
     public readonly role!: pulumi.Output<string>;
 
@@ -120,19 +124,19 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
  */
 export interface CockpitGrafanaUserState {
     /**
-     * The login of the grafana user.
+     * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */
     login?: pulumi.Input<string>;
     /**
-     * The password of the grafana user
+     * The password of the Grafana user.
      */
     password?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * ) The ID of the Project the Cockpit is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The role of the grafana user. Must be `editor` or `viewer`.
+     * The role assigned to the Grafana user. Must be `editor` or `viewer`.
      */
     role?: pulumi.Input<string>;
 }
@@ -142,15 +146,15 @@ export interface CockpitGrafanaUserState {
  */
 export interface CockpitGrafanaUserArgs {
     /**
-     * The login of the grafana user.
+     * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */
     login: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * ) The ID of the Project the Cockpit is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The role of the grafana user. Must be `editor` or `viewer`.
+     * The role assigned to the Grafana user. Must be `editor` or `viewer`.
      */
     role: pulumi.Input<string>;
 }

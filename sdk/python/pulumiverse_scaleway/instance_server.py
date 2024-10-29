@@ -63,6 +63,7 @@ class InstanceServerArgs:
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -104,11 +105,17 @@ class InstanceServerArgs:
         if boot_type is not None:
             pulumi.set(__self__, "boot_type", boot_type)
         if bootscript_id is not None:
+            warnings.warn("""bootscript is not supported anymore.""", DeprecationWarning)
+            pulumi.log.warn("""bootscript_id is deprecated: bootscript is not supported anymore.""")
+        if bootscript_id is not None:
             pulumi.set(__self__, "bootscript_id", bootscript_id)
         if cloud_init is not None:
             pulumi.set(__self__, "cloud_init", cloud_init)
         if enable_dynamic_ip is not None:
             pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
+        if enable_ipv6 is not None:
+            warnings.warn("""Please use a InstanceIp with a `routed_ipv6` type""", DeprecationWarning)
+            pulumi.log.warn("""enable_ipv6 is deprecated: Please use a InstanceIp with a `routed_ipv6` type""")
         if enable_ipv6 is not None:
             pulumi.set(__self__, "enable_ipv6", enable_ipv6)
         if image is not None:
@@ -192,6 +199,7 @@ class InstanceServerArgs:
 
     @property
     @pulumi.getter(name="bootscriptId")
+    @_utilities.deprecated("""bootscript is not supported anymore.""")
     def bootscript_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the bootscript to use  (set boot_type to `bootscript`).
@@ -228,9 +236,11 @@ class InstanceServerArgs:
 
     @property
     @pulumi.getter(name="enableIpv6")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
         Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -495,6 +505,7 @@ class _InstanceServerState:
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -506,8 +517,11 @@ class _InstanceServerState:
                
                > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
@@ -519,7 +533,7 @@ class _InstanceServerState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[str] public_ip: The public IP address of the server.
+        :param pulumi.Input[str] public_ip: The public IP address of the server (Deprecated use `public_ips` instead).
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
@@ -548,11 +562,17 @@ class _InstanceServerState:
         if boot_type is not None:
             pulumi.set(__self__, "boot_type", boot_type)
         if bootscript_id is not None:
+            warnings.warn("""bootscript is not supported anymore.""", DeprecationWarning)
+            pulumi.log.warn("""bootscript_id is deprecated: bootscript is not supported anymore.""")
+        if bootscript_id is not None:
             pulumi.set(__self__, "bootscript_id", bootscript_id)
         if cloud_init is not None:
             pulumi.set(__self__, "cloud_init", cloud_init)
         if enable_dynamic_ip is not None:
             pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
+        if enable_ipv6 is not None:
+            warnings.warn("""Please use a InstanceIp with a `routed_ipv6` type""", DeprecationWarning)
+            pulumi.log.warn("""enable_ipv6 is deprecated: Please use a InstanceIp with a `routed_ipv6` type""")
         if enable_ipv6 is not None:
             pulumi.set(__self__, "enable_ipv6", enable_ipv6)
         if image is not None:
@@ -562,7 +582,13 @@ class _InstanceServerState:
         if ip_ids is not None:
             pulumi.set(__self__, "ip_ids", ip_ids)
         if ipv6_address is not None:
+            warnings.warn("""Please use a InstanceIp with a `routed_ipv6` type""", DeprecationWarning)
+            pulumi.log.warn("""ipv6_address is deprecated: Please use a InstanceIp with a `routed_ipv6` type""")
+        if ipv6_address is not None:
             pulumi.set(__self__, "ipv6_address", ipv6_address)
+        if ipv6_gateway is not None:
+            warnings.warn("""Please use a InstanceIp with a `routed_ipv6` type""", DeprecationWarning)
+            pulumi.log.warn("""ipv6_gateway is deprecated: Please use a InstanceIp with a `routed_ipv6` type""")
         if ipv6_gateway is not None:
             pulumi.set(__self__, "ipv6_gateway", ipv6_gateway)
         if ipv6_prefix_length is not None:
@@ -581,6 +607,9 @@ class _InstanceServerState:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_ip is not None:
+            warnings.warn("""Use public_ips instead""", DeprecationWarning)
+            pulumi.log.warn("""public_ip is deprecated: Use public_ips instead""")
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
         if public_ips is not None:
@@ -635,6 +664,7 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="bootscriptId")
+    @_utilities.deprecated("""bootscript is not supported anymore.""")
     def bootscript_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the bootscript to use  (set boot_type to `bootscript`).
@@ -671,9 +701,11 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="enableIpv6")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
         Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -726,9 +758,11 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="ipv6Address")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def ipv6_address(self) -> Optional[pulumi.Input[str]]:
         """
         The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "ipv6_address")
 
@@ -738,9 +772,11 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="ipv6Gateway")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def ipv6_gateway(self) -> Optional[pulumi.Input[str]]:
         """
         The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "ipv6_gateway")
 
@@ -753,6 +789,7 @@ class _InstanceServerState:
     def ipv6_prefix_length(self) -> Optional[pulumi.Input[int]]:
         """
         The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "ipv6_prefix_length")
 
@@ -850,9 +887,10 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="publicIp")
+    @_utilities.deprecated("""Use public_ips instead""")
     def public_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The public IP address of the server.
+        The public IP address of the server (Deprecated use `public_ips` instead).
         """
         return pulumi.get(self, "public_ip")
 
@@ -1202,6 +1240,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -1553,6 +1592,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -1564,8 +1604,11 @@ class InstanceServer(pulumi.CustomResource):
                
                > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+               Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
@@ -1577,7 +1620,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
-        :param pulumi.Input[str] public_ip: The public IP address of the server.
+        :param pulumi.Input[str] public_ip: The public IP address of the server (Deprecated use `public_ips` instead).
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
@@ -1660,6 +1703,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bootscriptId")
+    @_utilities.deprecated("""bootscript is not supported anymore.""")
     def bootscript_id(self) -> pulumi.Output[str]:
         """
         The ID of the bootscript to use  (set boot_type to `bootscript`).
@@ -1684,9 +1728,11 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="enableIpv6")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def enable_ipv6(self) -> pulumi.Output[Optional[bool]]:
         """
         Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -1723,17 +1769,21 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipv6Address")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def ipv6_address(self) -> pulumi.Output[str]:
         """
         The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="ipv6Gateway")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def ipv6_gateway(self) -> pulumi.Output[str]:
         """
         The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "ipv6_gateway")
 
@@ -1742,6 +1792,7 @@ class InstanceServer(pulumi.CustomResource):
     def ipv6_prefix_length(self) -> pulumi.Output[int]:
         """
         The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        Deprecated: Please use a InstanceIp with a `routed_ipv6` type.
         """
         return pulumi.get(self, "ipv6_prefix_length")
 
@@ -1807,9 +1858,10 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="publicIp")
+    @_utilities.deprecated("""Use public_ips instead""")
     def public_ip(self) -> pulumi.Output[str]:
         """
-        The public IP address of the server.
+        The public IP address of the server (Deprecated use `public_ips` instead).
         """
         return pulumi.get(self, "public_ip")
 

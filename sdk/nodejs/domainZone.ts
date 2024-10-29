@@ -5,24 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Domain zone.\
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const test = new scaleway.DomainZone("test", {
- *     domain: "scaleway-terraform.com",
- *     subdomain: "test",
- * });
- * ```
- *
  * ## Import
  *
- * Zone can be imported using the `{subdomain}.{domain}`, e.g.
+ * This section explains how to import a zone using the `{subdomain}.{domain}` format.
  *
  * bash
  *
@@ -59,39 +44,39 @@ export class DomainZone extends pulumi.CustomResource {
     }
 
     /**
-     * The domain where the DNS zone will be created.
+     * The main domain where the DNS zone will be created.
      */
     public readonly domain!: pulumi.Output<string>;
     /**
-     * Message
+     * Message.
      */
     public /*out*/ readonly message!: pulumi.Output<string>;
     /**
-     * NameServer list for zone.
+     * The list of same servers for the zone.
      */
     public /*out*/ readonly ns!: pulumi.Output<string[]>;
     /**
-     * NameServer default list for zone.
+     * The default list of same servers for the zone.
      */
     public /*out*/ readonly nsDefaults!: pulumi.Output<string[]>;
     /**
-     * NameServer master list for zone.
+     * The master list of same servers for the zone.
      */
     public /*out*/ readonly nsMasters!: pulumi.Output<string[]>;
     /**
-     * `projectId`) The ID of the project the domain is associated with.
+     * `projectId`) The ID of the Project associated with the domain.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The domain zone status.
+     * The status of the domain zone.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The subdomain(zone name) to create in the domain.
+     * The name of the subdomain (zone name) to create within the domain.
      */
     public readonly subdomain!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the DNS zone.
+     * The date and time at which the DNS zone was last updated.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -145,39 +130,39 @@ export class DomainZone extends pulumi.CustomResource {
  */
 export interface DomainZoneState {
     /**
-     * The domain where the DNS zone will be created.
+     * The main domain where the DNS zone will be created.
      */
     domain?: pulumi.Input<string>;
     /**
-     * Message
+     * Message.
      */
     message?: pulumi.Input<string>;
     /**
-     * NameServer list for zone.
+     * The list of same servers for the zone.
      */
     ns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * NameServer default list for zone.
+     * The default list of same servers for the zone.
      */
     nsDefaults?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * NameServer master list for zone.
+     * The master list of same servers for the zone.
      */
     nsMasters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `projectId`) The ID of the project the domain is associated with.
+     * `projectId`) The ID of the Project associated with the domain.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The domain zone status.
+     * The status of the domain zone.
      */
     status?: pulumi.Input<string>;
     /**
-     * The subdomain(zone name) to create in the domain.
+     * The name of the subdomain (zone name) to create within the domain.
      */
     subdomain?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the DNS zone.
+     * The date and time at which the DNS zone was last updated.
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -187,15 +172,15 @@ export interface DomainZoneState {
  */
 export interface DomainZoneArgs {
     /**
-     * The domain where the DNS zone will be created.
+     * The main domain where the DNS zone will be created.
      */
     domain: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the domain is associated with.
+     * `projectId`) The ID of the Project associated with the domain.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The subdomain(zone name) to create in the domain.
+     * The name of the subdomain (zone name) to create within the domain.
      */
     subdomain: pulumi.Input<string>;
 }

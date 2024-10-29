@@ -5,12 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Block Volumes.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+ * The `scaleway.BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+ *
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
  * ## Example Usage
  *
- * ### Basic
+ * ### Create a Block Storage volume
+ *
+ * The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -47,7 +50,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Block Volumes can be imported using the `{zone}/{id}`, e.g.
+ * This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
  *
  * bash
  *
@@ -84,19 +87,19 @@ export class BlockVolume extends pulumi.CustomResource {
     }
 
     /**
-     * The maximum IO/s expected, must match available options.
+     * The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
      */
     public readonly iops!: pulumi.Output<number>;
     /**
-     * The name of the volume. If not provided it will be randomly generated.
+     * The name of the volume. If not provided, a name will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the volume is associated with.
+     * ). The ID of the Project the volume is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+     * The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
      */
     public readonly sizeInGb!: pulumi.Output<number>;
     /**
@@ -108,7 +111,7 @@ export class BlockVolume extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * `zone`) The zone in which the volume should be created.
+     * ). The zone in which the volume should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -155,19 +158,19 @@ export class BlockVolume extends pulumi.CustomResource {
  */
 export interface BlockVolumeState {
     /**
-     * The maximum IO/s expected, must match available options.
+     * The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
      */
     iops?: pulumi.Input<number>;
     /**
-     * The name of the volume. If not provided it will be randomly generated.
+     * The name of the volume. If not provided, a name will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the volume is associated with.
+     * ). The ID of the Project the volume is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+     * The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
@@ -179,7 +182,7 @@ export interface BlockVolumeState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the volume should be created.
+     * ). The zone in which the volume should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -189,19 +192,19 @@ export interface BlockVolumeState {
  */
 export interface BlockVolumeArgs {
     /**
-     * The maximum IO/s expected, must match available options.
+     * The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
      */
     iops: pulumi.Input<number>;
     /**
-     * The name of the volume. If not provided it will be randomly generated.
+     * The name of the volume. If not provided, a name will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the volume is associated with.
+     * ). The ID of the Project the volume is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+     * The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
@@ -213,7 +216,7 @@ export interface BlockVolumeArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `zone`) The zone in which the volume should be created.
+     * ). The zone in which the volume should be created.
      */
     zone?: pulumi.Input<string>;
 }

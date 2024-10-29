@@ -13,9 +13,15 @@ namespace Pulumiverse.Scaleway
     public static class GetCockpitPlan
     {
         /// <summary>
-        /// Gets information about a Scaleway Cockpit plan.
+        /// The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
         /// 
-        /// ## Example Usage
+        /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Fetch and associate a pricing plan to a Cockpit
+        /// 
+        /// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -43,9 +49,15 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCockpitPlanResult>("scaleway:index/getCockpitPlan:getCockpitPlan", args ?? new GetCockpitPlanArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Scaleway Cockpit plan.
+        /// The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
         /// 
-        /// ## Example Usage
+        /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Fetch and associate a pricing plan to a Cockpit
+        /// 
+        /// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -77,7 +89,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetCockpitPlanArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the plan.
+        /// Name of the pricing plan you want to retrieve information about.
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
@@ -91,7 +103,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetCockpitPlanInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the plan.
+        /// Name of the pricing plan you want to retrieve information about.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

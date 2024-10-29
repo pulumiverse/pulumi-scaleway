@@ -131,7 +131,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> DmarcName { get; private set; } = null!;
 
         /// <summary>
-        /// The error message if the last check failed.
+        /// (Deprecated) The error message if the last check failed.
         /// </summary>
         [Output("lastError")]
         public Output<string> LastError { get; private set; } = null!;
@@ -352,7 +352,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DmarcName { get; set; }
 
         /// <summary>
-        /// The error message if the last check failed.
+        /// (Deprecated) The error message if the last check failed.
         /// </summary>
         [Input("lastError")]
         public Input<string>? LastError { get; set; }

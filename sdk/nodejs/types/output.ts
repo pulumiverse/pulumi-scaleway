@@ -109,23 +109,23 @@ export interface CockpitAlertManagerContactPoint {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL.
+     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL.
+     * (Deprecated) URL for Grafana.
      */
     grafanaUrl: string;
     /**
-     * The logs URL.
+     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     logsUrl: string;
     /**
-     * The metrics URL.
+     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     metricsUrl: string;
     /**
-     * The traces URL.
+     * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     tracesUrl: string;
 }
@@ -143,39 +143,39 @@ export interface CockpitPushUrl {
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs.
+     * Permission to query logs.
      */
     queryLogs?: boolean;
     /**
-     * Query metrics.
+     * Permission to query metrics.
      */
     queryMetrics?: boolean;
     /**
-     * Query traces.
+     * Permission to query traces.
      */
     queryTraces?: boolean;
     /**
-     * Setup alerts.
+     * Permission to set up alerts.
      */
     setupAlerts?: boolean;
     /**
-     * Setup logs rules.
+     * Permission to set up logs rules.
      */
     setupLogsRules?: boolean;
     /**
-     * Setup metrics rules.
+     * Permission to set up metrics rules.
      */
     setupMetricsRules?: boolean;
     /**
-     * Write logs.
+     * Permission to write logs.
      */
     writeLogs?: boolean;
     /**
-     * Write metrics.
+     * Permission to write metrics.
      */
     writeMetrics?: boolean;
     /**
-     * Write traces.
+     * Permission to write traces.
      */
     writeTraces?: boolean;
 }
@@ -491,7 +491,7 @@ export interface DomainRecordGeoIpMatch {
      */
     countries?: string[];
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+     * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
     data: string;
 }
@@ -521,7 +521,7 @@ export interface DomainRecordHttpService {
 
 export interface DomainRecordView {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+     * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
     data: string;
     /**
@@ -825,19 +825,19 @@ export interface GetBillingInvoicesInvoice {
 
 export interface GetCockpitEndpoint {
     /**
-     * The alertmanager URL
+     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL
+     * (Deprecated) URL for Grafana.
      */
     grafanaUrl: string;
     /**
-     * The logs URL
+     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     logsUrl: string;
     /**
-     * The metrics URL
+     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     metricsUrl: string;
     /**
@@ -973,8 +973,7 @@ export interface GetDomainRecordGeoIpMatch {
      */
     countries: string[];
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-     * Cannot be used with `recordId`.
+     * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
     data: string;
 }
@@ -1004,8 +1003,7 @@ export interface GetDomainRecordHttpService {
 
 export interface GetDomainRecordView {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-     * Cannot be used with `recordId`.
+     * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
     data: string;
     /**
@@ -1230,6 +1228,8 @@ export interface GetInstanceServersServer {
     bootType: string;
     /**
      * The ID of the bootscript.
+     *
+     * @deprecated bootscript are not supported
      */
     bootscriptId: string;
     /**
@@ -1283,6 +1283,8 @@ export interface GetInstanceServersServer {
     projectId: string;
     /**
      * The public IP address of the server.
+     *
+     * @deprecated Use publicIps instead
      */
     publicIp: string;
     /**
@@ -2324,6 +2326,21 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetSecretEphemeralPolicy {
+    /**
+     * Action to perform when the version of a secret expires.
+     */
+    action: string;
+    /**
+     * True if the secret version expires after a single user access.
+     */
+    expiresOnceAccessed: boolean;
+    /**
+     * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+     */
+    ttl: string;
+}
+
 export interface GetTemDomainReputation {
     /**
      * The previously-calculated domain's reputation score
@@ -2559,6 +2576,10 @@ export interface GetWebhostingOption {
 }
 
 export interface IamPolicyRule {
+    /**
+     * The condition of the IAM policy.
+     */
+    condition?: string;
     /**
      * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
@@ -3112,11 +3133,15 @@ export interface KubernetesNodePoolNode {
      */
     name: string;
     /**
-     * The public IPv4.
+     * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+     *
+     * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIp: string;
     /**
-     * The public IPv6.
+     * The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+     *
+     * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIpV6: string;
     /**
@@ -3332,7 +3357,9 @@ export interface LoadbalancerFrontendAclMatch {
 
 export interface LoadbalancerPrivateNetwork {
     /**
-     * (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+     * (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+     *
+     * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     dhcpConfig: boolean;
     /**
@@ -3346,7 +3373,7 @@ export interface LoadbalancerPrivateNetwork {
     /**
      * (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
      *
-     * @deprecated static_config field is deprecated, please use dhcpConfig instead
+     * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     staticConfig?: string;
     /**
@@ -3625,6 +3652,21 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface SecretEphemeralPolicy {
+    /**
+     * Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+     */
+    action: string;
+    /**
+     * True if the secret version expires after a single user access.
+     */
+    expiresOnceAccessed?: boolean;
+    /**
+     * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+     */
+    ttl?: string;
 }
 
 export interface TemDomainReputation {

@@ -5,10 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Block Snapshots.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+ * The `scaleway.BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+ *
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
  * ## Example Usage
+ *
+ * ### Create a snapshot of a Block Storage volume
+ *
+ * The following command allows you to create a snapshot (`some-snapshot-name`) from a Block Storage volume specified by its ID.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,7 +32,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Block Snapshots can be imported using the `{zone}/{id}`, e.g.
+ * This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
  *
  * bash
  *
@@ -64,11 +69,11 @@ export class BlockSnapshot extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the snapshot. If not provided it will be randomly generated.
+     * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the snapshot is associated with.
+     * ). The ID of the Scaleway Project the snapshot is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -80,7 +85,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
      */
     public readonly volumeId!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the snapshot should be created.
+     * ). The zone in which the snapshot should be created.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -123,11 +128,11 @@ export class BlockSnapshot extends pulumi.CustomResource {
  */
 export interface BlockSnapshotState {
     /**
-     * The name of the snapshot. If not provided it will be randomly generated.
+     * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the snapshot is associated with.
+     * ). The ID of the Scaleway Project the snapshot is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -139,7 +144,7 @@ export interface BlockSnapshotState {
      */
     volumeId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the snapshot should be created.
+     * ). The zone in which the snapshot should be created.
      */
     zone?: pulumi.Input<string>;
 }
@@ -149,11 +154,11 @@ export interface BlockSnapshotState {
  */
 export interface BlockSnapshotArgs {
     /**
-     * The name of the snapshot. If not provided it will be randomly generated.
+     * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the snapshot is associated with.
+     * ). The ID of the Scaleway Project the snapshot is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -165,7 +170,7 @@ export interface BlockSnapshotArgs {
      */
     volumeId: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the snapshot should be created.
+     * ). The zone in which the snapshot should be created.
      */
     zone?: pulumi.Input<string>;
 }

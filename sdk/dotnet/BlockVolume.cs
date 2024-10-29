@@ -11,12 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Block Volumes.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+    /// The `scaleway.BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+    /// 
+    /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### Create a Block Storage volume
+    /// 
+    /// The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -71,7 +74,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Block Volumes can be imported using the `{zone}/{id}`, e.g.
+    /// This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
     /// 
     /// bash
     /// 
@@ -83,25 +86,25 @@ namespace Pulumiverse.Scaleway
     public partial class BlockVolume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The maximum IO/s expected, must match available options.
+        /// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
         /// </summary>
         [Output("iops")]
         public Output<int> Iops { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the volume. If not provided it will be randomly generated.
+        /// The name of the volume. If not provided, a name will be randomly generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the volume is associated with.
+        /// ). The ID of the Project the volume is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        /// The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int> SizeInGb { get; private set; } = null!;
@@ -119,7 +122,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the volume should be created.
+        /// ). The zone in which the volume should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -172,25 +175,25 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum IO/s expected, must match available options.
+        /// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
         /// </summary>
         [Input("iops", required: true)]
         public Input<int> Iops { get; set; } = null!;
 
         /// <summary>
-        /// The name of the volume. If not provided it will be randomly generated.
+        /// The name of the volume. If not provided, a name will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the volume is associated with.
+        /// ). The ID of the Project the volume is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        /// The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -214,7 +217,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the volume should be created.
+        /// ). The zone in which the volume should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -228,25 +231,25 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockVolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum IO/s expected, must match available options.
+        /// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
         /// </summary>
         [Input("iops")]
         public Input<int>? Iops { get; set; }
 
         /// <summary>
-        /// The name of the volume. If not provided it will be randomly generated.
+        /// The name of the volume. If not provided, a name will be randomly generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the volume is associated with.
+        /// ). The ID of the Project the volume is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        /// The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -270,7 +273,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the volume should be created.
+        /// ). The zone in which the volume should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -11,35 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a domain zone.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Get zone
-//			_, err := scaleway.LookupDomainZone(ctx, &scaleway.LookupDomainZoneArgs{
-//				Domain:    pulumi.StringRef("scaleway-terraform.com"),
-//				Subdomain: pulumi.StringRef("test"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupDomainZone(ctx *pulumi.Context, args *LookupDomainZoneArgs, opts ...pulumi.InvokeOption) (*LookupDomainZoneResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDomainZoneResult
@@ -52,9 +23,9 @@ func LookupDomainZone(ctx *pulumi.Context, args *LookupDomainZoneArgs, opts ...p
 
 // A collection of arguments for invoking getDomainZone.
 type LookupDomainZoneArgs struct {
-	// The domain where the DNS zone will be created.
+	// The primary domain name where the DNS zone is located. This is a mandatory field.
 	Domain *string `pulumi:"domain"`
-	// The subdomain(zone name) to create in the domain.
+	// The subdomain (or zone name) within the primary domain. This is a mandatory field.
 	Subdomain *string `pulumi:"subdomain"`
 }
 
@@ -63,19 +34,19 @@ type LookupDomainZoneResult struct {
 	Domain *string `pulumi:"domain"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Message
+	// Message associated with the domain zone (typically used for status or error messages).
 	Message string `pulumi:"message"`
-	// NameServer list for zone.
+	// The list of name servers for the zone.
 	Ns []string `pulumi:"ns"`
-	// NameServer default list for zone.
+	// The default list of name servers for the zone.
 	NsDefaults []string `pulumi:"nsDefaults"`
-	// NameServer master list for zone.
+	// The master list of name servers for the zone.
 	NsMasters []string `pulumi:"nsMasters"`
 	ProjectId string   `pulumi:"projectId"`
-	// The domain zone status.
+	// The status of the domain zone.
 	Status    string  `pulumi:"status"`
 	Subdomain *string `pulumi:"subdomain"`
-	// The date and time of the last update of the DNS zone.
+	// The date and time of the last update to the DNS zone.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
@@ -100,9 +71,9 @@ func LookupDomainZoneOutput(ctx *pulumi.Context, args LookupDomainZoneOutputArgs
 
 // A collection of arguments for invoking getDomainZone.
 type LookupDomainZoneOutputArgs struct {
-	// The domain where the DNS zone will be created.
+	// The primary domain name where the DNS zone is located. This is a mandatory field.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
-	// The subdomain(zone name) to create in the domain.
+	// The subdomain (or zone name) within the primary domain. This is a mandatory field.
 	Subdomain pulumi.StringPtrInput `pulumi:"subdomain"`
 }
 
@@ -134,22 +105,22 @@ func (o LookupDomainZoneResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Message
+// Message associated with the domain zone (typically used for status or error messages).
 func (o LookupDomainZoneResultOutput) Message() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) string { return v.Message }).(pulumi.StringOutput)
 }
 
-// NameServer list for zone.
+// The list of name servers for the zone.
 func (o LookupDomainZoneResultOutput) Ns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) []string { return v.Ns }).(pulumi.StringArrayOutput)
 }
 
-// NameServer default list for zone.
+// The default list of name servers for the zone.
 func (o LookupDomainZoneResultOutput) NsDefaults() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) []string { return v.NsDefaults }).(pulumi.StringArrayOutput)
 }
 
-// NameServer master list for zone.
+// The master list of name servers for the zone.
 func (o LookupDomainZoneResultOutput) NsMasters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) []string { return v.NsMasters }).(pulumi.StringArrayOutput)
 }
@@ -158,7 +129,7 @@ func (o LookupDomainZoneResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The domain zone status.
+// The status of the domain zone.
 func (o LookupDomainZoneResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -167,7 +138,7 @@ func (o LookupDomainZoneResultOutput) Subdomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) *string { return v.Subdomain }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the last update of the DNS zone.
+// The date and time of the last update to the DNS zone.
 func (o LookupDomainZoneResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }

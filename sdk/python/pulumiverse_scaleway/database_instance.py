@@ -427,8 +427,8 @@ class _DatabaseInstanceState:
         :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
-        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
-        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
+        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
+        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important** Updates to `engine` will recreate the Database Instance.
@@ -480,6 +480,9 @@ class _DatabaseInstanceState:
             pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
         if endpoint_ip is not None:
             pulumi.set(__self__, "endpoint_ip", endpoint_ip)
+        if endpoint_port is not None:
+            warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
+            pulumi.log.warn("""endpoint_port is deprecated: Please use the private_network or the load_balancer attribute""")
         if endpoint_port is not None:
             pulumi.set(__self__, "endpoint_port", endpoint_port)
         if engine is not None:
@@ -596,7 +599,7 @@ class _DatabaseInstanceState:
     @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        (Deprecated) The IP of the Database Instance.
+        (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_ip")
 
@@ -606,9 +609,10 @@ class _DatabaseInstanceState:
 
     @property
     @pulumi.getter(name="endpointPort")
+    @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_port(self) -> Optional[pulumi.Input[int]]:
         """
-        (Deprecated) The port of the Database Instance.
+        (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_port")
 
@@ -1342,8 +1346,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
-        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
-        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
+        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
+        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important** Updates to `engine` will recreate the Database Instance.
@@ -1463,15 +1467,16 @@ class DatabaseInstance(pulumi.CustomResource):
     @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_ip(self) -> pulumi.Output[str]:
         """
-        (Deprecated) The IP of the Database Instance.
+        (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_ip")
 
     @property
     @pulumi.getter(name="endpointPort")
+    @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_port(self) -> pulumi.Output[int]:
         """
-        (Deprecated) The port of the Database Instance.
+        (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_port")
 

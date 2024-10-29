@@ -683,6 +683,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "tem_domain_validation.md",
 				},
 			},
+			"scaleway_tem_webhook": {
+				Tok: scalewayResource(scalewayMod, "TemWebhook"),
+				Docs: &tfbridge.DocInfo{
+					Source: "tem_webhook.md",
+				},
+			},
 			"scaleway_vpc_gateway_network": {
 				Tok: scalewayResource(scalewayMod, "VpcGatewayNetwork"),
 				Docs: &tfbridge.DocInfo{
@@ -1103,6 +1109,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: scalewayDataSource(scalewayMod, "getMarketplaceImage"),
 				Docs: &tfbridge.DocInfo{
 					Source: "marketplace_image.md",
+				},
+			},
+			"scaleway_mnq_sns": {
+				Tok: scalewayDataSource(scalewayMod, "getMnqSns"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mnq_sns.md",
 				},
 			},
 			"scaleway_mnq_sqs": {

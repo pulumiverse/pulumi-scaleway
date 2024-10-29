@@ -27,10 +27,10 @@ class CockpitAlertManagerArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CockpitAlertManager resource.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
-        :param pulumi.Input[bool] enable_managed_alerts: Indicates whether the alert manager should be enabled. Defaults to true.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which alert_manager should be created.
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        :param pulumi.Input[bool] enable_managed_alerts: Specifies whether the alert manager should be enabled. Defaults to true.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         if contact_points is not None:
             pulumi.set(__self__, "contact_points", contact_points)
@@ -45,7 +45,7 @@ class CockpitAlertManagerArgs:
     @pulumi.getter(name="contactPoints")
     def contact_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]]]:
         """
-        A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
         """
         return pulumi.get(self, "contact_points")
 
@@ -57,7 +57,7 @@ class CockpitAlertManagerArgs:
     @pulumi.getter(name="enableManagedAlerts")
     def enable_managed_alerts(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether the alert manager should be enabled. Defaults to true.
+        Specifies whether the alert manager should be enabled. Defaults to true.
         """
         return pulumi.get(self, "enable_managed_alerts")
 
@@ -69,7 +69,7 @@ class CockpitAlertManagerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -81,7 +81,7 @@ class CockpitAlertManagerArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which alert_manager should be created.
+        ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         return pulumi.get(self, "region")
 
@@ -100,11 +100,11 @@ class _CockpitAlertManagerState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CockpitAlertManager resources.
-        :param pulumi.Input[str] alert_manager_url: Alert manager URL.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
-        :param pulumi.Input[bool] enable_managed_alerts: Indicates whether the alert manager should be enabled. Defaults to true.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which alert_manager should be created.
+        :param pulumi.Input[str] alert_manager_url: The URL of the alert manager.
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        :param pulumi.Input[bool] enable_managed_alerts: Specifies whether the alert manager should be enabled. Defaults to true.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         if alert_manager_url is not None:
             pulumi.set(__self__, "alert_manager_url", alert_manager_url)
@@ -121,7 +121,7 @@ class _CockpitAlertManagerState:
     @pulumi.getter(name="alertManagerUrl")
     def alert_manager_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Alert manager URL.
+        The URL of the alert manager.
         """
         return pulumi.get(self, "alert_manager_url")
 
@@ -133,7 +133,7 @@ class _CockpitAlertManagerState:
     @pulumi.getter(name="contactPoints")
     def contact_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]]]:
         """
-        A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
         """
         return pulumi.get(self, "contact_points")
 
@@ -145,7 +145,7 @@ class _CockpitAlertManagerState:
     @pulumi.getter(name="enableManagedAlerts")
     def enable_managed_alerts(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether the alert manager should be enabled. Defaults to true.
+        Specifies whether the alert manager should be enabled. Defaults to true.
         """
         return pulumi.get(self, "enable_managed_alerts")
 
@@ -157,7 +157,7 @@ class _CockpitAlertManagerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -169,7 +169,7 @@ class _CockpitAlertManagerState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which alert_manager should be created.
+        ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         return pulumi.get(self, "region")
 
@@ -189,13 +189,15 @@ class CockpitAlertManager(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Cockpit Alert Managers.
+        The `CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+        ## Example Usage
 
         ## Import
 
-        Alert managers can be imported using the project ID, e.g.
+        This section explains how to import alert managers using the ID of the Project associated with Cockpit.
 
         bash
 
@@ -205,10 +207,10 @@ class CockpitAlertManager(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
-        :param pulumi.Input[bool] enable_managed_alerts: Indicates whether the alert manager should be enabled. Defaults to true.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which alert_manager should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        :param pulumi.Input[bool] enable_managed_alerts: Specifies whether the alert manager should be enabled. Defaults to true.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         ...
     @overload
@@ -217,13 +219,15 @@ class CockpitAlertManager(pulumi.CustomResource):
                  args: Optional[CockpitAlertManagerArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Cockpit Alert Managers.
+        The `CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+        ## Example Usage
 
         ## Import
 
-        Alert managers can be imported using the project ID, e.g.
+        This section explains how to import alert managers using the ID of the Project associated with Cockpit.
 
         bash
 
@@ -286,11 +290,11 @@ class CockpitAlertManager(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alert_manager_url: Alert manager URL.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
-        :param pulumi.Input[bool] enable_managed_alerts: Indicates whether the alert manager should be enabled. Defaults to true.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which alert_manager should be created.
+        :param pulumi.Input[str] alert_manager_url: The URL of the alert manager.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        :param pulumi.Input[bool] enable_managed_alerts: Specifies whether the alert manager should be enabled. Defaults to true.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
+        :param pulumi.Input[str] region: ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -307,7 +311,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     @pulumi.getter(name="alertManagerUrl")
     def alert_manager_url(self) -> pulumi.Output[str]:
         """
-        Alert manager URL.
+        The URL of the alert manager.
         """
         return pulumi.get(self, "alert_manager_url")
 
@@ -315,7 +319,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     @pulumi.getter(name="contactPoints")
     def contact_points(self) -> pulumi.Output[Optional[Sequence['outputs.CockpitAlertManagerContactPoint']]]:
         """
-        A list of contact points with email addresses for the alert receivers. Each map should contain a single key email.
+        A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
         """
         return pulumi.get(self, "contact_points")
 
@@ -323,7 +327,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     @pulumi.getter(name="enableManagedAlerts")
     def enable_managed_alerts(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates whether the alert manager should be enabled. Defaults to true.
+        Specifies whether the alert manager should be enabled. Defaults to true.
         """
         return pulumi.get(self, "enable_managed_alerts")
 
@@ -331,7 +335,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the cockpit is associated with.
+        ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -339,7 +343,7 @@ class CockpitAlertManager(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which alert_manager should be created.
+        ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         return pulumi.get(self, "region")
 

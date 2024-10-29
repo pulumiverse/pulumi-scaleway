@@ -5,11 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Cockpit Data Sources.
+ * The `scaleway.CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
  *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources).
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
  * ## Example Usage
+ *
+ * ### Create a data source
+ *
+ * The following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,7 +29,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Cockpits Data Sources can be imported using the `{region}/{id}`, e.g.
+ * This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
  *
  * bash
  *
@@ -62,23 +66,27 @@ export class CockpitSource extends pulumi.CustomResource {
     }
 
     /**
-     * Date and time of the cockpit data source's creation (RFC 3339 format).
+     * The date and time the data source was created (in RFC 3339 format).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The name of the cockpit data source.
+     * The name of the data source.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The origin of the cockpit data source.
+     * The origin of the Cockpit data source.
      */
     public /*out*/ readonly origin!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the cockpit data source is associated with.
+     * ) The ID of the Project the data source is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`) The region of the cockpit datasource.
+     * The URL endpoint used for pushing data to the Cockpit data source.
+     */
+    public /*out*/ readonly pushUrl!: pulumi.Output<string>;
+    /**
+     * ) The region where the data source is located.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -86,15 +94,15 @@ export class CockpitSource extends pulumi.CustomResource {
      */
     public /*out*/ readonly synchronizedWithGrafana!: pulumi.Output<boolean>;
     /**
-     * The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+     * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */
     public readonly type!: pulumi.Output<string | undefined>;
     /**
-     * Date and time of the cockpit datas ource's last update (RFC 3339 format).
+     * The date and time the data source was last updated (in RFC 3339 format).
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The URL of the cockpit data source.
+     * The URL of the Cockpit data source.
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
 
@@ -115,6 +123,7 @@ export class CockpitSource extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["origin"] = state ? state.origin : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["pushUrl"] = state ? state.pushUrl : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["synchronizedWithGrafana"] = state ? state.synchronizedWithGrafana : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -128,6 +137,7 @@ export class CockpitSource extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["origin"] = undefined /*out*/;
+            resourceInputs["pushUrl"] = undefined /*out*/;
             resourceInputs["synchronizedWithGrafana"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
@@ -142,23 +152,27 @@ export class CockpitSource extends pulumi.CustomResource {
  */
 export interface CockpitSourceState {
     /**
-     * Date and time of the cockpit data source's creation (RFC 3339 format).
+     * The date and time the data source was created (in RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The name of the cockpit data source.
+     * The name of the data source.
      */
     name?: pulumi.Input<string>;
     /**
-     * The origin of the cockpit data source.
+     * The origin of the Cockpit data source.
      */
     origin?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cockpit data source is associated with.
+     * ) The ID of the Project the data source is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region of the cockpit datasource.
+     * The URL endpoint used for pushing data to the Cockpit data source.
+     */
+    pushUrl?: pulumi.Input<string>;
+    /**
+     * ) The region where the data source is located.
      */
     region?: pulumi.Input<string>;
     /**
@@ -166,15 +180,15 @@ export interface CockpitSourceState {
      */
     synchronizedWithGrafana?: pulumi.Input<boolean>;
     /**
-     * The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+     * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */
     type?: pulumi.Input<string>;
     /**
-     * Date and time of the cockpit datas ource's last update (RFC 3339 format).
+     * The date and time the data source was last updated (in RFC 3339 format).
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The URL of the cockpit data source.
+     * The URL of the Cockpit data source.
      */
     url?: pulumi.Input<string>;
 }
@@ -184,19 +198,19 @@ export interface CockpitSourceState {
  */
 export interface CockpitSourceArgs {
     /**
-     * The name of the cockpit data source.
+     * The name of the data source.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cockpit data source is associated with.
+     * ) The ID of the Project the data source is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region of the cockpit datasource.
+     * ) The region where the data source is located.
      */
     region?: pulumi.Input<string>;
     /**
-     * The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+     * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */
     type?: pulumi.Input<string>;
 }

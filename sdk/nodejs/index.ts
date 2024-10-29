@@ -525,6 +525,11 @@ export const getMarketplaceImage: typeof import("./getMarketplaceImage").getMark
 export const getMarketplaceImageOutput: typeof import("./getMarketplaceImage").getMarketplaceImageOutput = null as any;
 utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
 
+export { GetMnqSnsArgs, GetMnqSnsResult, GetMnqSnsOutputArgs } from "./getMnqSns";
+export const getMnqSns: typeof import("./getMnqSns").getMnqSns = null as any;
+export const getMnqSnsOutput: typeof import("./getMnqSns").getMnqSnsOutput = null as any;
+utilities.lazyLoad(exports, ["getMnqSns","getMnqSnsOutput"], () => require("./getMnqSns"));
+
 export { GetMnqSqsArgs, GetMnqSqsResult, GetMnqSqsOutputArgs } from "./getMnqSqs";
 export const getMnqSqs: typeof import("./getMnqSqs").getMnqSqs = null as any;
 export const getMnqSqsOutput: typeof import("./getMnqSqs").getMnqSqsOutput = null as any;
@@ -915,6 +920,11 @@ export type TemDomainValidation = import("./temDomainValidation").TemDomainValid
 export const TemDomainValidation: typeof import("./temDomainValidation").TemDomainValidation = null as any;
 utilities.lazyLoad(exports, ["TemDomainValidation"], () => require("./temDomainValidation"));
 
+export { TemWebhookArgs, TemWebhookState } from "./temWebhook";
+export type TemWebhook = import("./temWebhook").TemWebhook;
+export const TemWebhook: typeof import("./temWebhook").TemWebhook = null as any;
+utilities.lazyLoad(exports, ["TemWebhook"], () => require("./temWebhook"));
+
 export { VpcArgs, VpcState } from "./vpc";
 export type Vpc = import("./vpc").Vpc;
 export const Vpc: typeof import("./vpc").Vpc = null as any;
@@ -1171,6 +1181,8 @@ const _module = {
                 return new TemDomain(name, <any>undefined, { urn })
             case "scaleway:index/temDomainValidation:TemDomainValidation":
                 return new TemDomainValidation(name, <any>undefined, { urn })
+            case "scaleway:index/temWebhook:TemWebhook":
+                return new TemWebhook(name, <any>undefined, { urn })
             case "scaleway:index/vpc:Vpc":
                 return new Vpc(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -1292,6 +1304,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomainValidation", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/temWebhook", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)

@@ -13,13 +13,17 @@ namespace Pulumiverse.Scaleway
     public static class GetBlockSnapshot
     {
         /// <summary>
-        /// Gets information about a Block Snapshot.
+        /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+        /// 
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Task<GetBlockSnapshotResult> InvokeAsync(GetBlockSnapshotArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Block Snapshot.
+        /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+        /// 
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());
@@ -29,31 +33,31 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBlockSnapshotArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// The name of the snapshot. Only one of name or snapshot_id should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the snapshot is associated with.
+        /// The unique identifier of the Project to which the snapshot is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// The unique identifier of the snapshot. Only one of `name` and `snapshot_id` should be specified.
         /// </summary>
         [Input("snapshotId")]
         public string? SnapshotId { get; set; }
 
         /// <summary>
-        /// The ID of the volume from which the snapshot has been created.
+        /// The unique identifier of the volume from which the snapshot was created.
         /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot exists.
+        /// ) The zone in which the snapshot exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -67,31 +71,31 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBlockSnapshotInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// The name of the snapshot. Only one of name or snapshot_id should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the snapshot is associated with.
+        /// The unique identifier of the Project to which the snapshot is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// The unique identifier of the snapshot. Only one of `name` and `snapshot_id` should be specified.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 
         /// <summary>
-        /// The ID of the volume from which the snapshot has been created.
+        /// The unique identifier of the volume from which the snapshot was created.
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot exists.
+        /// ) The zone in which the snapshot exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

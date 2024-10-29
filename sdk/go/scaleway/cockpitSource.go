@@ -11,11 +11,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Cockpit Data Sources.
+// The `CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 //
-// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources).
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
 // ## Example Usage
+//
+// ### Create a data source
+//
+// The following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.
 //
 // ```go
 // package main
@@ -51,7 +55,7 @@ import (
 //
 // ## Import
 //
-// Cockpits Data Sources can be imported using the `{region}/{id}`, e.g.
+// This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
 //
 // bash
 //
@@ -61,23 +65,25 @@ import (
 type CockpitSource struct {
 	pulumi.CustomResourceState
 
-	// Date and time of the cockpit data source's creation (RFC 3339 format).
+	// The date and time the data source was created (in RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The name of the cockpit data source.
+	// The name of the data source.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The origin of the cockpit data source.
+	// The origin of the Cockpit data source.
 	Origin pulumi.StringOutput `pulumi:"origin"`
-	// `projectId`) The ID of the project the cockpit data source is associated with.
+	// ) The ID of the Project the data source is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`) The region of the cockpit datasource.
+	// The URL endpoint used for pushing data to the Cockpit data source.
+	PushUrl pulumi.StringOutput `pulumi:"pushUrl"`
+	// ) The region where the data source is located.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolOutput `pulumi:"synchronizedWithGrafana"`
-	// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type pulumi.StringPtrOutput `pulumi:"type"`
-	// Date and time of the cockpit datas ource's last update (RFC 3339 format).
+	// The date and time the data source was last updated (in RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The URL of the cockpit data source.
+	// The URL of the Cockpit data source.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
 
@@ -111,44 +117,48 @@ func GetCockpitSource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitSource resources.
 type cockpitSourceState struct {
-	// Date and time of the cockpit data source's creation (RFC 3339 format).
+	// The date and time the data source was created (in RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// The name of the cockpit data source.
+	// The name of the data source.
 	Name *string `pulumi:"name"`
-	// The origin of the cockpit data source.
+	// The origin of the Cockpit data source.
 	Origin *string `pulumi:"origin"`
-	// `projectId`) The ID of the project the cockpit data source is associated with.
+	// ) The ID of the Project the data source is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the cockpit datasource.
+	// The URL endpoint used for pushing data to the Cockpit data source.
+	PushUrl *string `pulumi:"pushUrl"`
+	// ) The region where the data source is located.
 	Region *string `pulumi:"region"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana *bool `pulumi:"synchronizedWithGrafana"`
-	// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type *string `pulumi:"type"`
-	// Date and time of the cockpit datas ource's last update (RFC 3339 format).
+	// The date and time the data source was last updated (in RFC 3339 format).
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The URL of the cockpit data source.
+	// The URL of the Cockpit data source.
 	Url *string `pulumi:"url"`
 }
 
 type CockpitSourceState struct {
-	// Date and time of the cockpit data source's creation (RFC 3339 format).
+	// The date and time the data source was created (in RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// The name of the cockpit data source.
+	// The name of the data source.
 	Name pulumi.StringPtrInput
-	// The origin of the cockpit data source.
+	// The origin of the Cockpit data source.
 	Origin pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit data source is associated with.
+	// ) The ID of the Project the data source is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the cockpit datasource.
+	// The URL endpoint used for pushing data to the Cockpit data source.
+	PushUrl pulumi.StringPtrInput
+	// ) The region where the data source is located.
 	Region pulumi.StringPtrInput
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolPtrInput
-	// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type pulumi.StringPtrInput
-	// Date and time of the cockpit datas ource's last update (RFC 3339 format).
+	// The date and time the data source was last updated (in RFC 3339 format).
 	UpdatedAt pulumi.StringPtrInput
-	// The URL of the cockpit data source.
+	// The URL of the Cockpit data source.
 	Url pulumi.StringPtrInput
 }
 
@@ -157,25 +167,25 @@ func (CockpitSourceState) ElementType() reflect.Type {
 }
 
 type cockpitSourceArgs struct {
-	// The name of the cockpit data source.
+	// The name of the data source.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the cockpit data source is associated with.
+	// ) The ID of the Project the data source is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the cockpit datasource.
+	// ) The region where the data source is located.
 	Region *string `pulumi:"region"`
-	// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a CockpitSource resource.
 type CockpitSourceArgs struct {
-	// The name of the cockpit data source.
+	// The name of the data source.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit data source is associated with.
+	// ) The ID of the Project the data source is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the cockpit datasource.
+	// ) The region where the data source is located.
 	Region pulumi.StringPtrInput
-	// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type pulumi.StringPtrInput
 }
 
@@ -266,27 +276,32 @@ func (o CockpitSourceOutput) ToCockpitSourceOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Date and time of the cockpit data source's creation (RFC 3339 format).
+// The date and time the data source was created (in RFC 3339 format).
 func (o CockpitSourceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The name of the cockpit data source.
+// The name of the data source.
 func (o CockpitSourceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The origin of the cockpit data source.
+// The origin of the Cockpit data source.
 func (o CockpitSourceOutput) Origin() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.Origin }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the cockpit data source is associated with.
+// ) The ID of the Project the data source is associated with.
 func (o CockpitSourceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`) The region of the cockpit datasource.
+// The URL endpoint used for pushing data to the Cockpit data source.
+func (o CockpitSourceOutput) PushUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.PushUrl }).(pulumi.StringOutput)
+}
+
+// ) The region where the data source is located.
 func (o CockpitSourceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -296,17 +311,17 @@ func (o CockpitSourceOutput) SynchronizedWithGrafana() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.BoolOutput { return v.SynchronizedWithGrafana }).(pulumi.BoolOutput)
 }
 
-// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 func (o CockpitSourceOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-// Date and time of the cockpit datas ource's last update (RFC 3339 format).
+// The date and time the data source was last updated (in RFC 3339 format).
 func (o CockpitSourceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The URL of the cockpit data source.
+// The URL of the Cockpit data source.
 func (o CockpitSourceOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

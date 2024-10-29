@@ -110,14 +110,16 @@ def get_block_snapshot(name: Optional[str] = None,
                        zone: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockSnapshotResult:
     """
-    Gets information about a Block Snapshot.
+    The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
-    :param str name: The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
-    :param str project_id: The ID of the project the snapshot is associated with.
-    :param str snapshot_id: The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
-    :param str volume_id: The ID of the volume from which the snapshot has been created.
-    :param str zone: `zone`) The zone in which the snapshot exists.
+    :param str name: The name of the snapshot. Only one of name or snapshot_id should be specified.
+    :param str project_id: The unique identifier of the Project to which the snapshot is associated.
+    :param str snapshot_id: The unique identifier of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+    :param str volume_id: The unique identifier of the volume from which the snapshot was created.
+    :param str zone: ) The zone in which the snapshot exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -143,14 +145,16 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
                               zone: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockSnapshotResult]:
     """
-    Gets information about a Block Snapshot.
+    The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
-    :param str name: The name of the snapshot. Only one of `name` and `snapshot_id` should be specified.
-    :param str project_id: The ID of the project the snapshot is associated with.
-    :param str snapshot_id: The ID of the snapshot. Only one of `name` and `snapshot_id` should be specified.
-    :param str volume_id: The ID of the volume from which the snapshot has been created.
-    :param str zone: `zone`) The zone in which the snapshot exists.
+    :param str name: The name of the snapshot. Only one of name or snapshot_id should be specified.
+    :param str project_id: The unique identifier of the Project to which the snapshot is associated.
+    :param str snapshot_id: The unique identifier of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+    :param str volume_id: The unique identifier of the volume from which the snapshot was created.
+    :param str zone: ) The zone in which the snapshot exists.
     """
     __args__ = dict()
     __args__['name'] = name

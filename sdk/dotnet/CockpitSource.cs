@@ -11,11 +11,15 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Cockpit Data Sources.
+    /// The `scaleway.CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
     /// 
-    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources).
+    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// ### Create a data source
+    /// 
+    /// The following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -42,7 +46,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Cockpits Data Sources can be imported using the `{region}/{id}`, e.g.
+    /// This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
     /// 
     /// bash
     /// 
@@ -54,31 +58,37 @@ namespace Pulumiverse.Scaleway
     public partial class CockpitSource : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Date and time of the cockpit data source's creation (RFC 3339 format).
+        /// The date and time the data source was created (in RFC 3339 format).
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the cockpit data source.
+        /// The name of the data source.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The origin of the cockpit data source.
+        /// The origin of the Cockpit data source.
         /// </summary>
         [Output("origin")]
         public Output<string> Origin { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit data source is associated with.
+        /// ) The ID of the Project the data source is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the cockpit datasource.
+        /// The URL endpoint used for pushing data to the Cockpit data source.
+        /// </summary>
+        [Output("pushUrl")]
+        public Output<string> PushUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// ) The region where the data source is located.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -90,19 +100,19 @@ namespace Pulumiverse.Scaleway
         public Output<bool> SynchronizedWithGrafana { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of the cockpit datas ource's last update (RFC 3339 format).
+        /// The date and time the data source was last updated (in RFC 3339 format).
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The URL of the cockpit data source.
+        /// The URL of the Cockpit data source.
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
@@ -155,25 +165,25 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitSourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the cockpit data source.
+        /// The name of the data source.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit data source is associated with.
+        /// ) The ID of the Project the data source is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the cockpit datasource.
+        /// ) The region where the data source is located.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -187,31 +197,37 @@ namespace Pulumiverse.Scaleway
     public sealed class CockpitSourceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Date and time of the cockpit data source's creation (RFC 3339 format).
+        /// The date and time the data source was created (in RFC 3339 format).
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The name of the cockpit data source.
+        /// The name of the data source.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The origin of the cockpit data source.
+        /// The origin of the Cockpit data source.
         /// </summary>
         [Input("origin")]
         public Input<string>? Origin { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit data source is associated with.
+        /// ) The ID of the Project the data source is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the cockpit datasource.
+        /// The URL endpoint used for pushing data to the Cockpit data source.
+        /// </summary>
+        [Input("pushUrl")]
+        public Input<string>? PushUrl { get; set; }
+
+        /// <summary>
+        /// ) The region where the data source is located.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -223,19 +239,19 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? SynchronizedWithGrafana { get; set; }
 
         /// <summary>
-        /// The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Date and time of the cockpit datas ource's last update (RFC 3339 format).
+        /// The date and time the data source was last updated (in RFC 3339 format).
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The URL of the cockpit data source.
+        /// The URL of the Cockpit data source.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
