@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class LoadbalancerPrivateNetworkGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        /// (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
         /// </summary>
         [Input("dhcpConfig")]
         public Input<bool>? DhcpConfig { get; set; }

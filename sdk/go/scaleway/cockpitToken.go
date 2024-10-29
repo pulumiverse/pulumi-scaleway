@@ -11,11 +11,20 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Cockpit Tokens.
+// The `CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
 //
-// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
 // ## Example Usage
+//
+// ### Use a Cockpit token
+//
+// The following commands allow you to:
+//
+// - create a Scaleway Project named `my-project`
+// - create a Cockpit token named `my-awesome-token` inside the Project
+// - assign `read` permissions to the token for metrics and logs
+// - disable `write` permissions for metrics and logs
 //
 // ```go
 // package main
@@ -88,7 +97,7 @@ import (
 //
 // ## Import
 //
-// Cockpits tokens can be imported using the `{region}/{id}`, e.g.
+// This section explains how to import a Cockpit token using the `{region}/{id}` format.
 //
 // bash
 //
@@ -102,11 +111,11 @@ type CockpitToken struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The name of the token.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`) The region of the cockpit token.
+	// ) The region where the Cockpit token is located.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Allowed scopes.
+	// Scopes allowed, each with default values:
 	Scopes CockpitTokenScopesOutput `pulumi:"scopes"`
 	// The secret key of the token.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
@@ -152,11 +161,11 @@ type cockpitTokenState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The name of the token.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the cockpit token.
+	// ) The region where the Cockpit token is located.
 	Region *string `pulumi:"region"`
-	// Allowed scopes.
+	// Scopes allowed, each with default values:
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
 	// The secret key of the token.
 	SecretKey *string `pulumi:"secretKey"`
@@ -169,11 +178,11 @@ type CockpitTokenState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The name of the token.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the cockpit token.
+	// ) The region where the Cockpit token is located.
 	Region pulumi.StringPtrInput
-	// Allowed scopes.
+	// Scopes allowed, each with default values:
 	Scopes CockpitTokenScopesPtrInput
 	// The secret key of the token.
 	SecretKey pulumi.StringPtrInput
@@ -188,11 +197,11 @@ func (CockpitTokenState) ElementType() reflect.Type {
 type cockpitTokenArgs struct {
 	// The name of the token.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the cockpit token.
+	// ) The region where the Cockpit token is located.
 	Region *string `pulumi:"region"`
-	// Allowed scopes.
+	// Scopes allowed, each with default values:
 	Scopes *CockpitTokenScopes `pulumi:"scopes"`
 }
 
@@ -200,11 +209,11 @@ type cockpitTokenArgs struct {
 type CockpitTokenArgs struct {
 	// The name of the token.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the cockpit token.
+	// ) The region where the Cockpit token is located.
 	Region pulumi.StringPtrInput
-	// Allowed scopes.
+	// Scopes allowed, each with default values:
 	Scopes CockpitTokenScopesPtrInput
 }
 
@@ -305,17 +314,17 @@ func (o CockpitTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the cockpit is associated with.
+// ) The ID of the Project the Cockpit is associated with.
 func (o CockpitTokenOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`) The region of the cockpit token.
+// ) The region where the Cockpit token is located.
 func (o CockpitTokenOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Allowed scopes.
+// Scopes allowed, each with default values:
 func (o CockpitTokenOutput) Scopes() CockpitTokenScopesOutput {
 	return o.ApplyT(func(v *CockpitToken) CockpitTokenScopesOutput { return v.Scopes }).(CockpitTokenScopesOutput)
 }

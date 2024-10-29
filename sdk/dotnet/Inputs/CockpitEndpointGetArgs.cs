@@ -14,31 +14,31 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class CockpitEndpointGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The alertmanager URL.
+        /// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
         /// </summary>
         [Input("alertmanagerUrl")]
         public Input<string>? AlertmanagerUrl { get; set; }
 
         /// <summary>
-        /// The grafana URL.
+        /// (Deprecated) URL for Grafana.
         /// </summary>
         [Input("grafanaUrl")]
         public Input<string>? GrafanaUrl { get; set; }
 
         /// <summary>
-        /// The logs URL.
+        /// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         /// </summary>
         [Input("logsUrl")]
         public Input<string>? LogsUrl { get; set; }
 
         /// <summary>
-        /// The metrics URL.
+        /// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         /// </summary>
         [Input("metricsUrl")]
         public Input<string>? MetricsUrl { get; set; }
 
         /// <summary>
-        /// The traces URL.
+        /// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         /// </summary>
         [Input("tracesUrl")]
         public Input<string>? TracesUrl { get; set; }

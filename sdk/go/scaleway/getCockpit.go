@@ -11,15 +11,22 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// > **Important:**  The data source `Cockpit` has been deprecated and will no longer be supported. Instead, use resource `Cockpit`.
+//
 // > **Note:**
-// As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
-// If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+// As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
+// If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
 //
-// Gets information about the Scaleway Cockpit.
+// The `Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
 //
-// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
-// ## Example Usage
+// ## Retrieve a Cockpit
+//
+// The following commands allow you to:
+//
+// - get information on the Cockpit associated with your Scaleway default Project
+// - get information on the Cockpit associated with a specific Scaleway Project
 //
 // ```go
 // package main
@@ -33,7 +40,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Get default project's cockpit
+//			// Get the default Project's Cockpit
 //			_, err := scaleway.LookupCockpit(ctx, &scaleway.LookupCockpitArgs{}, nil)
 //			if err != nil {
 //				return err
@@ -56,7 +63,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Get a specific project's cockpit
+//			// Get a specific Project's Cockpit
 //			_, err := scaleway.LookupCockpit(ctx, &scaleway.LookupCockpitArgs{
 //				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
@@ -80,17 +87,18 @@ func LookupCockpit(ctx *pulumi.Context, args *LookupCockpitArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getCockpit.
 type LookupCockpitArgs struct {
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// Specifies the ID of the Scaleway Project that the Cockpit is associated with. If not specified, it defaults to the Project ID specified in the provider configuration.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getCockpit.
 type LookupCockpitResult struct {
-	// Endpoints
+	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 	Endpoints []GetCockpitEndpoint `pulumi:"endpoints"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The ID of the current plan
+	Id   string `pulumi:"id"`
+	Plan string `pulumi:"plan"`
+	// (Deprecated) ID of the current pricing plan
 	PlanId    string              `pulumi:"planId"`
 	ProjectId *string             `pulumi:"projectId"`
 	PushUrls  []GetCockpitPushUrl `pulumi:"pushUrls"`
@@ -117,7 +125,7 @@ func LookupCockpitOutput(ctx *pulumi.Context, args LookupCockpitOutputArgs, opts
 
 // A collection of arguments for invoking getCockpit.
 type LookupCockpitOutputArgs struct {
-	// `projectId`) The ID of the project the cockpit is associated with.
+	// Specifies the ID of the Scaleway Project that the Cockpit is associated with. If not specified, it defaults to the Project ID specified in the provider configuration.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }
 
@@ -140,7 +148,7 @@ func (o LookupCockpitResultOutput) ToLookupCockpitResultOutputWithContext(ctx co
 	return o
 }
 
-// Endpoints
+// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 func (o LookupCockpitResultOutput) Endpoints() GetCockpitEndpointArrayOutput {
 	return o.ApplyT(func(v LookupCockpitResult) []GetCockpitEndpoint { return v.Endpoints }).(GetCockpitEndpointArrayOutput)
 }
@@ -150,7 +158,11 @@ func (o LookupCockpitResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCockpitResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The ID of the current plan
+func (o LookupCockpitResultOutput) Plan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCockpitResult) string { return v.Plan }).(pulumi.StringOutput)
+}
+
+// (Deprecated) ID of the current pricing plan
 func (o LookupCockpitResultOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCockpitResult) string { return v.PlanId }).(pulumi.StringOutput)
 }

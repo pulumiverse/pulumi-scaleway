@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) First certificate ID used by the frontend.
+        /// (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         /// </summary>
         [Output("certificateId")]
         public Output<string> CertificateId { get; private set; } = null!;
@@ -397,7 +397,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// (Deprecated) First certificate ID used by the frontend.
+        /// (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }

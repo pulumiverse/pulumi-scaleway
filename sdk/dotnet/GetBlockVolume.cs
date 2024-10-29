@@ -13,13 +13,15 @@ namespace Pulumiverse.Scaleway
     public static class GetBlockVolume
     {
         /// <summary>
-        /// Gets information about a Block Volume.
+        /// The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Task<GetBlockVolumeResult> InvokeAsync(GetBlockVolumeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Block Volume.
+        /// The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Output<GetBlockVolumeResult> Invoke(GetBlockVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeInvokeArgs(), options.WithDefaults());
@@ -35,19 +37,19 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the volume is associated with.
+        /// The unique identifier of the Project to which the volume is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The ID of the volume. Only one of `name` and `volume_id` should be specified.
+        /// The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
         /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the volume exists.
+        /// ). The zone in which the volume exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -67,19 +69,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the volume is associated with.
+        /// The unique identifier of the Project to which the volume is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The ID of the volume. Only one of `name` and `volume_id` should be specified.
+        /// The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the volume exists.
+        /// ). The zone in which the volume exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -75,7 +75,7 @@ class GetDomainZoneResult:
     @pulumi.getter
     def message(self) -> str:
         """
-        Message
+        Message associated with the domain zone (typically used for status or error messages).
         """
         return pulumi.get(self, "message")
 
@@ -83,7 +83,7 @@ class GetDomainZoneResult:
     @pulumi.getter
     def ns(self) -> Sequence[str]:
         """
-        NameServer list for zone.
+        The list of name servers for the zone.
         """
         return pulumi.get(self, "ns")
 
@@ -91,7 +91,7 @@ class GetDomainZoneResult:
     @pulumi.getter(name="nsDefaults")
     def ns_defaults(self) -> Sequence[str]:
         """
-        NameServer default list for zone.
+        The default list of name servers for the zone.
         """
         return pulumi.get(self, "ns_defaults")
 
@@ -99,7 +99,7 @@ class GetDomainZoneResult:
     @pulumi.getter(name="nsMasters")
     def ns_masters(self) -> Sequence[str]:
         """
-        NameServer master list for zone.
+        The master list of name servers for the zone.
         """
         return pulumi.get(self, "ns_masters")
 
@@ -112,7 +112,7 @@ class GetDomainZoneResult:
     @pulumi.getter
     def status(self) -> str:
         """
-        The domain zone status.
+        The status of the domain zone.
         """
         return pulumi.get(self, "status")
 
@@ -125,7 +125,7 @@ class GetDomainZoneResult:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
-        The date and time of the last update of the DNS zone.
+        The date and time of the last update to the DNS zone.
         """
         return pulumi.get(self, "updated_at")
 
@@ -152,22 +152,10 @@ def get_domain_zone(domain: Optional[str] = None,
                     subdomain: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainZoneResult:
     """
-    Gets information about a domain zone.
+    Use this data source to access information about an existing resource.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    # Get zone
-    main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
-        subdomain="test")
-    ```
-
-
-    :param str domain: The domain where the DNS zone will be created.
-    :param str subdomain: The subdomain(zone name) to create in the domain.
+    :param str domain: The primary domain name where the DNS zone is located. This is a mandatory field.
+    :param str subdomain: The subdomain (or zone name) within the primary domain. This is a mandatory field.
     """
     __args__ = dict()
     __args__['domain'] = domain
@@ -190,22 +178,10 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                            subdomain: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainZoneResult]:
     """
-    Gets information about a domain zone.
+    Use this data source to access information about an existing resource.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    # Get zone
-    main = scaleway.get_domain_zone(domain="scaleway-terraform.com",
-        subdomain="test")
-    ```
-
-
-    :param str domain: The domain where the DNS zone will be created.
-    :param str subdomain: The subdomain(zone name) to create in the domain.
+    :param str domain: The primary domain name where the DNS zone is located. This is a mandatory field.
+    :param str subdomain: The subdomain (or zone name) within the primary domain. This is a mandatory field.
     """
     __args__ = dict()
     __args__['domain'] = domain

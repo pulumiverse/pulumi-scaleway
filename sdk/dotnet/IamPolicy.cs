@@ -98,6 +98,44 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Create a policy with a particular condition
+    /// 
+    /// IAM policy rule can use a condition to be applied.
+    /// The following variables are available:
+    /// 
+    /// - `request.ip`
+    /// - `request.user_agent`
+    /// - `request.time`
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.IamPolicy("main", new()
+    ///     {
+    ///         Name = "tf_tests_policy_condition",
+    ///         NoPrincipal = true,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             {
+    ///                 OrganizationId = "%s",
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "AllProductsFullAccess",
+    ///                 },
+    ///                 Condition = "request.user_agent == 'My User Agent'",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Policies can be imported using the `{id}`, e.g.

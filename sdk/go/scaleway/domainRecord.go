@@ -12,12 +12,19 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Domain record.\
-// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
+// The `DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+//
+// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 //
 // ## Example Usage
 //
-// ### Basic
+// ### Create basic DNS records
+//
+// The folllowing commands allow you to:
+//
+// - create an A record for the `www.domain.tld` domain, pointing to `1.2.3.4` and another one pointing to `1.2.3.5`
+//
+// - create an MX record with the `mx.online.net.` mail server and a priority of 10, and another one with the `mx-cache.online.net.` mail server and a priority of 20
 //
 // ```go
 // package main
@@ -79,7 +86,17 @@ import (
 //
 // ```
 //
-// ### With dynamic records
+// ### Create dynamic records
+//
+// The folllowing commands allow you to:
+//
+// - create a Geo IP record for `images.domain.tld` that points to different IPs based on the user's location: `1.2.3.5` for users in France (EU), and `4.3.2.1` for users in North America (NA)
+//
+// - create an HTTP service record for `app.domain.tld` that checks the health of specified IPs and responds based on their status.
+//
+// - create view-based records for `db.domain.tld` that resolve differently based on the client's subnet.
+//
+// - create a weighted record for `web.domain.tld` that directs traffic to different IPs based on their weights.
 //
 // ```go
 // package main
@@ -188,7 +205,12 @@ import (
 //
 // ```
 //
-// ### Create an instance and add records with the new instance IP
+// ### Create an Instance and add records with the new Instance IP
+//
+// The following commands allow you to:
+//
+// - create a Scaleway Instance
+// - assign The Instance's IP address to various DNS records for a specified DNS zone
 //
 // ```go
 // package main
@@ -270,14 +292,13 @@ import (
 //
 // ## Multiple records
 //
-// Some record types can have multiple `data` with the same `name` (eg: `A`, `AAAA`, `MX`, `NS`...).\
-// You can duplicate a resource `DomainRecord` with the same `name`, the records will be added.
+// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `DomainRecord`  resource with the same `name`, and the records will be added.
 //
-// Please note, some record (eg: `CNAME`, Multiple dynamic records of different types...) has to be unique.
+// Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 //
 // ## Import
 //
-// Record can be imported using the `{dns_zone}/{id}`, e.g.
+// This section explains how to import a record using the `{dns_zone}/{id}` format.
 //
 // bash
 //
@@ -287,9 +308,9 @@ import (
 type DomainRecord struct {
 	pulumi.CustomResourceState
 
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringOutput `pulumi:"data"`
-	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+	// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
 	DnsZone pulumi.StringOutput `pulumi:"dnsZone"`
 	// The FQDN of the record.
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
@@ -297,11 +318,11 @@ type DomainRecord struct {
 	GeoIp DomainRecordGeoIpPtrOutput `pulumi:"geoIp"`
 	// Return record based on client localisation
 	HttpService DomainRecordHttpServicePtrOutput `pulumi:"httpService"`
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
 	KeepEmptyZone pulumi.BoolPtrOutput `pulumi:"keepEmptyZone"`
 	// The name of the record (can be an empty string for a root record).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The priority of the record (mostly used with an `MX` record)
+	// The priority of the record (mostly used with an `MX` record).
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -356,9 +377,9 @@ func GetDomainRecord(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DomainRecord resources.
 type domainRecordState struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data *string `pulumi:"data"`
-	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+	// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
 	DnsZone *string `pulumi:"dnsZone"`
 	// The FQDN of the record.
 	Fqdn *string `pulumi:"fqdn"`
@@ -366,11 +387,11 @@ type domainRecordState struct {
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
 	// Return record based on client localisation
 	HttpService *DomainRecordHttpService `pulumi:"httpService"`
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
 	KeepEmptyZone *bool `pulumi:"keepEmptyZone"`
 	// The name of the record (can be an empty string for a root record).
 	Name *string `pulumi:"name"`
-	// The priority of the record (mostly used with an `MX` record)
+	// The priority of the record (mostly used with an `MX` record).
 	Priority *int `pulumi:"priority"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -387,9 +408,9 @@ type domainRecordState struct {
 }
 
 type DomainRecordState struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringPtrInput
-	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+	// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
 	DnsZone pulumi.StringPtrInput
 	// The FQDN of the record.
 	Fqdn pulumi.StringPtrInput
@@ -397,11 +418,11 @@ type DomainRecordState struct {
 	GeoIp DomainRecordGeoIpPtrInput
 	// Return record based on client localisation
 	HttpService DomainRecordHttpServicePtrInput
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
 	KeepEmptyZone pulumi.BoolPtrInput
 	// The name of the record (can be an empty string for a root record).
 	Name pulumi.StringPtrInput
-	// The priority of the record (mostly used with an `MX` record)
+	// The priority of the record (mostly used with an `MX` record).
 	Priority pulumi.IntPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -422,19 +443,19 @@ func (DomainRecordState) ElementType() reflect.Type {
 }
 
 type domainRecordArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data string `pulumi:"data"`
-	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+	// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
 	DnsZone string `pulumi:"dnsZone"`
 	// Return record based on client localisation
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
 	// Return record based on client localisation
 	HttpService *DomainRecordHttpService `pulumi:"httpService"`
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
 	KeepEmptyZone *bool `pulumi:"keepEmptyZone"`
 	// The name of the record (can be an empty string for a root record).
 	Name *string `pulumi:"name"`
-	// The priority of the record (mostly used with an `MX` record)
+	// The priority of the record (mostly used with an `MX` record).
 	Priority *int `pulumi:"priority"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -450,19 +471,19 @@ type domainRecordArgs struct {
 
 // The set of arguments for constructing a DomainRecord resource.
 type DomainRecordArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringInput
-	// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+	// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
 	DnsZone pulumi.StringInput
 	// Return record based on client localisation
 	GeoIp DomainRecordGeoIpPtrInput
 	// Return record based on client localisation
 	HttpService DomainRecordHttpServicePtrInput
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
 	KeepEmptyZone pulumi.BoolPtrInput
 	// The name of the record (can be an empty string for a root record).
 	Name pulumi.StringPtrInput
-	// The priority of the record (mostly used with an `MX` record)
+	// The priority of the record (mostly used with an `MX` record).
 	Priority pulumi.IntPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -563,12 +584,12 @@ func (o DomainRecordOutput) ToDomainRecordOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 func (o DomainRecordOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.Data }).(pulumi.StringOutput)
 }
 
-// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
 func (o DomainRecordOutput) DnsZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.DnsZone }).(pulumi.StringOutput)
 }
@@ -588,7 +609,7 @@ func (o DomainRecordOutput) HttpService() DomainRecordHttpServicePtrOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordHttpServicePtrOutput { return v.HttpService }).(DomainRecordHttpServicePtrOutput)
 }
 
-// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
 func (o DomainRecordOutput) KeepEmptyZone() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.BoolPtrOutput { return v.KeepEmptyZone }).(pulumi.BoolPtrOutput)
 }
@@ -598,7 +619,7 @@ func (o DomainRecordOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The priority of the record (mostly used with an `MX` record)
+// The priority of the record (mostly used with an `MX` record).
 func (o DomainRecordOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *DomainRecord) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }

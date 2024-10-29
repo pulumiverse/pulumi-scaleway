@@ -11,12 +11,18 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Secret Versions.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/#secret-versions-079501).
+    /// The `scaleway.SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+    /// 
+    /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### Create a secret and a version
+    /// 
+    /// The following commands allow you to:
+    /// 
+    /// - create a secret named `foo`
+    /// - create a version of this secret containing the `my_new_secret` data
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -49,9 +55,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+    /// This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
     /// 
-    /// ~&gt; **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+    /// ~&gt; **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
     /// 
     /// bash
     /// 
@@ -63,13 +69,13 @@ namespace Pulumiverse.Scaleway
     public partial class SecretVersion : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Date and time of secret version's creation (RFC 3339 format).
+        /// The date and time of the secret version's creation (in RFC 3339 format).
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         [Output("data")]
         public Output<string> Data { get; private set; } = null!;
@@ -81,32 +87,31 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region
-        /// in which the resource exists.
+        /// ). The region where the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The revision for this Secret Version.
+        /// The revision number of the secret version.
         /// </summary>
         [Output("revision")]
         public Output<string> Revision { get; private set; } = null!;
 
         /// <summary>
-        /// The Secret ID associated wit the secret version.
+        /// The ID of the secret associated with the version.
         /// </summary>
         [Output("secretId")]
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the Secret Version.
+        /// The status of the secret version.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of secret version's last update (RFC 3339 format).
+        /// The date and time of the secret version's last update (in RFC 3339 format).
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -166,7 +171,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _data;
 
         /// <summary>
-        /// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         public Input<string>? Data
         {
@@ -185,14 +190,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// `region`) The region
-        /// in which the resource exists.
+        /// ). The region where the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The Secret ID associated wit the secret version.
+        /// The ID of the secret associated with the version.
         /// </summary>
         [Input("secretId", required: true)]
         public Input<string> SecretId { get; set; } = null!;
@@ -206,7 +210,7 @@ namespace Pulumiverse.Scaleway
     public sealed class SecretVersionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Date and time of secret version's creation (RFC 3339 format).
+        /// The date and time of the secret version's creation (in RFC 3339 format).
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -215,7 +219,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _data;
 
         /// <summary>
-        /// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         public Input<string>? Data
         {
@@ -234,32 +238,31 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// `region`) The region
-        /// in which the resource exists.
+        /// ). The region where the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The revision for this Secret Version.
+        /// The revision number of the secret version.
         /// </summary>
         [Input("revision")]
         public Input<string>? Revision { get; set; }
 
         /// <summary>
-        /// The Secret ID associated wit the secret version.
+        /// The ID of the secret associated with the version.
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// The status of the Secret Version.
+        /// The status of the secret version.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Date and time of secret version's last update (RFC 3339 format).
+        /// The date and time of the secret version's last update (in RFC 3339 format).
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

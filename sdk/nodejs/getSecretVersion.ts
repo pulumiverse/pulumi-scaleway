@@ -5,31 +5,45 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about Scaleway a Secret Version.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+ * The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
  *
- * ## Examples
+ * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
- * ### Basic
+ * ## Example Usage
+ *
+ * ### Use Secret Manager
+ *
+ * The following commands allow you to:
+ *
+ * - create a secret named `fooii`
+ * - create a new version of `fooii` containing data (`yourSecret`)
+ * - retrieve the secret version specified by the secret ID and the desired version
+ * - retrieve the secret version specified by the secret name and the desired version
+ *
+ * The output blocks display the sensitive data contained in your secret version.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Create a secret named fooii
  * const main = new scaleway.Secret("main", {
  *     name: "fooii",
  *     description: "barr",
  * });
+ * // Create a version of fooii containing data
  * const mainSecretVersion = new scaleway.SecretVersion("main", {
  *     description: "your description",
  *     secretId: main.id,
  *     data: "your_secret",
  * });
+ * // Retrieve the secret version specified by the secret ID and the desired version
  * const dataBySecretId = scaleway.getSecretVersionOutput({
  *     secretId: main.id,
  *     revision: "1",
  * });
+ * // Retrieve the secret version specified by the secret name and the desired version
  * const dataBySecretName = scaleway.getSecretVersionOutput({
  *     secretName: main.name,
  *     revision: "1",
@@ -38,19 +52,20 @@ import * as utilities from "./utilities";
  * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
  * ```
  *
- * ## Data
+ * ## Data information
  *
- * Note: This Data Source give you **access** to the secret payload encoded en base64.
+ * Note: This data source provides you with access to the secret payload, which is encoded in base64.
  *
- * Be aware that this is a sensitive attribute. For more information,
+ * Keep in mind that this is a sensitive attribute. For more information,
  * see Sensitive Data in State.
  *
- * > **Important:**  This property is sensitive and will not be displayed in the plan.
+ * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
 export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecretVersion:getSecretVersion", {
+        "organizationId": args.organizationId,
         "projectId": args.projectId,
         "region": args.region,
         "revision": args.revision,
@@ -63,26 +78,22 @@ export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getSecretVersion.
  */
 export interface GetSecretVersionArgs {
+    organizationId?: string;
     /**
-     * The ID of the project the Secret version is associated with.
+     * The ID of the Scaleway Project associated with the secret version.
      */
     projectId?: string;
-    /**
-     * `region`) The region
-     * in which the resource exists.
-     */
     region?: string;
     /**
-     * The revision for this Secret Version.
+     * The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
      */
     revision?: string;
     /**
-     * The Secret ID associated wit the secret version.
-     * Only one of `secretId` and `secretName` should be specified.
+     * The ID of the secret associated with the secret version. Only one of `secretId` and `secretName` should be specified.
      */
     secretId?: string;
     /**
-     * The Name of Secret associated wit the secret version.
+     * The name of the secret associated with the secret version.
      * Only one of `secretId` and `secretName` should be specified.
      */
     secretName?: string;
@@ -93,61 +104,76 @@ export interface GetSecretVersionArgs {
  */
 export interface GetSecretVersionResult {
     /**
-     * Date and time of secret version's creation (RFC 3339 format).
+     * The date and time of the secret version's creation in RFC 3339 format.
      */
     readonly createdAt: string;
     /**
-     * The data payload of the secret version. more on the data section
+     * The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
      */
     readonly data: string;
     /**
-     * (Optional) Description of the secret version (e.g. `my-new-description`).
+     * (Optional) The description of the secret version (e.g. `my-new-description`).
      */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly organizationId: string;
     readonly projectId?: string;
     readonly region?: string;
     readonly revision?: string;
     readonly secretId?: string;
     readonly secretName?: string;
     /**
-     * The status of the Secret Version.
+     * The status of the secret version.
      */
     readonly status: string;
     /**
-     * Date and time of secret version's last update (RFC 3339 format).
+     * The date and time of the secret version's last update in RFC 3339 format.
      */
     readonly updatedAt: string;
 }
 /**
- * Gets information about Scaleway a Secret Version.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+ * The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
  *
- * ## Examples
+ * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
- * ### Basic
+ * ## Example Usage
+ *
+ * ### Use Secret Manager
+ *
+ * The following commands allow you to:
+ *
+ * - create a secret named `fooii`
+ * - create a new version of `fooii` containing data (`yourSecret`)
+ * - retrieve the secret version specified by the secret ID and the desired version
+ * - retrieve the secret version specified by the secret name and the desired version
+ *
+ * The output blocks display the sensitive data contained in your secret version.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Create a secret named fooii
  * const main = new scaleway.Secret("main", {
  *     name: "fooii",
  *     description: "barr",
  * });
+ * // Create a version of fooii containing data
  * const mainSecretVersion = new scaleway.SecretVersion("main", {
  *     description: "your description",
  *     secretId: main.id,
  *     data: "your_secret",
  * });
+ * // Retrieve the secret version specified by the secret ID and the desired version
  * const dataBySecretId = scaleway.getSecretVersionOutput({
  *     secretId: main.id,
  *     revision: "1",
  * });
+ * // Retrieve the secret version specified by the secret name and the desired version
  * const dataBySecretName = scaleway.getSecretVersionOutput({
  *     secretName: main.name,
  *     revision: "1",
@@ -156,19 +182,20 @@ export interface GetSecretVersionResult {
  * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
  * ```
  *
- * ## Data
+ * ## Data information
  *
- * Note: This Data Source give you **access** to the secret payload encoded en base64.
+ * Note: This data source provides you with access to the secret payload, which is encoded in base64.
  *
- * Be aware that this is a sensitive attribute. For more information,
+ * Keep in mind that this is a sensitive attribute. For more information,
  * see Sensitive Data in State.
  *
- * > **Important:**  This property is sensitive and will not be displayed in the plan.
+ * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
 export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretVersionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getSecretVersion:getSecretVersion", {
+        "organizationId": args.organizationId,
         "projectId": args.projectId,
         "region": args.region,
         "revision": args.revision,
@@ -181,26 +208,22 @@ export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?:
  * A collection of arguments for invoking getSecretVersion.
  */
 export interface GetSecretVersionOutputArgs {
+    organizationId?: pulumi.Input<string>;
     /**
-     * The ID of the project the Secret version is associated with.
+     * The ID of the Scaleway Project associated with the secret version.
      */
     projectId?: pulumi.Input<string>;
-    /**
-     * `region`) The region
-     * in which the resource exists.
-     */
     region?: pulumi.Input<string>;
     /**
-     * The revision for this Secret Version.
+     * The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
      */
     revision?: pulumi.Input<string>;
     /**
-     * The Secret ID associated wit the secret version.
-     * Only one of `secretId` and `secretName` should be specified.
+     * The ID of the secret associated with the secret version. Only one of `secretId` and `secretName` should be specified.
      */
     secretId?: pulumi.Input<string>;
     /**
-     * The Name of Secret associated wit the secret version.
+     * The name of the secret associated with the secret version.
      * Only one of `secretId` and `secretName` should be specified.
      */
     secretName?: pulumi.Input<string>;

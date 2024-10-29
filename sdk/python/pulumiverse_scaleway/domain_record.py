@@ -35,14 +35,14 @@ class DomainRecordArgs:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None):
         """
         The set of arguments for constructing a DomainRecord resource.
-        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-        :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
+        :param pulumi.Input[str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
         :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: Return record based on client localisation
         :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: Return record based on client localisation
-        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
-        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
+        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: Return record based on client subnet
@@ -74,7 +74,7 @@ class DomainRecordArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         return pulumi.get(self, "data")
 
@@ -86,7 +86,7 @@ class DomainRecordArgs:
     @pulumi.getter(name="dnsZone")
     def dns_zone(self) -> pulumi.Input[str]:
         """
-        The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         """
         return pulumi.get(self, "dns_zone")
 
@@ -134,7 +134,7 @@ class DomainRecordArgs:
     @pulumi.getter(name="keepEmptyZone")
     def keep_empty_zone(self) -> Optional[pulumi.Input[bool]]:
         """
-        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         """
         return pulumi.get(self, "keep_empty_zone")
 
@@ -158,7 +158,7 @@ class DomainRecordArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        The priority of the record (mostly used with an `MX` record)
+        The priority of the record (mostly used with an `MX` record).
         """
         return pulumi.get(self, "priority")
 
@@ -234,14 +234,14 @@ class _DomainRecordState:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None):
         """
         Input properties used for looking up and filtering DomainRecord resources.
-        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-        :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
+        :param pulumi.Input[str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[str] fqdn: The FQDN of the record.
         :param pulumi.Input['DomainRecordGeoIpArgs'] geo_ip: Return record based on client localisation
         :param pulumi.Input['DomainRecordHttpServiceArgs'] http_service: Return record based on client localisation
-        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
-        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
+        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[bool] root_zone: Does the DNS zone is the root zone or not
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
@@ -282,7 +282,7 @@ class _DomainRecordState:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[str]]:
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         return pulumi.get(self, "data")
 
@@ -294,7 +294,7 @@ class _DomainRecordState:
     @pulumi.getter(name="dnsZone")
     def dns_zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         """
         return pulumi.get(self, "dns_zone")
 
@@ -342,7 +342,7 @@ class _DomainRecordState:
     @pulumi.getter(name="keepEmptyZone")
     def keep_empty_zone(self) -> Optional[pulumi.Input[bool]]:
         """
-        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         """
         return pulumi.get(self, "keep_empty_zone")
 
@@ -366,7 +366,7 @@ class _DomainRecordState:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        The priority of the record (mostly used with an `MX` record)
+        The priority of the record (mostly used with an `MX` record).
         """
         return pulumi.get(self, "priority")
 
@@ -466,12 +466,19 @@ class DomainRecord(pulumi.CustomResource):
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Domain record.\\
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
+        The `DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+
+        Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 
         ## Example Usage
 
-        ### Basic
+        ### Create basic DNS records
+
+        The folllowing commands allow you to:
+
+        - create an A record for the `www.domain.tld` domain, pointing to `1.2.3.4` and another one pointing to `1.2.3.5`
+
+        - create an MX record with the `mx.online.net.` mail server and a priority of 10, and another one with the `mx-cache.online.net.` mail server and a priority of 20
 
         ```python
         import pulumi
@@ -505,7 +512,17 @@ class DomainRecord(pulumi.CustomResource):
             priority=20)
         ```
 
-        ### With dynamic records
+        ### Create dynamic records
+
+        The folllowing commands allow you to:
+
+        - create a Geo IP record for `images.domain.tld` that points to different IPs based on the user's location: `1.2.3.5` for users in France (EU), and `4.3.2.1` for users in North America (NA)
+
+        - create an HTTP service record for `app.domain.tld` that checks the health of specified IPs and responds based on their status.
+
+        - create view-based records for `db.domain.tld` that resolve differently based on the client's subnet.
+
+        - create a weighted record for `web.domain.tld` that directs traffic to different IPs based on their weights.
 
         ```python
         import pulumi
@@ -580,7 +597,12 @@ class DomainRecord(pulumi.CustomResource):
             ])
         ```
 
-        ### Create an instance and add records with the new instance IP
+        ### Create an Instance and add records with the new Instance IP
+
+        The following commands allow you to:
+
+        - create a Scaleway Instance
+        - assign The Instance's IP address to various DNS records for a specified DNS zone
 
         ```python
         import pulumi
@@ -626,14 +648,13 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Multiple records
 
-        Some record types can have multiple `data` with the same `name` (eg: `A`, `AAAA`, `MX`, `NS`...).\\
-        You can duplicate a resource `DomainRecord` with the same `name`, the records will be added.
+        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `DomainRecord`  resource with the same `name`, and the records will be added.
 
-        Please note, some record (eg: `CNAME`, Multiple dynamic records of different types...) has to be unique.
+        Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 
         ## Import
 
-        Record can be imported using the `{dns_zone}/{id}`, e.g.
+        This section explains how to import a record using the `{dns_zone}/{id}` format.
 
         bash
 
@@ -643,13 +664,13 @@ class DomainRecord(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-        :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
+        :param pulumi.Input[str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']] geo_ip: Return record based on client localisation
         :param pulumi.Input[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']] http_service: Return record based on client localisation
-        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
-        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
+        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
@@ -663,12 +684,19 @@ class DomainRecord(pulumi.CustomResource):
                  args: DomainRecordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Domain record.\\
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
+        The `DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+
+        Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 
         ## Example Usage
 
-        ### Basic
+        ### Create basic DNS records
+
+        The folllowing commands allow you to:
+
+        - create an A record for the `www.domain.tld` domain, pointing to `1.2.3.4` and another one pointing to `1.2.3.5`
+
+        - create an MX record with the `mx.online.net.` mail server and a priority of 10, and another one with the `mx-cache.online.net.` mail server and a priority of 20
 
         ```python
         import pulumi
@@ -702,7 +730,17 @@ class DomainRecord(pulumi.CustomResource):
             priority=20)
         ```
 
-        ### With dynamic records
+        ### Create dynamic records
+
+        The folllowing commands allow you to:
+
+        - create a Geo IP record for `images.domain.tld` that points to different IPs based on the user's location: `1.2.3.5` for users in France (EU), and `4.3.2.1` for users in North America (NA)
+
+        - create an HTTP service record for `app.domain.tld` that checks the health of specified IPs and responds based on their status.
+
+        - create view-based records for `db.domain.tld` that resolve differently based on the client's subnet.
+
+        - create a weighted record for `web.domain.tld` that directs traffic to different IPs based on their weights.
 
         ```python
         import pulumi
@@ -777,7 +815,12 @@ class DomainRecord(pulumi.CustomResource):
             ])
         ```
 
-        ### Create an instance and add records with the new instance IP
+        ### Create an Instance and add records with the new Instance IP
+
+        The following commands allow you to:
+
+        - create a Scaleway Instance
+        - assign The Instance's IP address to various DNS records for a specified DNS zone
 
         ```python
         import pulumi
@@ -823,14 +866,13 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Multiple records
 
-        Some record types can have multiple `data` with the same `name` (eg: `A`, `AAAA`, `MX`, `NS`...).\\
-        You can duplicate a resource `DomainRecord` with the same `name`, the records will be added.
+        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `DomainRecord`  resource with the same `name`, and the records will be added.
 
-        Please note, some record (eg: `CNAME`, Multiple dynamic records of different types...) has to be unique.
+        Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 
         ## Import
 
-        Record can be imported using the `{dns_zone}/{id}`, e.g.
+        This section explains how to import a record using the `{dns_zone}/{id}` format.
 
         bash
 
@@ -925,14 +967,14 @@ class DomainRecord(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-        :param pulumi.Input[str] dns_zone: The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
+        :param pulumi.Input[str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[str] fqdn: The FQDN of the record.
         :param pulumi.Input[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']] geo_ip: Return record based on client localisation
         :param pulumi.Input[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']] http_service: Return record based on client localisation
-        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        :param pulumi.Input[bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[str] name: The name of the record (can be an empty string for a root record).
-        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record)
+        :param pulumi.Input[int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[bool] root_zone: Does the DNS zone is the root zone or not
         :param pulumi.Input[int] ttl: Time To Live of the record in seconds.
@@ -964,7 +1006,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def data(self) -> pulumi.Output[str]:
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         return pulumi.get(self, "data")
 
@@ -972,7 +1014,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="dnsZone")
     def dns_zone(self) -> pulumi.Output[str]:
         """
-        The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         """
         return pulumi.get(self, "dns_zone")
 
@@ -1004,7 +1046,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="keepEmptyZone")
     def keep_empty_zone(self) -> pulumi.Output[Optional[bool]]:
         """
-        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         """
         return pulumi.get(self, "keep_empty_zone")
 
@@ -1020,7 +1062,7 @@ class DomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def priority(self) -> pulumi.Output[int]:
         """
-        The priority of the record (mostly used with an `MX` record)
+        The priority of the record (mostly used with an `MX` record).
         """
         return pulumi.get(self, "priority")
 

@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IamPolicyRule
     {
         /// <summary>
+        /// The condition of the IAM policy.
+        /// </summary>
+        public readonly string? Condition;
+        /// <summary>
         /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         public readonly string? OrganizationId;
@@ -37,12 +41,15 @@ namespace Pulumiverse.Scaleway.Outputs
 
         [OutputConstructor]
         private IamPolicyRule(
+            string? condition,
+
             string? organizationId,
 
             ImmutableArray<string> permissionSetNames,
 
             ImmutableArray<string> projectIds)
         {
+            Condition = condition;
             OrganizationId = organizationId;
             PermissionSetNames = permissionSetNames;
             ProjectIds = projectIds;

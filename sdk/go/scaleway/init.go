@@ -213,6 +213,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TemDomain{}
 	case "scaleway:index/temDomainValidation:TemDomainValidation":
 		r = &TemDomainValidation{}
+	case "scaleway:index/temWebhook:TemWebhook":
+		r = &TemWebhook{}
 	case "scaleway:index/vpc:Vpc":
 		r = &Vpc{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -742,6 +744,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/temDomainValidation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/temWebhook",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

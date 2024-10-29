@@ -20,11 +20,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The public IPv4.
+        /// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         /// </summary>
         public readonly string? PublicIp;
         /// <summary>
-        /// The public IPv6.
+        /// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         /// </summary>
         public readonly string? PublicIpV6;
         /// <summary>

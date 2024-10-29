@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * Cockpits can be imported using the `{project_id}`, e.g.
+ * This section explains how to import a Cockpit using its `{project_id}`.
  *
  * bash
  *
@@ -46,23 +46,29 @@ export class Cockpit extends pulumi.CustomResource {
     }
 
     /**
-     * Endpoints.
+     * (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+     *
+     * @deprecated Please use `scaleway.CockpitSource` instead
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.CockpitEndpoint[]>;
     /**
-     * Name or ID of the plan to use.
+     * Name of the plan to use. Available plans are: free, premium, and custom.
      */
     public readonly plan!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the current plan.
+     * (Deprecated) The ID of the current pricing plan.
+     *
+     * @deprecated Please use Name only
      */
     public /*out*/ readonly planId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * ) The ID of the Project the Cockpit is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Push_url
+     *
+     * @deprecated Please use `scaleway.CockpitSource` instead
      */
     public /*out*/ readonly pushUrls!: pulumi.Output<outputs.CockpitPushUrl[]>;
 
@@ -102,23 +108,29 @@ export class Cockpit extends pulumi.CustomResource {
  */
 export interface CockpitState {
     /**
-     * Endpoints.
+     * (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
+     *
+     * @deprecated Please use `scaleway.CockpitSource` instead
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.CockpitEndpoint>[]>;
     /**
-     * Name or ID of the plan to use.
+     * Name of the plan to use. Available plans are: free, premium, and custom.
      */
     plan?: pulumi.Input<string>;
     /**
-     * The ID of the current plan.
+     * (Deprecated) The ID of the current pricing plan.
+     *
+     * @deprecated Please use Name only
      */
     planId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * ) The ID of the Project the Cockpit is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
      * Push_url
+     *
+     * @deprecated Please use `scaleway.CockpitSource` instead
      */
     pushUrls?: pulumi.Input<pulumi.Input<inputs.CockpitPushUrl>[]>;
 }
@@ -128,11 +140,11 @@ export interface CockpitState {
  */
 export interface CockpitArgs {
     /**
-     * Name or ID of the plan to use.
+     * Name of the plan to use. Available plans are: free, premium, and custom.
      */
     plan?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * ) The ID of the Project the Cockpit is associated with.
      */
     projectId?: pulumi.Input<string>;
 }

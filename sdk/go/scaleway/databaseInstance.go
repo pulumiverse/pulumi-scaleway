@@ -295,11 +295,13 @@ type DatabaseInstance struct {
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
 	// Enable or disable encryption at rest for the Database Instance.
 	EncryptionAtRest pulumi.BoolPtrOutput `pulumi:"encryptionAtRest"`
-	// (Deprecated) The IP of the Database Instance.
+	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringOutput `pulumi:"endpointIp"`
-	// (Deprecated) The port of the Database Instance.
+	// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+	//
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
@@ -409,11 +411,13 @@ type databaseInstanceState struct {
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Enable or disable encryption at rest for the Database Instance.
 	EncryptionAtRest *bool `pulumi:"encryptionAtRest"`
-	// (Deprecated) The IP of the Database Instance.
+	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp *string `pulumi:"endpointIp"`
-	// (Deprecated) The port of the Database Instance.
+	// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+	//
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort *int `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
@@ -481,11 +485,13 @@ type DatabaseInstanceState struct {
 	DisableBackup pulumi.BoolPtrInput
 	// Enable or disable encryption at rest for the Database Instance.
 	EncryptionAtRest pulumi.BoolPtrInput
-	// (Deprecated) The IP of the Database Instance.
+	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringPtrInput
-	// (Deprecated) The port of the Database Instance.
+	// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+	//
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort pulumi.IntPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
@@ -782,14 +788,16 @@ func (o DatabaseInstanceOutput) EncryptionAtRest() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.EncryptionAtRest }).(pulumi.BoolPtrOutput)
 }
 
-// (Deprecated) The IP of the Database Instance.
+// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 //
 // Deprecated: Please use the privateNetwork or the loadBalancer attribute
 func (o DatabaseInstanceOutput) EndpointIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.EndpointIp }).(pulumi.StringOutput)
 }
 
-// (Deprecated) The port of the Database Instance.
+// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+//
+// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 func (o DatabaseInstanceOutput) EndpointPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.EndpointPort }).(pulumi.IntOutput)
 }

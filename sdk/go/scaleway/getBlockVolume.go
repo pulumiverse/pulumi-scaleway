@@ -11,7 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a Block Volume.
+// The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ...pulumi.InvokeOption) (*LookupBlockVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockVolumeResult
@@ -26,11 +27,11 @@ func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ..
 type LookupBlockVolumeArgs struct {
 	// The name of the volume. Only one of `name` and `volumeId` should be specified.
 	Name *string `pulumi:"name"`
-	// The ID of the project the volume is associated with.
+	// The unique identifier of the Project to which the volume is associated.
 	ProjectId *string `pulumi:"projectId"`
-	// The ID of the volume. Only one of `name` and `volumeId` should be specified.
+	// The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
 	VolumeId *string `pulumi:"volumeId"`
-	// `zone`) The zone in which the volume exists.
+	// ). The zone in which the volume exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -71,11 +72,11 @@ func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputAr
 type LookupBlockVolumeOutputArgs struct {
 	// The name of the volume. Only one of `name` and `volumeId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the volume is associated with.
+	// The unique identifier of the Project to which the volume is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The ID of the volume. Only one of `name` and `volumeId` should be specified.
+	// The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	// `zone`) The zone in which the volume exists.
+	// ). The zone in which the volume exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 

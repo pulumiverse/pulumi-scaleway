@@ -53,6 +53,30 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Create a policy with a particular condition
+ *
+ * IAM policy rule can use a condition to be applied.
+ * The following variables are available:
+ *
+ * - `request.ip`
+ * - `request.user_agent`
+ * - `request.time`
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.IamPolicy("main", {
+ *     name: "tf_tests_policy_condition",
+ *     noPrincipal: true,
+ *     rules: [{
+ *         organizationId: "%s",
+ *         permissionSetNames: ["AllProductsFullAccess"],
+ *         condition: "request.user_agent == 'My User Agent'",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Policies can be imported using the `{id}`, e.g.

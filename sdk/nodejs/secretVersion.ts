@@ -5,12 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Secret Versions.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/#secret-versions-079501).
+ * The `scaleway.SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+ *
+ * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
  * ## Example Usage
  *
- * ### Basic
+ * ### Create a secret and a version
+ *
+ * The following commands allow you to:
+ *
+ * - create a secret named `foo`
+ * - create a version of this secret containing the `myNewSecret` data
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,9 +39,9 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+ * This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
  *
- * ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+ * ~> **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
  *
  * bash
  *
@@ -72,11 +78,11 @@ export class SecretVersion extends pulumi.CustomResource {
     }
 
     /**
-     * Date and time of secret version's creation (RFC 3339 format).
+     * The date and time of the secret version's creation (in RFC 3339 format).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
      */
     public readonly data!: pulumi.Output<string>;
     /**
@@ -84,24 +90,23 @@ export class SecretVersion extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * `region`) The region
-     * in which the resource exists.
+     * ). The region where the resource exists.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The revision for this Secret Version.
+     * The revision number of the secret version.
      */
     public /*out*/ readonly revision!: pulumi.Output<string>;
     /**
-     * The Secret ID associated wit the secret version.
+     * The ID of the secret associated with the version.
      */
     public readonly secretId!: pulumi.Output<string>;
     /**
-     * The status of the Secret Version.
+     * The status of the secret version.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Date and time of secret version's last update (RFC 3339 format).
+     * The date and time of the secret version's last update (in RFC 3339 format).
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -155,11 +160,11 @@ export class SecretVersion extends pulumi.CustomResource {
  */
 export interface SecretVersionState {
     /**
-     * Date and time of secret version's creation (RFC 3339 format).
+     * The date and time of the secret version's creation (in RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
      */
     data?: pulumi.Input<string>;
     /**
@@ -167,24 +172,23 @@ export interface SecretVersionState {
      */
     description?: pulumi.Input<string>;
     /**
-     * `region`) The region
-     * in which the resource exists.
+     * ). The region where the resource exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * The revision for this Secret Version.
+     * The revision number of the secret version.
      */
     revision?: pulumi.Input<string>;
     /**
-     * The Secret ID associated wit the secret version.
+     * The ID of the secret associated with the version.
      */
     secretId?: pulumi.Input<string>;
     /**
-     * The status of the Secret Version.
+     * The status of the secret version.
      */
     status?: pulumi.Input<string>;
     /**
-     * Date and time of secret version's last update (RFC 3339 format).
+     * The date and time of the secret version's last update (in RFC 3339 format).
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -194,7 +198,7 @@ export interface SecretVersionState {
  */
 export interface SecretVersionArgs {
     /**
-     * The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
      */
     data: pulumi.Input<string>;
     /**
@@ -202,12 +206,11 @@ export interface SecretVersionArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * `region`) The region
-     * in which the resource exists.
+     * ). The region where the resource exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * The Secret ID associated wit the secret version.
+     * The ID of the secret associated with the version.
      */
     secretId: pulumi.Input<string>;
 }

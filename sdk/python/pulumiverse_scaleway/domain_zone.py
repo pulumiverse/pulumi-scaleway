@@ -24,9 +24,9 @@ class DomainZoneArgs:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DomainZone resource.
-        :param pulumi.Input[str] domain: The domain where the DNS zone will be created.
-        :param pulumi.Input[str] subdomain: The subdomain(zone name) to create in the domain.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
+        :param pulumi.Input[str] domain: The main domain where the DNS zone will be created.
+        :param pulumi.Input[str] subdomain: The name of the subdomain (zone name) to create within the domain.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project associated with the domain.
         """
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "subdomain", subdomain)
@@ -37,7 +37,7 @@ class DomainZoneArgs:
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
         """
-        The domain where the DNS zone will be created.
+        The main domain where the DNS zone will be created.
         """
         return pulumi.get(self, "domain")
 
@@ -49,7 +49,7 @@ class DomainZoneArgs:
     @pulumi.getter
     def subdomain(self) -> pulumi.Input[str]:
         """
-        The subdomain(zone name) to create in the domain.
+        The name of the subdomain (zone name) to create within the domain.
         """
         return pulumi.get(self, "subdomain")
 
@@ -61,7 +61,7 @@ class DomainZoneArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the domain is associated with.
+        `project_id`) The ID of the Project associated with the domain.
         """
         return pulumi.get(self, "project_id")
 
@@ -84,15 +84,15 @@ class _DomainZoneState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DomainZone resources.
-        :param pulumi.Input[str] domain: The domain where the DNS zone will be created.
-        :param pulumi.Input[str] message: Message
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns: NameServer list for zone.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_defaults: NameServer default list for zone.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_masters: NameServer master list for zone.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
-        :param pulumi.Input[str] status: The domain zone status.
-        :param pulumi.Input[str] subdomain: The subdomain(zone name) to create in the domain.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the DNS zone.
+        :param pulumi.Input[str] domain: The main domain where the DNS zone will be created.
+        :param pulumi.Input[str] message: Message.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns: The list of same servers for the zone.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_defaults: The default list of same servers for the zone.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_masters: The master list of same servers for the zone.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project associated with the domain.
+        :param pulumi.Input[str] status: The status of the domain zone.
+        :param pulumi.Input[str] subdomain: The name of the subdomain (zone name) to create within the domain.
+        :param pulumi.Input[str] updated_at: The date and time at which the DNS zone was last updated.
         """
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
@@ -117,7 +117,7 @@ class _DomainZoneState:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain where the DNS zone will be created.
+        The main domain where the DNS zone will be created.
         """
         return pulumi.get(self, "domain")
 
@@ -129,7 +129,7 @@ class _DomainZoneState:
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
         """
-        Message
+        Message.
         """
         return pulumi.get(self, "message")
 
@@ -141,7 +141,7 @@ class _DomainZoneState:
     @pulumi.getter
     def ns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        NameServer list for zone.
+        The list of same servers for the zone.
         """
         return pulumi.get(self, "ns")
 
@@ -153,7 +153,7 @@ class _DomainZoneState:
     @pulumi.getter(name="nsDefaults")
     def ns_defaults(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        NameServer default list for zone.
+        The default list of same servers for the zone.
         """
         return pulumi.get(self, "ns_defaults")
 
@@ -165,7 +165,7 @@ class _DomainZoneState:
     @pulumi.getter(name="nsMasters")
     def ns_masters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        NameServer master list for zone.
+        The master list of same servers for the zone.
         """
         return pulumi.get(self, "ns_masters")
 
@@ -177,7 +177,7 @@ class _DomainZoneState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the domain is associated with.
+        `project_id`) The ID of the Project associated with the domain.
         """
         return pulumi.get(self, "project_id")
 
@@ -189,7 +189,7 @@ class _DomainZoneState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain zone status.
+        The status of the domain zone.
         """
         return pulumi.get(self, "status")
 
@@ -201,7 +201,7 @@ class _DomainZoneState:
     @pulumi.getter
     def subdomain(self) -> Optional[pulumi.Input[str]]:
         """
-        The subdomain(zone name) to create in the domain.
+        The name of the subdomain (zone name) to create within the domain.
         """
         return pulumi.get(self, "subdomain")
 
@@ -213,7 +213,7 @@ class _DomainZoneState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the DNS zone.
+        The date and time at which the DNS zone was last updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -232,23 +232,9 @@ class DomainZone(pulumi.CustomResource):
                  subdomain: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Domain zone.\\
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        test = scaleway.DomainZone("test",
-            domain="scaleway-terraform.com",
-            subdomain="test")
-        ```
-
         ## Import
 
-        Zone can be imported using the `{subdomain}.{domain}`, e.g.
+        This section explains how to import a zone using the `{subdomain}.{domain}` format.
 
         bash
 
@@ -258,9 +244,9 @@ class DomainZone(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] domain: The domain where the DNS zone will be created.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
-        :param pulumi.Input[str] subdomain: The subdomain(zone name) to create in the domain.
+        :param pulumi.Input[str] domain: The main domain where the DNS zone will be created.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project associated with the domain.
+        :param pulumi.Input[str] subdomain: The name of the subdomain (zone name) to create within the domain.
         """
         ...
     @overload
@@ -269,23 +255,9 @@ class DomainZone(pulumi.CustomResource):
                  args: DomainZoneArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Domain zone.\\
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        test = scaleway.DomainZone("test",
-            domain="scaleway-terraform.com",
-            subdomain="test")
-        ```
-
         ## Import
 
-        Zone can be imported using the `{subdomain}.{domain}`, e.g.
+        This section explains how to import a zone using the `{subdomain}.{domain}` format.
 
         bash
 
@@ -359,15 +331,15 @@ class DomainZone(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] domain: The domain where the DNS zone will be created.
-        :param pulumi.Input[str] message: Message
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns: NameServer list for zone.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_defaults: NameServer default list for zone.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_masters: NameServer master list for zone.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
-        :param pulumi.Input[str] status: The domain zone status.
-        :param pulumi.Input[str] subdomain: The subdomain(zone name) to create in the domain.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the DNS zone.
+        :param pulumi.Input[str] domain: The main domain where the DNS zone will be created.
+        :param pulumi.Input[str] message: Message.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns: The list of same servers for the zone.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_defaults: The default list of same servers for the zone.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ns_masters: The master list of same servers for the zone.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the Project associated with the domain.
+        :param pulumi.Input[str] status: The status of the domain zone.
+        :param pulumi.Input[str] subdomain: The name of the subdomain (zone name) to create within the domain.
+        :param pulumi.Input[str] updated_at: The date and time at which the DNS zone was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -388,7 +360,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter
     def domain(self) -> pulumi.Output[str]:
         """
-        The domain where the DNS zone will be created.
+        The main domain where the DNS zone will be created.
         """
         return pulumi.get(self, "domain")
 
@@ -396,7 +368,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter
     def message(self) -> pulumi.Output[str]:
         """
-        Message
+        Message.
         """
         return pulumi.get(self, "message")
 
@@ -404,7 +376,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter
     def ns(self) -> pulumi.Output[Sequence[str]]:
         """
-        NameServer list for zone.
+        The list of same servers for the zone.
         """
         return pulumi.get(self, "ns")
 
@@ -412,7 +384,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter(name="nsDefaults")
     def ns_defaults(self) -> pulumi.Output[Sequence[str]]:
         """
-        NameServer default list for zone.
+        The default list of same servers for the zone.
         """
         return pulumi.get(self, "ns_defaults")
 
@@ -420,7 +392,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter(name="nsMasters")
     def ns_masters(self) -> pulumi.Output[Sequence[str]]:
         """
-        NameServer master list for zone.
+        The master list of same servers for the zone.
         """
         return pulumi.get(self, "ns_masters")
 
@@ -428,7 +400,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the domain is associated with.
+        `project_id`) The ID of the Project associated with the domain.
         """
         return pulumi.get(self, "project_id")
 
@@ -436,7 +408,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The domain zone status.
+        The status of the domain zone.
         """
         return pulumi.get(self, "status")
 
@@ -444,7 +416,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter
     def subdomain(self) -> pulumi.Output[str]:
         """
-        The subdomain(zone name) to create in the domain.
+        The name of the subdomain (zone name) to create within the domain.
         """
         return pulumi.get(self, "subdomain")
 
@@ -452,7 +424,7 @@ class DomainZone(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the DNS zone.
+        The date and time at which the DNS zone was last updated.
         """
         return pulumi.get(self, "updated_at")
 

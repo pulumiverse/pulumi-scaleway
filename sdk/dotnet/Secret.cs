@@ -11,38 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Secrets.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Secret("main", new()
-    ///     {
-    ///         Name = "foo",
-    ///         Description = "barr",
-    ///         Tags = new[]
-    ///         {
-    ///             "foo",
-    ///             "terraform",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
-    /// The Secret can be imported using the `{region}/{id}`, e.g.
+    /// This section explains how to import a secret using the `{region}/{id}` format.
     /// 
     /// bash
     /// 
@@ -54,7 +25,7 @@ namespace Pulumiverse.Scaleway
     public partial class Secret : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Date and time of secret's creation (RFC 3339 format).
+        /// Date and time of the secret's creation (in RFC 3339 format).
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -64,6 +35,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        /// </summary>
+        [Output("ephemeralPolicies")]
+        public Output<ImmutableArray<Outputs.SecretEphemeralPolicy>> EphemeralPolicies { get; private set; } = null!;
 
         /// <summary>
         /// Name of the secret (e.g. `my-secret`).
@@ -84,6 +61,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        /// </summary>
+        [Output("protected")]
+        public Output<bool?> Protected { get; private set; } = null!;
+
+        /// <summary>
         /// `region`) The region
         /// in which the resource exists.
         /// </summary>
@@ -91,7 +74,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the Secret.
+        /// The status of the secret.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -103,13 +86,19 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of secret's last update (RFC 3339 format).
+        /// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        /// </summary>
+        [Output("type")]
+        public Output<string?> Type { get; private set; } = null!;
+
+        /// <summary>
+        /// Date and time of the secret's last update (in RFC 3339 format).
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The number of versions for this Secret.
+        /// The amount of secret versions.
         /// </summary>
         [Output("versionCount")]
         public Output<int> VersionCount { get; private set; } = null!;
@@ -167,6 +156,18 @@ namespace Pulumiverse.Scaleway
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("ephemeralPolicies")]
+        private InputList<Inputs.SecretEphemeralPolicyArgs>? _ephemeralPolicies;
+
+        /// <summary>
+        /// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        /// </summary>
+        public InputList<Inputs.SecretEphemeralPolicyArgs> EphemeralPolicies
+        {
+            get => _ephemeralPolicies ?? (_ephemeralPolicies = new InputList<Inputs.SecretEphemeralPolicyArgs>());
+            set => _ephemeralPolicies = value;
+        }
+
         /// <summary>
         /// Name of the secret (e.g. `my-secret`).
         /// </summary>
@@ -184,6 +185,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        /// </summary>
+        [Input("protected")]
+        public Input<bool>? Protected { get; set; }
 
         /// <summary>
         /// `region`) The region
@@ -204,6 +211,12 @@ namespace Pulumiverse.Scaleway
             set => _tags = value;
         }
 
+        /// <summary>
+        /// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public SecretArgs()
         {
         }
@@ -213,7 +226,7 @@ namespace Pulumiverse.Scaleway
     public sealed class SecretState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Date and time of secret's creation (RFC 3339 format).
+        /// Date and time of the secret's creation (in RFC 3339 format).
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -223,6 +236,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("ephemeralPolicies")]
+        private InputList<Inputs.SecretEphemeralPolicyGetArgs>? _ephemeralPolicies;
+
+        /// <summary>
+        /// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        /// </summary>
+        public InputList<Inputs.SecretEphemeralPolicyGetArgs> EphemeralPolicies
+        {
+            get => _ephemeralPolicies ?? (_ephemeralPolicies = new InputList<Inputs.SecretEphemeralPolicyGetArgs>());
+            set => _ephemeralPolicies = value;
+        }
 
         /// <summary>
         /// Name of the secret (e.g. `my-secret`).
@@ -243,6 +268,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        /// </summary>
+        [Input("protected")]
+        public Input<bool>? Protected { get; set; }
+
+        /// <summary>
         /// `region`) The region
         /// in which the resource exists.
         /// </summary>
@@ -250,7 +281,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The status of the Secret.
+        /// The status of the secret.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -268,13 +299,19 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Date and time of secret's last update (RFC 3339 format).
+        /// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// Date and time of the secret's last update (in RFC 3339 format).
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The number of versions for this Secret.
+        /// The amount of secret versions.
         /// </summary>
         [Input("versionCount")]
         public Input<int>? VersionCount { get; set; }

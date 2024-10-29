@@ -11,11 +11,20 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Cockpit Tokens.
+    /// The `scaleway.CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
     /// 
-    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// ### Use a Cockpit token
+    /// 
+    /// The following commands allow you to:
+    /// 
+    /// - create a Scaleway Project named `my-project`
+    /// - create a Cockpit token named `my-awesome-token` inside the Project
+    /// - assign `read` permissions to the token for metrics and logs
+    /// - disable `write` permissions for metrics and logs
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -71,7 +80,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Cockpits tokens can be imported using the `{region}/{id}`, e.g.
+    /// This section explains how to import a Cockpit token using the `{region}/{id}` format.
     /// 
     /// bash
     /// 
@@ -95,19 +104,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the cockpit token.
+        /// ) The region where the Cockpit token is located.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Allowed scopes.
+        /// Scopes allowed, each with default values:
         /// </summary>
         [Output("scopes")]
         public Output<Outputs.CockpitTokenScopes> Scopes { get; private set; } = null!;
@@ -182,19 +191,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the cockpit token.
+        /// ) The region where the Cockpit token is located.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Allowed scopes.
+        /// Scopes allowed, each with default values:
         /// </summary>
         [Input("scopes")]
         public Input<Inputs.CockpitTokenScopesArgs>? Scopes { get; set; }
@@ -220,19 +229,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cockpit is associated with.
+        /// ) The ID of the Project the Cockpit is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the cockpit token.
+        /// ) The region where the Cockpit token is located.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Allowed scopes.
+        /// Scopes allowed, each with default values:
         /// </summary>
         [Input("scopes")]
         public Input<Inputs.CockpitTokenScopesGetArgs>? Scopes { get; set; }

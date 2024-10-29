@@ -187,6 +187,8 @@ __all__ = [
     'RedisClusterPrivateNetworkArgsDict',
     'RedisClusterPublicNetworkArgs',
     'RedisClusterPublicNetworkArgsDict',
+    'SecretEphemeralPolicyArgs',
+    'SecretEphemeralPolicyArgsDict',
     'TemDomainReputationArgs',
     'TemDomainReputationArgsDict',
     'VpcGatewayNetworkIpamConfigArgs',
@@ -701,23 +703,23 @@ if not MYPY:
     class CockpitEndpointArgsDict(TypedDict):
         alertmanager_url: NotRequired[pulumi.Input[str]]
         """
-        The alertmanager URL.
+        (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
         """
         grafana_url: NotRequired[pulumi.Input[str]]
         """
-        The grafana URL.
+        (Deprecated) URL for Grafana.
         """
         logs_url: NotRequired[pulumi.Input[str]]
         """
-        The logs URL.
+        (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         metrics_url: NotRequired[pulumi.Input[str]]
         """
-        The metrics URL.
+        (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         traces_url: NotRequired[pulumi.Input[str]]
         """
-        The traces URL.
+        (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
 elif False:
     CockpitEndpointArgsDict: TypeAlias = Mapping[str, Any]
@@ -731,11 +733,11 @@ class CockpitEndpointArgs:
                  metrics_url: Optional[pulumi.Input[str]] = None,
                  traces_url: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] alertmanager_url: The alertmanager URL.
-        :param pulumi.Input[str] grafana_url: The grafana URL.
-        :param pulumi.Input[str] logs_url: The logs URL.
-        :param pulumi.Input[str] metrics_url: The metrics URL.
-        :param pulumi.Input[str] traces_url: The traces URL.
+        :param pulumi.Input[str] alertmanager_url: (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+        :param pulumi.Input[str] grafana_url: (Deprecated) URL for Grafana.
+        :param pulumi.Input[str] logs_url: (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+        :param pulumi.Input[str] metrics_url: (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+        :param pulumi.Input[str] traces_url: (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         if alertmanager_url is not None:
             pulumi.set(__self__, "alertmanager_url", alertmanager_url)
@@ -752,7 +754,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="alertmanagerUrl")
     def alertmanager_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The alertmanager URL.
+        (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
         """
         return pulumi.get(self, "alertmanager_url")
 
@@ -764,7 +766,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="grafanaUrl")
     def grafana_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The grafana URL.
+        (Deprecated) URL for Grafana.
         """
         return pulumi.get(self, "grafana_url")
 
@@ -776,7 +778,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="logsUrl")
     def logs_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The logs URL.
+        (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         return pulumi.get(self, "logs_url")
 
@@ -788,7 +790,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="metricsUrl")
     def metrics_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The metrics URL.
+        (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         return pulumi.get(self, "metrics_url")
 
@@ -800,7 +802,7 @@ class CockpitEndpointArgs:
     @pulumi.getter(name="tracesUrl")
     def traces_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The traces URL.
+        (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         return pulumi.get(self, "traces_url")
 
@@ -865,39 +867,39 @@ if not MYPY:
     class CockpitTokenScopesArgsDict(TypedDict):
         query_logs: NotRequired[pulumi.Input[bool]]
         """
-        Query logs.
+        Permission to query logs.
         """
         query_metrics: NotRequired[pulumi.Input[bool]]
         """
-        Query metrics.
+        Permission to query metrics.
         """
         query_traces: NotRequired[pulumi.Input[bool]]
         """
-        Query traces.
+        Permission to query traces.
         """
         setup_alerts: NotRequired[pulumi.Input[bool]]
         """
-        Setup alerts.
+        Permission to set up alerts.
         """
         setup_logs_rules: NotRequired[pulumi.Input[bool]]
         """
-        Setup logs rules.
+        Permission to set up logs rules.
         """
         setup_metrics_rules: NotRequired[pulumi.Input[bool]]
         """
-        Setup metrics rules.
+        Permission to set up metrics rules.
         """
         write_logs: NotRequired[pulumi.Input[bool]]
         """
-        Write logs.
+        Permission to write logs.
         """
         write_metrics: NotRequired[pulumi.Input[bool]]
         """
-        Write metrics.
+        Permission to write metrics.
         """
         write_traces: NotRequired[pulumi.Input[bool]]
         """
-        Write traces.
+        Permission to write traces.
         """
 elif False:
     CockpitTokenScopesArgsDict: TypeAlias = Mapping[str, Any]
@@ -915,15 +917,15 @@ class CockpitTokenScopesArgs:
                  write_metrics: Optional[pulumi.Input[bool]] = None,
                  write_traces: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] query_logs: Query logs.
-        :param pulumi.Input[bool] query_metrics: Query metrics.
-        :param pulumi.Input[bool] query_traces: Query traces.
-        :param pulumi.Input[bool] setup_alerts: Setup alerts.
-        :param pulumi.Input[bool] setup_logs_rules: Setup logs rules.
-        :param pulumi.Input[bool] setup_metrics_rules: Setup metrics rules.
-        :param pulumi.Input[bool] write_logs: Write logs.
-        :param pulumi.Input[bool] write_metrics: Write metrics.
-        :param pulumi.Input[bool] write_traces: Write traces.
+        :param pulumi.Input[bool] query_logs: Permission to query logs.
+        :param pulumi.Input[bool] query_metrics: Permission to query metrics.
+        :param pulumi.Input[bool] query_traces: Permission to query traces.
+        :param pulumi.Input[bool] setup_alerts: Permission to set up alerts.
+        :param pulumi.Input[bool] setup_logs_rules: Permission to set up logs rules.
+        :param pulumi.Input[bool] setup_metrics_rules: Permission to set up metrics rules.
+        :param pulumi.Input[bool] write_logs: Permission to write logs.
+        :param pulumi.Input[bool] write_metrics: Permission to write metrics.
+        :param pulumi.Input[bool] write_traces: Permission to write traces.
         """
         if query_logs is not None:
             pulumi.set(__self__, "query_logs", query_logs)
@@ -948,7 +950,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="queryLogs")
     def query_logs(self) -> Optional[pulumi.Input[bool]]:
         """
-        Query logs.
+        Permission to query logs.
         """
         return pulumi.get(self, "query_logs")
 
@@ -960,7 +962,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="queryMetrics")
     def query_metrics(self) -> Optional[pulumi.Input[bool]]:
         """
-        Query metrics.
+        Permission to query metrics.
         """
         return pulumi.get(self, "query_metrics")
 
@@ -972,7 +974,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="queryTraces")
     def query_traces(self) -> Optional[pulumi.Input[bool]]:
         """
-        Query traces.
+        Permission to query traces.
         """
         return pulumi.get(self, "query_traces")
 
@@ -984,7 +986,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="setupAlerts")
     def setup_alerts(self) -> Optional[pulumi.Input[bool]]:
         """
-        Setup alerts.
+        Permission to set up alerts.
         """
         return pulumi.get(self, "setup_alerts")
 
@@ -996,7 +998,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="setupLogsRules")
     def setup_logs_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        Setup logs rules.
+        Permission to set up logs rules.
         """
         return pulumi.get(self, "setup_logs_rules")
 
@@ -1008,7 +1010,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="setupMetricsRules")
     def setup_metrics_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        Setup metrics rules.
+        Permission to set up metrics rules.
         """
         return pulumi.get(self, "setup_metrics_rules")
 
@@ -1020,7 +1022,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="writeLogs")
     def write_logs(self) -> Optional[pulumi.Input[bool]]:
         """
-        Write logs.
+        Permission to write logs.
         """
         return pulumi.get(self, "write_logs")
 
@@ -1032,7 +1034,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="writeMetrics")
     def write_metrics(self) -> Optional[pulumi.Input[bool]]:
         """
-        Write metrics.
+        Permission to write metrics.
         """
         return pulumi.get(self, "write_metrics")
 
@@ -1044,7 +1046,7 @@ class CockpitTokenScopesArgs:
     @pulumi.getter(name="writeTraces")
     def write_traces(self) -> Optional[pulumi.Input[bool]]:
         """
-        Write traces.
+        Permission to write traces.
         """
         return pulumi.get(self, "write_traces")
 
@@ -2501,7 +2503,7 @@ if not MYPY:
     class DomainRecordGeoIpMatchArgsDict(TypedDict):
         data: pulumi.Input[str]
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         continents: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
@@ -2521,7 +2523,7 @@ class DomainRecordGeoIpMatchArgs:
                  continents: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] continents: List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
         """
@@ -2535,7 +2537,7 @@ class DomainRecordGeoIpMatchArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         return pulumi.get(self, "data")
 
@@ -2680,7 +2682,7 @@ if not MYPY:
     class DomainRecordViewArgsDict(TypedDict):
         data: pulumi.Input[str]
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         subnet: pulumi.Input[str]
         """
@@ -2695,7 +2697,7 @@ class DomainRecordViewArgs:
                  data: pulumi.Input[str],
                  subnet: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        :param pulumi.Input[str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[str] subnet: The subnet of the view
         """
         pulumi.set(__self__, "data", data)
@@ -2705,7 +2707,7 @@ class DomainRecordViewArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         return pulumi.get(self, "data")
 
@@ -2974,6 +2976,10 @@ if not MYPY:
         scw IAM permission-set list
         ```
         """
+        condition: NotRequired[pulumi.Input[str]]
+        """
+        The condition of the IAM policy.
+        """
         organization_id: NotRequired[pulumi.Input[str]]
         """
         ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
@@ -2991,6 +2997,7 @@ elif False:
 class IamPolicyRuleArgs:
     def __init__(__self__, *,
                  permission_set_names: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 condition: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -3001,12 +3008,15 @@ class IamPolicyRuleArgs:
                ```shell
                scw IAM permission-set list
                ```
+        :param pulumi.Input[str] condition: The condition of the IAM policy.
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: List of project IDs scoped to the rule.
                
                > **Important** One `organization_id` or `project_ids` must be set per rule.
         """
         pulumi.set(__self__, "permission_set_names", permission_set_names)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if project_ids is not None:
@@ -3029,6 +3039,18 @@ class IamPolicyRuleArgs:
     @permission_set_names.setter
     def permission_set_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "permission_set_names", value)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The condition of the IAM policy.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "condition", value)
 
     @property
     @pulumi.getter(name="organizationId")
@@ -5540,11 +5562,11 @@ if not MYPY:
         """
         public_ip: NotRequired[pulumi.Input[str]]
         """
-        The public IPv4.
+        The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         public_ip_v6: NotRequired[pulumi.Input[str]]
         """
-        The public IPv6.
+        The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         status: NotRequired[pulumi.Input[str]]
         """
@@ -5563,14 +5585,20 @@ class KubernetesNodePoolNodeArgs:
         """
         :param pulumi.Input[str] name: The name for the pool.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[str] public_ip: The public IPv4.
-        :param pulumi.Input[str] public_ip_v6: The public IPv6.
+        :param pulumi.Input[str] public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+        :param pulumi.Input[str] public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param pulumi.Input[str] status: The status of the node.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
         if public_ip is not None:
+            warnings.warn("""Please use the official Kubernetes provider and the kubernetes_nodes data source""", DeprecationWarning)
+            pulumi.log.warn("""public_ip is deprecated: Please use the official Kubernetes provider and the kubernetes_nodes data source""")
+        if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
+        if public_ip_v6 is not None:
+            warnings.warn("""Please use the official Kubernetes provider and the kubernetes_nodes data source""", DeprecationWarning)
+            pulumi.log.warn("""public_ip_v6 is deprecated: Please use the official Kubernetes provider and the kubernetes_nodes data source""")
         if public_ip_v6 is not None:
             pulumi.set(__self__, "public_ip_v6", public_ip_v6)
         if status is not None:
@@ -5591,9 +5619,10 @@ class KubernetesNodePoolNodeArgs:
 
     @property
     @pulumi.getter(name="publicIp")
+    @_utilities.deprecated("""Please use the official Kubernetes provider and the kubernetes_nodes data source""")
     def public_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The public IPv4.
+        The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         return pulumi.get(self, "public_ip")
 
@@ -5603,9 +5632,10 @@ class KubernetesNodePoolNodeArgs:
 
     @property
     @pulumi.getter(name="publicIpV6")
+    @_utilities.deprecated("""Please use the official Kubernetes provider and the kubernetes_nodes data source""")
     def public_ip_v6(self) -> Optional[pulumi.Input[str]]:
         """
-        The public IPv6.
+        The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         return pulumi.get(self, "public_ip_v6")
 
@@ -6600,7 +6630,7 @@ if not MYPY:
         """
         dhcp_config: NotRequired[pulumi.Input[bool]]
         """
-        (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
         """
         ipam_ids: NotRequired[pulumi.Input[str]]
         """
@@ -6632,7 +6662,7 @@ class LoadbalancerPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] private_network_id: (Required) The ID of the Private Network to attach to.
-        :param pulumi.Input[bool] dhcp_config: (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        :param pulumi.Input[bool] dhcp_config: (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
         :param pulumi.Input[str] ipam_ids: (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         :param pulumi.Input[str] static_config: (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         :param pulumi.Input[str] status: The status of private network connection
@@ -6640,12 +6670,15 @@ class LoadbalancerPrivateNetworkArgs:
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
+            warnings.warn("""dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""", DeprecationWarning)
+            pulumi.log.warn("""dhcp_config is deprecated: dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
+        if dhcp_config is not None:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
         if ipam_ids is not None:
             pulumi.set(__self__, "ipam_ids", ipam_ids)
         if static_config is not None:
-            warnings.warn("""static_config field is deprecated, please use dhcp_config instead""", DeprecationWarning)
-            pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use dhcp_config instead""")
+            warnings.warn("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""", DeprecationWarning)
+            pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
         if static_config is not None:
             pulumi.set(__self__, "static_config", static_config)
         if status is not None:
@@ -6667,9 +6700,10 @@ class LoadbalancerPrivateNetworkArgs:
 
     @property
     @pulumi.getter(name="dhcpConfig")
+    @_utilities.deprecated("""dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def dhcp_config(self) -> Optional[pulumi.Input[bool]]:
         """
-        (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
         """
         return pulumi.get(self, "dhcp_config")
 
@@ -6691,7 +6725,7 @@ class LoadbalancerPrivateNetworkArgs:
 
     @property
     @pulumi.getter(name="staticConfig")
-    @_utilities.deprecated("""static_config field is deprecated, please use dhcp_config instead""")
+    @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def static_config(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
@@ -7947,6 +7981,77 @@ class RedisClusterPublicNetworkArgs:
     @port.setter
     def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
+
+
+if not MYPY:
+    class SecretEphemeralPolicyArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        """
+        expires_once_accessed: NotRequired[pulumi.Input[bool]]
+        """
+        True if the secret version expires after a single user access.
+        """
+        ttl: NotRequired[pulumi.Input[str]]
+        """
+        Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+        """
+elif False:
+    SecretEphemeralPolicyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SecretEphemeralPolicyArgs:
+    def __init__(__self__, *,
+                 action: pulumi.Input[str],
+                 expires_once_accessed: Optional[pulumi.Input[bool]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] action: Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        :param pulumi.Input[bool] expires_once_accessed: True if the secret version expires after a single user access.
+        :param pulumi.Input[str] ttl: Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+        """
+        pulumi.set(__self__, "action", action)
+        if expires_once_accessed is not None:
+            pulumi.set(__self__, "expires_once_accessed", expires_once_accessed)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def action(self) -> pulumi.Input[str]:
+        """
+        Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: pulumi.Input[str]):
+        pulumi.set(self, "action", value)
+
+    @property
+    @pulumi.getter(name="expiresOnceAccessed")
+    def expires_once_accessed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True if the secret version expires after a single user access.
+        """
+        return pulumi.get(self, "expires_once_accessed")
+
+    @expires_once_accessed.setter
+    def expires_once_accessed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "expires_once_accessed", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
 
 
 if not MYPY:

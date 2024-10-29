@@ -12,12 +12,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Block Volumes.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+// The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+//
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 //
 // ## Example Usage
 //
-// ### Basic
+// ### Create a Block Storage volume
+//
+// The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
 //
 // ```go
 // package main
@@ -90,7 +93,7 @@ import (
 //
 // ## Import
 //
-// Block Volumes can be imported using the `{zone}/{id}`, e.g.
+// This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
 //
 // bash
 //
@@ -100,19 +103,19 @@ import (
 type BlockVolume struct {
 	pulumi.CustomResourceState
 
-	// The maximum IO/s expected, must match available options.
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntOutput `pulumi:"iops"`
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `projectId`) The ID of the project the volume is associated with.
+	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// `zone`) The zone in which the volume should be created.
+	// ). The zone in which the volume should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -149,36 +152,36 @@ func GetBlockVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BlockVolume resources.
 type blockVolumeState struct {
-	// The maximum IO/s expected, must match available options.
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
 	Iops *int `pulumi:"iops"`
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the volume is associated with.
+	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
-	// `zone`) The zone in which the volume should be created.
+	// ). The zone in which the volume should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type BlockVolumeState struct {
-	// The maximum IO/s expected, must match available options.
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntPtrInput
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the volume is associated with.
+	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
 	SizeInGb pulumi.IntPtrInput
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
 	SnapshotId pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
-	// `zone`) The zone in which the volume should be created.
+	// ). The zone in which the volume should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -187,37 +190,37 @@ func (BlockVolumeState) ElementType() reflect.Type {
 }
 
 type blockVolumeArgs struct {
-	// The maximum IO/s expected, must match available options.
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
 	Iops int `pulumi:"iops"`
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the volume is associated with.
+	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
-	// `zone`) The zone in which the volume should be created.
+	// ). The zone in which the volume should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a BlockVolume resource.
 type BlockVolumeArgs struct {
-	// The maximum IO/s expected, must match available options.
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntInput
-	// The name of the volume. If not provided it will be randomly generated.
+	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the volume is associated with.
+	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
 	SizeInGb pulumi.IntPtrInput
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
 	SnapshotId pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
-	// `zone`) The zone in which the volume should be created.
+	// ). The zone in which the volume should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -308,22 +311,22 @@ func (o BlockVolumeOutput) ToBlockVolumeOutputWithContext(ctx context.Context) B
 	return o
 }
 
-// The maximum IO/s expected, must match available options.
+// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
 func (o BlockVolumeOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.IntOutput { return v.Iops }).(pulumi.IntOutput)
 }
 
-// The name of the volume. If not provided it will be randomly generated.
+// The name of the volume. If not provided, a name will be randomly generated.
 func (o BlockVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the volume is associated with.
+// ). The ID of the Project the volume is associated with.
 func (o BlockVolumeOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The size of the volume. Only one of `sizeInGb`, and `snapshotId` should be specified.
+// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
 func (o BlockVolumeOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }
@@ -338,7 +341,7 @@ func (o BlockVolumeOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// `zone`) The zone in which the volume should be created.
+// ). The zone in which the volume should be created.
 func (o BlockVolumeOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

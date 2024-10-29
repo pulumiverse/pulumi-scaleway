@@ -11,9 +11,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a Scaleway Cockpit plan.
+// The `getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
 //
-// ## Example Usage
+// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+//
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+//
+// ## Fetch and associate a pricing plan to a Cockpit
+//
+// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
 //
 // ```go
 // package main
@@ -56,7 +62,7 @@ func GetCockpitPlan(ctx *pulumi.Context, args *GetCockpitPlanArgs, opts ...pulum
 
 // A collection of arguments for invoking getCockpitPlan.
 type GetCockpitPlanArgs struct {
-	// The name of the plan.
+	// Name of the pricing plan you want to retrieve information about.
 	Name string `pulumi:"name"`
 }
 
@@ -88,7 +94,7 @@ func GetCockpitPlanOutput(ctx *pulumi.Context, args GetCockpitPlanOutputArgs, op
 
 // A collection of arguments for invoking getCockpitPlan.
 type GetCockpitPlanOutputArgs struct {
-	// The name of the plan.
+	// Name of the pricing plan you want to retrieve information about.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 

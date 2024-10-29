@@ -127,7 +127,7 @@ class _TemDomainState:
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_name: DMARC name for the domain, as should be recorded in the DNS zone.
-        :param pulumi.Input[str] last_error: The error message if the last check failed.
+        :param pulumi.Input[str] last_error: (Deprecated) The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
@@ -157,6 +157,9 @@ class _TemDomainState:
             pulumi.set(__self__, "dmarc_config", dmarc_config)
         if dmarc_name is not None:
             pulumi.set(__self__, "dmarc_name", dmarc_name)
+        if last_error is not None:
+            warnings.warn("""last_error is deprecated""", DeprecationWarning)
+            pulumi.log.warn("""last_error is deprecated: last_error is deprecated""")
         if last_error is not None:
             pulumi.set(__self__, "last_error", last_error)
         if last_valid_at is not None:
@@ -257,9 +260,10 @@ class _TemDomainState:
 
     @property
     @pulumi.getter(name="lastError")
+    @_utilities.deprecated("""last_error is deprecated""")
     def last_error(self) -> Optional[pulumi.Input[str]]:
         """
-        The error message if the last check failed.
+        (Deprecated) The error message if the last check failed.
         """
         return pulumi.get(self, "last_error")
 
@@ -713,7 +717,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_name: DMARC name for the domain, as should be recorded in the DNS zone.
-        :param pulumi.Input[str] last_error: The error message if the last check failed.
+        :param pulumi.Input[str] last_error: (Deprecated) The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
@@ -805,9 +809,10 @@ class TemDomain(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="lastError")
+    @_utilities.deprecated("""last_error is deprecated""")
     def last_error(self) -> pulumi.Output[str]:
         """
-        The error message if the last check failed.
+        (Deprecated) The error message if the last check failed.
         """
         return pulumi.get(self, "last_error")
 

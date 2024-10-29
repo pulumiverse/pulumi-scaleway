@@ -335,12 +335,17 @@ type InstanceServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrOutput `pulumi:"bootType"`
 	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	//
+	// Deprecated: bootscript is not supported anymore.
 	BootscriptId pulumi.StringOutput `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
 	CloudInit pulumi.StringOutput `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrOutput `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	EnableIpv6 pulumi.BoolPtrOutput `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -356,10 +361,17 @@ type InstanceServer struct {
 	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6Gateway pulumi.StringOutput `pulumi:"ipv6Gateway"`
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
 	Ipv6PrefixLength pulumi.IntOutput `pulumi:"ipv6PrefixLength"`
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -378,7 +390,9 @@ type InstanceServer struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The public IP address of the server.
+	// The public IP address of the server (Deprecated use `publicIps` instead).
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
 	// The list of public IPs of the server.
 	PublicIps InstanceServerPublicIpArrayOutput `pulumi:"publicIps"`
@@ -457,12 +471,17 @@ type instanceServerState struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
 	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	//
+	// Deprecated: bootscript is not supported anymore.
 	BootscriptId *string `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
 	CloudInit *string `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -478,10 +497,17 @@ type instanceServerState struct {
 	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds []string `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6Address *string `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6Gateway *string `pulumi:"ipv6Gateway"`
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
 	Ipv6PrefixLength *int `pulumi:"ipv6PrefixLength"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -500,7 +526,9 @@ type instanceServerState struct {
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The public IP address of the server.
+	// The public IP address of the server (Deprecated use `publicIps` instead).
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp *string `pulumi:"publicIp"`
 	// The list of public IPs of the server.
 	PublicIps []InstanceServerPublicIp `pulumi:"publicIps"`
@@ -547,12 +575,17 @@ type InstanceServerState struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
 	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	//
+	// Deprecated: bootscript is not supported anymore.
 	BootscriptId pulumi.StringPtrInput
 	// The cloud init script associated with this server
 	CloudInit pulumi.StringPtrInput
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	EnableIpv6 pulumi.BoolPtrInput
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -568,10 +601,17 @@ type InstanceServerState struct {
 	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayInput
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6Address pulumi.StringPtrInput
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6Gateway pulumi.StringPtrInput
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
 	Ipv6PrefixLength pulumi.IntPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
@@ -590,7 +630,9 @@ type InstanceServerState struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The public IP address of the server.
+	// The public IP address of the server (Deprecated use `publicIps` instead).
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp pulumi.StringPtrInput
 	// The list of public IPs of the server.
 	PublicIps InstanceServerPublicIpArrayInput
@@ -641,12 +683,17 @@ type instanceServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
 	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	//
+	// Deprecated: bootscript is not supported anymore.
 	BootscriptId *string `pulumi:"bootscriptId"`
 	// The cloud init script associated with this server
 	CloudInit *string `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -718,12 +765,17 @@ type InstanceServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
 	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	//
+	// Deprecated: bootscript is not supported anymore.
 	BootscriptId pulumi.StringPtrInput
 	// The cloud init script associated with this server
 	CloudInit pulumi.StringPtrInput
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	EnableIpv6 pulumi.BoolPtrInput
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -886,6 +938,8 @@ func (o InstanceServerOutput) BootType() pulumi.StringPtrOutput {
 }
 
 // The ID of the bootscript to use  (set bootType to `bootscript`).
+//
+// Deprecated: bootscript is not supported anymore.
 func (o InstanceServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.BootscriptId }).(pulumi.StringOutput)
 }
@@ -901,6 +955,9 @@ func (o InstanceServerOutput) EnableDynamicIp() pulumi.BoolPtrOutput {
 }
 
 // Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+//
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 func (o InstanceServerOutput) EnableIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.EnableIpv6 }).(pulumi.BoolPtrOutput)
 }
@@ -928,16 +985,23 @@ func (o InstanceServerOutput) IpIds() pulumi.StringArrayOutput {
 }
 
 // The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+//
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 func (o InstanceServerOutput) Ipv6Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
 // The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+//
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 func (o InstanceServerOutput) Ipv6Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Ipv6Gateway }).(pulumi.StringOutput)
 }
 
 // The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
 func (o InstanceServerOutput) Ipv6PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.IntOutput { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }
@@ -980,7 +1044,9 @@ func (o InstanceServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The public IP address of the server.
+// The public IP address of the server (Deprecated use `publicIps` instead).
+//
+// Deprecated: Use publicIps instead
 func (o InstanceServerOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PublicIp }).(pulumi.StringOutput)
 }

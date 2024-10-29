@@ -11,12 +11,19 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Domain record.\
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
+    /// The `scaleway.DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+    /// 
+    /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### Create basic DNS records
+    /// 
+    /// The folllowing commands allow you to:
+    /// 
+    /// - create an A record for the `www.domain.tld` domain, pointing to `1.2.3.4` and another one pointing to `1.2.3.5`
+    /// 
+    /// - create an MX record with the `mx.online.net.` mail server and a priority of 10, and another one with the `mx-cache.online.net.` mail server and a priority of 20
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -67,7 +74,17 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With dynamic records
+    /// ### Create dynamic records
+    /// 
+    /// The folllowing commands allow you to:
+    /// 
+    /// - create a Geo IP record for `images.domain.tld` that points to different IPs based on the user's location: `1.2.3.5` for users in France (EU), and `4.3.2.1` for users in North America (NA)
+    /// 
+    /// - create an HTTP service record for `app.domain.tld` that checks the health of specified IPs and responds based on their status.
+    /// 
+    /// - create view-based records for `db.domain.tld` that resolve differently based on the client's subnet.
+    /// 
+    /// - create a weighted record for `web.domain.tld` that directs traffic to different IPs based on their weights.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -180,7 +197,12 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Create an instance and add records with the new instance IP
+    /// ### Create an Instance and add records with the new Instance IP
+    /// 
+    /// The following commands allow you to:
+    /// 
+    /// - create a Scaleway Instance
+    /// - assign The Instance's IP address to various DNS records for a specified DNS zone
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -249,14 +271,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Multiple records
     /// 
-    /// Some record types can have multiple `data` with the same `name` (eg: `A`, `AAAA`, `MX`, `NS`...).\
-    /// You can duplicate a resource `scaleway.DomainRecord` with the same `name`, the records will be added.
+    /// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.DomainRecord`  resource with the same `name`, and the records will be added.
     /// 
-    /// Please note, some record (eg: `CNAME`, Multiple dynamic records of different types...) has to be unique.
+    /// Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
     /// 
     /// ## Import
     /// 
-    /// Record can be imported using the `{dns_zone}/{id}`, e.g.
+    /// This section explains how to import a record using the `{dns_zone}/{id}` format.
     /// 
     /// bash
     /// 
@@ -268,13 +289,13 @@ namespace Pulumiverse.Scaleway
     public partial class DomainRecord : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        /// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         /// </summary>
         [Output("data")]
         public Output<string> Data { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        /// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         /// </summary>
         [Output("dnsZone")]
         public Output<string> DnsZone { get; private set; } = null!;
@@ -298,7 +319,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.DomainRecordHttpService?> HttpService { get; private set; } = null!;
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         /// </summary>
         [Output("keepEmptyZone")]
         public Output<bool?> KeepEmptyZone { get; private set; } = null!;
@@ -310,7 +331,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The priority of the record (mostly used with an `MX` record)
+        /// The priority of the record (mostly used with an `MX` record).
         /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
@@ -399,13 +420,13 @@ namespace Pulumiverse.Scaleway
     public sealed class DomainRecordArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        /// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         /// </summary>
         [Input("data", required: true)]
         public Input<string> Data { get; set; } = null!;
 
         /// <summary>
-        /// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        /// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         /// </summary>
         [Input("dnsZone", required: true)]
         public Input<string> DnsZone { get; set; } = null!;
@@ -423,7 +444,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.DomainRecordHttpServiceArgs>? HttpService { get; set; }
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         /// </summary>
         [Input("keepEmptyZone")]
         public Input<bool>? KeepEmptyZone { get; set; }
@@ -435,7 +456,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The priority of the record (mostly used with an `MX` record)
+        /// The priority of the record (mostly used with an `MX` record).
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -491,13 +512,13 @@ namespace Pulumiverse.Scaleway
     public sealed class DomainRecordState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        /// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         /// </summary>
         [Input("data")]
         public Input<string>? Data { get; set; }
 
         /// <summary>
-        /// The DNS Zone of the domain. If the DNS zone doesn't exist, it will be automatically created.
+        /// The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         /// </summary>
         [Input("dnsZone")]
         public Input<string>? DnsZone { get; set; }
@@ -521,7 +542,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.DomainRecordHttpServiceGetArgs>? HttpService { get; set; }
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Please note, each zone not deleted will [cost you money](https://www.scaleway.com/en/dns/)
+        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         /// </summary>
         [Input("keepEmptyZone")]
         public Input<bool>? KeepEmptyZone { get; set; }
@@ -533,7 +554,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The priority of the record (mostly used with an `MX` record)
+        /// The priority of the record (mostly used with an `MX` record).
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }

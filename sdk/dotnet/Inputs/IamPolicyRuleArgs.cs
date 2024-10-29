@@ -14,6 +14,12 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IamPolicyRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The condition of the IAM policy.
+        /// </summary>
+        [Input("condition")]
+        public Input<string>? Condition { get; set; }
+
+        /// <summary>
         /// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         /// </summary>
         [Input("organizationId")]

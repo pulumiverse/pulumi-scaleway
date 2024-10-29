@@ -196,7 +196,7 @@ class _LoadbalancerFrontendState:
         :param pulumi.Input[str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
-        :param pulumi.Input[str] certificate_id: (Deprecated) First certificate ID used by the frontend.
+        :param pulumi.Input[str] certificate_id: (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
@@ -263,7 +263,7 @@ class _LoadbalancerFrontendState:
     @_utilities.deprecated("""Please use certificate_ids""")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        (Deprecated) First certificate ID used by the frontend.
+        (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -713,7 +713,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
-        :param pulumi.Input[str] certificate_id: (Deprecated) First certificate ID used by the frontend.
+        :param pulumi.Input[str] certificate_id: (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
@@ -764,7 +764,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @_utilities.deprecated("""Please use certificate_ids""")
     def certificate_id(self) -> pulumi.Output[str]:
         """
-        (Deprecated) First certificate ID used by the frontend.
+        (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 

@@ -731,15 +731,15 @@ func (o CockpitAlertManagerContactPointArrayOutput) Index(i pulumi.IntInput) Coc
 }
 
 type CockpitEndpoint struct {
-	// The alertmanager URL.
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
-	// The grafana URL.
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl *string `pulumi:"grafanaUrl"`
-	// The logs URL.
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl *string `pulumi:"logsUrl"`
-	// The metrics URL.
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl *string `pulumi:"metricsUrl"`
-	// The traces URL.
+	// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	TracesUrl *string `pulumi:"tracesUrl"`
 }
 
@@ -755,15 +755,15 @@ type CockpitEndpointInput interface {
 }
 
 type CockpitEndpointArgs struct {
-	// The alertmanager URL.
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl pulumi.StringPtrInput `pulumi:"alertmanagerUrl"`
-	// The grafana URL.
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl pulumi.StringPtrInput `pulumi:"grafanaUrl"`
-	// The logs URL.
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl pulumi.StringPtrInput `pulumi:"logsUrl"`
-	// The metrics URL.
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl pulumi.StringPtrInput `pulumi:"metricsUrl"`
-	// The traces URL.
+	// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	TracesUrl pulumi.StringPtrInput `pulumi:"tracesUrl"`
 }
 
@@ -818,27 +818,27 @@ func (o CockpitEndpointOutput) ToCockpitEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
-// The alertmanager URL.
+// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 func (o CockpitEndpointOutput) AlertmanagerUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.AlertmanagerUrl }).(pulumi.StringPtrOutput)
 }
 
-// The grafana URL.
+// (Deprecated) URL for Grafana.
 func (o CockpitEndpointOutput) GrafanaUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.GrafanaUrl }).(pulumi.StringPtrOutput)
 }
 
-// The logs URL.
+// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o CockpitEndpointOutput) LogsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.LogsUrl }).(pulumi.StringPtrOutput)
 }
 
-// The metrics URL.
+// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o CockpitEndpointOutput) MetricsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.MetricsUrl }).(pulumi.StringPtrOutput)
 }
 
-// The traces URL.
+// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o CockpitEndpointOutput) TracesUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.TracesUrl }).(pulumi.StringPtrOutput)
 }
@@ -970,23 +970,23 @@ func (o CockpitPushUrlArrayOutput) Index(i pulumi.IntInput) CockpitPushUrlOutput
 }
 
 type CockpitTokenScopes struct {
-	// Query logs.
+	// Permission to query logs.
 	QueryLogs *bool `pulumi:"queryLogs"`
-	// Query metrics.
+	// Permission to query metrics.
 	QueryMetrics *bool `pulumi:"queryMetrics"`
-	// Query traces.
+	// Permission to query traces.
 	QueryTraces *bool `pulumi:"queryTraces"`
-	// Setup alerts.
+	// Permission to set up alerts.
 	SetupAlerts *bool `pulumi:"setupAlerts"`
-	// Setup logs rules.
+	// Permission to set up logs rules.
 	SetupLogsRules *bool `pulumi:"setupLogsRules"`
-	// Setup metrics rules.
+	// Permission to set up metrics rules.
 	SetupMetricsRules *bool `pulumi:"setupMetricsRules"`
-	// Write logs.
+	// Permission to write logs.
 	WriteLogs *bool `pulumi:"writeLogs"`
-	// Write metrics.
+	// Permission to write metrics.
 	WriteMetrics *bool `pulumi:"writeMetrics"`
-	// Write traces.
+	// Permission to write traces.
 	WriteTraces *bool `pulumi:"writeTraces"`
 }
 
@@ -1002,23 +1002,23 @@ type CockpitTokenScopesInput interface {
 }
 
 type CockpitTokenScopesArgs struct {
-	// Query logs.
+	// Permission to query logs.
 	QueryLogs pulumi.BoolPtrInput `pulumi:"queryLogs"`
-	// Query metrics.
+	// Permission to query metrics.
 	QueryMetrics pulumi.BoolPtrInput `pulumi:"queryMetrics"`
-	// Query traces.
+	// Permission to query traces.
 	QueryTraces pulumi.BoolPtrInput `pulumi:"queryTraces"`
-	// Setup alerts.
+	// Permission to set up alerts.
 	SetupAlerts pulumi.BoolPtrInput `pulumi:"setupAlerts"`
-	// Setup logs rules.
+	// Permission to set up logs rules.
 	SetupLogsRules pulumi.BoolPtrInput `pulumi:"setupLogsRules"`
-	// Setup metrics rules.
+	// Permission to set up metrics rules.
 	SetupMetricsRules pulumi.BoolPtrInput `pulumi:"setupMetricsRules"`
-	// Write logs.
+	// Permission to write logs.
 	WriteLogs pulumi.BoolPtrInput `pulumi:"writeLogs"`
-	// Write metrics.
+	// Permission to write metrics.
 	WriteMetrics pulumi.BoolPtrInput `pulumi:"writeMetrics"`
-	// Write traces.
+	// Permission to write traces.
 	WriteTraces pulumi.BoolPtrInput `pulumi:"writeTraces"`
 }
 
@@ -1099,47 +1099,47 @@ func (o CockpitTokenScopesOutput) ToCockpitTokenScopesPtrOutputWithContext(ctx c
 	}).(CockpitTokenScopesPtrOutput)
 }
 
-// Query logs.
+// Permission to query logs.
 func (o CockpitTokenScopesOutput) QueryLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryLogs }).(pulumi.BoolPtrOutput)
 }
 
-// Query metrics.
+// Permission to query metrics.
 func (o CockpitTokenScopesOutput) QueryMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryMetrics }).(pulumi.BoolPtrOutput)
 }
 
-// Query traces.
+// Permission to query traces.
 func (o CockpitTokenScopesOutput) QueryTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryTraces }).(pulumi.BoolPtrOutput)
 }
 
-// Setup alerts.
+// Permission to set up alerts.
 func (o CockpitTokenScopesOutput) SetupAlerts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupAlerts }).(pulumi.BoolPtrOutput)
 }
 
-// Setup logs rules.
+// Permission to set up logs rules.
 func (o CockpitTokenScopesOutput) SetupLogsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupLogsRules }).(pulumi.BoolPtrOutput)
 }
 
-// Setup metrics rules.
+// Permission to set up metrics rules.
 func (o CockpitTokenScopesOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupMetricsRules }).(pulumi.BoolPtrOutput)
 }
 
-// Write logs.
+// Permission to write logs.
 func (o CockpitTokenScopesOutput) WriteLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteLogs }).(pulumi.BoolPtrOutput)
 }
 
-// Write metrics.
+// Permission to write metrics.
 func (o CockpitTokenScopesOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteMetrics }).(pulumi.BoolPtrOutput)
 }
 
-// Write traces.
+// Permission to write traces.
 func (o CockpitTokenScopesOutput) WriteTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteTraces }).(pulumi.BoolPtrOutput)
 }
@@ -1168,7 +1168,7 @@ func (o CockpitTokenScopesPtrOutput) Elem() CockpitTokenScopesOutput {
 	}).(CockpitTokenScopesOutput)
 }
 
-// Query logs.
+// Permission to query logs.
 func (o CockpitTokenScopesPtrOutput) QueryLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1178,7 +1178,7 @@ func (o CockpitTokenScopesPtrOutput) QueryLogs() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Query metrics.
+// Permission to query metrics.
 func (o CockpitTokenScopesPtrOutput) QueryMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1188,7 +1188,7 @@ func (o CockpitTokenScopesPtrOutput) QueryMetrics() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Query traces.
+// Permission to query traces.
 func (o CockpitTokenScopesPtrOutput) QueryTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1198,7 +1198,7 @@ func (o CockpitTokenScopesPtrOutput) QueryTraces() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Setup alerts.
+// Permission to set up alerts.
 func (o CockpitTokenScopesPtrOutput) SetupAlerts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1208,7 +1208,7 @@ func (o CockpitTokenScopesPtrOutput) SetupAlerts() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Setup logs rules.
+// Permission to set up logs rules.
 func (o CockpitTokenScopesPtrOutput) SetupLogsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1218,7 +1218,7 @@ func (o CockpitTokenScopesPtrOutput) SetupLogsRules() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Setup metrics rules.
+// Permission to set up metrics rules.
 func (o CockpitTokenScopesPtrOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1228,7 +1228,7 @@ func (o CockpitTokenScopesPtrOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Write logs.
+// Permission to write logs.
 func (o CockpitTokenScopesPtrOutput) WriteLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1238,7 +1238,7 @@ func (o CockpitTokenScopesPtrOutput) WriteLogs() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Write metrics.
+// Permission to write metrics.
 func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1248,7 +1248,7 @@ func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Write traces.
+// Permission to write traces.
 func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -3847,7 +3847,7 @@ type DomainRecordGeoIpMatch struct {
 	Continents []string `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries []string `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data string `pulumi:"data"`
 }
 
@@ -3867,7 +3867,7 @@ type DomainRecordGeoIpMatchArgs struct {
 	Continents pulumi.StringArrayInput `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries pulumi.StringArrayInput `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringInput `pulumi:"data"`
 }
 
@@ -3932,7 +3932,7 @@ func (o DomainRecordGeoIpMatchOutput) Countries() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DomainRecordGeoIpMatch) []string { return v.Countries }).(pulumi.StringArrayOutput)
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 func (o DomainRecordGeoIpMatchOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordGeoIpMatch) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -4171,7 +4171,7 @@ func (o DomainRecordHttpServicePtrOutput) UserAgent() pulumi.StringPtrOutput {
 }
 
 type DomainRecordView struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data string `pulumi:"data"`
 	// The subnet of the view
 	Subnet string `pulumi:"subnet"`
@@ -4189,7 +4189,7 @@ type DomainRecordViewInput interface {
 }
 
 type DomainRecordViewArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringInput `pulumi:"data"`
 	// The subnet of the view
 	Subnet pulumi.StringInput `pulumi:"subnet"`
@@ -4246,7 +4246,7 @@ func (o DomainRecordViewOutput) ToDomainRecordViewOutputWithContext(ctx context.
 	return o
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 func (o DomainRecordViewOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordView) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -4779,6 +4779,8 @@ func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 }
 
 type IamPolicyRule struct {
+	// The condition of the IAM policy.
+	Condition *string `pulumi:"condition"`
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId *string `pulumi:"organizationId"`
 	// Names of permission sets bind to the rule.
@@ -4803,6 +4805,8 @@ type IamPolicyRuleInput interface {
 }
 
 type IamPolicyRuleArgs struct {
+	// The condition of the IAM policy.
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// Names of permission sets bind to the rule.
@@ -4864,6 +4868,11 @@ func (o IamPolicyRuleOutput) ToIamPolicyRuleOutput() IamPolicyRuleOutput {
 
 func (o IamPolicyRuleOutput) ToIamPolicyRuleOutputWithContext(ctx context.Context) IamPolicyRuleOutput {
 	return o
+}
+
+// The condition of the IAM policy.
+func (o IamPolicyRuleOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IamPolicyRule) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
 
 // ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
@@ -8965,9 +8974,13 @@ type KubernetesNodePoolNode struct {
 	// The name for the pool.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
-	// The public IPv4.
+	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIp *string `pulumi:"publicIp"`
-	// The public IPv6.
+	// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 *string `pulumi:"publicIpV6"`
 	// The status of the node.
 	Status *string `pulumi:"status"`
@@ -8988,9 +9001,13 @@ type KubernetesNodePoolNodeArgs struct {
 	// The name for the pool.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The public IPv4.
+	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
-	// The public IPv6.
+	// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 pulumi.StringPtrInput `pulumi:"publicIpV6"`
 	// The status of the node.
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -9053,12 +9070,16 @@ func (o KubernetesNodePoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The public IPv4.
+// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+//
+// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 func (o KubernetesNodePoolNodeOutput) PublicIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
 }
 
-// The public IPv6.
+// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+//
+// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 func (o KubernetesNodePoolNodeOutput) PublicIpV6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.PublicIpV6 }).(pulumi.StringPtrOutput)
 }
@@ -10974,7 +10995,9 @@ func (o LoadbalancerFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput
 }
 
 type LoadbalancerPrivateNetwork struct {
-	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+	// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+	//
+	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
 	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 	IpamIds *string `pulumi:"ipamIds"`
@@ -10982,7 +11005,7 @@ type LoadbalancerPrivateNetwork struct {
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
-	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
+	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig *string `pulumi:"staticConfig"`
 	// The status of private network connection
 	Status *string `pulumi:"status"`
@@ -11002,7 +11025,9 @@ type LoadbalancerPrivateNetworkInput interface {
 }
 
 type LoadbalancerPrivateNetworkArgs struct {
-	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+	// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+	//
+	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
 	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 	IpamIds pulumi.StringPtrInput `pulumi:"ipamIds"`
@@ -11010,7 +11035,7 @@ type LoadbalancerPrivateNetworkArgs struct {
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
 	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
-	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
+	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
 	// The status of private network connection
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -11069,7 +11094,9 @@ func (o LoadbalancerPrivateNetworkOutput) ToLoadbalancerPrivateNetworkOutputWith
 	return o
 }
 
-// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+//
+// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadbalancerPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *bool { return v.DhcpConfig }).(pulumi.BoolPtrOutput)
 }
@@ -11086,7 +11113,7 @@ func (o LoadbalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput
 
 // (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 //
-// Deprecated: static_config field is deprecated, please use dhcpConfig instead
+// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadbalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.StaticConfig }).(pulumi.StringPtrOutput)
 }
@@ -13824,6 +13851,121 @@ func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type SecretEphemeralPolicy struct {
+	// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Action string `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed *bool `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+	Ttl *string `pulumi:"ttl"`
+}
+
+// SecretEphemeralPolicyInput is an input type that accepts SecretEphemeralPolicyArgs and SecretEphemeralPolicyOutput values.
+// You can construct a concrete instance of `SecretEphemeralPolicyInput` via:
+//
+//	SecretEphemeralPolicyArgs{...}
+type SecretEphemeralPolicyInput interface {
+	pulumi.Input
+
+	ToSecretEphemeralPolicyOutput() SecretEphemeralPolicyOutput
+	ToSecretEphemeralPolicyOutputWithContext(context.Context) SecretEphemeralPolicyOutput
+}
+
+type SecretEphemeralPolicyArgs struct {
+	// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Action pulumi.StringInput `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed pulumi.BoolPtrInput `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+	Ttl pulumi.StringPtrInput `pulumi:"ttl"`
+}
+
+func (SecretEphemeralPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i SecretEphemeralPolicyArgs) ToSecretEphemeralPolicyOutput() SecretEphemeralPolicyOutput {
+	return i.ToSecretEphemeralPolicyOutputWithContext(context.Background())
+}
+
+func (i SecretEphemeralPolicyArgs) ToSecretEphemeralPolicyOutputWithContext(ctx context.Context) SecretEphemeralPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretEphemeralPolicyOutput)
+}
+
+// SecretEphemeralPolicyArrayInput is an input type that accepts SecretEphemeralPolicyArray and SecretEphemeralPolicyArrayOutput values.
+// You can construct a concrete instance of `SecretEphemeralPolicyArrayInput` via:
+//
+//	SecretEphemeralPolicyArray{ SecretEphemeralPolicyArgs{...} }
+type SecretEphemeralPolicyArrayInput interface {
+	pulumi.Input
+
+	ToSecretEphemeralPolicyArrayOutput() SecretEphemeralPolicyArrayOutput
+	ToSecretEphemeralPolicyArrayOutputWithContext(context.Context) SecretEphemeralPolicyArrayOutput
+}
+
+type SecretEphemeralPolicyArray []SecretEphemeralPolicyInput
+
+func (SecretEphemeralPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i SecretEphemeralPolicyArray) ToSecretEphemeralPolicyArrayOutput() SecretEphemeralPolicyArrayOutput {
+	return i.ToSecretEphemeralPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i SecretEphemeralPolicyArray) ToSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) SecretEphemeralPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretEphemeralPolicyArrayOutput)
+}
+
+type SecretEphemeralPolicyOutput struct{ *pulumi.OutputState }
+
+func (SecretEphemeralPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o SecretEphemeralPolicyOutput) ToSecretEphemeralPolicyOutput() SecretEphemeralPolicyOutput {
+	return o
+}
+
+func (o SecretEphemeralPolicyOutput) ToSecretEphemeralPolicyOutputWithContext(ctx context.Context) SecretEphemeralPolicyOutput {
+	return o
+}
+
+// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+func (o SecretEphemeralPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretEphemeralPolicy) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// True if the secret version expires after a single user access.
+func (o SecretEphemeralPolicyOutput) ExpiresOnceAccessed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretEphemeralPolicy) *bool { return v.ExpiresOnceAccessed }).(pulumi.BoolPtrOutput)
+}
+
+// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+func (o SecretEphemeralPolicyOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretEphemeralPolicy) *string { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+type SecretEphemeralPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretEphemeralPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o SecretEphemeralPolicyArrayOutput) ToSecretEphemeralPolicyArrayOutput() SecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o SecretEphemeralPolicyArrayOutput) ToSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) SecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o SecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) SecretEphemeralPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretEphemeralPolicy {
+		return vs[0].([]SecretEphemeralPolicy)[vs[1].(int)]
+	}).(SecretEphemeralPolicyOutput)
+}
+
 type TemDomainReputation struct {
 	// The previously-calculated domain's reputation score.
 	PreviousScore *int `pulumi:"previousScore"`
@@ -15990,13 +16132,13 @@ func (o GetBillingInvoicesInvoiceArrayOutput) Index(i pulumi.IntInput) GetBillin
 }
 
 type GetCockpitEndpoint struct {
-	// The alertmanager URL
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
-	// The grafana URL
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl string `pulumi:"grafanaUrl"`
-	// The logs URL
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl string `pulumi:"logsUrl"`
-	// The metrics URL
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl string `pulumi:"metricsUrl"`
 	// The traces URL
 	TracesUrl string `pulumi:"tracesUrl"`
@@ -16014,13 +16156,13 @@ type GetCockpitEndpointInput interface {
 }
 
 type GetCockpitEndpointArgs struct {
-	// The alertmanager URL
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl pulumi.StringInput `pulumi:"alertmanagerUrl"`
-	// The grafana URL
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl pulumi.StringInput `pulumi:"grafanaUrl"`
-	// The logs URL
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl pulumi.StringInput `pulumi:"logsUrl"`
-	// The metrics URL
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl pulumi.StringInput `pulumi:"metricsUrl"`
 	// The traces URL
 	TracesUrl pulumi.StringInput `pulumi:"tracesUrl"`
@@ -16077,22 +16219,22 @@ func (o GetCockpitEndpointOutput) ToGetCockpitEndpointOutputWithContext(ctx cont
 	return o
 }
 
-// The alertmanager URL
+// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 func (o GetCockpitEndpointOutput) AlertmanagerUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.AlertmanagerUrl }).(pulumi.StringOutput)
 }
 
-// The grafana URL
+// (Deprecated) URL for Grafana.
 func (o GetCockpitEndpointOutput) GrafanaUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.GrafanaUrl }).(pulumi.StringOutput)
 }
 
-// The logs URL
+// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o GetCockpitEndpointOutput) LogsUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.LogsUrl }).(pulumi.StringOutput)
 }
 
-// The metrics URL
+// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o GetCockpitEndpointOutput) MetricsUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.MetricsUrl }).(pulumi.StringOutput)
 }
@@ -16959,8 +17101,7 @@ type GetDomainRecordGeoIpMatch struct {
 	Continents []string `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries []string `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data string `pulumi:"data"`
 }
 
@@ -16980,8 +17121,7 @@ type GetDomainRecordGeoIpMatchArgs struct {
 	Continents pulumi.StringArrayInput `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries pulumi.StringArrayInput `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data pulumi.StringInput `pulumi:"data"`
 }
 
@@ -17046,8 +17186,7 @@ func (o GetDomainRecordGeoIpMatchOutput) Countries() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDomainRecordGeoIpMatch) []string { return v.Countries }).(pulumi.StringArrayOutput)
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-// Cannot be used with `recordId`.
+// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 func (o GetDomainRecordGeoIpMatchOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDomainRecordGeoIpMatch) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -17206,8 +17345,7 @@ func (o GetDomainRecordHttpServiceArrayOutput) Index(i pulumi.IntInput) GetDomai
 }
 
 type GetDomainRecordView struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data string `pulumi:"data"`
 	// The subnet of the view
 	Subnet string `pulumi:"subnet"`
@@ -17225,8 +17363,7 @@ type GetDomainRecordViewInput interface {
 }
 
 type GetDomainRecordViewArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data pulumi.StringInput `pulumi:"data"`
 	// The subnet of the view
 	Subnet pulumi.StringInput `pulumi:"subnet"`
@@ -17283,8 +17420,7 @@ func (o GetDomainRecordViewOutput) ToGetDomainRecordViewOutputWithContext(ctx co
 	return o
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-// Cannot be used with `recordId`.
+// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 func (o GetDomainRecordViewOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDomainRecordView) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -18445,6 +18581,8 @@ type GetInstanceServersServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType string `pulumi:"bootType"`
 	// The ID of the bootscript.
+	//
+	// Deprecated: bootscript are not supported
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
@@ -18472,6 +18610,8 @@ type GetInstanceServersServer struct {
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The public IP address of the server.
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps []GetInstanceServersServerPublicIp `pulumi:"publicIps"`
@@ -18504,6 +18644,8 @@ type GetInstanceServersServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringInput `pulumi:"bootType"`
 	// The ID of the bootscript.
+	//
+	// Deprecated: bootscript are not supported
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolInput `pulumi:"enableDynamicIp"`
@@ -18531,6 +18673,8 @@ type GetInstanceServersServerArgs struct {
 	// The ID of the project the server is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The public IP address of the server.
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps GetInstanceServersServerPublicIpArrayInput `pulumi:"publicIps"`
@@ -18605,6 +18749,8 @@ func (o GetInstanceServersServerOutput) BootType() pulumi.StringOutput {
 }
 
 // The ID of the bootscript.
+//
+// Deprecated: bootscript are not supported
 func (o GetInstanceServersServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootscriptId }).(pulumi.StringOutput)
 }
@@ -18674,6 +18820,8 @@ func (o GetInstanceServersServerOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The public IP address of the server.
+//
+// Deprecated: Use publicIps instead
 func (o GetInstanceServersServerOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.PublicIp }).(pulumi.StringOutput)
 }
@@ -24902,6 +25050,121 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetSecretEphemeralPolicy struct {
+	// Action to perform when the version of a secret expires.
+	Action string `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed bool `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+	Ttl string `pulumi:"ttl"`
+}
+
+// GetSecretEphemeralPolicyInput is an input type that accepts GetSecretEphemeralPolicyArgs and GetSecretEphemeralPolicyOutput values.
+// You can construct a concrete instance of `GetSecretEphemeralPolicyInput` via:
+//
+//	GetSecretEphemeralPolicyArgs{...}
+type GetSecretEphemeralPolicyInput interface {
+	pulumi.Input
+
+	ToGetSecretEphemeralPolicyOutput() GetSecretEphemeralPolicyOutput
+	ToGetSecretEphemeralPolicyOutputWithContext(context.Context) GetSecretEphemeralPolicyOutput
+}
+
+type GetSecretEphemeralPolicyArgs struct {
+	// Action to perform when the version of a secret expires.
+	Action pulumi.StringInput `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed pulumi.BoolInput `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+	Ttl pulumi.StringInput `pulumi:"ttl"`
+}
+
+func (GetSecretEphemeralPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i GetSecretEphemeralPolicyArgs) ToGetSecretEphemeralPolicyOutput() GetSecretEphemeralPolicyOutput {
+	return i.ToGetSecretEphemeralPolicyOutputWithContext(context.Background())
+}
+
+func (i GetSecretEphemeralPolicyArgs) ToGetSecretEphemeralPolicyOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretEphemeralPolicyOutput)
+}
+
+// GetSecretEphemeralPolicyArrayInput is an input type that accepts GetSecretEphemeralPolicyArray and GetSecretEphemeralPolicyArrayOutput values.
+// You can construct a concrete instance of `GetSecretEphemeralPolicyArrayInput` via:
+//
+//	GetSecretEphemeralPolicyArray{ GetSecretEphemeralPolicyArgs{...} }
+type GetSecretEphemeralPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetSecretEphemeralPolicyArrayOutput() GetSecretEphemeralPolicyArrayOutput
+	ToGetSecretEphemeralPolicyArrayOutputWithContext(context.Context) GetSecretEphemeralPolicyArrayOutput
+}
+
+type GetSecretEphemeralPolicyArray []GetSecretEphemeralPolicyInput
+
+func (GetSecretEphemeralPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i GetSecretEphemeralPolicyArray) ToGetSecretEphemeralPolicyArrayOutput() GetSecretEphemeralPolicyArrayOutput {
+	return i.ToGetSecretEphemeralPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecretEphemeralPolicyArray) ToGetSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretEphemeralPolicyArrayOutput)
+}
+
+type GetSecretEphemeralPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetSecretEphemeralPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o GetSecretEphemeralPolicyOutput) ToGetSecretEphemeralPolicyOutput() GetSecretEphemeralPolicyOutput {
+	return o
+}
+
+func (o GetSecretEphemeralPolicyOutput) ToGetSecretEphemeralPolicyOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyOutput {
+	return o
+}
+
+// Action to perform when the version of a secret expires.
+func (o GetSecretEphemeralPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretEphemeralPolicy) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// True if the secret version expires after a single user access.
+func (o GetSecretEphemeralPolicyOutput) ExpiresOnceAccessed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSecretEphemeralPolicy) bool { return v.ExpiresOnceAccessed }).(pulumi.BoolOutput)
+}
+
+// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+func (o GetSecretEphemeralPolicyOutput) Ttl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretEphemeralPolicy) string { return v.Ttl }).(pulumi.StringOutput)
+}
+
+type GetSecretEphemeralPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecretEphemeralPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o GetSecretEphemeralPolicyArrayOutput) ToGetSecretEphemeralPolicyArrayOutput() GetSecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o GetSecretEphemeralPolicyArrayOutput) ToGetSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o GetSecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) GetSecretEphemeralPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecretEphemeralPolicy {
+		return vs[0].([]GetSecretEphemeralPolicy)[vs[1].(int)]
+	}).(GetSecretEphemeralPolicyOutput)
+}
+
 type GetTemDomainReputation struct {
 	// The previously-calculated domain's reputation score
 	PreviousScore int `pulumi:"previousScore"`
@@ -26351,6 +26614,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkArrayInput)(nil)).Elem(), RedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkPtrInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyInput)(nil)).Elem(), SecretEphemeralPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyArrayInput)(nil)).Elem(), SecretEphemeralPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationInput)(nil)).Elem(), TemDomainReputationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationArrayInput)(nil)).Elem(), TemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArgs{})
@@ -26514,6 +26779,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyInput)(nil)).Elem(), GetSecretEphemeralPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyArrayInput)(nil)).Elem(), GetSecretEphemeralPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationInput)(nil)).Elem(), GetTemDomainReputationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationArrayInput)(nil)).Elem(), GetTemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArgs{})
@@ -26702,6 +26969,8 @@ func init() {
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkPtrOutput{})
+	pulumi.RegisterOutputType(SecretEphemeralPolicyOutput{})
+	pulumi.RegisterOutputType(SecretEphemeralPolicyArrayOutput{})
 	pulumi.RegisterOutputType(TemDomainReputationOutput{})
 	pulumi.RegisterOutputType(TemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigOutput{})
@@ -26865,6 +27134,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetSecretEphemeralPolicyOutput{})
+	pulumi.RegisterOutputType(GetSecretEphemeralPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetTemDomainReputationOutput{})
 	pulumi.RegisterOutputType(GetTemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigOutput{})

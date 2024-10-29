@@ -13,12 +13,19 @@ namespace Pulumiverse.Scaleway
     public static class GetSecret
     {
         /// <summary>
-        /// Gets information about Scaleway Secrets.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+        /// The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
         /// 
-        /// ## Examples
+        /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// ### Basic
+        /// ## Example Usage
+        /// 
+        /// ### Create a secret and get its information
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - create a secret named `foo` with the description `barr`
+        /// - retrieve the secret's information using the secret's ID
+        /// - retrieve the secret's information using the secret's name
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,19 +36,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Create a secret
         ///     var main = new Scaleway.Secret("main", new()
         ///     {
         ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
-        ///     // Get info by secret ID
+        ///     // Get the secret information specified by the secret ID
         ///     var mySecret = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     // Get info by secret Name
+        ///     // Get the secret information specified by the secret name
         ///     var byName = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",
@@ -54,12 +62,19 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("scaleway:index/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about Scaleway Secrets.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+        /// The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
         /// 
-        /// ## Examples
+        /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// ### Basic
+        /// ## Example Usage
+        /// 
+        /// ### Create a secret and get its information
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - create a secret named `foo` with the description `barr`
+        /// - retrieve the secret's information using the secret's ID
+        /// - retrieve the secret's information using the secret's name
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -70,19 +85,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Create a secret
         ///     var main = new Scaleway.Secret("main", new()
         ///     {
         ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
-        ///     // Get info by secret ID
+        ///     // Get the secret information specified by the secret ID
         ///     var mySecret = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     // Get info by secret Name
+        ///     // Get the secret information specified by the secret name
         ///     var byName = Scaleway.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",
@@ -99,41 +115,40 @@ namespace Pulumiverse.Scaleway
     public sealed class GetSecretArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The secret name.
+        /// The name of the secret.
         /// Only one of `name` and `secret_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the Project is associated with.
-        /// If no default organization_id is set, one must be set explicitly in this datasource
+        /// The ID of the Scaleway Organization the Project is associated with. If no default `organization_id` is set, it must be set explicitly in this data source.
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
         /// <summary>
-        /// The secret path.
+        /// The path of the secret.
         /// Conflicts with `secret_id`.
         /// </summary>
         [Input("path")]
         public string? Path { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the
-        /// project the secret is associated with.
+        /// ). The ID of the
+        /// Project the secret is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the secret exists.
+        /// ). The region in which the secret exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         /// <summary>
-        /// The secret id.
+        /// The ID of the secret.
         /// Only one of `name` and `secret_id` should be specified.
         /// </summary>
         [Input("secretId")]
@@ -148,41 +163,40 @@ namespace Pulumiverse.Scaleway
     public sealed class GetSecretInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The secret name.
+        /// The name of the secret.
         /// Only one of `name` and `secret_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the Project is associated with.
-        /// If no default organization_id is set, one must be set explicitly in this datasource
+        /// The ID of the Scaleway Organization the Project is associated with. If no default `organization_id` is set, it must be set explicitly in this data source.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The secret path.
+        /// The path of the secret.
         /// Conflicts with `secret_id`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the
-        /// project the secret is associated with.
+        /// ). The ID of the
+        /// Project the secret is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the secret exists.
+        /// ). The region in which the secret exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The secret id.
+        /// The ID of the secret.
         /// Only one of `name` and `secret_id` should be specified.
         /// </summary>
         [Input("secretId")]
@@ -200,6 +214,7 @@ namespace Pulumiverse.Scaleway
     {
         public readonly string CreatedAt;
         public readonly string Description;
+        public readonly ImmutableArray<Outputs.GetSecretEphemeralPolicyResult> EphemeralPolicies;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -208,10 +223,12 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string? Path;
         public readonly string? ProjectId;
+        public readonly bool Protected;
         public readonly string? Region;
         public readonly string? SecretId;
         public readonly string Status;
         public readonly ImmutableArray<string> Tags;
+        public readonly string Type;
         public readonly string UpdatedAt;
         public readonly int VersionCount;
 
@@ -220,6 +237,8 @@ namespace Pulumiverse.Scaleway
             string createdAt,
 
             string description,
+
+            ImmutableArray<Outputs.GetSecretEphemeralPolicyResult> ephemeralPolicies,
 
             string id,
 
@@ -231,6 +250,8 @@ namespace Pulumiverse.Scaleway
 
             string? projectId,
 
+            bool @protected,
+
             string? region,
 
             string? secretId,
@@ -239,21 +260,26 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags,
 
+            string type,
+
             string updatedAt,
 
             int versionCount)
         {
             CreatedAt = createdAt;
             Description = description;
+            EphemeralPolicies = ephemeralPolicies;
             Id = id;
             Name = name;
             OrganizationId = organizationId;
             Path = path;
             ProjectId = projectId;
+            Protected = @protected;
             Region = region;
             SecretId = secretId;
             Status = status;
             Tags = tags;
+            Type = type;
             UpdatedAt = updatedAt;
             VersionCount = versionCount;
         }

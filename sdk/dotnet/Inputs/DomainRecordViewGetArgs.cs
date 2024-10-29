@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class DomainRecordViewGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+        /// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         /// </summary>
         [Input("data", required: true)]
         public Input<string> Data { get; set; } = null!;

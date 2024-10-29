@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Block Snapshot.
+ * The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+ *
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
 export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockSnapshotResult> {
     args = args || {};
@@ -24,23 +26,23 @@ export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.Invo
  */
 export interface GetBlockSnapshotArgs {
     /**
-     * The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     * The name of the snapshot. Only one of name or snapshotId should be specified.
      */
     name?: string;
     /**
-     * The ID of the project the snapshot is associated with.
+     * The unique identifier of the Project to which the snapshot is associated.
      */
     projectId?: string;
     /**
-     * The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     * The unique identifier of the snapshot. Only one of `name` and `snapshotId` should be specified.
      */
     snapshotId?: string;
     /**
-     * The ID of the volume from which the snapshot has been created.
+     * The unique identifier of the volume from which the snapshot was created.
      */
     volumeId?: string;
     /**
-     * `zone`) The zone in which the snapshot exists.
+     * ) The zone in which the snapshot exists.
      */
     zone?: string;
 }
@@ -61,7 +63,9 @@ export interface GetBlockSnapshotResult {
     readonly zone?: string;
 }
 /**
- * Gets information about a Block Snapshot.
+ * The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+ *
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
 export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockSnapshotResult> {
     args = args || {};
@@ -80,23 +84,23 @@ export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?:
  */
 export interface GetBlockSnapshotOutputArgs {
     /**
-     * The name of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     * The name of the snapshot. Only one of name or snapshotId should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the snapshot is associated with.
+     * The unique identifier of the Project to which the snapshot is associated.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The ID of the snapshot. Only one of `name` and `snapshotId` should be specified.
+     * The unique identifier of the snapshot. Only one of `name` and `snapshotId` should be specified.
      */
     snapshotId?: pulumi.Input<string>;
     /**
-     * The ID of the volume from which the snapshot has been created.
+     * The unique identifier of the volume from which the snapshot was created.
      */
     volumeId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the snapshot exists.
+     * ) The zone in which the snapshot exists.
      */
     zone?: pulumi.Input<string>;
 }

@@ -12,10 +12,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Block Snapshots.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+// The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+//
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 //
 // ## Example Usage
+//
+// ### Create a snapshot of a Block Storage volume
+//
+// The following command allows you to create a snapshot (`some-snapshot-name`) from a Block Storage volume specified by its ID.
 //
 // ```go
 // package main
@@ -52,7 +57,7 @@ import (
 //
 // ## Import
 //
-// Block Snapshots can be imported using the `{zone}/{id}`, e.g.
+// This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
 //
 // bash
 //
@@ -62,15 +67,15 @@ import (
 type BlockSnapshot struct {
 	pulumi.CustomResourceState
 
-	// The name of the snapshot. If not provided it will be randomly generated.
+	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `projectId`) The ID of the project the snapshot is associated with.
+	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
-	// `zone`) The zone in which the snapshot should be created.
+	// ). The zone in which the snapshot should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -107,28 +112,28 @@ func GetBlockSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BlockSnapshot resources.
 type blockSnapshotState struct {
-	// The name of the snapshot. If not provided it will be randomly generated.
+	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the snapshot is associated with.
+	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
-	// `zone`) The zone in which the snapshot should be created.
+	// ). The zone in which the snapshot should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 type BlockSnapshotState struct {
-	// The name of the snapshot. If not provided it will be randomly generated.
+	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the snapshot is associated with.
+	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
-	// `zone`) The zone in which the snapshot should be created.
+	// ). The zone in which the snapshot should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -137,29 +142,29 @@ func (BlockSnapshotState) ElementType() reflect.Type {
 }
 
 type blockSnapshotArgs struct {
-	// The name of the snapshot. If not provided it will be randomly generated.
+	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the snapshot is associated with.
+	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId string `pulumi:"volumeId"`
-	// `zone`) The zone in which the snapshot should be created.
+	// ). The zone in which the snapshot should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a BlockSnapshot resource.
 type BlockSnapshotArgs struct {
-	// The name of the snapshot. If not provided it will be randomly generated.
+	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the snapshot is associated with.
+	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringInput
-	// `zone`) The zone in which the snapshot should be created.
+	// ). The zone in which the snapshot should be created.
 	Zone pulumi.StringPtrInput
 }
 
@@ -250,12 +255,12 @@ func (o BlockSnapshotOutput) ToBlockSnapshotOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The name of the snapshot. If not provided it will be randomly generated.
+// The name of the snapshot. If not provided, a name will be randomly generated.
 func (o BlockSnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockSnapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the snapshot is associated with.
+// ). The ID of the Scaleway Project the snapshot is associated with.
 func (o BlockSnapshotOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockSnapshot) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -270,7 +275,7 @@ func (o BlockSnapshotOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockSnapshot) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which the snapshot should be created.
+// ). The zone in which the snapshot should be created.
 func (o BlockSnapshotOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockSnapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

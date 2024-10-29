@@ -11,45 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Secrets.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/).
-//
-// ## Example Usage
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
-//				Name:        pulumi.String("foo"),
-//				Description: pulumi.String("barr"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("foo"),
-//					pulumi.String("terraform"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
-// The Secret can be imported using the `{region}/{id}`, e.g.
+// This section explains how to import a secret using the `{region}/{id}` format.
 //
 // bash
 //
@@ -59,26 +23,32 @@ import (
 type Secret struct {
 	pulumi.CustomResourceState
 
-	// Date and time of secret's creation (RFC 3339 format).
+	// Date and time of the secret's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Description of the secret (e.g. `my-new-description`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	EphemeralPolicies SecretEphemeralPolicyArrayOutput `pulumi:"ephemeralPolicies"`
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Path of the secret, defaults to `/`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The status of the Secret.
+	// The status of the secret.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags of the secret (e.g. `["tag", "secret"]`).
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// Date and time of secret's last update (RFC 3339 format).
+	// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// Date and time of the secret's last update (in RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The number of versions for this Secret.
+	// The amount of secret versions.
 	VersionCount pulumi.IntOutput `pulumi:"versionCount"`
 }
 
@@ -112,50 +82,62 @@ func GetSecret(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Secret resources.
 type secretState struct {
-	// Date and time of secret's creation (RFC 3339 format).
+	// Date and time of the secret's creation (in RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the secret (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
+	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	EphemeralPolicies []SecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
 	// Name of the secret (e.g. `my-secret`).
 	Name *string `pulumi:"name"`
 	// Path of the secret, defaults to `/`.
 	Path *string `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId *string `pulumi:"projectId"`
+	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	Protected *bool `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
 	Region *string `pulumi:"region"`
-	// The status of the Secret.
+	// The status of the secret.
 	Status *string `pulumi:"status"`
 	// Tags of the secret (e.g. `["tag", "secret"]`).
 	Tags []string `pulumi:"tags"`
-	// Date and time of secret's last update (RFC 3339 format).
+	// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Type *string `pulumi:"type"`
+	// Date and time of the secret's last update (in RFC 3339 format).
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The number of versions for this Secret.
+	// The amount of secret versions.
 	VersionCount *int `pulumi:"versionCount"`
 }
 
 type SecretState struct {
-	// Date and time of secret's creation (RFC 3339 format).
+	// Date and time of the secret's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// Description of the secret (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
+	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	EphemeralPolicies SecretEphemeralPolicyArrayInput
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringPtrInput
 	// Path of the secret, defaults to `/`.
 	Path pulumi.StringPtrInput
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringPtrInput
+	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	Protected pulumi.BoolPtrInput
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringPtrInput
-	// The status of the Secret.
+	// The status of the secret.
 	Status pulumi.StringPtrInput
 	// Tags of the secret (e.g. `["tag", "secret"]`).
 	Tags pulumi.StringArrayInput
-	// Date and time of secret's last update (RFC 3339 format).
+	// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Type pulumi.StringPtrInput
+	// Date and time of the secret's last update (in RFC 3339 format).
 	UpdatedAt pulumi.StringPtrInput
-	// The number of versions for this Secret.
+	// The amount of secret versions.
 	VersionCount pulumi.IntPtrInput
 }
 
@@ -166,34 +148,46 @@ func (SecretState) ElementType() reflect.Type {
 type secretArgs struct {
 	// Description of the secret (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
+	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	EphemeralPolicies []SecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
 	// Name of the secret (e.g. `my-secret`).
 	Name *string `pulumi:"name"`
 	// Path of the secret, defaults to `/`.
 	Path *string `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId *string `pulumi:"projectId"`
+	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	Protected *bool `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
 	Region *string `pulumi:"region"`
 	// Tags of the secret (e.g. `["tag", "secret"]`).
 	Tags []string `pulumi:"tags"`
+	// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a Secret resource.
 type SecretArgs struct {
 	// Description of the secret (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
+	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	EphemeralPolicies SecretEphemeralPolicyArrayInput
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringPtrInput
 	// Path of the secret, defaults to `/`.
 	Path pulumi.StringPtrInput
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringPtrInput
+	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	Protected pulumi.BoolPtrInput
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringPtrInput
 	// Tags of the secret (e.g. `["tag", "secret"]`).
 	Tags pulumi.StringArrayInput
+	// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Type pulumi.StringPtrInput
 }
 
 func (SecretArgs) ElementType() reflect.Type {
@@ -283,7 +277,7 @@ func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutpu
 	return o
 }
 
-// Date and time of secret's creation (RFC 3339 format).
+// Date and time of the secret's creation (in RFC 3339 format).
 func (o SecretOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -291,6 +285,11 @@ func (o SecretOutput) CreatedAt() pulumi.StringOutput {
 // Description of the secret (e.g. `my-new-description`).
 func (o SecretOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+func (o SecretOutput) EphemeralPolicies() SecretEphemeralPolicyArrayOutput {
+	return o.ApplyT(func(v *Secret) SecretEphemeralPolicyArrayOutput { return v.EphemeralPolicies }).(SecretEphemeralPolicyArrayOutput)
 }
 
 // Name of the secret (e.g. `my-secret`).
@@ -308,13 +307,18 @@ func (o SecretOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+func (o SecretOutput) Protected() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.Protected }).(pulumi.BoolPtrOutput)
+}
+
 // `region`) The region
 // in which the resource exists.
 func (o SecretOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The status of the Secret.
+// The status of the secret.
 func (o SecretOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
@@ -324,12 +328,17 @@ func (o SecretOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// Date and time of secret's last update (RFC 3339 format).
+// Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+func (o SecretOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Date and time of the secret's last update (in RFC 3339 format).
 func (o SecretOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The number of versions for this Secret.
+// The amount of secret versions.
 func (o SecretOutput) VersionCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Secret) pulumi.IntOutput { return v.VersionCount }).(pulumi.IntOutput)
 }

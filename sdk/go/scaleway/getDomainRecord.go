@@ -11,9 +11,16 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a domain record.
+// The `DomainRecord` data source is used to get information about an existing domain record.
 //
-// ## Example Usage
+// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+//
+// ## Query domain records
+//
+// The following commands allow you to:
+//
+// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+// - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
 //
 // ```go
 // package main
@@ -27,7 +34,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Get record by name, type and data
+//			// Query record by DNS zone, record name, type and content
 //			_, err := scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
 //				DnsZone: pulumi.StringRef("domain.tld"),
 //				Name:    pulumi.StringRef("www"),
@@ -37,7 +44,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Get info by ID
+//			// Query record by DNS zone and record ID
 //			_, err = scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
 //				DnsZone:  pulumi.StringRef("domain.tld"),
 //				RecordId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
@@ -62,21 +69,17 @@ func LookupDomainRecord(ctx *pulumi.Context, args *LookupDomainRecordArgs, opts 
 
 // A collection of arguments for invoking getDomainRecord.
 type LookupDomainRecordArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data *string `pulumi:"data"`
-	// The IP address.
+	// The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
 	DnsZone *string `pulumi:"dnsZone"`
-	// The name of the record (can be an empty string for a root record).
-	// Cannot be used with `recordId`.
+	// The name of the record, which can be an empty string for a root record. Cannot be used with `recordId`.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the domain is associated with.
+	// ). The ID of the Project associated with the domain.
 	ProjectId *string `pulumi:"projectId"`
-	// The record ID.
-	// Cannot be used with `name`, `type` and `data`.
+	// The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
 	RecordId *string `pulumi:"recordId"`
-	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-	// Cannot be used with `recordId`.
+	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `recordId`.
 	Type *string `pulumi:"type"`
 }
 
@@ -85,25 +88,25 @@ type LookupDomainRecordResult struct {
 	Data    *string `pulumi:"data"`
 	DnsZone *string `pulumi:"dnsZone"`
 	Fqdn    string  `pulumi:"fqdn"`
-	// Dynamic record base on user geolocalisation (More information about dynamic records)
+	// Information about dynamic records based on user geolocation. Find out more about dynamic records.
 	GeoIps []GetDomainRecordGeoIp `pulumi:"geoIps"`
-	// Dynamic record base on URL resolve (More information about dynamic records)
+	// Information about dynamic records based on URL resolution. Find out more about dynamic records.
 	HttpServices []GetDomainRecordHttpService `pulumi:"httpServices"`
 	// The provider-assigned unique ID for this managed resource.
 	Id            string  `pulumi:"id"`
 	KeepEmptyZone bool    `pulumi:"keepEmptyZone"`
 	Name          *string `pulumi:"name"`
-	// The priority of the record (mostly used with an `MX` record)
+	// The priority of the record, mainly used with `MX` records.
 	Priority  int     `pulumi:"priority"`
 	ProjectId *string `pulumi:"projectId"`
 	RecordId  *string `pulumi:"recordId"`
 	RootZone  bool    `pulumi:"rootZone"`
-	// Time To Live of the record in seconds.
+	// The Time To Live (TTL) of the record in seconds.
 	Ttl  int     `pulumi:"ttl"`
 	Type *string `pulumi:"type"`
-	// Dynamic record based on the client’s (resolver) subnet (More information about dynamic records)
+	// Information about dynamic records based on the client’s (resolver) subnet. Find out more about dynamic records.
 	Views []GetDomainRecordView `pulumi:"views"`
-	// Dynamic record base on IP weights (More information about dynamic records)
+	// Information about dynamic records based on IP weights. Find out more about dynamic records.
 	Weighteds []GetDomainRecordWeighted `pulumi:"weighteds"`
 }
 
@@ -128,21 +131,17 @@ func LookupDomainRecordOutput(ctx *pulumi.Context, args LookupDomainRecordOutput
 
 // A collection of arguments for invoking getDomainRecord.
 type LookupDomainRecordOutputArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data pulumi.StringPtrInput `pulumi:"data"`
-	// The IP address.
+	// The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
 	DnsZone pulumi.StringPtrInput `pulumi:"dnsZone"`
-	// The name of the record (can be an empty string for a root record).
-	// Cannot be used with `recordId`.
+	// The name of the record, which can be an empty string for a root record. Cannot be used with `recordId`.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// `projectId`) The ID of the project the domain is associated with.
+	// ). The ID of the Project associated with the domain.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The record ID.
-	// Cannot be used with `name`, `type` and `data`.
+	// The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
 	RecordId pulumi.StringPtrInput `pulumi:"recordId"`
-	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-	// Cannot be used with `recordId`.
+	// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `recordId`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -177,12 +176,12 @@ func (o LookupDomainRecordResultOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) string { return v.Fqdn }).(pulumi.StringOutput)
 }
 
-// Dynamic record base on user geolocalisation (More information about dynamic records)
+// Information about dynamic records based on user geolocation. Find out more about dynamic records.
 func (o LookupDomainRecordResultOutput) GeoIps() GetDomainRecordGeoIpArrayOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) []GetDomainRecordGeoIp { return v.GeoIps }).(GetDomainRecordGeoIpArrayOutput)
 }
 
-// Dynamic record base on URL resolve (More information about dynamic records)
+// Information about dynamic records based on URL resolution. Find out more about dynamic records.
 func (o LookupDomainRecordResultOutput) HttpServices() GetDomainRecordHttpServiceArrayOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) []GetDomainRecordHttpService { return v.HttpServices }).(GetDomainRecordHttpServiceArrayOutput)
 }
@@ -200,7 +199,7 @@ func (o LookupDomainRecordResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The priority of the record (mostly used with an `MX` record)
+// The priority of the record, mainly used with `MX` records.
 func (o LookupDomainRecordResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) int { return v.Priority }).(pulumi.IntOutput)
 }
@@ -217,7 +216,7 @@ func (o LookupDomainRecordResultOutput) RootZone() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) bool { return v.RootZone }).(pulumi.BoolOutput)
 }
 
-// Time To Live of the record in seconds.
+// The Time To Live (TTL) of the record in seconds.
 func (o LookupDomainRecordResultOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) int { return v.Ttl }).(pulumi.IntOutput)
 }
@@ -226,12 +225,12 @@ func (o LookupDomainRecordResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-// Dynamic record based on the client’s (resolver) subnet (More information about dynamic records)
+// Information about dynamic records based on the client’s (resolver) subnet. Find out more about dynamic records.
 func (o LookupDomainRecordResultOutput) Views() GetDomainRecordViewArrayOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) []GetDomainRecordView { return v.Views }).(GetDomainRecordViewArrayOutput)
 }
 
-// Dynamic record base on IP weights (More information about dynamic records)
+// Information about dynamic records based on IP weights. Find out more about dynamic records.
 func (o LookupDomainRecordResultOutput) Weighteds() GetDomainRecordWeightedArrayOutput {
 	return o.ApplyT(func(v LookupDomainRecordResult) []GetDomainRecordWeighted { return v.Weighteds }).(GetDomainRecordWeightedArrayOutput)
 }

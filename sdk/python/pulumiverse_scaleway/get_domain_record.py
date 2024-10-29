@@ -96,7 +96,7 @@ class GetDomainRecordResult:
     @pulumi.getter(name="geoIps")
     def geo_ips(self) -> Sequence['outputs.GetDomainRecordGeoIpResult']:
         """
-        Dynamic record base on user geolocalisation (More information about dynamic records)
+        Information about dynamic records based on user geolocation. Find out more about dynamic records.
         """
         return pulumi.get(self, "geo_ips")
 
@@ -104,7 +104,7 @@ class GetDomainRecordResult:
     @pulumi.getter(name="httpServices")
     def http_services(self) -> Sequence['outputs.GetDomainRecordHttpServiceResult']:
         """
-        Dynamic record base on URL resolve (More information about dynamic records)
+        Information about dynamic records based on URL resolution. Find out more about dynamic records.
         """
         return pulumi.get(self, "http_services")
 
@@ -130,7 +130,7 @@ class GetDomainRecordResult:
     @pulumi.getter
     def priority(self) -> int:
         """
-        The priority of the record (mostly used with an `MX` record)
+        The priority of the record, mainly used with `MX` records.
         """
         return pulumi.get(self, "priority")
 
@@ -153,7 +153,7 @@ class GetDomainRecordResult:
     @pulumi.getter
     def ttl(self) -> int:
         """
-        Time To Live of the record in seconds.
+        The Time To Live (TTL) of the record in seconds.
         """
         return pulumi.get(self, "ttl")
 
@@ -166,7 +166,7 @@ class GetDomainRecordResult:
     @pulumi.getter
     def views(self) -> Sequence['outputs.GetDomainRecordViewResult']:
         """
-        Dynamic record based on the client’s (resolver) subnet (More information about dynamic records)
+        Information about dynamic records based on the client’s (resolver) subnet. Find out more about dynamic records.
         """
         return pulumi.get(self, "views")
 
@@ -174,7 +174,7 @@ class GetDomainRecordResult:
     @pulumi.getter
     def weighteds(self) -> Sequence['outputs.GetDomainRecordWeightedResult']:
         """
-        Dynamic record base on IP weights (More information about dynamic records)
+        Information about dynamic records based on IP weights. Find out more about dynamic records.
         """
         return pulumi.get(self, "weighteds")
 
@@ -211,35 +211,38 @@ def get_domain_record(data: Optional[str] = None,
                       type: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainRecordResult:
     """
-    Gets information about a domain record.
+    The `DomainRecord` data source is used to get information about an existing domain record.
 
-    ## Example Usage
+    Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
+    ## Query domain records
+
+    The following commands allow you to:
+
+    - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+    - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
 
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
-    # Get record by name, type and data
+    # Query record by DNS zone, record name, type and content
     by_content = scaleway.get_domain_record(dns_zone="domain.tld",
         name="www",
         type="A",
         data="1.2.3.4")
-    # Get info by ID
+    # Query record by DNS zone and record ID
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
-    :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-           Cannot be used with `record_id`.
-    :param str dns_zone: The IP address.
-    :param str name: The name of the record (can be an empty string for a root record).
-           Cannot be used with `record_id`.
-    :param str project_id: `project_id`) The ID of the project the domain is associated with.
-    :param str record_id: The record ID.
-           Cannot be used with `name`, `type` and `data`.
-    :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-           Cannot be used with `record_id`.
+    :param str data: The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `record_id`.
+    :param str dns_zone: The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
+    :param str name: The name of the record, which can be an empty string for a root record. Cannot be used with `record_id`.
+    :param str project_id: ). The ID of the Project associated with the domain.
+    :param str record_id: The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
+    :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `record_id`.
     """
     __args__ = dict()
     __args__['data'] = data
@@ -276,35 +279,38 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
                              type: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainRecordResult]:
     """
-    Gets information about a domain record.
+    The `DomainRecord` data source is used to get information about an existing domain record.
 
-    ## Example Usage
+    Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
+    ## Query domain records
+
+    The following commands allow you to:
+
+    - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+    - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
 
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
-    # Get record by name, type and data
+    # Query record by DNS zone, record name, type and content
     by_content = scaleway.get_domain_record(dns_zone="domain.tld",
         name="www",
         type="A",
         data="1.2.3.4")
-    # Get info by ID
+    # Query record by DNS zone and record ID
     by_id = scaleway.get_domain_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
-    :param str data: The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-           Cannot be used with `record_id`.
-    :param str dns_zone: The IP address.
-    :param str name: The name of the record (can be an empty string for a root record).
-           Cannot be used with `record_id`.
-    :param str project_id: `project_id`) The ID of the project the domain is associated with.
-    :param str record_id: The record ID.
-           Cannot be used with `name`, `type` and `data`.
-    :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-           Cannot be used with `record_id`.
+    :param str data: The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `record_id`.
+    :param str dns_zone: The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
+    :param str name: The name of the record, which can be an empty string for a root record. Cannot be used with `record_id`.
+    :param str project_id: ). The ID of the Project associated with the domain.
+    :param str record_id: The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
+    :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `record_id`.
     """
     __args__ = dict()
     __args__['data'] = data

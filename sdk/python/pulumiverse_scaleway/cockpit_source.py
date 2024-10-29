@@ -25,10 +25,10 @@ class CockpitSourceArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CockpitSource resource.
-        :param pulumi.Input[str] name: The name of the cockpit data source.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit data source is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit datasource.
-        :param pulumi.Input[str] type: The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        :param pulumi.Input[str] name: The name of the data source.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
+        :param pulumi.Input[str] region: ) The region where the data source is located.
+        :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -43,7 +43,7 @@ class CockpitSourceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the cockpit data source.
+        The name of the data source.
         """
         return pulumi.get(self, "name")
 
@@ -55,7 +55,7 @@ class CockpitSourceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit data source is associated with.
+        ) The ID of the Project the data source is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -67,7 +67,7 @@ class CockpitSourceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region of the cockpit datasource.
+        ) The region where the data source is located.
         """
         return pulumi.get(self, "region")
 
@@ -79,7 +79,7 @@ class CockpitSourceArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         return pulumi.get(self, "type")
 
@@ -95,6 +95,7 @@ class _CockpitSourceState:
                  name: Optional[pulumi.Input[str]] = None,
                  origin: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 push_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  synchronized_with_grafana: Optional[pulumi.Input[bool]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -102,15 +103,16 @@ class _CockpitSourceState:
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CockpitSource resources.
-        :param pulumi.Input[str] created_at: Date and time of the cockpit data source's creation (RFC 3339 format).
-        :param pulumi.Input[str] name: The name of the cockpit data source.
-        :param pulumi.Input[str] origin: The origin of the cockpit data source.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit data source is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit datasource.
+        :param pulumi.Input[str] created_at: The date and time the data source was created (in RFC 3339 format).
+        :param pulumi.Input[str] name: The name of the data source.
+        :param pulumi.Input[str] origin: The origin of the Cockpit data source.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
+        :param pulumi.Input[str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
+        :param pulumi.Input[str] region: ) The region where the data source is located.
         :param pulumi.Input[bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
-        :param pulumi.Input[str] type: The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
-        :param pulumi.Input[str] updated_at: Date and time of the cockpit datas ource's last update (RFC 3339 format).
-        :param pulumi.Input[str] url: The URL of the cockpit data source.
+        :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        :param pulumi.Input[str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
+        :param pulumi.Input[str] url: The URL of the Cockpit data source.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -120,6 +122,8 @@ class _CockpitSourceState:
             pulumi.set(__self__, "origin", origin)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if push_url is not None:
+            pulumi.set(__self__, "push_url", push_url)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if synchronized_with_grafana is not None:
@@ -135,7 +139,7 @@ class _CockpitSourceState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of the cockpit data source's creation (RFC 3339 format).
+        The date and time the data source was created (in RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -147,7 +151,7 @@ class _CockpitSourceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the cockpit data source.
+        The name of the data source.
         """
         return pulumi.get(self, "name")
 
@@ -159,7 +163,7 @@ class _CockpitSourceState:
     @pulumi.getter
     def origin(self) -> Optional[pulumi.Input[str]]:
         """
-        The origin of the cockpit data source.
+        The origin of the Cockpit data source.
         """
         return pulumi.get(self, "origin")
 
@@ -171,7 +175,7 @@ class _CockpitSourceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the cockpit data source is associated with.
+        ) The ID of the Project the data source is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -180,10 +184,22 @@ class _CockpitSourceState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="pushUrl")
+    def push_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL endpoint used for pushing data to the Cockpit data source.
+        """
+        return pulumi.get(self, "push_url")
+
+    @push_url.setter
+    def push_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "push_url", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region of the cockpit datasource.
+        ) The region where the data source is located.
         """
         return pulumi.get(self, "region")
 
@@ -207,7 +223,7 @@ class _CockpitSourceState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         return pulumi.get(self, "type")
 
@@ -219,7 +235,7 @@ class _CockpitSourceState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of the cockpit datas ource's last update (RFC 3339 format).
+        The date and time the data source was last updated (in RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
@@ -231,7 +247,7 @@ class _CockpitSourceState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL of the cockpit data source.
+        The URL of the Cockpit data source.
         """
         return pulumi.get(self, "url")
 
@@ -251,11 +267,15 @@ class CockpitSource(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Cockpit Data Sources.
+        The `CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Create a data source
+
+        The following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.
 
         ```python
         import pulumi
@@ -270,7 +290,7 @@ class CockpitSource(pulumi.CustomResource):
 
         ## Import
 
-        Cockpits Data Sources can be imported using the `{region}/{id}`, e.g.
+        This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
 
         bash
 
@@ -280,10 +300,10 @@ class CockpitSource(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the cockpit data source.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit data source is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit datasource.
-        :param pulumi.Input[str] type: The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        :param pulumi.Input[str] name: The name of the data source.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
+        :param pulumi.Input[str] region: ) The region where the data source is located.
+        :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         ...
     @overload
@@ -292,11 +312,15 @@ class CockpitSource(pulumi.CustomResource):
                  args: Optional[CockpitSourceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Cockpit Data Sources.
+        The `CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources).
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Create a data source
+
+        The following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.
 
         ```python
         import pulumi
@@ -311,7 +335,7 @@ class CockpitSource(pulumi.CustomResource):
 
         ## Import
 
-        Cockpits Data Sources can be imported using the `{region}/{id}`, e.g.
+        This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
 
         bash
 
@@ -353,6 +377,7 @@ class CockpitSource(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
             __props__.__dict__["origin"] = None
+            __props__.__dict__["push_url"] = None
             __props__.__dict__["synchronized_with_grafana"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["url"] = None
@@ -370,6 +395,7 @@ class CockpitSource(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             origin: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            push_url: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             synchronized_with_grafana: Optional[pulumi.Input[bool]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -382,15 +408,16 @@ class CockpitSource(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: Date and time of the cockpit data source's creation (RFC 3339 format).
-        :param pulumi.Input[str] name: The name of the cockpit data source.
-        :param pulumi.Input[str] origin: The origin of the cockpit data source.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit data source is associated with.
-        :param pulumi.Input[str] region: `region`) The region of the cockpit datasource.
+        :param pulumi.Input[str] created_at: The date and time the data source was created (in RFC 3339 format).
+        :param pulumi.Input[str] name: The name of the data source.
+        :param pulumi.Input[str] origin: The origin of the Cockpit data source.
+        :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
+        :param pulumi.Input[str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
+        :param pulumi.Input[str] region: ) The region where the data source is located.
         :param pulumi.Input[bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
-        :param pulumi.Input[str] type: The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
-        :param pulumi.Input[str] updated_at: Date and time of the cockpit datas ource's last update (RFC 3339 format).
-        :param pulumi.Input[str] url: The URL of the cockpit data source.
+        :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        :param pulumi.Input[str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
+        :param pulumi.Input[str] url: The URL of the Cockpit data source.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -400,6 +427,7 @@ class CockpitSource(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["origin"] = origin
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["push_url"] = push_url
         __props__.__dict__["region"] = region
         __props__.__dict__["synchronized_with_grafana"] = synchronized_with_grafana
         __props__.__dict__["type"] = type
@@ -411,7 +439,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        Date and time of the cockpit data source's creation (RFC 3339 format).
+        The date and time the data source was created (in RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -419,7 +447,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the cockpit data source.
+        The name of the data source.
         """
         return pulumi.get(self, "name")
 
@@ -427,7 +455,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter
     def origin(self) -> pulumi.Output[str]:
         """
-        The origin of the cockpit data source.
+        The origin of the Cockpit data source.
         """
         return pulumi.get(self, "origin")
 
@@ -435,15 +463,23 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the cockpit data source is associated with.
+        ) The ID of the Project the data source is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="pushUrl")
+    def push_url(self) -> pulumi.Output[str]:
+        """
+        The URL endpoint used for pushing data to the Cockpit data source.
+        """
+        return pulumi.get(self, "push_url")
 
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region of the cockpit datasource.
+        ) The region where the data source is located.
         """
         return pulumi.get(self, "region")
 
@@ -459,7 +495,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of the cockpit data source. Possible values are: `metrics`, `logs` or `traces`.
+        The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         return pulumi.get(self, "type")
 
@@ -467,7 +503,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        Date and time of the cockpit datas ource's last update (RFC 3339 format).
+        The date and time the data source was last updated (in RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
@@ -475,7 +511,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         """
-        The URL of the cockpit data source.
+        The URL of the Cockpit data source.
         """
         return pulumi.get(self, "url")
 

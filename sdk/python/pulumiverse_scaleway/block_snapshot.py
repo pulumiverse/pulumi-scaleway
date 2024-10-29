@@ -27,10 +27,10 @@ class BlockSnapshotArgs:
         """
         The set of arguments for constructing a BlockSnapshot resource.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
-        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is associated with.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the snapshot should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the snapshot should be created.
         """
         pulumi.set(__self__, "volume_id", volume_id)
         if name is not None:
@@ -58,7 +58,7 @@ class BlockSnapshotArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the snapshot. If not provided it will be randomly generated.
+        The name of the snapshot. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -70,7 +70,7 @@ class BlockSnapshotArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the snapshot is associated with.
+        ). The ID of the Scaleway Project the snapshot is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -94,7 +94,7 @@ class BlockSnapshotArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the snapshot should be created.
+        ). The zone in which the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -113,11 +113,11 @@ class _BlockSnapshotState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BlockSnapshot resources.
-        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is associated with.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the snapshot should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the snapshot should be created.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -134,7 +134,7 @@ class _BlockSnapshotState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the snapshot. If not provided it will be randomly generated.
+        The name of the snapshot. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -146,7 +146,7 @@ class _BlockSnapshotState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the snapshot is associated with.
+        ). The ID of the Scaleway Project the snapshot is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -182,7 +182,7 @@ class _BlockSnapshotState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the snapshot should be created.
+        ). The zone in which the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -203,10 +203,15 @@ class BlockSnapshot(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Block Snapshots.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+        The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
+
+        ### Create a snapshot of a Block Storage volume
+
+        The following command allows you to create a snapshot (`some-snapshot-name`) from a Block Storage volume specified by its ID.
 
         ```python
         import pulumi
@@ -223,7 +228,7 @@ class BlockSnapshot(pulumi.CustomResource):
 
         ## Import
 
-        Block Snapshots can be imported using the `{zone}/{id}`, e.g.
+        This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
 
         bash
 
@@ -233,11 +238,11 @@ class BlockSnapshot(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is associated with.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the snapshot should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the snapshot should be created.
         """
         ...
     @overload
@@ -246,10 +251,15 @@ class BlockSnapshot(pulumi.CustomResource):
                  args: BlockSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Block Snapshots.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+        The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
+
+        ### Create a snapshot of a Block Storage volume
+
+        The following command allows you to create a snapshot (`some-snapshot-name`) from a Block Storage volume specified by its ID.
 
         ```python
         import pulumi
@@ -266,7 +276,7 @@ class BlockSnapshot(pulumi.CustomResource):
 
         ## Import
 
-        Block Snapshots can be imported using the `{zone}/{id}`, e.g.
+        This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
 
         bash
 
@@ -332,11 +342,11 @@ class BlockSnapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is associated with.
+        :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the snapshot should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the snapshot should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -353,7 +363,7 @@ class BlockSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the snapshot. If not provided it will be randomly generated.
+        The name of the snapshot. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -361,7 +371,7 @@ class BlockSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the snapshot is associated with.
+        ). The ID of the Scaleway Project the snapshot is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -385,7 +395,7 @@ class BlockSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the snapshot should be created.
+        ). The zone in which the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 

@@ -12,12 +12,18 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Secret Versions.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/#secret-versions-079501).
+// The `SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+//
+// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 //
 // ## Example Usage
 //
-// ### Basic
+// ### Create a secret and a version
+//
+// The following commands allow you to:
+//
+// - create a secret named `foo`
+// - create a version of this secret containing the `myNewSecret` data
 //
 // ```go
 // package main
@@ -58,9 +64,9 @@ import (
 //
 // ## Import
 //
-// The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+// This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
 //
-// ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+// ~> **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
 //
 // bash
 //
@@ -70,22 +76,21 @@ import (
 type SecretVersion struct {
 	pulumi.CustomResourceState
 
-	// Date and time of secret version's creation (RFC 3339 format).
+	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data pulumi.StringOutput `pulumi:"data"`
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// `region`) The region
-	// in which the resource exists.
+	// ). The region where the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The revision for this Secret Version.
+	// The revision number of the secret version.
 	Revision pulumi.StringOutput `pulumi:"revision"`
-	// The Secret ID associated wit the secret version.
+	// The ID of the secret associated with the version.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
-	// The status of the Secret Version.
+	// The status of the secret version.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Date and time of secret version's last update (RFC 3339 format).
+	// The date and time of the secret version's last update (in RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -132,42 +137,40 @@ func GetSecretVersion(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretVersion resources.
 type secretVersionState struct {
-	// Date and time of secret version's creation (RFC 3339 format).
+	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data *string `pulumi:"data"`
 	// Description of the secret version (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
-	// `region`) The region
-	// in which the resource exists.
+	// ). The region where the resource exists.
 	Region *string `pulumi:"region"`
-	// The revision for this Secret Version.
+	// The revision number of the secret version.
 	Revision *string `pulumi:"revision"`
-	// The Secret ID associated wit the secret version.
+	// The ID of the secret associated with the version.
 	SecretId *string `pulumi:"secretId"`
-	// The status of the Secret Version.
+	// The status of the secret version.
 	Status *string `pulumi:"status"`
-	// Date and time of secret version's last update (RFC 3339 format).
+	// The date and time of the secret version's last update (in RFC 3339 format).
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type SecretVersionState struct {
-	// Date and time of secret version's creation (RFC 3339 format).
+	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data pulumi.StringPtrInput
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
-	// `region`) The region
-	// in which the resource exists.
+	// ). The region where the resource exists.
 	Region pulumi.StringPtrInput
-	// The revision for this Secret Version.
+	// The revision number of the secret version.
 	Revision pulumi.StringPtrInput
-	// The Secret ID associated wit the secret version.
+	// The ID of the secret associated with the version.
 	SecretId pulumi.StringPtrInput
-	// The status of the Secret Version.
+	// The status of the secret version.
 	Status pulumi.StringPtrInput
-	// Date and time of secret version's last update (RFC 3339 format).
+	// The date and time of the secret version's last update (in RFC 3339 format).
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -176,27 +179,25 @@ func (SecretVersionState) ElementType() reflect.Type {
 }
 
 type secretVersionArgs struct {
-	// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data string `pulumi:"data"`
 	// Description of the secret version (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
-	// `region`) The region
-	// in which the resource exists.
+	// ). The region where the resource exists.
 	Region *string `pulumi:"region"`
-	// The Secret ID associated wit the secret version.
+	// The ID of the secret associated with the version.
 	SecretId string `pulumi:"secretId"`
 }
 
 // The set of arguments for constructing a SecretVersion resource.
 type SecretVersionArgs struct {
-	// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data pulumi.StringInput
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
-	// `region`) The region
-	// in which the resource exists.
+	// ). The region where the resource exists.
 	Region pulumi.StringPtrInput
-	// The Secret ID associated wit the secret version.
+	// The ID of the secret associated with the version.
 	SecretId pulumi.StringInput
 }
 
@@ -287,12 +288,12 @@ func (o SecretVersionOutput) ToSecretVersionOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Date and time of secret version's creation (RFC 3339 format).
+// The date and time of the secret version's creation (in RFC 3339 format).
 func (o SecretVersionOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
 func (o SecretVersionOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Data }).(pulumi.StringOutput)
 }
@@ -302,28 +303,27 @@ func (o SecretVersionOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// `region`) The region
-// in which the resource exists.
+// ). The region where the resource exists.
 func (o SecretVersionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The revision for this Secret Version.
+// The revision number of the secret version.
 func (o SecretVersionOutput) Revision() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Revision }).(pulumi.StringOutput)
 }
 
-// The Secret ID associated wit the secret version.
+// The ID of the secret associated with the version.
 func (o SecretVersionOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
 }
 
-// The status of the Secret Version.
+// The status of the secret version.
 func (o SecretVersionOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Date and time of secret version's last update (RFC 3339 format).
+// The date and time of the secret version's last update (in RFC 3339 format).
 func (o SecretVersionOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

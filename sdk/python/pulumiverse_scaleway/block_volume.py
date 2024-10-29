@@ -28,13 +28,13 @@ class BlockVolumeArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BlockVolume resource.
-        :param pulumi.Input[int] iops: The maximum IO/s expected, must match available options.
-        :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
+        :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         :param pulumi.Input[str] snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the volume should be created.
         """
         pulumi.set(__self__, "iops", iops)
         if name is not None:
@@ -54,7 +54,7 @@ class BlockVolumeArgs:
     @pulumi.getter
     def iops(self) -> pulumi.Input[int]:
         """
-        The maximum IO/s expected, must match available options.
+        The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
 
@@ -66,7 +66,7 @@ class BlockVolumeArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the volume. If not provided it will be randomly generated.
+        The name of the volume. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -78,7 +78,7 @@ class BlockVolumeArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the volume is associated with.
+        ). The ID of the Project the volume is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -90,7 +90,7 @@ class BlockVolumeArgs:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -126,7 +126,7 @@ class BlockVolumeArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the volume should be created.
+        ). The zone in which the volume should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -147,13 +147,13 @@ class _BlockVolumeState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BlockVolume resources.
-        :param pulumi.Input[int] iops: The maximum IO/s expected, must match available options.
-        :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
+        :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         :param pulumi.Input[str] snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the volume should be created.
         """
         if iops is not None:
             pulumi.set(__self__, "iops", iops)
@@ -174,7 +174,7 @@ class _BlockVolumeState:
     @pulumi.getter
     def iops(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum IO/s expected, must match available options.
+        The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
 
@@ -186,7 +186,7 @@ class _BlockVolumeState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the volume. If not provided it will be randomly generated.
+        The name of the volume. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -198,7 +198,7 @@ class _BlockVolumeState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the volume is associated with.
+        ). The ID of the Project the volume is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -210,7 +210,7 @@ class _BlockVolumeState:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -246,7 +246,7 @@ class _BlockVolumeState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone in which the volume should be created.
+        ). The zone in which the volume should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -269,12 +269,15 @@ class BlockVolume(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Block Volumes.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+        The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
 
-        ### Basic
+        ### Create a Block Storage volume
+
+        The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
 
         ```python
         import pulumi
@@ -307,7 +310,7 @@ class BlockVolume(pulumi.CustomResource):
 
         ## Import
 
-        Block Volumes can be imported using the `{zone}/{id}`, e.g.
+        This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
 
         bash
 
@@ -317,13 +320,13 @@ class BlockVolume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] iops: The maximum IO/s expected, must match available options.
-        :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
+        :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         :param pulumi.Input[str] snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the volume should be created.
         """
         ...
     @overload
@@ -332,12 +335,15 @@ class BlockVolume(pulumi.CustomResource):
                  args: BlockVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Block Volumes.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/block/).
+        The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
 
-        ### Basic
+        ### Create a Block Storage volume
+
+        The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
 
         ```python
         import pulumi
@@ -370,7 +376,7 @@ class BlockVolume(pulumi.CustomResource):
 
         ## Import
 
-        Block Volumes can be imported using the `{zone}/{id}`, e.g.
+        This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
 
         bash
 
@@ -442,13 +448,13 @@ class BlockVolume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] iops: The maximum IO/s expected, must match available options.
-        :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
-        :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
+        :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
+        :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         :param pulumi.Input[str] snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
+        :param pulumi.Input[str] zone: ). The zone in which the volume should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -467,7 +473,7 @@ class BlockVolume(pulumi.CustomResource):
     @pulumi.getter
     def iops(self) -> pulumi.Output[int]:
         """
-        The maximum IO/s expected, must match available options.
+        The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
 
@@ -475,7 +481,7 @@ class BlockVolume(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the volume. If not provided it will be randomly generated.
+        The name of the volume. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
@@ -483,7 +489,7 @@ class BlockVolume(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the volume is associated with.
+        ). The ID of the Project the volume is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -491,7 +497,7 @@ class BlockVolume(pulumi.CustomResource):
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Output[int]:
         """
-        The size of the volume. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -515,7 +521,7 @@ class BlockVolume(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        `zone`) The zone in which the volume should be created.
+        ). The zone in which the volume should be created.
         """
         return pulumi.get(self, "zone")
 

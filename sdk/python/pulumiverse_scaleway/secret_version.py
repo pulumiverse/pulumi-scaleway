@@ -25,11 +25,10 @@ class SecretVersionArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretVersion resource.
-        :param pulumi.Input[str] data: The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
-        :param pulumi.Input[str] secret_id: The Secret ID associated wit the secret version.
+        :param pulumi.Input[str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[str] secret_id: The ID of the secret associated with the version.
         :param pulumi.Input[str] description: Description of the secret version (e.g. `my-new-description`).
-        :param pulumi.Input[str] region: `region`) The region
-               in which the resource exists.
+        :param pulumi.Input[str] region: ). The region where the resource exists.
         """
         pulumi.set(__self__, "data", data)
         pulumi.set(__self__, "secret_id", secret_id)
@@ -42,7 +41,7 @@ class SecretVersionArgs:
     @pulumi.getter
     def data(self) -> pulumi.Input[str]:
         """
-        The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         """
         return pulumi.get(self, "data")
 
@@ -54,7 +53,7 @@ class SecretVersionArgs:
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Input[str]:
         """
-        The Secret ID associated wit the secret version.
+        The ID of the secret associated with the version.
         """
         return pulumi.get(self, "secret_id")
 
@@ -78,8 +77,7 @@ class SecretVersionArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region
-        in which the resource exists.
+        ). The region where the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -101,15 +99,14 @@ class _SecretVersionState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretVersion resources.
-        :param pulumi.Input[str] created_at: Date and time of secret version's creation (RFC 3339 format).
-        :param pulumi.Input[str] data: The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        :param pulumi.Input[str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
+        :param pulumi.Input[str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         :param pulumi.Input[str] description: Description of the secret version (e.g. `my-new-description`).
-        :param pulumi.Input[str] region: `region`) The region
-               in which the resource exists.
-        :param pulumi.Input[str] revision: The revision for this Secret Version.
-        :param pulumi.Input[str] secret_id: The Secret ID associated wit the secret version.
-        :param pulumi.Input[str] status: The status of the Secret Version.
-        :param pulumi.Input[str] updated_at: Date and time of secret version's last update (RFC 3339 format).
+        :param pulumi.Input[str] region: ). The region where the resource exists.
+        :param pulumi.Input[str] revision: The revision number of the secret version.
+        :param pulumi.Input[str] secret_id: The ID of the secret associated with the version.
+        :param pulumi.Input[str] status: The status of the secret version.
+        :param pulumi.Input[str] updated_at: The date and time of the secret version's last update (in RFC 3339 format).
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -132,7 +129,7 @@ class _SecretVersionState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of secret version's creation (RFC 3339 format).
+        The date and time of the secret version's creation (in RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -144,7 +141,7 @@ class _SecretVersionState:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[str]]:
         """
-        The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         """
         return pulumi.get(self, "data")
 
@@ -168,8 +165,7 @@ class _SecretVersionState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region
-        in which the resource exists.
+        ). The region where the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -181,7 +177,7 @@ class _SecretVersionState:
     @pulumi.getter
     def revision(self) -> Optional[pulumi.Input[str]]:
         """
-        The revision for this Secret Version.
+        The revision number of the secret version.
         """
         return pulumi.get(self, "revision")
 
@@ -193,7 +189,7 @@ class _SecretVersionState:
     @pulumi.getter(name="secretId")
     def secret_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Secret ID associated wit the secret version.
+        The ID of the secret associated with the version.
         """
         return pulumi.get(self, "secret_id")
 
@@ -205,7 +201,7 @@ class _SecretVersionState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the Secret Version.
+        The status of the secret version.
         """
         return pulumi.get(self, "status")
 
@@ -217,7 +213,7 @@ class _SecretVersionState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of secret version's last update (RFC 3339 format).
+        The date and time of the secret version's last update (in RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
@@ -237,12 +233,18 @@ class SecretVersion(pulumi.CustomResource):
                  secret_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Secret Versions.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/#secret-versions-079501).
+        The `SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+
+        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
         ## Example Usage
 
-        ### Basic
+        ### Create a secret and a version
+
+        The following commands allow you to:
+
+        - create a secret named `foo`
+        - create a version of this secret containing the `my_new_secret` data
 
         ```python
         import pulumi
@@ -263,9 +265,9 @@ class SecretVersion(pulumi.CustomResource):
 
         ## Import
 
-        The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+        This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
 
-        ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+        ~> **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
 
         bash
 
@@ -275,11 +277,10 @@ class SecretVersion(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] data: The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        :param pulumi.Input[str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         :param pulumi.Input[str] description: Description of the secret version (e.g. `my-new-description`).
-        :param pulumi.Input[str] region: `region`) The region
-               in which the resource exists.
-        :param pulumi.Input[str] secret_id: The Secret ID associated wit the secret version.
+        :param pulumi.Input[str] region: ). The region where the resource exists.
+        :param pulumi.Input[str] secret_id: The ID of the secret associated with the version.
         """
         ...
     @overload
@@ -288,12 +289,18 @@ class SecretVersion(pulumi.CustomResource):
                  args: SecretVersionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Secret Versions.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/secret-manager/#secret-versions-079501).
+        The `SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+
+        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
         ## Example Usage
 
-        ### Basic
+        ### Create a secret and a version
+
+        The following commands allow you to:
+
+        - create a secret named `foo`
+        - create a version of this secret containing the `my_new_secret` data
 
         ```python
         import pulumi
@@ -314,9 +321,9 @@ class SecretVersion(pulumi.CustomResource):
 
         ## Import
 
-        The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+        This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
 
-        ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+        ~> **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
 
         bash
 
@@ -391,15 +398,14 @@ class SecretVersion(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: Date and time of secret version's creation (RFC 3339 format).
-        :param pulumi.Input[str] data: The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        :param pulumi.Input[str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
+        :param pulumi.Input[str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         :param pulumi.Input[str] description: Description of the secret version (e.g. `my-new-description`).
-        :param pulumi.Input[str] region: `region`) The region
-               in which the resource exists.
-        :param pulumi.Input[str] revision: The revision for this Secret Version.
-        :param pulumi.Input[str] secret_id: The Secret ID associated wit the secret version.
-        :param pulumi.Input[str] status: The status of the Secret Version.
-        :param pulumi.Input[str] updated_at: Date and time of secret version's last update (RFC 3339 format).
+        :param pulumi.Input[str] region: ). The region where the resource exists.
+        :param pulumi.Input[str] revision: The revision number of the secret version.
+        :param pulumi.Input[str] secret_id: The ID of the secret associated with the version.
+        :param pulumi.Input[str] status: The status of the secret version.
+        :param pulumi.Input[str] updated_at: The date and time of the secret version's last update (in RFC 3339 format).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -419,7 +425,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        Date and time of secret version's creation (RFC 3339 format).
+        The date and time of the secret version's creation (in RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
@@ -427,7 +433,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter
     def data(self) -> pulumi.Output[str]:
         """
-        The data payload of the secret version. Must be no larger than 64KiB. (e.g. `my-secret-version-payload`). more on the data section
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         """
         return pulumi.get(self, "data")
 
@@ -443,8 +449,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region
-        in which the resource exists.
+        ). The region where the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -452,7 +457,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter
     def revision(self) -> pulumi.Output[str]:
         """
-        The revision for this Secret Version.
+        The revision number of the secret version.
         """
         return pulumi.get(self, "revision")
 
@@ -460,7 +465,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Output[str]:
         """
-        The Secret ID associated wit the secret version.
+        The ID of the secret associated with the version.
         """
         return pulumi.get(self, "secret_id")
 
@@ -468,7 +473,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the Secret Version.
+        The status of the secret version.
         """
         return pulumi.get(self, "status")
 
@@ -476,7 +481,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        Date and time of secret version's last update (RFC 3339 format).
+        The date and time of the secret version's last update (in RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
