@@ -737,6 +737,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "vpc_public_gateway_dhcp_reservation.md",
 				},
 			},
+			"scaleway_vpc_route": {
+				Tok: scalewayResource(scalewayMod, "VpcRoute"),
+				Docs: &tfbridge.DocInfo{
+					Source: "vpc_route.md",
+				},
+			},
 			"scaleway_function_trigger": {
 				Tok: scalewayResource(scalewayMod, "FunctionTrigger"),
 				Docs: &tfbridge.DocInfo{

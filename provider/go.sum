@@ -1990,8 +1990,8 @@ github.com/santhosh-tekuri/jsonschema/v5 v5.0.0 h1:TToq11gyfNlrMFZiYujSekIsPd9Am
 github.com/santhosh-tekuri/jsonschema/v5 v5.0.0/go.mod h1:FKdcjfQW6rpZSnxxUvEA5H/cDPdvJ/SZJQLWWXWGrZ0=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.30 h1:yoKAVkEVwAqbGbR8n87rHQ1dulL25rKloGadb3vm770=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.30/go.mod h1:sH0u6fq6x4R5M7WxkoQFY/o7UaiItec0o1LinLCJNq8=
-github.com/scaleway/terraform-provider-scaleway/v2 v2.44.0 h1:lG1C7HXVfH9o90ZCp7pIQth9Bl4ULlb4u8KUdkYpHVM=
-github.com/scaleway/terraform-provider-scaleway/v2 v2.44.0/go.mod h1:UIl6/JpUkO30efjRsV5fh+WU3Bcg0j0LA+qc6E+bhlU=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.45.0 h1:47OF1l/AhTJztNb6pRMa2wY4oyyRtehOFUuvO/EAkR8=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.45.0/go.mod h1:UIl6/JpUkO30efjRsV5fh+WU3Bcg0j0LA+qc6E+bhlU=
 github.com/sebdah/goldie v1.0.0/go.mod h1:jXP4hmWywNEwZzhMuv2ccnqTSFpuq8iyQhtQdkkZBH4=
 github.com/segmentio/asm v1.1.3 h1:WM03sfUOENvvKexOLp+pCqgb/WDjsi7EK8gIsICtzhc=
 github.com/segmentio/asm v1.1.3/go.mod h1:Ld3L4ZXGNcSLRg4JBsZ3//1+f/TjYl0Mzen/DQy1EJg=
