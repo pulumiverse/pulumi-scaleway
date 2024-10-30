@@ -5,12 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Serverless Container Namespace.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#namespaces-cdce79).
+ * The `scaleway.ContainerNamespace` resource allows you to
+ * for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ *
+ * Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
  *
  * ## Example Usage
- *
- * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g.
+ * Containers namespaces can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -75,21 +75,21 @@ export class ContainerNamespace extends pulumi.CustomResource {
      */
     public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The unique name of the container namespace.
+     * The unique name of the Containers namespace.
      *
-     * > **Important** Updates to `name` will recreate the namespace.
+     * > **Important** Updates to the `name` argument will recreate the namespace.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization ID the namespace is associated with.
+     * The Organization ID with which the namespace is associated.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project that contains the namespace.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -167,21 +167,21 @@ export interface ContainerNamespaceState {
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The unique name of the container namespace.
+     * The unique name of the Containers namespace.
      *
-     * > **Important** Updates to `name` will recreate the namespace.
+     * > **Important** Updates to the `name` argument will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the namespace is associated with.
+     * The Organization ID with which the namespace is associated.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project that contains the namespace.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -217,17 +217,17 @@ export interface ContainerNamespaceArgs {
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The unique name of the container namespace.
+     * The unique name of the Containers namespace.
      *
-     * > **Important** Updates to `name` will recreate the namespace.
+     * > **Important** Updates to the `name` argument will recreate the namespace.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project that contains the namespace.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      */
     region?: pulumi.Input<string>;
     /**

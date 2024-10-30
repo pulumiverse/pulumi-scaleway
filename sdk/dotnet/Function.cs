@@ -11,41 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Functions.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.FunctionNamespace("main", new()
-    ///     {
-    ///         Name = "main-function-namespace",
-    ///         Description = "Main function namespace",
-    ///     });
-    /// 
-    ///     var mainFunction = new Scaleway.Function("main", new()
-    ///     {
-    ///         NamespaceId = main.Id,
-    ///         Runtime = "go118",
-    ///         Handler = "Handle",
-    ///         Privacy = "private",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
-    /// Functions can be imported using the `{region}/{id}`, e.g.
+    /// Functions can be imported using, `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -57,7 +25,7 @@ namespace Pulumiverse.Scaleway
     public partial class Function : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
+        /// The CPU limit in mVCPU for your function.
         /// </summary>
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
@@ -72,19 +40,19 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The native domain name of the function
+        /// The native domain name of the function.
         /// </summary>
         [Output("domainName")]
         public Output<string> DomainName { get; private set; } = null!;
 
         /// <summary>
-        /// The environment variables of the function.
+        /// The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         /// </summary>
         [Output("environmentVariables")]
         public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
+        /// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
         /// </summary>
         [Output("handler")]
         public Output<string> Handler { get; private set; } = null!;
@@ -96,33 +64,33 @@ namespace Pulumiverse.Scaleway
         public Output<string?> HttpOption { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
+        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         /// </summary>
         [Output("maxScale")]
         public Output<int?> MaxScale { get; private set; } = null!;
 
         /// <summary>
-        /// Memory limit in MB for your function, defaults to 128MB
+        /// The memory resources in MB to allocate to each function. Defaults to 256 MB.
         /// </summary>
         [Output("memoryLimit")]
         public Output<int?> MemoryLimit { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
+        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
         /// </summary>
         [Output("minScale")]
         public Output<int?> MinScale { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the function.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the function.
+        /// The unique name of the function name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The function namespace ID of the function.
+        /// The Functions namespace ID of the function.
+        /// 
+        /// &gt; **Important** Updating the `name` argument will recreate the function.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -134,13 +102,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+        /// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         /// </summary>
         [Output("privacy")]
         public Output<string> Privacy { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `project_id`) The ID of the project the functions namespace is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -152,7 +120,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         /// </summary>
         [Output("runtime")]
         public Output<string> Runtime { get; private set; } = null!;
@@ -164,19 +132,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> Sandbox { get; private set; } = null!;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// Holds the max duration (in seconds) the function is allowed for responding to a request
+        /// The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
 
         /// <summary>
-        /// Location of the zip file to upload containing your function sources
+        /// Path to the zip file containing your function sources to upload.
         /// </summary>
         [Output("zipFile")]
         public Output<string?> ZipFile { get; private set; } = null!;
@@ -251,7 +219,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The environment variables of the function.
+        /// The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -260,7 +228,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
+        /// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
         /// </summary>
         [Input("handler", required: true)]
         public Input<string> Handler { get; set; } = null!;
@@ -272,45 +240,45 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
+        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         /// </summary>
         [Input("maxScale")]
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// Memory limit in MB for your function, defaults to 128MB
+        /// The memory resources in MB to allocate to each function. Defaults to 256 MB.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
 
         /// <summary>
-        /// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
+        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
         /// </summary>
         [Input("minScale")]
         public Input<int>? MinScale { get; set; }
 
         /// <summary>
-        /// The unique name of the function.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the function.
+        /// The unique name of the function name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The function namespace ID of the function.
+        /// The Functions namespace ID of the function.
+        /// 
+        /// &gt; **Important** Updating the `name` argument will recreate the function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+        /// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy", required: true)]
         public Input<string> Privacy { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `project_id`) The ID of the project the functions namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -322,7 +290,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         /// </summary>
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
@@ -337,7 +305,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {
@@ -350,13 +318,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Holds the max duration (in seconds) the function is allowed for responding to a request
+        /// The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// Location of the zip file to upload containing your function sources
+        /// Path to the zip file containing your function sources to upload.
         /// </summary>
         [Input("zipFile")]
         public Input<string>? ZipFile { get; set; }
@@ -376,7 +344,7 @@ namespace Pulumiverse.Scaleway
     public sealed class FunctionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
+        /// The CPU limit in mVCPU for your function.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
@@ -391,7 +359,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The native domain name of the function
+        /// The native domain name of the function.
         /// </summary>
         [Input("domainName")]
         public Input<string>? DomainName { get; set; }
@@ -400,7 +368,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The environment variables of the function.
+        /// The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -409,7 +377,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
+        /// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
         /// </summary>
         [Input("handler")]
         public Input<string>? Handler { get; set; }
@@ -421,33 +389,33 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
+        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         /// </summary>
         [Input("maxScale")]
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// Memory limit in MB for your function, defaults to 128MB
+        /// The memory resources in MB to allocate to each function. Defaults to 256 MB.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
 
         /// <summary>
-        /// Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a min_scale greater than 0 will cause your function container to run constantly.
+        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
         /// </summary>
         [Input("minScale")]
         public Input<int>? MinScale { get; set; }
 
         /// <summary>
-        /// The unique name of the function.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the function.
+        /// The unique name of the function name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The function namespace ID of the function.
+        /// The Functions namespace ID of the function.
+        /// 
+        /// &gt; **Important** Updating the `name` argument will recreate the function.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
@@ -459,13 +427,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+        /// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `project_id`) The ID of the project the functions namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -477,7 +445,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
@@ -492,7 +460,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {
@@ -505,13 +473,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Holds the max duration (in seconds) the function is allowed for responding to a request
+        /// The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// Location of the zip file to upload containing your function sources
+        /// Path to the zip file containing your function sources to upload.
         /// </summary>
         [Input("zipFile")]
         public Input<string>? ZipFile { get; set; }

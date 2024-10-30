@@ -26,7 +26,7 @@ class AccountProjectArgs:
         The set of arguments for constructing a AccountProject resource.
         :param pulumi.Input[str] description: The description of the Project.
         :param pulumi.Input[str] name: The name of the Project.
-        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -63,7 +63,7 @@ class AccountProjectArgs:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
         return pulumi.get(self, "organization_id")
 
@@ -82,11 +82,11 @@ class _AccountProjectState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AccountProject resources.
-        :param pulumi.Input[str] created_at: The Project creation time.
+        :param pulumi.Input[str] created_at: The creation time of the Project.
         :param pulumi.Input[str] description: The description of the Project.
         :param pulumi.Input[str] name: The name of the Project.
-        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
-        :param pulumi.Input[str] updated_at: The Project last update time.
+        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        :param pulumi.Input[str] updated_at: The last update time of the Project.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -103,7 +103,7 @@ class _AccountProjectState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The Project creation time.
+        The creation time of the Project.
         """
         return pulumi.get(self, "created_at")
 
@@ -139,7 +139,7 @@ class _AccountProjectState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
         return pulumi.get(self, "organization_id")
 
@@ -151,7 +151,7 @@ class _AccountProjectState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The Project last update time.
+        The last update time of the Project.
         """
         return pulumi.get(self, "updated_at")
 
@@ -172,7 +172,7 @@ class AccountProject(pulumi.CustomResource):
         """
         ## Import
 
-        Projects can be imported using the `id`, e.g.
+        Projects can be imported using the `id` argument, as shown below:
 
         bash
 
@@ -184,7 +184,7 @@ class AccountProject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the Project.
         :param pulumi.Input[str] name: The name of the Project.
-        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
         ...
     @overload
@@ -195,7 +195,7 @@ class AccountProject(pulumi.CustomResource):
         """
         ## Import
 
-        Projects can be imported using the `id`, e.g.
+        Projects can be imported using the `id` argument, as shown below:
 
         bash
 
@@ -257,11 +257,11 @@ class AccountProject(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The Project creation time.
+        :param pulumi.Input[str] created_at: The creation time of the Project.
         :param pulumi.Input[str] description: The description of the Project.
         :param pulumi.Input[str] name: The name of the Project.
-        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
-        :param pulumi.Input[str] updated_at: The Project last update time.
+        :param pulumi.Input[str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        :param pulumi.Input[str] updated_at: The last update time of the Project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -278,7 +278,7 @@ class AccountProject(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The Project creation time.
+        The creation time of the Project.
         """
         return pulumi.get(self, "created_at")
 
@@ -302,7 +302,7 @@ class AccountProject(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
         return pulumi.get(self, "organization_id")
 
@@ -310,7 +310,7 @@ class AccountProject(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The Project last update time.
+        The last update time of the Project.
         """
         return pulumi.get(self, "updated_at")
 

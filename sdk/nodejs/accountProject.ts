@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * Projects can be imported using the `id`, e.g.
+ * Projects can be imported using the `id` argument, as shown below:
  *
  * bash
  *
@@ -44,7 +44,7 @@ export class AccountProject extends pulumi.CustomResource {
     }
 
     /**
-     * The Project creation time.
+     * The creation time of the Project.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -56,11 +56,11 @@ export class AccountProject extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+     * `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The Project last update time.
+     * The last update time of the Project.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
@@ -100,7 +100,7 @@ export class AccountProject extends pulumi.CustomResource {
  */
 export interface AccountProjectState {
     /**
-     * The Project creation time.
+     * The creation time of the Project.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -112,11 +112,11 @@ export interface AccountProjectState {
      */
     name?: pulumi.Input<string>;
     /**
-     * `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+     * `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The Project last update time.
+     * The last update time of the Project.
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -134,7 +134,7 @@ export interface AccountProjectArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+     * `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
      */
     organizationId?: pulumi.Input<string>;
 }

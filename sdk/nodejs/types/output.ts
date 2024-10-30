@@ -182,40 +182,40 @@ export interface CockpitTokenScopes {
 
 export interface ContainerTriggerNats {
     /**
-     * ID of the mnq nats account.
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: string;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Region where the mnq nats account is, defaults to provider's region
+     * Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
      */
     region: string;
     /**
-     * The subject to listen to
+     * The subject to listen to.
      */
     subject: string;
 }
 
 export interface ContainerTriggerSqs {
     /**
-     * ID of the mnq namespace. Deprecated.
+     * ID of the Messaging and Queuing namespace. This argument is deprecated.
      *
      * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: string;
     /**
-     * ID of the project where sqs is enabled, defaults to provider's project
+     * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Name of the queue
+     * The name of the SQS queue.
      */
     queue: string;
     /**
-     * Region where sqs is enabled, defaults to provider's region
+     * Region where SQS is enabled (defaults to provider `region`)
      */
     region: string;
 }
@@ -543,40 +543,40 @@ export interface DomainRecordWeighted {
 
 export interface FunctionTriggerNats {
     /**
-     * ID of the mnq nats account.
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: string;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Region where the mnq nats account is, defaults to provider's region
+     * Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
      */
     region: string;
     /**
-     * The subject to listen to
+     * The subject to listen to.
      */
     subject: string;
 }
 
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace. Deprecated.
+     * ID of the Messaging and Queuing namespace. This argument is deprecated.
      *
      * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: string;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Name of the queue
+     * The name of the SQS queue.
      */
     queue: string;
     /**
-     * Region where the mnq namespace is, defaults to provider's region
+     * Region where SQS is enabled (defaults to provider `region`)
      */
     region: string;
 }
@@ -1207,6 +1207,10 @@ export interface GetInstanceServerRootVolume {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name: string;
+    /**
+     * SBS Volume IOPS, only with volumeType as sbs_volume
+     */
+    sbsIops: number;
     /**
      * Size of the root volume in gigabytes.
      */
@@ -2238,7 +2242,7 @@ export interface GetObjectBucketLifecycleRule {
      */
     expirations: outputs.GetObjectBucketLifecycleRuleExpiration[];
     /**
-     * The unique name of the bucket.
+     * The unique identifier of the bucket.
      */
     id: string;
     /**
@@ -2814,14 +2818,18 @@ export interface InstanceServerRootVolume {
     boot?: boolean;
     /**
      * Forces deletion of the root volume on instance termination.
-     *
-     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
      */
     deleteOnTermination?: boolean;
     /**
      * The name of the server.
      */
     name: string;
+    /**
+     * Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+     *
+     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+     */
+    sbsIops: number;
     /**
      * Size of the root volume in gigabytes.
      * To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -2834,7 +2842,7 @@ export interface InstanceServerRootVolume {
      */
     volumeId: string;
     /**
-     * Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+     * Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
      */
     volumeType: string;
 }
@@ -3438,7 +3446,7 @@ export interface ObjectBucketAclAccessControlPolicyGrant {
 export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
     displayName: string;
     /**
-     * The `region`,`bucket` and `acl` separated by (`/`).
+     * The `region`, `bucket` and `acl` separated by (`/`).
      */
     id: string;
     /**
@@ -3453,7 +3461,7 @@ export interface ObjectBucketAclAccessControlPolicyOwner {
      */
     displayName: string;
     /**
-     * The `region`,`bucket` and `acl` separated by (`/`).
+     * The `region`, `bucket` and `acl` separated by (`/`).
      */
     id: string;
 }
@@ -3464,7 +3472,7 @@ export interface ObjectBucketCorsRule {
      */
     allowedHeaders?: string[];
     /**
-     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     * Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
      */
     allowedMethods: string[];
     /**
@@ -3472,11 +3480,11 @@ export interface ObjectBucketCorsRule {
      */
     allowedOrigins: string[];
     /**
-     * Specifies expose header in the response.
+     * Specifies header exposure in the response.
      */
     exposeHeaders?: string[];
     /**
-     * Specifies time in seconds that browser can cache the response for a preflight request.
+     * Specifies time in seconds that the browser can cache the response for a preflight request.
      */
     maxAgeSeconds?: number;
 }
@@ -3485,15 +3493,15 @@ export interface ObjectBucketLifecycleRule {
     /**
      * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
      *
-     * * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
      */
     abortIncompleteMultipartUploadDays?: number;
     /**
-     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
      */
     enabled: boolean;
     /**
-     * Specifies a period in the object's expire (documented below).
+     * Specifies a period in the object's expire
      */
     expiration?: outputs.ObjectBucketLifecycleRuleExpiration;
     /**
@@ -3509,9 +3517,7 @@ export interface ObjectBucketLifecycleRule {
      */
     tags?: {[key: string]: string};
     /**
-     * Specifies a period in the object's transitions (documented below).
-     *
-     * At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+     * Define when objects transition to another storage class
      */
     transitions?: outputs.ObjectBucketLifecycleRuleTransition[];
 }
@@ -3519,8 +3525,6 @@ export interface ObjectBucketLifecycleRule {
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
-     *
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
      */
     days: number;
 }
@@ -3533,6 +3537,12 @@ export interface ObjectBucketLifecycleRuleTransition {
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
      *
+     *
+     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     *
+     *
+     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      */
     storageClass: string;
@@ -3547,15 +3557,15 @@ export interface ObjectBucketLockConfigurationRule {
 
 export interface ObjectBucketLockConfigurationRuleDefaultRetention {
     /**
-     * The number of days that you want to specify for the default retention period.
+     * The number of days you want to specify for the default retention period.
      */
     days?: number;
     /**
-     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+     * The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
      */
     mode: string;
     /**
-     * The number of years that you want to specify for the default retention period.
+     * The number of years you want to specify for the default retention period.
      */
     years?: number;
 }
@@ -3576,7 +3586,7 @@ export interface ObjectBucketWebsiteConfigurationErrorDocument {
 
 export interface ObjectBucketWebsiteConfigurationIndexDocument {
     /**
-     * A suffix that is appended to a request that is for a directory on the website endpoint.
+     * A suffix that is appended to a request targeting a specific directory on the website endpoint.
      *
      * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
      */

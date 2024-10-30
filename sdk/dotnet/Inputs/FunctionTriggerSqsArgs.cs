@@ -14,25 +14,25 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class FunctionTriggerSqsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the mnq namespace. Deprecated.
+        /// ID of the Messaging and Queuing namespace. This argument is deprecated.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// ID of the project that contain the mnq namespace, defaults to provider's project
+        /// The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Name of the queue
+        /// The name of the SQS queue.
         /// </summary>
         [Input("queue", required: true)]
         public Input<string> Queue { get; set; } = null!;
 
         /// <summary>
-        /// Region where the mnq namespace is, defaults to provider's region
+        /// Region where SQS is enabled (defaults to provider `region`)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

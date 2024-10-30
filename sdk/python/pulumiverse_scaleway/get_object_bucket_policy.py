@@ -60,7 +60,7 @@ class GetObjectBucketPolicyResult:
     @pulumi.getter
     def policy(self) -> str:
         """
-        The bucket's policy in JSON format.
+        The content of the bucket policy in JSON format.
         """
         return pulumi.get(self, "policy")
 
@@ -93,10 +93,13 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
                              region: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketPolicyResult:
     """
-    Gets information about the Bucket's policy.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+
+    ## Retrieve the bucket policy of a bucket
+
+    The following command allows you to retrieve a bucket policy by its bucket.
 
     ```python
     import pulumi
@@ -106,7 +109,7 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
     ```
 
 
-    :param str bucket: The bucket name.
+    :param str bucket: The name of the bucket.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     __args__ = dict()
@@ -127,10 +130,13 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketPolicyResult]:
     """
-    Gets information about the Bucket's policy.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+
+    ## Retrieve the bucket policy of a bucket
+
+    The following command allows you to retrieve a bucket policy by its bucket.
 
     ```python
     import pulumi
@@ -140,7 +146,7 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str bucket: The bucket name.
+    :param str bucket: The name of the bucket.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     __args__ = dict()

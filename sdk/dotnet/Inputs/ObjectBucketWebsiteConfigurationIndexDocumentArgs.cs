@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ObjectBucketWebsiteConfigurationIndexDocumentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A suffix that is appended to a request that is for a directory on the website endpoint.
+        /// A suffix that is appended to a request targeting a specific directory on the website endpoint.
         /// 
         /// &gt; **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
         /// </summary>

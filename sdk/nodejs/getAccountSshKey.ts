@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to get SSH key information based on its ID or name.
+ * The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+ *
+ * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
  */
 export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountSshKeyResult> {
     args = args || {};
@@ -22,15 +24,15 @@ export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.Invo
  */
 export interface GetAccountSshKeyArgs {
     /**
-     * The SSH key name.
+     * The name of the SSH key.
      */
     name?: string;
     /**
-     * `projectId`) The ID of the project the SSH key is associated with.
+     * `projectId`) The unique identifier of the project with which the SSH key is associated.
      */
     projectId?: string;
     /**
-     * The SSH key id.
+     * The unique identifier of the SSH key.
      *
      * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */
@@ -50,19 +52,21 @@ export interface GetAccountSshKeyResult {
     readonly id: string;
     readonly name?: string;
     /**
-     * The ID of the organization the SSH key is associated with.
+     * The unique identifier of the Organization with which the SSH key is associated.
      */
     readonly organizationId: string;
     readonly projectId?: string;
     /**
-     * The SSH public key string
+     * The string of the SSH public key.
      */
     readonly publicKey: string;
     readonly sshKeyId?: string;
     readonly updatedAt: string;
 }
 /**
- * Use this data source to get SSH key information based on its ID or name.
+ * The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+ *
+ * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
  */
 export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountSshKeyResult> {
     args = args || {};
@@ -79,15 +83,15 @@ export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?:
  */
 export interface GetAccountSshKeyOutputArgs {
     /**
-     * The SSH key name.
+     * The name of the SSH key.
      */
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the SSH key is associated with.
+     * `projectId`) The unique identifier of the project with which the SSH key is associated.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The SSH key id.
+     * The unique identifier of the SSH key.
      *
      * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */

@@ -5,20 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+ * The `scaleway.ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
- * For more information consult
- * the [documentation](https://www.scaleway.com/en/docs/serverless/containers/)
- * .
- *
- * For more details about the limitation
- * check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/)
- * .
- *
- * You can check also
- * our [containers cron api documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#crons-942bf4).
+ * Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
  *
  * ## Example Usage
+ *
+ * The following command allows you to add a CRON trigger to a Serverless Container.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -48,7 +41,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Container Cron can be imported using the `{region}/{id}`, e.g.
+ * Container Cron can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -86,30 +79,27 @@ export class ContainerCron extends pulumi.CustomResource {
 
     /**
      * The key-value mapping to define arguments that will be passed to your container’s event object
-     * during
      */
     public readonly args!: pulumi.Output<string>;
     /**
-     * The container ID to link with your cron.
+     * The unique identifier of the container to link to your CRON trigger.
      */
     public readonly containerId!: pulumi.Output<string>;
     /**
-     * The name of the container cron. If not provided, the name is generated.
-     * during
+     * The name of the container CRON trigger. If not provided, a random name is generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * (Defaults to provider `region`) The region
-     * in where the job was created.
+     * in which the CRON trigger is created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-     * executed.
+     * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
      */
     public readonly schedule!: pulumi.Output<string>;
     /**
-     * The cron status.
+     * The CRON status.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
@@ -161,30 +151,27 @@ export class ContainerCron extends pulumi.CustomResource {
 export interface ContainerCronState {
     /**
      * The key-value mapping to define arguments that will be passed to your container’s event object
-     * during
      */
     args?: pulumi.Input<string>;
     /**
-     * The container ID to link with your cron.
+     * The unique identifier of the container to link to your CRON trigger.
      */
     containerId?: pulumi.Input<string>;
     /**
-     * The name of the container cron. If not provided, the name is generated.
-     * during
+     * The name of the container CRON trigger. If not provided, a random name is generated.
      */
     name?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region
-     * in where the job was created.
+     * in which the CRON trigger is created.
      */
     region?: pulumi.Input<string>;
     /**
-     * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-     * executed.
+     * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
      */
     schedule?: pulumi.Input<string>;
     /**
-     * The cron status.
+     * The CRON status.
      */
     status?: pulumi.Input<string>;
 }
@@ -195,26 +182,23 @@ export interface ContainerCronState {
 export interface ContainerCronArgs {
     /**
      * The key-value mapping to define arguments that will be passed to your container’s event object
-     * during
      */
     args: pulumi.Input<string>;
     /**
-     * The container ID to link with your cron.
+     * The unique identifier of the container to link to your CRON trigger.
      */
     containerId: pulumi.Input<string>;
     /**
-     * The name of the container cron. If not provided, the name is generated.
-     * during
+     * The name of the container CRON trigger. If not provided, a random name is generated.
      */
     name?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region
-     * in where the job was created.
+     * in which the CRON trigger is created.
      */
     region?: pulumi.Input<string>;
     /**
-     * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-     * executed.
+     * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
      */
     schedule: pulumi.Input<string>;
 }

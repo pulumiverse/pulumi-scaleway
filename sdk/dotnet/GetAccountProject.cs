@@ -13,13 +13,17 @@ namespace Pulumiverse.Scaleway
     public static class GetAccountProject
     {
         /// <summary>
-        /// Gets information about an existing Project.
+        /// The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+        /// 
+        /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// </summary>
         public static Task<GetAccountProjectResult> InvokeAsync(GetAccountProjectArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about an existing Project.
+        /// The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+        /// 
+        /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// </summary>
         public static Output<GetAccountProjectResult> Invoke(GetAccountProjectInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectInvokeArgs(), options.WithDefaults());
@@ -36,14 +40,15 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the Project is associated with.
-        /// If no default organization_id is set, one must be set explicitly in this datasource
+        /// The unique identifier of the Organization with which the Project is associated.
+        /// 
+        /// If no default `organization_id` is set, one must be set explicitly in this datasource
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
         /// <summary>
-        /// The ID of the Project.
+        /// The unique identifier of the Project.
         /// Only one of the `name` and `project_id` should be specified.
         /// </summary>
         [Input("projectId")]
@@ -65,14 +70,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the Project is associated with.
-        /// If no default organization_id is set, one must be set explicitly in this datasource
+        /// The unique identifier of the Organization with which the Project is associated.
+        /// 
+        /// If no default `organization_id` is set, one must be set explicitly in this datasource
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The ID of the Project.
+        /// The unique identifier of the Project.
         /// Only one of the `name` and `project_id` should be specified.
         /// </summary>
         [Input("projectId")]

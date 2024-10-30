@@ -34,17 +34,19 @@ class ObjectItemArgs:
         """
         The set of arguments for constructing a ObjectItem resource.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
-        :param pulumi.Input[str] key: The path of the object.
+        :param pulumi.Input[str] key: The path to the object.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+               
+               > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file.
+        :param pulumi.Input[str] hash: Hash of the file, used to trigger the upload on file change.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
-        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
+        :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
+        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -85,7 +87,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
         """
-        The path of the object.
+        The path to the object.
         """
         return pulumi.get(self, "key")
 
@@ -110,6 +112,8 @@ class ObjectItemArgs:
     def content_base64(self) -> Optional[pulumi.Input[str]]:
         """
         The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+
+        > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
         """
         return pulumi.get(self, "content_base64")
 
@@ -121,7 +125,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def file(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
+        The name of the file to upload, defaults to an empty file.
         """
         return pulumi.get(self, "file")
 
@@ -133,7 +137,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def hash(self) -> Optional[pulumi.Input[str]]:
         """
-        Hash of the file, used to trigger upload on file change
+        Hash of the file, used to trigger the upload on file change.
         """
         return pulumi.get(self, "hash")
 
@@ -145,7 +149,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of metadata used for the object, keys must be lowercase
+        Map of metadata used for the object (keys must be lowercase).
         """
         return pulumi.get(self, "metadata")
 
@@ -169,7 +173,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The Scaleway region this bucket resides in.
+        The Scaleway region the bucket resides in.
         """
         return pulumi.get(self, "region")
 
@@ -181,7 +185,7 @@ class ObjectItemArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         """
         return pulumi.get(self, "storage_class")
 
@@ -193,7 +197,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of tags
+        Map of tags.
         """
         return pulumi.get(self, "tags")
 
@@ -205,7 +209,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def visibility(self) -> Optional[pulumi.Input[str]]:
         """
-        Visibility of the object, `public-read` or `private`
+        Visibility of the object, `public-read` or `private`.
         """
         return pulumi.get(self, "visibility")
 
@@ -234,15 +238,17 @@ class _ObjectItemState:
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
-        :param pulumi.Input[str] key: The path of the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+               
+               > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file.
+        :param pulumi.Input[str] hash: Hash of the file, used to trigger the upload on file change.
+        :param pulumi.Input[str] key: The path to the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
-        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
+        :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
+        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
@@ -298,6 +304,8 @@ class _ObjectItemState:
     def content_base64(self) -> Optional[pulumi.Input[str]]:
         """
         The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+
+        > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
         """
         return pulumi.get(self, "content_base64")
 
@@ -309,7 +317,7 @@ class _ObjectItemState:
     @pulumi.getter
     def file(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
+        The name of the file to upload, defaults to an empty file.
         """
         return pulumi.get(self, "file")
 
@@ -321,7 +329,7 @@ class _ObjectItemState:
     @pulumi.getter
     def hash(self) -> Optional[pulumi.Input[str]]:
         """
-        Hash of the file, used to trigger upload on file change
+        Hash of the file, used to trigger the upload on file change.
         """
         return pulumi.get(self, "hash")
 
@@ -333,7 +341,7 @@ class _ObjectItemState:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        The path of the object.
+        The path to the object.
         """
         return pulumi.get(self, "key")
 
@@ -345,7 +353,7 @@ class _ObjectItemState:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of metadata used for the object, keys must be lowercase
+        Map of metadata used for the object (keys must be lowercase).
         """
         return pulumi.get(self, "metadata")
 
@@ -369,7 +377,7 @@ class _ObjectItemState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The Scaleway region this bucket resides in.
+        The Scaleway region the bucket resides in.
         """
         return pulumi.get(self, "region")
 
@@ -381,7 +389,7 @@ class _ObjectItemState:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         """
         return pulumi.get(self, "storage_class")
 
@@ -393,7 +401,7 @@ class _ObjectItemState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of tags
+        Map of tags.
         """
         return pulumi.get(self, "tags")
 
@@ -405,7 +413,7 @@ class _ObjectItemState:
     @pulumi.getter
     def visibility(self) -> Optional[pulumi.Input[str]]:
         """
-        Visibility of the object, `public-read` or `private`
+        Visibility of the object, `public-read` or `private`.
         """
         return pulumi.get(self, "visibility")
 
@@ -433,12 +441,13 @@ class ObjectItem(pulumi.CustomResource):
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway object storage objects.
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
         ## Import
 
-        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
 
         bash
 
@@ -461,15 +470,17 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
-        :param pulumi.Input[str] key: The path of the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+               
+               > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file.
+        :param pulumi.Input[str] hash: Hash of the file, used to trigger the upload on file change.
+        :param pulumi.Input[str] key: The path to the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
-        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
+        :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
+        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
         ...
     @overload
@@ -478,12 +489,13 @@ class ObjectItem(pulumi.CustomResource):
                  args: ObjectItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway object storage objects.
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
         ## Import
 
-        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+        Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
 
         bash
 
@@ -585,15 +597,17 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[str] hash: Hash of the file, used to trigger upload on file change
-        :param pulumi.Input[str] key: The path of the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object, keys must be lowercase
+               
+               > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        :param pulumi.Input[str] file: The name of the file to upload, defaults to an empty file.
+        :param pulumi.Input[str] hash: Hash of the file, used to trigger the upload on file change.
+        :param pulumi.Input[str] key: The path to the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
-        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
+        :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
+        :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -634,6 +648,8 @@ class ObjectItem(pulumi.CustomResource):
     def content_base64(self) -> pulumi.Output[Optional[str]]:
         """
         The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+
+        > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
         """
         return pulumi.get(self, "content_base64")
 
@@ -641,7 +657,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def file(self) -> pulumi.Output[Optional[str]]:
         """
-        The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
+        The name of the file to upload, defaults to an empty file.
         """
         return pulumi.get(self, "file")
 
@@ -649,7 +665,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def hash(self) -> pulumi.Output[Optional[str]]:
         """
-        Hash of the file, used to trigger upload on file change
+        Hash of the file, used to trigger the upload on file change.
         """
         return pulumi.get(self, "hash")
 
@@ -657,7 +673,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def key(self) -> pulumi.Output[str]:
         """
-        The path of the object.
+        The path to the object.
         """
         return pulumi.get(self, "key")
 
@@ -665,7 +681,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Map of metadata used for the object, keys must be lowercase
+        Map of metadata used for the object (keys must be lowercase).
         """
         return pulumi.get(self, "metadata")
 
@@ -681,7 +697,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The Scaleway region this bucket resides in.
+        The Scaleway region the bucket resides in.
         """
         return pulumi.get(self, "region")
 
@@ -689,7 +705,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Output[Optional[str]]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         """
         return pulumi.get(self, "storage_class")
 
@@ -697,7 +713,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Map of tags
+        Map of tags.
         """
         return pulumi.get(self, "tags")
 
@@ -705,7 +721,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def visibility(self) -> pulumi.Output[str]:
         """
-        Visibility of the object, `public-read` or `private`
+        Visibility of the object, `public-read` or `private`.
         """
         return pulumi.get(self, "visibility")
 

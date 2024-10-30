@@ -29,8 +29,8 @@ class ObjectBucketWebsiteConfigurationArgs:
         """
         The set of arguments for constructing a ObjectBucketWebsiteConfiguration resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index document for the website detailed below.
-        :param pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error document for the website detailed below.
+        :param pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index file for the website detailed below.
+        :param pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error file for the website detailed below.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -59,7 +59,7 @@ class ObjectBucketWebsiteConfigurationArgs:
     @pulumi.getter(name="indexDocument")
     def index_document(self) -> pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs']:
         """
-        The name of the index document for the website detailed below.
+        The name of the index file for the website detailed below.
         """
         return pulumi.get(self, "index_document")
 
@@ -71,7 +71,7 @@ class ObjectBucketWebsiteConfigurationArgs:
     @pulumi.getter(name="errorDocument")
     def error_document(self) -> Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]:
         """
-        The name of the error document for the website detailed below.
+        The name of the error file for the website detailed below.
         """
         return pulumi.get(self, "error_document")
 
@@ -117,8 +117,8 @@ class _ObjectBucketWebsiteConfigurationState:
         """
         Input properties used for looking up and filtering ObjectBucketWebsiteConfiguration resources.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error document for the website detailed below.
-        :param pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index document for the website detailed below.
+        :param pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error file for the website detailed below.
+        :param pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] website_domain: The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
@@ -155,7 +155,7 @@ class _ObjectBucketWebsiteConfigurationState:
     @pulumi.getter(name="errorDocument")
     def error_document(self) -> Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]:
         """
-        The name of the error document for the website detailed below.
+        The name of the error file for the website detailed below.
         """
         return pulumi.get(self, "error_document")
 
@@ -167,7 +167,7 @@ class _ObjectBucketWebsiteConfigurationState:
     @pulumi.getter(name="indexDocument")
     def index_document(self) -> Optional[pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]:
         """
-        The name of the index document for the website detailed below.
+        The name of the index file for the website detailed below.
         """
         return pulumi.get(self, "index_document")
 
@@ -236,8 +236,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides an Object bucket website configuration resource.
-        For more information, see [Hosting Websites on Object bucket](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/).
+        The `ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/) for more information on bucket websites.
 
         ## Example Usage
 
@@ -255,7 +256,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
             })
         ```
 
-        ### With `Policy`
+        ### With A Bucket Policy
 
         ```python
         import pulumi
@@ -287,7 +288,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Import
 
-        Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+        Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
         bash
 
@@ -308,8 +309,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error document for the website detailed below.
-        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index document for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error file for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -320,8 +321,9 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  args: ObjectBucketWebsiteConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides an Object bucket website configuration resource.
-        For more information, see [Hosting Websites on Object bucket](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/).
+        The `ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/) for more information on bucket websites.
 
         ## Example Usage
 
@@ -339,7 +341,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
             })
         ```
 
-        ### With `Policy`
+        ### With A Bucket Policy
 
         ```python
         import pulumi
@@ -371,7 +373,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         ## Import
 
-        Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+        Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
         bash
 
@@ -454,8 +456,8 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error document for the website detailed below.
-        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index document for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error file for the website detailed below.
+        :param pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] website_domain: The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
@@ -486,7 +488,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="errorDocument")
     def error_document(self) -> pulumi.Output[Optional['outputs.ObjectBucketWebsiteConfigurationErrorDocument']]:
         """
-        The name of the error document for the website detailed below.
+        The name of the error file for the website detailed below.
         """
         return pulumi.get(self, "error_document")
 
@@ -494,7 +496,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="indexDocument")
     def index_document(self) -> pulumi.Output['outputs.ObjectBucketWebsiteConfigurationIndexDocument']:
         """
-        The name of the index document for the website detailed below.
+        The name of the index file for the website detailed below.
         """
         return pulumi.get(self, "index_document")
 

@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class ObjectBucketLockConfigurationRuleDefaultRetention
     {
         /// <summary>
-        /// The number of days that you want to specify for the default retention period.
+        /// The number of days you want to specify for the default retention period.
         /// </summary>
         public readonly int? Days;
         /// <summary>
-        /// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+        /// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
         /// </summary>
         public readonly string Mode;
         /// <summary>
-        /// The number of years that you want to specify for the default retention period.
+        /// The number of years you want to specify for the default retention period.
         /// </summary>
         public readonly int? Years;
 

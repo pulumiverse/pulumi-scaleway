@@ -5,15 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+ * The `scaleway.FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
- * For more details about the limitation
- * check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
- *
- * You can check also
- * our [functions cron api documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#crons-942bf4).
+ * Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
  *
  * ## Example Usage
+ *
+ * The following command allows you to add a CRON trigger to a Serverless Function.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -46,7 +44,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Container Cron can be imported using the `{region}/{id}`, e.g.
+ * Function Cron can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -84,29 +82,27 @@ export class FunctionCron extends pulumi.CustomResource {
 
     /**
      * The key-value mapping to define arguments that will be passed to your function’s event object
-     * during
      */
     public readonly args!: pulumi.Output<string>;
     /**
-     * The function ID to link with your cron.
+     * The unique identifier of the function to link to your CRON trigger.
      */
     public readonly functionId!: pulumi.Output<string>;
     /**
-     * The name of the cron. If not provided, the name is generated.
+     * The name of the function CRON trigger. If not provided, a random name is generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * `region`) The region
-     * in where the job was created.
+     * in which the function was created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-     * executed.
+     * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */
     public readonly schedule!: pulumi.Output<string>;
     /**
-     * The cron status.
+     * The CRON status.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
@@ -158,29 +154,27 @@ export class FunctionCron extends pulumi.CustomResource {
 export interface FunctionCronState {
     /**
      * The key-value mapping to define arguments that will be passed to your function’s event object
-     * during
      */
     args?: pulumi.Input<string>;
     /**
-     * The function ID to link with your cron.
+     * The unique identifier of the function to link to your CRON trigger.
      */
     functionId?: pulumi.Input<string>;
     /**
-     * The name of the cron. If not provided, the name is generated.
+     * The name of the function CRON trigger. If not provided, a random name is generated.
      */
     name?: pulumi.Input<string>;
     /**
      * `region`) The region
-     * in where the job was created.
+     * in which the function was created.
      */
     region?: pulumi.Input<string>;
     /**
-     * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-     * executed.
+     * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */
     schedule?: pulumi.Input<string>;
     /**
-     * The cron status.
+     * The CRON status.
      */
     status?: pulumi.Input<string>;
 }
@@ -191,25 +185,23 @@ export interface FunctionCronState {
 export interface FunctionCronArgs {
     /**
      * The key-value mapping to define arguments that will be passed to your function’s event object
-     * during
      */
     args: pulumi.Input<string>;
     /**
-     * The function ID to link with your cron.
+     * The unique identifier of the function to link to your CRON trigger.
      */
     functionId: pulumi.Input<string>;
     /**
-     * The name of the cron. If not provided, the name is generated.
+     * The name of the function CRON trigger. If not provided, a random name is generated.
      */
     name?: pulumi.Input<string>;
     /**
      * `region`) The region
-     * in where the job was created.
+     * in which the function was created.
      */
     region?: pulumi.Input<string>;
     /**
-     * Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-     * executed.
+     * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */
     schedule: pulumi.Input<string>;
 }

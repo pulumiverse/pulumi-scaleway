@@ -166,10 +166,16 @@ def get_object_bucket(name: Optional[str] = None,
                       region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketResult:
     """
-    Gets information about the Bucket.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+
+    ## Retrieve an Object Storage bucket
+
+    The following commands allow you to:
+
+    - retrieve a bucket by its name
+    - retrieve a bucket by its ID
 
     ```python
     import pulumi
@@ -184,7 +190,7 @@ def get_object_bucket(name: Optional[str] = None,
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
 
-    ### Fetching the bucket from a specific project
+    ## Retrieve a bucket from a specific project
 
     ```python
     import pulumi
@@ -195,7 +201,7 @@ def get_object_bucket(name: Optional[str] = None,
     ```
 
 
-    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
+    :param str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param str region: `region`) The region in which the bucket exists.
     """
     __args__ = dict()
@@ -224,10 +230,16 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketResult]:
     """
-    Gets information about the Bucket.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+
+    ## Retrieve an Object Storage bucket
+
+    The following commands allow you to:
+
+    - retrieve a bucket by its name
+    - retrieve a bucket by its ID
 
     ```python
     import pulumi
@@ -242,7 +254,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
 
-    ### Fetching the bucket from a specific project
+    ## Retrieve a bucket from a specific project
 
     ```python
     import pulumi
@@ -253,7 +265,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
+    :param str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param str region: `region`) The region in which the bucket exists.
     """
     __args__ = dict()

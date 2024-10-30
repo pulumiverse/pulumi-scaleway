@@ -11,10 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Container domain name bindings.
-    /// You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
+    /// The `scaleway.ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// 
+    /// Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// The commands below shows how to bind a custom domain name to a container.
     /// 
     /// ### Simple
     /// 
@@ -95,7 +98,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container domain binding can be imported using the `{region}/{id}`, e.g.
+    /// Container domain binding can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -107,7 +110,7 @@ namespace Pulumiverse.Scaleway
     public partial class ContainerDomain : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the container.
+        /// The unique identifier of the container.
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
@@ -119,13 +122,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the container exists
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The URL used to query the container
+        /// The URL used to query the container.
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
@@ -178,7 +181,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ContainerDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the container.
+        /// The unique identifier of the container.
         /// </summary>
         [Input("containerId", required: true)]
         public Input<string> ContainerId { get; set; } = null!;
@@ -190,7 +193,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Hostname { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the container exists
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -204,7 +207,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ContainerDomainState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the container.
+        /// The unique identifier of the container.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -216,13 +219,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the container exists
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The URL used to query the container
+        /// The URL used to query the container.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

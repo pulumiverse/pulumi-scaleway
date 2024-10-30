@@ -5,32 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Functions.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
- *
- * ## Example Usage
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.FunctionNamespace("main", {
- *     name: "main-function-namespace",
- *     description: "Main function namespace",
- * });
- * const mainFunction = new scaleway.Function("main", {
- *     namespaceId: main.id,
- *     runtime: "go118",
- *     handler: "Handle",
- *     privacy: "private",
- * });
- * ```
- *
  * ## Import
  *
- * Functions can be imported using the `{region}/{id}`, e.g.
+ * Functions can be imported using, `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -67,7 +44,7 @@ export class Function extends pulumi.CustomResource {
     }
 
     /**
-     * The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
+     * The CPU limit in mVCPU for your function.
      */
     public /*out*/ readonly cpuLimit!: pulumi.Output<number>;
     public readonly deploy!: pulumi.Output<boolean | undefined>;
@@ -76,15 +53,15 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The native domain name of the function
+     * The native domain name of the function.
      */
     public /*out*/ readonly domainName!: pulumi.Output<string>;
     /**
-     * The environment variables of the function.
+     * The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
      */
     public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
+     * Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
      */
     public readonly handler!: pulumi.Output<string>;
     /**
@@ -92,25 +69,25 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly httpOption!: pulumi.Output<string | undefined>;
     /**
-     * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
+     * The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
      */
     public readonly maxScale!: pulumi.Output<number | undefined>;
     /**
-     * Memory limit in MB for your function, defaults to 128MB
+     * The memory resources in MB to allocate to each function. Defaults to 256 MB.
      */
     public readonly memoryLimit!: pulumi.Output<number | undefined>;
     /**
-     * Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
+     * The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `minScale` greater than 0 will cause your function to run constantly.
      */
     public readonly minScale!: pulumi.Output<number | undefined>;
     /**
-     * The unique name of the function.
-     *
-     * > **Important** Updates to `name` will recreate the function.
+     * The unique name of the function name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The function namespace ID of the function.
+     * The Functions namespace ID of the function.
+     *
+     * > **Important** Updating the `name` argument will recreate the function.
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
@@ -118,11 +95,11 @@ export class Function extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+     * The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
      */
     public readonly privacy!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The ID of the project the functions namespace is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -130,7 +107,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
      */
     public readonly runtime!: pulumi.Output<string>;
     /**
@@ -138,15 +115,15 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly sandbox!: pulumi.Output<string>;
     /**
-     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
      */
     public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Holds the max duration (in seconds) the function is allowed for responding to a request
+     * The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
      */
     public readonly timeout!: pulumi.Output<number>;
     /**
-     * Location of the zip file to upload containing your function sources
+     * Path to the zip file containing your function sources to upload.
      */
     public readonly zipFile!: pulumi.Output<string | undefined>;
     /**
@@ -238,7 +215,7 @@ export class Function extends pulumi.CustomResource {
  */
 export interface FunctionState {
     /**
-     * The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
+     * The CPU limit in mVCPU for your function.
      */
     cpuLimit?: pulumi.Input<number>;
     deploy?: pulumi.Input<boolean>;
@@ -247,15 +224,15 @@ export interface FunctionState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The native domain name of the function
+     * The native domain name of the function.
      */
     domainName?: pulumi.Input<string>;
     /**
-     * The environment variables of the function.
+     * The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
+     * Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
      */
     handler?: pulumi.Input<string>;
     /**
@@ -263,25 +240,25 @@ export interface FunctionState {
      */
     httpOption?: pulumi.Input<string>;
     /**
-     * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
+     * The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
      */
     maxScale?: pulumi.Input<number>;
     /**
-     * Memory limit in MB for your function, defaults to 128MB
+     * The memory resources in MB to allocate to each function. Defaults to 256 MB.
      */
     memoryLimit?: pulumi.Input<number>;
     /**
-     * Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
+     * The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `minScale` greater than 0 will cause your function to run constantly.
      */
     minScale?: pulumi.Input<number>;
     /**
-     * The unique name of the function.
-     *
-     * > **Important** Updates to `name` will recreate the function.
+     * The unique name of the function name.
      */
     name?: pulumi.Input<string>;
     /**
-     * The function namespace ID of the function.
+     * The Functions namespace ID of the function.
+     *
+     * > **Important** Updating the `name` argument will recreate the function.
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -289,11 +266,11 @@ export interface FunctionState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+     * The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
      */
     privacy?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The ID of the project the functions namespace is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -301,7 +278,7 @@ export interface FunctionState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
      */
     runtime?: pulumi.Input<string>;
     /**
@@ -309,15 +286,15 @@ export interface FunctionState {
      */
     sandbox?: pulumi.Input<string>;
     /**
-     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Holds the max duration (in seconds) the function is allowed for responding to a request
+     * The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
      */
     timeout?: pulumi.Input<number>;
     /**
-     * Location of the zip file to upload containing your function sources
+     * Path to the zip file containing your function sources to upload.
      */
     zipFile?: pulumi.Input<string>;
     /**
@@ -336,11 +313,11 @@ export interface FunctionArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The environment variables of the function.
+     * The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
+     * Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
      */
     handler: pulumi.Input<string>;
     /**
@@ -348,33 +325,33 @@ export interface FunctionArgs {
      */
     httpOption?: pulumi.Input<string>;
     /**
-     * Maximum replicas for your function (defaults to 20), our system will scale your functions automatically based on incoming workload, but will never scale the number of replicas above the configured max_scale.
+     * The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
      */
     maxScale?: pulumi.Input<number>;
     /**
-     * Memory limit in MB for your function, defaults to 128MB
+     * The memory resources in MB to allocate to each function. Defaults to 256 MB.
      */
     memoryLimit?: pulumi.Input<number>;
     /**
-     * Minimum replicas for your function, defaults to 0, Note that a function is billed when it gets executed, and using a minScale greater than 0 will cause your function container to run constantly.
+     * The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `minScale` greater than 0 will cause your function to run constantly.
      */
     minScale?: pulumi.Input<number>;
     /**
-     * The unique name of the function.
-     *
-     * > **Important** Updates to `name` will recreate the function.
+     * The unique name of the function name.
      */
     name?: pulumi.Input<string>;
     /**
-     * The function namespace ID of the function.
+     * The Functions namespace ID of the function.
+     *
+     * > **Important** Updating the `name` argument will recreate the function.
      */
     namespaceId: pulumi.Input<string>;
     /**
-     * Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
+     * The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
      */
     privacy: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The ID of the project the functions namespace is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -382,7 +359,7 @@ export interface FunctionArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
+     * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
      */
     runtime: pulumi.Input<string>;
     /**
@@ -390,15 +367,15 @@ export interface FunctionArgs {
      */
     sandbox?: pulumi.Input<string>;
     /**
-     * The [secret environment](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) variables of the function.
+     * The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Holds the max duration (in seconds) the function is allowed for responding to a request
+     * The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
      */
     timeout?: pulumi.Input<number>;
     /**
-     * Location of the zip file to upload containing your function sources
+     * Path to the zip file containing your function sources to upload.
      */
     zipFile?: pulumi.Input<string>;
     /**

@@ -233,6 +233,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcPublicGatewayIpReverseDns{}
 	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
 		r = &VpcPublicGatewayPatRule{}
+	case "scaleway:index/vpcRoute:VpcRoute":
+		r = &VpcRoute{}
 	case "scaleway:index/webhosting:Webhosting":
 		r = &Webhosting{}
 	default:
@@ -794,6 +796,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/vpcPublicGatewayPatRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/vpcRoute",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

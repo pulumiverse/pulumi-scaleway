@@ -842,10 +842,10 @@ class ContainerTriggerNats(dict):
                  project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
-        :param str subject: The subject to listen to
-        :param str account_id: ID of the mnq nats account.
-        :param str project_id: ID of the project that contain the mnq nats account, defaults to provider's project
-        :param str region: Region where the mnq nats account is, defaults to provider's region
+        :param str subject: The subject to listen to.
+        :param str account_id: unique identifier of the Messaging and Queuing NATS account.
+        :param str project_id: THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        :param str region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "subject", subject)
         if account_id is not None:
@@ -859,7 +859,7 @@ class ContainerTriggerNats(dict):
     @pulumi.getter
     def subject(self) -> str:
         """
-        The subject to listen to
+        The subject to listen to.
         """
         return pulumi.get(self, "subject")
 
@@ -867,7 +867,7 @@ class ContainerTriggerNats(dict):
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[str]:
         """
-        ID of the mnq nats account.
+        unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
@@ -875,7 +875,7 @@ class ContainerTriggerNats(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         """
-        ID of the project that contain the mnq nats account, defaults to provider's project
+        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -883,7 +883,7 @@ class ContainerTriggerNats(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        Region where the mnq nats account is, defaults to provider's region
+        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -915,10 +915,10 @@ class ContainerTriggerSqs(dict):
                  project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
-        :param str queue: Name of the queue
-        :param str namespace_id: ID of the mnq namespace. Deprecated.
-        :param str project_id: ID of the project where sqs is enabled, defaults to provider's project
-        :param str region: Region where sqs is enabled, defaults to provider's region
+        :param str queue: The name of the SQS queue.
+        :param str namespace_id: ID of the Messaging and Queuing namespace. This argument is deprecated.
+        :param str project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        :param str region: Region where SQS is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
@@ -932,7 +932,7 @@ class ContainerTriggerSqs(dict):
     @pulumi.getter
     def queue(self) -> str:
         """
-        Name of the queue
+        The name of the SQS queue.
         """
         return pulumi.get(self, "queue")
 
@@ -941,7 +941,7 @@ class ContainerTriggerSqs(dict):
     @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[str]:
         """
-        ID of the mnq namespace. Deprecated.
+        ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -949,7 +949,7 @@ class ContainerTriggerSqs(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         """
-        ID of the project where sqs is enabled, defaults to provider's project
+        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -957,7 +957,7 @@ class ContainerTriggerSqs(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        Region where sqs is enabled, defaults to provider's region
+        Region where SQS is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -2076,10 +2076,10 @@ class FunctionTriggerNats(dict):
                  project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
-        :param str subject: The subject to listen to
-        :param str account_id: ID of the mnq nats account.
-        :param str project_id: ID of the project that contain the mnq nats account, defaults to provider's project
-        :param str region: Region where the mnq nats account is, defaults to provider's region
+        :param str subject: The subject to listen to.
+        :param str account_id: unique identifier of the Messaging and Queuing NATS account.
+        :param str project_id: THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        :param str region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "subject", subject)
         if account_id is not None:
@@ -2093,7 +2093,7 @@ class FunctionTriggerNats(dict):
     @pulumi.getter
     def subject(self) -> str:
         """
-        The subject to listen to
+        The subject to listen to.
         """
         return pulumi.get(self, "subject")
 
@@ -2101,7 +2101,7 @@ class FunctionTriggerNats(dict):
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[str]:
         """
-        ID of the mnq nats account.
+        unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
@@ -2109,7 +2109,7 @@ class FunctionTriggerNats(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         """
-        ID of the project that contain the mnq nats account, defaults to provider's project
+        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -2117,7 +2117,7 @@ class FunctionTriggerNats(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        Region where the mnq nats account is, defaults to provider's region
+        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -2149,10 +2149,10 @@ class FunctionTriggerSqs(dict):
                  project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
-        :param str queue: Name of the queue
-        :param str namespace_id: ID of the mnq namespace. Deprecated.
-        :param str project_id: ID of the project that contain the mnq namespace, defaults to provider's project
-        :param str region: Region where the mnq namespace is, defaults to provider's region
+        :param str queue: The name of the SQS queue.
+        :param str namespace_id: ID of the Messaging and Queuing namespace. This argument is deprecated.
+        :param str project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        :param str region: Region where SQS is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
@@ -2166,7 +2166,7 @@ class FunctionTriggerSqs(dict):
     @pulumi.getter
     def queue(self) -> str:
         """
-        Name of the queue
+        The name of the SQS queue.
         """
         return pulumi.get(self, "queue")
 
@@ -2175,7 +2175,7 @@ class FunctionTriggerSqs(dict):
     @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[str]:
         """
-        ID of the mnq namespace. Deprecated.
+        ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -2183,7 +2183,7 @@ class FunctionTriggerSqs(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         """
-        ID of the project that contain the mnq namespace, defaults to provider's project
+        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -2191,7 +2191,7 @@ class FunctionTriggerSqs(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        Region where the mnq namespace is, defaults to provider's region
+        Region where SQS is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -2990,6 +2990,8 @@ class InstanceServerRootVolume(dict):
         suggest = None
         if key == "deleteOnTermination":
             suggest = "delete_on_termination"
+        elif key == "sbsIops":
+            suggest = "sbs_iops"
         elif key == "sizeInGb":
             suggest = "size_in_gb"
         elif key == "volumeId":
@@ -3012,21 +3014,23 @@ class InstanceServerRootVolume(dict):
                  boot: Optional[bool] = None,
                  delete_on_termination: Optional[bool] = None,
                  name: Optional[str] = None,
+                 sbs_iops: Optional[int] = None,
                  size_in_gb: Optional[int] = None,
                  volume_id: Optional[str] = None,
                  volume_type: Optional[str] = None):
         """
         :param bool boot: Set the volume where the boot the server
         :param bool delete_on_termination: Forces deletion of the root volume on instance termination.
+        :param str name: The name of the server.
+        :param int sbs_iops: Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
                
                > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
-        :param str name: The name of the server.
         :param int size_in_gb: Size of the root volume in gigabytes.
                To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
                check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
                Updates to this field will recreate a new resource.
         :param str volume_id: The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
-        :param str volume_type: Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
+        :param str volume_type: Volume type of root volume, can be `b_ssd`, `l_ssd` or `sbs_volume`, default value depends on server type
         """
         if boot is not None:
             pulumi.set(__self__, "boot", boot)
@@ -3034,6 +3038,8 @@ class InstanceServerRootVolume(dict):
             pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if sbs_iops is not None:
+            pulumi.set(__self__, "sbs_iops", sbs_iops)
         if size_in_gb is not None:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
         if volume_id is not None:
@@ -3054,8 +3060,6 @@ class InstanceServerRootVolume(dict):
     def delete_on_termination(self) -> Optional[bool]:
         """
         Forces deletion of the root volume on instance termination.
-
-        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         """
         return pulumi.get(self, "delete_on_termination")
 
@@ -3066,6 +3070,16 @@ class InstanceServerRootVolume(dict):
         The name of the server.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sbsIops")
+    def sbs_iops(self) -> Optional[int]:
+        """
+        Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+
+        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+        """
+        return pulumi.get(self, "sbs_iops")
 
     @property
     @pulumi.getter(name="sizeInGb")
@@ -3090,7 +3104,7 @@ class InstanceServerRootVolume(dict):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[str]:
         """
-        Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
+        Volume type of root volume, can be `b_ssd`, `l_ssd` or `sbs_volume`, default value depends on server type
         """
         return pulumi.get(self, "volume_type")
 
@@ -5168,7 +5182,7 @@ class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
                  type: str,
                  display_name: Optional[str] = None):
         """
-        :param str id: The `region`,`bucket` and `acl` separated by (`/`).
+        :param str id: The `region`, `bucket` and `acl` separated by (`/`).
         :param str type: Type of grantee. Valid values: `CanonicalUser`
         """
         pulumi.set(__self__, "id", id)
@@ -5180,7 +5194,7 @@ class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The `region`,`bucket` and `acl` separated by (`/`).
+        The `region`, `bucket` and `acl` separated by (`/`).
         """
         return pulumi.get(self, "id")
 
@@ -5221,7 +5235,7 @@ class ObjectBucketAclAccessControlPolicyOwner(dict):
                  id: str,
                  display_name: Optional[str] = None):
         """
-        :param str id: The `region`,`bucket` and `acl` separated by (`/`).
+        :param str id: The `region`, `bucket` and `acl` separated by (`/`).
         :param str display_name: The project ID of the grantee.
         """
         pulumi.set(__self__, "id", id)
@@ -5232,7 +5246,7 @@ class ObjectBucketAclAccessControlPolicyOwner(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The `region`,`bucket` and `acl` separated by (`/`).
+        The `region`, `bucket` and `acl` separated by (`/`).
         """
         return pulumi.get(self, "id")
 
@@ -5279,11 +5293,11 @@ class ObjectBucketCorsRule(dict):
                  expose_headers: Optional[Sequence[str]] = None,
                  max_age_seconds: Optional[int] = None):
         """
-        :param Sequence[str] allowed_methods: Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        :param Sequence[str] allowed_methods: Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         :param Sequence[str] allowed_origins: Specifies which origins are allowed.
         :param Sequence[str] allowed_headers: Specifies which headers are allowed.
-        :param Sequence[str] expose_headers: Specifies expose header in the response.
-        :param int max_age_seconds: Specifies time in seconds that browser can cache the response for a preflight request.
+        :param Sequence[str] expose_headers: Specifies header exposure in the response.
+        :param int max_age_seconds: Specifies time in seconds that the browser can cache the response for a preflight request.
         """
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
@@ -5298,7 +5312,7 @@ class ObjectBucketCorsRule(dict):
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> Sequence[str]:
         """
-        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         """
         return pulumi.get(self, "allowed_methods")
 
@@ -5322,7 +5336,7 @@ class ObjectBucketCorsRule(dict):
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Optional[Sequence[str]]:
         """
-        Specifies expose header in the response.
+        Specifies header exposure in the response.
         """
         return pulumi.get(self, "expose_headers")
 
@@ -5330,7 +5344,7 @@ class ObjectBucketCorsRule(dict):
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> Optional[int]:
         """
-        Specifies time in seconds that browser can cache the response for a preflight request.
+        Specifies time in seconds that the browser can cache the response for a preflight request.
         """
         return pulumi.get(self, "max_age_seconds")
 
@@ -5363,17 +5377,15 @@ class ObjectBucketLifecycleRule(dict):
                  tags: Optional[Mapping[str, str]] = None,
                  transitions: Optional[Sequence['outputs.ObjectBucketLifecycleRuleTransition']] = None):
         """
-        :param bool enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        :param bool enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         :param int abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
                
-               * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
-        :param 'ObjectBucketLifecycleRuleExpirationArgs' expiration: Specifies a period in the object's expire (documented below).
+               > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+        :param 'ObjectBucketLifecycleRuleExpirationArgs' expiration: Specifies a period in the object's expire
         :param str id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         :param str prefix: Object key prefix identifying one or more objects to which the rule applies.
         :param Mapping[str, str] tags: Specifies object tags key and value.
-        :param Sequence['ObjectBucketLifecycleRuleTransitionArgs'] transitions: Specifies a period in the object's transitions (documented below).
-               
-               At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+        :param Sequence['ObjectBucketLifecycleRuleTransitionArgs'] transitions: Define when objects transition to another storage class
         """
         pulumi.set(__self__, "enabled", enabled)
         if abort_incomplete_multipart_upload_days is not None:
@@ -5393,7 +5405,7 @@ class ObjectBucketLifecycleRule(dict):
     @pulumi.getter
     def enabled(self) -> bool:
         """
-        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         """
         return pulumi.get(self, "enabled")
 
@@ -5403,7 +5415,7 @@ class ObjectBucketLifecycleRule(dict):
         """
         Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
-        * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         """
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
@@ -5411,7 +5423,7 @@ class ObjectBucketLifecycleRule(dict):
     @pulumi.getter
     def expiration(self) -> Optional['outputs.ObjectBucketLifecycleRuleExpiration']:
         """
-        Specifies a period in the object's expire (documented below).
+        Specifies a period in the object's expire
         """
         return pulumi.get(self, "expiration")
 
@@ -5443,9 +5455,7 @@ class ObjectBucketLifecycleRule(dict):
     @pulumi.getter
     def transitions(self) -> Optional[Sequence['outputs.ObjectBucketLifecycleRuleTransition']]:
         """
-        Specifies a period in the object's transitions (documented below).
-
-        At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+        Define when objects transition to another storage class
         """
         return pulumi.get(self, "transitions")
 
@@ -5456,8 +5466,6 @@ class ObjectBucketLifecycleRuleExpiration(dict):
                  days: int):
         """
         :param int days: Specifies the number of days after object creation when the specific rule action takes effect.
-               
-               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         """
         pulumi.set(__self__, "days", days)
 
@@ -5466,8 +5474,6 @@ class ObjectBucketLifecycleRuleExpiration(dict):
     def days(self) -> int:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
-
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         """
         return pulumi.get(self, "days")
 
@@ -5497,6 +5503,12 @@ class ObjectBucketLifecycleRuleTransition(dict):
         """
         :param str storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
                
+               
+               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+               
+               
+               > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
                > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         :param int days: Specifies the number of days after object creation when the specific rule action takes effect.
         """
@@ -5510,6 +5522,12 @@ class ObjectBucketLifecycleRuleTransition(dict):
         """
         Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
+
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+
+
+        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         """
         return pulumi.get(self, "storage_class")
@@ -5565,9 +5583,9 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
                  days: Optional[int] = None,
                  years: Optional[int] = None):
         """
-        :param str mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
-        :param int days: The number of days that you want to specify for the default retention period.
-        :param int years: The number of years that you want to specify for the default retention period.
+        :param str mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        :param int days: The number of days you want to specify for the default retention period.
+        :param int years: The number of years you want to specify for the default retention period.
         """
         pulumi.set(__self__, "mode", mode)
         if days is not None:
@@ -5579,7 +5597,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
     @pulumi.getter
     def mode(self) -> str:
         """
-        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
         """
         return pulumi.get(self, "mode")
 
@@ -5587,7 +5605,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
     @pulumi.getter
     def days(self) -> Optional[int]:
         """
-        The number of days that you want to specify for the default retention period.
+        The number of days you want to specify for the default retention period.
         """
         return pulumi.get(self, "days")
 
@@ -5595,7 +5613,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
     @pulumi.getter
     def years(self) -> Optional[int]:
         """
-        The number of years that you want to specify for the default retention period.
+        The number of years you want to specify for the default retention period.
         """
         return pulumi.get(self, "years")
 
@@ -5642,7 +5660,7 @@ class ObjectBucketWebsiteConfigurationIndexDocument(dict):
     def __init__(__self__, *,
                  suffix: str):
         """
-        :param str suffix: A suffix that is appended to a request that is for a directory on the website endpoint.
+        :param str suffix: A suffix that is appended to a request targeting a specific directory on the website endpoint.
                
                > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
         """
@@ -5652,7 +5670,7 @@ class ObjectBucketWebsiteConfigurationIndexDocument(dict):
     @pulumi.getter
     def suffix(self) -> str:
         """
-        A suffix that is appended to a request that is for a directory on the website endpoint.
+        A suffix that is appended to a request targeting a specific directory on the website endpoint.
 
         > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
         """
@@ -8006,6 +8024,7 @@ class GetInstanceServerRootVolumeResult(dict):
                  boot: bool,
                  delete_on_termination: bool,
                  name: str,
+                 sbs_iops: int,
                  size_in_gb: int,
                  volume_id: str,
                  volume_type: str):
@@ -8013,6 +8032,7 @@ class GetInstanceServerRootVolumeResult(dict):
         :param bool boot: Set the volume where the boot the server
         :param bool delete_on_termination: Forces deletion of the root volume on instance termination.
         :param str name: The server name. Only one of `name` and `server_id` should be specified.
+        :param int sbs_iops: SBS Volume IOPS, only with volume_type as sbs_volume
         :param int size_in_gb: Size of the root volume in gigabytes.
         :param str volume_id: The volume ID of the root volume of the server.
         :param str volume_type: Volume type of the root volume
@@ -8020,6 +8040,7 @@ class GetInstanceServerRootVolumeResult(dict):
         pulumi.set(__self__, "boot", boot)
         pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sbs_iops", sbs_iops)
         pulumi.set(__self__, "size_in_gb", size_in_gb)
         pulumi.set(__self__, "volume_id", volume_id)
         pulumi.set(__self__, "volume_type", volume_type)
@@ -8047,6 +8068,14 @@ class GetInstanceServerRootVolumeResult(dict):
         The server name. Only one of `name` and `server_id` should be specified.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sbsIops")
+    def sbs_iops(self) -> int:
+        """
+        SBS Volume IOPS, only with volume_type as sbs_volume
+        """
+        return pulumi.get(self, "sbs_iops")
 
     @property
     @pulumi.getter(name="sizeInGb")
@@ -10825,7 +10854,7 @@ class GetObjectBucketLifecycleRuleResult(dict):
         :param int abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed
         :param bool enabled: Specifies if the configuration rule is Enabled or Disabled
         :param Sequence['GetObjectBucketLifecycleRuleExpirationArgs'] expirations: Specifies a period in the object's expire
-        :param str id: The unique name of the bucket.
+        :param str id: The unique identifier of the bucket.
         :param str prefix: The prefix identifying one or more objects to which the rule applies
         :param Mapping[str, str] tags: The tags associated with the bucket lifecycle
         :param Sequence['GetObjectBucketLifecycleRuleTransitionArgs'] transitions: Define when objects transition to another storage class
@@ -10866,7 +10895,7 @@ class GetObjectBucketLifecycleRuleResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The unique name of the bucket.
+        The unique identifier of the bucket.
         """
         return pulumi.get(self, "id")
 

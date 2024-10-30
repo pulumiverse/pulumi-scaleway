@@ -94,7 +94,7 @@ import (
 // bash
 //
 // ```sh
-// $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
+// $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type VpcPrivateNetwork struct {
 	pulumi.CustomResourceState

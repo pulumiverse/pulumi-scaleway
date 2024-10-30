@@ -11,12 +11,12 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Serverless Container Namespace.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#namespaces-cdce79).
+// The `ContainerNamespace` resource allows you to
+// for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+//
+// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 //
 // ## Example Usage
-//
-// ### Basic
 //
 // ```go
 // package main
@@ -45,7 +45,7 @@ import (
 //
 // ## Import
 //
-// Namespaces can be imported using the `{region}/{id}`, e.g.
+// Containers namespaces can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -63,15 +63,15 @@ type ContainerNamespace struct {
 	DestroyRegistry pulumi.BoolPtrOutput `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
-	// The unique name of the container namespace.
+	// The unique name of the Containers namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The Organization ID with which the namespace is associated.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
@@ -126,15 +126,15 @@ type containerNamespaceState struct {
 	DestroyRegistry *bool `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The unique name of the container namespace.
+	// The unique name of the Containers namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name *string `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The Organization ID with which the namespace is associated.
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
@@ -153,15 +153,15 @@ type ContainerNamespaceState struct {
 	DestroyRegistry pulumi.BoolPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The unique name of the container namespace.
+	// The unique name of the Containers namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name pulumi.StringPtrInput
-	// The organization ID the namespace is associated with.
+	// The Organization ID with which the namespace is associated.
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
 	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringPtrInput
@@ -184,13 +184,13 @@ type containerNamespaceArgs struct {
 	DestroyRegistry *bool `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The unique name of the container namespace.
+	// The unique name of the Containers namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
@@ -206,13 +206,13 @@ type ContainerNamespaceArgs struct {
 	DestroyRegistry pulumi.BoolPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The unique name of the container namespace.
+	// The unique name of the Containers namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
@@ -322,24 +322,24 @@ func (o ContainerNamespaceOutput) EnvironmentVariables() pulumi.StringMapOutput 
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
-// The unique name of the container namespace.
+// The unique name of the Containers namespace.
 //
-// > **Important** Updates to `name` will recreate the namespace.
+// > **Important** Updates to the `name` argument will recreate the namespace.
 func (o ContainerNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the namespace is associated with.
+// The Organization ID with which the namespace is associated.
 func (o ContainerNamespaceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the namespace is associated with.
+// `projectId`) The unique identifier of the project that contains the namespace.
 func (o ContainerNamespaceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// `region`). The region in which the namespace is created.
 func (o ContainerNamespaceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

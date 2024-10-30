@@ -15,19 +15,19 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class ContainerTriggerNats
     {
         /// <summary>
-        /// ID of the mnq nats account.
+        /// unique identifier of the Messaging and Queuing NATS account.
         /// </summary>
         public readonly string? AccountId;
         /// <summary>
-        /// ID of the project that contain the mnq nats account, defaults to provider's project
+        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
-        /// Region where the mnq nats account is, defaults to provider's region
+        /// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The subject to listen to
+        /// The subject to listen to.
         /// </summary>
         public readonly string Subject;
 

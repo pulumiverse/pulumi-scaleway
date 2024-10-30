@@ -1259,13 +1259,13 @@ func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 }
 
 type ContainerTriggerNats struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject string `pulumi:"subject"`
 }
 
@@ -1281,13 +1281,13 @@ type ContainerTriggerNatsInput interface {
 }
 
 type ContainerTriggerNatsArgs struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject pulumi.StringInput `pulumi:"subject"`
 }
 
@@ -1368,22 +1368,22 @@ func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutputWithContext(c
 	}).(ContainerTriggerNatsPtrOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o ContainerTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o ContainerTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o ContainerTriggerNatsOutput) Subject() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
 }
@@ -1412,7 +1412,7 @@ func (o ContainerTriggerNatsPtrOutput) Elem() ContainerTriggerNatsOutput {
 	}).(ContainerTriggerNatsOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1422,7 +1422,7 @@ func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1432,7 +1432,7 @@ func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1442,7 +1442,7 @@ func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1453,15 +1453,15 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 }
 
 type ContainerTriggerSqs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
-	// ID of the project where sqs is enabled, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue string `pulumi:"queue"`
-	// Region where sqs is enabled, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
 }
 
@@ -1477,15 +1477,15 @@ type ContainerTriggerSqsInput interface {
 }
 
 type ContainerTriggerSqsArgs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// ID of the project where sqs is enabled, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue pulumi.StringInput `pulumi:"queue"`
-	// Region where sqs is enabled, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -1566,24 +1566,24 @@ func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx
 	}).(ContainerTriggerSqsPtrOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project where sqs is enabled, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o ContainerTriggerSqsOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
 }
 
-// Region where sqs is enabled, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o ContainerTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1612,7 +1612,7 @@ func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
 	}).(ContainerTriggerSqsOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
@@ -1624,7 +1624,7 @@ func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project where sqs is enabled, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1634,7 +1634,7 @@ func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1644,7 +1644,7 @@ func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where sqs is enabled, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -4383,13 +4383,13 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 }
 
 type FunctionTriggerNats struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject string `pulumi:"subject"`
 }
 
@@ -4405,13 +4405,13 @@ type FunctionTriggerNatsInput interface {
 }
 
 type FunctionTriggerNatsArgs struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject pulumi.StringInput `pulumi:"subject"`
 }
 
@@ -4492,22 +4492,22 @@ func (o FunctionTriggerNatsOutput) ToFunctionTriggerNatsPtrOutputWithContext(ctx
 	}).(FunctionTriggerNatsPtrOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o FunctionTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o FunctionTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o FunctionTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o FunctionTriggerNatsOutput) Subject() pulumi.StringOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
 }
@@ -4536,7 +4536,7 @@ func (o FunctionTriggerNatsPtrOutput) Elem() FunctionTriggerNatsOutput {
 	}).(FunctionTriggerNatsOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o FunctionTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -4546,7 +4546,7 @@ func (o FunctionTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o FunctionTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -4556,7 +4556,7 @@ func (o FunctionTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o FunctionTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -4566,7 +4566,7 @@ func (o FunctionTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -4577,15 +4577,15 @@ func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 }
 
 type FunctionTriggerSqs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue string `pulumi:"queue"`
-	// Region where the mnq namespace is, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
 }
 
@@ -4601,15 +4601,15 @@ type FunctionTriggerSqsInput interface {
 }
 
 type FunctionTriggerSqsArgs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue pulumi.StringInput `pulumi:"queue"`
-	// Region where the mnq namespace is, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -4690,24 +4690,24 @@ func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsPtrOutputWithContext(ctx c
 	}).(FunctionTriggerSqsPtrOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o FunctionTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o FunctionTriggerSqsOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
 }
 
-// Region where the mnq namespace is, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o FunctionTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -4736,7 +4736,7 @@ func (o FunctionTriggerSqsPtrOutput) Elem() FunctionTriggerSqsOutput {
 	}).(FunctionTriggerSqsOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
@@ -4748,7 +4748,7 @@ func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -4758,7 +4758,7 @@ func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o FunctionTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -4768,7 +4768,7 @@ func (o FunctionTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq namespace is, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -5954,11 +5954,13 @@ type InstanceServerRootVolume struct {
 	// Set the volume where the boot the server
 	Boot *bool `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
-	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 	DeleteOnTermination *bool `pulumi:"deleteOnTermination"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
+	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+	//
+	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	SbsIops *int `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
@@ -5966,7 +5968,7 @@ type InstanceServerRootVolume struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
 	VolumeId *string `pulumi:"volumeId"`
-	// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+	// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -5985,11 +5987,13 @@ type InstanceServerRootVolumeArgs struct {
 	// Set the volume where the boot the server
 	Boot pulumi.BoolPtrInput `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
-	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 	DeleteOnTermination pulumi.BoolPtrInput `pulumi:"deleteOnTermination"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+	//
+	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	SbsIops pulumi.IntPtrInput `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
@@ -5997,7 +6001,7 @@ type InstanceServerRootVolumeArgs struct {
 	SizeInGb pulumi.IntPtrInput `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+	// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`
 }
 
@@ -6084,8 +6088,6 @@ func (o InstanceServerRootVolumeOutput) Boot() pulumi.BoolPtrOutput {
 }
 
 // Forces deletion of the root volume on instance termination.
-//
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 func (o InstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *bool { return v.DeleteOnTermination }).(pulumi.BoolPtrOutput)
 }
@@ -6093,6 +6095,13 @@ func (o InstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutp
 // The name of the server.
 func (o InstanceServerRootVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+//
+// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+func (o InstanceServerRootVolumeOutput) SbsIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceServerRootVolume) *int { return v.SbsIops }).(pulumi.IntPtrOutput)
 }
 
 // Size of the root volume in gigabytes.
@@ -6108,7 +6117,7 @@ func (o InstanceServerRootVolumeOutput) VolumeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
 
-// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 func (o InstanceServerRootVolumeOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.VolumeType }).(pulumi.StringPtrOutput)
 }
@@ -6148,8 +6157,6 @@ func (o InstanceServerRootVolumePtrOutput) Boot() pulumi.BoolPtrOutput {
 }
 
 // Forces deletion of the root volume on instance termination.
-//
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 func (o InstanceServerRootVolumePtrOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *bool {
 		if v == nil {
@@ -6167,6 +6174,18 @@ func (o InstanceServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 		}
 		return v.Name
 	}).(pulumi.StringPtrOutput)
+}
+
+// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+//
+// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+func (o InstanceServerRootVolumePtrOutput) SbsIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceServerRootVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SbsIops
+	}).(pulumi.IntPtrOutput)
 }
 
 // Size of the root volume in gigabytes.
@@ -6192,7 +6211,7 @@ func (o InstanceServerRootVolumePtrOutput) VolumeId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 func (o InstanceServerRootVolumePtrOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *string {
 		if v == nil {
@@ -11760,7 +11779,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntIn
 
 type ObjectBucketAclAccessControlPolicyGrantGrantee struct {
 	DisplayName *string `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id string `pulumi:"id"`
 	// Type of grantee. Valid values: `CanonicalUser`
 	Type string `pulumi:"type"`
@@ -11779,7 +11798,7 @@ type ObjectBucketAclAccessControlPolicyGrantGranteeInput interface {
 
 type ObjectBucketAclAccessControlPolicyGrantGranteeArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id pulumi.StringInput `pulumi:"id"`
 	// Type of grantee. Valid values: `CanonicalUser`
 	Type pulumi.StringInput `pulumi:"type"`
@@ -11866,7 +11885,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulu
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -11909,7 +11928,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) DisplayName() p
 	}).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
@@ -11932,7 +11951,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Type() pulumi.S
 type ObjectBucketAclAccessControlPolicyOwner struct {
 	// The project ID of the grantee.
 	DisplayName *string `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id string `pulumi:"id"`
 }
 
@@ -11950,7 +11969,7 @@ type ObjectBucketAclAccessControlPolicyOwnerInput interface {
 type ObjectBucketAclAccessControlPolicyOwnerArgs struct {
 	// The project ID of the grantee.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -12036,7 +12055,7 @@ func (o ObjectBucketAclAccessControlPolicyOwnerOutput) DisplayName() pulumi.Stri
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyOwner) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyOwnerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyOwner) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -12075,7 +12094,7 @@ func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) DisplayName() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyOwner) *string {
 		if v == nil {
@@ -12088,13 +12107,13 @@ func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) Id() pulumi.StringPtrO
 type ObjectBucketCorsRule struct {
 	// Specifies which headers are allowed.
 	AllowedHeaders []string `pulumi:"allowedHeaders"`
-	// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+	// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
 	AllowedMethods []string `pulumi:"allowedMethods"`
 	// Specifies which origins are allowed.
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
-	// Specifies expose header in the response.
+	// Specifies header exposure in the response.
 	ExposeHeaders []string `pulumi:"exposeHeaders"`
-	// Specifies time in seconds that browser can cache the response for a preflight request.
+	// Specifies time in seconds that the browser can cache the response for a preflight request.
 	MaxAgeSeconds *int `pulumi:"maxAgeSeconds"`
 }
 
@@ -12112,13 +12131,13 @@ type ObjectBucketCorsRuleInput interface {
 type ObjectBucketCorsRuleArgs struct {
 	// Specifies which headers are allowed.
 	AllowedHeaders pulumi.StringArrayInput `pulumi:"allowedHeaders"`
-	// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+	// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
 	AllowedMethods pulumi.StringArrayInput `pulumi:"allowedMethods"`
 	// Specifies which origins are allowed.
 	AllowedOrigins pulumi.StringArrayInput `pulumi:"allowedOrigins"`
-	// Specifies expose header in the response.
+	// Specifies header exposure in the response.
 	ExposeHeaders pulumi.StringArrayInput `pulumi:"exposeHeaders"`
-	// Specifies time in seconds that browser can cache the response for a preflight request.
+	// Specifies time in seconds that the browser can cache the response for a preflight request.
 	MaxAgeSeconds pulumi.IntPtrInput `pulumi:"maxAgeSeconds"`
 }
 
@@ -12178,7 +12197,7 @@ func (o ObjectBucketCorsRuleOutput) AllowedHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.AllowedHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
 func (o ObjectBucketCorsRuleOutput) AllowedMethods() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.AllowedMethods }).(pulumi.StringArrayOutput)
 }
@@ -12188,12 +12207,12 @@ func (o ObjectBucketCorsRuleOutput) AllowedOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
 }
 
-// Specifies expose header in the response.
+// Specifies header exposure in the response.
 func (o ObjectBucketCorsRuleOutput) ExposeHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.ExposeHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies time in seconds that browser can cache the response for a preflight request.
+// Specifies time in seconds that the browser can cache the response for a preflight request.
 func (o ObjectBucketCorsRuleOutput) MaxAgeSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) *int { return v.MaxAgeSeconds }).(pulumi.IntPtrOutput)
 }
@@ -12221,11 +12240,11 @@ func (o ObjectBucketCorsRuleArrayOutput) Index(i pulumi.IntInput) ObjectBucketCo
 type ObjectBucketLifecycleRule struct {
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	//
-	// * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
 	AbortIncompleteMultipartUploadDays *int `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
 	Enabled bool `pulumi:"enabled"`
-	// Specifies a period in the object's expire (documented below).
+	// Specifies a period in the object's expire
 	Expiration *ObjectBucketLifecycleRuleExpiration `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id *string `pulumi:"id"`
@@ -12233,9 +12252,7 @@ type ObjectBucketLifecycleRule struct {
 	Prefix *string `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags map[string]string `pulumi:"tags"`
-	// Specifies a period in the object's transitions (documented below).
-	//
-	// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+	// Define when objects transition to another storage class
 	Transitions []ObjectBucketLifecycleRuleTransition `pulumi:"transitions"`
 }
 
@@ -12253,11 +12270,11 @@ type ObjectBucketLifecycleRuleInput interface {
 type ObjectBucketLifecycleRuleArgs struct {
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	//
-	// * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
 	AbortIncompleteMultipartUploadDays pulumi.IntPtrInput `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Specifies a period in the object's expire (documented below).
+	// Specifies a period in the object's expire
 	Expiration ObjectBucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -12265,9 +12282,7 @@ type ObjectBucketLifecycleRuleArgs struct {
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
-	// Specifies a period in the object's transitions (documented below).
-	//
-	// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+	// Define when objects transition to another storage class
 	Transitions ObjectBucketLifecycleRuleTransitionArrayInput `pulumi:"transitions"`
 }
 
@@ -12324,17 +12339,17 @@ func (o ObjectBucketLifecycleRuleOutput) ToObjectBucketLifecycleRuleOutputWithCo
 
 // Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 //
-// * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
 func (o ObjectBucketLifecycleRuleOutput) AbortIncompleteMultipartUploadDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.AbortIncompleteMultipartUploadDays }).(pulumi.IntPtrOutput)
 }
 
-// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
 func (o ObjectBucketLifecycleRuleOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Specifies a period in the object's expire (documented below).
+// Specifies a period in the object's expire
 func (o ObjectBucketLifecycleRuleOutput) Expiration() ObjectBucketLifecycleRuleExpirationPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleExpiration { return v.Expiration }).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
@@ -12354,9 +12369,7 @@ func (o ObjectBucketLifecycleRuleOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
-// Specifies a period in the object's transitions (documented below).
-//
-// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+// Define when objects transition to another storage class
 func (o ObjectBucketLifecycleRuleOutput) Transitions() ObjectBucketLifecycleRuleTransitionArrayOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleTransition { return v.Transitions }).(ObjectBucketLifecycleRuleTransitionArrayOutput)
 }
@@ -12383,8 +12396,6 @@ func (o ObjectBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) ObjectBuc
 
 type ObjectBucketLifecycleRuleExpiration struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 	Days int `pulumi:"days"`
 }
 
@@ -12401,8 +12412,6 @@ type ObjectBucketLifecycleRuleExpirationInput interface {
 
 type ObjectBucketLifecycleRuleExpirationArgs struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 	Days pulumi.IntInput `pulumi:"days"`
 }
 
@@ -12484,8 +12493,6 @@ func (o ObjectBucketLifecycleRuleExpirationOutput) ToObjectBucketLifecycleRuleEx
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect.
-//
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 func (o ObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
 }
@@ -12515,8 +12522,6 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Elem() ObjectBucketLifecyc
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect.
-//
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *int {
 		if v == nil {
@@ -12531,7 +12536,11 @@ type ObjectBucketLifecycleRuleTransition struct {
 	Days *int `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 	//
+	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	//
 	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
 	StorageClass string `pulumi:"storageClass"`
 }
 
@@ -12551,7 +12560,11 @@ type ObjectBucketLifecycleRuleTransitionArgs struct {
 	Days pulumi.IntPtrInput `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 	//
+	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	//
 	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
 	StorageClass pulumi.StringInput `pulumi:"storageClass"`
 }
 
@@ -12613,7 +12626,11 @@ func (o ObjectBucketLifecycleRuleTransitionOutput) Days() pulumi.IntPtrOutput {
 
 // Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 //
+// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+//
 // > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
 func (o ObjectBucketLifecycleRuleTransitionOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) string { return v.StorageClass }).(pulumi.StringOutput)
 }
@@ -12778,11 +12795,11 @@ func (o ObjectBucketLockConfigurationRulePtrOutput) DefaultRetention() ObjectBuc
 }
 
 type ObjectBucketLockConfigurationRuleDefaultRetention struct {
-	// The number of days that you want to specify for the default retention period.
+	// The number of days you want to specify for the default retention period.
 	Days *int `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 	Mode string `pulumi:"mode"`
-	// The number of years that you want to specify for the default retention period.
+	// The number of years you want to specify for the default retention period.
 	Years *int `pulumi:"years"`
 }
 
@@ -12798,11 +12815,11 @@ type ObjectBucketLockConfigurationRuleDefaultRetentionInput interface {
 }
 
 type ObjectBucketLockConfigurationRuleDefaultRetentionArgs struct {
-	// The number of days that you want to specify for the default retention period.
+	// The number of days you want to specify for the default retention period.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 	Mode pulumi.StringInput `pulumi:"mode"`
-	// The number of years that you want to specify for the default retention period.
+	// The number of years you want to specify for the default retention period.
 	Years pulumi.IntPtrInput `pulumi:"years"`
 }
 
@@ -12883,17 +12900,17 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ToObjectBucketL
 	}).(ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput)
 }
 
-// The number of days that you want to specify for the default retention period.
+// The number of days you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-// The number of years that you want to specify for the default retention period.
+// The number of years you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Years() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Years }).(pulumi.IntPtrOutput)
 }
@@ -12922,7 +12939,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Elem() Objec
 	}).(ObjectBucketLockConfigurationRuleDefaultRetentionOutput)
 }
 
-// The number of days that you want to specify for the default retention period.
+// The number of days you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *int {
 		if v == nil {
@@ -12932,7 +12949,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *string {
 		if v == nil {
@@ -12942,7 +12959,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// The number of years that you want to specify for the default retention period.
+// The number of years you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *int {
 		if v == nil {
@@ -13227,7 +13244,7 @@ func (o ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput) Key() pulumi.Str
 }
 
 type ObjectBucketWebsiteConfigurationIndexDocument struct {
-	// A suffix that is appended to a request that is for a directory on the website endpoint.
+	// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 	//
 	// > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 	Suffix string `pulumi:"suffix"`
@@ -13245,7 +13262,7 @@ type ObjectBucketWebsiteConfigurationIndexDocumentInput interface {
 }
 
 type ObjectBucketWebsiteConfigurationIndexDocumentArgs struct {
-	// A suffix that is appended to a request that is for a directory on the website endpoint.
+	// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 	//
 	// > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 	Suffix pulumi.StringInput `pulumi:"suffix"`
@@ -13328,7 +13345,7 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentOutput) ToObjectBucketWebsi
 	}).(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput)
 }
 
-// A suffix that is appended to a request that is for a directory on the website endpoint.
+// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 //
 // > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 func (o ObjectBucketWebsiteConfigurationIndexDocumentOutput) Suffix() pulumi.StringOutput {
@@ -13359,7 +13376,7 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Elem() ObjectBuc
 	}).(ObjectBucketWebsiteConfigurationIndexDocumentOutput)
 }
 
-// A suffix that is appended to a request that is for a directory on the website endpoint.
+// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 //
 // > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.StringPtrOutput {
@@ -18442,6 +18459,8 @@ type GetInstanceServerRootVolume struct {
 	DeleteOnTermination bool `pulumi:"deleteOnTermination"`
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name string `pulumi:"name"`
+	// SBS Volume IOPS, only with volumeType as sbs_volume
+	SbsIops int `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	SizeInGb int `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server.
@@ -18468,6 +18487,8 @@ type GetInstanceServerRootVolumeArgs struct {
 	DeleteOnTermination pulumi.BoolInput `pulumi:"deleteOnTermination"`
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name pulumi.StringInput `pulumi:"name"`
+	// SBS Volume IOPS, only with volumeType as sbs_volume
+	SbsIops pulumi.IntInput `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server.
@@ -18540,6 +18561,11 @@ func (o GetInstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolOutp
 // The server name. Only one of `name` and `serverId` should be specified.
 func (o GetInstanceServerRootVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerRootVolume) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// SBS Volume IOPS, only with volumeType as sbs_volume
+func (o GetInstanceServerRootVolumeOutput) SbsIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceServerRootVolume) int { return v.SbsIops }).(pulumi.IntOutput)
 }
 
 // Size of the root volume in gigabytes.
@@ -24255,7 +24281,7 @@ type GetObjectBucketLifecycleRule struct {
 	Enabled bool `pulumi:"enabled"`
 	// Specifies a period in the object's expire
 	Expirations []GetObjectBucketLifecycleRuleExpiration `pulumi:"expirations"`
-	// The unique name of the bucket.
+	// The unique identifier of the bucket.
 	Id string `pulumi:"id"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix string `pulumi:"prefix"`
@@ -24283,7 +24309,7 @@ type GetObjectBucketLifecycleRuleArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Specifies a period in the object's expire
 	Expirations GetObjectBucketLifecycleRuleExpirationArrayInput `pulumi:"expirations"`
-	// The unique name of the bucket.
+	// The unique identifier of the bucket.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix pulumi.StringInput `pulumi:"prefix"`
@@ -24359,7 +24385,7 @@ func (o GetObjectBucketLifecycleRuleOutput) Expirations() GetObjectBucketLifecyc
 	return o.ApplyT(func(v GetObjectBucketLifecycleRule) []GetObjectBucketLifecycleRuleExpiration { return v.Expirations }).(GetObjectBucketLifecycleRuleExpirationArrayOutput)
 }
 
-// The unique name of the bucket.
+// The unique identifier of the bucket.
 func (o GetObjectBucketLifecycleRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRule) string { return v.Id }).(pulumi.StringOutput)
 }

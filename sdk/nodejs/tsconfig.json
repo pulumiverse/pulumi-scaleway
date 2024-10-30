@@ -213,6 +213,7 @@
         "vpcPublicGatewayIp.ts",
         "vpcPublicGatewayIpReverseDns.ts",
         "vpcPublicGatewayPatRule.ts",
+        "vpcRoute.ts",
         "webhosting.ts"
     ]
 }

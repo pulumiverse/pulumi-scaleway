@@ -12,8 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Function Triggers.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
+// The `FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+//
+// Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 //
 // ## Example Usage
 //
@@ -49,7 +50,7 @@ import (
 //
 // ```
 //
-// ### Nats
+// ### NATS
 //
 // ```go
 // package main
@@ -83,7 +84,7 @@ import (
 //
 // ## Import
 //
-// Function Triggers can be imported using the `{region}/{id}`, e.g.
+// Function Triggers can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -95,15 +96,15 @@ type FunctionTrigger struct {
 
 	// The description of the trigger.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The ID of the function to create a trigger for
+	// The unique identifier of the function to create a trigger for.
 	FunctionId pulumi.StringOutput `pulumi:"functionId"`
-	// The unique name of the trigger. Default to a generated name.
+	// The unique name of the trigger. If not provided, a random name is generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The configuration for the Scaleway's Nats used by the trigger
+	// The configuration for the Scaleway NATS account used by the trigger
 	Nats FunctionTriggerNatsPtrOutput `pulumi:"nats"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The configuration of the Scaleway's SQS used by the trigger
+	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs FunctionTriggerSqsPtrOutput `pulumi:"sqs"`
 }
 
@@ -142,30 +143,30 @@ func GetFunctionTrigger(ctx *pulumi.Context,
 type functionTriggerState struct {
 	// The description of the trigger.
 	Description *string `pulumi:"description"`
-	// The ID of the function to create a trigger for
+	// The unique identifier of the function to create a trigger for.
 	FunctionId *string `pulumi:"functionId"`
-	// The unique name of the trigger. Default to a generated name.
+	// The unique name of the trigger. If not provided, a random name is generated.
 	Name *string `pulumi:"name"`
-	// The configuration for the Scaleway's Nats used by the trigger
+	// The configuration for the Scaleway NATS account used by the trigger
 	Nats *FunctionTriggerNats `pulumi:"nats"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
-	// The configuration of the Scaleway's SQS used by the trigger
+	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs *FunctionTriggerSqs `pulumi:"sqs"`
 }
 
 type FunctionTriggerState struct {
 	// The description of the trigger.
 	Description pulumi.StringPtrInput
-	// The ID of the function to create a trigger for
+	// The unique identifier of the function to create a trigger for.
 	FunctionId pulumi.StringPtrInput
-	// The unique name of the trigger. Default to a generated name.
+	// The unique name of the trigger. If not provided, a random name is generated.
 	Name pulumi.StringPtrInput
-	// The configuration for the Scaleway's Nats used by the trigger
+	// The configuration for the Scaleway NATS account used by the trigger
 	Nats FunctionTriggerNatsPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
-	// The configuration of the Scaleway's SQS used by the trigger
+	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs FunctionTriggerSqsPtrInput
 }
 
@@ -176,15 +177,15 @@ func (FunctionTriggerState) ElementType() reflect.Type {
 type functionTriggerArgs struct {
 	// The description of the trigger.
 	Description *string `pulumi:"description"`
-	// The ID of the function to create a trigger for
+	// The unique identifier of the function to create a trigger for.
 	FunctionId string `pulumi:"functionId"`
-	// The unique name of the trigger. Default to a generated name.
+	// The unique name of the trigger. If not provided, a random name is generated.
 	Name *string `pulumi:"name"`
-	// The configuration for the Scaleway's Nats used by the trigger
+	// The configuration for the Scaleway NATS account used by the trigger
 	Nats *FunctionTriggerNats `pulumi:"nats"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
-	// The configuration of the Scaleway's SQS used by the trigger
+	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs *FunctionTriggerSqs `pulumi:"sqs"`
 }
 
@@ -192,15 +193,15 @@ type functionTriggerArgs struct {
 type FunctionTriggerArgs struct {
 	// The description of the trigger.
 	Description pulumi.StringPtrInput
-	// The ID of the function to create a trigger for
+	// The unique identifier of the function to create a trigger for.
 	FunctionId pulumi.StringInput
-	// The unique name of the trigger. Default to a generated name.
+	// The unique name of the trigger. If not provided, a random name is generated.
 	Name pulumi.StringPtrInput
-	// The configuration for the Scaleway's Nats used by the trigger
+	// The configuration for the Scaleway NATS account used by the trigger
 	Nats FunctionTriggerNatsPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
-	// The configuration of the Scaleway's SQS used by the trigger
+	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs FunctionTriggerSqsPtrInput
 }
 
@@ -296,27 +297,27 @@ func (o FunctionTriggerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the function to create a trigger for
+// The unique identifier of the function to create a trigger for.
 func (o FunctionTriggerOutput) FunctionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.FunctionId }).(pulumi.StringOutput)
 }
 
-// The unique name of the trigger. Default to a generated name.
+// The unique name of the trigger. If not provided, a random name is generated.
 func (o FunctionTriggerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The configuration for the Scaleway's Nats used by the trigger
+// The configuration for the Scaleway NATS account used by the trigger
 func (o FunctionTriggerOutput) Nats() FunctionTriggerNatsPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerNatsPtrOutput { return v.Nats }).(FunctionTriggerNatsPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// `region`). The region in which the namespace is created.
 func (o FunctionTriggerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The configuration of the Scaleway's SQS used by the trigger
+// The configuration of the Scaleway SQS queue used by the trigger
 func (o FunctionTriggerOutput) Sqs() FunctionTriggerSqsPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerSqsPtrOutput { return v.Sqs }).(FunctionTriggerSqsPtrOutput)
 }

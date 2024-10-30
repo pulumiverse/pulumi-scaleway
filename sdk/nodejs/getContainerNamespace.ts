@@ -5,9 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a container namespace.
+ * The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
  *
- * ## Example Usage
+ * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
+ *
+ * ## Retrieve a Serverless Containers namespace
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a namespace by its name
+ * - retrieve a namespace by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -39,17 +46,15 @@ export function getContainerNamespace(args?: GetContainerNamespaceArgs, opts?: p
  */
 export interface GetContainerNamespaceArgs {
     /**
-     * The namespace name.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The name of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     name?: string;
     /**
-     * The namespace id.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: string;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project with which the namespace is associated.
      */
     projectId?: string;
     /**
@@ -78,7 +83,7 @@ export interface GetContainerNamespaceResult {
     readonly name?: string;
     readonly namespaceId?: string;
     /**
-     * The organization ID the namespace is associated with.
+     * The unique identifier of the organization with which the namespace is associated.
      */
     readonly organizationId: string;
     readonly projectId?: string;
@@ -88,15 +93,22 @@ export interface GetContainerNamespaceResult {
      */
     readonly registryEndpoint: string;
     /**
-     * The registry namespace ID of the namespace.
+     * The unique identifier of the registry namespace of the Serverless Containers namespace.
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
 }
 /**
- * Gets information about a container namespace.
+ * The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
  *
- * ## Example Usage
+ * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
+ *
+ * ## Retrieve a Serverless Containers namespace
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a namespace by its name
+ * - retrieve a namespace by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -128,17 +140,15 @@ export function getContainerNamespaceOutput(args?: GetContainerNamespaceOutputAr
  */
 export interface GetContainerNamespaceOutputArgs {
     /**
-     * The namespace name.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The name of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace id.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project with which the namespace is associated.
      */
     projectId?: pulumi.Input<string>;
     /**

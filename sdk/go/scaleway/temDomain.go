@@ -114,6 +114,37 @@ import (
 //
 // ```
 //
+// ### Automatically Configure DNS Settings for Your Domain
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			domainName := cfg.Require("domainName")
+//			_, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//				Name:       pulumi.String(domainName),
+//				AcceptTos:  pulumi.Bool(true),
+//				Autoconfig: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Domains can be imported using the `{region}/{id}`, e.g.
@@ -129,6 +160,8 @@ type TemDomain struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
 	// > **Important:** This attribute must be set to `true`.
 	AcceptTos pulumi.BoolOutput `pulumi:"acceptTos"`
+	// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+	Autoconfig pulumi.BoolPtrOutput `pulumi:"autoconfig"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -214,6 +247,8 @@ type temDomainState struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
 	// > **Important:** This attribute must be set to `true`.
 	AcceptTos *bool `pulumi:"acceptTos"`
+	// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+	Autoconfig *bool `pulumi:"autoconfig"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -267,6 +302,8 @@ type TemDomainState struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
 	// > **Important:** This attribute must be set to `true`.
 	AcceptTos pulumi.BoolPtrInput
+	// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+	Autoconfig pulumi.BoolPtrInput
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -324,6 +361,8 @@ type temDomainArgs struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
 	// > **Important:** This attribute must be set to `true`.
 	AcceptTos bool `pulumi:"acceptTos"`
+	// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+	Autoconfig *bool `pulumi:"autoconfig"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
@@ -338,6 +377,8 @@ type TemDomainArgs struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
 	// > **Important:** This attribute must be set to `true`.
 	AcceptTos pulumi.BoolInput
+	// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+	Autoconfig pulumi.BoolPtrInput
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
@@ -438,6 +479,11 @@ func (o TemDomainOutput) ToTemDomainOutputWithContext(ctx context.Context) TemDo
 // > **Important:** This attribute must be set to `true`.
 func (o TemDomainOutput) AcceptTos() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.BoolOutput { return v.AcceptTos }).(pulumi.BoolOutput)
+}
+
+// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+func (o TemDomainOutput) Autoconfig() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.BoolPtrOutput { return v.Autoconfig }).(pulumi.BoolPtrOutput)
 }
 
 // The date and time of the Transaction Email Domain's creation (RFC 3339 format).

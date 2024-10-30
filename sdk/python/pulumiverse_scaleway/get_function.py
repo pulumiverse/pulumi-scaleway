@@ -263,14 +263,18 @@ def get_function(function_id: Optional[str] = None,
                  region: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
-    Gets information about a function.
+    The `Function` data source is used to retrieve information about a Serverless Function.
+
+    Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+
+    For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
 
 
-    :param str function_id: The function id. Only one of `name` and `function_id` should be specified.
-    :param str name: The function name. Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id associated with this function.
-    :param str project_id: The ID of the project the function is associated with.
-    :param str region: `region`) The region in which the function exists.
+    :param str function_id: The unique identifier of the function. Only one of `name` and `function_id` should be specified.
+    :param str name: The name of the function. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace ID associated with this function.
+    :param str project_id: The unique identifier of the project with which the function is associated.
+    :param str region: `region`) The region in which the container exists.
     """
     __args__ = dict()
     __args__['functionId'] = function_id
@@ -313,14 +317,18 @@ def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = Non
                         region: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionResult]:
     """
-    Gets information about a function.
+    The `Function` data source is used to retrieve information about a Serverless Function.
+
+    Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+
+    For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
 
 
-    :param str function_id: The function id. Only one of `name` and `function_id` should be specified.
-    :param str name: The function name. Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id associated with this function.
-    :param str project_id: The ID of the project the function is associated with.
-    :param str region: `region`) The region in which the function exists.
+    :param str function_id: The unique identifier of the function. Only one of `name` and `function_id` should be specified.
+    :param str name: The name of the function. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The namespace ID associated with this function.
+    :param str project_id: The unique identifier of the project with which the function is associated.
+    :param str region: `region`) The region in which the container exists.
     """
     __args__ = dict()
     __args__['functionId'] = function_id

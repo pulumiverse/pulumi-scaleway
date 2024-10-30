@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Serverless SQL Databases. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/serverless-databases/).
+ * The `scaleway.SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+ *
+ * Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless/sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
  *
  * ## Example Usage
  *
@@ -24,7 +26,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Serverless SQL Database can be imported using the `{region}/{id}`, e.g.
+ * Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -61,7 +63,7 @@ export class SdbDatabase extends pulumi.CustomResource {
     }
 
     /**
-     * Endpoint of the database
+     * The endpoint of the database.
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
@@ -73,9 +75,9 @@ export class SdbDatabase extends pulumi.CustomResource {
      */
     public readonly minCpu!: pulumi.Output<number | undefined>;
     /**
-     * Name of the database (e.g. `my-new-database`).
+     * The name of the database (e.g. `my-new-database`).
      *
-     * > **Important:** Updates to `name` will recreate the database.
+     * > **Important:** Updates to the `name` argument will recreate the database.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -125,7 +127,7 @@ export class SdbDatabase extends pulumi.CustomResource {
  */
 export interface SdbDatabaseState {
     /**
-     * Endpoint of the database
+     * The endpoint of the database.
      */
     endpoint?: pulumi.Input<string>;
     /**
@@ -137,9 +139,9 @@ export interface SdbDatabaseState {
      */
     minCpu?: pulumi.Input<number>;
     /**
-     * Name of the database (e.g. `my-new-database`).
+     * The name of the database (e.g. `my-new-database`).
      *
-     * > **Important:** Updates to `name` will recreate the database.
+     * > **Important:** Updates to the `name` argument will recreate the database.
      */
     name?: pulumi.Input<string>;
     /**
@@ -165,9 +167,9 @@ export interface SdbDatabaseArgs {
      */
     minCpu?: pulumi.Input<number>;
     /**
-     * Name of the database (e.g. `my-new-database`).
+     * The name of the database (e.g. `my-new-database`).
      *
-     * > **Important:** Updates to `name` will recreate the database.
+     * > **Important:** Updates to the `name` argument will recreate the database.
      */
     name?: pulumi.Input<string>;
     /**

@@ -12,9 +12,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manages user SSH keys to access servers provisioned on Scaleway.
+// The `AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
 //
-// > **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
+// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+//
+// !> **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
 //
 // ## Example Usage
 //

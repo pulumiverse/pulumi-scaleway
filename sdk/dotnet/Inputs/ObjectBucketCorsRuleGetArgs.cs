@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _allowedMethods;
 
         /// <summary>
-        /// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        /// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         /// </summary>
         public InputList<string> AllowedMethods
         {
@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _exposeHeaders;
 
         /// <summary>
-        /// Specifies expose header in the response.
+        /// Specifies header exposure in the response.
         /// </summary>
         public InputList<string> ExposeHeaders
         {
@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// Specifies time in seconds that browser can cache the response for a preflight request.
+        /// Specifies time in seconds that the browser can cache the response for a preflight request.
         /// </summary>
         [Input("maxAgeSeconds")]
         public Input<int>? MaxAgeSeconds { get; set; }

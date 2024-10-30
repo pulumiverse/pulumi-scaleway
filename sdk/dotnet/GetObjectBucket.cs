@@ -13,10 +13,16 @@ namespace Pulumiverse.Scaleway
     public static class GetObjectBucket
     {
         /// <summary>
-        /// Gets information about the Bucket.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+        /// The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
         /// 
-        /// ## Example Usage
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+        /// 
+        /// ## Retrieve an Object Storage bucket
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a bucket by its name
+        /// - retrieve a bucket by its ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -44,8 +50,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// 
-        /// ### Fetching the bucket from a specific project
+        /// ## Retrieve a bucket from a specific project
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -68,10 +73,16 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the Bucket.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+        /// The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
         /// 
-        /// ## Example Usage
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+        /// 
+        /// ## Retrieve an Object Storage bucket
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a bucket by its name
+        /// - retrieve a bucket by its ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -99,8 +110,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// 
-        /// ### Fetching the bucket from a specific project
+        /// ## Retrieve a bucket from a specific project
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -130,7 +140,7 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// `project_id`) The ID of the project with which the bucket is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -153,7 +163,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// `project_id`) The ID of the project with which the bucket is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

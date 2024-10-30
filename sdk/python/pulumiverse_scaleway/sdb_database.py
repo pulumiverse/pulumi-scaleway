@@ -28,9 +28,9 @@ class SdbDatabaseArgs:
         The set of arguments for constructing a SdbDatabase resource.
         :param pulumi.Input[int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] name: The name of the database (e.g. `my-new-database`).
                
-               > **Important:** Updates to `name` will recreate the database.
+               > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -73,9 +73,9 @@ class SdbDatabaseArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the database (e.g. `my-new-database`).
+        The name of the database (e.g. `my-new-database`).
 
-        > **Important:** Updates to `name` will recreate the database.
+        > **Important:** Updates to the `name` argument will recreate the database.
         """
         return pulumi.get(self, "name")
 
@@ -119,12 +119,12 @@ class _SdbDatabaseState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SdbDatabase resources.
-        :param pulumi.Input[str] endpoint: Endpoint of the database
+        :param pulumi.Input[str] endpoint: The endpoint of the database.
         :param pulumi.Input[int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] name: The name of the database (e.g. `my-new-database`).
                
-               > **Important:** Updates to `name` will recreate the database.
+               > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -145,7 +145,7 @@ class _SdbDatabaseState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        Endpoint of the database
+        The endpoint of the database.
         """
         return pulumi.get(self, "endpoint")
 
@@ -181,9 +181,9 @@ class _SdbDatabaseState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the database (e.g. `my-new-database`).
+        The name of the database (e.g. `my-new-database`).
 
-        > **Important:** Updates to `name` will recreate the database.
+        > **Important:** Updates to the `name` argument will recreate the database.
         """
         return pulumi.get(self, "name")
 
@@ -228,7 +228,9 @@ class SdbDatabase(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Serverless SQL Databases. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/serverless-databases/).
+        The `SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+
+        Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless/sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
 
         ## Example Usage
 
@@ -246,7 +248,7 @@ class SdbDatabase(pulumi.CustomResource):
 
         ## Import
 
-        Serverless SQL Database can be imported using the `{region}/{id}`, e.g.
+        Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
 
         bash
 
@@ -258,9 +260,9 @@ class SdbDatabase(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] name: The name of the database (e.g. `my-new-database`).
                
-               > **Important:** Updates to `name` will recreate the database.
+               > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -271,7 +273,9 @@ class SdbDatabase(pulumi.CustomResource):
                  args: Optional[SdbDatabaseArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Serverless SQL Databases. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/serverless-databases/).
+        The `SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+
+        Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless/sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
 
         ## Example Usage
 
@@ -289,7 +293,7 @@ class SdbDatabase(pulumi.CustomResource):
 
         ## Import
 
-        Serverless SQL Database can be imported using the `{region}/{id}`, e.g.
+        Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
 
         bash
 
@@ -355,12 +359,12 @@ class SdbDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] endpoint: Endpoint of the database
+        :param pulumi.Input[str] endpoint: The endpoint of the database.
         :param pulumi.Input[int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
-        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] name: The name of the database (e.g. `my-new-database`).
                
-               > **Important:** Updates to `name` will recreate the database.
+               > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
@@ -380,7 +384,7 @@ class SdbDatabase(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[str]:
         """
-        Endpoint of the database
+        The endpoint of the database.
         """
         return pulumi.get(self, "endpoint")
 
@@ -404,9 +408,9 @@ class SdbDatabase(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the database (e.g. `my-new-database`).
+        The name of the database (e.g. `my-new-database`).
 
-        > **Important:** Updates to `name` will recreate the database.
+        > **Important:** Updates to the `name` argument will recreate the database.
         """
         return pulumi.get(self, "name")
 

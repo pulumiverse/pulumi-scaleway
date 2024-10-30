@@ -11,12 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Function Token.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
+// The `FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+//
+// Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
 //
 // ## Example Usage
-//
-// ### Basic
 //
 // ```go
 // package main
@@ -68,7 +67,7 @@ import (
 //
 // ## Import
 //
-// Tokens can be imported using the `{region}/{id}`, e.g.
+// Tokens can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -82,15 +81,15 @@ type FunctionToken struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// The ID of the function.
+	// The unique identifier of the function.
 	//
 	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId pulumi.StringPtrOutput `pulumi:"functionId"`
-	// The ID of the function namespace.
+	// The unique identifier of the Functions namespace.
 	NamespaceId pulumi.StringPtrOutput `pulumi:"namespaceId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
 	Token pulumi.StringOutput `pulumi:"token"`
@@ -134,15 +133,15 @@ type functionTokenState struct {
 	Description *string `pulumi:"description"`
 	// The expiration date of the token.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The ID of the function.
+	// The unique identifier of the function.
 	//
 	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId *string `pulumi:"functionId"`
-	// The ID of the function namespace.
+	// The unique identifier of the Functions namespace.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 	// The token.
 	Token *string `pulumi:"token"`
@@ -153,15 +152,15 @@ type FunctionTokenState struct {
 	Description pulumi.StringPtrInput
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrInput
-	// The ID of the function.
+	// The unique identifier of the function.
 	//
 	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId pulumi.StringPtrInput
-	// The ID of the function namespace.
+	// The unique identifier of the Functions namespace.
 	NamespaceId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 	// The token.
 	Token pulumi.StringPtrInput
@@ -176,15 +175,15 @@ type functionTokenArgs struct {
 	Description *string `pulumi:"description"`
 	// The expiration date of the token.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The ID of the function.
+	// The unique identifier of the function.
 	//
 	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId *string `pulumi:"functionId"`
-	// The ID of the function namespace.
+	// The unique identifier of the Functions namespace.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 }
 
@@ -194,15 +193,15 @@ type FunctionTokenArgs struct {
 	Description pulumi.StringPtrInput
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrInput
-	// The ID of the function.
+	// The unique identifier of the function.
 	//
 	// > Only one of `namespaceId` or `functionId` must be set.
 	FunctionId pulumi.StringPtrInput
-	// The ID of the function namespace.
+	// The unique identifier of the Functions namespace.
 	NamespaceId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 }
 
@@ -303,21 +302,21 @@ func (o FunctionTokenOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionToken) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the function.
+// The unique identifier of the function.
 //
 // > Only one of `namespaceId` or `functionId` must be set.
 func (o FunctionTokenOutput) FunctionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionToken) pulumi.StringPtrOutput { return v.FunctionId }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the function namespace.
+// The unique identifier of the Functions namespace.
 func (o FunctionTokenOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionToken) pulumi.StringPtrOutput { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// `region`). The region in which the namespace is created.
 //
-// > **Important** Updates to any fields will recreate the token.
+// > **Important** Updating any of the arguments above will recreate the token.
 func (o FunctionTokenOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

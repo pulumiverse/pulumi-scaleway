@@ -20,14 +20,18 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly bool? Boot;
         /// <summary>
         /// Forces deletion of the root volume on instance termination.
-        /// 
-        /// &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         /// </summary>
         public readonly bool? DeleteOnTermination;
         /// <summary>
         /// The name of the server.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+        /// 
+        /// &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+        /// </summary>
+        public readonly int? SbsIops;
         /// <summary>
         /// Size of the root volume in gigabytes.
         /// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -40,7 +44,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? VolumeId;
         /// <summary>
-        /// Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
+        /// Volume type of root volume, can be `b_ssd`, `l_ssd` or `sbs_volume`, default value depends on server type
         /// </summary>
         public readonly string? VolumeType;
 
@@ -52,6 +56,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string? name,
 
+            int? sbsIops,
+
             int? sizeInGb,
 
             string? volumeId,
@@ -61,6 +67,7 @@ namespace Pulumiverse.Scaleway.Outputs
             Boot = boot;
             DeleteOnTermination = deleteOnTermination;
             Name = name;
+            SbsIops = sbsIops;
             SizeInGb = sizeInGb;
             VolumeId = volumeId;
             VolumeType = volumeType;

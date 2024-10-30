@@ -107,7 +107,7 @@ class GetContainerNamespaceResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the namespace is associated with.
+        The unique identifier of the organization with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -133,7 +133,7 @@ class GetContainerNamespaceResult:
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> str:
         """
-        The registry namespace ID of the namespace.
+        The unique identifier of the registry namespace of the Serverless Containers namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -169,9 +169,16 @@ def get_container_namespace(name: Optional[str] = None,
                             region: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerNamespaceResult:
     """
-    Gets information about a container namespace.
+    The `ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
 
-    ## Example Usage
+    Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
+
+    ## Retrieve a Serverless Containers namespace
+
+    The following commands allow you to:
+
+    - retrieve a namespace by its name
+    - retrieve a namespace by its ID
 
     ```python
     import pulumi
@@ -184,11 +191,9 @@ def get_container_namespace(name: Optional[str] = None,
     ```
 
 
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
+    :param str name: The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
@@ -218,9 +223,16 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerNamespaceResult]:
     """
-    Gets information about a container namespace.
+    The `ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
 
-    ## Example Usage
+    Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
+
+    ## Retrieve a Serverless Containers namespace
+
+    The following commands allow you to:
+
+    - retrieve a namespace by its name
+    - retrieve a namespace by its ID
 
     ```python
     import pulumi
@@ -233,11 +245,9 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
     ```
 
 
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
+    :param str name: The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()

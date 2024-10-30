@@ -11,9 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Manages user SSH keys to access servers provisioned on Scaleway.
+    /// The `scaleway.AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
     /// 
-    /// &gt; **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
+    /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+    /// 
+    /// !&gt; **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
     /// 
     /// ## Example Usage
     /// 

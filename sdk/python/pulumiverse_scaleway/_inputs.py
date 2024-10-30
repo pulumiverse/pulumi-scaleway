@@ -1059,19 +1059,19 @@ if not MYPY:
     class ContainerTriggerNatsArgsDict(TypedDict):
         subject: pulumi.Input[str]
         """
-        The subject to listen to
+        The subject to listen to.
         """
         account_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the mnq nats account.
+        unique identifier of the Messaging and Queuing NATS account.
         """
         project_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the project that contain the mnq nats account, defaults to provider's project
+        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         region: NotRequired[pulumi.Input[str]]
         """
-        Region where the mnq nats account is, defaults to provider's region
+        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
 elif False:
     ContainerTriggerNatsArgsDict: TypeAlias = Mapping[str, Any]
@@ -1084,10 +1084,10 @@ class ContainerTriggerNatsArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] subject: The subject to listen to
-        :param pulumi.Input[str] account_id: ID of the mnq nats account.
-        :param pulumi.Input[str] project_id: ID of the project that contain the mnq nats account, defaults to provider's project
-        :param pulumi.Input[str] region: Region where the mnq nats account is, defaults to provider's region
+        :param pulumi.Input[str] subject: The subject to listen to.
+        :param pulumi.Input[str] account_id: unique identifier of the Messaging and Queuing NATS account.
+        :param pulumi.Input[str] project_id: THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        :param pulumi.Input[str] region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "subject", subject)
         if account_id is not None:
@@ -1101,7 +1101,7 @@ class ContainerTriggerNatsArgs:
     @pulumi.getter
     def subject(self) -> pulumi.Input[str]:
         """
-        The subject to listen to
+        The subject to listen to.
         """
         return pulumi.get(self, "subject")
 
@@ -1113,7 +1113,7 @@ class ContainerTriggerNatsArgs:
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the mnq nats account.
+        unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
@@ -1125,7 +1125,7 @@ class ContainerTriggerNatsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the project that contain the mnq nats account, defaults to provider's project
+        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -1137,7 +1137,7 @@ class ContainerTriggerNatsArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region where the mnq nats account is, defaults to provider's region
+        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -1150,19 +1150,19 @@ if not MYPY:
     class ContainerTriggerSqsArgsDict(TypedDict):
         queue: pulumi.Input[str]
         """
-        Name of the queue
+        The name of the SQS queue.
         """
         namespace_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the mnq namespace. Deprecated.
+        ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         project_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the project where sqs is enabled, defaults to provider's project
+        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         region: NotRequired[pulumi.Input[str]]
         """
-        Region where sqs is enabled, defaults to provider's region
+        Region where SQS is enabled (defaults to provider `region`)
         """
 elif False:
     ContainerTriggerSqsArgsDict: TypeAlias = Mapping[str, Any]
@@ -1175,10 +1175,10 @@ class ContainerTriggerSqsArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] queue: Name of the queue
-        :param pulumi.Input[str] namespace_id: ID of the mnq namespace. Deprecated.
-        :param pulumi.Input[str] project_id: ID of the project where sqs is enabled, defaults to provider's project
-        :param pulumi.Input[str] region: Region where sqs is enabled, defaults to provider's region
+        :param pulumi.Input[str] queue: The name of the SQS queue.
+        :param pulumi.Input[str] namespace_id: ID of the Messaging and Queuing namespace. This argument is deprecated.
+        :param pulumi.Input[str] project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        :param pulumi.Input[str] region: Region where SQS is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
@@ -1195,7 +1195,7 @@ class ContainerTriggerSqsArgs:
     @pulumi.getter
     def queue(self) -> pulumi.Input[str]:
         """
-        Name of the queue
+        The name of the SQS queue.
         """
         return pulumi.get(self, "queue")
 
@@ -1208,7 +1208,7 @@ class ContainerTriggerSqsArgs:
     @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the mnq namespace. Deprecated.
+        ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -1220,7 +1220,7 @@ class ContainerTriggerSqsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the project where sqs is enabled, defaults to provider's project
+        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -1232,7 +1232,7 @@ class ContainerTriggerSqsArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region where sqs is enabled, defaults to provider's region
+        Region where SQS is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -2782,19 +2782,19 @@ if not MYPY:
     class FunctionTriggerNatsArgsDict(TypedDict):
         subject: pulumi.Input[str]
         """
-        The subject to listen to
+        The subject to listen to.
         """
         account_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the mnq nats account.
+        unique identifier of the Messaging and Queuing NATS account.
         """
         project_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the project that contain the mnq nats account, defaults to provider's project
+        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         region: NotRequired[pulumi.Input[str]]
         """
-        Region where the mnq nats account is, defaults to provider's region
+        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
 elif False:
     FunctionTriggerNatsArgsDict: TypeAlias = Mapping[str, Any]
@@ -2807,10 +2807,10 @@ class FunctionTriggerNatsArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] subject: The subject to listen to
-        :param pulumi.Input[str] account_id: ID of the mnq nats account.
-        :param pulumi.Input[str] project_id: ID of the project that contain the mnq nats account, defaults to provider's project
-        :param pulumi.Input[str] region: Region where the mnq nats account is, defaults to provider's region
+        :param pulumi.Input[str] subject: The subject to listen to.
+        :param pulumi.Input[str] account_id: unique identifier of the Messaging and Queuing NATS account.
+        :param pulumi.Input[str] project_id: THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        :param pulumi.Input[str] region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "subject", subject)
         if account_id is not None:
@@ -2824,7 +2824,7 @@ class FunctionTriggerNatsArgs:
     @pulumi.getter
     def subject(self) -> pulumi.Input[str]:
         """
-        The subject to listen to
+        The subject to listen to.
         """
         return pulumi.get(self, "subject")
 
@@ -2836,7 +2836,7 @@ class FunctionTriggerNatsArgs:
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the mnq nats account.
+        unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
@@ -2848,7 +2848,7 @@ class FunctionTriggerNatsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the project that contain the mnq nats account, defaults to provider's project
+        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -2860,7 +2860,7 @@ class FunctionTriggerNatsArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region where the mnq nats account is, defaults to provider's region
+        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -2873,19 +2873,19 @@ if not MYPY:
     class FunctionTriggerSqsArgsDict(TypedDict):
         queue: pulumi.Input[str]
         """
-        Name of the queue
+        The name of the SQS queue.
         """
         namespace_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the mnq namespace. Deprecated.
+        ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         project_id: NotRequired[pulumi.Input[str]]
         """
-        ID of the project that contain the mnq namespace, defaults to provider's project
+        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         region: NotRequired[pulumi.Input[str]]
         """
-        Region where the mnq namespace is, defaults to provider's region
+        Region where SQS is enabled (defaults to provider `region`)
         """
 elif False:
     FunctionTriggerSqsArgsDict: TypeAlias = Mapping[str, Any]
@@ -2898,10 +2898,10 @@ class FunctionTriggerSqsArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] queue: Name of the queue
-        :param pulumi.Input[str] namespace_id: ID of the mnq namespace. Deprecated.
-        :param pulumi.Input[str] project_id: ID of the project that contain the mnq namespace, defaults to provider's project
-        :param pulumi.Input[str] region: Region where the mnq namespace is, defaults to provider's region
+        :param pulumi.Input[str] queue: The name of the SQS queue.
+        :param pulumi.Input[str] namespace_id: ID of the Messaging and Queuing namespace. This argument is deprecated.
+        :param pulumi.Input[str] project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        :param pulumi.Input[str] region: Region where SQS is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
@@ -2918,7 +2918,7 @@ class FunctionTriggerSqsArgs:
     @pulumi.getter
     def queue(self) -> pulumi.Input[str]:
         """
-        Name of the queue
+        The name of the SQS queue.
         """
         return pulumi.get(self, "queue")
 
@@ -2931,7 +2931,7 @@ class FunctionTriggerSqsArgs:
     @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the mnq namespace. Deprecated.
+        ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -2943,7 +2943,7 @@ class FunctionTriggerSqsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the project that contain the mnq namespace, defaults to provider's project
+        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -2955,7 +2955,7 @@ class FunctionTriggerSqsArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region where the mnq namespace is, defaults to provider's region
+        Region where SQS is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
@@ -4063,12 +4063,16 @@ if not MYPY:
         delete_on_termination: NotRequired[pulumi.Input[bool]]
         """
         Forces deletion of the root volume on instance termination.
-
-        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         """
         name: NotRequired[pulumi.Input[str]]
         """
         The name of the server.
+        """
+        sbs_iops: NotRequired[pulumi.Input[int]]
+        """
+        Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+
+        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         """
         size_in_gb: NotRequired[pulumi.Input[int]]
         """
@@ -4083,7 +4087,7 @@ if not MYPY:
         """
         volume_type: NotRequired[pulumi.Input[str]]
         """
-        Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
+        Volume type of root volume, can be `b_ssd`, `l_ssd` or `sbs_volume`, default value depends on server type
         """
 elif False:
     InstanceServerRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
@@ -4094,21 +4098,23 @@ class InstanceServerRootVolumeArgs:
                  boot: Optional[pulumi.Input[bool]] = None,
                  delete_on_termination: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 sbs_iops: Optional[pulumi.Input[int]] = None,
                  size_in_gb: Optional[pulumi.Input[int]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] boot: Set the volume where the boot the server
         :param pulumi.Input[bool] delete_on_termination: Forces deletion of the root volume on instance termination.
+        :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[int] sbs_iops: Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
                
                > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
-        :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[int] size_in_gb: Size of the root volume in gigabytes.
                To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
                check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
                Updates to this field will recreate a new resource.
         :param pulumi.Input[str] volume_id: The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
-        :param pulumi.Input[str] volume_type: Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
+        :param pulumi.Input[str] volume_type: Volume type of root volume, can be `b_ssd`, `l_ssd` or `sbs_volume`, default value depends on server type
         """
         if boot is not None:
             pulumi.set(__self__, "boot", boot)
@@ -4116,6 +4122,8 @@ class InstanceServerRootVolumeArgs:
             pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if sbs_iops is not None:
+            pulumi.set(__self__, "sbs_iops", sbs_iops)
         if size_in_gb is not None:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
         if volume_id is not None:
@@ -4140,8 +4148,6 @@ class InstanceServerRootVolumeArgs:
     def delete_on_termination(self) -> Optional[pulumi.Input[bool]]:
         """
         Forces deletion of the root volume on instance termination.
-
-        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         """
         return pulumi.get(self, "delete_on_termination")
 
@@ -4160,6 +4166,20 @@ class InstanceServerRootVolumeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="sbsIops")
+    def sbs_iops(self) -> Optional[pulumi.Input[int]]:
+        """
+        Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+
+        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+        """
+        return pulumi.get(self, "sbs_iops")
+
+    @sbs_iops.setter
+    def sbs_iops(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sbs_iops", value)
 
     @property
     @pulumi.getter(name="sizeInGb")
@@ -4192,7 +4212,7 @@ class InstanceServerRootVolumeArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Volume type of root volume, can be `b_ssd` or `l_ssd`, default value depends on server type
+        Volume type of root volume, can be `b_ssd`, `l_ssd` or `sbs_volume`, default value depends on server type
         """
         return pulumi.get(self, "volume_type")
 
@@ -7004,7 +7024,7 @@ if not MYPY:
     class ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
         id: pulumi.Input[str]
         """
-        The `region`,`bucket` and `acl` separated by (`/`).
+        The `region`, `bucket` and `acl` separated by (`/`).
         """
         type: pulumi.Input[str]
         """
@@ -7021,7 +7041,7 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
                  type: pulumi.Input[str],
                  display_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The `region`,`bucket` and `acl` separated by (`/`).
+        :param pulumi.Input[str] id: The `region`, `bucket` and `acl` separated by (`/`).
         :param pulumi.Input[str] type: Type of grantee. Valid values: `CanonicalUser`
         """
         pulumi.set(__self__, "id", id)
@@ -7033,7 +7053,7 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The `region`,`bucket` and `acl` separated by (`/`).
+        The `region`, `bucket` and `acl` separated by (`/`).
         """
         return pulumi.get(self, "id")
 
@@ -7067,7 +7087,7 @@ if not MYPY:
     class ObjectBucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
         id: pulumi.Input[str]
         """
-        The `region`,`bucket` and `acl` separated by (`/`).
+        The `region`, `bucket` and `acl` separated by (`/`).
         """
         display_name: NotRequired[pulumi.Input[str]]
         """
@@ -7082,7 +7102,7 @@ class ObjectBucketAclAccessControlPolicyOwnerArgs:
                  id: pulumi.Input[str],
                  display_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The `region`,`bucket` and `acl` separated by (`/`).
+        :param pulumi.Input[str] id: The `region`, `bucket` and `acl` separated by (`/`).
         :param pulumi.Input[str] display_name: The project ID of the grantee.
         """
         pulumi.set(__self__, "id", id)
@@ -7093,7 +7113,7 @@ class ObjectBucketAclAccessControlPolicyOwnerArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The `region`,`bucket` and `acl` separated by (`/`).
+        The `region`, `bucket` and `acl` separated by (`/`).
         """
         return pulumi.get(self, "id")
 
@@ -7118,7 +7138,7 @@ if not MYPY:
     class ObjectBucketCorsRuleArgsDict(TypedDict):
         allowed_methods: pulumi.Input[Sequence[pulumi.Input[str]]]
         """
-        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         """
         allowed_origins: pulumi.Input[Sequence[pulumi.Input[str]]]
         """
@@ -7130,11 +7150,11 @@ if not MYPY:
         """
         expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
-        Specifies expose header in the response.
+        Specifies header exposure in the response.
         """
         max_age_seconds: NotRequired[pulumi.Input[int]]
         """
-        Specifies time in seconds that browser can cache the response for a preflight request.
+        Specifies time in seconds that the browser can cache the response for a preflight request.
         """
 elif False:
     ObjectBucketCorsRuleArgsDict: TypeAlias = Mapping[str, Any]
@@ -7148,11 +7168,11 @@ class ObjectBucketCorsRuleArgs:
                  expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age_seconds: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_methods: Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_methods: Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_origins: Specifies which origins are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_headers: Specifies which headers are allowed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies expose header in the response.
-        :param pulumi.Input[int] max_age_seconds: Specifies time in seconds that browser can cache the response for a preflight request.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies header exposure in the response.
+        :param pulumi.Input[int] max_age_seconds: Specifies time in seconds that the browser can cache the response for a preflight request.
         """
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
@@ -7167,7 +7187,7 @@ class ObjectBucketCorsRuleArgs:
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         """
         return pulumi.get(self, "allowed_methods")
 
@@ -7203,7 +7223,7 @@ class ObjectBucketCorsRuleArgs:
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Specifies expose header in the response.
+        Specifies header exposure in the response.
         """
         return pulumi.get(self, "expose_headers")
 
@@ -7215,7 +7235,7 @@ class ObjectBucketCorsRuleArgs:
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        Specifies time in seconds that browser can cache the response for a preflight request.
+        Specifies time in seconds that the browser can cache the response for a preflight request.
         """
         return pulumi.get(self, "max_age_seconds")
 
@@ -7228,17 +7248,17 @@ if not MYPY:
     class ObjectBucketLifecycleRuleArgsDict(TypedDict):
         enabled: pulumi.Input[bool]
         """
-        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         """
         abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[int]]
         """
         Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
-        * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         """
         expiration: NotRequired[pulumi.Input['ObjectBucketLifecycleRuleExpirationArgsDict']]
         """
-        Specifies a period in the object's expire (documented below).
+        Specifies a period in the object's expire
         """
         id: NotRequired[pulumi.Input[str]]
         """
@@ -7254,9 +7274,7 @@ if not MYPY:
         """
         transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgsDict']]]]
         """
-        Specifies a period in the object's transitions (documented below).
-
-        At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+        Define when objects transition to another storage class
         """
 elif False:
     ObjectBucketLifecycleRuleArgsDict: TypeAlias = Mapping[str, Any]
@@ -7272,17 +7290,15 @@ class ObjectBucketLifecycleRuleArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  transitions: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]] = None):
         """
-        :param pulumi.Input[bool] enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        :param pulumi.Input[bool] enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         :param pulumi.Input[int] abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
                
-               * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
-        :param pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period in the object's expire (documented below).
+               > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+        :param pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period in the object's expire
         :param pulumi.Input[str] id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         :param pulumi.Input[str] prefix: Object key prefix identifying one or more objects to which the rule applies.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies object tags key and value.
-        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]] transitions: Specifies a period in the object's transitions (documented below).
-               
-               At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]] transitions: Define when objects transition to another storage class
         """
         pulumi.set(__self__, "enabled", enabled)
         if abort_incomplete_multipart_upload_days is not None:
@@ -7302,7 +7318,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def enabled(self) -> pulumi.Input[bool]:
         """
-        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         """
         return pulumi.get(self, "enabled")
 
@@ -7316,7 +7332,7 @@ class ObjectBucketLifecycleRuleArgs:
         """
         Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
-        * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         """
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
@@ -7328,7 +7344,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def expiration(self) -> Optional[pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs']]:
         """
-        Specifies a period in the object's expire (documented below).
+        Specifies a period in the object's expire
         """
         return pulumi.get(self, "expiration")
 
@@ -7376,9 +7392,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def transitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]]:
         """
-        Specifies a period in the object's transitions (documented below).
-
-        At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+        Define when objects transition to another storage class
         """
         return pulumi.get(self, "transitions")
 
@@ -7392,8 +7406,6 @@ if not MYPY:
         days: pulumi.Input[int]
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
-
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         """
 elif False:
     ObjectBucketLifecycleRuleExpirationArgsDict: TypeAlias = Mapping[str, Any]
@@ -7404,8 +7416,6 @@ class ObjectBucketLifecycleRuleExpirationArgs:
                  days: pulumi.Input[int]):
         """
         :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
-               
-               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         """
         pulumi.set(__self__, "days", days)
 
@@ -7414,8 +7424,6 @@ class ObjectBucketLifecycleRuleExpirationArgs:
     def days(self) -> pulumi.Input[int]:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
-
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         """
         return pulumi.get(self, "days")
 
@@ -7430,6 +7438,12 @@ if not MYPY:
         """
         Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
+
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+
+
+        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         """
         days: NotRequired[pulumi.Input[int]]
@@ -7447,6 +7461,12 @@ class ObjectBucketLifecycleRuleTransitionArgs:
         """
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
                
+               
+               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+               
+               
+               > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
                > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
         """
@@ -7460,6 +7480,12 @@ class ObjectBucketLifecycleRuleTransitionArgs:
         """
         Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
+
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+
+
+        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         """
         return pulumi.get(self, "storage_class")
@@ -7516,15 +7542,15 @@ if not MYPY:
     class ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
         mode: pulumi.Input[str]
         """
-        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
         """
         days: NotRequired[pulumi.Input[int]]
         """
-        The number of days that you want to specify for the default retention period.
+        The number of days you want to specify for the default retention period.
         """
         years: NotRequired[pulumi.Input[int]]
         """
-        The number of years that you want to specify for the default retention period.
+        The number of years you want to specify for the default retention period.
         """
 elif False:
     ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict: TypeAlias = Mapping[str, Any]
@@ -7536,9 +7562,9 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
                  days: Optional[pulumi.Input[int]] = None,
                  years: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
-        :param pulumi.Input[int] days: The number of days that you want to specify for the default retention period.
-        :param pulumi.Input[int] years: The number of years that you want to specify for the default retention period.
+        :param pulumi.Input[str] mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        :param pulumi.Input[int] days: The number of days you want to specify for the default retention period.
+        :param pulumi.Input[int] years: The number of years you want to specify for the default retention period.
         """
         pulumi.set(__self__, "mode", mode)
         if days is not None:
@@ -7550,7 +7576,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
         """
-        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
         """
         return pulumi.get(self, "mode")
 
@@ -7562,7 +7588,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of days that you want to specify for the default retention period.
+        The number of days you want to specify for the default retention period.
         """
         return pulumi.get(self, "days")
 
@@ -7574,7 +7600,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @pulumi.getter
     def years(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of years that you want to specify for the default retention period.
+        The number of years you want to specify for the default retention period.
         """
         return pulumi.get(self, "years")
 
@@ -7650,7 +7676,7 @@ if not MYPY:
     class ObjectBucketWebsiteConfigurationIndexDocumentArgsDict(TypedDict):
         suffix: pulumi.Input[str]
         """
-        A suffix that is appended to a request that is for a directory on the website endpoint.
+        A suffix that is appended to a request targeting a specific directory on the website endpoint.
 
         > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
         """
@@ -7662,7 +7688,7 @@ class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
     def __init__(__self__, *,
                  suffix: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] suffix: A suffix that is appended to a request that is for a directory on the website endpoint.
+        :param pulumi.Input[str] suffix: A suffix that is appended to a request targeting a specific directory on the website endpoint.
                
                > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
         """
@@ -7672,7 +7698,7 @@ class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
     @pulumi.getter
     def suffix(self) -> pulumi.Input[str]:
         """
-        A suffix that is appended to a request that is for a directory on the website endpoint.
+        A suffix that is appended to a request targeting a specific directory on the website endpoint.
 
         > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
         """

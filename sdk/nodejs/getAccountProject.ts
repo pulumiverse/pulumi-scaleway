@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about an existing Project.
+ * The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+ *
+ * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
 export function getAccountProject(args?: GetAccountProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountProjectResult> {
     args = args || {};
@@ -27,12 +29,13 @@ export interface GetAccountProjectArgs {
      */
     name?: string;
     /**
-     * The organization ID the Project is associated with.
-     * If no default organizationId is set, one must be set explicitly in this datasource
+     * The unique identifier of the Organization with which the Project is associated.
+     *
+     * If no default `organizationId` is set, one must be set explicitly in this datasource
      */
     organizationId?: string;
     /**
-     * The ID of the Project.
+     * The unique identifier of the Project.
      * Only one of the `name` and `projectId` should be specified.
      */
     projectId?: string;
@@ -54,7 +57,9 @@ export interface GetAccountProjectResult {
     readonly updatedAt: string;
 }
 /**
- * Gets information about an existing Project.
+ * The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+ *
+ * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
 export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountProjectResult> {
     args = args || {};
@@ -76,12 +81,13 @@ export interface GetAccountProjectOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the Project is associated with.
-     * If no default organizationId is set, one must be set explicitly in this datasource
+     * The unique identifier of the Organization with which the Project is associated.
+     *
+     * If no default `organizationId` is set, one must be set explicitly in this datasource
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The ID of the Project.
+     * The unique identifier of the Project.
      * Only one of the `name` and `projectId` should be specified.
      */
     projectId?: pulumi.Input<string>;

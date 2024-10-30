@@ -12,20 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+// The `ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
-// For more information consult
-// the [documentation](https://www.scaleway.com/en/docs/serverless/containers/)
-// .
-//
-// For more details about the limitation
-// check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/)
-// .
-//
-// You can check also
-// our [containers cron api documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#crons-942bf4).
+// Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 //
 // ## Example Usage
+//
+// The following command allows you to add a CRON trigger to a Serverless Container.
 //
 // ```go
 // package main
@@ -83,7 +76,7 @@ import (
 //
 // ## Import
 //
-// Container Cron can be imported using the `{region}/{id}`, e.g.
+// Container Cron can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -94,20 +87,17 @@ type ContainerCron struct {
 	pulumi.CustomResourceState
 
 	// The key-value mapping to define arguments that will be passed to your container’s event object
-	// during
 	Args pulumi.StringOutput `pulumi:"args"`
-	// The container ID to link with your cron.
+	// The unique identifier of the container to link to your CRON trigger.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
-	// The name of the container cron. If not provided, the name is generated.
-	// during
+	// The name of the container CRON trigger. If not provided, a random name is generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Defaults to provider `region`) The region
-	// in where the job was created.
+	// in which the CRON trigger is created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-	// executed.
+	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
-	// The cron status.
+	// The CRON status.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -151,39 +141,33 @@ func GetContainerCron(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ContainerCron resources.
 type containerCronState struct {
 	// The key-value mapping to define arguments that will be passed to your container’s event object
-	// during
 	Args *string `pulumi:"args"`
-	// The container ID to link with your cron.
+	// The unique identifier of the container to link to your CRON trigger.
 	ContainerId *string `pulumi:"containerId"`
-	// The name of the container cron. If not provided, the name is generated.
-	// during
+	// The name of the container CRON trigger. If not provided, a random name is generated.
 	Name *string `pulumi:"name"`
 	// (Defaults to provider `region`) The region
-	// in where the job was created.
+	// in which the CRON trigger is created.
 	Region *string `pulumi:"region"`
-	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-	// executed.
+	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 	Schedule *string `pulumi:"schedule"`
-	// The cron status.
+	// The CRON status.
 	Status *string `pulumi:"status"`
 }
 
 type ContainerCronState struct {
 	// The key-value mapping to define arguments that will be passed to your container’s event object
-	// during
 	Args pulumi.StringPtrInput
-	// The container ID to link with your cron.
+	// The unique identifier of the container to link to your CRON trigger.
 	ContainerId pulumi.StringPtrInput
-	// The name of the container cron. If not provided, the name is generated.
-	// during
+	// The name of the container CRON trigger. If not provided, a random name is generated.
 	Name pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region
-	// in where the job was created.
+	// in which the CRON trigger is created.
 	Region pulumi.StringPtrInput
-	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-	// executed.
+	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringPtrInput
-	// The cron status.
+	// The CRON status.
 	Status pulumi.StringPtrInput
 }
 
@@ -193,36 +177,30 @@ func (ContainerCronState) ElementType() reflect.Type {
 
 type containerCronArgs struct {
 	// The key-value mapping to define arguments that will be passed to your container’s event object
-	// during
 	Args string `pulumi:"args"`
-	// The container ID to link with your cron.
+	// The unique identifier of the container to link to your CRON trigger.
 	ContainerId string `pulumi:"containerId"`
-	// The name of the container cron. If not provided, the name is generated.
-	// during
+	// The name of the container CRON trigger. If not provided, a random name is generated.
 	Name *string `pulumi:"name"`
 	// (Defaults to provider `region`) The region
-	// in where the job was created.
+	// in which the CRON trigger is created.
 	Region *string `pulumi:"region"`
-	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-	// executed.
+	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 	Schedule string `pulumi:"schedule"`
 }
 
 // The set of arguments for constructing a ContainerCron resource.
 type ContainerCronArgs struct {
 	// The key-value mapping to define arguments that will be passed to your container’s event object
-	// during
 	Args pulumi.StringInput
-	// The container ID to link with your cron.
+	// The unique identifier of the container to link to your CRON trigger.
 	ContainerId pulumi.StringInput
-	// The name of the container cron. If not provided, the name is generated.
-	// during
+	// The name of the container CRON trigger. If not provided, a random name is generated.
 	Name pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region
-	// in where the job was created.
+	// in which the CRON trigger is created.
 	Region pulumi.StringPtrInput
-	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-	// executed.
+	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringInput
 }
 
@@ -314,35 +292,32 @@ func (o ContainerCronOutput) ToContainerCronOutputWithContext(ctx context.Contex
 }
 
 // The key-value mapping to define arguments that will be passed to your container’s event object
-// during
 func (o ContainerCronOutput) Args() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Args }).(pulumi.StringOutput)
 }
 
-// The container ID to link with your cron.
+// The unique identifier of the container to link to your CRON trigger.
 func (o ContainerCronOutput) ContainerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.ContainerId }).(pulumi.StringOutput)
 }
 
-// The name of the container cron. If not provided, the name is generated.
-// during
+// The name of the container CRON trigger. If not provided, a random name is generated.
 func (o ContainerCronOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // (Defaults to provider `region`) The region
-// in where the job was created.
+// in which the CRON trigger is created.
 func (o ContainerCronOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-// executed.
+// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 func (o ContainerCronOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
 }
 
-// The cron status.
+// The CRON status.
 func (o ContainerCronOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

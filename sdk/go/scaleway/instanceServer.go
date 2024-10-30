@@ -299,6 +299,38 @@ import (
 //
 // ```
 //
+// ### Using Scaleway Block Storage (SBS) volume
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewInstanceServer(ctx, "server", &scaleway.InstanceServerArgs{
+//				Type:  pulumi.String("PLAY2-MICRO"),
+//				Image: pulumi.String("ubuntu_jammy"),
+//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//					VolumeType: pulumi.String("sbs_volume"),
+//					SbsIops:    pulumi.Int(15000),
+//					SizeInGb:   pulumi.Int(50),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Private Network
 //
 // > **Important:** Updates to `privateNetwork` will recreate a new private network interface.

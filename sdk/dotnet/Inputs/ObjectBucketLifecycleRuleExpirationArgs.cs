@@ -15,8 +15,6 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         /// <summary>
         /// Specifies the number of days after object creation when the specific rule action takes effect.
-        /// 
-        /// &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         /// </summary>
         [Input("days", required: true)]
         public Input<int> Days { get; set; } = null!;

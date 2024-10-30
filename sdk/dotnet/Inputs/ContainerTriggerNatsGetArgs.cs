@@ -14,25 +14,25 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ContainerTriggerNatsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the mnq nats account.
+        /// unique identifier of the Messaging and Queuing NATS account.
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
         /// <summary>
-        /// ID of the project that contain the mnq nats account, defaults to provider's project
+        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Region where the mnq nats account is, defaults to provider's region
+        /// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The subject to listen to
+        /// The subject to listen to.
         /// </summary>
         [Input("subject", required: true)]
         public Input<string> Subject { get; set; } = null!;
