@@ -11,15 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+    /// The `scaleway.FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
-    /// For more details about the limitation
-    /// check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
-    /// 
-    /// You can check also
-    /// our [functions cron api documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#crons-942bf4).
+    /// Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// The following command allows you to add a CRON trigger to a Serverless Function.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -70,7 +68,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container Cron can be imported using the `{region}/{id}`, e.g.
+    /// Function Cron can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -83,39 +81,37 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The key-value mapping to define arguments that will be passed to your function’s event object
-        /// during
         /// </summary>
         [Output("args")]
         public Output<string> Args { get; private set; } = null!;
 
         /// <summary>
-        /// The function ID to link with your cron.
+        /// The unique identifier of the function to link to your CRON trigger.
         /// </summary>
         [Output("functionId")]
         public Output<string> FunctionId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the cron. If not provided, the name is generated.
+        /// The name of the function CRON trigger. If not provided, a random name is generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
         /// `region`) The region
-        /// in where the job was created.
+        /// in which the function was created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        /// executed.
+        /// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         /// </summary>
         [Output("schedule")]
         public Output<string> Schedule { get; private set; } = null!;
 
         /// <summary>
-        /// The cron status.
+        /// The CRON status.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -169,33 +165,31 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The key-value mapping to define arguments that will be passed to your function’s event object
-        /// during
         /// </summary>
         [Input("args", required: true)]
         public Input<string> Args { get; set; } = null!;
 
         /// <summary>
-        /// The function ID to link with your cron.
+        /// The unique identifier of the function to link to your CRON trigger.
         /// </summary>
         [Input("functionId", required: true)]
         public Input<string> FunctionId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the cron. If not provided, the name is generated.
+        /// The name of the function CRON trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// `region`) The region
-        /// in where the job was created.
+        /// in which the function was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        /// executed.
+        /// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         /// </summary>
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;
@@ -210,39 +204,37 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The key-value mapping to define arguments that will be passed to your function’s event object
-        /// during
         /// </summary>
         [Input("args")]
         public Input<string>? Args { get; set; }
 
         /// <summary>
-        /// The function ID to link with your cron.
+        /// The unique identifier of the function to link to your CRON trigger.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// The name of the cron. If not provided, the name is generated.
+        /// The name of the function CRON trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// `region`) The region
-        /// in where the job was created.
+        /// in which the function was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        /// executed.
+        /// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
         /// <summary>
-        /// The cron status.
+        /// The CRON status.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

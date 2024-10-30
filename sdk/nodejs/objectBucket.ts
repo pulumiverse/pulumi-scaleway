@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway object storage buckets.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * The `scaleway.ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+ *
+ * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information on Object Storage buckets.
  *
  * ## Example Usage
  *
@@ -99,7 +100,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+ * Buckets can be imported using the `{region}/{bucketName}` identifier, as shown below:
  *
  * bash
  *
@@ -107,7 +108,9 @@ import * as utilities from "./utilities";
  * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
  * ```
  *
- * If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
  *
  * bash
  *
@@ -146,6 +149,8 @@ export class ObjectBucket extends pulumi.CustomResource {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
+     * > **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+     *
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
@@ -153,16 +158,13 @@ export class ObjectBucket extends pulumi.CustomResource {
      * API URL of the bucket
      */
     public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
-    /**
-     * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-     */
     public readonly corsRules!: pulumi.Output<outputs.ObjectBucketCorsRule[] | undefined>;
     /**
-     * The endpoint URL of the bucket
+     * The endpoint URL of the bucket.
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+     * Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     /**
@@ -179,24 +181,21 @@ export class ObjectBucket extends pulumi.CustomResource {
     public readonly objectLockEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
-     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
+     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * A list of tags (key / value) for the bucket.
+     * A list of tags (key/value) for the bucket.
      *
      * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
-     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
+     * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+     * Allow multiple versions of an object in the same bucket
      */
     public readonly versioning!: pulumi.Output<outputs.ObjectBucketVersioning>;
 
@@ -252,6 +251,8 @@ export interface ObjectBucketState {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
+     * > **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+     *
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     acl?: pulumi.Input<string>;
@@ -259,16 +260,13 @@ export interface ObjectBucketState {
      * API URL of the bucket
      */
     apiEndpoint?: pulumi.Input<string>;
-    /**
-     * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-     */
     corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
     /**
-     * The endpoint URL of the bucket
+     * The endpoint URL of the bucket.
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+     * Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**
@@ -285,24 +283,21 @@ export interface ObjectBucketState {
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
-     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
+     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
     region?: pulumi.Input<string>;
     /**
-     * A list of tags (key / value) for the bucket.
+     * A list of tags (key/value) for the bucket.
      *
      * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
-     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
+     * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+     * Allow multiple versions of an object in the same bucket
      */
     versioning?: pulumi.Input<inputs.ObjectBucketVersioning>;
 }
@@ -314,15 +309,14 @@ export interface ObjectBucketArgs {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
+     * > **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+     *
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     acl?: pulumi.Input<string>;
-    /**
-     * A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-     */
     corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
     /**
-     * Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+     * Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**
@@ -339,24 +333,21 @@ export interface ObjectBucketArgs {
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
-     * Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
+     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
     region?: pulumi.Input<string>;
     /**
-     * A list of tags (key / value) for the bucket.
+     * A list of tags (key/value) for the bucket.
      *
      * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
-     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
+     * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+     * Allow multiple versions of an object in the same bucket
      */
     versioning?: pulumi.Input<inputs.ObjectBucketVersioning>;
 }

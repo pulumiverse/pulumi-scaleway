@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
     ///     {
-    ///         Name = "some-unique-name",
+    ///         Name = "unique-name",
     ///     });
     /// 
     ///     var main = new Scaleway.ObjectBucketAcl("main", new()
@@ -34,6 +34,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// 
+    /// For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-operations/#putbucketacl).
     /// 
     /// ### With Grants
     /// 
@@ -88,16 +90,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## The ACL
     /// 
-    /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+    /// Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
     /// 
-    /// ## The Access Control policy
+    /// ## The access control policy
     /// 
     /// The `access_control_policy` configuration block supports the following arguments:
     /// 
     /// * `grant` - (Required) Set of grant configuration blocks documented below.
     /// * `owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
     /// 
-    /// ## The Grant
+    /// ## The grant
     /// 
     /// The `grant` configuration block supports the following arguments:
     /// 
@@ -128,7 +130,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+    /// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
     /// 
     /// bash
     /// 
@@ -156,7 +158,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.ObjectBucketAclAccessControlPolicy> AccessControlPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
@@ -239,7 +241,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.ObjectBucketAclAccessControlPolicyArgs>? AccessControlPolicy { get; set; }
 
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -283,7 +285,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.ObjectBucketAclAccessControlPolicyGetArgs>? AccessControlPolicy { get; set; }
 
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }

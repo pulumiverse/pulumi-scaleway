@@ -27,14 +27,11 @@ class ContainerCronArgs:
         """
         The set of arguments for constructing a ContainerCron resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your container’s event object
-               during
-        :param pulumi.Input[str] container_id: The container ID to link with your cron.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
-        :param pulumi.Input[str] name: The name of the container cron. If not provided, the name is generated.
-               during
+        :param pulumi.Input[str] container_id: The unique identifier of the container to link to your CRON trigger.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[str] name: The name of the container CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region
-               in where the job was created.
+               in which the CRON trigger is created.
         """
         pulumi.set(__self__, "args", args)
         pulumi.set(__self__, "container_id", container_id)
@@ -49,7 +46,6 @@ class ContainerCronArgs:
     def args(self) -> pulumi.Input[str]:
         """
         The key-value mapping to define arguments that will be passed to your container’s event object
-        during
         """
         return pulumi.get(self, "args")
 
@@ -61,7 +57,7 @@ class ContainerCronArgs:
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Input[str]:
         """
-        The container ID to link with your cron.
+        The unique identifier of the container to link to your CRON trigger.
         """
         return pulumi.get(self, "container_id")
 
@@ -73,8 +69,7 @@ class ContainerCronArgs:
     @pulumi.getter
     def schedule(self) -> pulumi.Input[str]:
         """
-        Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        executed.
+        CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
 
@@ -86,8 +81,7 @@ class ContainerCronArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the container cron. If not provided, the name is generated.
-        during
+        The name of the container CRON trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
@@ -100,7 +94,7 @@ class ContainerCronArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         (Defaults to provider `region`) The region
-        in where the job was created.
+        in which the CRON trigger is created.
         """
         return pulumi.get(self, "region")
 
@@ -121,15 +115,12 @@ class _ContainerCronState:
         """
         Input properties used for looking up and filtering ContainerCron resources.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your container’s event object
-               during
-        :param pulumi.Input[str] container_id: The container ID to link with your cron.
-        :param pulumi.Input[str] name: The name of the container cron. If not provided, the name is generated.
-               during
+        :param pulumi.Input[str] container_id: The unique identifier of the container to link to your CRON trigger.
+        :param pulumi.Input[str] name: The name of the container CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region
-               in where the job was created.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
-        :param pulumi.Input[str] status: The cron status.
+               in which the CRON trigger is created.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[str] status: The CRON status.
         """
         if args is not None:
             pulumi.set(__self__, "args", args)
@@ -149,7 +140,6 @@ class _ContainerCronState:
     def args(self) -> Optional[pulumi.Input[str]]:
         """
         The key-value mapping to define arguments that will be passed to your container’s event object
-        during
         """
         return pulumi.get(self, "args")
 
@@ -161,7 +151,7 @@ class _ContainerCronState:
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The container ID to link with your cron.
+        The unique identifier of the container to link to your CRON trigger.
         """
         return pulumi.get(self, "container_id")
 
@@ -173,8 +163,7 @@ class _ContainerCronState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the container cron. If not provided, the name is generated.
-        during
+        The name of the container CRON trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
@@ -187,7 +176,7 @@ class _ContainerCronState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         (Defaults to provider `region`) The region
-        in where the job was created.
+        in which the CRON trigger is created.
         """
         return pulumi.get(self, "region")
 
@@ -199,8 +188,7 @@ class _ContainerCronState:
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input[str]]:
         """
-        Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        executed.
+        CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
 
@@ -212,7 +200,7 @@ class _ContainerCronState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The cron status.
+        The CRON status.
         """
         return pulumi.get(self, "status")
 
@@ -233,20 +221,13 @@ class ContainerCron(pulumi.CustomResource):
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+        The `ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
-        For more information consult
-        the [documentation](https://www.scaleway.com/en/docs/serverless/containers/)
-        .
-
-        For more details about the limitation
-        check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/)
-        .
-
-        You can check also
-        our [containers cron api documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#crons-942bf4).
+        Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 
         ## Example Usage
+
+        The following command allows you to add a CRON trigger to a Serverless Container.
 
         ```python
         import pulumi
@@ -275,7 +256,7 @@ class ContainerCron(pulumi.CustomResource):
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g.
+        Container Cron can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -286,14 +267,11 @@ class ContainerCron(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your container’s event object
-               during
-        :param pulumi.Input[str] container_id: The container ID to link with your cron.
-        :param pulumi.Input[str] name: The name of the container cron. If not provided, the name is generated.
-               during
+        :param pulumi.Input[str] container_id: The unique identifier of the container to link to your CRON trigger.
+        :param pulumi.Input[str] name: The name of the container CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region
-               in where the job was created.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
+               in which the CRON trigger is created.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         """
         ...
     @overload
@@ -302,20 +280,13 @@ class ContainerCron(pulumi.CustomResource):
                  args: ContainerCronArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+        The `ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
-        For more information consult
-        the [documentation](https://www.scaleway.com/en/docs/serverless/containers/)
-        .
-
-        For more details about the limitation
-        check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/)
-        .
-
-        You can check also
-        our [containers cron api documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#crons-942bf4).
+        Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 
         ## Example Usage
+
+        The following command allows you to add a CRON trigger to a Serverless Container.
 
         ```python
         import pulumi
@@ -344,7 +315,7 @@ class ContainerCron(pulumi.CustomResource):
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g.
+        Container Cron can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -417,15 +388,12 @@ class ContainerCron(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your container’s event object
-               during
-        :param pulumi.Input[str] container_id: The container ID to link with your cron.
-        :param pulumi.Input[str] name: The name of the container cron. If not provided, the name is generated.
-               during
+        :param pulumi.Input[str] container_id: The unique identifier of the container to link to your CRON trigger.
+        :param pulumi.Input[str] name: The name of the container CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region
-               in where the job was created.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
-        :param pulumi.Input[str] status: The cron status.
+               in which the CRON trigger is created.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[str] status: The CRON status.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -444,7 +412,6 @@ class ContainerCron(pulumi.CustomResource):
     def args(self) -> pulumi.Output[str]:
         """
         The key-value mapping to define arguments that will be passed to your container’s event object
-        during
         """
         return pulumi.get(self, "args")
 
@@ -452,7 +419,7 @@ class ContainerCron(pulumi.CustomResource):
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Output[str]:
         """
-        The container ID to link with your cron.
+        The unique identifier of the container to link to your CRON trigger.
         """
         return pulumi.get(self, "container_id")
 
@@ -460,8 +427,7 @@ class ContainerCron(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the container cron. If not provided, the name is generated.
-        during
+        The name of the container CRON trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
@@ -470,7 +436,7 @@ class ContainerCron(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         (Defaults to provider `region`) The region
-        in where the job was created.
+        in which the CRON trigger is created.
         """
         return pulumi.get(self, "region")
 
@@ -478,8 +444,7 @@ class ContainerCron(pulumi.CustomResource):
     @pulumi.getter
     def schedule(self) -> pulumi.Output[str]:
         """
-        Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        executed.
+        CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
 
@@ -487,7 +452,7 @@ class ContainerCron(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The cron status.
+        The CRON status.
         """
         return pulumi.get(self, "status")
 

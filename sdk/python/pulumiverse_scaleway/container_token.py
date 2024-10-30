@@ -26,15 +26,15 @@ class ContainerTokenArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerToken resource.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
                
                > Only one of `namespace_id` or `container_id` must be set.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] namespace_id: The ID of the container namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Containers namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         """
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
@@ -51,7 +51,7 @@ class ContainerTokenArgs:
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the container.
+        The unique identifier of the container.
 
         > Only one of `namespace_id` or `container_id` must be set.
         """
@@ -89,7 +89,7 @@ class ContainerTokenArgs:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the container namespace.
+        The unique identifier of the Containers namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -101,9 +101,9 @@ class ContainerTokenArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
 
-        > **Important** Updates to any fields will recreate the token.
+        > **Important** Updating any of the arguments above will recreate the token.
         """
         return pulumi.get(self, "region")
 
@@ -123,15 +123,15 @@ class _ContainerTokenState:
                  token: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerToken resources.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
                
                > Only one of `namespace_id` or `container_id` must be set.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] namespace_id: The ID of the container namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Containers namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
         if container_id is not None:
@@ -151,7 +151,7 @@ class _ContainerTokenState:
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the container.
+        The unique identifier of the container.
 
         > Only one of `namespace_id` or `container_id` must be set.
         """
@@ -189,7 +189,7 @@ class _ContainerTokenState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the container namespace.
+        The unique identifier of the Containers namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -201,9 +201,9 @@ class _ContainerTokenState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
 
-        > **Important** Updates to any fields will recreate the token.
+        > **Important** Updating any of the arguments above will recreate the token.
         """
         return pulumi.get(self, "region")
 
@@ -236,12 +236,11 @@ class ContainerToken(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Container Token.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#tokens-26b085).
+        The `ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+
+        Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -259,7 +258,7 @@ class ContainerToken(pulumi.CustomResource):
 
         ## Import
 
-        Tokens can be imported using the `{region}/{id}`, e.g.
+        Tokens can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -269,15 +268,15 @@ class ContainerToken(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
                
                > Only one of `namespace_id` or `container_id` must be set.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] namespace_id: The ID of the container namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Containers namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         """
         ...
     @overload
@@ -286,12 +285,11 @@ class ContainerToken(pulumi.CustomResource):
                  args: Optional[ContainerTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Container Token.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#tokens-26b085).
+        The `ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+
+        Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -309,7 +307,7 @@ class ContainerToken(pulumi.CustomResource):
 
         ## Import
 
-        Tokens can be imported using the `{region}/{id}`, e.g.
+        Tokens can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -377,15 +375,15 @@ class ContainerToken(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
                
                > Only one of `namespace_id` or `container_id` must be set.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] namespace_id: The ID of the container namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Containers namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -404,7 +402,7 @@ class ContainerToken(pulumi.CustomResource):
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the container.
+        The unique identifier of the container.
 
         > Only one of `namespace_id` or `container_id` must be set.
         """
@@ -430,7 +428,7 @@ class ContainerToken(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the container namespace.
+        The unique identifier of the Containers namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -438,9 +436,9 @@ class ContainerToken(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
 
-        > **Important** Updates to any fields will recreate the token.
+        > **Important** Updating any of the arguments above will recreate the token.
         """
         return pulumi.get(self, "region")
 

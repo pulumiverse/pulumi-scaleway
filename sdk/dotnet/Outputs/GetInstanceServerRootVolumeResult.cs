@@ -27,6 +27,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// SBS Volume IOPS, only with volume_type as sbs_volume
+        /// </summary>
+        public readonly int SbsIops;
+        /// <summary>
         /// Size of the root volume in gigabytes.
         /// </summary>
         public readonly int SizeInGb;
@@ -47,6 +51,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string name,
 
+            int sbsIops,
+
             int sizeInGb,
 
             string volumeId,
@@ -56,6 +62,7 @@ namespace Pulumiverse.Scaleway.Outputs
             Boot = boot;
             DeleteOnTermination = deleteOnTermination;
             Name = name;
+            SbsIops = sbsIops;
             SizeInGb = sizeInGb;
             VolumeId = volumeId;
             VolumeType = volumeType;

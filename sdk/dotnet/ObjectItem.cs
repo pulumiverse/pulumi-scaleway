@@ -11,12 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway object storage objects.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    /// The `scaleway.ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+    /// 
+    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
     /// 
     /// ## Import
     /// 
-    /// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+    /// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
     /// 
     /// bash
     /// 
@@ -51,30 +52,32 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// 
+        /// &gt; **Note:** Only one of `file`, `content` or `content_base64` can be defined.
         /// </summary>
         [Output("contentBase64")]
         public Output<string?> ContentBase64 { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The name of the file to upload, defaults to an empty file.
         /// </summary>
         [Output("file")]
         public Output<string?> File { get; private set; } = null!;
 
         /// <summary>
-        /// Hash of the file, used to trigger upload on file change
+        /// Hash of the file, used to trigger the upload on file change.
         /// </summary>
         [Output("hash")]
         public Output<string?> Hash { get; private set; } = null!;
 
         /// <summary>
-        /// The path of the object.
+        /// The path to the object.
         /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// Map of metadata used for the object, keys must be lowercase
+        /// Map of metadata used for the object (keys must be lowercase).
         /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
@@ -86,25 +89,25 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The Scaleway region this bucket resides in.
+        /// The Scaleway region the bucket resides in.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         /// </summary>
         [Output("storageClass")]
         public Output<string?> StorageClass { get; private set; } = null!;
 
         /// <summary>
-        /// Map of tags
+        /// Map of tags.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Visibility of the object, `public-read` or `private`
+        /// Visibility of the object, `public-read` or `private`.
         /// </summary>
         [Output("visibility")]
         public Output<string> Visibility { get; private set; } = null!;
@@ -170,24 +173,26 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// 
+        /// &gt; **Note:** Only one of `file`, `content` or `content_base64` can be defined.
         /// </summary>
         [Input("contentBase64")]
         public Input<string>? ContentBase64 { get; set; }
 
         /// <summary>
-        /// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The name of the file to upload, defaults to an empty file.
         /// </summary>
         [Input("file")]
         public Input<string>? File { get; set; }
 
         /// <summary>
-        /// Hash of the file, used to trigger upload on file change
+        /// Hash of the file, used to trigger the upload on file change.
         /// </summary>
         [Input("hash")]
         public Input<string>? Hash { get; set; }
 
         /// <summary>
-        /// The path of the object.
+        /// The path to the object.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
@@ -196,7 +201,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _metadata;
 
         /// <summary>
-        /// Map of metadata used for the object, keys must be lowercase
+        /// Map of metadata used for the object (keys must be lowercase).
         /// </summary>
         public InputMap<string> Metadata
         {
@@ -211,13 +216,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The Scaleway region this bucket resides in.
+        /// The Scaleway region the bucket resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         /// </summary>
         [Input("storageClass")]
         public Input<string>? StorageClass { get; set; }
@@ -226,7 +231,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _tags;
 
         /// <summary>
-        /// Map of tags
+        /// Map of tags.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -235,7 +240,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Visibility of the object, `public-read` or `private`
+        /// Visibility of the object, `public-read` or `private`.
         /// </summary>
         [Input("visibility")]
         public Input<string>? Visibility { get; set; }
@@ -262,24 +267,26 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// 
+        /// &gt; **Note:** Only one of `file`, `content` or `content_base64` can be defined.
         /// </summary>
         [Input("contentBase64")]
         public Input<string>? ContentBase64 { get; set; }
 
         /// <summary>
-        /// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The name of the file to upload, defaults to an empty file.
         /// </summary>
         [Input("file")]
         public Input<string>? File { get; set; }
 
         /// <summary>
-        /// Hash of the file, used to trigger upload on file change
+        /// Hash of the file, used to trigger the upload on file change.
         /// </summary>
         [Input("hash")]
         public Input<string>? Hash { get; set; }
 
         /// <summary>
-        /// The path of the object.
+        /// The path to the object.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
@@ -288,7 +295,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _metadata;
 
         /// <summary>
-        /// Map of metadata used for the object, keys must be lowercase
+        /// Map of metadata used for the object (keys must be lowercase).
         /// </summary>
         public InputMap<string> Metadata
         {
@@ -303,13 +310,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The Scaleway region this bucket resides in.
+        /// The Scaleway region the bucket resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         /// </summary>
         [Input("storageClass")]
         public Input<string>? StorageClass { get; set; }
@@ -318,7 +325,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _tags;
 
         /// <summary>
-        /// Map of tags
+        /// Map of tags.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -327,7 +334,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Visibility of the object, `public-read` or `private`
+        /// Visibility of the object, `public-read` or `private`.
         /// </summary>
         [Input("visibility")]
         public Input<string>? Visibility { get; set; }

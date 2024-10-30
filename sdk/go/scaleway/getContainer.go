@@ -11,15 +11,18 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about the Scaleway Container.
+// The `Container` data source is used to retrieve information about a Serverless Container.
 //
-// For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 //
-// For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
 //
-// You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+// ## Retrieve a Serverless Container
 //
-// ## Example Usage
+// The following commands allow you to:
+//
+// - retrieve a container by its name
+// - retrieve a container by its ID
 //
 // ```go
 // package main
@@ -59,6 +62,18 @@ import (
 //	}
 //
 // ```
+//
+// ## Arguments reference
+//
+// This section lists the arguments that you can provide to the `Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+//
+// - `name` - (Required) The unique name of the container.
+//
+// - `namespaceId` - (Required) The container namespace ID of the container.
+//
+// - `projectId` - (Optional) The unique identifier of the project with which the container is associated.
+//
+// > **Important** Updating the `name` argument will recreate the container.
 func LookupContainer(ctx *pulumi.Context, args *LookupContainerArgs, opts ...pulumi.InvokeOption) (*LookupContainerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerResult
@@ -72,14 +87,9 @@ func LookupContainer(ctx *pulumi.Context, args *LookupContainerArgs, opts ...pul
 // A collection of arguments for invoking getContainer.
 type LookupContainerArgs struct {
 	ContainerId *string `pulumi:"containerId"`
-	// The unique name of the container name.
-	Name *string `pulumi:"name"`
-	// The container namespace ID of the container.
-	NamespaceId string `pulumi:"namespaceId"`
-	// The ID of the project the container is associated with.
-	//
-	// > **Important** Updates to `name` will recreate the container.
-	ProjectId *string `pulumi:"projectId"`
+	Name        *string `pulumi:"name"`
+	NamespaceId string  `pulumi:"namespaceId"`
+	ProjectId   *string `pulumi:"projectId"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
 }
@@ -87,7 +97,7 @@ type LookupContainerArgs struct {
 // A collection of values returned by getContainer.
 type LookupContainerResult struct {
 	ContainerId *string `pulumi:"containerId"`
-	// The amount of vCPU computing resources to allocate to each container. Defaults  to 70.
+	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit int `pulumi:"cpuLimit"`
 	// The cron status of the container.
 	CronStatus string `pulumi:"cronStatus"`
@@ -104,26 +114,26 @@ type LookupContainerResult struct {
 	HttpOption   string `pulumi:"httpOption"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+	// The maximum number of simultaneous requests your container can handle at the same time.
 	MaxConcurrency int `pulumi:"maxConcurrency"`
-	// The maximum of number of instances this container can scale to. Default to 20.
+	// The maximum number of instances the container can scale to.
 	MaxScale int `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory resources in MB to allocate to each container.
 	MemoryLimit int `pulumi:"memoryLimit"`
-	// The minimum of running container instances continuously. Defaults to 0.
+	// The minimum number of container instances running continuously.
 	MinScale    int     `pulumi:"minScale"`
 	Name        *string `pulumi:"name"`
 	NamespaceId string  `pulumi:"namespaceId"`
-	// The port to expose the container. Defaults to 8080.
+	// The port to expose the container.
 	Port int `pulumi:"port"`
-	// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+	// The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
 	Privacy   string  `pulumi:"privacy"`
 	ProjectId *string `pulumi:"projectId"`
-	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol string `pulumi:"protocol"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
-	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+	// The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
 	RegistryImage string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 string `pulumi:"registrySha256"`
@@ -132,7 +142,7 @@ type LookupContainerResult struct {
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status string `pulumi:"status"`
-	// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+	// The maximum amount of time your container can spend processing a request before being stopped.
 	Timeout int `pulumi:"timeout"`
 }
 
@@ -158,14 +168,9 @@ func LookupContainerOutput(ctx *pulumi.Context, args LookupContainerOutputArgs, 
 // A collection of arguments for invoking getContainer.
 type LookupContainerOutputArgs struct {
 	ContainerId pulumi.StringPtrInput `pulumi:"containerId"`
-	// The unique name of the container name.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The container namespace ID of the container.
-	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
-	// The ID of the project the container is associated with.
-	//
-	// > **Important** Updates to `name` will recreate the container.
-	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	Name        pulumi.StringPtrInput `pulumi:"name"`
+	NamespaceId pulumi.StringInput    `pulumi:"namespaceId"`
+	ProjectId   pulumi.StringPtrInput `pulumi:"projectId"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -193,7 +198,7 @@ func (o LookupContainerResultOutput) ContainerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupContainerResult) *string { return v.ContainerId }).(pulumi.StringPtrOutput)
 }
 
-// The amount of vCPU computing resources to allocate to each container. Defaults  to 70.
+// The amount of vCPU computing resources to allocate to each container.
 func (o LookupContainerResultOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.CpuLimit }).(pulumi.IntOutput)
 }
@@ -237,22 +242,22 @@ func (o LookupContainerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+// The maximum number of simultaneous requests your container can handle at the same time.
 func (o LookupContainerResultOutput) MaxConcurrency() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.MaxConcurrency }).(pulumi.IntOutput)
 }
 
-// The maximum of number of instances this container can scale to. Default to 20.
+// The maximum number of instances the container can scale to.
 func (o LookupContainerResultOutput) MaxScale() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.MaxScale }).(pulumi.IntOutput)
 }
 
-// The memory computing resources in MB to allocate to each container. Defaults to 128.
+// The memory resources in MB to allocate to each container.
 func (o LookupContainerResultOutput) MemoryLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.MemoryLimit }).(pulumi.IntOutput)
 }
 
-// The minimum of running container instances continuously. Defaults to 0.
+// The minimum number of container instances running continuously.
 func (o LookupContainerResultOutput) MinScale() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.MinScale }).(pulumi.IntOutput)
 }
@@ -265,12 +270,12 @@ func (o LookupContainerResultOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
-// The port to expose the container. Defaults to 8080.
+// The port to expose the container.
 func (o LookupContainerResultOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+// The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
 func (o LookupContainerResultOutput) Privacy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Privacy }).(pulumi.StringOutput)
 }
@@ -279,7 +284,7 @@ func (o LookupContainerResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupContainerResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 func (o LookupContainerResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
@@ -289,7 +294,7 @@ func (o LookupContainerResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupContainerResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+// The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
 func (o LookupContainerResultOutput) RegistryImage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.RegistryImage }).(pulumi.StringOutput)
 }
@@ -313,7 +318,7 @@ func (o LookupContainerResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+// The maximum amount of time your container can spend processing a request before being stopped.
 func (o LookupContainerResultOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContainerResult) int { return v.Timeout }).(pulumi.IntOutput)
 }

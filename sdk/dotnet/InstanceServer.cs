@@ -248,6 +248,31 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Using Scaleway Block Storage (SBS) volume
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var server = new Scaleway.InstanceServer("server", new()
+    ///     {
+    ///         Type = "PLAY2-MICRO",
+    ///         Image = "ubuntu_jammy",
+    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         {
+    ///             VolumeType = "sbs_volume",
+    ///             SbsIops = 15000,
+    ///             SizeInGb = 50,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Private Network
     /// 
     /// &gt; **Important:** Updates to `private_network` will recreate a new private network interface.

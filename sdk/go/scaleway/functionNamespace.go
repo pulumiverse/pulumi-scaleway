@@ -11,12 +11,12 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Function Namespace.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/).
+// The `FunctionNamespace` resource allows you to
+// for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+//
+// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
 //
 // ## Example Usage
-//
-// ### Basic
 //
 // ```go
 // package main
@@ -45,7 +45,7 @@ import (
 //
 // ## Import
 //
-// Namespaces can be imported using the `{region}/{id}`, e.g.
+// Functions namespaces can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -59,21 +59,21 @@ type FunctionNamespace struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
-	// The unique name of the function namespace.
+	// The unique name of the Functions namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The Organization ID with which the namespace is associated.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
-	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 }
 
@@ -118,21 +118,21 @@ type functionNamespaceState struct {
 	Description *string `pulumi:"description"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The unique name of the function namespace.
+	// The unique name of the Functions namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name *string `pulumi:"name"`
-	// The organization ID the namespace is associated with.
+	// The Organization ID with which the namespace is associated.
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
-	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
@@ -141,21 +141,21 @@ type FunctionNamespaceState struct {
 	Description pulumi.StringPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The unique name of the function namespace.
+	// The unique name of the Functions namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name pulumi.StringPtrInput
-	// The organization ID the namespace is associated with.
+	// The Organization ID with which the namespace is associated.
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
 	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringPtrInput
 	// The registry namespace ID of the namespace.
 	RegistryNamespaceId pulumi.StringPtrInput
-	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
 }
 
@@ -168,15 +168,15 @@ type functionNamespaceArgs struct {
 	Description *string `pulumi:"description"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// The unique name of the function namespace.
+	// The unique name of the Functions namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
-	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
@@ -186,15 +186,15 @@ type FunctionNamespaceArgs struct {
 	Description pulumi.StringPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
-	// The unique name of the function namespace.
+	// The unique name of the Functions namespace.
 	//
-	// > **Important** Updates to `name` will recreate the namespace.
+	// > **Important** Updates to the `name` argument will recreate the namespace.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
-	// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
 }
 
@@ -295,24 +295,24 @@ func (o FunctionNamespaceOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
-// The unique name of the function namespace.
+// The unique name of the Functions namespace.
 //
-// > **Important** Updates to `name` will recreate the namespace.
+// > **Important** Updates to the `name` argument will recreate the namespace.
 func (o FunctionNamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the namespace is associated with.
+// The Organization ID with which the namespace is associated.
 func (o FunctionNamespaceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the namespace is associated with.
+// `projectId`) The unique identifier of the project that contains the namespace.
 func (o FunctionNamespaceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// `region`). The region in which the namespace is created.
 func (o FunctionNamespaceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -327,7 +327,7 @@ func (o FunctionNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }
 
-// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+// The secret environment variables of the namespace.
 func (o FunctionNamespaceOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }

@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// Projects can be imported using the `id`, e.g.
+    /// Projects can be imported using the `id` argument, as shown below:
     /// 
     /// bash
     /// 
@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     public partial class AccountProject : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The Project creation time.
+        /// The creation time of the Project.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -43,13 +43,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        /// `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The Project last update time.
+        /// The last update time of the Project.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -114,7 +114,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        /// `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -128,7 +128,7 @@ namespace Pulumiverse.Scaleway
     public sealed class AccountProjectState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Project creation time.
+        /// The creation time of the Project.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -146,13 +146,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`)The organization ID the Project is associated with. Please note that any change in `organization_id` will recreate the resource.
+        /// `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The Project last update time.
+        /// The last update time of the Project.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

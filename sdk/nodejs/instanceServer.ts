@@ -161,6 +161,23 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Using Scaleway Block Storage (SBS) volume
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const server = new scaleway.InstanceServer("server", {
+ *     type: "PLAY2-MICRO",
+ *     image: "ubuntu_jammy",
+ *     rootVolume: {
+ *         volumeType: "sbs_volume",
+ *         sbsIops: 15000,
+ *         sizeInGb: 50,
+ *     },
+ * });
+ * ```
+ *
  * ## Private Network
  *
  * > **Important:** Updates to `privateNetwork` will recreate a new private network interface.

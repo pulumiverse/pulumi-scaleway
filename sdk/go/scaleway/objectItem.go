@@ -12,12 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway object storage objects.
-// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+// The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+//
+// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 //
 // ## Import
 //
-// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
 //
 // bash
 //
@@ -42,24 +43,26 @@ type ObjectItem struct {
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrOutput `pulumi:"content"`
 	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	//
+	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 pulumi.StringPtrOutput `pulumi:"contentBase64"`
-	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+	// The name of the file to upload, defaults to an empty file.
 	File pulumi.StringPtrOutput `pulumi:"file"`
-	// Hash of the file, used to trigger upload on file change
+	// Hash of the file, used to trigger the upload on file change.
 	Hash pulumi.StringPtrOutput `pulumi:"hash"`
-	// The path of the object.
+	// The path to the object.
 	Key pulumi.StringOutput `pulumi:"key"`
-	// Map of metadata used for the object, keys must be lowercase
+	// Map of metadata used for the object (keys must be lowercase).
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The Scaleway region this bucket resides in.
+	// The Scaleway region the bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
-	// Map of tags
+	// Map of tags.
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
-	// Visibility of the object, `public-read` or `private`
+	// Visibility of the object, `public-read` or `private`.
 	Visibility pulumi.StringOutput `pulumi:"visibility"`
 }
 
@@ -104,24 +107,26 @@ type objectItemState struct {
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
 	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	//
+	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 *string `pulumi:"contentBase64"`
-	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+	// The name of the file to upload, defaults to an empty file.
 	File *string `pulumi:"file"`
-	// Hash of the file, used to trigger upload on file change
+	// Hash of the file, used to trigger the upload on file change.
 	Hash *string `pulumi:"hash"`
-	// The path of the object.
+	// The path to the object.
 	Key *string `pulumi:"key"`
-	// Map of metadata used for the object, keys must be lowercase
+	// Map of metadata used for the object (keys must be lowercase).
 	Metadata map[string]string `pulumi:"metadata"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The Scaleway region this bucket resides in.
+	// The Scaleway region the bucket resides in.
 	Region *string `pulumi:"region"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass *string `pulumi:"storageClass"`
-	// Map of tags
+	// Map of tags.
 	Tags map[string]string `pulumi:"tags"`
-	// Visibility of the object, `public-read` or `private`
+	// Visibility of the object, `public-read` or `private`.
 	Visibility *string `pulumi:"visibility"`
 }
 
@@ -131,24 +136,26 @@ type ObjectItemState struct {
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
 	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	//
+	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 pulumi.StringPtrInput
-	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+	// The name of the file to upload, defaults to an empty file.
 	File pulumi.StringPtrInput
-	// Hash of the file, used to trigger upload on file change
+	// Hash of the file, used to trigger the upload on file change.
 	Hash pulumi.StringPtrInput
-	// The path of the object.
+	// The path to the object.
 	Key pulumi.StringPtrInput
-	// Map of metadata used for the object, keys must be lowercase
+	// Map of metadata used for the object (keys must be lowercase).
 	Metadata pulumi.StringMapInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The Scaleway region this bucket resides in.
+	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrInput
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass pulumi.StringPtrInput
-	// Map of tags
+	// Map of tags.
 	Tags pulumi.StringMapInput
-	// Visibility of the object, `public-read` or `private`
+	// Visibility of the object, `public-read` or `private`.
 	Visibility pulumi.StringPtrInput
 }
 
@@ -162,24 +169,26 @@ type objectItemArgs struct {
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
 	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	//
+	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 *string `pulumi:"contentBase64"`
-	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+	// The name of the file to upload, defaults to an empty file.
 	File *string `pulumi:"file"`
-	// Hash of the file, used to trigger upload on file change
+	// Hash of the file, used to trigger the upload on file change.
 	Hash *string `pulumi:"hash"`
-	// The path of the object.
+	// The path to the object.
 	Key string `pulumi:"key"`
-	// Map of metadata used for the object, keys must be lowercase
+	// Map of metadata used for the object (keys must be lowercase).
 	Metadata map[string]string `pulumi:"metadata"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The Scaleway region this bucket resides in.
+	// The Scaleway region the bucket resides in.
 	Region *string `pulumi:"region"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass *string `pulumi:"storageClass"`
-	// Map of tags
+	// Map of tags.
 	Tags map[string]string `pulumi:"tags"`
-	// Visibility of the object, `public-read` or `private`
+	// Visibility of the object, `public-read` or `private`.
 	Visibility *string `pulumi:"visibility"`
 }
 
@@ -190,24 +199,26 @@ type ObjectItemArgs struct {
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
 	// The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+	//
+	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 pulumi.StringPtrInput
-	// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+	// The name of the file to upload, defaults to an empty file.
 	File pulumi.StringPtrInput
-	// Hash of the file, used to trigger upload on file change
+	// Hash of the file, used to trigger the upload on file change.
 	Hash pulumi.StringPtrInput
-	// The path of the object.
+	// The path to the object.
 	Key pulumi.StringInput
-	// Map of metadata used for the object, keys must be lowercase
+	// Map of metadata used for the object (keys must be lowercase).
 	Metadata pulumi.StringMapInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The Scaleway region this bucket resides in.
+	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrInput
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass pulumi.StringPtrInput
-	// Map of tags
+	// Map of tags.
 	Tags pulumi.StringMapInput
-	// Visibility of the object, `public-read` or `private`
+	// Visibility of the object, `public-read` or `private`.
 	Visibility pulumi.StringPtrInput
 }
 
@@ -309,26 +320,28 @@ func (o ObjectItemOutput) Content() pulumi.StringPtrOutput {
 }
 
 // The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+//
+// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 func (o ObjectItemOutput) ContentBase64() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.ContentBase64 }).(pulumi.StringPtrOutput)
 }
 
-// The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+// The name of the file to upload, defaults to an empty file.
 func (o ObjectItemOutput) File() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.File }).(pulumi.StringPtrOutput)
 }
 
-// Hash of the file, used to trigger upload on file change
+// Hash of the file, used to trigger the upload on file change.
 func (o ObjectItemOutput) Hash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.Hash }).(pulumi.StringPtrOutput)
 }
 
-// The path of the object.
+// The path to the object.
 func (o ObjectItemOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
-// Map of metadata used for the object, keys must be lowercase
+// Map of metadata used for the object (keys must be lowercase).
 func (o ObjectItemOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
@@ -338,22 +351,22 @@ func (o ObjectItemOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The Scaleway region this bucket resides in.
+// The Scaleway region the bucket resides in.
 func (o ObjectItemOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 func (o ObjectItemOutput) StorageClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.StorageClass }).(pulumi.StringPtrOutput)
 }
 
-// Map of tags
+// Map of tags.
 func (o ObjectItemOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
 
-// Visibility of the object, `public-read` or `private`
+// Visibility of the object, `public-read` or `private`.
 func (o ObjectItemOutput) Visibility() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Visibility }).(pulumi.StringOutput)
 }

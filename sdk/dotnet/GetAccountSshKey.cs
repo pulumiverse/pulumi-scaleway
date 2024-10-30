@@ -13,13 +13,17 @@ namespace Pulumiverse.Scaleway
     public static class GetAccountSshKey
     {
         /// <summary>
-        /// Use this data source to get SSH key information based on its ID or name.
+        /// The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+        /// 
+        /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
         /// </summary>
         public static Task<GetAccountSshKeyResult> InvokeAsync(GetAccountSshKeyArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to get SSH key information based on its ID or name.
+        /// The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+        /// 
+        /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
         /// </summary>
         public static Output<GetAccountSshKeyResult> Invoke(GetAccountSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyInvokeArgs(), options.WithDefaults());
@@ -29,19 +33,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetAccountSshKeyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The SSH key name.
+        /// The name of the SSH key.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the SSH key is associated with.
+        /// `project_id`) The unique identifier of the project with which the SSH key is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The SSH key id.
+        /// The unique identifier of the SSH key.
         /// 
         /// &gt; **Note** You must specify at least one: `name` and/or `ssh_key_id`.
         /// </summary>
@@ -57,19 +61,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetAccountSshKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The SSH key name.
+        /// The name of the SSH key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the SSH key is associated with.
+        /// `project_id`) The unique identifier of the project with which the SSH key is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The SSH key id.
+        /// The unique identifier of the SSH key.
         /// 
         /// &gt; **Note** You must specify at least one: `name` and/or `ssh_key_id`.
         /// </summary>
@@ -95,12 +99,12 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string? Name;
         /// <summary>
-        /// The ID of the organization the SSH key is associated with.
+        /// The unique identifier of the Organization with which the SSH key is associated.
         /// </summary>
         public readonly string OrganizationId;
         public readonly string? ProjectId;
         /// <summary>
-        /// The SSH public key string
+        /// The string of the SSH public key.
         /// </summary>
         public readonly string PublicKey;
         public readonly string? SshKeyId;

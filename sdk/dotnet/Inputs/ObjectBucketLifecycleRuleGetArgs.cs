@@ -16,19 +16,19 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
         /// 
-        /// * &gt; **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+        /// &gt; **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         /// </summary>
         [Input("abortIncompleteMultipartUploadDays")]
         public Input<int>? AbortIncompleteMultipartUploadDays { get; set; }
 
         /// <summary>
-        /// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+        /// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Specifies a period in the object's expire (documented below).
+        /// Specifies a period in the object's expire
         /// </summary>
         [Input("expiration")]
         public Input<Inputs.ObjectBucketLifecycleRuleExpirationGetArgs>? Expiration { get; set; }
@@ -61,9 +61,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<Inputs.ObjectBucketLifecycleRuleTransitionGetArgs>? _transitions;
 
         /// <summary>
-        /// Specifies a period in the object's transitions (documented below).
-        /// 
-        /// At least one of `abort_incomplete_multipart_upload_days`, `expiration`, `transition` must be specified.
+        /// Define when objects transition to another storage class
         /// </summary>
         public InputList<Inputs.ObjectBucketLifecycleRuleTransitionGetArgs> Transitions
         {

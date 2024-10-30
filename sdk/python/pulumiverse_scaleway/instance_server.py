@@ -1203,6 +1203,22 @@ class InstanceServer(pulumi.CustomResource):
             })
         ```
 
+        ### Using Scaleway Block Storage (SBS) volume
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        server = scaleway.InstanceServer("server",
+            type="PLAY2-MICRO",
+            image="ubuntu_jammy",
+            root_volume={
+                "volume_type": "sbs_volume",
+                "sbs_iops": 15000,
+                "size_in_gb": 50,
+            })
+        ```
+
         ## Private Network
 
         > **Important:** Updates to `private_network` will recreate a new private network interface.
@@ -1428,6 +1444,22 @@ class InstanceServer(pulumi.CustomResource):
             type="PRO2-XXS",
             root_volume={
                 "volume_id": from_snapshot.id,
+            })
+        ```
+
+        ### Using Scaleway Block Storage (SBS) volume
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        server = scaleway.InstanceServer("server",
+            type="PLAY2-MICRO",
+            image="ubuntu_jammy",
+            root_volume={
+                "volume_type": "sbs_volume",
+                "sbs_iops": 15000,
+                "size_in_gb": 50,
             })
         ```
 

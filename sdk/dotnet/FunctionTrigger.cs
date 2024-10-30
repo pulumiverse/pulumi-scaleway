@@ -11,8 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Function Triggers.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).
+    /// The `scaleway.FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// 
+    /// Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -41,7 +42,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Nats
+    /// ### NATS
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Function Triggers can be imported using the `{region}/{id}`, e.g.
+    /// Function Triggers can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -86,31 +87,31 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the function to create a trigger for
+        /// The unique identifier of the function to create a trigger for.
         /// </summary>
         [Output("functionId")]
         public Output<string> FunctionId { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the trigger. Default to a generated name.
+        /// The unique name of the trigger. If not provided, a random name is generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The configuration for the Scaleway's Nats used by the trigger
+        /// The configuration for the Scaleway NATS account used by the trigger
         /// </summary>
         [Output("nats")]
         public Output<Outputs.FunctionTriggerNats?> Nats { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The configuration of the Scaleway's SQS used by the trigger
+        /// The configuration of the Scaleway SQS queue used by the trigger
         /// </summary>
         [Output("sqs")]
         public Output<Outputs.FunctionTriggerSqs?> Sqs { get; private set; } = null!;
@@ -169,31 +170,31 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the function to create a trigger for
+        /// The unique identifier of the function to create a trigger for.
         /// </summary>
         [Input("functionId", required: true)]
         public Input<string> FunctionId { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the trigger. Default to a generated name.
+        /// The unique name of the trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The configuration for the Scaleway's Nats used by the trigger
+        /// The configuration for the Scaleway NATS account used by the trigger
         /// </summary>
         [Input("nats")]
         public Input<Inputs.FunctionTriggerNatsArgs>? Nats { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The configuration of the Scaleway's SQS used by the trigger
+        /// The configuration of the Scaleway SQS queue used by the trigger
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.FunctionTriggerSqsArgs>? Sqs { get; set; }
@@ -213,31 +214,31 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the function to create a trigger for
+        /// The unique identifier of the function to create a trigger for.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// The unique name of the trigger. Default to a generated name.
+        /// The unique name of the trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The configuration for the Scaleway's Nats used by the trigger
+        /// The configuration for the Scaleway NATS account used by the trigger
         /// </summary>
         [Input("nats")]
         public Input<Inputs.FunctionTriggerNatsGetArgs>? Nats { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The configuration of the Scaleway's SQS used by the trigger
+        /// The configuration of the Scaleway SQS queue used by the trigger
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.FunctionTriggerSqsGetArgs>? Sqs { get; set; }

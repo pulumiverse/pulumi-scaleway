@@ -5,12 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Function Domain bindings.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
+ * The `scaleway.FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ *
+ * Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
  *
  * ## Example Usage
  *
- * ### Basic
+ * This command allows to bind a custom domain name to a function.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -35,7 +36,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Domain can be imported using the `{region}/{id}`, e.g.
+ * Function domain binding can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -72,22 +73,23 @@ export class FunctionDomain extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the function you want to create a domain with.
+     * The unique identifier of the function.
      */
     public readonly functionId!: pulumi.Output<string>;
     /**
-     * The hostname that should resolve to your function id native domain.
-     * You should use a CNAME domain record that point to your native function `domainName` for it.
+     * The hostname with a CNAME record.
      *
-     * > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+     * We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+     *
+     * > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region in where the domain was created.
+     * (Defaults to provider `region`) The region in which the domain was created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The URL that triggers the function
+     * The URL used to query the function.
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
 
@@ -131,22 +133,23 @@ export class FunctionDomain extends pulumi.CustomResource {
  */
 export interface FunctionDomainState {
     /**
-     * The ID of the function you want to create a domain with.
+     * The unique identifier of the function.
      */
     functionId?: pulumi.Input<string>;
     /**
-     * The hostname that should resolve to your function id native domain.
-     * You should use a CNAME domain record that point to your native function `domainName` for it.
+     * The hostname with a CNAME record.
      *
-     * > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+     * We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+     *
+     * > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * (Defaults to provider `region`) The region in where the domain was created.
+     * (Defaults to provider `region`) The region in which the domain was created.
      */
     region?: pulumi.Input<string>;
     /**
-     * The URL that triggers the function
+     * The URL used to query the function.
      */
     url?: pulumi.Input<string>;
 }
@@ -156,18 +159,19 @@ export interface FunctionDomainState {
  */
 export interface FunctionDomainArgs {
     /**
-     * The ID of the function you want to create a domain with.
+     * The unique identifier of the function.
      */
     functionId: pulumi.Input<string>;
     /**
-     * The hostname that should resolve to your function id native domain.
-     * You should use a CNAME domain record that point to your native function `domainName` for it.
+     * The hostname with a CNAME record.
      *
-     * > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+     * We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+     *
+     * > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
      */
     hostname: pulumi.Input<string>;
     /**
-     * (Defaults to provider `region`) The region in where the domain was created.
+     * (Defaults to provider `region`) The region in which the domain was created.
      */
     region?: pulumi.Input<string>;
 }

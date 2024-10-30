@@ -13,13 +13,21 @@ namespace Pulumiverse.Scaleway
     public static class GetFunction
     {
         /// <summary>
-        /// Gets information about a function.
+        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+        /// 
+        /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+        /// 
+        /// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
         /// </summary>
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a function.
+        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+        /// 
+        /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+        /// 
+        /// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
         /// </summary>
         public static Output<GetFunctionResult> Invoke(GetFunctionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
@@ -29,31 +37,31 @@ namespace Pulumiverse.Scaleway
     public sealed class GetFunctionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The function id. Only one of `name` and `function_id` should be specified.
+        /// The unique identifier of the function. Only one of `name` and `function_id` should be specified.
         /// </summary>
         [Input("functionId")]
         public string? FunctionId { get; set; }
 
         /// <summary>
-        /// The function name. Only one of `name` and `namespace_id` should be specified.
+        /// The name of the function. Only one of `name` and `namespace_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The namespace id associated with this function.
+        /// The namespace ID associated with this function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public string NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the project the function is associated with.
+        /// The unique identifier of the project with which the function is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the function exists.
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -67,31 +75,31 @@ namespace Pulumiverse.Scaleway
     public sealed class GetFunctionInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The function id. Only one of `name` and `function_id` should be specified.
+        /// The unique identifier of the function. Only one of `name` and `function_id` should be specified.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// The function name. Only one of `name` and `namespace_id` should be specified.
+        /// The name of the function. Only one of `name` and `namespace_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace id associated with this function.
+        /// The namespace ID associated with this function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the project the function is associated with.
+        /// The unique identifier of the project with which the function is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the function exists.
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

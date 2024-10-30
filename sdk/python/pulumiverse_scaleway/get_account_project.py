@@ -108,14 +108,17 @@ def get_account_project(name: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountProjectResult:
     """
-    Gets information about an existing Project.
+    The `AccountProject` data source is used to retrieve information about a Scaleway project.
+
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
 
     :param str name: The name of the Project.
            Only one of the `name` and `project_id` should be specified.
-    :param str organization_id: The organization ID the Project is associated with.
-           If no default organization_id is set, one must be set explicitly in this datasource
-    :param str project_id: The ID of the Project.
+    :param str organization_id: The unique identifier of the Organization with which the Project is associated.
+           
+           If no default `organization_id` is set, one must be set explicitly in this datasource
+    :param str project_id: The unique identifier of the Project.
            Only one of the `name` and `project_id` should be specified.
     """
     __args__ = dict()
@@ -138,14 +141,17 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountProjectResult]:
     """
-    Gets information about an existing Project.
+    The `AccountProject` data source is used to retrieve information about a Scaleway project.
+
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
 
     :param str name: The name of the Project.
            Only one of the `name` and `project_id` should be specified.
-    :param str organization_id: The organization ID the Project is associated with.
-           If no default organization_id is set, one must be set explicitly in this datasource
-    :param str project_id: The ID of the Project.
+    :param str organization_id: The unique identifier of the Organization with which the Project is associated.
+           
+           If no default `organization_id` is set, one must be set explicitly in this datasource
+    :param str project_id: The unique identifier of the Project.
            Only one of the `name` and `project_id` should be specified.
     """
     __args__ = dict()

@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedHeaders;
         /// <summary>
-        /// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        /// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         /// </summary>
         public readonly ImmutableArray<string> AllowedMethods;
         /// <summary>
@@ -27,11 +27,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedOrigins;
         /// <summary>
-        /// Specifies expose header in the response.
+        /// Specifies header exposure in the response.
         /// </summary>
         public readonly ImmutableArray<string> ExposeHeaders;
         /// <summary>
-        /// Specifies time in seconds that browser can cache the response for a preflight request.
+        /// Specifies time in seconds that the browser can cache the response for a preflight request.
         /// </summary>
         public readonly int? MaxAgeSeconds;
 

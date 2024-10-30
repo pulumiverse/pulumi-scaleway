@@ -13,10 +13,13 @@ namespace Pulumiverse.Scaleway
     public static class GetObjectBucketPolicy
     {
         /// <summary>
-        /// Gets information about the Bucket's policy.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+        /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
-        /// ## Example Usage
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+        /// 
+        /// ## Retrieve the bucket policy of a bucket
+        /// 
+        /// The following command allows you to retrieve a bucket policy by its bucket.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -38,10 +41,13 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketPolicyResult>("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args ?? new GetObjectBucketPolicyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the Bucket's policy.
-        /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+        /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
-        /// ## Example Usage
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+        /// 
+        /// ## Retrieve the bucket policy of a bucket
+        /// 
+        /// The following command allows you to retrieve a bucket policy by its bucket.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,7 +73,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetObjectBucketPolicyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The bucket name.
+        /// The name of the bucket.
         /// </summary>
         [Input("bucket", required: true)]
         public string Bucket { get; set; } = null!;
@@ -90,7 +96,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetObjectBucketPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The bucket name.
+        /// The name of the bucket.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
@@ -120,7 +126,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The bucket's policy in JSON format.
+        /// The content of the bucket policy in JSON format.
         /// </summary>
         public readonly string Policy;
         public readonly string? ProjectId;

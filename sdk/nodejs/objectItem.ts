@@ -5,12 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway object storage objects.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * The `scaleway.ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+ *
+ * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
  *
  * ## Import
  *
- * Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+ * Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
  *
  * bash
  *
@@ -66,22 +67,24 @@ export class ObjectItem extends pulumi.CustomResource {
     public readonly content!: pulumi.Output<string | undefined>;
     /**
      * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     *
+     * > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
      */
     public readonly contentBase64!: pulumi.Output<string | undefined>;
     /**
-     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+     * The name of the file to upload, defaults to an empty file.
      */
     public readonly file!: pulumi.Output<string | undefined>;
     /**
-     * Hash of the file, used to trigger upload on file change
+     * Hash of the file, used to trigger the upload on file change.
      */
     public readonly hash!: pulumi.Output<string | undefined>;
     /**
-     * The path of the object.
+     * The path to the object.
      */
     public readonly key!: pulumi.Output<string>;
     /**
-     * Map of metadata used for the object, keys must be lowercase
+     * Map of metadata used for the object (keys must be lowercase).
      */
     public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -89,19 +92,19 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The Scaleway region this bucket resides in.
+     * The Scaleway region the bucket resides in.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
     public readonly storageClass!: pulumi.Output<string | undefined>;
     /**
-     * Map of tags
+     * Map of tags.
      */
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Visibility of the object, `public-read` or `private`
+     * Visibility of the object, `public-read` or `private`.
      */
     public readonly visibility!: pulumi.Output<string>;
 
@@ -170,22 +173,24 @@ export interface ObjectItemState {
     content?: pulumi.Input<string>;
     /**
      * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     *
+     * > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
      */
     contentBase64?: pulumi.Input<string>;
     /**
-     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+     * The name of the file to upload, defaults to an empty file.
      */
     file?: pulumi.Input<string>;
     /**
-     * Hash of the file, used to trigger upload on file change
+     * Hash of the file, used to trigger the upload on file change.
      */
     hash?: pulumi.Input<string>;
     /**
-     * The path of the object.
+     * The path to the object.
      */
     key?: pulumi.Input<string>;
     /**
-     * Map of metadata used for the object, keys must be lowercase
+     * Map of metadata used for the object (keys must be lowercase).
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -193,19 +198,19 @@ export interface ObjectItemState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The Scaleway region this bucket resides in.
+     * The Scaleway region the bucket resides in.
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
     storageClass?: pulumi.Input<string>;
     /**
-     * Map of tags
+     * Map of tags.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Visibility of the object, `public-read` or `private`
+     * Visibility of the object, `public-read` or `private`.
      */
     visibility?: pulumi.Input<string>;
 }
@@ -224,22 +229,24 @@ export interface ObjectItemArgs {
     content?: pulumi.Input<string>;
     /**
      * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
+     *
+     * > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
      */
     contentBase64?: pulumi.Input<string>;
     /**
-     * The name of the file to upload, defaults to an empty file. Only one of `file`, `content` or `contentBase64` can be defined.
+     * The name of the file to upload, defaults to an empty file.
      */
     file?: pulumi.Input<string>;
     /**
-     * Hash of the file, used to trigger upload on file change
+     * Hash of the file, used to trigger the upload on file change.
      */
     hash?: pulumi.Input<string>;
     /**
-     * The path of the object.
+     * The path to the object.
      */
     key: pulumi.Input<string>;
     /**
-     * Map of metadata used for the object, keys must be lowercase
+     * Map of metadata used for the object (keys must be lowercase).
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -247,19 +254,19 @@ export interface ObjectItemArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The Scaleway region this bucket resides in.
+     * The Scaleway region the bucket resides in.
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA` used to store the object.
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
     storageClass?: pulumi.Input<string>;
     /**
-     * Map of tags
+     * Map of tags.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Visibility of the object, `public-read` or `private`
+     * Visibility of the object, `public-read` or `private`.
      */
     visibility?: pulumi.Input<string>;
 }

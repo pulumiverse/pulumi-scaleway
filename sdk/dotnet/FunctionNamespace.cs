@@ -11,12 +11,12 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Function Namespace.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/).
+    /// The `scaleway.FunctionNamespace` resource allows you to
+    /// for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// 
+    /// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
     /// 
     /// ## Example Usage
-    /// 
-    /// ### Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using the `{region}/{id}`, e.g.
+    /// Functions namespaces can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -61,27 +61,27 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the function namespace.
+        /// The unique name of the Functions namespace.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the namespace.
+        /// &gt; **Important** Updates to the `name` argument will recreate the namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the namespace is associated with.
+        /// The Organization ID with which the namespace is associated.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `project_id`) The unique identifier of the project that contains the namespace.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -99,7 +99,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> RegistryNamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        /// The secret environment variables of the namespace.
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
@@ -174,21 +174,21 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The unique name of the function namespace.
+        /// The unique name of the Functions namespace.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the namespace.
+        /// &gt; **Important** Updates to the `name` argument will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `project_id`) The unique identifier of the project that contains the namespace.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -197,7 +197,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        /// The secret environment variables of the namespace.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {
@@ -236,27 +236,27 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The unique name of the function namespace.
+        /// The unique name of the Functions namespace.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the namespace.
+        /// &gt; **Important** Updates to the `name` argument will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization ID the namespace is associated with.
+        /// The Organization ID with which the namespace is associated.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `project_id`) The unique identifier of the project that contains the namespace.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -277,7 +277,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        /// The secret environment variables of the namespace.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {

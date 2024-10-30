@@ -12,10 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Container domain name bindings.
-// You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
+// The `ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+//
+// Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
 //
 // ## Example Usage
+//
+// The commands below shows how to bind a custom domain name to a container.
 //
 // ### Simple
 //
@@ -122,7 +125,7 @@ import (
 //
 // ## Import
 //
-// Container domain binding can be imported using the `{region}/{id}`, e.g.
+// Container domain binding can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -132,13 +135,13 @@ import (
 type ContainerDomain struct {
 	pulumi.CustomResourceState
 
-	// The ID of the container.
+	// The unique identifier of the container.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
 	// The hostname with a CNAME record.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// `region`) The region in which the container exists
+	// `region`) The region in which the container exists.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The URL used to query the container
+	// The URL used to query the container.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
 
@@ -178,24 +181,24 @@ func GetContainerDomain(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerDomain resources.
 type containerDomainState struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	ContainerId *string `pulumi:"containerId"`
 	// The hostname with a CNAME record.
 	Hostname *string `pulumi:"hostname"`
-	// `region`) The region in which the container exists
+	// `region`) The region in which the container exists.
 	Region *string `pulumi:"region"`
-	// The URL used to query the container
+	// The URL used to query the container.
 	Url *string `pulumi:"url"`
 }
 
 type ContainerDomainState struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	ContainerId pulumi.StringPtrInput
 	// The hostname with a CNAME record.
 	Hostname pulumi.StringPtrInput
-	// `region`) The region in which the container exists
+	// `region`) The region in which the container exists.
 	Region pulumi.StringPtrInput
-	// The URL used to query the container
+	// The URL used to query the container.
 	Url pulumi.StringPtrInput
 }
 
@@ -204,21 +207,21 @@ func (ContainerDomainState) ElementType() reflect.Type {
 }
 
 type containerDomainArgs struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	ContainerId string `pulumi:"containerId"`
 	// The hostname with a CNAME record.
 	Hostname string `pulumi:"hostname"`
-	// `region`) The region in which the container exists
+	// `region`) The region in which the container exists.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a ContainerDomain resource.
 type ContainerDomainArgs struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	ContainerId pulumi.StringInput
 	// The hostname with a CNAME record.
 	Hostname pulumi.StringInput
-	// `region`) The region in which the container exists
+	// `region`) The region in which the container exists.
 	Region pulumi.StringPtrInput
 }
 
@@ -309,7 +312,7 @@ func (o ContainerDomainOutput) ToContainerDomainOutputWithContext(ctx context.Co
 	return o
 }
 
-// The ID of the container.
+// The unique identifier of the container.
 func (o ContainerDomainOutput) ContainerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerDomain) pulumi.StringOutput { return v.ContainerId }).(pulumi.StringOutput)
 }
@@ -319,12 +322,12 @@ func (o ContainerDomainOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerDomain) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// `region`) The region in which the container exists
+// `region`) The region in which the container exists.
 func (o ContainerDomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The URL used to query the container
+// The URL used to query the container.
 func (o ContainerDomainOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerDomain) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

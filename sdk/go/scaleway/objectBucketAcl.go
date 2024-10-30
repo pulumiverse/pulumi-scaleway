@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
-//				Name: pulumi.String("some-unique-name"),
+//				Name: pulumi.String("unique-name"),
 //			})
 //			if err != nil {
 //				return err
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-operations/#putbucketacl).
 //
 // ### With Grants
 //
@@ -100,16 +102,16 @@ import (
 //
 // ## The ACL
 //
-// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+// Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 //
-// ## The Access Control policy
+// ## The access control policy
 //
 // The `accessControlPolicy` configuration block supports the following arguments:
 //
 // * `grant` - (Required) Set of grant configuration blocks documented below.
 // * `owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
 //
-// ## The Grant
+// ## The grant
 //
 // The `grant` configuration block supports the following arguments:
 //
@@ -140,7 +142,7 @@ import (
 //
 // ## Import
 //
-// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
 //
 // bash
 //
@@ -162,7 +164,7 @@ type ObjectBucketAcl struct {
 
 	// A configuration block that sets the ACL permissions for an object per grantee documented below.
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyOutput `pulumi:"accessControlPolicy"`
-	// The canned ACL you want to apply to the bucket.
+	// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
@@ -209,7 +211,7 @@ func GetObjectBucketAcl(ctx *pulumi.Context,
 type objectBucketAclState struct {
 	// A configuration block that sets the ACL permissions for an object per grantee documented below.
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
-	// The canned ACL you want to apply to the bucket.
+	// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
 	Acl *string `pulumi:"acl"`
 	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
@@ -224,7 +226,7 @@ type objectBucketAclState struct {
 type ObjectBucketAclState struct {
 	// A configuration block that sets the ACL permissions for an object per grantee documented below.
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
-	// The canned ACL you want to apply to the bucket.
+	// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
 	Acl pulumi.StringPtrInput
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
@@ -243,7 +245,7 @@ func (ObjectBucketAclState) ElementType() reflect.Type {
 type objectBucketAclArgs struct {
 	// A configuration block that sets the ACL permissions for an object per grantee documented below.
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
-	// The canned ACL you want to apply to the bucket.
+	// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
 	Acl *string `pulumi:"acl"`
 	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
@@ -259,7 +261,7 @@ type objectBucketAclArgs struct {
 type ObjectBucketAclArgs struct {
 	// A configuration block that sets the ACL permissions for an object per grantee documented below.
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
-	// The canned ACL you want to apply to the bucket.
+	// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
 	Acl pulumi.StringPtrInput
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
@@ -363,7 +365,7 @@ func (o ObjectBucketAclOutput) AccessControlPolicy() ObjectBucketAclAccessContro
 	return o.ApplyT(func(v *ObjectBucketAcl) ObjectBucketAclAccessControlPolicyOutput { return v.AccessControlPolicy }).(ObjectBucketAclAccessControlPolicyOutput)
 }
 
-// The canned ACL you want to apply to the bucket.
+// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
 func (o ObjectBucketAclOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }

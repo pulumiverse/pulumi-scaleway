@@ -5,15 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about the Scaleway Container.
+ * The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
  *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+ * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
- * For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+ * For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
  *
- * You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+ * ## Retrieve a Serverless Container
  *
- * ## Example Usage
+ * The following commands allow you to:
+ *
+ * - retrieve a container by its name
+ * - retrieve a container by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -36,6 +39,18 @@ import * as utilities from "./utilities";
  *     containerId: mainContainer.id,
  * });
  * ```
+ *
+ * ## Arguments reference
+ *
+ * This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+ *
+ * - `name` - (Required) The unique name of the container.
+ *
+ * - `namespaceId` - (Required) The container namespace ID of the container.
+ *
+ * - `projectId` - (Optional) The unique identifier of the project with which the container is associated.
+ *
+ * > **Important** Updating the `name` argument will recreate the container.
  */
 export function getContainer(args: GetContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -53,19 +68,8 @@ export function getContainer(args: GetContainerArgs, opts?: pulumi.InvokeOptions
  */
 export interface GetContainerArgs {
     containerId?: string;
-    /**
-     * The unique name of the container name.
-     */
     name?: string;
-    /**
-     * The container namespace ID of the container.
-     */
     namespaceId: string;
-    /**
-     * The ID of the project the container is associated with.
-     *
-     * > **Important** Updates to `name` will recreate the container.
-     */
     projectId?: string;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
@@ -79,7 +83,7 @@ export interface GetContainerArgs {
 export interface GetContainerResult {
     readonly containerId?: string;
     /**
-     * The amount of vCPU computing resources to allocate to each container. Defaults  to 70.
+     * The amount of vCPU computing resources to allocate to each container.
      */
     readonly cpuLimit: number;
     /**
@@ -112,34 +116,34 @@ export interface GetContainerResult {
      */
     readonly id: string;
     /**
-     * The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+     * The maximum number of simultaneous requests your container can handle at the same time.
      */
     readonly maxConcurrency: number;
     /**
-     * The maximum of number of instances this container can scale to. Default to 20.
+     * The maximum number of instances the container can scale to.
      */
     readonly maxScale: number;
     /**
-     * The memory computing resources in MB to allocate to each container. Defaults to 128.
+     * The memory resources in MB to allocate to each container.
      */
     readonly memoryLimit: number;
     /**
-     * The minimum of running container instances continuously. Defaults to 0.
+     * The minimum number of container instances running continuously.
      */
     readonly minScale: number;
     readonly name?: string;
     readonly namespaceId: string;
     /**
-     * The port to expose the container. Defaults to 8080.
+     * The port to expose the container.
      */
     readonly port: number;
     /**
-     * The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+     * The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
      */
     readonly privacy: string;
     readonly projectId?: string;
     /**
-     * The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+     * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
      */
     readonly protocol: string;
     /**
@@ -147,7 +151,7 @@ export interface GetContainerResult {
      */
     readonly region?: string;
     /**
-     * The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+     * The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
      */
     readonly registryImage: string;
     /**
@@ -164,20 +168,23 @@ export interface GetContainerResult {
      */
     readonly status: string;
     /**
-     * The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+     * The maximum amount of time your container can spend processing a request before being stopped.
      */
     readonly timeout: number;
 }
 /**
- * Gets information about the Scaleway Container.
+ * The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
  *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+ * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
- * For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+ * For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
  *
- * You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+ * ## Retrieve a Serverless Container
  *
- * ## Example Usage
+ * The following commands allow you to:
+ *
+ * - retrieve a container by its name
+ * - retrieve a container by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -200,6 +207,18 @@ export interface GetContainerResult {
  *     containerId: mainContainer.id,
  * });
  * ```
+ *
+ * ## Arguments reference
+ *
+ * This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+ *
+ * - `name` - (Required) The unique name of the container.
+ *
+ * - `namespaceId` - (Required) The container namespace ID of the container.
+ *
+ * - `projectId` - (Optional) The unique identifier of the project with which the container is associated.
+ *
+ * > **Important** Updating the `name` argument will recreate the container.
  */
 export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -217,19 +236,8 @@ export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.I
  */
 export interface GetContainerOutputArgs {
     containerId?: pulumi.Input<string>;
-    /**
-     * The unique name of the container name.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The container namespace ID of the container.
-     */
     namespaceId: pulumi.Input<string>;
-    /**
-     * The ID of the project the container is associated with.
-     *
-     * > **Important** Updates to `name` will recreate the container.
-     */
     projectId?: pulumi.Input<string>;
     /**
      * (Defaults to provider `region`) The region in which the container was created.

@@ -13,7 +13,7 @@ import (
 
 // ## Import
 //
-// Projects can be imported using the `id`, e.g.
+// Projects can be imported using the `id` argument, as shown below:
 //
 // bash
 //
@@ -23,15 +23,15 @@ import (
 type AccountProject struct {
 	pulumi.CustomResourceState
 
-	// The Project creation time.
+	// The creation time of the Project.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The description of the Project.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the Project.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The Project last update time.
+	// The last update time of the Project.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -65,28 +65,28 @@ func GetAccountProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccountProject resources.
 type accountProjectState struct {
-	// The Project creation time.
+	// The creation time of the Project.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The description of the Project.
 	Description *string `pulumi:"description"`
 	// The name of the Project.
 	Name *string `pulumi:"name"`
-	// `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The Project last update time.
+	// The last update time of the Project.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type AccountProjectState struct {
-	// The Project creation time.
+	// The creation time of the Project.
 	CreatedAt pulumi.StringPtrInput
 	// The description of the Project.
 	Description pulumi.StringPtrInput
 	// The name of the Project.
 	Name pulumi.StringPtrInput
-	// `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId pulumi.StringPtrInput
-	// The Project last update time.
+	// The last update time of the Project.
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -99,7 +99,7 @@ type accountProjectArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of the Project.
 	Name *string `pulumi:"name"`
-	// `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId *string `pulumi:"organizationId"`
 }
 
@@ -109,7 +109,7 @@ type AccountProjectArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of the Project.
 	Name pulumi.StringPtrInput
-	// `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId pulumi.StringPtrInput
 }
 
@@ -200,7 +200,7 @@ func (o AccountProjectOutput) ToAccountProjectOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The Project creation time.
+// The creation time of the Project.
 func (o AccountProjectOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -215,12 +215,12 @@ func (o AccountProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// `organizationId`)The organization ID the Project is associated with. Please note that any change in `organizationId` will recreate the resource.
+// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 func (o AccountProjectOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The Project last update time.
+// The last update time of the Project.
 func (o AccountProjectOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

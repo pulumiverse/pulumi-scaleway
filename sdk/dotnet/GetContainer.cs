@@ -13,15 +13,18 @@ namespace Pulumiverse.Scaleway
     public static class GetContainer
     {
         /// <summary>
-        /// Gets information about the Scaleway Container.
+        /// The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
         /// 
-        /// For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+        /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
-        /// For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
         /// 
-        /// You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+        /// ## Retrieve a Serverless Container
         /// 
-        /// ## Example Usage
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a container by its name
+        /// - retrieve a container by its ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -56,20 +59,35 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
+        /// 
+        /// ## Arguments reference
+        /// 
+        /// This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+        /// 
+        /// - `name` - (Required) The unique name of the container.
+        /// 
+        /// - `namespace_id` - (Required) The container namespace ID of the container.
+        /// 
+        /// - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+        /// 
+        /// &gt; **Important** Updating the `name` argument will recreate the container.
         /// </summary>
         public static Task<GetContainerResult> InvokeAsync(GetContainerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the Scaleway Container.
+        /// The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
         /// 
-        /// For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+        /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
-        /// For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
         /// 
-        /// You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+        /// ## Retrieve a Serverless Container
         /// 
-        /// ## Example Usage
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a container by its name
+        /// - retrieve a container by its ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -104,6 +122,18 @@ namespace Pulumiverse.Scaleway
         /// 
         /// });
         /// ```
+        /// 
+        /// ## Arguments reference
+        /// 
+        /// This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+        /// 
+        /// - `name` - (Required) The unique name of the container.
+        /// 
+        /// - `namespace_id` - (Required) The container namespace ID of the container.
+        /// 
+        /// - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+        /// 
+        /// &gt; **Important** Updating the `name` argument will recreate the container.
         /// </summary>
         public static Output<GetContainerResult> Invoke(GetContainerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
@@ -115,23 +145,12 @@ namespace Pulumiverse.Scaleway
         [Input("containerId")]
         public string? ContainerId { get; set; }
 
-        /// <summary>
-        /// The unique name of the container name.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The container namespace ID of the container.
-        /// </summary>
         [Input("namespaceId", required: true)]
         public string NamespaceId { get; set; } = null!;
 
-        /// <summary>
-        /// The ID of the project the container is associated with.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
-        /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
@@ -152,23 +171,12 @@ namespace Pulumiverse.Scaleway
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
 
-        /// <summary>
-        /// The unique name of the container name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The container namespace ID of the container.
-        /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
 
-        /// <summary>
-        /// The ID of the project the container is associated with.
-        /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
-        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
@@ -190,7 +198,7 @@ namespace Pulumiverse.Scaleway
     {
         public readonly string? ContainerId;
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults  to 70.
+        /// The amount of vCPU computing resources to allocate to each container.
         /// </summary>
         public readonly int CpuLimit;
         /// <summary>
@@ -223,34 +231,34 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time.
         /// </summary>
         public readonly int MaxConcurrency;
         /// <summary>
-        /// The maximum of number of instances this container can scale to. Default to 20.
+        /// The maximum number of instances the container can scale to.
         /// </summary>
         public readonly int MaxScale;
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory resources in MB to allocate to each container.
         /// </summary>
         public readonly int MemoryLimit;
         /// <summary>
-        /// The minimum of running container instances continuously. Defaults to 0.
+        /// The minimum number of container instances running continuously.
         /// </summary>
         public readonly int MinScale;
         public readonly string? Name;
         public readonly string NamespaceId;
         /// <summary>
-        /// The port to expose the container. Defaults to 8080.
+        /// The port to expose the container.
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        /// The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
         /// </summary>
         public readonly string Privacy;
         public readonly string? ProjectId;
         /// <summary>
-        /// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         /// </summary>
         public readonly string Protocol;
         /// <summary>
@@ -258,7 +266,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        /// The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
         /// </summary>
         public readonly string RegistryImage;
         /// <summary>
@@ -275,7 +283,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        /// The maximum amount of time your container can spend processing a request before being stopped.
         /// </summary>
         public readonly int Timeout;
 

@@ -12,14 +12,15 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Provides an Object bucket lock configuration resource.
-// For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+// The `ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+//
+// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/) for more information on object lock.
 //
 // ## Example Usage
 //
 // ### Configure an Object Lock for a new bucket
 //
-// Please note that `objectLockEnabled` must be set to `true` before configuring the lock.
+// > **Note:** `objectLockEnabled` must be set to `true` before configuring the lock.
 //
 // ```go
 // package main
@@ -59,13 +60,13 @@ import (
 //
 // ```
 //
-// ### Configure an Object Lock for an existing bucket
+// ### Configure an object Lock for an existing bucket
 //
-// You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+// [Contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
 //
 // ## Import
 //
-// Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+// Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 //
 // bash
 //
@@ -91,7 +92,7 @@ type ObjectBucketLockConfiguration struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Specifies the Object Lock rule for the specified object.
+	// Specifies the object lock rule for the specified object.
 	Rule ObjectBucketLockConfigurationRuleOutput `pulumi:"rule"`
 }
 
@@ -137,7 +138,7 @@ type objectBucketLockConfigurationState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
-	// Specifies the Object Lock rule for the specified object.
+	// Specifies the object lock rule for the specified object.
 	Rule *ObjectBucketLockConfigurationRule `pulumi:"rule"`
 }
 
@@ -148,7 +149,7 @@ type ObjectBucketLockConfigurationState struct {
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
-	// Specifies the Object Lock rule for the specified object.
+	// Specifies the object lock rule for the specified object.
 	Rule ObjectBucketLockConfigurationRulePtrInput
 }
 
@@ -163,7 +164,7 @@ type objectBucketLockConfigurationArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
-	// Specifies the Object Lock rule for the specified object.
+	// Specifies the object lock rule for the specified object.
 	Rule ObjectBucketLockConfigurationRule `pulumi:"rule"`
 }
 
@@ -175,7 +176,7 @@ type ObjectBucketLockConfigurationArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
-	// Specifies the Object Lock rule for the specified object.
+	// Specifies the object lock rule for the specified object.
 	Rule ObjectBucketLockConfigurationRuleInput
 }
 
@@ -281,7 +282,7 @@ func (o ObjectBucketLockConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Specifies the Object Lock rule for the specified object.
+// Specifies the object lock rule for the specified object.
 func (o ObjectBucketLockConfigurationOutput) Rule() ObjectBucketLockConfigurationRuleOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfiguration) ObjectBucketLockConfigurationRuleOutput { return v.Rule }).(ObjectBucketLockConfigurationRuleOutput)
 }

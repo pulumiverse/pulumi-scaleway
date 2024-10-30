@@ -7,10 +7,16 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about the Bucket.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
  *
- * ## Example Usage
+ * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+ *
+ * ## Retrieve an Object Storage bucket
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a bucket by its name
+ * - retrieve a bucket by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,7 +34,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Fetching the bucket from a specific project
+ * ## Retrieve a bucket from a specific project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -56,7 +62,7 @@ export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.Invoke
 export interface GetObjectBucketArgs {
     name?: string;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * `projectId`) The ID of the project with which the bucket is associated.
      */
     projectId?: string;
     /**
@@ -90,10 +96,16 @@ export interface GetObjectBucketResult {
     readonly versionings: outputs.GetObjectBucketVersioning[];
 }
 /**
- * Gets information about the Bucket.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
  *
- * ## Example Usage
+ * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+ *
+ * ## Retrieve an Object Storage bucket
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a bucket by its name
+ * - retrieve a bucket by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -111,7 +123,7 @@ export interface GetObjectBucketResult {
  * });
  * ```
  *
- * ### Fetching the bucket from a specific project
+ * ## Retrieve a bucket from a specific project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -139,7 +151,7 @@ export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: p
 export interface GetObjectBucketOutputArgs {
     name?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * `projectId`) The ID of the project with which the bucket is associated.
      */
     projectId?: pulumi.Input<string>;
     /**

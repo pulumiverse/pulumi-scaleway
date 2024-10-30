@@ -15,19 +15,19 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class FunctionTriggerSqs
     {
         /// <summary>
-        /// ID of the mnq namespace. Deprecated.
+        /// ID of the Messaging and Queuing namespace. This argument is deprecated.
         /// </summary>
         public readonly string? NamespaceId;
         /// <summary>
-        /// ID of the project that contain the mnq namespace, defaults to provider's project
+        /// The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
-        /// Name of the queue
+        /// The name of the SQS queue.
         /// </summary>
         public readonly string Queue;
         /// <summary>
-        /// Region where the mnq namespace is, defaults to provider's region
+        /// Region where SQS is enabled (defaults to provider `region`)
         /// </summary>
         public readonly string? Region;
 

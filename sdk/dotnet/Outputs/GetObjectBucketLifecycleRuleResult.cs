@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetObjectBucketLifecycleRuleExpirationResult> Expirations;
         /// <summary>
-        /// The unique name of the bucket.
+        /// The unique identifier of the bucket.
         /// </summary>
         public readonly string Id;
         /// <summary>

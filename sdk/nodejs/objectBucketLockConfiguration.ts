@@ -7,14 +7,15 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides an Object bucket lock configuration resource.
- * For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+ * The `scaleway.ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+ *
+ * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/) for more information on object lock.
  *
  * ## Example Usage
  *
  * ### Configure an Object Lock for a new bucket
  *
- * Please note that `objectLockEnabled` must be set to `true` before configuring the lock.
+ * > **Note:** `objectLockEnabled` must be set to `true` before configuring the lock.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -36,13 +37,13 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Configure an Object Lock for an existing bucket
+ * ### Configure an object Lock for an existing bucket
  *
- * You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+ * [Contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
  *
  * ## Import
  *
- * Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+ * Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
  *
  * bash
  *
@@ -101,7 +102,7 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Specifies the Object Lock rule for the specified object.
+     * Specifies the object lock rule for the specified object.
      */
     public readonly rule!: pulumi.Output<outputs.ObjectBucketLockConfigurationRule>;
 
@@ -157,7 +158,7 @@ export interface ObjectBucketLockConfigurationState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies the Object Lock rule for the specified object.
+     * Specifies the object lock rule for the specified object.
      */
     rule?: pulumi.Input<inputs.ObjectBucketLockConfigurationRule>;
 }
@@ -179,7 +180,7 @@ export interface ObjectBucketLockConfigurationArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies the Object Lock rule for the specified object.
+     * Specifies the object lock rule for the specified object.
      */
     rule: pulumi.Input<inputs.ObjectBucketLockConfigurationRule>;
 }

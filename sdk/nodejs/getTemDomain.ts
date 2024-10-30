@@ -49,6 +49,7 @@ export interface GetTemDomainArgs {
  */
 export interface GetTemDomainResult {
     readonly acceptTos: boolean;
+    readonly autoconfig: boolean;
     readonly createdAt: string;
     readonly dkimConfig: string;
     readonly dmarcConfig: string;

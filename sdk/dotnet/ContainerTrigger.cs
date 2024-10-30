@@ -11,8 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Container Triggers.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers).
+    /// The `scaleway.ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// 
+    /// Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -41,7 +42,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Nats
+    /// ### NATS
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container Triggers can be imported using the `{region}/{id}`, e.g.
+    /// Container Triggers can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -80,7 +81,7 @@ namespace Pulumiverse.Scaleway
     public partial class ContainerTrigger : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the container to create a trigger for
+        /// The unique identifier of the container to create a trigger for.
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
@@ -92,25 +93,25 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the trigger. Default to a generated name.
+        /// The unique name of the trigger. If not provided, a random name is generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The configuration for the Scaleway's Nats used by the trigger
+        /// The configuration for the Scaleway NATS account used by the trigger
         /// </summary>
         [Output("nats")]
         public Output<Outputs.ContainerTriggerNats?> Nats { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The configuration of the Scaleway's SQS used by the trigger
+        /// The configuration of the Scaleway SQS queue used by the trigger
         /// </summary>
         [Output("sqs")]
         public Output<Outputs.ContainerTriggerSqs?> Sqs { get; private set; } = null!;
@@ -163,7 +164,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ContainerTriggerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the container to create a trigger for
+        /// The unique identifier of the container to create a trigger for.
         /// </summary>
         [Input("containerId", required: true)]
         public Input<string> ContainerId { get; set; } = null!;
@@ -175,25 +176,25 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The unique name of the trigger. Default to a generated name.
+        /// The unique name of the trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The configuration for the Scaleway's Nats used by the trigger
+        /// The configuration for the Scaleway NATS account used by the trigger
         /// </summary>
         [Input("nats")]
         public Input<Inputs.ContainerTriggerNatsArgs>? Nats { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The configuration of the Scaleway's SQS used by the trigger
+        /// The configuration of the Scaleway SQS queue used by the trigger
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.ContainerTriggerSqsArgs>? Sqs { get; set; }
@@ -207,7 +208,7 @@ namespace Pulumiverse.Scaleway
     public sealed class ContainerTriggerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the container to create a trigger for
+        /// The unique identifier of the container to create a trigger for.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -219,25 +220,25 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The unique name of the trigger. Default to a generated name.
+        /// The unique name of the trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The configuration for the Scaleway's Nats used by the trigger
+        /// The configuration for the Scaleway NATS account used by the trigger
         /// </summary>
         [Input("nats")]
         public Input<Inputs.ContainerTriggerNatsGetArgs>? Nats { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The configuration of the Scaleway's SQS used by the trigger
+        /// The configuration of the Scaleway SQS queue used by the trigger
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.ContainerTriggerSqsGetArgs>? Sqs { get; set; }

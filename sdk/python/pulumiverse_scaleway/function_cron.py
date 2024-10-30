@@ -27,13 +27,11 @@ class FunctionCronArgs:
         """
         The set of arguments for constructing a FunctionCron resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
-               during
-        :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
-        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] function_id: The unique identifier of the function to link to your CRON trigger.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[str] name: The name of the function CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: `region`) The region
-               in where the job was created.
+               in which the function was created.
         """
         pulumi.set(__self__, "args", args)
         pulumi.set(__self__, "function_id", function_id)
@@ -48,7 +46,6 @@ class FunctionCronArgs:
     def args(self) -> pulumi.Input[str]:
         """
         The key-value mapping to define arguments that will be passed to your function’s event object
-        during
         """
         return pulumi.get(self, "args")
 
@@ -60,7 +57,7 @@ class FunctionCronArgs:
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Input[str]:
         """
-        The function ID to link with your cron.
+        The unique identifier of the function to link to your CRON trigger.
         """
         return pulumi.get(self, "function_id")
 
@@ -72,8 +69,7 @@ class FunctionCronArgs:
     @pulumi.getter
     def schedule(self) -> pulumi.Input[str]:
         """
-        Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        executed.
+        CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
 
@@ -85,7 +81,7 @@ class FunctionCronArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the cron. If not provided, the name is generated.
+        The name of the function CRON trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
@@ -98,7 +94,7 @@ class FunctionCronArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region
-        in where the job was created.
+        in which the function was created.
         """
         return pulumi.get(self, "region")
 
@@ -119,14 +115,12 @@ class _FunctionCronState:
         """
         Input properties used for looking up and filtering FunctionCron resources.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
-               during
-        :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] function_id: The unique identifier of the function to link to your CRON trigger.
+        :param pulumi.Input[str] name: The name of the function CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: `region`) The region
-               in where the job was created.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
-        :param pulumi.Input[str] status: The cron status.
+               in which the function was created.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[str] status: The CRON status.
         """
         if args is not None:
             pulumi.set(__self__, "args", args)
@@ -146,7 +140,6 @@ class _FunctionCronState:
     def args(self) -> Optional[pulumi.Input[str]]:
         """
         The key-value mapping to define arguments that will be passed to your function’s event object
-        during
         """
         return pulumi.get(self, "args")
 
@@ -158,7 +151,7 @@ class _FunctionCronState:
     @pulumi.getter(name="functionId")
     def function_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The function ID to link with your cron.
+        The unique identifier of the function to link to your CRON trigger.
         """
         return pulumi.get(self, "function_id")
 
@@ -170,7 +163,7 @@ class _FunctionCronState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the cron. If not provided, the name is generated.
+        The name of the function CRON trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
@@ -183,7 +176,7 @@ class _FunctionCronState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region
-        in where the job was created.
+        in which the function was created.
         """
         return pulumi.get(self, "region")
 
@@ -195,8 +188,7 @@ class _FunctionCronState:
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input[str]]:
         """
-        Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        executed.
+        CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
 
@@ -208,7 +200,7 @@ class _FunctionCronState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The cron status.
+        The CRON status.
         """
         return pulumi.get(self, "status")
 
@@ -229,15 +221,13 @@ class FunctionCron(pulumi.CustomResource):
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+        The `FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
-        For more details about the limitation
-        check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
-
-        You can check also
-        our [functions cron api documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#crons-942bf4).
+        Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 
         ## Example Usage
+
+        The following command allows you to add a CRON trigger to a Serverless Function.
 
         ```python
         import pulumi
@@ -268,7 +258,7 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g.
+        Function Cron can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -279,13 +269,11 @@ class FunctionCron(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
-               during
-        :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] function_id: The unique identifier of the function to link to your CRON trigger.
+        :param pulumi.Input[str] name: The name of the function CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: `region`) The region
-               in where the job was created.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
+               in which the function was created.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         """
         ...
     @overload
@@ -294,15 +282,13 @@ class FunctionCron(pulumi.CustomResource):
                  args: FunctionCronArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Function Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+        The `FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
-        For more details about the limitation
-        check [functions-limitations](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
-
-        You can check also
-        our [functions cron api documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#crons-942bf4).
+        Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 
         ## Example Usage
+
+        The following command allows you to add a CRON trigger to a Serverless Function.
 
         ```python
         import pulumi
@@ -333,7 +319,7 @@ class FunctionCron(pulumi.CustomResource):
 
         ## Import
 
-        Container Cron can be imported using the `{region}/{id}`, e.g.
+        Function Cron can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -406,14 +392,12 @@ class FunctionCron(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] args: The key-value mapping to define arguments that will be passed to your function’s event object
-               during
-        :param pulumi.Input[str] function_id: The function ID to link with your cron.
-        :param pulumi.Input[str] name: The name of the cron. If not provided, the name is generated.
+        :param pulumi.Input[str] function_id: The unique identifier of the function to link to your CRON trigger.
+        :param pulumi.Input[str] name: The name of the function CRON trigger. If not provided, a random name is generated.
         :param pulumi.Input[str] region: `region`) The region
-               in where the job was created.
-        :param pulumi.Input[str] schedule: Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-               executed.
-        :param pulumi.Input[str] status: The cron status.
+               in which the function was created.
+        :param pulumi.Input[str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[str] status: The CRON status.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -432,7 +416,6 @@ class FunctionCron(pulumi.CustomResource):
     def args(self) -> pulumi.Output[str]:
         """
         The key-value mapping to define arguments that will be passed to your function’s event object
-        during
         """
         return pulumi.get(self, "args")
 
@@ -440,7 +423,7 @@ class FunctionCron(pulumi.CustomResource):
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Output[str]:
         """
-        The function ID to link with your cron.
+        The unique identifier of the function to link to your CRON trigger.
         """
         return pulumi.get(self, "function_id")
 
@@ -448,7 +431,7 @@ class FunctionCron(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the cron. If not provided, the name is generated.
+        The name of the function CRON trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
@@ -457,7 +440,7 @@ class FunctionCron(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`) The region
-        in where the job was created.
+        in which the function was created.
         """
         return pulumi.get(self, "region")
 
@@ -465,8 +448,7 @@ class FunctionCron(pulumi.CustomResource):
     @pulumi.getter
     def schedule(self) -> pulumi.Output[str]:
         """
-        Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        executed.
+        CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
 
@@ -474,7 +456,7 @@ class FunctionCron(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The cron status.
+        The CRON status.
         """
         return pulumi.get(self, "status")
 

@@ -11,8 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway object storage bucket policy.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
+    /// The `scaleway.ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+    /// 
+    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
     /// 
     /// ## Example Usage
     /// 
@@ -339,11 +340,11 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+    /// **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
     /// 
     /// ## Import
     /// 
-    /// Bucket policies can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// Bucket policies can be imported using the `{region}/{bucketName}` identifier, as shown below:
     /// 
     /// bash
     /// 

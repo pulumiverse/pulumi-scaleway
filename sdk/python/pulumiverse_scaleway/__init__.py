@@ -198,6 +198,7 @@ from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
 from .vpc_public_gateway_ip_reverse_dns import *
 from .vpc_public_gateway_pat_rule import *
+from .vpc_route import *
 from .webhosting import *
 from ._inputs import *
 from . import outputs
@@ -1058,6 +1059,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule": "VpcPublicGatewayPatRule"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/vpcRoute",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/vpcRoute:VpcRoute": "VpcRoute"
   }
  },
  {

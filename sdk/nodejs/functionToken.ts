@@ -5,12 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Function Token.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
+ * The `scaleway.FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ *
+ * Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
  *
  * ## Example Usage
- *
- * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,7 +33,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Tokens can be imported using the `{region}/{id}`, e.g.
+ * Tokens can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -79,19 +78,19 @@ export class FunctionToken extends pulumi.CustomResource {
      */
     public readonly expiresAt!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the function.
+     * The unique identifier of the function.
      *
      * > Only one of `namespaceId` or `functionId` must be set.
      */
     public readonly functionId!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the function namespace.
+     * The unique identifier of the Functions namespace.
      */
     public readonly namespaceId!: pulumi.Output<string | undefined>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      *
-     * > **Important** Updates to any fields will recreate the token.
+     * > **Important** Updating any of the arguments above will recreate the token.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -147,19 +146,19 @@ export interface FunctionTokenState {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The ID of the function.
+     * The unique identifier of the function.
      *
      * > Only one of `namespaceId` or `functionId` must be set.
      */
     functionId?: pulumi.Input<string>;
     /**
-     * The ID of the function namespace.
+     * The unique identifier of the Functions namespace.
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      *
-     * > **Important** Updates to any fields will recreate the token.
+     * > **Important** Updating any of the arguments above will recreate the token.
      */
     region?: pulumi.Input<string>;
     /**
@@ -181,19 +180,19 @@ export interface FunctionTokenArgs {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The ID of the function.
+     * The unique identifier of the function.
      *
      * > Only one of `namespaceId` or `functionId` must be set.
      */
     functionId?: pulumi.Input<string>;
     /**
-     * The ID of the function namespace.
+     * The unique identifier of the Functions namespace.
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      *
-     * > **Important** Updates to any fields will recreate the token.
+     * > **Important** Updating any of the arguments above will recreate the token.
      */
     region?: pulumi.Input<string>;
 }

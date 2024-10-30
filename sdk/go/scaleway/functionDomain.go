@@ -12,12 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Function Domain bindings.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
+// The `FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+//
+// Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
 //
 // ## Example Usage
 //
-// ### Basic
+// This command allows to bind a custom domain name to a function.
 //
 // ```go
 // package main
@@ -63,7 +64,7 @@ import (
 //
 // ## Import
 //
-// Domain can be imported using the `{region}/{id}`, e.g.
+// Function domain binding can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -73,16 +74,17 @@ import (
 type FunctionDomain struct {
 	pulumi.CustomResourceState
 
-	// The ID of the function you want to create a domain with.
+	// The unique identifier of the function.
 	FunctionId pulumi.StringOutput `pulumi:"functionId"`
-	// The hostname that should resolve to your function id native domain.
-	// You should use a CNAME domain record that point to your native function `domainName` for it.
+	// The hostname with a CNAME record.
 	//
-	// > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+	// We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+	//
+	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// (Defaults to provider `region`) The region in where the domain was created.
+	// (Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The URL that triggers the function
+	// The URL used to query the function.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
 
@@ -122,30 +124,32 @@ func GetFunctionDomain(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FunctionDomain resources.
 type functionDomainState struct {
-	// The ID of the function you want to create a domain with.
+	// The unique identifier of the function.
 	FunctionId *string `pulumi:"functionId"`
-	// The hostname that should resolve to your function id native domain.
-	// You should use a CNAME domain record that point to your native function `domainName` for it.
+	// The hostname with a CNAME record.
 	//
-	// > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+	// We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+	//
+	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname *string `pulumi:"hostname"`
-	// (Defaults to provider `region`) The region in where the domain was created.
+	// (Defaults to provider `region`) The region in which the domain was created.
 	Region *string `pulumi:"region"`
-	// The URL that triggers the function
+	// The URL used to query the function.
 	Url *string `pulumi:"url"`
 }
 
 type FunctionDomainState struct {
-	// The ID of the function you want to create a domain with.
+	// The unique identifier of the function.
 	FunctionId pulumi.StringPtrInput
-	// The hostname that should resolve to your function id native domain.
-	// You should use a CNAME domain record that point to your native function `domainName` for it.
+	// The hostname with a CNAME record.
 	//
-	// > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+	// We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+	//
+	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region in where the domain was created.
+	// (Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringPtrInput
-	// The URL that triggers the function
+	// The URL used to query the function.
 	Url pulumi.StringPtrInput
 }
 
@@ -154,27 +158,29 @@ func (FunctionDomainState) ElementType() reflect.Type {
 }
 
 type functionDomainArgs struct {
-	// The ID of the function you want to create a domain with.
+	// The unique identifier of the function.
 	FunctionId string `pulumi:"functionId"`
-	// The hostname that should resolve to your function id native domain.
-	// You should use a CNAME domain record that point to your native function `domainName` for it.
+	// The hostname with a CNAME record.
 	//
-	// > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+	// We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+	//
+	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname string `pulumi:"hostname"`
-	// (Defaults to provider `region`) The region in where the domain was created.
+	// (Defaults to provider `region`) The region in which the domain was created.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a FunctionDomain resource.
 type FunctionDomainArgs struct {
-	// The ID of the function you want to create a domain with.
+	// The unique identifier of the function.
 	FunctionId pulumi.StringInput
-	// The hostname that should resolve to your function id native domain.
-	// You should use a CNAME domain record that point to your native function `domainName` for it.
+	// The hostname with a CNAME record.
 	//
-	// > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+	// We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+	//
+	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringInput
-	// (Defaults to provider `region`) The region in where the domain was created.
+	// (Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringPtrInput
 }
 
@@ -265,25 +271,26 @@ func (o FunctionDomainOutput) ToFunctionDomainOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The ID of the function you want to create a domain with.
+// The unique identifier of the function.
 func (o FunctionDomainOutput) FunctionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.FunctionId }).(pulumi.StringOutput)
 }
 
-// The hostname that should resolve to your function id native domain.
-// You should use a CNAME domain record that point to your native function `domainName` for it.
+// The hostname with a CNAME record.
 //
-// > **Important** Updates to `functionId` or `hostname` will recreate the domain.
+// We recommend you use a CNAME domain record that point to your native function `domainName` for it.
+//
+// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 func (o FunctionDomainOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region in where the domain was created.
+// (Defaults to provider `region`) The region in which the domain was created.
 func (o FunctionDomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The URL that triggers the function
+// The URL used to query the function.
 func (o FunctionDomainOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

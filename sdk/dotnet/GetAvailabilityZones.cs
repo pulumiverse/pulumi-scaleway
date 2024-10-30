@@ -13,12 +13,16 @@ namespace Pulumiverse.Scaleway
     public static class GetAvailabilityZones
     {
         /// <summary>
-        /// Use this data source to get the available zones information based on its Region.
+        /// The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
         /// 
         /// For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
-        /// you can choose the location that better fits your need (country, latency, …).
+        /// you can choose the location that better fits your need (country, latency, etc.).
         /// 
-        /// ## Example Usage
+        /// Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+        /// 
+        /// ## Retrieve the Availability Zones of a Region
+        /// 
+        /// The following command allow you to retrieve a the AZs of a Region.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -41,12 +45,16 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAvailabilityZonesResult>("scaleway:index/getAvailabilityZones:getAvailabilityZones", args ?? new GetAvailabilityZonesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to get the available zones information based on its Region.
+        /// The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
         /// 
         /// For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
-        /// you can choose the location that better fits your need (country, latency, …).
+        /// you can choose the location that better fits your need (country, latency, etc.).
         /// 
-        /// ## Example Usage
+        /// Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+        /// 
+        /// ## Retrieve the Availability Zones of a Region
+        /// 
+        /// The following command allow you to retrieve a the AZs of a Region.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -73,7 +81,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetAvailabilityZonesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Region is represented as a Geographical area such as France. Defaults: `fr-par`.
+        /// Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -87,7 +95,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetAvailabilityZonesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Region is represented as a Geographical area such as France. Defaults: `fr-par`.
+        /// Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -108,7 +116,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string? Region;
         /// <summary>
-        /// List of availability zones by regions
+        /// The list of availability zones in each Region
         /// </summary>
         public readonly ImmutableArray<string> Zones;
 

@@ -31,7 +31,7 @@ class ObjectBucketAclArgs:
         The set of arguments for constructing a ObjectBucketAcl resource.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
-        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
@@ -76,7 +76,7 @@ class ObjectBucketAclArgs:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The canned ACL you want to apply to the bucket.
+        The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         """
         return pulumi.get(self, "acl")
 
@@ -133,7 +133,7 @@ class _ObjectBucketAclState:
         """
         Input properties used for looking up and filtering ObjectBucketAcl resources.
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
-        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
@@ -168,7 +168,7 @@ class _ObjectBucketAclState:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The canned ACL you want to apply to the bucket.
+        The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         """
         return pulumi.get(self, "acl")
 
@@ -244,11 +244,13 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket", name="some-unique-name")
+        some_bucket = scaleway.ObjectBucket("some_bucket", name="unique-name")
         main = scaleway.ObjectBucketAcl("main",
             bucket=main_scaleway_object_bucket["id"],
             acl="private")
         ```
+
+        For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-operations/#putbucketacl).
 
         ### With Grants
 
@@ -284,16 +286,16 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## The ACL
 
-        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+        Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 
-        ## The Access Control policy
+        ## The access control policy
 
         The `access_control_policy` configuration block supports the following arguments:
 
         * `grant` - (Required) Set of grant configuration blocks documented below.
         * `owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
 
-        ## The Grant
+        ## The grant
 
         The `grant` configuration block supports the following arguments:
 
@@ -324,7 +326,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## Import
 
-        Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+        Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
 
         bash
 
@@ -345,7 +347,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
-        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
@@ -364,11 +366,13 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket", name="some-unique-name")
+        some_bucket = scaleway.ObjectBucket("some_bucket", name="unique-name")
         main = scaleway.ObjectBucketAcl("main",
             bucket=main_scaleway_object_bucket["id"],
             acl="private")
         ```
+
+        For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-operations/#putbucketacl).
 
         ### With Grants
 
@@ -404,16 +408,16 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## The ACL
 
-        Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+        Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 
-        ## The Access Control policy
+        ## The access control policy
 
         The `access_control_policy` configuration block supports the following arguments:
 
         * `grant` - (Required) Set of grant configuration blocks documented below.
         * `owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
 
-        ## The Grant
+        ## The grant
 
         The `grant` configuration block supports the following arguments:
 
@@ -444,7 +448,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## Import
 
-        Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+        Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
 
         bash
 
@@ -524,7 +528,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
-        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
@@ -554,7 +558,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     @pulumi.getter
     def acl(self) -> pulumi.Output[Optional[str]]:
         """
-        The canned ACL you want to apply to the bucket.
+        The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         """
         return pulumi.get(self, "acl")
 

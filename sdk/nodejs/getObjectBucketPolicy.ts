@@ -5,10 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about the Bucket's policy.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
  *
- * ## Example Usage
+ * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+ *
+ * ## Retrieve the bucket policy of a bucket
+ *
+ * The following command allows you to retrieve a bucket policy by its bucket.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,7 +36,7 @@ export function getObjectBucketPolicy(args: GetObjectBucketPolicyArgs, opts?: pu
  */
 export interface GetObjectBucketPolicyArgs {
     /**
-     * The bucket name.
+     * The name of the bucket.
      */
     bucket: string;
     projectId?: string;
@@ -53,17 +56,20 @@ export interface GetObjectBucketPolicyResult {
      */
     readonly id: string;
     /**
-     * The bucket's policy in JSON format.
+     * The content of the bucket policy in JSON format.
      */
     readonly policy: string;
     readonly projectId?: string;
     readonly region?: string;
 }
 /**
- * Gets information about the Bucket's policy.
- * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+ * The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
  *
- * ## Example Usage
+ * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+ *
+ * ## Retrieve the bucket policy of a bucket
+ *
+ * The following command allows you to retrieve a bucket policy by its bucket.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -88,7 +94,7 @@ export function getObjectBucketPolicyOutput(args: GetObjectBucketPolicyOutputArg
  */
 export interface GetObjectBucketPolicyOutputArgs {
     /**
-     * The bucket name.
+     * The name of the bucket.
      */
     bucket: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;

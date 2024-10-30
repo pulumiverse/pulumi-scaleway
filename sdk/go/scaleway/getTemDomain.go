@@ -39,6 +39,7 @@ type LookupTemDomainArgs struct {
 // A collection of values returned by getTemDomain.
 type LookupTemDomainResult struct {
 	AcceptTos   bool    `pulumi:"acceptTos"`
+	Autoconfig  bool    `pulumi:"autoconfig"`
 	CreatedAt   string  `pulumi:"createdAt"`
 	DkimConfig  string  `pulumi:"dkimConfig"`
 	DmarcConfig string  `pulumi:"dmarcConfig"`
@@ -120,6 +121,10 @@ func (o LookupTemDomainResultOutput) ToLookupTemDomainResultOutputWithContext(ct
 
 func (o LookupTemDomainResultOutput) AcceptTos() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) bool { return v.AcceptTos }).(pulumi.BoolOutput)
+}
+
+func (o LookupTemDomainResultOutput) Autoconfig() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) bool { return v.Autoconfig }).(pulumi.BoolOutput)
 }
 
 func (o LookupTemDomainResultOutput) CreatedAt() pulumi.StringOutput {

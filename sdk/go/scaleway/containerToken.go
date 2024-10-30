@@ -11,12 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Container Token.
-// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#tokens-26b085).
+// The `ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+//
+// Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
 //
 // ## Example Usage
-//
-// ### Basic
 //
 // ```go
 // package main
@@ -65,7 +64,7 @@ import (
 //
 // ## Import
 //
-// Tokens can be imported using the `{region}/{id}`, e.g.
+// Tokens can be imported using `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -75,7 +74,7 @@ import (
 type ContainerToken struct {
 	pulumi.CustomResourceState
 
-	// The ID of the container.
+	// The unique identifier of the container.
 	//
 	// > Only one of `namespaceId` or `containerId` must be set.
 	ContainerId pulumi.StringPtrOutput `pulumi:"containerId"`
@@ -83,11 +82,11 @@ type ContainerToken struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// The ID of the container namespace.
+	// The unique identifier of the Containers namespace.
 	NamespaceId pulumi.StringPtrOutput `pulumi:"namespaceId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
 	Token pulumi.StringOutput `pulumi:"token"`
@@ -127,7 +126,7 @@ func GetContainerToken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerToken resources.
 type containerTokenState struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	//
 	// > Only one of `namespaceId` or `containerId` must be set.
 	ContainerId *string `pulumi:"containerId"`
@@ -135,18 +134,18 @@ type containerTokenState struct {
 	Description *string `pulumi:"description"`
 	// The expiration date of the token.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The ID of the container namespace.
+	// The unique identifier of the Containers namespace.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 	// The token.
 	Token *string `pulumi:"token"`
 }
 
 type ContainerTokenState struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	//
 	// > Only one of `namespaceId` or `containerId` must be set.
 	ContainerId pulumi.StringPtrInput
@@ -154,11 +153,11 @@ type ContainerTokenState struct {
 	Description pulumi.StringPtrInput
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrInput
-	// The ID of the container namespace.
+	// The unique identifier of the Containers namespace.
 	NamespaceId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 	// The token.
 	Token pulumi.StringPtrInput
@@ -169,7 +168,7 @@ func (ContainerTokenState) ElementType() reflect.Type {
 }
 
 type containerTokenArgs struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	//
 	// > Only one of `namespaceId` or `containerId` must be set.
 	ContainerId *string `pulumi:"containerId"`
@@ -177,17 +176,17 @@ type containerTokenArgs struct {
 	Description *string `pulumi:"description"`
 	// The expiration date of the token.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The ID of the container namespace.
+	// The unique identifier of the Containers namespace.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a ContainerToken resource.
 type ContainerTokenArgs struct {
-	// The ID of the container.
+	// The unique identifier of the container.
 	//
 	// > Only one of `namespaceId` or `containerId` must be set.
 	ContainerId pulumi.StringPtrInput
@@ -195,11 +194,11 @@ type ContainerTokenArgs struct {
 	Description pulumi.StringPtrInput
 	// The expiration date of the token.
 	ExpiresAt pulumi.StringPtrInput
-	// The ID of the container namespace.
+	// The unique identifier of the Containers namespace.
 	NamespaceId pulumi.StringPtrInput
-	// `region`). The region in which the namespace should be created.
+	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updates to any fields will recreate the token.
+	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 }
 
@@ -290,7 +289,7 @@ func (o ContainerTokenOutput) ToContainerTokenOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The ID of the container.
+// The unique identifier of the container.
 //
 // > Only one of `namespaceId` or `containerId` must be set.
 func (o ContainerTokenOutput) ContainerId() pulumi.StringPtrOutput {
@@ -307,14 +306,14 @@ func (o ContainerTokenOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerToken) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the container namespace.
+// The unique identifier of the Containers namespace.
 func (o ContainerTokenOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerToken) pulumi.StringPtrOutput { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// `region`). The region in which the namespace should be created.
+// `region`). The region in which the namespace is created.
 //
-// > **Important** Updates to any fields will recreate the token.
+// > **Important** Updating any of the arguments above will recreate the token.
 func (o ContainerTokenOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

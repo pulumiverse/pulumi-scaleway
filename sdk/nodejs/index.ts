@@ -970,6 +970,11 @@ export type VpcPublicGatewayPatRule = import("./vpcPublicGatewayPatRule").VpcPub
 export const VpcPublicGatewayPatRule: typeof import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule = null as any;
 utilities.lazyLoad(exports, ["VpcPublicGatewayPatRule"], () => require("./vpcPublicGatewayPatRule"));
 
+export { VpcRouteArgs, VpcRouteState } from "./vpcRoute";
+export type VpcRoute = import("./vpcRoute").VpcRoute;
+export const VpcRoute: typeof import("./vpcRoute").VpcRoute = null as any;
+utilities.lazyLoad(exports, ["VpcRoute"], () => require("./vpcRoute"));
+
 export { WebhostingArgs, WebhostingState } from "./webhosting";
 export type Webhosting = import("./webhosting").Webhosting;
 export const Webhosting: typeof import("./webhosting").Webhosting = null as any;
@@ -1201,6 +1206,8 @@ const _module = {
                 return new VpcPublicGatewayIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
                 return new VpcPublicGatewayPatRule(name, <any>undefined, { urn })
+            case "scaleway:index/vpcRoute:VpcRoute":
+                return new VpcRoute(name, <any>undefined, { urn })
             case "scaleway:index/webhosting:Webhosting":
                 return new Webhosting(name, <any>undefined, { urn })
             default:
@@ -1314,6 +1321,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcpRes
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPatRule", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpcRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/webhosting", _module)
 pulumi.runtime.registerResourcePackage("scaleway", {
     version: utilities.getVersion(),

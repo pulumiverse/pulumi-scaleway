@@ -22,6 +22,7 @@ __all__ = ['TemDomainArgs', 'TemDomain']
 class TemDomainArgs:
     def __init__(__self__, *,
                  accept_tos: pulumi.Input[bool],
+                 autoconfig: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
@@ -29,12 +30,15 @@ class TemDomainArgs:
         The set of arguments for constructing a TemDomain resource.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
                > **Important:** This attribute must be set to `true`.
+        :param pulumi.Input[bool] autoconfig: Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         """
         pulumi.set(__self__, "accept_tos", accept_tos)
+        if autoconfig is not None:
+            pulumi.set(__self__, "autoconfig", autoconfig)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -54,6 +58,18 @@ class TemDomainArgs:
     @accept_tos.setter
     def accept_tos(self, value: pulumi.Input[bool]):
         pulumi.set(self, "accept_tos", value)
+
+    @property
+    @pulumi.getter
+    def autoconfig(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+        """
+        return pulumi.get(self, "autoconfig")
+
+    @autoconfig.setter
+    def autoconfig(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoconfig", value)
 
     @property
     @pulumi.getter
@@ -97,6 +113,7 @@ class TemDomainArgs:
 class _TemDomainState:
     def __init__(__self__, *,
                  accept_tos: Optional[pulumi.Input[bool]] = None,
+                 autoconfig: Optional[pulumi.Input[bool]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  dkim_config: Optional[pulumi.Input[str]] = None,
                  dmarc_config: Optional[pulumi.Input[str]] = None,
@@ -123,6 +140,7 @@ class _TemDomainState:
         Input properties used for looking up and filtering TemDomain resources.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
                > **Important:** This attribute must be set to `true`.
+        :param pulumi.Input[bool] autoconfig: Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
@@ -149,6 +167,8 @@ class _TemDomainState:
         """
         if accept_tos is not None:
             pulumi.set(__self__, "accept_tos", accept_tos)
+        if autoconfig is not None:
+            pulumi.set(__self__, "autoconfig", autoconfig)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if dkim_config is not None:
@@ -209,6 +229,18 @@ class _TemDomainState:
     @accept_tos.setter
     def accept_tos(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "accept_tos", value)
+
+    @property
+    @pulumi.getter
+    def autoconfig(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+        """
+        return pulumi.get(self, "autoconfig")
+
+    @autoconfig.setter
+    def autoconfig(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autoconfig", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -483,6 +515,7 @@ class TemDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accept_tos: Optional[pulumi.Input[bool]] = None,
+                 autoconfig: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -535,6 +568,20 @@ class TemDomain(pulumi.CustomResource):
             data=main.dmarc_config)
         ```
 
+        ### Automatically Configure DNS Settings for Your Domain
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        config = pulumi.Config()
+        domain_name = config.require("domainName")
+        main = scaleway.TemDomain("main",
+            name=domain_name,
+            accept_tos=True,
+            autoconfig=True)
+        ```
+
         ## Import
 
         Domains can be imported using the `{region}/{id}`, e.g.
@@ -549,6 +596,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
                > **Important:** This attribute must be set to `true`.
+        :param pulumi.Input[bool] autoconfig: Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
@@ -608,6 +656,20 @@ class TemDomain(pulumi.CustomResource):
             data=main.dmarc_config)
         ```
 
+        ### Automatically Configure DNS Settings for Your Domain
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        config = pulumi.Config()
+        domain_name = config.require("domainName")
+        main = scaleway.TemDomain("main",
+            name=domain_name,
+            accept_tos=True,
+            autoconfig=True)
+        ```
+
         ## Import
 
         Domains can be imported using the `{region}/{id}`, e.g.
@@ -634,6 +696,7 @@ class TemDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accept_tos: Optional[pulumi.Input[bool]] = None,
+                 autoconfig: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -649,6 +712,7 @@ class TemDomain(pulumi.CustomResource):
             if accept_tos is None and not opts.urn:
                 raise TypeError("Missing required property 'accept_tos'")
             __props__.__dict__["accept_tos"] = accept_tos
+            __props__.__dict__["autoconfig"] = autoconfig
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -682,6 +746,7 @@ class TemDomain(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accept_tos: Optional[pulumi.Input[bool]] = None,
+            autoconfig: Optional[pulumi.Input[bool]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dkim_config: Optional[pulumi.Input[str]] = None,
             dmarc_config: Optional[pulumi.Input[str]] = None,
@@ -713,6 +778,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
                > **Important:** This attribute must be set to `true`.
+        :param pulumi.Input[bool] autoconfig: Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] dmarc_config: DMARC record for the domain, as should be recorded in the DNS zone.
@@ -742,6 +808,7 @@ class TemDomain(pulumi.CustomResource):
         __props__ = _TemDomainState.__new__(_TemDomainState)
 
         __props__.__dict__["accept_tos"] = accept_tos
+        __props__.__dict__["autoconfig"] = autoconfig
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dkim_config"] = dkim_config
         __props__.__dict__["dmarc_config"] = dmarc_config
@@ -774,6 +841,14 @@ class TemDomain(pulumi.CustomResource):
         > **Important:** This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
+
+    @property
+    @pulumi.getter
+    def autoconfig(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+        """
+        return pulumi.get(self, "autoconfig")
 
     @property
     @pulumi.getter(name="createdAt")

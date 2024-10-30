@@ -11,20 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Container Triggers. For the moment, the feature is limited to CRON Schedule (time-based).
+    /// The `scaleway.ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
-    /// For more information consult
-    /// the [documentation](https://www.scaleway.com/en/docs/serverless/containers/)
-    /// .
-    /// 
-    /// For more details about the limitation
-    /// check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/)
-    /// .
-    /// 
-    /// You can check also
-    /// our [containers cron api documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#crons-942bf4).
+    /// Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
     /// 
     /// ## Example Usage
+    /// 
+    /// The following command allows you to add a CRON trigger to a Serverless Container.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -67,7 +60,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container Cron can be imported using the `{region}/{id}`, e.g.
+    /// Container Cron can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -80,40 +73,37 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The key-value mapping to define arguments that will be passed to your container’s event object
-        /// during
         /// </summary>
         [Output("args")]
         public Output<string> Args { get; private set; } = null!;
 
         /// <summary>
-        /// The container ID to link with your cron.
+        /// The unique identifier of the container to link to your CRON trigger.
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the container cron. If not provided, the name is generated.
-        /// during
+        /// The name of the container CRON trigger. If not provided, a random name is generated.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
         /// (Defaults to provider `region`) The region
-        /// in where the job was created.
+        /// in which the CRON trigger is created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        /// executed.
+        /// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         /// </summary>
         [Output("schedule")]
         public Output<string> Schedule { get; private set; } = null!;
 
         /// <summary>
-        /// The cron status.
+        /// The CRON status.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -167,34 +157,31 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The key-value mapping to define arguments that will be passed to your container’s event object
-        /// during
         /// </summary>
         [Input("args", required: true)]
         public Input<string> Args { get; set; } = null!;
 
         /// <summary>
-        /// The container ID to link with your cron.
+        /// The unique identifier of the container to link to your CRON trigger.
         /// </summary>
         [Input("containerId", required: true)]
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the container cron. If not provided, the name is generated.
-        /// during
+        /// The name of the container CRON trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// (Defaults to provider `region`) The region
-        /// in where the job was created.
+        /// in which the CRON trigger is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        /// executed.
+        /// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         /// </summary>
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;
@@ -209,40 +196,37 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The key-value mapping to define arguments that will be passed to your container’s event object
-        /// during
         /// </summary>
         [Input("args")]
         public Input<string>? Args { get; set; }
 
         /// <summary>
-        /// The container ID to link with your cron.
+        /// The unique identifier of the container to link to your CRON trigger.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
 
         /// <summary>
-        /// The name of the container cron. If not provided, the name is generated.
-        /// during
+        /// The name of the container CRON trigger. If not provided, a random name is generated.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// (Defaults to provider `region`) The region
-        /// in where the job was created.
+        /// in which the CRON trigger is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
-        /// executed.
+        /// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
         /// <summary>
-        /// The cron status.
+        /// The CRON status.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

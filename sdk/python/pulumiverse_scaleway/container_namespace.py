@@ -31,11 +31,11 @@ class ContainerNamespaceArgs:
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] name: The unique name of the Containers namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
         if description is not None:
@@ -97,9 +97,9 @@ class ContainerNamespaceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the container namespace.
+        The unique name of the Containers namespace.
 
-        > **Important** Updates to `name` will recreate the namespace.
+        > **Important** Updates to the `name` argument will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -111,7 +111,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the namespace is associated with.
+        `project_id`) The unique identifier of the project that contains the namespace.
         """
         return pulumi.get(self, "project_id")
 
@@ -123,7 +123,7 @@ class ContainerNamespaceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
@@ -162,12 +162,12 @@ class _ContainerNamespaceState:
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] name: The unique name of the Containers namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] organization_id: The Organization ID with which the namespace is associated.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
@@ -237,9 +237,9 @@ class _ContainerNamespaceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the container namespace.
+        The unique name of the Containers namespace.
 
-        > **Important** Updates to `name` will recreate the namespace.
+        > **Important** Updates to the `name` argument will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -251,7 +251,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the namespace is associated with.
+        The Organization ID with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -263,7 +263,7 @@ class _ContainerNamespaceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the namespace is associated with.
+        `project_id`) The unique identifier of the project that contains the namespace.
         """
         return pulumi.get(self, "project_id")
 
@@ -275,7 +275,7 @@ class _ContainerNamespaceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
@@ -334,12 +334,12 @@ class ContainerNamespace(pulumi.CustomResource):
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Serverless Container Namespace.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#namespaces-cdce79).
+        The `ContainerNamespace` resource allows you to
+        for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+
+        Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -352,7 +352,7 @@ class ContainerNamespace(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Containers namespaces can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -365,11 +365,11 @@ class ContainerNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] name: The unique name of the Containers namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
         ...
@@ -379,12 +379,12 @@ class ContainerNamespace(pulumi.CustomResource):
                  args: Optional[ContainerNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Serverless Container Namespace.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#namespaces-cdce79).
+        The `ContainerNamespace` resource allows you to
+        for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+
+        Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -397,7 +397,7 @@ class ContainerNamespace(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Containers namespaces can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -478,12 +478,12 @@ class ContainerNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the container namespace.
+        :param pulumi.Input[str] name: The unique name of the Containers namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] organization_id: The Organization ID with which the namespace is associated.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
@@ -533,9 +533,9 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the container namespace.
+        The unique name of the Containers namespace.
 
-        > **Important** Updates to `name` will recreate the namespace.
+        > **Important** Updates to the `name` argument will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -543,7 +543,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the namespace is associated with.
+        The Organization ID with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -551,7 +551,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the namespace is associated with.
+        `project_id`) The unique identifier of the project that contains the namespace.
         """
         return pulumi.get(self, "project_id")
 
@@ -559,7 +559,7 @@ class ContainerNamespace(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 

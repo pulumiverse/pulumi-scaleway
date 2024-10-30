@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about an existing Project.
+// The `AccountProject` data source is used to retrieve information about a Scaleway project.
+//
+// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 func LookupAccountProject(ctx *pulumi.Context, args *LookupAccountProjectArgs, opts ...pulumi.InvokeOption) (*LookupAccountProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountProjectResult
@@ -27,10 +29,11 @@ type LookupAccountProjectArgs struct {
 	// The name of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	Name *string `pulumi:"name"`
-	// The organization ID the Project is associated with.
-	// If no default organizationId is set, one must be set explicitly in this datasource
+	// The unique identifier of the Organization with which the Project is associated.
+	//
+	// If no default `organizationId` is set, one must be set explicitly in this datasource
 	OrganizationId *string `pulumi:"organizationId"`
-	// The ID of the Project.
+	// The unique identifier of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	ProjectId *string `pulumi:"projectId"`
 }
@@ -71,10 +74,11 @@ type LookupAccountProjectOutputArgs struct {
 	// The name of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The organization ID the Project is associated with.
-	// If no default organizationId is set, one must be set explicitly in this datasource
+	// The unique identifier of the Organization with which the Project is associated.
+	//
+	// If no default `organizationId` is set, one must be set explicitly in this datasource
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
-	// The ID of the Project.
+	// The unique identifier of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }

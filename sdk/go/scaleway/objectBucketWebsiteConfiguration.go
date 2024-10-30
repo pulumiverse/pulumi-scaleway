@@ -12,8 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Provides an Object bucket website configuration resource.
-// For more information, see [Hosting Websites on Object bucket](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/).
+// The `ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+//
+// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/) for more information on bucket websites.
 //
 // ## Example Usage
 //
@@ -51,7 +52,7 @@ import (
 //
 // ```
 //
-// ### With `Policy`
+// ### With A Bucket Policy
 //
 // ```go
 // package main
@@ -119,7 +120,7 @@ import (
 //
 // ## Import
 //
-// Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+// Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 //
 // bash
 //
@@ -141,9 +142,9 @@ type ObjectBucketWebsiteConfiguration struct {
 
 	// The name of the bucket.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
-	// The name of the error document for the website detailed below.
+	// The name of the error file for the website detailed below.
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput `pulumi:"errorDocument"`
-	// The name of the index document for the website detailed below.
+	// The name of the index file for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentOutput `pulumi:"indexDocument"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -193,9 +194,9 @@ func GetObjectBucketWebsiteConfiguration(ctx *pulumi.Context,
 type objectBucketWebsiteConfigurationState struct {
 	// The name of the bucket.
 	Bucket *string `pulumi:"bucket"`
-	// The name of the error document for the website detailed below.
+	// The name of the error file for the website detailed below.
 	ErrorDocument *ObjectBucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
-	// The name of the index document for the website detailed below.
+	// The name of the index file for the website detailed below.
 	IndexDocument *ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -210,9 +211,9 @@ type objectBucketWebsiteConfigurationState struct {
 type ObjectBucketWebsiteConfigurationState struct {
 	// The name of the bucket.
 	Bucket pulumi.StringPtrInput
-	// The name of the error document for the website detailed below.
+	// The name of the error file for the website detailed below.
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrInput
-	// The name of the index document for the website detailed below.
+	// The name of the index file for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -231,9 +232,9 @@ func (ObjectBucketWebsiteConfigurationState) ElementType() reflect.Type {
 type objectBucketWebsiteConfigurationArgs struct {
 	// The name of the bucket.
 	Bucket string `pulumi:"bucket"`
-	// The name of the error document for the website detailed below.
+	// The name of the error file for the website detailed below.
 	ErrorDocument *ObjectBucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
-	// The name of the index document for the website detailed below.
+	// The name of the index file for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -245,9 +246,9 @@ type objectBucketWebsiteConfigurationArgs struct {
 type ObjectBucketWebsiteConfigurationArgs struct {
 	// The name of the bucket.
 	Bucket pulumi.StringInput
-	// The name of the error document for the website detailed below.
+	// The name of the error file for the website detailed below.
 	ErrorDocument ObjectBucketWebsiteConfigurationErrorDocumentPtrInput
-	// The name of the index document for the website detailed below.
+	// The name of the index file for the website detailed below.
 	IndexDocument ObjectBucketWebsiteConfigurationIndexDocumentInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -347,14 +348,14 @@ func (o ObjectBucketWebsiteConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// The name of the error document for the website detailed below.
+// The name of the error file for the website detailed below.
 func (o ObjectBucketWebsiteConfigurationOutput) ErrorDocument() ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput {
 		return v.ErrorDocument
 	}).(ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput)
 }
 
-// The name of the index document for the website detailed below.
+// The name of the index file for the website detailed below.
 func (o ObjectBucketWebsiteConfigurationOutput) IndexDocument() ObjectBucketWebsiteConfigurationIndexDocumentOutput {
 	return o.ApplyT(func(v *ObjectBucketWebsiteConfiguration) ObjectBucketWebsiteConfigurationIndexDocumentOutput {
 		return v.IndexDocument

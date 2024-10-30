@@ -99,7 +99,7 @@ class GetFunctionNamespaceResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the namespace is associated with.
+        The unique identifier of the organization with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -125,7 +125,7 @@ class GetFunctionNamespaceResult:
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> str:
         """
-        The registry namespace ID of the namespace.
+        The unique identifier of the registry namespace of the Serverless Functions namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -160,14 +160,14 @@ def get_function_namespace(name: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionNamespaceResult:
     """
-    Gets information about a function namespace.
+    The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+
+    Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 
 
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
+    :param str name: The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
@@ -196,14 +196,14 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
-    Gets information about a function namespace.
+    The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+
+    Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 
 
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
+    :param str name: The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
