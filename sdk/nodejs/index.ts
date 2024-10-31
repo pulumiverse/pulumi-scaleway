@@ -125,36 +125,6 @@ export type DatabaseUser = import("./databaseUser").DatabaseUser;
 export const DatabaseUser: typeof import("./databaseUser").DatabaseUser = null as any;
 utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
 
-export { DocumentdbDatabaseArgs, DocumentdbDatabaseState } from "./documentdbDatabase";
-export type DocumentdbDatabase = import("./documentdbDatabase").DocumentdbDatabase;
-export const DocumentdbDatabase: typeof import("./documentdbDatabase").DocumentdbDatabase = null as any;
-utilities.lazyLoad(exports, ["DocumentdbDatabase"], () => require("./documentdbDatabase"));
-
-export { DocumentdbInstanceArgs, DocumentdbInstanceState } from "./documentdbInstance";
-export type DocumentdbInstance = import("./documentdbInstance").DocumentdbInstance;
-export const DocumentdbInstance: typeof import("./documentdbInstance").DocumentdbInstance = null as any;
-utilities.lazyLoad(exports, ["DocumentdbInstance"], () => require("./documentdbInstance"));
-
-export { DocumentdbPrivateNetworkEndpointArgs, DocumentdbPrivateNetworkEndpointState } from "./documentdbPrivateNetworkEndpoint";
-export type DocumentdbPrivateNetworkEndpoint = import("./documentdbPrivateNetworkEndpoint").DocumentdbPrivateNetworkEndpoint;
-export const DocumentdbPrivateNetworkEndpoint: typeof import("./documentdbPrivateNetworkEndpoint").DocumentdbPrivateNetworkEndpoint = null as any;
-utilities.lazyLoad(exports, ["DocumentdbPrivateNetworkEndpoint"], () => require("./documentdbPrivateNetworkEndpoint"));
-
-export { DocumentdbPrivilegeArgs, DocumentdbPrivilegeState } from "./documentdbPrivilege";
-export type DocumentdbPrivilege = import("./documentdbPrivilege").DocumentdbPrivilege;
-export const DocumentdbPrivilege: typeof import("./documentdbPrivilege").DocumentdbPrivilege = null as any;
-utilities.lazyLoad(exports, ["DocumentdbPrivilege"], () => require("./documentdbPrivilege"));
-
-export { DocumentdbReadReplicaArgs, DocumentdbReadReplicaState } from "./documentdbReadReplica";
-export type DocumentdbReadReplica = import("./documentdbReadReplica").DocumentdbReadReplica;
-export const DocumentdbReadReplica: typeof import("./documentdbReadReplica").DocumentdbReadReplica = null as any;
-utilities.lazyLoad(exports, ["DocumentdbReadReplica"], () => require("./documentdbReadReplica"));
-
-export { DocumentdbUserArgs, DocumentdbUserState } from "./documentdbUser";
-export type DocumentdbUser = import("./documentdbUser").DocumentdbUser;
-export const DocumentdbUser: typeof import("./documentdbUser").DocumentdbUser = null as any;
-utilities.lazyLoad(exports, ["DocumentdbUser"], () => require("./documentdbUser"));
-
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
@@ -309,21 +279,6 @@ export { GetDatabasePrivilegeArgs, GetDatabasePrivilegeResult, GetDatabasePrivil
 export const getDatabasePrivilege: typeof import("./getDatabasePrivilege").getDatabasePrivilege = null as any;
 export const getDatabasePrivilegeOutput: typeof import("./getDatabasePrivilege").getDatabasePrivilegeOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabasePrivilege","getDatabasePrivilegeOutput"], () => require("./getDatabasePrivilege"));
-
-export { GetDocumentdbDatabaseArgs, GetDocumentdbDatabaseResult, GetDocumentdbDatabaseOutputArgs } from "./getDocumentdbDatabase";
-export const getDocumentdbDatabase: typeof import("./getDocumentdbDatabase").getDocumentdbDatabase = null as any;
-export const getDocumentdbDatabaseOutput: typeof import("./getDocumentdbDatabase").getDocumentdbDatabaseOutput = null as any;
-utilities.lazyLoad(exports, ["getDocumentdbDatabase","getDocumentdbDatabaseOutput"], () => require("./getDocumentdbDatabase"));
-
-export { GetDocumentdbInstanceArgs, GetDocumentdbInstanceResult, GetDocumentdbInstanceOutputArgs } from "./getDocumentdbInstance";
-export const getDocumentdbInstance: typeof import("./getDocumentdbInstance").getDocumentdbInstance = null as any;
-export const getDocumentdbInstanceOutput: typeof import("./getDocumentdbInstance").getDocumentdbInstanceOutput = null as any;
-utilities.lazyLoad(exports, ["getDocumentdbInstance","getDocumentdbInstanceOutput"], () => require("./getDocumentdbInstance"));
-
-export { GetDocumentdbLoadBalancerEndpointArgs, GetDocumentdbLoadBalancerEndpointResult, GetDocumentdbLoadBalancerEndpointOutputArgs } from "./getDocumentdbLoadBalancerEndpoint";
-export const getDocumentdbLoadBalancerEndpoint: typeof import("./getDocumentdbLoadBalancerEndpoint").getDocumentdbLoadBalancerEndpoint = null as any;
-export const getDocumentdbLoadBalancerEndpointOutput: typeof import("./getDocumentdbLoadBalancerEndpoint").getDocumentdbLoadBalancerEndpointOutput = null as any;
-utilities.lazyLoad(exports, ["getDocumentdbLoadBalancerEndpoint","getDocumentdbLoadBalancerEndpointOutput"], () => require("./getDocumentdbLoadBalancerEndpoint"));
 
 export { GetDomainRecordArgs, GetDomainRecordResult, GetDomainRecordOutputArgs } from "./getDomainRecord";
 export const getDomainRecord: typeof import("./getDomainRecord").getDomainRecord = null as any;
@@ -554,6 +509,11 @@ export { GetRegistryImageArgs, GetRegistryImageResult, GetRegistryImageOutputArg
 export const getRegistryImage: typeof import("./getRegistryImage").getRegistryImage = null as any;
 export const getRegistryImageOutput: typeof import("./getRegistryImage").getRegistryImageOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryImage","getRegistryImageOutput"], () => require("./getRegistryImage"));
+
+export { GetRegistryImageTagArgs, GetRegistryImageTagResult, GetRegistryImageTagOutputArgs } from "./getRegistryImageTag";
+export const getRegistryImageTag: typeof import("./getRegistryImageTag").getRegistryImageTag = null as any;
+export const getRegistryImageTagOutput: typeof import("./getRegistryImageTag").getRegistryImageTagOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryImageTag","getRegistryImageTagOutput"], () => require("./getRegistryImageTag"));
 
 export { GetRegistryNamespaceArgs, GetRegistryNamespaceResult, GetRegistryNamespaceOutputArgs } from "./getRegistryNamespace";
 export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRegistryNamespace = null as any;
@@ -1042,18 +1002,6 @@ const _module = {
                 return new DatabaseReadReplica(name, <any>undefined, { urn })
             case "scaleway:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
-            case "scaleway:index/documentdbDatabase:DocumentdbDatabase":
-                return new DocumentdbDatabase(name, <any>undefined, { urn })
-            case "scaleway:index/documentdbInstance:DocumentdbInstance":
-                return new DocumentdbInstance(name, <any>undefined, { urn })
-            case "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint":
-                return new DocumentdbPrivateNetworkEndpoint(name, <any>undefined, { urn })
-            case "scaleway:index/documentdbPrivilege:DocumentdbPrivilege":
-                return new DocumentdbPrivilege(name, <any>undefined, { urn })
-            case "scaleway:index/documentdbReadReplica:DocumentdbReadReplica":
-                return new DocumentdbReadReplica(name, <any>undefined, { urn })
-            case "scaleway:index/documentdbUser:DocumentdbUser":
-                return new DocumentdbUser(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
@@ -1239,12 +1187,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentdbDatabase", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentdbInstance", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentdbPrivateNetworkEndpoint", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentdbPrivilege", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentdbReadReplica", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentdbUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)

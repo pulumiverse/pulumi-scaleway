@@ -233,42 +233,6 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "domain_zone.md",
 				},
 			},
-			"scaleway_documentdb_database": {
-				Tok: scalewayResource(scalewayMod, "DocumentdbDatabase"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_database.md",
-				},
-			},
-			"scaleway_documentdb_instance": {
-				Tok: scalewayResource(scalewayMod, "DocumentdbInstance"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_instance.md",
-				},
-			},
-			"scaleway_documentdb_private_network_endpoint": {
-				Tok: scalewayResource(scalewayMod, "DocumentdbPrivateNetworkEndpoint"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_private_network_endpoint.md",
-				},
-			},
-			"scaleway_documentdb_privilege": {
-				Tok: scalewayResource(scalewayMod, "DocumentdbPrivilege"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_privilege.md",
-				},
-			},
-			"scaleway_documentdb_read_replica": {
-				Tok: scalewayResource(scalewayMod, "DocumentdbReadReplica"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_read_replica.md",
-				},
-			},
-			"scaleway_documentdb_user": {
-				Tok: scalewayResource(scalewayMod, "DocumentdbUser"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_user.md",
-				},
-			},
 			"scaleway_flexible_ip_mac_address": {
 				Tok: scalewayResource(scalewayMod, "FlexibleIpMacAddress"),
 				Docs: &tfbridge.DocInfo{
@@ -871,24 +835,6 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "domain_zone.md",
 				},
 			},
-			"scaleway_documentdb_database": {
-				Tok: scalewayDataSource(scalewayMod, "getDocumentdbDatabase"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_database.md",
-				},
-			},
-			"scaleway_documentdb_instance": {
-				Tok: scalewayDataSource(scalewayMod, "getDocumentdbInstance"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_instance.md",
-				},
-			},
-			"scaleway_documentdb_load_balancer_endpoint": {
-				Tok: scalewayDataSource(scalewayMod, "getDocumentdbLoadBalancerEndpoint"),
-				Docs: &tfbridge.DocInfo{
-					Source: "documentdb_load_balancer_endpoint.md",
-				},
-			},
 			"scaleway_flexible_ip": {
 				Tok: scalewayDataSource(scalewayMod, "getFlexibleIp"),
 				Docs: &tfbridge.DocInfo{
@@ -1169,6 +1115,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: scalewayDataSource(scalewayMod, "getRegistryImage"),
 				Docs: &tfbridge.DocInfo{
 					Source: "registry_image.md",
+				},
+			},
+			"scaleway_registry_image_tag": {
+				Tok: scalewayDataSource(scalewayMod, "getRegistryImageTag"),
+				Docs: &tfbridge.DocInfo{
+					Source: "registry_image_tag.md",
 				},
 			},
 			"scaleway_registry_namespace": {

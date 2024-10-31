@@ -76,6 +76,7 @@ export interface GetInstancePrivateNicResult {
      */
     readonly id: string;
     readonly ipIds: string[];
+    readonly ipamIpIds: string[];
     readonly macAddress: string;
     readonly privateNetworkId?: string;
     readonly privateNicId?: string;

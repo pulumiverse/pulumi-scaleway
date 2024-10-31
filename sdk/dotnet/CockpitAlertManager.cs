@@ -17,6 +17,47 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Enable the alert manager and configure managed alerts
+    /// 
+    /// The following commands allow you to:
+    /// 
+    /// - enable the alert manager in a Project named `tf_test_project`
+    /// - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
+    /// - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     {
+    ///         Name = "tf_test_project",
+    ///     });
+    /// 
+    ///     var alertManager = new Scaleway.CockpitAlertManager("alert_manager", new()
+    ///     {
+    ///         ProjectId = project.Id,
+    ///         EnableManagedAlerts = true,
+    ///         ContactPoints = new[]
+    ///         {
+    ///             new Scaleway.Inputs.CockpitAlertManagerContactPointArgs
+    ///             {
+    ///                 Email = "alert1@example.com",
+    ///             },
+    ///             new Scaleway.Inputs.CockpitAlertManagerContactPointArgs
+    ///             {
+    ///                 Email = "alert2@example.com",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This section explains how to import alert managers using the ID of the Project associated with Cockpit.

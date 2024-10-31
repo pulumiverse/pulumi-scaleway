@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway
     ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
     ///     {
     ///         Name = "private_network_instance",
-    ///         Zone = "fr-par-2",
+    ///         Region = "fr-par",
     ///     });
     /// 
     ///     var @base = new Scaleway.InstanceServer("base", new()
@@ -63,6 +63,62 @@ namespace Pulumiverse.Scaleway
     ///         ServerId = @base.Id,
     ///         PrivateNetworkId = pn01.Id,
     ///         Zone = pn01.Zone,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With IPAM IP IDs
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "vpc_instance",
+    ///     });
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "private_network_instance",
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     {
+    ///         Address = "172.16.64.7",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             {
+    ///                 PrivateNetworkId = pn01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var server01 = new Scaleway.InstanceServer("server01", new()
+    ///     {
+    ///         Image = "ubuntu_focal",
+    ///         Type = "PLAY2-MICRO",
+    ///     });
+    /// 
+    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     {
+    ///         PrivateNetworkId = pn01.Id,
+    ///         ServerId = server01.Id,
+    ///         IpamIpIds = new[]
+    ///         {
+    ///             ip01.Id,
+    ///         },
     ///     });
     /// 
     /// });
@@ -86,6 +142,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
+
+        /// <summary>
+        /// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+        /// </summary>
+        [Output("ipamIpIds")]
+        public Output<ImmutableArray<string>> IpamIpIds { get; private set; } = null!;
 
         /// <summary>
         /// The MAC address of the private NIC.
@@ -176,6 +238,18 @@ namespace Pulumiverse.Scaleway
             set => _ipIds = value;
         }
 
+        [Input("ipamIpIds")]
+        private InputList<string>? _ipamIpIds;
+
+        /// <summary>
+        /// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+        /// </summary>
+        public InputList<string> IpamIpIds
+        {
+            get => _ipamIpIds ?? (_ipamIpIds = new InputList<string>());
+            set => _ipamIpIds = value;
+        }
+
         /// <summary>
         /// The ID of the private network attached to.
         /// </summary>
@@ -224,6 +298,18 @@ namespace Pulumiverse.Scaleway
         {
             get => _ipIds ?? (_ipIds = new InputList<string>());
             set => _ipIds = value;
+        }
+
+        [Input("ipamIpIds")]
+        private InputList<string>? _ipamIpIds;
+
+        /// <summary>
+        /// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+        /// </summary>
+        public InputList<string> IpamIpIds
+        {
+            get => _ipamIpIds ?? (_ipamIpIds = new InputList<string>());
+            set => _ipamIpIds = value;
         }
 
         /// <summary>

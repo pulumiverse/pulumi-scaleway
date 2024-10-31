@@ -195,6 +195,32 @@ class CockpitAlertManager(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Enable the alert manager and configure managed alerts
+
+        The following commands allow you to:
+
+        - enable the alert manager in a Project named `tf_test_project`
+        - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
+        - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.AccountProject("project", name="tf_test_project")
+        alert_manager = scaleway.CockpitAlertManager("alert_manager",
+            project_id=project.id,
+            enable_managed_alerts=True,
+            contact_points=[
+                {
+                    "email": "alert1@example.com",
+                },
+                {
+                    "email": "alert2@example.com",
+                },
+            ])
+        ```
+
         ## Import
 
         This section explains how to import alert managers using the ID of the Project associated with Cockpit.
@@ -224,6 +250,32 @@ class CockpitAlertManager(pulumi.CustomResource):
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
         ## Example Usage
+
+        ### Enable the alert manager and configure managed alerts
+
+        The following commands allow you to:
+
+        - enable the alert manager in a Project named `tf_test_project`
+        - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
+        - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.AccountProject("project", name="tf_test_project")
+        alert_manager = scaleway.CockpitAlertManager("alert_manager",
+            project_id=project.id,
+            enable_managed_alerts=True,
+            contact_points=[
+                {
+                    "email": "alert1@example.com",
+                },
+                {
+                    "email": "alert2@example.com",
+                },
+            ])
+        ```
 
         ## Import
 

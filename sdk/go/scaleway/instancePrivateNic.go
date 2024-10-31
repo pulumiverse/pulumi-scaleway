@@ -59,8 +59,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
-//				Name: pulumi.String("private_network_instance"),
-//				Zone: pulumi.String("fr-par-2"),
+//				Name:   pulumi.String("private_network_instance"),
+//				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
 //				return err
@@ -87,6 +87,70 @@ import (
 //
 // ```
 //
+// ### With IPAM IP IDs
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("vpc_instance"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("private_network_instance"),
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.64.0/22"),
+//				},
+//				VpcId: vpc01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//				Address: pulumi.String("172.16.64.7"),
+//				Sources: scaleway.IpamIpSourceArray{
+//					&scaleway.IpamIpSourceArgs{
+//						PrivateNetworkId: pn01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			server01, err := scaleway.NewInstanceServer(ctx, "server01", &scaleway.InstanceServerArgs{
+//				Image: pulumi.String("ubuntu_focal"),
+//				Type:  pulumi.String("PLAY2-MICRO"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//				PrivateNetworkId: pn01.ID(),
+//				ServerId:         server01.ID(),
+//				IpamIpIds: pulumi.StringArray{
+//					ip01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g.
@@ -101,6 +165,8 @@ type InstancePrivateNic struct {
 
 	// IPAM ip list, should be for internal use only
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
+	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+	IpamIpIds pulumi.StringArrayOutput `pulumi:"ipamIpIds"`
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -151,6 +217,8 @@ func GetInstancePrivateNic(ctx *pulumi.Context,
 type instancePrivateNicState struct {
 	// IPAM ip list, should be for internal use only
 	IpIds []string `pulumi:"ipIds"`
+	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The MAC address of the private NIC.
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -166,6 +234,8 @@ type instancePrivateNicState struct {
 type InstancePrivateNicState struct {
 	// IPAM ip list, should be for internal use only
 	IpIds pulumi.StringArrayInput
+	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+	IpamIpIds pulumi.StringArrayInput
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringPtrInput
 	// The ID of the private network attached to.
@@ -185,6 +255,8 @@ func (InstancePrivateNicState) ElementType() reflect.Type {
 type instancePrivateNicArgs struct {
 	// IPAM ip list, should be for internal use only
 	IpIds []string `pulumi:"ipIds"`
+	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -199,6 +271,8 @@ type instancePrivateNicArgs struct {
 type InstancePrivateNicArgs struct {
 	// IPAM ip list, should be for internal use only
 	IpIds pulumi.StringArrayInput
+	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+	IpamIpIds pulumi.StringArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
 	// The ID of the server associated with.
@@ -299,6 +373,11 @@ func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx cont
 // IPAM ip list, should be for internal use only
 func (o InstancePrivateNicOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
+}
+
+// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+func (o InstancePrivateNicOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringArrayOutput { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 // The MAC address of the private NIC.

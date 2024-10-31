@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.45.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.46.0
 )
 
 require (
