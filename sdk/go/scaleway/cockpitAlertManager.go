@@ -17,6 +17,53 @@ import (
 //
 // ## Example Usage
 //
+// ### Enable the alert manager and configure managed alerts
+//
+// The following commands allow you to:
+//
+// - enable the alert manager in a Project named `tfTestProject`
+// - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
+// - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//				Name: pulumi.String("tf_test_project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewCockpitAlertManager(ctx, "alert_manager", &scaleway.CockpitAlertManagerArgs{
+//				ProjectId:           project.ID(),
+//				EnableManagedAlerts: pulumi.Bool(true),
+//				ContactPoints: scaleway.CockpitAlertManagerContactPointArray{
+//					&scaleway.CockpitAlertManagerContactPointArgs{
+//						Email: pulumi.String("alert1@example.com"),
+//					},
+//					&scaleway.CockpitAlertManagerContactPointArgs{
+//						Email: pulumi.String("alert2@example.com"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // This section explains how to import alert managers using the ID of the Project associated with Cockpit.

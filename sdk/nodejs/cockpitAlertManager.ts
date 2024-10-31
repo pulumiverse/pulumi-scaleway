@@ -13,6 +13,33 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Enable the alert manager and configure managed alerts
+ *
+ * The following commands allow you to:
+ *
+ * - enable the alert manager in a Project named `tfTestProject`
+ * - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
+ * - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = new scaleway.AccountProject("project", {name: "tf_test_project"});
+ * const alertManager = new scaleway.CockpitAlertManager("alert_manager", {
+ *     projectId: project.id,
+ *     enableManagedAlerts: true,
+ *     contactPoints: [
+ *         {
+ *             email: "alert1@example.com",
+ *         },
+ *         {
+ *             email: "alert2@example.com",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This section explains how to import alert managers using the ID of the Project associated with Cockpit.

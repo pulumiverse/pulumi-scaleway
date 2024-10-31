@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
  *     name: "private_network_instance",
- *     zone: "fr-par-2",
+ *     region: "fr-par",
  * });
  * const base = new scaleway.InstanceServer("base", {
  *     image: "ubuntu_jammy",
@@ -41,6 +41,37 @@ import * as utilities from "./utilities";
  *     serverId: base.id,
  *     privateNetworkId: pn01.id,
  *     zone: pn01.zone,
+ * });
+ * ```
+ *
+ * ### With IPAM IP IDs
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "vpc_instance"});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     name: "private_network_instance",
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const ip01 = new scaleway.IpamIp("ip01", {
+ *     address: "172.16.64.7",
+ *     sources: [{
+ *         privateNetworkId: pn01.id,
+ *     }],
+ * });
+ * const server01 = new scaleway.InstanceServer("server01", {
+ *     image: "ubuntu_focal",
+ *     type: "PLAY2-MICRO",
+ * });
+ * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ *     privateNetworkId: pn01.id,
+ *     serverId: server01.id,
+ *     ipamIpIds: [ip01.id],
  * });
  * ```
  *
@@ -87,6 +118,10 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      */
     public readonly ipIds!: pulumi.Output<string[] | undefined>;
     /**
+     * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+     */
+    public readonly ipamIpIds!: pulumi.Output<string[] | undefined>;
+    /**
      * The MAC address of the private NIC.
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
@@ -121,6 +156,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as InstancePrivateNicState | undefined;
             resourceInputs["ipIds"] = state ? state.ipIds : undefined;
+            resourceInputs["ipamIpIds"] = state ? state.ipamIpIds : undefined;
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
@@ -135,6 +171,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
                 throw new Error("Missing required property 'serverId'");
             }
             resourceInputs["ipIds"] = args ? args.ipIds : undefined;
+            resourceInputs["ipamIpIds"] = args ? args.ipamIpIds : undefined;
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["serverId"] = args ? args.serverId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -154,6 +191,10 @@ export interface InstancePrivateNicState {
      * IPAM ip list, should be for internal use only
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+     */
+    ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The MAC address of the private NIC.
      */
@@ -184,6 +225,10 @@ export interface InstancePrivateNicArgs {
      * IPAM ip list, should be for internal use only
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+     */
+    ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of the private network attached to.
      */

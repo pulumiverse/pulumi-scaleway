@@ -87,6 +87,7 @@ type LookupInstancePrivateNicResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id               string   `pulumi:"id"`
 	IpIds            []string `pulumi:"ipIds"`
+	IpamIpIds        []string `pulumi:"ipamIpIds"`
 	MacAddress       string   `pulumi:"macAddress"`
 	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
 	PrivateNicId     *string  `pulumi:"privateNicId"`
@@ -157,6 +158,10 @@ func (o LookupInstancePrivateNicResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupInstancePrivateNicResultOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupInstancePrivateNicResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupInstancePrivateNicResultOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstancePrivateNicResult) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupInstancePrivateNicResultOutput) MacAddress() pulumi.StringOutput {

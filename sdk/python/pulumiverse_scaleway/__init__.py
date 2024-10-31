@@ -29,12 +29,6 @@ from .database_instance import *
 from .database_privilege import *
 from .database_read_replica import *
 from .database_user import *
-from .documentdb_database import *
-from .documentdb_instance import *
-from .documentdb_private_network_endpoint import *
-from .documentdb_privilege import *
-from .documentdb_read_replica import *
-from .documentdb_user import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
@@ -66,9 +60,6 @@ from .get_database_acl import *
 from .get_database_backup import *
 from .get_database_instance import *
 from .get_database_privilege import *
-from .get_documentdb_database import *
-from .get_documentdb_instance import *
-from .get_documentdb_load_balancer_endpoint import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -115,6 +106,7 @@ from .get_object_bucket import *
 from .get_object_bucket_policy import *
 from .get_redis_cluster import *
 from .get_registry_image import *
+from .get_registry_image_tag import *
 from .get_registry_namespace import *
 from .get_secret import *
 from .get_secret_version import *
@@ -403,54 +395,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseUser:DatabaseUser": "DatabaseUser"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbDatabase",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/documentdbDatabase:DocumentdbDatabase": "DocumentdbDatabase"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbInstance",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/documentdbInstance:DocumentdbInstance": "DocumentdbInstance"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbPrivateNetworkEndpoint",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint": "DocumentdbPrivateNetworkEndpoint"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbPrivilege",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/documentdbPrivilege:DocumentdbPrivilege": "DocumentdbPrivilege"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbReadReplica",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/documentdbReadReplica:DocumentdbReadReplica": "DocumentdbReadReplica"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbUser",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/documentdbUser:DocumentdbUser": "DocumentdbUser"
   }
  },
  {
