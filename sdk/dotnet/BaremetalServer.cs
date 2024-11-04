@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     var main = Scaleway.GetIamSshKey.Invoke(new()
     ///     {
     ///         Name = "main",
     ///     });
@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway
     ///         Os = "d17d6872-0412-45d9-a198-af82c34d3c5c",
     ///         SshKeyIds = new[]
     ///         {
-    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///             mainScalewayAccountSshKey.Id,
     ///         },
     ///     });
     /// 
@@ -56,7 +56,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     var main = Scaleway.GetIamSshKey.Invoke(new()
     ///     {
     ///         Name = "main",
     ///     });
@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway
     ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
     ///         SshKeyIds = new[]
     ///         {
-    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///             mainScalewayAccountSshKey.Id,
     ///         },
     ///         Options = new[]
     ///         {
@@ -122,7 +122,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     var main = Scaleway.GetIamSshKey.Invoke(new()
     ///     {
     ///         Name = "main",
     ///     });
@@ -159,7 +159,7 @@ namespace Pulumiverse.Scaleway
     ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
     ///         SshKeyIds = new[]
     ///         {
-    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///             mainScalewayAccountSshKey.Id,
     ///         },
     ///         Options = new[]
     ///         {
@@ -173,6 +173,100 @@ namespace Pulumiverse.Scaleway
     ///             new Scaleway.Inputs.BaremetalServerPrivateNetworkArgs
     ///             {
     ///                 Id = pn.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With IPAM IP IDs
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "vpc_baremetal",
+    ///     });
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "private_network_baremetal",
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     {
+    ///         Address = "172.16.64.7",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             {
+    ///                 PrivateNetworkId = pn01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var myKey = Scaleway.GetIamSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.GetBaremetalOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "EM-A115X-SSD",
+    ///     });
+    /// 
+    ///     var privateNetwork = Scaleway.GetBaremetalOption.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Private Network",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
+    ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             myKeyScalewayAccountSshKey.Id,
+    ///         },
+    ///         Options = new[]
+    ///         {
+    ///             new Scaleway.Inputs.BaremetalServerOptionArgs
+    ///             {
+    ///                 Id = privateNetwork.Apply(getBaremetalOptionResult =&gt; getBaremetalOptionResult.OptionId),
+    ///             },
+    ///         },
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Inputs.BaremetalServerPrivateNetworkArgs
+    ///             {
+    ///                 Id = pn01.Id,
+    ///                 IpamIpIds = new[]
+    ///                 {
+    ///                     ip01.Id,
+    ///                 },
     ///             },
     ///         },
     ///     });

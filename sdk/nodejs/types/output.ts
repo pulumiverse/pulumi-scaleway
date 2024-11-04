@@ -87,6 +87,10 @@ export interface BaremetalServerPrivateNetwork {
      */
     id: string;
     /**
+     * List of IPAM IP IDs to assign to the server in the requested private network.
+     */
+    ipamIpIds: string[];
+    /**
      * The private network status.
      */
     status: string;
@@ -621,6 +625,10 @@ export interface GetBaremetalServerPrivateNetwork {
      */
     id: string;
     /**
+     * List of IPAM IP IDs to attach to the server
+     */
+    ipamIpIds: string[];
+    /**
      * The private network status
      */
     status: string;
@@ -1140,8 +1148,6 @@ export interface GetInstanceServersServer {
      */
     bootType: string;
     /**
-     * The ID of the bootscript.
-     *
      * @deprecated bootscript are not supported
      */
     bootscriptId: string;
@@ -2129,6 +2135,21 @@ export interface GetLoadbalancerPrivateNetwork {
     zone: string;
 }
 
+export interface GetMongoDbInstancePublicNetwork {
+    /**
+     * The DNS record of your endpoint
+     */
+    dnsRecord: string;
+    /**
+     * The ID of the MongoDB® Instance.
+     */
+    id: string;
+    /**
+     * TCP port of the endpoint
+     */
+    port: number;
+}
+
 export interface GetObjectBucketCorsRule {
     allowedHeaders: string[];
     allowedMethods: string[];
@@ -2515,6 +2536,44 @@ export interface IamPolicyRule {
     projectIds?: string[];
 }
 
+export interface InferenceDeploymentPrivateEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: boolean;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id: string;
+    /**
+     * The ID of the private network to use.
+     */
+    privateNetworkId?: string;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url: string;
+}
+
+export interface InferenceDeploymentPublicEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: boolean;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id: string;
+    /**
+     * Enable or disable public endpoint.
+     */
+    isEnabled?: boolean;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url: string;
+}
+
 export interface InstanceImageAdditionalVolume {
     /**
      * Date of the volume creation.
@@ -2876,6 +2935,17 @@ export interface IotRouteS3 {
      * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
      */
     strategy: string;
+}
+
+export interface IpamIpCustomResource {
+    /**
+     * The MAC address of the resource the IP is attached to.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name?: string;
 }
 
 export interface IpamIpResource {
@@ -3331,6 +3401,21 @@ export interface MnqSqsCredentialsPermissions {
      * . Defines whether the user can receive messages from the service.
      */
     canReceive: boolean;
+}
+
+export interface MongoDbInstancePublicNetwork {
+    /**
+     * The DNS record of your endpoint
+     */
+    dnsRecord: string;
+    /**
+     * The ID of the MongoDB® instance.
+     */
+    id: string;
+    /**
+     * TCP port of the endpoint
+     */
+    port: number;
 }
 
 export interface ObjectBucketAclAccessControlPolicy {

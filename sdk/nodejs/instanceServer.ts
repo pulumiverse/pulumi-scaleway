@@ -244,7 +244,7 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly bootType!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the bootscript to use  (set bootType to `bootscript`).
+     * ID of the target bootscript (set bootType to bootscript)
      *
      * @deprecated bootscript is not supported anymore.
      */
@@ -300,6 +300,8 @@ export class InstanceServer extends pulumi.CustomResource {
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
      * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     public /*out*/ readonly ipv6PrefixLength!: pulumi.Output<number>;
     /**
@@ -356,6 +358,8 @@ export class InstanceServer extends pulumi.CustomResource {
      * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
      *
      * > **Important:** Enabling routed ip will restart the server
+     *
+     * @deprecated Routed IP is the default configuration, it should always be true
      */
     public readonly routedIpEnabled!: pulumi.Output<boolean>;
     /**
@@ -495,7 +499,7 @@ export interface InstanceServerState {
      */
     bootType?: pulumi.Input<string>;
     /**
-     * The ID of the bootscript to use  (set bootType to `bootscript`).
+     * ID of the target bootscript (set bootType to bootscript)
      *
      * @deprecated bootscript is not supported anymore.
      */
@@ -551,6 +555,8 @@ export interface InstanceServerState {
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
      * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     *
+     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
      */
     ipv6PrefixLength?: pulumi.Input<number>;
     /**
@@ -607,6 +613,8 @@ export interface InstanceServerState {
      * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
      *
      * > **Important:** Enabling routed ip will restart the server
+     *
+     * @deprecated Routed IP is the default configuration, it should always be true
      */
     routedIpEnabled?: pulumi.Input<boolean>;
     /**
@@ -663,7 +671,7 @@ export interface InstanceServerArgs {
      */
     bootType?: pulumi.Input<string>;
     /**
-     * The ID of the bootscript to use  (set bootType to `bootscript`).
+     * ID of the target bootscript (set bootType to bootscript)
      *
      * @deprecated bootscript is not supported anymore.
      */
@@ -738,6 +746,8 @@ export interface InstanceServerArgs {
      * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
      *
      * > **Important:** Enabling routed ip will restart the server
+     *
+     * @deprecated Routed IP is the default configuration, it should always be true
      */
     routedIpEnabled?: pulumi.Input<boolean>;
     /**

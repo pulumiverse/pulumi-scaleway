@@ -75,6 +75,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// (Defaults to provider `region`) The region in which the Network is attached to.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// The endpoint key to keep secret.
         /// </summary>
         [Output("secret")]
@@ -156,6 +162,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// (Defaults to provider `region`) The region in which the Network is attached to.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The prefix that will be prepended to all topics for this Network.
         /// </summary>
         [Input("topicPrefix")]
@@ -198,6 +210,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// (Defaults to provider `region`) The region in which the Network is attached to.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         [Input("secret")]
         private Input<string>? _secret;

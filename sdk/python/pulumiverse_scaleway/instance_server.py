@@ -59,7 +59,7 @@ class InstanceServerArgs:
                
                > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
-        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
+        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
@@ -139,6 +139,9 @@ class InstanceServerArgs:
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
         if routed_ip_enabled is not None:
+            warnings.warn("""Routed IP is the default configuration, it should always be true""", DeprecationWarning)
+            pulumi.log.warn("""routed_ip_enabled is deprecated: Routed IP is the default configuration, it should always be true""")
+        if routed_ip_enabled is not None:
             pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
@@ -202,7 +205,7 @@ class InstanceServerArgs:
     @_utilities.deprecated("""bootscript is not supported anymore.""")
     def bootscript_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the bootscript to use  (set boot_type to `bootscript`).
+        ID of the target bootscript (set boot_type to bootscript)
         """
         return pulumi.get(self, "bootscript_id")
 
@@ -381,6 +384,7 @@ class InstanceServerArgs:
 
     @property
     @pulumi.getter(name="routedIpEnabled")
+    @_utilities.deprecated("""Routed IP is the default configuration, it should always be true""")
     def routed_ip_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
@@ -501,7 +505,7 @@ class _InstanceServerState:
                
                > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
-        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
+        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
@@ -592,6 +596,9 @@ class _InstanceServerState:
         if ipv6_gateway is not None:
             pulumi.set(__self__, "ipv6_gateway", ipv6_gateway)
         if ipv6_prefix_length is not None:
+            warnings.warn("""Please use a InstanceIp with a `routed_ipv6` type""", DeprecationWarning)
+            pulumi.log.warn("""ipv6_prefix_length is deprecated: Please use a InstanceIp with a `routed_ipv6` type""")
+        if ipv6_prefix_length is not None:
             pulumi.set(__self__, "ipv6_prefix_length", ipv6_prefix_length)
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -618,6 +625,9 @@ class _InstanceServerState:
             pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
+        if routed_ip_enabled is not None:
+            warnings.warn("""Routed IP is the default configuration, it should always be true""", DeprecationWarning)
+            pulumi.log.warn("""routed_ip_enabled is deprecated: Routed IP is the default configuration, it should always be true""")
         if routed_ip_enabled is not None:
             pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
@@ -667,7 +677,7 @@ class _InstanceServerState:
     @_utilities.deprecated("""bootscript is not supported anymore.""")
     def bootscript_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the bootscript to use  (set boot_type to `bootscript`).
+        ID of the target bootscript (set boot_type to bootscript)
         """
         return pulumi.get(self, "bootscript_id")
 
@@ -786,6 +796,7 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="ipv6PrefixLength")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def ipv6_prefix_length(self) -> Optional[pulumi.Input[int]]:
         """
         The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -936,6 +947,7 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="routedIpEnabled")
+    @_utilities.deprecated("""Routed IP is the default configuration, it should always be true""")
     def routed_ip_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
@@ -1252,7 +1264,7 @@ class InstanceServer(pulumi.CustomResource):
                
                > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
-        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
+        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
@@ -1620,7 +1632,7 @@ class InstanceServer(pulumi.CustomResource):
                
                > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         :param pulumi.Input[str] boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
-        :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
+        :param pulumi.Input[str] bootscript_id: ID of the target bootscript (set boot_type to bootscript)
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
@@ -1738,7 +1750,7 @@ class InstanceServer(pulumi.CustomResource):
     @_utilities.deprecated("""bootscript is not supported anymore.""")
     def bootscript_id(self) -> pulumi.Output[str]:
         """
-        The ID of the bootscript to use  (set boot_type to `bootscript`).
+        ID of the target bootscript (set boot_type to bootscript)
         """
         return pulumi.get(self, "bootscript_id")
 
@@ -1821,6 +1833,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipv6PrefixLength")
+    @_utilities.deprecated("""Please use a InstanceIp with a `routed_ipv6` type""")
     def ipv6_prefix_length(self) -> pulumi.Output[int]:
         """
         The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -1923,6 +1936,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="routedIpEnabled")
+    @_utilities.deprecated("""Routed IP is the default configuration, it should always be true""")
     def routed_ip_enabled(self) -> pulumi.Output[bool]:
         """
         If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.

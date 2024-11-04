@@ -505,6 +505,8 @@ type BaremetalServerPrivateNetwork struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The id of the private network to attach.
 	Id string `pulumi:"id"`
+	// List of IPAM IP IDs to assign to the server in the requested private network.
+	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The private network status.
 	Status *string `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -529,6 +531,8 @@ type BaremetalServerPrivateNetworkArgs struct {
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// The id of the private network to attach.
 	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPAM IP IDs to assign to the server in the requested private network.
+	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
 	// The private network status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -596,6 +600,11 @@ func (o BaremetalServerPrivateNetworkOutput) CreatedAt() pulumi.StringPtrOutput 
 // The id of the private network to attach.
 func (o BaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IPAM IP IDs to assign to the server in the requested private network.
+func (o BaremetalServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BaremetalServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 // The private network status.
@@ -4172,6 +4181,394 @@ func (o IamPolicyRuleArrayOutput) Index(i pulumi.IntInput) IamPolicyRuleOutput {
 	}).(IamPolicyRuleOutput)
 }
 
+type InferenceDeploymentPrivateEndpoint struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth *bool `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id *string `pulumi:"id"`
+	// The ID of the private network to use.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// (Optional) The URL of the endpoint.
+	Url *string `pulumi:"url"`
+}
+
+// InferenceDeploymentPrivateEndpointInput is an input type that accepts InferenceDeploymentPrivateEndpointArgs and InferenceDeploymentPrivateEndpointOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPrivateEndpointInput` via:
+//
+//	InferenceDeploymentPrivateEndpointArgs{...}
+type InferenceDeploymentPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPrivateEndpointOutput() InferenceDeploymentPrivateEndpointOutput
+	ToInferenceDeploymentPrivateEndpointOutputWithContext(context.Context) InferenceDeploymentPrivateEndpointOutput
+}
+
+type InferenceDeploymentPrivateEndpointArgs struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth pulumi.BoolPtrInput `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The ID of the private network to use.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// (Optional) The URL of the endpoint.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (InferenceDeploymentPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointOutput() InferenceDeploymentPrivateEndpointOutput {
+	return i.ToInferenceDeploymentPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPrivateEndpointOutput)
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return i.ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPrivateEndpointOutput).ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx)
+}
+
+// InferenceDeploymentPrivateEndpointPtrInput is an input type that accepts InferenceDeploymentPrivateEndpointArgs, InferenceDeploymentPrivateEndpointPtr and InferenceDeploymentPrivateEndpointPtrOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPrivateEndpointPtrInput` via:
+//
+//	        InferenceDeploymentPrivateEndpointArgs{...}
+//
+//	or:
+//
+//	        nil
+type InferenceDeploymentPrivateEndpointPtrInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput
+	ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Context) InferenceDeploymentPrivateEndpointPtrOutput
+}
+
+type inferenceDeploymentPrivateEndpointPtrType InferenceDeploymentPrivateEndpointArgs
+
+func InferenceDeploymentPrivateEndpointPtr(v *InferenceDeploymentPrivateEndpointArgs) InferenceDeploymentPrivateEndpointPtrInput {
+	return (*inferenceDeploymentPrivateEndpointPtrType)(v)
+}
+
+func (*inferenceDeploymentPrivateEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (i *inferenceDeploymentPrivateEndpointPtrType) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return i.ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *inferenceDeploymentPrivateEndpointPtrType) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPrivateEndpointPtrOutput)
+}
+
+type InferenceDeploymentPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointOutput() InferenceDeploymentPrivateEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return o.ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InferenceDeploymentPrivateEndpoint) *InferenceDeploymentPrivateEndpoint {
+		return &v
+	}).(InferenceDeploymentPrivateEndpointPtrOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPrivateEndpointOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *bool { return v.DisableAuth }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPrivateEndpointOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network to use.
+func (o InferenceDeploymentPrivateEndpointOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPrivateEndpointOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type InferenceDeploymentPrivateEndpointPtrOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPrivateEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPrivateEndpointPtrOutput) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointPtrOutput) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointPtrOutput) Elem() InferenceDeploymentPrivateEndpointOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) InferenceDeploymentPrivateEndpoint {
+		if v != nil {
+			return *v
+		}
+		var ret InferenceDeploymentPrivateEndpoint
+		return ret
+	}).(InferenceDeploymentPrivateEndpointOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableAuth
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network to use.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateNetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type InferenceDeploymentPublicEndpoint struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth *bool `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id *string `pulumi:"id"`
+	// Enable or disable public endpoint.
+	IsEnabled *bool `pulumi:"isEnabled"`
+	// (Optional) The URL of the endpoint.
+	Url *string `pulumi:"url"`
+}
+
+// InferenceDeploymentPublicEndpointInput is an input type that accepts InferenceDeploymentPublicEndpointArgs and InferenceDeploymentPublicEndpointOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPublicEndpointInput` via:
+//
+//	InferenceDeploymentPublicEndpointArgs{...}
+type InferenceDeploymentPublicEndpointInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPublicEndpointOutput() InferenceDeploymentPublicEndpointOutput
+	ToInferenceDeploymentPublicEndpointOutputWithContext(context.Context) InferenceDeploymentPublicEndpointOutput
+}
+
+type InferenceDeploymentPublicEndpointArgs struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth pulumi.BoolPtrInput `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Enable or disable public endpoint.
+	IsEnabled pulumi.BoolPtrInput `pulumi:"isEnabled"`
+	// (Optional) The URL of the endpoint.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (InferenceDeploymentPublicEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointOutput() InferenceDeploymentPublicEndpointOutput {
+	return i.ToInferenceDeploymentPublicEndpointOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPublicEndpointOutput)
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return i.ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPublicEndpointOutput).ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx)
+}
+
+// InferenceDeploymentPublicEndpointPtrInput is an input type that accepts InferenceDeploymentPublicEndpointArgs, InferenceDeploymentPublicEndpointPtr and InferenceDeploymentPublicEndpointPtrOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPublicEndpointPtrInput` via:
+//
+//	        InferenceDeploymentPublicEndpointArgs{...}
+//
+//	or:
+//
+//	        nil
+type InferenceDeploymentPublicEndpointPtrInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput
+	ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Context) InferenceDeploymentPublicEndpointPtrOutput
+}
+
+type inferenceDeploymentPublicEndpointPtrType InferenceDeploymentPublicEndpointArgs
+
+func InferenceDeploymentPublicEndpointPtr(v *InferenceDeploymentPublicEndpointArgs) InferenceDeploymentPublicEndpointPtrInput {
+	return (*inferenceDeploymentPublicEndpointPtrType)(v)
+}
+
+func (*inferenceDeploymentPublicEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (i *inferenceDeploymentPublicEndpointPtrType) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return i.ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *inferenceDeploymentPublicEndpointPtrType) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPublicEndpointPtrOutput)
+}
+
+type InferenceDeploymentPublicEndpointOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPublicEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointOutput() InferenceDeploymentPublicEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return o.ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InferenceDeploymentPublicEndpoint) *InferenceDeploymentPublicEndpoint {
+		return &v
+	}).(InferenceDeploymentPublicEndpointPtrOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *bool { return v.DisableAuth }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Enable or disable public endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) IsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *bool { return v.IsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type InferenceDeploymentPublicEndpointPtrOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPublicEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPublicEndpointPtrOutput) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointPtrOutput) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointPtrOutput) Elem() InferenceDeploymentPublicEndpointOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) InferenceDeploymentPublicEndpoint {
+		if v != nil {
+			return *v
+		}
+		var ret InferenceDeploymentPublicEndpoint
+		return ret
+	}).(InferenceDeploymentPublicEndpointOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableAuth
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable or disable public endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) IsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
 type InstanceImageAdditionalVolume struct {
 	// Date of the volume creation.
 	CreationDate *string `pulumi:"creationDate"`
@@ -6882,6 +7279,112 @@ func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
 		}
 		return &v.Strategy
 	}).(pulumi.StringPtrOutput)
+}
+
+type IpamIpCustomResource struct {
+	// The MAC address of the resource the IP is attached to.
+	MacAddress string `pulumi:"macAddress"`
+	// The name of the resource the IP is attached to.
+	Name *string `pulumi:"name"`
+}
+
+// IpamIpCustomResourceInput is an input type that accepts IpamIpCustomResourceArgs and IpamIpCustomResourceOutput values.
+// You can construct a concrete instance of `IpamIpCustomResourceInput` via:
+//
+//	IpamIpCustomResourceArgs{...}
+type IpamIpCustomResourceInput interface {
+	pulumi.Input
+
+	ToIpamIpCustomResourceOutput() IpamIpCustomResourceOutput
+	ToIpamIpCustomResourceOutputWithContext(context.Context) IpamIpCustomResourceOutput
+}
+
+type IpamIpCustomResourceArgs struct {
+	// The MAC address of the resource the IP is attached to.
+	MacAddress pulumi.StringInput `pulumi:"macAddress"`
+	// The name of the resource the IP is attached to.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (IpamIpCustomResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpCustomResource)(nil)).Elem()
+}
+
+func (i IpamIpCustomResourceArgs) ToIpamIpCustomResourceOutput() IpamIpCustomResourceOutput {
+	return i.ToIpamIpCustomResourceOutputWithContext(context.Background())
+}
+
+func (i IpamIpCustomResourceArgs) ToIpamIpCustomResourceOutputWithContext(ctx context.Context) IpamIpCustomResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpCustomResourceOutput)
+}
+
+// IpamIpCustomResourceArrayInput is an input type that accepts IpamIpCustomResourceArray and IpamIpCustomResourceArrayOutput values.
+// You can construct a concrete instance of `IpamIpCustomResourceArrayInput` via:
+//
+//	IpamIpCustomResourceArray{ IpamIpCustomResourceArgs{...} }
+type IpamIpCustomResourceArrayInput interface {
+	pulumi.Input
+
+	ToIpamIpCustomResourceArrayOutput() IpamIpCustomResourceArrayOutput
+	ToIpamIpCustomResourceArrayOutputWithContext(context.Context) IpamIpCustomResourceArrayOutput
+}
+
+type IpamIpCustomResourceArray []IpamIpCustomResourceInput
+
+func (IpamIpCustomResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpCustomResource)(nil)).Elem()
+}
+
+func (i IpamIpCustomResourceArray) ToIpamIpCustomResourceArrayOutput() IpamIpCustomResourceArrayOutput {
+	return i.ToIpamIpCustomResourceArrayOutputWithContext(context.Background())
+}
+
+func (i IpamIpCustomResourceArray) ToIpamIpCustomResourceArrayOutputWithContext(ctx context.Context) IpamIpCustomResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpCustomResourceArrayOutput)
+}
+
+type IpamIpCustomResourceOutput struct{ *pulumi.OutputState }
+
+func (IpamIpCustomResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpCustomResource)(nil)).Elem()
+}
+
+func (o IpamIpCustomResourceOutput) ToIpamIpCustomResourceOutput() IpamIpCustomResourceOutput {
+	return o
+}
+
+func (o IpamIpCustomResourceOutput) ToIpamIpCustomResourceOutputWithContext(ctx context.Context) IpamIpCustomResourceOutput {
+	return o
+}
+
+// The MAC address of the resource the IP is attached to.
+func (o IpamIpCustomResourceOutput) MacAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v IpamIpCustomResource) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The name of the resource the IP is attached to.
+func (o IpamIpCustomResourceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpCustomResource) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type IpamIpCustomResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamIpCustomResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpCustomResource)(nil)).Elem()
+}
+
+func (o IpamIpCustomResourceArrayOutput) ToIpamIpCustomResourceArrayOutput() IpamIpCustomResourceArrayOutput {
+	return o
+}
+
+func (o IpamIpCustomResourceArrayOutput) ToIpamIpCustomResourceArrayOutputWithContext(ctx context.Context) IpamIpCustomResourceArrayOutput {
+	return o
+}
+
+func (o IpamIpCustomResourceArrayOutput) Index(i pulumi.IntInput) IpamIpCustomResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamIpCustomResource {
+		return vs[0].([]IpamIpCustomResource)[vs[1].(int)]
+	}).(IpamIpCustomResourceOutput)
 }
 
 type IpamIpResource struct {
@@ -10773,6 +11276,181 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput
 		}
 		return v.CanReceive
 	}).(pulumi.BoolPtrOutput)
+}
+
+type MongoDbInstancePublicNetwork struct {
+	// The DNS record of your endpoint
+	DnsRecord *string `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® instance.
+	Id *string `pulumi:"id"`
+	// TCP port of the endpoint
+	Port *int `pulumi:"port"`
+}
+
+// MongoDbInstancePublicNetworkInput is an input type that accepts MongoDbInstancePublicNetworkArgs and MongoDbInstancePublicNetworkOutput values.
+// You can construct a concrete instance of `MongoDbInstancePublicNetworkInput` via:
+//
+//	MongoDbInstancePublicNetworkArgs{...}
+type MongoDbInstancePublicNetworkInput interface {
+	pulumi.Input
+
+	ToMongoDbInstancePublicNetworkOutput() MongoDbInstancePublicNetworkOutput
+	ToMongoDbInstancePublicNetworkOutputWithContext(context.Context) MongoDbInstancePublicNetworkOutput
+}
+
+type MongoDbInstancePublicNetworkArgs struct {
+	// The DNS record of your endpoint
+	DnsRecord pulumi.StringPtrInput `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® instance.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// TCP port of the endpoint
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (MongoDbInstancePublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i MongoDbInstancePublicNetworkArgs) ToMongoDbInstancePublicNetworkOutput() MongoDbInstancePublicNetworkOutput {
+	return i.ToMongoDbInstancePublicNetworkOutputWithContext(context.Background())
+}
+
+func (i MongoDbInstancePublicNetworkArgs) ToMongoDbInstancePublicNetworkOutputWithContext(ctx context.Context) MongoDbInstancePublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePublicNetworkOutput)
+}
+
+func (i MongoDbInstancePublicNetworkArgs) ToMongoDbInstancePublicNetworkPtrOutput() MongoDbInstancePublicNetworkPtrOutput {
+	return i.ToMongoDbInstancePublicNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i MongoDbInstancePublicNetworkArgs) ToMongoDbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePublicNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePublicNetworkOutput).ToMongoDbInstancePublicNetworkPtrOutputWithContext(ctx)
+}
+
+// MongoDbInstancePublicNetworkPtrInput is an input type that accepts MongoDbInstancePublicNetworkArgs, MongoDbInstancePublicNetworkPtr and MongoDbInstancePublicNetworkPtrOutput values.
+// You can construct a concrete instance of `MongoDbInstancePublicNetworkPtrInput` via:
+//
+//	        MongoDbInstancePublicNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type MongoDbInstancePublicNetworkPtrInput interface {
+	pulumi.Input
+
+	ToMongoDbInstancePublicNetworkPtrOutput() MongoDbInstancePublicNetworkPtrOutput
+	ToMongoDbInstancePublicNetworkPtrOutputWithContext(context.Context) MongoDbInstancePublicNetworkPtrOutput
+}
+
+type mongoDbInstancePublicNetworkPtrType MongoDbInstancePublicNetworkArgs
+
+func MongoDbInstancePublicNetworkPtr(v *MongoDbInstancePublicNetworkArgs) MongoDbInstancePublicNetworkPtrInput {
+	return (*mongoDbInstancePublicNetworkPtrType)(v)
+}
+
+func (*mongoDbInstancePublicNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i *mongoDbInstancePublicNetworkPtrType) ToMongoDbInstancePublicNetworkPtrOutput() MongoDbInstancePublicNetworkPtrOutput {
+	return i.ToMongoDbInstancePublicNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *mongoDbInstancePublicNetworkPtrType) ToMongoDbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePublicNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePublicNetworkPtrOutput)
+}
+
+type MongoDbInstancePublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (MongoDbInstancePublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o MongoDbInstancePublicNetworkOutput) ToMongoDbInstancePublicNetworkOutput() MongoDbInstancePublicNetworkOutput {
+	return o
+}
+
+func (o MongoDbInstancePublicNetworkOutput) ToMongoDbInstancePublicNetworkOutputWithContext(ctx context.Context) MongoDbInstancePublicNetworkOutput {
+	return o
+}
+
+func (o MongoDbInstancePublicNetworkOutput) ToMongoDbInstancePublicNetworkPtrOutput() MongoDbInstancePublicNetworkPtrOutput {
+	return o.ToMongoDbInstancePublicNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o MongoDbInstancePublicNetworkOutput) ToMongoDbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePublicNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MongoDbInstancePublicNetwork) *MongoDbInstancePublicNetwork {
+		return &v
+	}).(MongoDbInstancePublicNetworkPtrOutput)
+}
+
+// The DNS record of your endpoint
+func (o MongoDbInstancePublicNetworkOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePublicNetwork) *string { return v.DnsRecord }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the MongoDB® instance.
+func (o MongoDbInstancePublicNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// TCP port of the endpoint
+func (o MongoDbInstancePublicNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePublicNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type MongoDbInstancePublicNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (MongoDbInstancePublicNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o MongoDbInstancePublicNetworkPtrOutput) ToMongoDbInstancePublicNetworkPtrOutput() MongoDbInstancePublicNetworkPtrOutput {
+	return o
+}
+
+func (o MongoDbInstancePublicNetworkPtrOutput) ToMongoDbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePublicNetworkPtrOutput {
+	return o
+}
+
+func (o MongoDbInstancePublicNetworkPtrOutput) Elem() MongoDbInstancePublicNetworkOutput {
+	return o.ApplyT(func(v *MongoDbInstancePublicNetwork) MongoDbInstancePublicNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret MongoDbInstancePublicNetwork
+		return ret
+	}).(MongoDbInstancePublicNetworkOutput)
+}
+
+// The DNS record of your endpoint
+func (o MongoDbInstancePublicNetworkPtrOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstancePublicNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DnsRecord
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the MongoDB® instance.
+func (o MongoDbInstancePublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstancePublicNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// TCP port of the endpoint
+func (o MongoDbInstancePublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstancePublicNetwork) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
 }
 
 type ObjectBucketAclAccessControlPolicy struct {
@@ -14895,6 +15573,8 @@ type GetBaremetalServerPrivateNetwork struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the server.
 	Id string `pulumi:"id"`
+	// List of IPAM IP IDs to attach to the server
+	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The private network status
 	Status string `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -14919,6 +15599,8 @@ type GetBaremetalServerPrivateNetworkArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the server.
 	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPAM IP IDs to attach to the server
+	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
 	// The private network status
 	Status pulumi.StringInput `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -14986,6 +15668,11 @@ func (o GetBaremetalServerPrivateNetworkOutput) CreatedAt() pulumi.StringOutput 
 // The ID of the server.
 func (o GetBaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IPAM IP IDs to attach to the server
+func (o GetBaremetalServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 // The private network status
@@ -17864,8 +18551,6 @@ func (o GetInstanceServerRootVolumeArrayOutput) Index(i pulumi.IntInput) GetInst
 type GetInstanceServersServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType string `pulumi:"bootType"`
-	// The ID of the bootscript.
-	//
 	// Deprecated: bootscript are not supported
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
@@ -17927,8 +18612,6 @@ type GetInstanceServersServerInput interface {
 type GetInstanceServersServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringInput `pulumi:"bootType"`
-	// The ID of the bootscript.
-	//
 	// Deprecated: bootscript are not supported
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
@@ -18032,8 +18715,6 @@ func (o GetInstanceServersServerOutput) BootType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootType }).(pulumi.StringOutput)
 }
 
-// The ID of the bootscript.
-//
 // Deprecated: bootscript are not supported
 func (o GetInstanceServersServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootscriptId }).(pulumi.StringOutput)
@@ -23414,6 +24095,121 @@ func (o GetLoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetLo
 	}).(GetLoadbalancerPrivateNetworkOutput)
 }
 
+type GetMongoDbInstancePublicNetwork struct {
+	// The DNS record of your endpoint
+	DnsRecord string `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® Instance.
+	Id string `pulumi:"id"`
+	// TCP port of the endpoint
+	Port int `pulumi:"port"`
+}
+
+// GetMongoDbInstancePublicNetworkInput is an input type that accepts GetMongoDbInstancePublicNetworkArgs and GetMongoDbInstancePublicNetworkOutput values.
+// You can construct a concrete instance of `GetMongoDbInstancePublicNetworkInput` via:
+//
+//	GetMongoDbInstancePublicNetworkArgs{...}
+type GetMongoDbInstancePublicNetworkInput interface {
+	pulumi.Input
+
+	ToGetMongoDbInstancePublicNetworkOutput() GetMongoDbInstancePublicNetworkOutput
+	ToGetMongoDbInstancePublicNetworkOutputWithContext(context.Context) GetMongoDbInstancePublicNetworkOutput
+}
+
+type GetMongoDbInstancePublicNetworkArgs struct {
+	// The DNS record of your endpoint
+	DnsRecord pulumi.StringInput `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// TCP port of the endpoint
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetMongoDbInstancePublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i GetMongoDbInstancePublicNetworkArgs) ToGetMongoDbInstancePublicNetworkOutput() GetMongoDbInstancePublicNetworkOutput {
+	return i.ToGetMongoDbInstancePublicNetworkOutputWithContext(context.Background())
+}
+
+func (i GetMongoDbInstancePublicNetworkArgs) ToGetMongoDbInstancePublicNetworkOutputWithContext(ctx context.Context) GetMongoDbInstancePublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoDbInstancePublicNetworkOutput)
+}
+
+// GetMongoDbInstancePublicNetworkArrayInput is an input type that accepts GetMongoDbInstancePublicNetworkArray and GetMongoDbInstancePublicNetworkArrayOutput values.
+// You can construct a concrete instance of `GetMongoDbInstancePublicNetworkArrayInput` via:
+//
+//	GetMongoDbInstancePublicNetworkArray{ GetMongoDbInstancePublicNetworkArgs{...} }
+type GetMongoDbInstancePublicNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoDbInstancePublicNetworkArrayOutput() GetMongoDbInstancePublicNetworkArrayOutput
+	ToGetMongoDbInstancePublicNetworkArrayOutputWithContext(context.Context) GetMongoDbInstancePublicNetworkArrayOutput
+}
+
+type GetMongoDbInstancePublicNetworkArray []GetMongoDbInstancePublicNetworkInput
+
+func (GetMongoDbInstancePublicNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i GetMongoDbInstancePublicNetworkArray) ToGetMongoDbInstancePublicNetworkArrayOutput() GetMongoDbInstancePublicNetworkArrayOutput {
+	return i.ToGetMongoDbInstancePublicNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoDbInstancePublicNetworkArray) ToGetMongoDbInstancePublicNetworkArrayOutputWithContext(ctx context.Context) GetMongoDbInstancePublicNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoDbInstancePublicNetworkArrayOutput)
+}
+
+type GetMongoDbInstancePublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetMongoDbInstancePublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o GetMongoDbInstancePublicNetworkOutput) ToGetMongoDbInstancePublicNetworkOutput() GetMongoDbInstancePublicNetworkOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePublicNetworkOutput) ToGetMongoDbInstancePublicNetworkOutputWithContext(ctx context.Context) GetMongoDbInstancePublicNetworkOutput {
+	return o
+}
+
+// The DNS record of your endpoint
+func (o GetMongoDbInstancePublicNetworkOutput) DnsRecord() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePublicNetwork) string { return v.DnsRecord }).(pulumi.StringOutput)
+}
+
+// The ID of the MongoDB® Instance.
+func (o GetMongoDbInstancePublicNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePublicNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// TCP port of the endpoint
+func (o GetMongoDbInstancePublicNetworkOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePublicNetwork) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type GetMongoDbInstancePublicNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoDbInstancePublicNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoDbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o GetMongoDbInstancePublicNetworkArrayOutput) ToGetMongoDbInstancePublicNetworkArrayOutput() GetMongoDbInstancePublicNetworkArrayOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePublicNetworkArrayOutput) ToGetMongoDbInstancePublicNetworkArrayOutputWithContext(ctx context.Context) GetMongoDbInstancePublicNetworkArrayOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePublicNetworkArrayOutput) Index(i pulumi.IntInput) GetMongoDbInstancePublicNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoDbInstancePublicNetwork {
+		return vs[0].([]GetMongoDbInstancePublicNetwork)[vs[1].(int)]
+	}).(GetMongoDbInstancePublicNetworkOutput)
+}
+
 type GetObjectBucketCorsRule struct {
 	AllowedHeaders []string `pulumi:"allowedHeaders"`
 	AllowedMethods []string `pulumi:"allowedMethods"`
@@ -25780,6 +26576,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsPtrInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleInput)(nil)).Elem(), IamPolicyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleArrayInput)(nil)).Elem(), IamPolicyRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPrivateEndpointInput)(nil)).Elem(), InferenceDeploymentPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPrivateEndpointPtrInput)(nil)).Elem(), InferenceDeploymentPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPublicEndpointInput)(nil)).Elem(), InferenceDeploymentPublicEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPublicEndpointPtrInput)(nil)).Elem(), InferenceDeploymentPublicEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeInput)(nil)).Elem(), InstanceImageAdditionalVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeArrayInput)(nil)).Elem(), InstanceImageAdditionalVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArgs{})
@@ -25812,6 +26612,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestPtrInput)(nil)).Elem(), IotRouteRestArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3Input)(nil)).Elem(), IotRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3PtrInput)(nil)).Elem(), IotRouteS3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpCustomResourceInput)(nil)).Elem(), IpamIpCustomResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpCustomResourceArrayInput)(nil)).Elem(), IpamIpCustomResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceInput)(nil)).Elem(), IpamIpResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceArrayInput)(nil)).Elem(), IpamIpResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpReverseInput)(nil)).Elem(), IpamIpReverseArgs{})
@@ -25860,6 +26662,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePublicNetworkInput)(nil)).Elem(), MongoDbInstancePublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePublicNetworkPtrInput)(nil)).Elem(), MongoDbInstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyPtrInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantArgs{})
@@ -26041,6 +26845,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptArrayInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePublicNetworkInput)(nil)).Elem(), GetMongoDbInstancePublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePublicNetworkArrayInput)(nil)).Elem(), GetMongoDbInstancePublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleInput)(nil)).Elem(), GetObjectBucketCorsRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleArrayInput)(nil)).Elem(), GetObjectBucketCorsRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleInput)(nil)).Elem(), GetObjectBucketLifecycleRuleArgs{})
@@ -26129,6 +26935,10 @@ func init() {
 	pulumi.RegisterOutputType(FunctionTriggerSqsPtrOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleArrayOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPrivateEndpointPtrOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPublicEndpointOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPublicEndpointPtrOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})
@@ -26161,6 +26971,8 @@ func init() {
 	pulumi.RegisterOutputType(IotRouteRestPtrOutput{})
 	pulumi.RegisterOutputType(IotRouteS3Output{})
 	pulumi.RegisterOutputType(IotRouteS3PtrOutput{})
+	pulumi.RegisterOutputType(IpamIpCustomResourceOutput{})
+	pulumi.RegisterOutputType(IpamIpCustomResourceArrayOutput{})
 	pulumi.RegisterOutputType(IpamIpResourceOutput{})
 	pulumi.RegisterOutputType(IpamIpResourceArrayOutput{})
 	pulumi.RegisterOutputType(IpamIpReverseOutput{})
@@ -26209,6 +27021,8 @@ func init() {
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(MongoDbInstancePublicNetworkOutput{})
+	pulumi.RegisterOutputType(MongoDbInstancePublicNetworkPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantOutput{})
@@ -26390,6 +27204,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateLetsencryptArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoDbInstancePublicNetworkOutput{})
+	pulumi.RegisterOutputType(GetMongoDbInstancePublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketCorsRuleOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketCorsRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleOutput{})

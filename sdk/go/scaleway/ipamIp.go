@@ -157,6 +157,57 @@ import (
 //
 // ```
 //
+// ### Book an IP for a custom resource
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("my vpc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				VpcId: vpc01.ID(),
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.32.0/22"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//				Address: pulumi.String("172.16.32.7"),
+//				Sources: scaleway.IpamIpSourceArray{
+//					&scaleway.IpamIpSourceArgs{
+//						PrivateNetworkId: pn01.ID(),
+//					},
+//				},
+//				CustomResources: scaleway.IpamIpCustomResourceArray{
+//					&scaleway.IpamIpCustomResourceArgs{
+//						MacAddress: pulumi.String("bc:24:11:74:d0:6a"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // IPAM IPs can be imported using `{region}/{id}`, e.g.
@@ -173,6 +224,8 @@ type IpamIp struct {
 	Address pulumi.StringOutput `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The custom resource in which to book the IP
+	CustomResources IpamIpCustomResourceArrayOutput `pulumi:"customResources"`
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
 	// `projectId`) The ID of the Project the IP is associated with.
@@ -230,6 +283,8 @@ type ipamIpState struct {
 	Address *string `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
+	// The custom resource in which to book the IP
+	CustomResources []IpamIpCustomResource `pulumi:"customResources"`
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
 	// `projectId`) The ID of the Project the IP is associated with.
@@ -255,6 +310,8 @@ type IpamIpState struct {
 	Address pulumi.StringPtrInput
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
+	// The custom resource in which to book the IP
+	CustomResources IpamIpCustomResourceArrayInput
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrInput
 	// `projectId`) The ID of the Project the IP is associated with.
@@ -282,6 +339,8 @@ func (IpamIpState) ElementType() reflect.Type {
 type ipamIpArgs struct {
 	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
+	// The custom resource in which to book the IP
+	CustomResources []IpamIpCustomResource `pulumi:"customResources"`
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
 	// `projectId`) The ID of the Project the IP is associated with.
@@ -298,6 +357,8 @@ type ipamIpArgs struct {
 type IpamIpArgs struct {
 	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
+	// The custom resource in which to book the IP
+	CustomResources IpamIpCustomResourceArrayInput
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrInput
 	// `projectId`) The ID of the Project the IP is associated with.
@@ -405,6 +466,11 @@ func (o IpamIpOutput) Address() pulumi.StringOutput {
 // Date and time of IP's creation (RFC 3339 format).
 func (o IpamIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The custom resource in which to book the IP
+func (o IpamIpOutput) CustomResources() IpamIpCustomResourceArrayOutput {
+	return o.ApplyT(func(v *IpamIp) IpamIpCustomResourceArrayOutput { return v.CustomResources }).(IpamIpCustomResourceArrayOutput)
 }
 
 // Defines whether to request an IPv6 address instead of IPv4.

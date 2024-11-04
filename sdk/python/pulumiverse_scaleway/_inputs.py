@@ -67,6 +67,10 @@ __all__ = [
     'FunctionTriggerSqsArgsDict',
     'IamPolicyRuleArgs',
     'IamPolicyRuleArgsDict',
+    'InferenceDeploymentPrivateEndpointArgs',
+    'InferenceDeploymentPrivateEndpointArgsDict',
+    'InferenceDeploymentPublicEndpointArgs',
+    'InferenceDeploymentPublicEndpointArgsDict',
     'InstanceImageAdditionalVolumeArgs',
     'InstanceImageAdditionalVolumeArgsDict',
     'InstanceSecurityGroupInboundRuleArgs',
@@ -99,6 +103,8 @@ __all__ = [
     'IotRouteRestArgsDict',
     'IotRouteS3Args',
     'IotRouteS3ArgsDict',
+    'IpamIpCustomResourceArgs',
+    'IpamIpCustomResourceArgsDict',
     'IpamIpResourceArgs',
     'IpamIpResourceArgsDict',
     'IpamIpReverseArgs',
@@ -149,6 +155,8 @@ __all__ = [
     'MnqSnsCredentialsPermissionsArgsDict',
     'MnqSqsCredentialsPermissionsArgs',
     'MnqSqsCredentialsPermissionsArgsDict',
+    'MongoDbInstancePublicNetworkArgs',
+    'MongoDbInstancePublicNetworkArgsDict',
     'ObjectBucketAclAccessControlPolicyArgs',
     'ObjectBucketAclAccessControlPolicyArgsDict',
     'ObjectBucketAclAccessControlPolicyGrantArgs',
@@ -560,6 +568,10 @@ if not MYPY:
         """
         The date and time of the creation of the private network.
         """
+        ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of IPAM IP IDs to assign to the server in the requested private network.
+        """
         status: NotRequired[pulumi.Input[str]]
         """
         The private network status.
@@ -580,12 +592,14 @@ class BaremetalServerPrivateNetworkArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[str],
                  created_at: Optional[pulumi.Input[str]] = None,
+                 ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  vlan: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] id: The id of the private network to attach.
         :param pulumi.Input[str] created_at: The date and time of the creation of the private network.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipam_ip_ids: List of IPAM IP IDs to assign to the server in the requested private network.
         :param pulumi.Input[str] status: The private network status.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the private network.
         :param pulumi.Input[int] vlan: The VLAN ID associated to the private network.
@@ -593,6 +607,8 @@ class BaremetalServerPrivateNetworkArgs:
         pulumi.set(__self__, "id", id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if ipam_ip_ids is not None:
+            pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -623,6 +639,18 @@ class BaremetalServerPrivateNetworkArgs:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="ipamIpIds")
+    def ipam_ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IPAM IP IDs to assign to the server in the requested private network.
+        """
+        return pulumi.get(self, "ipam_ip_ids")
+
+    @ipam_ip_ids.setter
+    def ipam_ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipam_ip_ids", value)
 
     @property
     @pulumi.getter
@@ -2634,6 +2662,190 @@ class IamPolicyRuleArgs:
 
 
 if not MYPY:
+    class InferenceDeploymentPrivateEndpointArgsDict(TypedDict):
+        disable_auth: NotRequired[pulumi.Input[bool]]
+        """
+        Disable the authentication on the endpoint.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        (Optional) The id of the public endpoint.
+        """
+        private_network_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the private network to use.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        (Optional) The URL of the endpoint.
+        """
+elif False:
+    InferenceDeploymentPrivateEndpointArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class InferenceDeploymentPrivateEndpointArgs:
+    def __init__(__self__, *,
+                 disable_auth: Optional[pulumi.Input[bool]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] disable_auth: Disable the authentication on the endpoint.
+        :param pulumi.Input[str] id: (Optional) The id of the public endpoint.
+        :param pulumi.Input[str] private_network_id: The ID of the private network to use.
+        :param pulumi.Input[str] url: (Optional) The URL of the endpoint.
+        """
+        if disable_auth is not None:
+            pulumi.set(__self__, "disable_auth", disable_auth)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="disableAuth")
+    def disable_auth(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable the authentication on the endpoint.
+        """
+        return pulumi.get(self, "disable_auth")
+
+    @disable_auth.setter
+    def disable_auth(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_auth", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The id of the public endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the private network to use.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The URL of the endpoint.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+
+if not MYPY:
+    class InferenceDeploymentPublicEndpointArgsDict(TypedDict):
+        disable_auth: NotRequired[pulumi.Input[bool]]
+        """
+        Disable the authentication on the endpoint.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        (Optional) The id of the public endpoint.
+        """
+        is_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable public endpoint.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        (Optional) The URL of the endpoint.
+        """
+elif False:
+    InferenceDeploymentPublicEndpointArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class InferenceDeploymentPublicEndpointArgs:
+    def __init__(__self__, *,
+                 disable_auth: Optional[pulumi.Input[bool]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 is_enabled: Optional[pulumi.Input[bool]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] disable_auth: Disable the authentication on the endpoint.
+        :param pulumi.Input[str] id: (Optional) The id of the public endpoint.
+        :param pulumi.Input[bool] is_enabled: Enable or disable public endpoint.
+        :param pulumi.Input[str] url: (Optional) The URL of the endpoint.
+        """
+        if disable_auth is not None:
+            pulumi.set(__self__, "disable_auth", disable_auth)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_enabled is not None:
+            pulumi.set(__self__, "is_enabled", is_enabled)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="disableAuth")
+    def disable_auth(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable the authentication on the endpoint.
+        """
+        return pulumi.get(self, "disable_auth")
+
+    @disable_auth.setter
+    def disable_auth(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_auth", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The id of the public endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable public endpoint.
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @is_enabled.setter
+    def is_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_enabled", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The URL of the endpoint.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+
+if not MYPY:
     class InstanceImageAdditionalVolumeArgsDict(TypedDict):
         creation_date: NotRequired[pulumi.Input[str]]
         """
@@ -4333,6 +4545,57 @@ class IotRouteS3Args:
     @object_prefix.setter
     def object_prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "object_prefix", value)
+
+
+if not MYPY:
+    class IpamIpCustomResourceArgsDict(TypedDict):
+        mac_address: pulumi.Input[str]
+        """
+        The MAC address of the resource the IP is attached to.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the resource the IP is attached to.
+        """
+elif False:
+    IpamIpCustomResourceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IpamIpCustomResourceArgs:
+    def __init__(__self__, *,
+                 mac_address: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] mac_address: The MAC address of the resource the IP is attached to.
+        :param pulumi.Input[str] name: The name of the resource the IP is attached to.
+        """
+        pulumi.set(__self__, "mac_address", mac_address)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> pulumi.Input[str]:
+        """
+        The MAC address of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @mac_address.setter
+    def mac_address(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mac_address", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 if not MYPY:
@@ -6477,6 +6740,78 @@ class MnqSqsCredentialsPermissionsArgs:
     @can_receive.setter
     def can_receive(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "can_receive", value)
+
+
+if not MYPY:
+    class MongoDbInstancePublicNetworkArgsDict(TypedDict):
+        dns_record: NotRequired[pulumi.Input[str]]
+        """
+        The DNS record of your endpoint
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the MongoDB® instance.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        TCP port of the endpoint
+        """
+elif False:
+    MongoDbInstancePublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class MongoDbInstancePublicNetworkArgs:
+    def __init__(__self__, *,
+                 dns_record: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] dns_record: The DNS record of your endpoint
+        :param pulumi.Input[str] id: The ID of the MongoDB® instance.
+        :param pulumi.Input[int] port: TCP port of the endpoint
+        """
+        if dns_record is not None:
+            pulumi.set(__self__, "dns_record", dns_record)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="dnsRecord")
+    def dns_record(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DNS record of your endpoint
+        """
+        return pulumi.get(self, "dns_record")
+
+    @dns_record.setter
+    def dns_record(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_record", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the MongoDB® instance.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port of the endpoint
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
 
 
 if not MYPY:

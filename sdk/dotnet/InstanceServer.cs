@@ -318,7 +318,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> BootType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Output("bootscriptId")]
         public Output<string> BootscriptId { get; private set; } = null!;
@@ -583,7 +583,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -794,7 +794,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }

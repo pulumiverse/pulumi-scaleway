@@ -13,11 +13,21 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class LoadbalancerCertificateCustomCertificateArgs : global::Pulumi.ResourceArgs
     {
+        [Input("certificateChain", required: true)]
+        private Input<string>? _certificateChain;
+
         /// <summary>
         /// The full PEM-formatted certificate chain
         /// </summary>
-        [Input("certificateChain", required: true)]
-        public Input<string> CertificateChain { get; set; } = null!;
+        public Input<string>? CertificateChain
+        {
+            get => _certificateChain;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _certificateChain = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public LoadbalancerCertificateCustomCertificateArgs()
         {

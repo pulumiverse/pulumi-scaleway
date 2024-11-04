@@ -67,6 +67,8 @@ type IotNetwork struct {
 	HubId pulumi.StringOutput `pulumi:"hubId"`
 	// The name of the IoT Network you want to create (e.g. `my-net`).
 	Name pulumi.StringOutput `pulumi:"name"`
+	// (Defaults to provider `region`) The region in which the Network is attached to.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The endpoint key to keep secret.
 	Secret pulumi.StringOutput `pulumi:"secret"`
 	// The prefix that will be prepended to all topics for this Network.
@@ -123,6 +125,8 @@ type iotNetworkState struct {
 	HubId *string `pulumi:"hubId"`
 	// The name of the IoT Network you want to create (e.g. `my-net`).
 	Name *string `pulumi:"name"`
+	// (Defaults to provider `region`) The region in which the Network is attached to.
+	Region *string `pulumi:"region"`
 	// The endpoint key to keep secret.
 	Secret *string `pulumi:"secret"`
 	// The prefix that will be prepended to all topics for this Network.
@@ -140,6 +144,8 @@ type IotNetworkState struct {
 	HubId pulumi.StringPtrInput
 	// The name of the IoT Network you want to create (e.g. `my-net`).
 	Name pulumi.StringPtrInput
+	// (Defaults to provider `region`) The region in which the Network is attached to.
+	Region pulumi.StringPtrInput
 	// The endpoint key to keep secret.
 	Secret pulumi.StringPtrInput
 	// The prefix that will be prepended to all topics for this Network.
@@ -157,6 +163,8 @@ type iotNetworkArgs struct {
 	HubId string `pulumi:"hubId"`
 	// The name of the IoT Network you want to create (e.g. `my-net`).
 	Name *string `pulumi:"name"`
+	// (Defaults to provider `region`) The region in which the Network is attached to.
+	Region *string `pulumi:"region"`
 	// The prefix that will be prepended to all topics for this Network.
 	TopicPrefix *string `pulumi:"topicPrefix"`
 	// The network type to create (e.g. `sigfox`).
@@ -169,6 +177,8 @@ type IotNetworkArgs struct {
 	HubId pulumi.StringInput
 	// The name of the IoT Network you want to create (e.g. `my-net`).
 	Name pulumi.StringPtrInput
+	// (Defaults to provider `region`) The region in which the Network is attached to.
+	Region pulumi.StringPtrInput
 	// The prefix that will be prepended to all topics for this Network.
 	TopicPrefix pulumi.StringPtrInput
 	// The network type to create (e.g. `sigfox`).
@@ -280,6 +290,11 @@ func (o IotNetworkOutput) HubId() pulumi.StringOutput {
 // The name of the IoT Network you want to create (e.g. `my-net`).
 func (o IotNetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotNetwork) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// (Defaults to provider `region`) The region in which the Network is attached to.
+func (o IotNetworkOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IotNetwork) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The endpoint key to keep secret.

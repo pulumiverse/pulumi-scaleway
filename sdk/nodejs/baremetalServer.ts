@@ -18,14 +18,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = scaleway.getAccountSshKey({
+ * const main = scaleway.getIamSshKey({
  *     name: "main",
  * });
  * const base = new scaleway.BaremetalServer("base", {
  *     zone: "fr-par-2",
  *     offer: "GP-BM1-S",
  *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
- *     sshKeyIds: [main.then(main => main.id)],
+ *     sshKeyIds: [mainScalewayAccountSshKey.id],
  * });
  * ```
  *
@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = scaleway.getAccountSshKey({
+ * const main = scaleway.getIamSshKey({
  *     name: "main",
  * });
  * const myOs = scaleway.getBaremetalOs({
@@ -60,7 +60,7 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
- *     sshKeyIds: [main.then(main => main.id)],
+ *     sshKeyIds: [mainScalewayAccountSshKey.id],
  *     options: [
  *         {
  *             id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
@@ -79,7 +79,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = scaleway.getAccountSshKey({
+ * const main = scaleway.getIamSshKey({
  *     name: "main",
  * });
  * const myOs = scaleway.getBaremetalOs({
@@ -103,12 +103,64 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
- *     sshKeyIds: [main.then(main => main.id)],
+ *     sshKeyIds: [mainScalewayAccountSshKey.id],
  *     options: [{
  *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
  *     }],
  *     privateNetworks: [{
  *         id: pn.id,
+ *     }],
+ * });
+ * ```
+ *
+ * ### With IPAM IP IDs
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "vpc_baremetal"});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     name: "private_network_baremetal",
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const ip01 = new scaleway.IpamIp("ip01", {
+ *     address: "172.16.64.7",
+ *     sources: [{
+ *         privateNetworkId: pn01.id,
+ *     }],
+ * });
+ * const myKey = scaleway.getIamSshKey({
+ *     name: "main",
+ * });
+ * const myOs = scaleway.getBaremetalOs({
+ *     zone: "fr-par-1",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.getBaremetalOffer({
+ *     zone: "fr-par-1",
+ *     name: "EM-A115X-SSD",
+ * });
+ * const privateNetwork = scaleway.getBaremetalOption({
+ *     zone: "fr-par-1",
+ *     name: "Private Network",
+ * });
+ * const base = new scaleway.BaremetalServer("base", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [myKeyScalewayAccountSshKey.id],
+ *     options: [{
+ *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
+ *     }],
+ *     privateNetworks: [{
+ *         id: pn01.id,
+ *         ipamIpIds: [ip01.id],
  *     }],
  * });
  * ```

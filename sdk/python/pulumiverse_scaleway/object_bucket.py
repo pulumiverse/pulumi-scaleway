@@ -36,7 +36,7 @@ class ObjectBucketArgs:
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
-        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        :param pulumi.Input[bool] force_destroy: Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
@@ -100,7 +100,7 @@ class ObjectBucketArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         """
         return pulumi.get(self, "force_destroy")
 
@@ -218,7 +218,7 @@ class _ObjectBucketState:
                > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket.
-        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        :param pulumi.Input[bool] force_destroy: Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
@@ -310,7 +310,7 @@ class _ObjectBucketState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         """
         return pulumi.get(self, "force_destroy")
 
@@ -486,7 +486,7 @@ class ObjectBucket(pulumi.CustomResource):
                     "prefix": "path3/",
                     "enabled": False,
                     "tags": {
-                        "tag_key": "tagValue",
+                        "tagKey": "tagValue",
                         "terraform": "hashicorp",
                     },
                     "expiration": {
@@ -536,7 +536,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
-        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        :param pulumi.Input[bool] force_destroy: Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
@@ -618,7 +618,7 @@ class ObjectBucket(pulumi.CustomResource):
                     "prefix": "path3/",
                     "enabled": False,
                     "tags": {
-                        "tag_key": "tagValue",
+                        "tagKey": "tagValue",
                         "terraform": "hashicorp",
                     },
                     "expiration": {
@@ -743,7 +743,7 @@ class ObjectBucket(pulumi.CustomResource):
                > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket.
-        :param pulumi.Input[bool] force_destroy: Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        :param pulumi.Input[bool] force_destroy: Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
         :param pulumi.Input[bool] object_lock_enabled: Enable object lock
@@ -809,7 +809,7 @@ class ObjectBucket(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         """
         return pulumi.get(self, "force_destroy")
 
