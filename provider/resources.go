@@ -317,6 +317,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "iam_user.md",
 				},
 			},
+			"scaleway_inference_deployment": {
+				Tok: scalewayResource(scalewayMod, "InferenceDeployment"),
+				Docs: &tfbridge.DocInfo{
+					Source: "inference_deployment.md",
+				},
+			},
 			"scaleway_instance_image": {
 				Tok: scalewayResource(scalewayMod, "InstanceImage"),
 				Docs: &tfbridge.DocInfo{
@@ -525,6 +531,18 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: scalewayResource(scalewayMod, "MnqSqsQueue"),
 				Docs: &tfbridge.DocInfo{
 					Source: "mnq_sqs_queue.md",
+				},
+			},
+			"scaleway_mongodb_instance": {
+				Tok: scalewayResource(scalewayMod, "MongoDbInstance"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mongodb_instance.md",
+				},
+			},
+			"scaleway_mongodb_snapshot": {
+				Tok: scalewayResource(scalewayMod, "MongoDbSnapshot"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mongodb_snapshot.md",
 				},
 			},
 			"scaleway_object": {
@@ -1073,6 +1091,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: scalewayDataSource(scalewayMod, "getMnqSqs"),
 				Docs: &tfbridge.DocInfo{
 					Source: "mnq_sqs.md",
+				},
+			},
+			"scaleway_mongodb_instance": {
+				Tok: scalewayDataSource(scalewayMod, "getMongoDbInstance"),
+				Docs: &tfbridge.DocInfo{
+					Source: "mongodb_instance.md",
 				},
 			},
 			"scaleway_rdb_acl": {
