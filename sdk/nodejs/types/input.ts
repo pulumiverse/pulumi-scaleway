@@ -87,6 +87,10 @@ export interface BaremetalServerPrivateNetwork {
      */
     id: pulumi.Input<string>;
     /**
+     * List of IPAM IP IDs to assign to the server in the requested private network.
+     */
+    ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The private network status.
      */
     status?: pulumi.Input<string>;
@@ -577,6 +581,44 @@ export interface IamPolicyRule {
     projectIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface InferenceDeploymentPrivateEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The ID of the private network to use.
+     */
+    privateNetworkId?: pulumi.Input<string>;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface InferenceDeploymentPublicEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Enable or disable public endpoint.
+     */
+    isEnabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url?: pulumi.Input<string>;
+}
+
 export interface InstanceImageAdditionalVolume {
     /**
      * Date of the volume creation.
@@ -938,6 +980,17 @@ export interface IotRouteS3 {
      * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
      */
     strategy: pulumi.Input<string>;
+}
+
+export interface IpamIpCustomResource {
+    /**
+     * The MAC address of the resource the IP is attached to.
+     */
+    macAddress: pulumi.Input<string>;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name?: pulumi.Input<string>;
 }
 
 export interface IpamIpResource {
@@ -1393,6 +1446,21 @@ export interface MnqSqsCredentialsPermissions {
      * . Defines whether the user can receive messages from the service.
      */
     canReceive?: pulumi.Input<boolean>;
+}
+
+export interface MongoDbInstancePublicNetwork {
+    /**
+     * The DNS record of your endpoint
+     */
+    dnsRecord?: pulumi.Input<string>;
+    /**
+     * The ID of the MongoDB® instance.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint
+     */
+    port?: pulumi.Input<number>;
 }
 
 export interface ObjectBucketAclAccessControlPolicy {

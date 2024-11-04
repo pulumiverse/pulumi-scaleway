@@ -366,7 +366,7 @@ type InstanceServer struct {
 	AdditionalVolumeIds pulumi.StringArrayOutput `pulumi:"additionalVolumeIds"`
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrOutput `pulumi:"bootType"`
-	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	// ID of the target bootscript (set bootType to bootscript)
 	//
 	// Deprecated: bootscript is not supported anymore.
 	BootscriptId pulumi.StringOutput `pulumi:"bootscriptId"`
@@ -404,6 +404,8 @@ type InstanceServer struct {
 	Ipv6Gateway pulumi.StringOutput `pulumi:"ipv6Gateway"`
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6PrefixLength pulumi.IntOutput `pulumi:"ipv6PrefixLength"`
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -435,6 +437,8 @@ type InstanceServer struct {
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
+	//
+	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled pulumi.BoolOutput `pulumi:"routedIpEnabled"`
 	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
@@ -502,7 +506,7 @@ type instanceServerState struct {
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
-	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	// ID of the target bootscript (set bootType to bootscript)
 	//
 	// Deprecated: bootscript is not supported anymore.
 	BootscriptId *string `pulumi:"bootscriptId"`
@@ -540,6 +544,8 @@ type instanceServerState struct {
 	Ipv6Gateway *string `pulumi:"ipv6Gateway"`
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6PrefixLength *int `pulumi:"ipv6PrefixLength"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -571,6 +577,8 @@ type instanceServerState struct {
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
+	//
+	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
@@ -606,7 +614,7 @@ type InstanceServerState struct {
 	AdditionalVolumeIds pulumi.StringArrayInput
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
-	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	// ID of the target bootscript (set bootType to bootscript)
 	//
 	// Deprecated: bootscript is not supported anymore.
 	BootscriptId pulumi.StringPtrInput
@@ -644,6 +652,8 @@ type InstanceServerState struct {
 	Ipv6Gateway pulumi.StringPtrInput
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	//
+	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 	Ipv6PrefixLength pulumi.IntPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
@@ -675,6 +685,8 @@ type InstanceServerState struct {
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
+	//
+	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled pulumi.BoolPtrInput
 	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
@@ -714,7 +726,7 @@ type instanceServerArgs struct {
 	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType *string `pulumi:"bootType"`
-	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	// ID of the target bootscript (set bootType to bootscript)
 	//
 	// Deprecated: bootscript is not supported anymore.
 	BootscriptId *string `pulumi:"bootscriptId"`
@@ -760,6 +772,8 @@ type instanceServerArgs struct {
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
+	//
+	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
@@ -796,7 +810,7 @@ type InstanceServerArgs struct {
 	AdditionalVolumeIds pulumi.StringArrayInput
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringPtrInput
-	// The ID of the bootscript to use  (set bootType to `bootscript`).
+	// ID of the target bootscript (set bootType to bootscript)
 	//
 	// Deprecated: bootscript is not supported anymore.
 	BootscriptId pulumi.StringPtrInput
@@ -842,6 +856,8 @@ type InstanceServerArgs struct {
 	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 	//
 	// > **Important:** Enabling routed ip will restart the server
+	//
+	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled pulumi.BoolPtrInput
 	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 	SecurityGroupId pulumi.StringPtrInput
@@ -969,7 +985,7 @@ func (o InstanceServerOutput) BootType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.BootType }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the bootscript to use  (set bootType to `bootscript`).
+// ID of the target bootscript (set bootType to bootscript)
 //
 // Deprecated: bootscript is not supported anymore.
 func (o InstanceServerOutput) BootscriptId() pulumi.StringOutput {
@@ -1034,6 +1050,8 @@ func (o InstanceServerOutput) Ipv6Gateway() pulumi.StringOutput {
 
 // The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
 // Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+//
+// Deprecated: Please use a InstanceIp with a `routedIpv6` type
 func (o InstanceServerOutput) Ipv6PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.IntOutput { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }
@@ -1101,6 +1119,8 @@ func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 // If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
 //
 // > **Important:** Enabling routed ip will restart the server
+//
+// Deprecated: Routed IP is the default configuration, it should always be true
 func (o InstanceServerOutput) RoutedIpEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }

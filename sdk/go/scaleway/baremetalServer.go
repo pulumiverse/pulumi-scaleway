@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.LookupAccountSshKey(ctx, &scaleway.LookupAccountSshKeyArgs{
+//			_, err := scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)
 //			if err != nil {
@@ -41,7 +41,7 @@ import (
 //				Offer: pulumi.String("GP-BM1-S"),
 //				Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(main.Id),
+//					mainScalewayAccountSshKey.Id,
 //				},
 //			})
 //			if err != nil {
@@ -67,7 +67,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.LookupAccountSshKey(ctx, &scaleway.LookupAccountSshKeyArgs{
+//			_, err := scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)
 //			if err != nil {
@@ -107,7 +107,7 @@ import (
 //				Offer: pulumi.String(myOffer.OfferId),
 //				Os:    pulumi.String(myOs.OsId),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(main.Id),
+//					mainScalewayAccountSshKey.Id,
 //				},
 //				Options: scaleway.BaremetalServerOptionArray{
 //					&scaleway.BaremetalServerOptionArgs{
@@ -141,7 +141,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.LookupAccountSshKey(ctx, &scaleway.LookupAccountSshKeyArgs{
+//			_, err := scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)
 //			if err != nil {
@@ -181,7 +181,7 @@ import (
 //				Offer: pulumi.String(myOffer.OfferId),
 //				Os:    pulumi.String(myOs.OsId),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(main.Id),
+//					mainScalewayAccountSshKey.Id,
 //				},
 //				Options: scaleway.BaremetalServerOptionArray{
 //					&scaleway.BaremetalServerOptionArgs{
@@ -191,6 +191,105 @@ import (
 //				PrivateNetworks: scaleway.BaremetalServerPrivateNetworkArray{
 //					&scaleway.BaremetalServerPrivateNetworkArgs{
 //						Id: pn.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With IPAM IP IDs
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//				Name: pulumi.String("vpc_baremetal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name: pulumi.String("private_network_baremetal"),
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.64.0/22"),
+//				},
+//				VpcId: vpc01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//				Address: pulumi.String("172.16.64.7"),
+//				Sources: scaleway.IpamIpSourceArray{
+//					&scaleway.IpamIpSourceArgs{
+//						PrivateNetworkId: pn01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
+//				Name: pulumi.StringRef("main"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-1"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-1"),
+//				Name: pulumi.StringRef("EM-A115X-SSD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			privateNetwork, err := scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
+//				Zone: pulumi.StringRef("fr-par-1"),
+//				Name: pulumi.StringRef("Private Network"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
+//				SshKeyIds: pulumi.StringArray{
+//					myKeyScalewayAccountSshKey.Id,
+//				},
+//				Options: scaleway.BaremetalServerOptionArray{
+//					&scaleway.BaremetalServerOptionArgs{
+//						Id: pulumi.String(privateNetwork.OptionId),
+//					},
+//				},
+//				PrivateNetworks: scaleway.BaremetalServerPrivateNetworkArray{
+//					&scaleway.BaremetalServerPrivateNetworkArgs{
+//						Id: pn01.ID(),
+//						IpamIpIds: pulumi.StringArray{
+//							ip01.ID(),
+//						},
 //					},
 //				},
 //			})

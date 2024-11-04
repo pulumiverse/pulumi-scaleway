@@ -102,6 +102,7 @@ from .get_loadbalancer_ip import *
 from .get_marketplace_image import *
 from .get_mnq_sns import *
 from .get_mnq_sqs import *
+from .get_mongo_db_instance import *
 from .get_object_bucket import *
 from .get_object_bucket_policy import *
 from .get_redis_cluster import *
@@ -130,6 +131,7 @@ from .iam_group_membership import *
 from .iam_policy import *
 from .iam_ssh_key import *
 from .iam_user import *
+from .inference_deployment import *
 from .instance_image import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
@@ -166,6 +168,8 @@ from .mnq_sns_topic_subscription import *
 from .mnq_sqs import *
 from .mnq_sqs_credentials import *
 from .mnq_sqs_queue import *
+from .mongo_db_instance import *
+from .mongo_db_snapshot import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -535,6 +539,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/inferenceDeployment",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/inferenceDeployment:InferenceDeployment": "InferenceDeployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/instanceImage",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -819,6 +831,22 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/mnqSqsQueue:MnqSqsQueue": "MnqSqsQueue"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mongoDbInstance",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mongoDbInstance:MongoDbInstance": "MongoDbInstance"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mongoDbSnapshot",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mongoDbSnapshot:MongoDbSnapshot": "MongoDbSnapshot"
   }
  },
  {

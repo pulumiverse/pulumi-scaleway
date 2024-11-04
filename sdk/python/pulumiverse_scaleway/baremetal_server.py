@@ -768,12 +768,12 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         base = scaleway.BaremetalServer("base",
             zone="fr-par-2",
             offer="GP-BM1-S",
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main.id])
+            ssh_key_ids=[main_scaleway_account_ssh_key["id"]])
         ```
 
         ### With option
@@ -783,7 +783,7 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         my_os = scaleway.get_baremetal_os(zone="fr-par-2",
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
@@ -797,7 +797,7 @@ class BaremetalServer(pulumi.CustomResource):
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=my_os.os_id,
-            ssh_key_ids=[main.id],
+            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
             options=[
                 {
                     "id": private_network.option_id,
@@ -815,7 +815,7 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         my_os = scaleway.get_baremetal_os(zone="fr-par-2",
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
@@ -830,12 +830,53 @@ class BaremetalServer(pulumi.CustomResource):
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=my_os.os_id,
-            ssh_key_ids=[main.id],
+            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
             options=[{
                 "id": private_network.option_id,
             }],
             private_networks=[{
                 "id": pn.id,
+            }])
+        ```
+
+        ### With IPAM IP IDs
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.Vpc("vpc01", name="vpc_baremetal")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="private_network_baremetal",
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
+            vpc_id=vpc01.id)
+        ip01 = scaleway.IpamIp("ip01",
+            address="172.16.64.7",
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
+        my_key = scaleway.get_iam_ssh_key(name="main")
+        my_os = scaleway.get_baremetal_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-1",
+            name="EM-A115X-SSD")
+        private_network = scaleway.get_baremetal_option(zone="fr-par-1",
+            name="Private Network")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_key_scaleway_account_ssh_key["id"]],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn01.id,
+                "ipam_ip_ids": [ip01.id],
             }])
         ```
 
@@ -909,12 +950,12 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         base = scaleway.BaremetalServer("base",
             zone="fr-par-2",
             offer="GP-BM1-S",
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main.id])
+            ssh_key_ids=[main_scaleway_account_ssh_key["id"]])
         ```
 
         ### With option
@@ -924,7 +965,7 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         my_os = scaleway.get_baremetal_os(zone="fr-par-2",
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
@@ -938,7 +979,7 @@ class BaremetalServer(pulumi.CustomResource):
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=my_os.os_id,
-            ssh_key_ids=[main.id],
+            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
             options=[
                 {
                     "id": private_network.option_id,
@@ -956,7 +997,7 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         my_os = scaleway.get_baremetal_os(zone="fr-par-2",
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
@@ -971,12 +1012,53 @@ class BaremetalServer(pulumi.CustomResource):
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=my_os.os_id,
-            ssh_key_ids=[main.id],
+            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
             options=[{
                 "id": private_network.option_id,
             }],
             private_networks=[{
                 "id": pn.id,
+            }])
+        ```
+
+        ### With IPAM IP IDs
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.Vpc("vpc01", name="vpc_baremetal")
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="private_network_baremetal",
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
+            vpc_id=vpc01.id)
+        ip01 = scaleway.IpamIp("ip01",
+            address="172.16.64.7",
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
+        my_key = scaleway.get_iam_ssh_key(name="main")
+        my_os = scaleway.get_baremetal_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-1",
+            name="EM-A115X-SSD")
+        private_network = scaleway.get_baremetal_option(zone="fr-par-1",
+            name="Private Network")
+        base = scaleway.BaremetalServer("base",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_key_scaleway_account_ssh_key["id"]],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn01.id,
+                "ipam_ip_ids": [ip01.id],
             }])
         ```
 

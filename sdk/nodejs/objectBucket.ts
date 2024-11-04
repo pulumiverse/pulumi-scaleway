@@ -164,7 +164,7 @@ export class ObjectBucket extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+     * Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     /**
@@ -266,7 +266,7 @@ export interface ObjectBucketState {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+     * Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**
@@ -316,7 +316,7 @@ export interface ObjectBucketArgs {
     acl?: pulumi.Input<string>;
     corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
     /**
-     * Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+     * Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**

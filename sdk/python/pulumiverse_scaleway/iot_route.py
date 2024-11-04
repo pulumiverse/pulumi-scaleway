@@ -371,7 +371,7 @@ class IotRoute(pulumi.CustomResource):
                 "verb": "get",
                 "uri": "http://scaleway.com",
                 "headers": {
-                    "x_awesome_header": "my-awesome-value",
+                    "X-awesome-header": "my-awesome-value",
                 },
             })
         ```
@@ -488,7 +488,7 @@ class IotRoute(pulumi.CustomResource):
                 "verb": "get",
                 "uri": "http://scaleway.com",
                 "headers": {
-                    "x_awesome_header": "my-awesome-value",
+                    "X-awesome-header": "my-awesome-value",
                 },
             })
         ```

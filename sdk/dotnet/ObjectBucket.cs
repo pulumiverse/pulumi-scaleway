@@ -190,7 +190,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        /// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -304,7 +304,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        /// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -403,7 +403,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        /// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }

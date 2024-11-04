@@ -25,6 +25,18 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
+        [Input("ipamIpIds")]
+        private InputList<string>? _ipamIpIds;
+
+        /// <summary>
+        /// List of IPAM IP IDs to assign to the server in the requested private network.
+        /// </summary>
+        public InputList<string> IpamIpIds
+        {
+            get => _ipamIpIds ?? (_ipamIpIds = new InputList<string>());
+            set => _ipamIpIds = value;
+        }
+
         /// <summary>
         /// The private network status.
         /// </summary>

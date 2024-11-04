@@ -184,7 +184,7 @@ type ObjectBucket struct {
 	CorsRules   ObjectBucketCorsRuleArrayOutput `pulumi:"corsRules"`
 	// The endpoint URL of the bucket.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+	// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
 	// Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
 	LifecycleRules ObjectBucketLifecycleRuleArrayOutput `pulumi:"lifecycleRules"`
@@ -246,7 +246,7 @@ type objectBucketState struct {
 	CorsRules   []ObjectBucketCorsRule `pulumi:"corsRules"`
 	// The endpoint URL of the bucket.
 	Endpoint *string `pulumi:"endpoint"`
-	// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+	// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
 	LifecycleRules []ObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
@@ -279,7 +279,7 @@ type ObjectBucketState struct {
 	CorsRules   ObjectBucketCorsRuleArrayInput
 	// The endpoint URL of the bucket.
 	Endpoint pulumi.StringPtrInput
-	// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+	// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
 	ForceDestroy pulumi.BoolPtrInput
 	// Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
 	LifecycleRules ObjectBucketLifecycleRuleArrayInput
@@ -312,7 +312,7 @@ type objectBucketArgs struct {
 	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl       *string                `pulumi:"acl"`
 	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
-	// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+	// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
 	LifecycleRules []ObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
@@ -342,7 +342,7 @@ type ObjectBucketArgs struct {
 	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
 	Acl       pulumi.StringPtrInput
 	CorsRules ObjectBucketCorsRuleArrayInput
-	// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+	// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
 	ForceDestroy pulumi.BoolPtrInput
 	// Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
 	LifecycleRules ObjectBucketLifecycleRuleArrayInput
@@ -473,7 +473,7 @@ func (o ObjectBucketOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
-// Enable deletion of objects in the bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
 func (o ObjectBucketOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }

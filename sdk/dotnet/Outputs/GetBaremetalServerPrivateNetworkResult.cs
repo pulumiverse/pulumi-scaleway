@@ -23,6 +23,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// List of IPAM IP IDs to attach to the server
+        /// </summary>
+        public readonly ImmutableArray<string> IpamIpIds;
+        /// <summary>
         /// The private network status
         /// </summary>
         public readonly string Status;
@@ -41,6 +45,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string id,
 
+            ImmutableArray<string> ipamIpIds,
+
             string status,
 
             string updatedAt,
@@ -49,6 +55,7 @@ namespace Pulumiverse.Scaleway.Outputs
         {
             CreatedAt = createdAt;
             Id = id;
+            IpamIpIds = ipamIpIds;
             Status = status;
             UpdatedAt = updatedAt;
             Vlan = vlan;

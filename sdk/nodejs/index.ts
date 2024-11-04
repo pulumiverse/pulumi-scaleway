@@ -490,6 +490,11 @@ export const getMnqSqs: typeof import("./getMnqSqs").getMnqSqs = null as any;
 export const getMnqSqsOutput: typeof import("./getMnqSqs").getMnqSqsOutput = null as any;
 utilities.lazyLoad(exports, ["getMnqSqs","getMnqSqsOutput"], () => require("./getMnqSqs"));
 
+export { GetMongoDbInstanceArgs, GetMongoDbInstanceResult, GetMongoDbInstanceOutputArgs } from "./getMongoDbInstance";
+export const getMongoDbInstance: typeof import("./getMongoDbInstance").getMongoDbInstance = null as any;
+export const getMongoDbInstanceOutput: typeof import("./getMongoDbInstance").getMongoDbInstanceOutput = null as any;
+utilities.lazyLoad(exports, ["getMongoDbInstance","getMongoDbInstanceOutput"], () => require("./getMongoDbInstance"));
+
 export { GetObjectBucketArgs, GetObjectBucketResult, GetObjectBucketOutputArgs } from "./getObjectBucket";
 export const getObjectBucket: typeof import("./getObjectBucket").getObjectBucket = null as any;
 export const getObjectBucketOutput: typeof import("./getObjectBucket").getObjectBucketOutput = null as any;
@@ -629,6 +634,11 @@ export { IamUserArgs, IamUserState } from "./iamUser";
 export type IamUser = import("./iamUser").IamUser;
 export const IamUser: typeof import("./iamUser").IamUser = null as any;
 utilities.lazyLoad(exports, ["IamUser"], () => require("./iamUser"));
+
+export { InferenceDeploymentArgs, InferenceDeploymentState } from "./inferenceDeployment";
+export type InferenceDeployment = import("./inferenceDeployment").InferenceDeployment;
+export const InferenceDeployment: typeof import("./inferenceDeployment").InferenceDeployment = null as any;
+utilities.lazyLoad(exports, ["InferenceDeployment"], () => require("./inferenceDeployment"));
 
 export { InstanceImageArgs, InstanceImageState } from "./instanceImage";
 export type InstanceImage = import("./instanceImage").InstanceImage;
@@ -809,6 +819,16 @@ export { MnqSqsQueueArgs, MnqSqsQueueState } from "./mnqSqsQueue";
 export type MnqSqsQueue = import("./mnqSqsQueue").MnqSqsQueue;
 export const MnqSqsQueue: typeof import("./mnqSqsQueue").MnqSqsQueue = null as any;
 utilities.lazyLoad(exports, ["MnqSqsQueue"], () => require("./mnqSqsQueue"));
+
+export { MongoDbInstanceArgs, MongoDbInstanceState } from "./mongoDbInstance";
+export type MongoDbInstance = import("./mongoDbInstance").MongoDbInstance;
+export const MongoDbInstance: typeof import("./mongoDbInstance").MongoDbInstance = null as any;
+utilities.lazyLoad(exports, ["MongoDbInstance"], () => require("./mongoDbInstance"));
+
+export { MongoDbSnapshotArgs, MongoDbSnapshotState } from "./mongoDbSnapshot";
+export type MongoDbSnapshot = import("./mongoDbSnapshot").MongoDbSnapshot;
+export const MongoDbSnapshot: typeof import("./mongoDbSnapshot").MongoDbSnapshot = null as any;
+utilities.lazyLoad(exports, ["MongoDbSnapshot"], () => require("./mongoDbSnapshot"));
 
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
@@ -1036,6 +1056,8 @@ const _module = {
                 return new IamSshKey(name, <any>undefined, { urn })
             case "scaleway:index/iamUser:IamUser":
                 return new IamUser(name, <any>undefined, { urn })
+            case "scaleway:index/inferenceDeployment:InferenceDeployment":
+                return new InferenceDeployment(name, <any>undefined, { urn })
             case "scaleway:index/instanceImage:InstanceImage":
                 return new InstanceImage(name, <any>undefined, { urn })
             case "scaleway:index/instanceIp:InstanceIp":
@@ -1108,6 +1130,10 @@ const _module = {
                 return new MnqSqsCredentials(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
                 return new MnqSqsQueue(name, <any>undefined, { urn })
+            case "scaleway:index/mongoDbInstance:MongoDbInstance":
+                return new MongoDbInstance(name, <any>undefined, { urn })
+            case "scaleway:index/mongoDbSnapshot:MongoDbSnapshot":
+                return new MongoDbSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -1204,6 +1230,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iamGroupMembership", _m
 pulumi.runtime.registerResourceModule("scaleway", "index/iamPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/inferenceDeployment", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
@@ -1240,6 +1267,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsTopicSubscription
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqs", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsQueue", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mongoDbInstance", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mongoDbSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)

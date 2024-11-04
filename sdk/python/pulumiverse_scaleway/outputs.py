@@ -42,6 +42,8 @@ __all__ = [
     'FunctionTriggerNats',
     'FunctionTriggerSqs',
     'IamPolicyRule',
+    'InferenceDeploymentPrivateEndpoint',
+    'InferenceDeploymentPublicEndpoint',
     'InstanceImageAdditionalVolume',
     'InstanceSecurityGroupInboundRule',
     'InstanceSecurityGroupOutboundRule',
@@ -58,6 +60,7 @@ __all__ = [
     'IotRouteDatabase',
     'IotRouteRest',
     'IotRouteS3',
+    'IpamIpCustomResource',
     'IpamIpResource',
     'IpamIpReverse',
     'IpamIpSource',
@@ -83,6 +86,7 @@ __all__ = [
     'LoadbalancerPrivateNetwork',
     'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
+    'MongoDbInstancePublicNetwork',
     'ObjectBucketAclAccessControlPolicy',
     'ObjectBucketAclAccessControlPolicyGrant',
     'ObjectBucketAclAccessControlPolicyGrantGrantee',
@@ -174,6 +178,7 @@ __all__ = [
     'GetLoadbalancerCertificateCustomCertificateResult',
     'GetLoadbalancerCertificateLetsencryptResult',
     'GetLoadbalancerPrivateNetworkResult',
+    'GetMongoDbInstancePublicNetworkResult',
     'GetObjectBucketCorsRuleResult',
     'GetObjectBucketLifecycleRuleResult',
     'GetObjectBucketLifecycleRuleExpirationResult',
@@ -425,6 +430,8 @@ class BaremetalServerPrivateNetwork(dict):
         suggest = None
         if key == "createdAt":
             suggest = "created_at"
+        elif key == "ipamIpIds":
+            suggest = "ipam_ip_ids"
         elif key == "updatedAt":
             suggest = "updated_at"
 
@@ -442,12 +449,14 @@ class BaremetalServerPrivateNetwork(dict):
     def __init__(__self__, *,
                  id: str,
                  created_at: Optional[str] = None,
+                 ipam_ip_ids: Optional[Sequence[str]] = None,
                  status: Optional[str] = None,
                  updated_at: Optional[str] = None,
                  vlan: Optional[int] = None):
         """
         :param str id: The id of the private network to attach.
         :param str created_at: The date and time of the creation of the private network.
+        :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to assign to the server in the requested private network.
         :param str status: The private network status.
         :param str updated_at: The date and time of the last update of the private network.
         :param int vlan: The VLAN ID associated to the private network.
@@ -455,6 +464,8 @@ class BaremetalServerPrivateNetwork(dict):
         pulumi.set(__self__, "id", id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if ipam_ip_ids is not None:
+            pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -477,6 +488,14 @@ class BaremetalServerPrivateNetwork(dict):
         The date and time of the creation of the private network.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="ipamIpIds")
+    def ipam_ip_ids(self) -> Optional[Sequence[str]]:
+        """
+        List of IPAM IP IDs to assign to the server in the requested private network.
+        """
+        return pulumi.get(self, "ipam_ip_ids")
 
     @property
     @pulumi.getter
@@ -1967,6 +1986,154 @@ class IamPolicyRule(dict):
 
 
 @pulumi.output_type
+class InferenceDeploymentPrivateEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disableAuth":
+            suggest = "disable_auth"
+        elif key == "privateNetworkId":
+            suggest = "private_network_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InferenceDeploymentPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InferenceDeploymentPrivateEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InferenceDeploymentPrivateEndpoint.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disable_auth: Optional[bool] = None,
+                 id: Optional[str] = None,
+                 private_network_id: Optional[str] = None,
+                 url: Optional[str] = None):
+        """
+        :param bool disable_auth: Disable the authentication on the endpoint.
+        :param str id: (Optional) The id of the public endpoint.
+        :param str private_network_id: The ID of the private network to use.
+        :param str url: (Optional) The URL of the endpoint.
+        """
+        if disable_auth is not None:
+            pulumi.set(__self__, "disable_auth", disable_auth)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="disableAuth")
+    def disable_auth(self) -> Optional[bool]:
+        """
+        Disable the authentication on the endpoint.
+        """
+        return pulumi.get(self, "disable_auth")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        (Optional) The id of the public endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[str]:
+        """
+        The ID of the private network to use.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        """
+        (Optional) The URL of the endpoint.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class InferenceDeploymentPublicEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disableAuth":
+            suggest = "disable_auth"
+        elif key == "isEnabled":
+            suggest = "is_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InferenceDeploymentPublicEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InferenceDeploymentPublicEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InferenceDeploymentPublicEndpoint.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disable_auth: Optional[bool] = None,
+                 id: Optional[str] = None,
+                 is_enabled: Optional[bool] = None,
+                 url: Optional[str] = None):
+        """
+        :param bool disable_auth: Disable the authentication on the endpoint.
+        :param str id: (Optional) The id of the public endpoint.
+        :param bool is_enabled: Enable or disable public endpoint.
+        :param str url: (Optional) The URL of the endpoint.
+        """
+        if disable_auth is not None:
+            pulumi.set(__self__, "disable_auth", disable_auth)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_enabled is not None:
+            pulumi.set(__self__, "is_enabled", is_enabled)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="disableAuth")
+    def disable_auth(self) -> Optional[bool]:
+        """
+        Disable the authentication on the endpoint.
+        """
+        return pulumi.get(self, "disable_auth")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        (Optional) The id of the public endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> Optional[bool]:
+        """
+        Enable or disable public endpoint.
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        """
+        (Optional) The URL of the endpoint.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
 class InstanceImageAdditionalVolume(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3137,6 +3304,53 @@ class IotRouteS3(dict):
         The string to prefix object names with (e.g. `mykeyprefix-`).
         """
         return pulumi.get(self, "object_prefix")
+
+
+@pulumi.output_type
+class IpamIpCustomResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "macAddress":
+            suggest = "mac_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IpamIpCustomResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IpamIpCustomResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IpamIpCustomResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mac_address: str,
+                 name: Optional[str] = None):
+        """
+        :param str mac_address: The MAC address of the resource the IP is attached to.
+        :param str name: The name of the resource the IP is attached to.
+        """
+        pulumi.set(__self__, "mac_address", mac_address)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> str:
+        """
+        The MAC address of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -4782,6 +4996,66 @@ class MnqSqsCredentialsPermissions(dict):
 
 
 @pulumi.output_type
+class MongoDbInstancePublicNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dnsRecord":
+            suggest = "dns_record"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MongoDbInstancePublicNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MongoDbInstancePublicNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MongoDbInstancePublicNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dns_record: Optional[str] = None,
+                 id: Optional[str] = None,
+                 port: Optional[int] = None):
+        """
+        :param str dns_record: The DNS record of your endpoint
+        :param str id: The ID of the MongoDB® instance.
+        :param int port: TCP port of the endpoint
+        """
+        if dns_record is not None:
+            pulumi.set(__self__, "dns_record", dns_record)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="dnsRecord")
+    def dns_record(self) -> Optional[str]:
+        """
+        The DNS record of your endpoint
+        """
+        return pulumi.get(self, "dns_record")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the MongoDB® instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        TCP port of the endpoint
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
 class ObjectBucketAclAccessControlPolicy(dict):
     def __init__(__self__, *,
                  owner: 'outputs.ObjectBucketAclAccessControlPolicyOwner',
@@ -6374,18 +6648,21 @@ class GetBaremetalServerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  created_at: str,
                  id: str,
+                 ipam_ip_ids: Sequence[str],
                  status: str,
                  updated_at: str,
                  vlan: int):
         """
         :param str created_at: The date and time of the creation of the private network
         :param str id: The ID of the server.
+        :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to attach to the server
         :param str status: The private network status
         :param str updated_at: The date and time of the last update of the private network
         :param int vlan: The VLAN ID associated to the private network
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vlan", vlan)
@@ -6405,6 +6682,14 @@ class GetBaremetalServerPrivateNetworkResult(dict):
         The ID of the server.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipamIpIds")
+    def ipam_ip_ids(self) -> Sequence[str]:
+        """
+        List of IPAM IP IDs to attach to the server
+        """
+        return pulumi.get(self, "ipam_ip_ids")
 
     @property
     @pulumi.getter
@@ -7809,7 +8094,6 @@ class GetInstanceServersServerResult(dict):
                  zone: str):
         """
         :param str boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
-        :param str bootscript_id: The ID of the bootscript.
         :param bool enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param bool enable_ipv6: Determines if IPv6 is enabled for the server.
         :param str id: The ID of the IP
@@ -7867,9 +8151,6 @@ class GetInstanceServersServerResult(dict):
     @pulumi.getter(name="bootscriptId")
     @_utilities.deprecated("""bootscript are not supported""")
     def bootscript_id(self) -> str:
-        """
-        The ID of the bootscript.
-        """
         return pulumi.get(self, "bootscript_id")
 
     @property
@@ -10477,6 +10758,46 @@ class GetLoadbalancerPrivateNetworkResult(dict):
         (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetMongoDbInstancePublicNetworkResult(dict):
+    def __init__(__self__, *,
+                 dns_record: str,
+                 id: str,
+                 port: int):
+        """
+        :param str dns_record: The DNS record of your endpoint
+        :param str id: The ID of the MongoDB® Instance.
+        :param int port: TCP port of the endpoint
+        """
+        pulumi.set(__self__, "dns_record", dns_record)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="dnsRecord")
+    def dns_record(self) -> str:
+        """
+        The DNS record of your endpoint
+        """
+        return pulumi.get(self, "dns_record")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the MongoDB® Instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        TCP port of the endpoint
+        """
+        return pulumi.get(self, "port")
 
 
 @pulumi.output_type

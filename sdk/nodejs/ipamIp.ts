@@ -73,6 +73,30 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Book an IP for a custom resource
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     vpcId: vpc01.id,
+ *     ipv4Subnet: {
+ *         subnet: "172.16.32.0/22",
+ *     },
+ * });
+ * const ip01 = new scaleway.IpamIp("ip01", {
+ *     address: "172.16.32.7",
+ *     sources: [{
+ *         privateNetworkId: pn01.id,
+ *     }],
+ *     customResources: [{
+ *         macAddress: "bc:24:11:74:d0:6a",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * IPAM IPs can be imported using `{region}/{id}`, e.g.
@@ -119,6 +143,10 @@ export class IpamIp extends pulumi.CustomResource {
      * Date and time of IP's creation (RFC 3339 format).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * The custom resource in which to book the IP
+     */
+    public readonly customResources!: pulumi.Output<outputs.IpamIpCustomResource[] | undefined>;
     /**
      * Defines whether to request an IPv6 address instead of IPv4.
      */
@@ -171,6 +199,7 @@ export class IpamIp extends pulumi.CustomResource {
             const state = argsOrState as IpamIpState | undefined;
             resourceInputs["address"] = state ? state.address : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["customResources"] = state ? state.customResources : undefined;
             resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -186,6 +215,7 @@ export class IpamIp extends pulumi.CustomResource {
                 throw new Error("Missing required property 'sources'");
             }
             resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["customResources"] = args ? args.customResources : undefined;
             resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -214,6 +244,10 @@ export interface IpamIpState {
      * Date and time of IP's creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * The custom resource in which to book the IP
+     */
+    customResources?: pulumi.Input<pulumi.Input<inputs.IpamIpCustomResource>[]>;
     /**
      * Defines whether to request an IPv6 address instead of IPv4.
      */
@@ -260,6 +294,10 @@ export interface IpamIpArgs {
      * Request a specific IP in the requested source pool
      */
     address?: pulumi.Input<string>;
+    /**
+     * The custom resource in which to book the IP
+     */
+    customResources?: pulumi.Input<pulumi.Input<inputs.IpamIpCustomResource>[]>;
     /**
      * Defines whether to request an IPv6 address instead of IPv4.
      */

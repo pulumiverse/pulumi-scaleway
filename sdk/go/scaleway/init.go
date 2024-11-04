@@ -103,6 +103,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IamSshKey{}
 	case "scaleway:index/iamUser:IamUser":
 		r = &IamUser{}
+	case "scaleway:index/inferenceDeployment:InferenceDeployment":
+		r = &InferenceDeployment{}
 	case "scaleway:index/instanceImage:InstanceImage":
 		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
@@ -175,6 +177,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqSqsCredentials{}
 	case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
 		r = &MnqSqsQueue{}
+	case "scaleway:index/mongoDbInstance:MongoDbInstance":
+		r = &MongoDbInstance{}
+	case "scaleway:index/mongoDbSnapshot:MongoDbSnapshot":
+		r = &MongoDbSnapshot{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -463,6 +469,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/inferenceDeployment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/instanceImage",
 		&module{version},
 	)
@@ -639,6 +650,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/mnqSqsQueue",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mongoDbInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mongoDbSnapshot",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -18,9 +18,6 @@ namespace Pulumiverse.Scaleway.Outputs
         /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         /// </summary>
         public readonly string BootType;
-        /// <summary>
-        /// The ID of the bootscript.
-        /// </summary>
         public readonly string BootscriptId;
         /// <summary>
         /// If true a dynamic IP will be attached to the server.
