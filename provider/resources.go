@@ -20,9 +20,13 @@ import (
 	"path/filepath"
 	"unicode"
 
+	// embed is used to embed the schema files in the provider
+	_ "embed"
+
 	shim "github.com/scaleway/terraform-provider-scaleway/v2/shim"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -72,6 +76,9 @@ func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProvider
 	return &license
 }
 
+//go:embed cmd/pulumi-resource-scaleway/bridge-metadata.json
+var metadata []byte
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	p := shimv2.NewProvider(shim.NewProvider()())
@@ -87,6 +94,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:                "https://www.scaleway.com",
 		Repository:              "https://github.com/pulumiverse/pulumi-scaleway",
 		PluginDownloadURL:       "github://api.github.com/pulumiverse",
+		MetadataInfo:            tfbridge.NewProviderMetadata(metadata),
 		GitHubOrg:               "scaleway", // not in the terraform-providers repo
 		Publisher:               "pulumiverse",
 		DisplayName:             "Scaleway",
@@ -1312,7 +1320,9 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
+	prov.MustComputeTokens(tks.SingleModule("scaleway_", scalewayMod, tks.MakeStandard(scalewayPkg)))
 	prov.SetAutonaming(255, "-")
+	prov.MustApplyAutoAliases()
 
 	return prov
 }
