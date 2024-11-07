@@ -23,43 +23,40 @@ This package is available in many languages in the standard packaging formats.
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
-```
-$ npm install @pulumiverse/scaleway
+```sh
+npm install @pulumiverse/scaleway
 ```
 
 or `yarn`:
 
-```
-$ yarn add @pulumiverse/scaleway
+```sh
+yarn add @pulumiverse/scaleway
 ```
 
 ### Python
 
 To use from Python, install using `pip`:
 
-```
-$ pip install pulumiverse-scaleway
+```sh
+pip install pulumiverse-scaleway
 ```
 
 ### Go
 
 To use from Go, use `go get` to grab the latest version of the library
 
-```
-$ go get github.com/pulumiverse/pulumi-scaleway/sdk/go/...
+```sh
+go get github.com/pulumiverse/pulumi-scaleway/sdk/go/...
 ```
 
 ### .NET
 
 To use from Dotnet, use `dotnet add package` to install into your project. You must specify the version if it is a pre-release version.
 
-
-```
-$ dotnet add package Pulumiverse.Scaleway
+```sh
+dotnet add package Pulumiverse.Scaleway
 ```
 
 ## Reference
 
-See the Pulumi registry for API docs:
-
-https://www.pulumi.com/registry/packages/scaleway/api-docs/
+See the Pulumi registry for [API documention](https://www.pulumi.com/registry/packages/scaleway/api-docs/).
