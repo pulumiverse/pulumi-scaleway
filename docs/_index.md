@@ -109,3 +109,8 @@ class ScalewayServer : Stack
 This is a community maintained provider. Please file issues and feature requests here:
 
 [pulumiverse/pulumi-scaleway](https://github.com/pulumiverse/pulumi-scaleway/issues)
+
+You can also reach out on one of these channels:
+
+* `#pulumiverse` channel on the [Pulumi Community Slack](https://slack.pulumi.com)
+* `#pulumi` channel on the [Scaleway Community Slack](https://slack.scaleway.com)

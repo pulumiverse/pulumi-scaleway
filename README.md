@@ -4,6 +4,17 @@
 The Scaleway resource provider for Pulumi lets you creating resources in [Scaleway](https://www.scaleway.com). To use
 this package, please [install the Pulumi CLI first](https://pulumi.com/).
 
+## Support
+
+This is a community maintained provider. Please file issues and feature requests here:
+
+[pulumiverse/pulumi-scaleway](https://github.com/pulumiverse/pulumi-scaleway/issues)
+
+You can also reach out on one of these channels:
+
+* `#pulumiverse` channel on the [Pulumi Community Slack](https://slack.pulumi.com)
+* `#pulumi` channel on the [Scaleway Community Slack](https://slack.scaleway.com)
+
 ## Installing
 
 This package is available in many languages in the standard packaging formats.
