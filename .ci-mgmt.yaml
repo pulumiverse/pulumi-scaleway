@@ -5,7 +5,6 @@ major-version: 1
 providerDefaultBranch: main
 upstreamProviderOrg: scaleway
 publishRegistry: false
-enableAutoRelease: false
 plugins:
   - name: terraform
     version: "1.0.19"
@@ -32,7 +31,6 @@ license:
   ignore:
     # Don't check for the license of the local shim package
     - github.com/scaleway/terraform-provider-scaleway/v2/shim
-pr-assign: ringods
 toolVersions:
   go: "1.22.x"
 pulumiConvert: 1
