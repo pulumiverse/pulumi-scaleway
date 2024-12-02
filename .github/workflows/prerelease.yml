@@ -79,22 +79,23 @@ jobs:
       PROVIDER_VERSION: ${{ needs.prerequisites.outputs.version }}
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
         persist-credentials: false
     - name: Setup tools
       uses: ./.github/actions/setup-tools
       with:
         tools: pulumictl, pulumicli, dotnet, go, nodejs, python
+    - name: Prepare local workspace
+      run: make prepare_local_workspace
     - name: Download bin
       uses: ./.github/actions/download-bin
-    - name: Add NuGet source
-      if: matrix.language == 'dotnet'
-      run: dotnet nuget add source ${{ github.workspace }}/nuget
     - name: Download SDK
       uses: ./.github/actions/download-sdk
       with:
         language: ${{ matrix.language }}
+    - name: Restore makefile progress
+      run: make --touch provider schema build_${{ matrix.language }}
     - name: Update path
       run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
     - name: Install Python deps
