@@ -90,6 +90,10 @@ export class IamUser extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * The tags associated with the user.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
      * The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
@@ -119,6 +123,7 @@ export class IamUser extends pulumi.CustomResource {
             resourceInputs["mfa"] = state ? state.mfa : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
@@ -128,6 +133,7 @@ export class IamUser extends pulumi.CustomResource {
             }
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["accountRootUserId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deletable"] = undefined /*out*/;
@@ -179,6 +185,10 @@ export interface IamUserState {
      */
     status?: pulumi.Input<string>;
     /**
+     * The tags associated with the user.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     type?: pulumi.Input<string>;
@@ -200,4 +210,8 @@ export interface IamUserArgs {
      * `organizationId`) The ID of the organization the user is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The tags associated with the user.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

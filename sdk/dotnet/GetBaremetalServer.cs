@@ -161,6 +161,7 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string Os;
         public readonly string OsName;
+        public readonly string Partitioning;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
@@ -207,6 +208,8 @@ namespace Pulumiverse.Scaleway
 
             string osName,
 
+            string partitioning,
+
             string password,
 
             ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> privateNetworks,
@@ -245,6 +248,7 @@ namespace Pulumiverse.Scaleway
             OrganizationId = organizationId;
             Os = os;
             OsName = osName;
+            Partitioning = partitioning;
             Password = password;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;

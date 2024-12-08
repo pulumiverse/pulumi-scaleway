@@ -71,6 +71,8 @@ type IamUser struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringOutput `pulumi:"status"`
+	// The tags associated with the user.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date and time of the last update of the IAM user.
@@ -126,6 +128,8 @@ type iamUserState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status *string `pulumi:"status"`
+	// The tags associated with the user.
+	Tags []string `pulumi:"tags"`
 	// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Type *string `pulumi:"type"`
 	// The date and time of the last update of the IAM user.
@@ -149,6 +153,8 @@ type IamUserState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringPtrInput
+	// The tags associated with the user.
+	Tags pulumi.StringArrayInput
 	// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Type pulumi.StringPtrInput
 	// The date and time of the last update of the IAM user.
@@ -164,6 +170,8 @@ type iamUserArgs struct {
 	Email string `pulumi:"email"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the user.
+	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a IamUser resource.
@@ -172,6 +180,8 @@ type IamUserArgs struct {
 	Email pulumi.StringInput
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The tags associated with the user.
+	Tags pulumi.StringArrayInput
 }
 
 func (IamUserArgs) ElementType() reflect.Type {
@@ -299,6 +309,11 @@ func (o IamUserOutput) OrganizationId() pulumi.StringOutput {
 // The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 func (o IamUserOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tags associated with the user.
+func (o IamUserOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IamUser) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).

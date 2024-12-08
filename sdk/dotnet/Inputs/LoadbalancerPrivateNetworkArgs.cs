@@ -14,31 +14,32 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class LoadbalancerPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+        /// Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
         /// </summary>
         [Input("dhcpConfig")]
         public Input<bool>? DhcpConfig { get; set; }
 
         /// <summary>
-        /// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        /// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         /// </summary>
         [Input("ipamIds")]
         public Input<string>? IpamIds { get; set; }
 
         /// <summary>
-        /// (Required) The ID of the Private Network to attach to.
+        /// The ID of the Private Network to attach to.
+        /// - &gt; **Important:** Updates to `private_network` will recreate the attachment.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        /// Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         /// </summary>
         [Input("staticConfig")]
         public Input<string>? StaticConfig { get; set; }
 
         /// <summary>
-        /// The status of private network connection
+        /// The status of the private network connection.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

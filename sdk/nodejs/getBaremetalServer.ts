@@ -80,6 +80,7 @@ export interface GetBaremetalServerResult {
     readonly organizationId: string;
     readonly os: string;
     readonly osName: string;
+    readonly partitioning: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
     readonly projectId?: string;

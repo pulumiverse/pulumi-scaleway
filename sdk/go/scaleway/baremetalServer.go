@@ -385,6 +385,8 @@ type BaremetalServer struct {
 	Os pulumi.StringPtrOutput `pulumi:"os"`
 	// The name of the os.
 	OsName pulumi.StringOutput `pulumi:"osName"`
+	// The partitioning schema in json format
+	Partitioning pulumi.StringPtrOutput `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -488,6 +490,8 @@ type baremetalServerState struct {
 	Os *string `pulumi:"os"`
 	// The name of the os.
 	OsName *string `pulumi:"osName"`
+	// The partitioning schema in json format
+	Partitioning *string `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -548,6 +552,8 @@ type BaremetalServerState struct {
 	Os pulumi.StringPtrInput
 	// The name of the os.
 	OsName pulumi.StringPtrInput
+	// The partitioning schema in json format
+	Partitioning pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -596,6 +602,8 @@ type baremetalServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os *string `pulumi:"os"`
+	// The partitioning schema in json format
+	Partitioning *string `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -641,6 +649,8 @@ type BaremetalServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrInput
+	// The partitioning schema in json format
+	Partitioning pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -830,6 +840,11 @@ func (o BaremetalServerOutput) Os() pulumi.StringPtrOutput {
 // The name of the os.
 func (o BaremetalServerOutput) OsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OsName }).(pulumi.StringOutput)
+}
+
+// The partitioning schema in json format
+func (o BaremetalServerOutput) Partitioning() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Partitioning }).(pulumi.StringPtrOutput)
 }
 
 // Password used for the installation. May be required depending on used os.

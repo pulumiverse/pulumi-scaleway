@@ -97,6 +97,7 @@ export interface GetContainerNamespaceResult {
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly tags: string[];
 }
 /**
  * The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.

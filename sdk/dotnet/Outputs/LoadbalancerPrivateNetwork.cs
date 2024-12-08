@@ -15,23 +15,24 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class LoadbalancerPrivateNetwork
     {
         /// <summary>
-        /// (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+        /// Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
         /// </summary>
         public readonly bool? DhcpConfig;
         /// <summary>
-        /// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        /// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         /// </summary>
         public readonly string? IpamIds;
         /// <summary>
-        /// (Required) The ID of the Private Network to attach to.
+        /// The ID of the Private Network to attach to.
+        /// - &gt; **Important:** Updates to `private_network` will recreate the attachment.
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
-        /// (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        /// Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         /// </summary>
         public readonly string? StaticConfig;
         /// <summary>
-        /// The status of private network connection
+        /// The status of the private network connection.
         /// </summary>
         public readonly string? Status;
         /// <summary>

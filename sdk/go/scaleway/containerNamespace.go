@@ -14,7 +14,7 @@ import (
 // The `ContainerNamespace` resource allows you to
 // for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
-// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
+// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 //
 // ## Example Usage
 //
@@ -79,6 +79,8 @@ type ContainerNamespace struct {
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
+	// List of tags ["tag1", "tag2", ...] attached to the container namespace
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 }
 
 // NewContainerNamespace registers a new resource with the given unique name, arguments, and options.
@@ -142,6 +144,8 @@ type containerNamespaceState struct {
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// List of tags ["tag1", "tag2", ...] attached to the container namespace
+	Tags []string `pulumi:"tags"`
 }
 
 type ContainerNamespaceState struct {
@@ -169,6 +173,8 @@ type ContainerNamespaceState struct {
 	RegistryNamespaceId pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// List of tags ["tag1", "tag2", ...] attached to the container namespace
+	Tags pulumi.StringArrayInput
 }
 
 func (ContainerNamespaceState) ElementType() reflect.Type {
@@ -194,6 +200,8 @@ type containerNamespaceArgs struct {
 	Region *string `pulumi:"region"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// List of tags ["tag1", "tag2", ...] attached to the container namespace
+	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a ContainerNamespace resource.
@@ -216,6 +224,8 @@ type ContainerNamespaceArgs struct {
 	Region pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// List of tags ["tag1", "tag2", ...] attached to the container namespace
+	Tags pulumi.StringArrayInput
 }
 
 func (ContainerNamespaceArgs) ElementType() reflect.Type {
@@ -357,6 +367,11 @@ func (o ContainerNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 // The secret environment variables of the namespace.
 func (o ContainerNamespaceOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// List of tags ["tag1", "tag2", ...] attached to the container namespace
+func (o ContainerNamespaceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 type ContainerNamespaceArrayOutput struct{ *pulumi.OutputState }

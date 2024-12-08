@@ -75,6 +75,7 @@ export interface GetFunctionNamespaceResult {
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly tags: string[];
 }
 /**
  * The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.

@@ -288,6 +288,10 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly osName!: pulumi.Output<string>;
     /**
+     * The partitioning schema in json format
+     */
+    public readonly partitioning!: pulumi.Output<string | undefined>;
+    /**
      * Password used for the installation. May be required depending on used os.
      */
     public readonly password!: pulumi.Output<string | undefined>;
@@ -357,6 +361,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["osName"] = state ? state.osName : undefined;
+            resourceInputs["partitioning"] = state ? state.partitioning : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -379,6 +384,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["offer"] = args ? args.offer : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["partitioning"] = args ? args.partitioning : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -476,6 +482,10 @@ export interface BaremetalServerState {
      */
     osName?: pulumi.Input<string>;
     /**
+     * The partitioning schema in json format
+     */
+    partitioning?: pulumi.Input<string>;
+    /**
      * Password used for the installation. May be required depending on used os.
      */
     password?: pulumi.Input<string>;
@@ -556,6 +566,10 @@ export interface BaremetalServerArgs {
      * > **Important:** Updates to `os` will reinstall the server.
      */
     os?: pulumi.Input<string>;
+    /**
+     * The partitioning schema in json format
+     */
+    partitioning?: pulumi.Input<string>;
     /**
      * Password used for the installation. May be required depending on used os.
      */

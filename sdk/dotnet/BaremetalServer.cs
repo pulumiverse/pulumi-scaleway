@@ -411,6 +411,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> OsName { get; private set; } = null!;
 
         /// <summary>
+        /// The partitioning schema in json format
+        /// </summary>
+        [Output("partitioning")]
+        public Output<string?> Partitioning { get; private set; } = null!;
+
+        /// <summary>
         /// Password used for the installation. May be required depending on used os.
         /// </summary>
         [Output("password")]
@@ -576,6 +582,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
+
+        /// <summary>
+        /// The partitioning schema in json format
+        /// </summary>
+        [Input("partitioning")]
+        public Input<string>? Partitioning { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -803,6 +815,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("osName")]
         public Input<string>? OsName { get; set; }
+
+        /// <summary>
+        /// The partitioning schema in json format
+        /// </summary>
+        [Input("partitioning")]
+        public Input<string>? Partitioning { get; set; }
 
         [Input("password")]
         private Input<string>? _password;

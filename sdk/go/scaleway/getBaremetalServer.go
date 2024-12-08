@@ -88,6 +88,7 @@ type LookupBaremetalServerResult struct {
 	OrganizationId           string                             `pulumi:"organizationId"`
 	Os                       string                             `pulumi:"os"`
 	OsName                   string                             `pulumi:"osName"`
+	Partitioning             string                             `pulumi:"partitioning"`
 	Password                 string                             `pulumi:"password"`
 	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                *string                            `pulumi:"projectId"`
@@ -213,6 +214,10 @@ func (o LookupBaremetalServerResultOutput) Os() pulumi.StringOutput {
 
 func (o LookupBaremetalServerResultOutput) OsName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.OsName }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) Partitioning() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Partitioning }).(pulumi.StringOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) Password() pulumi.StringOutput {

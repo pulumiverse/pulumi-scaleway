@@ -102,7 +102,12 @@
                 "current": "scaleway:index/containerDomain:ContainerDomain"
             },
             "scaleway_container_namespace": {
-                "current": "scaleway:index/containerNamespace:ContainerNamespace"
+                "current": "scaleway:index/containerNamespace:ContainerNamespace",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_container_token": {
                 "current": "scaleway:index/containerToken:ContainerToken"
@@ -199,7 +204,12 @@
                 "current": "scaleway:index/functionDomain:FunctionDomain"
             },
             "scaleway_function_namespace": {
-                "current": "scaleway:index/functionNamespace:FunctionNamespace"
+                "current": "scaleway:index/functionNamespace:FunctionNamespace",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_function_token": {
                 "current": "scaleway:index/functionToken:FunctionToken"
@@ -268,7 +278,12 @@
                 "current": "scaleway:index/iamSshKey:IamSshKey"
             },
             "scaleway_iam_user": {
-                "current": "scaleway:index/iamUser:IamUser"
+                "current": "scaleway:index/iamUser:IamUser",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_inference_deployment": {
                 "current": "scaleway:index/inferenceDeployment:InferenceDeployment",
@@ -1171,7 +1186,12 @@
                 "current": "scaleway:index/getContainer:getContainer"
             },
             "scaleway_container_namespace": {
-                "current": "scaleway:index/getContainerNamespace:getContainerNamespace"
+                "current": "scaleway:index/getContainerNamespace:getContainerNamespace",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_domain_record": {
                 "current": "scaleway:index/getDomainRecord:getDomainRecord",
@@ -1264,7 +1284,12 @@
                 "current": "scaleway:index/getFunction:getFunction"
             },
             "scaleway_function_namespace": {
-                "current": "scaleway:index/getFunctionNamespace:getFunctionNamespace"
+                "current": "scaleway:index/getFunctionNamespace:getFunctionNamespace",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_iam_api_key": {
                 "current": "scaleway:index/getIamApiKey:getIamApiKey"
@@ -1295,7 +1320,12 @@
                 "current": "scaleway:index/getIamSshKey:getIamSshKey"
             },
             "scaleway_iam_user": {
-                "current": "scaleway:index/getIamUser:getIamUser"
+                "current": "scaleway:index/getIamUser:getIamUser",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_instance_image": {
                 "current": "scaleway:index/getInstanceImage:getInstanceImage",

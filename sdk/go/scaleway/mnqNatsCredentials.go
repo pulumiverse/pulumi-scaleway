@@ -83,6 +83,10 @@ func NewMnqNatsCredentials(ctx *pulumi.Context,
 	if args.AccountId == nil {
 		return nil, errors.New("invalid value for required argument 'AccountId'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"file",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MnqNatsCredentials
 	err := ctx.RegisterResource("scaleway:index/mnqNatsCredentials:MnqNatsCredentials", name, args, &resource, opts...)

@@ -127,6 +127,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string RegistryNamespaceId;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]
         private GetFunctionNamespaceResult(
@@ -150,7 +151,9 @@ namespace Pulumiverse.Scaleway
 
             string registryNamespaceId,
 
-            ImmutableDictionary<string, string> secretEnvironmentVariables)
+            ImmutableDictionary<string, string> secretEnvironmentVariables,
+
+            ImmutableArray<string> tags)
         {
             Description = description;
             EnvironmentVariables = environmentVariables;
@@ -163,6 +166,7 @@ namespace Pulumiverse.Scaleway
             RegistryEndpoint = registryEndpoint;
             RegistryNamespaceId = registryNamespaceId;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            Tags = tags;
         }
     }
 }

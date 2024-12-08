@@ -28,6 +28,7 @@ class BaremetalServerArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -53,6 +54,7 @@ class BaremetalServerArgs:
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
+        :param pulumi.Input[str] partitioning: The partitioning schema in json format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -78,6 +80,8 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "options", options)
         if os is not None:
             pulumi.set(__self__, "os", os)
+        if partitioning is not None:
+            pulumi.set(__self__, "partitioning", partitioning)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_networks is not None:
@@ -188,6 +192,18 @@ class BaremetalServerArgs:
     @os.setter
     def os(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "os", value)
+
+    @property
+    @pulumi.getter
+    def partitioning(self) -> Optional[pulumi.Input[str]]:
+        """
+        The partitioning schema in json format
+        """
+        return pulumi.get(self, "partitioning")
+
+    @partitioning.setter
+    def partitioning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "partitioning", value)
 
     @property
     @pulumi.getter
@@ -329,6 +345,7 @@ class _BaremetalServerState:
                  organization_id: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  os_name: Optional[pulumi.Input[str]] = None,
+                 partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -362,6 +379,7 @@ class _BaremetalServerState:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
+        :param pulumi.Input[str] partitioning: The partitioning schema in json format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -404,6 +422,8 @@ class _BaremetalServerState:
             pulumi.set(__self__, "os", os)
         if os_name is not None:
             pulumi.set(__self__, "os_name", os_name)
+        if partitioning is not None:
+            pulumi.set(__self__, "partitioning", partitioning)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_networks is not None:
@@ -613,6 +633,18 @@ class _BaremetalServerState:
 
     @property
     @pulumi.getter
+    def partitioning(self) -> Optional[pulumi.Input[str]]:
+        """
+        The partitioning schema in json format
+        """
+        return pulumi.get(self, "partitioning")
+
+    @partitioning.setter
+    def partitioning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "partitioning", value)
+
+    @property
+    @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
         Password used for the installation. May be required depending on used os.
@@ -745,6 +777,7 @@ class BaremetalServer(pulumi.CustomResource):
                  offer: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -920,6 +953,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
+        :param pulumi.Input[str] partitioning: The partitioning schema in json format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -1109,6 +1143,7 @@ class BaremetalServer(pulumi.CustomResource):
                  offer: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -1137,6 +1172,7 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["offer"] = offer
             __props__.__dict__["options"] = options
             __props__.__dict__["os"] = os
+            __props__.__dict__["partitioning"] = partitioning
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
@@ -1182,6 +1218,7 @@ class BaremetalServer(pulumi.CustomResource):
             organization_id: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
             os_name: Optional[pulumi.Input[str]] = None,
+            partitioning: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -1220,6 +1257,7 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
+        :param pulumi.Input[str] partitioning: The partitioning schema in json format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -1251,6 +1289,7 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["os"] = os
         __props__.__dict__["os_name"] = os_name
+        __props__.__dict__["partitioning"] = partitioning
         __props__.__dict__["password"] = password
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
@@ -1388,6 +1427,14 @@ class BaremetalServer(pulumi.CustomResource):
         The name of the os.
         """
         return pulumi.get(self, "os_name")
+
+    @property
+    @pulumi.getter
+    def partitioning(self) -> pulumi.Output[Optional[str]]:
+        """
+        The partitioning schema in json format
+        """
+        return pulumi.get(self, "partitioning")
 
     @property
     @pulumi.getter

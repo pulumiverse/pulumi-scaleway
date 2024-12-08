@@ -256,6 +256,8 @@ class MnqNatsCredentials(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
             __props__.__dict__["file"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["file"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MnqNatsCredentials, __self__).__init__(
             'scaleway:index/mnqNatsCredentials:MnqNatsCredentials',
             resource_name,

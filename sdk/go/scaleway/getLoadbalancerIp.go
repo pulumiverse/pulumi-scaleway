@@ -34,6 +34,8 @@ type LookupLoadbalancerIpArgs struct {
 	IpId *string `pulumi:"ipId"`
 	// The ID of the Project the Load Balancer IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// `zone`) The zone in which the IP was reserved.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getLoadbalancerIp.
@@ -46,14 +48,14 @@ type LookupLoadbalancerIpResult struct {
 	// The ID of the associated Load Balancer, if any
 	LbId string `pulumi:"lbId"`
 	// (Defaults to provider `organizationId`) The ID of the Organization the Load Balancer IP is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
-	Region         string `pulumi:"region"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      *string `pulumi:"projectId"`
+	Region         string  `pulumi:"region"`
 	// The reverse domain associated with this IP.
 	Reverse string `pulumi:"reverse"`
 	// The tags associated with this IP.
 	Tags []string `pulumi:"tags"`
-	Zone string   `pulumi:"zone"`
+	Zone *string  `pulumi:"zone"`
 }
 
 func LookupLoadbalancerIpOutput(ctx *pulumi.Context, args LookupLoadbalancerIpOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerIpResultOutput {
@@ -85,6 +87,8 @@ type LookupLoadbalancerIpOutputArgs struct {
 	IpId pulumi.StringPtrInput `pulumi:"ipId"`
 	// The ID of the Project the Load Balancer IP is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `zone`) The zone in which the IP was reserved.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupLoadbalancerIpOutputArgs) ElementType() reflect.Type {
@@ -133,8 +137,8 @@ func (o LookupLoadbalancerIpResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupLoadbalancerIpResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupLoadbalancerIpResultOutput) Region() pulumi.StringOutput {
@@ -151,8 +155,8 @@ func (o LookupLoadbalancerIpResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupLoadbalancerIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupLoadbalancerIpResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoadbalancerIpResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupLoadbalancerIpResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLoadbalancerIpResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

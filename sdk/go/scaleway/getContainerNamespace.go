@@ -95,6 +95,7 @@ type LookupContainerNamespaceResult struct {
 	// The unique identifier of the registry namespace of the Serverless Containers namespace.
 	RegistryNamespaceId        string            `pulumi:"registryNamespaceId"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	Tags                       []string          `pulumi:"tags"`
 }
 
 func LookupContainerNamespaceOutput(ctx *pulumi.Context, args LookupContainerNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupContainerNamespaceResultOutput {
@@ -199,6 +200,10 @@ func (o LookupContainerNamespaceResultOutput) RegistryNamespaceId() pulumi.Strin
 
 func (o LookupContainerNamespaceResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupContainerNamespaceResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+func (o LookupContainerNamespaceResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContainerNamespaceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func init() {

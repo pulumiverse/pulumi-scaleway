@@ -26,7 +26,7 @@ class GetFunctionNamespaceResult:
     """
     A collection of values returned by getFunctionNamespace.
     """
-    def __init__(__self__, description=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None):
+    def __init__(__self__, description=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, tags=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -60,6 +60,9 @@ class GetFunctionNamespaceResult:
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -134,6 +137,11 @@ class GetFunctionNamespaceResult:
     def secret_environment_variables(self) -> Mapping[str, str]:
         return pulumi.get(self, "secret_environment_variables")
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        return pulumi.get(self, "tags")
+
 
 class AwaitableGetFunctionNamespaceResult(GetFunctionNamespaceResult):
     # pylint: disable=using-constant-test
@@ -151,7 +159,8 @@ class AwaitableGetFunctionNamespaceResult(GetFunctionNamespaceResult):
             region=self.region,
             registry_endpoint=self.registry_endpoint,
             registry_namespace_id=self.registry_namespace_id,
-            secret_environment_variables=self.secret_environment_variables)
+            secret_environment_variables=self.secret_environment_variables,
+            tags=self.tags)
 
 
 def get_function_namespace(name: Optional[str] = None,
@@ -189,7 +198,8 @@ def get_function_namespace(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         registry_endpoint=pulumi.get(__ret__, 'registry_endpoint'),
         registry_namespace_id=pulumi.get(__ret__, 'registry_namespace_id'),
-        secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'))
+        secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        tags=pulumi.get(__ret__, 'tags'))
 def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                   namespace_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -224,4 +234,5 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
         region=pulumi.get(__response__, 'region'),
         registry_endpoint=pulumi.get(__response__, 'registry_endpoint'),
         registry_namespace_id=pulumi.get(__response__, 'registry_namespace_id'),
-        secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables')))
+        secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        tags=pulumi.get(__response__, 'tags')))

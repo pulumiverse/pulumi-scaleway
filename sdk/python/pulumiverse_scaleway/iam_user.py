@@ -20,15 +20,19 @@ __all__ = ['IamUserArgs', 'IamUser']
 class IamUserArgs:
     def __init__(__self__, *,
                  email: pulumi.Input[str],
-                 organization_id: Optional[pulumi.Input[str]] = None):
+                 organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a IamUser resource.
         :param pulumi.Input[str] email: The email of the IAM user.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
         """
         pulumi.set(__self__, "email", email)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -54,6 +58,18 @@ class IamUserArgs:
     def organization_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization_id", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the user.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _IamUserState:
@@ -66,6 +82,7 @@ class _IamUserState:
                  mfa: Optional[pulumi.Input[bool]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
@@ -78,6 +95,7 @@ class _IamUserState:
         :param pulumi.Input[bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
         :param pulumi.Input[str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[str] updated_at: The date and time of the last update of the IAM user.
         """
@@ -97,6 +115,8 @@ class _IamUserState:
             pulumi.set(__self__, "organization_id", organization_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
@@ -200,6 +220,18 @@ class _IamUserState:
 
     @property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The tags associated with the user.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -230,6 +262,7 @@ class IamUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway IAM Users.
@@ -260,6 +293,7 @@ class IamUser(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] email: The email of the IAM user.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
         """
         ...
     @overload
@@ -309,6 +343,7 @@ class IamUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -322,6 +357,7 @@ class IamUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'email'")
             __props__.__dict__["email"] = email
             __props__.__dict__["organization_id"] = organization_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["account_root_user_id"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["deletable"] = None
@@ -348,6 +384,7 @@ class IamUser(pulumi.CustomResource):
             mfa: Optional[pulumi.Input[bool]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'IamUser':
         """
@@ -365,6 +402,7 @@ class IamUser(pulumi.CustomResource):
         :param pulumi.Input[bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
         :param pulumi.Input[str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[str] updated_at: The date and time of the last update of the IAM user.
         """
@@ -380,6 +418,7 @@ class IamUser(pulumi.CustomResource):
         __props__.__dict__["mfa"] = mfa
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         return IamUser(resource_name, opts=opts, __props__=__props__)
@@ -447,6 +486,14 @@ class IamUser(pulumi.CustomResource):
         The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The tags associated with the user.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
