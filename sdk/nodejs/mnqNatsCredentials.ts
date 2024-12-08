@@ -105,6 +105,8 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
             resourceInputs["file"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["file"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(MnqNatsCredentials.__pulumiType, name, resourceInputs, opts);
     }
 }

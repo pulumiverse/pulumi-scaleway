@@ -93,6 +93,18 @@ namespace Pulumiverse.Scaleway
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
+        [Input("tags")]
+        private List<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public List<string> Tags
+        {
+            get => _tags ?? (_tags = new List<string>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ID of the IAM user.
         /// 
@@ -122,6 +134,18 @@ namespace Pulumiverse.Scaleway
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ID of the IAM user.
         /// 
@@ -146,6 +170,10 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? OrganizationId;
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
         public readonly string? UserId;
 
         [OutputConstructor]
@@ -156,11 +184,14 @@ namespace Pulumiverse.Scaleway
 
             string? organizationId,
 
+            ImmutableArray<string> tags,
+
             string? userId)
         {
             Email = email;
             Id = id;
             OrganizationId = organizationId;
+            Tags = tags;
             UserId = userId;
         }
     }

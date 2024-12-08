@@ -27,7 +27,7 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -76,6 +76,9 @@ class GetBaremetalServerResult:
         if os_name and not isinstance(os_name, str):
             raise TypeError("Expected argument 'os_name' to be a str")
         pulumi.set(__self__, "os_name", os_name)
+        if partitioning and not isinstance(partitioning, str):
+            raise TypeError("Expected argument 'partitioning' to be a str")
+        pulumi.set(__self__, "partitioning", partitioning)
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
@@ -195,6 +198,11 @@ class GetBaremetalServerResult:
 
     @property
     @pulumi.getter
+    def partitioning(self) -> str:
+        return pulumi.get(self, "partitioning")
+
+    @property
+    @pulumi.getter
     def password(self) -> str:
         return pulumi.get(self, "password")
 
@@ -271,6 +279,7 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
             organization_id=self.organization_id,
             os=self.os,
             os_name=self.os_name,
+            partitioning=self.partitioning,
             password=self.password,
             private_networks=self.private_networks,
             project_id=self.project_id,
@@ -336,6 +345,7 @@ def get_baremetal_server(name: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         os=pulumi.get(__ret__, 'os'),
         os_name=pulumi.get(__ret__, 'os_name'),
+        partitioning=pulumi.get(__ret__, 'partitioning'),
         password=pulumi.get(__ret__, 'password'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -398,6 +408,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
         organization_id=pulumi.get(__response__, 'organization_id'),
         os=pulumi.get(__response__, 'os'),
         os_name=pulumi.get(__response__, 'os_name'),
+        partitioning=pulumi.get(__response__, 'partitioning'),
         password=pulumi.get(__response__, 'password'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),

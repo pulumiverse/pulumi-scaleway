@@ -10775,19 +10775,20 @@ func (o LoadbalancerFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput
 }
 
 type LoadbalancerPrivateNetwork struct {
-	// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
 	//
 	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
-	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+	// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 	IpamIds *string `pulumi:"ipamIds"`
-	// (Required) The ID of the Private Network to attach to.
+	// The ID of the Private Network to attach to.
+	// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+	// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig *string `pulumi:"staticConfig"`
-	// The status of private network connection
+	// The status of the private network connection.
 	Status *string `pulumi:"status"`
 	// `zone`) The zone of the Load Balancer.
 	Zone *string `pulumi:"zone"`
@@ -10805,19 +10806,20 @@ type LoadbalancerPrivateNetworkInput interface {
 }
 
 type LoadbalancerPrivateNetworkArgs struct {
-	// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
 	//
 	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
-	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+	// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 	IpamIds pulumi.StringPtrInput `pulumi:"ipamIds"`
-	// (Required) The ID of the Private Network to attach to.
+	// The ID of the Private Network to attach to.
+	// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+	// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
-	// The status of private network connection
+	// The status of the private network connection.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// `zone`) The zone of the Load Balancer.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
@@ -10874,31 +10876,32 @@ func (o LoadbalancerPrivateNetworkOutput) ToLoadbalancerPrivateNetworkOutputWith
 	return o
 }
 
-// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
 //
 // Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadbalancerPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *bool { return v.DhcpConfig }).(pulumi.BoolPtrOutput)
 }
 
-// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 func (o LoadbalancerPrivateNetworkOutput) IpamIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.IpamIds }).(pulumi.StringPtrOutput)
 }
 
-// (Required) The ID of the Private Network to attach to.
+// The ID of the Private Network to attach to.
+// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 func (o LoadbalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 //
 // Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadbalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.StaticConfig }).(pulumi.StringPtrOutput)
 }
 
-// The status of private network connection
+// The status of the private network connection.
 func (o LoadbalancerPrivateNetworkOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.Status }).(pulumi.StringPtrOutput)
 }

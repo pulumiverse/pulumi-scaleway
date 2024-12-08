@@ -1389,27 +1389,28 @@ export interface LoadbalancerFrontendAclMatch {
 
 export interface LoadbalancerPrivateNetwork {
     /**
-     * (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+     * Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
      *
      * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     dhcpConfig?: pulumi.Input<boolean>;
     /**
-     * (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+     * IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
      */
     ipamIds?: pulumi.Input<string>;
     /**
-     * (Required) The ID of the Private Network to attach to.
+     * The ID of the Private Network to attach to.
+     * - > **Important:** Updates to `privateNetwork` will recreate the attachment.
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+     * Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
      *
      * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     staticConfig?: pulumi.Input<string>;
     /**
-     * The status of private network connection
+     * The status of the private network connection.
      */
     status?: pulumi.Input<string>;
     /**

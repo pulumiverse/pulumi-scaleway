@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * The `scaleway.ContainerNamespace` resource allows you to
  * for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
- * Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
+ * Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
  *
  * ## Example Usage
  *
@@ -104,6 +104,10 @@ export class ContainerNamespace extends pulumi.CustomResource {
      * The secret environment variables of the namespace.
      */
     public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * List of tags ["tag1", "tag2", ...] attached to the container namespace
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ContainerNamespace resource with the given unique name, arguments, and options.
@@ -128,6 +132,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["registryEndpoint"] = state ? state.registryEndpoint : undefined;
             resourceInputs["registryNamespaceId"] = state ? state.registryNamespaceId : undefined;
             resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as ContainerNamespaceArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -137,6 +142,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["registryEndpoint"] = undefined /*out*/;
             resourceInputs["registryNamespaceId"] = undefined /*out*/;
@@ -196,6 +202,10 @@ export interface ContainerNamespaceState {
      * The secret environment variables of the namespace.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of tags ["tag1", "tag2", ...] attached to the container namespace
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -234,4 +244,8 @@ export interface ContainerNamespaceArgs {
      * The secret environment variables of the namespace.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of tags ["tag1", "tag2", ...] attached to the container namespace
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

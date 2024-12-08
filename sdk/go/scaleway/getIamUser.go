@@ -64,6 +64,8 @@ type LookupIamUserArgs struct {
 	// `organizationId`) The ID of the
 	// organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the user.
+	Tags []string `pulumi:"tags"`
 	// The ID of the IAM user.
 	//
 	// > **Note** You must specify at least one: `name` and/or `userId`.
@@ -76,7 +78,9 @@ type LookupIamUserResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	OrganizationId *string `pulumi:"organizationId"`
-	UserId         *string `pulumi:"userId"`
+	// The tags associated with the user.
+	Tags   []string `pulumi:"tags"`
+	UserId *string  `pulumi:"userId"`
 }
 
 func LookupIamUserOutput(ctx *pulumi.Context, args LookupIamUserOutputArgs, opts ...pulumi.InvokeOption) LookupIamUserResultOutput {
@@ -105,6 +109,8 @@ type LookupIamUserOutputArgs struct {
 	// `organizationId`) The ID of the
 	// organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// The tags associated with the user.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The ID of the IAM user.
 	//
 	// > **Note** You must specify at least one: `name` and/or `userId`.
@@ -141,6 +147,11 @@ func (o LookupIamUserResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupIamUserResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamUserResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+// The tags associated with the user.
+func (o LookupIamUserResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIamUserResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupIamUserResultOutput) UserId() pulumi.StringPtrOutput {

@@ -25,7 +25,8 @@ class ContainerNamespaceArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ContainerNamespace resource.
         :param pulumi.Input[str] description: The description of the namespace.
@@ -37,6 +38,7 @@ class ContainerNamespaceArgs:
         :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
         :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to the container namespace
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -55,6 +57,8 @@ class ContainerNamespaceArgs:
             pulumi.set(__self__, "region", region)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -143,6 +147,18 @@ class ContainerNamespaceArgs:
     def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of tags ["tag1", "tag2", ...] attached to the container namespace
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ContainerNamespaceState:
@@ -156,7 +172,8 @@ class _ContainerNamespaceState:
                  region: Optional[pulumi.Input[str]] = None,
                  registry_endpoint: Optional[pulumi.Input[str]] = None,
                  registry_namespace_id: Optional[pulumi.Input[str]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ContainerNamespace resources.
         :param pulumi.Input[str] description: The description of the namespace.
@@ -171,6 +188,7 @@ class _ContainerNamespaceState:
         :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to the container namespace
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -195,6 +213,8 @@ class _ContainerNamespaceState:
             pulumi.set(__self__, "registry_namespace_id", registry_namespace_id)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -319,6 +339,18 @@ class _ContainerNamespaceState:
     def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of tags ["tag1", "tag2", ...] attached to the container namespace
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 class ContainerNamespace(pulumi.CustomResource):
     @overload
@@ -332,12 +364,13 @@ class ContainerNamespace(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         The `ContainerNamespace` resource allows you to
         for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
-        Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
+        Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 
         ## Example Usage
 
@@ -371,6 +404,7 @@ class ContainerNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
         :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to the container namespace
         """
         ...
     @overload
@@ -382,7 +416,7 @@ class ContainerNamespace(pulumi.CustomResource):
         The `ContainerNamespace` resource allows you to
         for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
-        Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
+        Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 
         ## Example Usage
 
@@ -427,6 +461,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -443,6 +478,7 @@ class ContainerNamespace(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["registry_endpoint"] = None
             __props__.__dict__["registry_namespace_id"] = None
@@ -467,7 +503,8 @@ class ContainerNamespace(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             registry_endpoint: Optional[pulumi.Input[str]] = None,
             registry_namespace_id: Optional[pulumi.Input[str]] = None,
-            secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'ContainerNamespace':
+            secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ContainerNamespace':
         """
         Get an existing ContainerNamespace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -487,6 +524,7 @@ class ContainerNamespace(pulumi.CustomResource):
         :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to the container namespace
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -502,6 +540,7 @@ class ContainerNamespace(pulumi.CustomResource):
         __props__.__dict__["registry_endpoint"] = registry_endpoint
         __props__.__dict__["registry_namespace_id"] = registry_namespace_id
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
+        __props__.__dict__["tags"] = tags
         return ContainerNamespace(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -586,4 +625,12 @@ class ContainerNamespace(pulumi.CustomResource):
         The secret environment variables of the namespace.
         """
         return pulumi.get(self, "secret_environment_variables")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of tags ["tag1", "tag2", ...] attached to the container namespace
+        """
+        return pulumi.get(self, "tags")
 

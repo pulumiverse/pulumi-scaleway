@@ -30,6 +30,7 @@ export function getIamUser(args?: GetIamUserArgs, opts?: pulumi.InvokeOptions): 
     return pulumi.runtime.invoke("scaleway:index/getIamUser:getIamUser", {
         "email": args.email,
         "organizationId": args.organizationId,
+        "tags": args.tags,
         "userId": args.userId,
     }, opts);
 }
@@ -48,6 +49,10 @@ export interface GetIamUserArgs {
      */
     organizationId?: string;
     /**
+     * The tags associated with the user.
+     */
+    tags?: string[];
+    /**
      * The ID of the IAM user.
      *
      * > **Note** You must specify at least one: `name` and/or `userId`.
@@ -65,6 +70,10 @@ export interface GetIamUserResult {
      */
     readonly id: string;
     readonly organizationId?: string;
+    /**
+     * The tags associated with the user.
+     */
+    readonly tags?: string[];
     readonly userId?: string;
 }
 /**
@@ -93,6 +102,7 @@ export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.Invo
     return pulumi.runtime.invokeOutput("scaleway:index/getIamUser:getIamUser", {
         "email": args.email,
         "organizationId": args.organizationId,
+        "tags": args.tags,
         "userId": args.userId,
     }, opts);
 }
@@ -110,6 +120,10 @@ export interface GetIamUserOutputArgs {
      * organization the user is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The tags associated with the user.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of the IAM user.
      *

@@ -134,7 +134,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var v4 = new Scaleway.LoadbalancerIp("v4");
     /// 
-    ///     var main = new Scaleway.Loadbalancer("main", new()
+    ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
     ///     {
     ///         IpIds = new[]
     ///         {
@@ -155,53 +155,12 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ## IP ID
+    /// ## Migration
     /// 
-    /// Since v1.15.0, `ip_id` is a required field. This means that now a separate `scaleway.LoadbalancerIp` is required.
-    /// When importing, the IP needs to be imported as well as the Load Balancer.
-    /// When upgrading to v1.15.0, you will need to create a new `scaleway.LoadbalancerIp` resource and import it.
+    /// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
+    /// This change will not recreate your Load Balancer.
     /// 
-    /// For instance, if you had the following:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Loadbalancer("main", new()
-    ///     {
-    ///         Zone = "fr-par-1",
-    ///         Type = "LB-S",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// You will need to update it to:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.LoadbalancerIp("main");
-    /// 
-    ///     var mainLoadbalancer = new Scaleway.Loadbalancer("main", new()
-    ///     {
-    ///         IpId = main.Id,
-    ///         Zone = "fr-par-1",
-    ///         Type = "LB-S",
-    ///         ReleaseIp = false,
-    ///     });
-    /// 
-    /// });
-    /// ```
+    /// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details.
     /// 
     /// ## Import
     /// 
@@ -243,7 +202,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the associated Load Balancer IP. See below.
+        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
@@ -252,6 +211,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
+        /// 
+        /// &gt; **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
@@ -275,7 +236,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// List of private network to connect with your load balancer
+        /// List of private network to connect with your load balancer.
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.LoadbalancerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
@@ -388,7 +349,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the associated Load Balancer IP. See below.
+        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
@@ -400,6 +361,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
+        /// 
+        /// &gt; **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -417,7 +380,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.LoadbalancerPrivateNetworkArgs>? _privateNetworks;
 
         /// <summary>
-        /// List of private network to connect with your load balancer
+        /// List of private network to connect with your load balancer.
         /// </summary>
         public InputList<Inputs.LoadbalancerPrivateNetworkArgs> PrivateNetworks
         {
@@ -500,7 +463,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The ID of the associated Load Balancer IP. See below.
+        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
@@ -512,6 +475,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
+        /// 
+        /// &gt; **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -541,7 +506,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.LoadbalancerPrivateNetworkGetArgs>? _privateNetworks;
 
         /// <summary>
-        /// List of private network to connect with your load balancer
+        /// List of private network to connect with your load balancer.
         /// </summary>
         public InputList<Inputs.LoadbalancerPrivateNetworkGetArgs> PrivateNetworks
         {

@@ -96,6 +96,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         /// </summary>
         [Output("type")]
@@ -166,6 +172,18 @@ namespace Pulumiverse.Scaleway
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         public IamUserArgs()
         {
         }
@@ -221,6 +239,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).

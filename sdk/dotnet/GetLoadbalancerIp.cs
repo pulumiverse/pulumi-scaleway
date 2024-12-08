@@ -52,6 +52,12 @@ namespace Pulumiverse.Scaleway
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the IP was reserved.
+        /// </summary>
+        [Input("zone")]
+        public string? Zone { get; set; }
+
         public GetLoadbalancerIpArgs()
         {
         }
@@ -80,6 +86,12 @@ namespace Pulumiverse.Scaleway
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the IP was reserved.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
         public GetLoadbalancerIpInvokeArgs()
         {
         }
@@ -105,7 +117,7 @@ namespace Pulumiverse.Scaleway
         /// (Defaults to provider `organization_id`) The ID of the Organization the Load Balancer IP is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string Region;
         /// <summary>
         /// The reverse domain associated with this IP.
@@ -115,7 +127,7 @@ namespace Pulumiverse.Scaleway
         /// The tags associated with this IP.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLoadbalancerIpResult(
@@ -131,7 +143,7 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string region,
 
@@ -139,7 +151,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             IpAddress = ipAddress;

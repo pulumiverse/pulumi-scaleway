@@ -4797,11 +4797,12 @@ class LoadbalancerPrivateNetwork(dict):
                  status: Optional[str] = None,
                  zone: Optional[str] = None):
         """
-        :param str private_network_id: (Required) The ID of the Private Network to attach to.
-        :param bool dhcp_config: (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
-        :param str ipam_ids: (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        :param str static_config: (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
-        :param str status: The status of private network connection
+        :param str private_network_id: The ID of the Private Network to attach to.
+               - > **Important:** Updates to `private_network` will recreate the attachment.
+        :param bool dhcp_config: Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        :param str ipam_ids: IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        :param str static_config: Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        :param str status: The status of the private network connection.
         :param str zone: `zone`) The zone of the Load Balancer.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -4820,7 +4821,8 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> str:
         """
-        (Required) The ID of the Private Network to attach to.
+        The ID of the Private Network to attach to.
+        - > **Important:** Updates to `private_network` will recreate the attachment.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -4829,7 +4831,7 @@ class LoadbalancerPrivateNetwork(dict):
     @_utilities.deprecated("""dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def dhcp_config(self) -> Optional[bool]:
         """
-        (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+        Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
         """
         return pulumi.get(self, "dhcp_config")
 
@@ -4837,7 +4839,7 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter(name="ipamIds")
     def ipam_ids(self) -> Optional[str]:
         """
-        (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+        IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         """
         return pulumi.get(self, "ipam_ids")
 
@@ -4846,7 +4848,7 @@ class LoadbalancerPrivateNetwork(dict):
     @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def static_config(self) -> Optional[str]:
         """
-        (Deprecated) Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
         """
         return pulumi.get(self, "static_config")
 
@@ -4854,7 +4856,7 @@ class LoadbalancerPrivateNetwork(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
-        The status of private network connection
+        The status of the private network connection.
         """
         return pulumi.get(self, "status")
 

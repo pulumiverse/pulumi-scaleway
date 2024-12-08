@@ -102,7 +102,7 @@ class GetLoadbalancerIpResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -128,7 +128,7 @@ class GetLoadbalancerIpResult:
 
     @property
     @pulumi.getter
-    def zone(self) -> str:
+    def zone(self) -> Optional[str]:
         return pulumi.get(self, "zone")
 
 
@@ -154,6 +154,7 @@ class AwaitableGetLoadbalancerIpResult(GetLoadbalancerIpResult):
 def get_loadbalancer_ip(ip_address: Optional[str] = None,
                         ip_id: Optional[str] = None,
                         project_id: Optional[str] = None,
+                        zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadbalancerIpResult:
     """
     Gets information about a Load Balancer IP address.
@@ -166,11 +167,13 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
     :param str ip_id: The IP ID.
            Only one of `ip_address` and `ip_id` should be specified.
     :param str project_id: The ID of the Project the Load Balancer IP is associated with.
+    :param str zone: `zone`) The zone in which the IP was reserved.
     """
     __args__ = dict()
     __args__['ipAddress'] = ip_address
     __args__['ipId'] = ip_id
     __args__['projectId'] = project_id
+    __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLoadbalancerIp:getLoadbalancerIp', __args__, opts=opts, typ=GetLoadbalancerIpResult).value
 
@@ -189,6 +192,7 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
 def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                                ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
     """
     Gets information about a Load Balancer IP address.
@@ -201,11 +205,13 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
     :param str ip_id: The IP ID.
            Only one of `ip_address` and `ip_id` should be specified.
     :param str project_id: The ID of the Project the Load Balancer IP is associated with.
+    :param str zone: `zone`) The zone in which the IP was reserved.
     """
     __args__ = dict()
     __args__['ipAddress'] = ip_address
     __args__['ipId'] = ip_id
     __args__['projectId'] = project_id
+    __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLoadbalancerIp:getLoadbalancerIp', __args__, opts=opts, typ=GetLoadbalancerIpResult)
     return __ret__.apply(lambda __response__: GetLoadbalancerIpResult(

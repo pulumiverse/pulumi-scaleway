@@ -340,10 +340,8 @@ import (
 // - `status` The private NIC state.
 // - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
 //
-// > **Important:**
-//
-// - You can only attach an instance in the same zone as a private network.
-// - Instance supports maximum 8 different private networks.
+// > **Important:** You can only attach an instance in the same zone as a private network.
+// **Important:** Instance supports a maximum of 8 different private networks.
 //
 // ## Import
 //
@@ -440,7 +438,7 @@ type InstanceServer struct {
 	//
 	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled pulumi.BoolOutput `pulumi:"routedIpEnabled"`
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	// The security group the server is attached to
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrOutput `pulumi:"state"`
@@ -580,7 +578,7 @@ type instanceServerState struct {
 	//
 	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	// The security group the server is attached to
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
@@ -688,7 +686,7 @@ type InstanceServerState struct {
 	//
 	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled pulumi.BoolPtrInput
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	// The security group the server is attached to
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
@@ -775,7 +773,7 @@ type instanceServerArgs struct {
 	//
 	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	// The security group the server is attached to
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
@@ -859,7 +857,7 @@ type InstanceServerArgs struct {
 	//
 	// Deprecated: Routed IP is the default configuration, it should always be true
 	RoutedIpEnabled pulumi.BoolPtrInput
-	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	// The security group the server is attached to
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
@@ -1125,7 +1123,7 @@ func (o InstanceServerOutput) RoutedIpEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
-// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+// The security group the server is attached to
 func (o InstanceServerOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }

@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     /// The `scaleway.ContainerNamespace` resource allows you to
     /// for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
-    /// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-a-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
+    /// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -109,6 +109,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
+
+        /// <summary>
+        /// List of tags ["tag1", "tag2", ...] attached to the container namespace
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -221,6 +227,18 @@ namespace Pulumiverse.Scaleway
             }
         }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// List of tags ["tag1", "tag2", ...] attached to the container namespace
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         public ContainerNamespaceArgs()
         {
         }
@@ -305,6 +323,18 @@ namespace Pulumiverse.Scaleway
                 var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
             }
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// List of tags ["tag1", "tag2", ...] attached to the container namespace
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
         }
 
         public ContainerNamespaceState()

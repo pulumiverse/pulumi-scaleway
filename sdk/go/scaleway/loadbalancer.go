@@ -167,7 +167,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//			_, err = scaleway.NewLoadbalancer(ctx, "lb01", &scaleway.LoadbalancerArgs{
 //				IpIds: pulumi.StringArray{
 //					v4.ID(),
 //				},
@@ -189,71 +189,12 @@ import (
 //
 // ```
 //
-// ## IP ID
+// ## Migration
 //
-// Since v1.15.0, `ipId` is a required field. This means that now a separate `LoadbalancerIp` is required.
-// When importing, the IP needs to be imported as well as the Load Balancer.
-// When upgrading to v1.15.0, you will need to create a new `LoadbalancerIp` resource and import it.
+// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
+// This change will not recreate your Load Balancer.
 //
-// For instance, if you had the following:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
-//				Zone: pulumi.String("fr-par-1"),
-//				Type: pulumi.String("LB-S"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// You will need to update it to:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewLoadbalancerIp(ctx, "main", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
-//				IpId:      main.ID(),
-//				Zone:      pulumi.String("fr-par-1"),
-//				Type:      pulumi.String("LB-S"),
-//				ReleaseIp: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details.
 //
 // ## Import
 //
@@ -277,13 +218,15 @@ type Loadbalancer struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The Load Balancer public IPv4 address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// The ID of the associated Load Balancer IP. See below.
+	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId pulumi.StringOutput `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
+	//
+	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The Load Balancer public IPv6 address.
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
@@ -291,7 +234,7 @@ type Loadbalancer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// List of private network to connect with your load balancer
+	// List of private network to connect with your load balancer.
 	PrivateNetworks LoadbalancerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -352,13 +295,15 @@ type loadbalancerState struct {
 	Description *string `pulumi:"description"`
 	// The Load Balancer public IPv4 address.
 	IpAddress *string `pulumi:"ipAddress"`
-	// The ID of the associated Load Balancer IP. See below.
+	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId *string `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
+	//
+	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
 	IpIds []string `pulumi:"ipIds"`
 	// The Load Balancer public IPv6 address.
 	Ipv6Address *string `pulumi:"ipv6Address"`
@@ -366,7 +311,7 @@ type loadbalancerState struct {
 	Name *string `pulumi:"name"`
 	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// List of private network to connect with your load balancer
+	// List of private network to connect with your load balancer.
 	PrivateNetworks []LoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -395,13 +340,15 @@ type LoadbalancerState struct {
 	Description pulumi.StringPtrInput
 	// The Load Balancer public IPv4 address.
 	IpAddress pulumi.StringPtrInput
-	// The ID of the associated Load Balancer IP. See below.
+	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId pulumi.StringPtrInput
 	// The List of IP IDs to attach to the Load Balancer.
+	//
+	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
 	IpIds pulumi.StringArrayInput
 	// The Load Balancer public IPv6 address.
 	Ipv6Address pulumi.StringPtrInput
@@ -409,7 +356,7 @@ type LoadbalancerState struct {
 	Name pulumi.StringPtrInput
 	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// List of private network to connect with your load balancer
+	// List of private network to connect with your load balancer.
 	PrivateNetworks LoadbalancerPrivateNetworkArrayInput
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -440,17 +387,19 @@ type loadbalancerArgs struct {
 	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
 	// The description of the Load Balancer.
 	Description *string `pulumi:"description"`
-	// The ID of the associated Load Balancer IP. See below.
+	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId *string `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
+	//
+	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
 	IpIds []string `pulumi:"ipIds"`
 	// The name of the Load Balancer.
 	Name *string `pulumi:"name"`
-	// List of private network to connect with your load balancer
+	// List of private network to connect with your load balancer.
 	PrivateNetworks []LoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -476,17 +425,19 @@ type LoadbalancerArgs struct {
 	AssignFlexibleIpv6 pulumi.BoolPtrInput
 	// The description of the Load Balancer.
 	Description pulumi.StringPtrInput
-	// The ID of the associated Load Balancer IP. See below.
+	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
 	//
 	// Deprecated: Please use ip_ids
 	IpId pulumi.StringPtrInput
 	// The List of IP IDs to attach to the Load Balancer.
+	//
+	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
 	IpIds pulumi.StringArrayInput
 	// The name of the Load Balancer.
 	Name pulumi.StringPtrInput
-	// List of private network to connect with your load balancer
+	// List of private network to connect with your load balancer.
 	PrivateNetworks LoadbalancerPrivateNetworkArrayInput
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -611,7 +562,7 @@ func (o LoadbalancerOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The ID of the associated Load Balancer IP. See below.
+// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 //
 // > **Important:** Updates to `ipId` will recreate the Load Balancer.
 //
@@ -621,6 +572,8 @@ func (o LoadbalancerOutput) IpId() pulumi.StringOutput {
 }
 
 // The List of IP IDs to attach to the Load Balancer.
+//
+// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
 func (o LoadbalancerOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
@@ -640,7 +593,7 @@ func (o LoadbalancerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// List of private network to connect with your load balancer
+// List of private network to connect with your load balancer.
 func (o LoadbalancerOutput) PrivateNetworks() LoadbalancerPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) LoadbalancerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(LoadbalancerPrivateNetworkArrayOutput)
 }

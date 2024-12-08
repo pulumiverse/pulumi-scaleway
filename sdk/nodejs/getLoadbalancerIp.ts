@@ -16,6 +16,7 @@ export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.In
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
         "projectId": args.projectId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -37,6 +38,10 @@ export interface GetLoadbalancerIpArgs {
      * The ID of the Project the Load Balancer IP is associated with.
      */
     projectId?: string;
+    /**
+     * `zone`) The zone in which the IP was reserved.
+     */
+    zone?: string;
 }
 
 /**
@@ -58,7 +63,7 @@ export interface GetLoadbalancerIpResult {
      * (Defaults to provider `organizationId`) The ID of the Organization the Load Balancer IP is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region: string;
     /**
      * The reverse domain associated with this IP.
@@ -68,7 +73,7 @@ export interface GetLoadbalancerIpResult {
      * The tags associated with this IP.
      */
     readonly tags: string[];
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about a Load Balancer IP address.
@@ -82,6 +87,7 @@ export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
         "projectId": args.projectId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -103,4 +109,8 @@ export interface GetLoadbalancerIpOutputArgs {
      * The ID of the Project the Load Balancer IP is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the IP was reserved.
+     */
+    zone?: pulumi.Input<string>;
 }

@@ -187,10 +187,8 @@ import * as utilities from "./utilities";
  * - `status` The private NIC state.
  * - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
  *
- * > **Important:**
- *
- * - You can only attach an instance in the same zone as a private network.
- * - Instance supports maximum 8 different private networks.
+ * > **Important:** You can only attach an instance in the same zone as a private network.
+ * **Important:** Instance supports a maximum of 8 different private networks.
  *
  * ## Import
  *
@@ -363,7 +361,7 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly routedIpEnabled!: pulumi.Output<boolean>;
     /**
-     * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+     * The security group the server is attached to
      */
     public readonly securityGroupId!: pulumi.Output<string>;
     /**
@@ -618,7 +616,7 @@ export interface InstanceServerState {
      */
     routedIpEnabled?: pulumi.Input<boolean>;
     /**
-     * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+     * The security group the server is attached to
      */
     securityGroupId?: pulumi.Input<string>;
     /**
@@ -751,7 +749,7 @@ export interface InstanceServerArgs {
      */
     routedIpEnabled?: pulumi.Input<boolean>;
     /**
-     * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+     * The security group the server is attached to
      */
     securityGroupId?: pulumi.Input<string>;
     /**

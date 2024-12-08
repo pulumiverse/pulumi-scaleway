@@ -26,7 +26,7 @@ class GetIamUserResult:
     """
     A collection of values returned by getIamUser.
     """
-    def __init__(__self__, email=None, id=None, organization_id=None, user_id=None):
+    def __init__(__self__, email=None, id=None, organization_id=None, tags=None, user_id=None):
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         pulumi.set(__self__, "email", email)
@@ -36,6 +36,9 @@ class GetIamUserResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if user_id and not isinstance(user_id, str):
             raise TypeError("Expected argument 'user_id' to be a str")
         pulumi.set(__self__, "user_id", user_id)
@@ -59,6 +62,14 @@ class GetIamUserResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[str]]:
+        """
+        The tags associated with the user.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[str]:
         return pulumi.get(self, "user_id")
@@ -73,11 +84,13 @@ class AwaitableGetIamUserResult(GetIamUserResult):
             email=self.email,
             id=self.id,
             organization_id=self.organization_id,
+            tags=self.tags,
             user_id=self.user_id)
 
 
 def get_iam_user(email: Optional[str] = None,
                  organization_id: Optional[str] = None,
+                 tags: Optional[Sequence[str]] = None,
                  user_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamUserResult:
     """
@@ -100,6 +113,7 @@ def get_iam_user(email: Optional[str] = None,
     :param str email: The email address of the IAM user.
     :param str organization_id: `organization_id`) The ID of the
            organization the user is associated with.
+    :param Sequence[str] tags: The tags associated with the user.
     :param str user_id: The ID of the IAM user.
            
            > **Note** You must specify at least one: `name` and/or `user_id`.
@@ -107,6 +121,7 @@ def get_iam_user(email: Optional[str] = None,
     __args__ = dict()
     __args__['email'] = email
     __args__['organizationId'] = organization_id
+    __args__['tags'] = tags
     __args__['userId'] = user_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getIamUser:getIamUser', __args__, opts=opts, typ=GetIamUserResult).value
@@ -115,9 +130,11 @@ def get_iam_user(email: Optional[str] = None,
         email=pulumi.get(__ret__, 'email'),
         id=pulumi.get(__ret__, 'id'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         user_id=pulumi.get(__ret__, 'user_id'))
 def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                         organization_id: Optional[pulumi.Input[Optional[str]]] = None,
+                        tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                         user_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamUserResult]:
     """
@@ -140,6 +157,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     :param str email: The email address of the IAM user.
     :param str organization_id: `organization_id`) The ID of the
            organization the user is associated with.
+    :param Sequence[str] tags: The tags associated with the user.
     :param str user_id: The ID of the IAM user.
            
            > **Note** You must specify at least one: `name` and/or `user_id`.
@@ -147,6 +165,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['email'] = email
     __args__['organizationId'] = organization_id
+    __args__['tags'] = tags
     __args__['userId'] = user_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamUser:getIamUser', __args__, opts=opts, typ=GetIamUserResult)
@@ -154,4 +173,5 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
         email=pulumi.get(__response__, 'email'),
         id=pulumi.get(__response__, 'id'),
         organization_id=pulumi.get(__response__, 'organization_id'),
+        tags=pulumi.get(__response__, 'tags'),
         user_id=pulumi.get(__response__, 'user_id')))
