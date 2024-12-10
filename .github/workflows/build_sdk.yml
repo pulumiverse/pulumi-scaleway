@@ -44,7 +44,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Cache examples generation
-        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
         with:
           path: |
             .pulumi/examples-cache
@@ -55,8 +55,8 @@ jobs:
           tools: pulumictl, pulumicli, ${{ matrix.language }}
       - name: Prepare local workspace
         run: make prepare_local_workspace
-      - name: Download bin
-        uses: ./.github/actions/download-bin
+      - name: Download tfgen
+        uses: ./.github/actions/download-tfgen
       - name: Update path
         run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
       - name: Restore makefile progress
