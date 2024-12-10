@@ -15,6 +15,7 @@ jobs:
     env:
       PROVIDER_VERSION: ${{ inputs.version }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SIGN: ${{ secrets.AZURE_SIGNING_KEY_VAULT_URI != '' }}
     strategy:
       fail-fast: true
       matrix:
@@ -60,7 +61,7 @@ jobs:
         run: make bin/${{ matrix.platform.os }}-${{ matrix.platform.arch }}/pulumi-resource-scaleway.exe
 
       - name: Sign windows provider
-        if: matrix.platform.os == 'windows'
+        if: matrix.platform.os == 'windows' && env.SIGN == 'true'
         run: |
           az login --service-principal \
             -u ${{ secrets.AZURE_SIGNING_CLIENT_ID }} \
