@@ -73,7 +73,7 @@ export interface GetDatabaseAclResult {
  * });
  * ```
  */
-export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseAclResult> {
+export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,

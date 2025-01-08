@@ -96,7 +96,7 @@ export interface GetIamGroupResult {
  * });
  * ```
  */
-export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamGroupResult> {
+export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamGroupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamGroup:getIamGroup", {

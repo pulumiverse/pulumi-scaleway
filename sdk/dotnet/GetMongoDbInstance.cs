@@ -27,6 +27,14 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetMongoDbInstanceResult> Invoke(GetMongoDbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongoDbInstanceResult>("scaleway:index/getMongoDbInstance:getMongoDbInstance", args ?? new GetMongoDbInstanceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a MongoDB® Instance.
+        /// 
+        /// For further information refer to the Managed Databases for MongoDB® [API documentation](https://developers.scaleway.com/en/products/mongodb/api/)
+        /// </summary>
+        public static Output<GetMongoDbInstanceResult> Invoke(GetMongoDbInstanceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMongoDbInstanceResult>("scaleway:index/getMongoDbInstance:getMongoDbInstance", args ?? new GetMongoDbInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

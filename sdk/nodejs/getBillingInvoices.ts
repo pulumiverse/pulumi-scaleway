@@ -60,7 +60,7 @@ export interface GetBillingInvoicesResult {
 /**
  * Gets information about your Scaleway invoices.
  */
-export function getBillingInvoicesOutput(args?: GetBillingInvoicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingInvoicesResult> {
+export function getBillingInvoicesOutput(args?: GetBillingInvoicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBillingInvoicesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBillingInvoices:getBillingInvoices", {

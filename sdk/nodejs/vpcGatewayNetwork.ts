@@ -174,7 +174,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public readonly dhcpId!: pulumi.Output<string | undefined>;
     /**
-     * WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+     * Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      */
     public readonly enableDhcp!: pulumi.Output<boolean | undefined>;
     /**
@@ -284,7 +284,7 @@ export interface VpcGatewayNetworkState {
      */
     dhcpId?: pulumi.Input<string>;
     /**
-     * WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+     * Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      */
     enableDhcp?: pulumi.Input<boolean>;
     /**
@@ -338,7 +338,7 @@ export interface VpcGatewayNetworkArgs {
      */
     dhcpId?: pulumi.Input<string>;
     /**
-     * WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+     * Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      */
     enableDhcp?: pulumi.Input<boolean>;
     /**

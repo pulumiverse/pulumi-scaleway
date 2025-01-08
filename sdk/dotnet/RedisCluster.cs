@@ -153,8 +153,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The number of nodes in the Redis™ cluster.
         /// 
-        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-        /// which is minimum 3 (1 main node + 2 secondary nodes)
+        /// &gt; **Important:**
+        /// 
+        /// - Cluster_size = 1 for Standalone mode (single node).
+        /// 
+        /// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+        /// 
+        /// - Cluster_size &gt;= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
         /// 
         /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
         /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -329,8 +334,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The number of nodes in the Redis™ cluster.
         /// 
-        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-        /// which is minimum 3 (1 main node + 2 secondary nodes)
+        /// &gt; **Important:**
+        /// 
+        /// - Cluster_size = 1 for Standalone mode (single node).
+        /// 
+        /// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+        /// 
+        /// - Cluster_size &gt;= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
         /// 
         /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
         /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -484,8 +494,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The number of nodes in the Redis™ cluster.
         /// 
-        /// &gt; **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-        /// which is minimum 3 (1 main node + 2 secondary nodes)
+        /// &gt; **Important:**
+        /// 
+        /// - Cluster_size = 1 for Standalone mode (single node).
+        /// 
+        /// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+        /// 
+        /// - Cluster_size &gt;= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
         /// 
         /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
         /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller

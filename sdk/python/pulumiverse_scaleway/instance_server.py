@@ -533,7 +533,7 @@ class _InstanceServerState:
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
-        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
+        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -608,6 +608,9 @@ class _InstanceServerState:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
         if placement_group_policy_respected is not None:
             pulumi.set(__self__, "placement_group_policy_respected", placement_group_policy_respected)
+        if private_ip is not None:
+            warnings.warn("""Use ipam_ip datasource instead to fetch your server's IP in your private network.""", DeprecationWarning)
+            pulumi.log.warn("""private_ip is deprecated: Use ipam_ip datasource instead to fetch your server's IP in your private network.""")
         if private_ip is not None:
             pulumi.set(__self__, "private_ip", private_ip)
         if private_networks is not None:
@@ -861,9 +864,10 @@ class _InstanceServerState:
 
     @property
     @pulumi.getter(name="privateIp")
+    @_utilities.deprecated("""Use ipam_ip datasource instead to fetch your server's IP in your private network.""")
     def private_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The Scaleway internal IP address of the server.
+        The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         """
         return pulumi.get(self, "private_ip")
 
@@ -1656,7 +1660,7 @@ class InstanceServer(pulumi.CustomResource):
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
-        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server.
+        :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -1874,9 +1878,10 @@ class InstanceServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateIp")
+    @_utilities.deprecated("""Use ipam_ip datasource instead to fetch your server's IP in your private network.""")
     def private_ip(self) -> pulumi.Output[str]:
         """
-        The Scaleway internal IP address of the server.
+        The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         """
         return pulumi.get(self, "private_ip")
 

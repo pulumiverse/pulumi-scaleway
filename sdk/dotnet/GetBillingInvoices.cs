@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetBillingInvoicesResult> Invoke(GetBillingInvoicesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBillingInvoicesResult>("scaleway:index/getBillingInvoices:getBillingInvoices", args ?? new GetBillingInvoicesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about your Scaleway invoices.
+        /// </summary>
+        public static Output<GetBillingInvoicesResult> Invoke(GetBillingInvoicesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBillingInvoicesResult>("scaleway:index/getBillingInvoices:getBillingInvoices", args ?? new GetBillingInvoicesInvokeArgs(), options.WithDefaults());
     }
 
 

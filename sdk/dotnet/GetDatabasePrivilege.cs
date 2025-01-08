@@ -65,6 +65,33 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetDatabasePrivilegeResult> Invoke(GetDatabasePrivilegeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about the privileges in a database.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
+        ///     var main = Scaleway.GetDatabasePrivilege.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-111111111111",
+        ///         UserName = "my-user",
+        ///         DatabaseName = "my-database",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDatabasePrivilegeResult> Invoke(GetDatabasePrivilegeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabasePrivilegeResult>("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args ?? new GetDatabasePrivilegeInvokeArgs(), options.WithDefaults());
     }
 
 

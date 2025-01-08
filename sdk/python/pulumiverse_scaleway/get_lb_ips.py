@@ -166,7 +166,7 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
                       tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                       zone: Optional[pulumi.Input[Optional[str]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbIpsResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbIpsResult]:
     """
     Gets information about multiple Load Balancer IP addresses.
 
@@ -185,7 +185,7 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     __args__['projectId'] = project_id
     __args__['tags'] = tags
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbIps:getLbIps', __args__, opts=opts, typ=GetLbIpsResult)
     return __ret__.apply(lambda __response__: GetLbIpsResult(
         id=pulumi.get(__response__, 'id'),

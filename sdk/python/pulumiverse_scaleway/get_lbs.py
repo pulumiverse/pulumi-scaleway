@@ -158,7 +158,7 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
                    tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                    zone: Optional[pulumi.Input[Optional[str]]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbsResult]:
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbsResult]:
     """
     Gets information about multiple Load Balancers.
 
@@ -175,7 +175,7 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['projectId'] = project_id
     __args__['tags'] = tags
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbs:getLbs', __args__, opts=opts, typ=GetLbsResult)
     return __ret__.apply(lambda __response__: GetLbsResult(
         id=pulumi.get(__response__, 'id'),

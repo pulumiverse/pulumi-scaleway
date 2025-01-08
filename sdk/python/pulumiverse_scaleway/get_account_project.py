@@ -139,7 +139,7 @@ def get_account_project(name: Optional[str] = None,
 def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountProjectResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountProjectResult]:
     """
     The `AccountProject` data source is used to retrieve information about a Scaleway project.
 
@@ -158,7 +158,7 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     __args__['name'] = name
     __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAccountProject:getAccountProject', __args__, opts=opts, typ=GetAccountProjectResult)
     return __ret__.apply(lambda __response__: GetAccountProjectResult(
         created_at=pulumi.get(__response__, 'created_at'),

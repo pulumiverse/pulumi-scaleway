@@ -27,6 +27,14 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetLbsResult> Invoke(GetLbsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbsResult>("scaleway:index/getLbs:getLbs", args ?? new GetLbsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Load Balancers.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+        /// </summary>
+        public static Output<GetLbsResult> Invoke(GetLbsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbsResult>("scaleway:index/getLbs:getLbs", args ?? new GetLbsInvokeArgs(), options.WithDefaults());
     }
 
 

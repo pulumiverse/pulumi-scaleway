@@ -88,21 +88,11 @@ type LookupInstanceSnapshotResult struct {
 }
 
 func LookupInstanceSnapshotOutput(ctx *pulumi.Context, args LookupInstanceSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceSnapshotResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupInstanceSnapshotResultOutput, error) {
 			args := v.(LookupInstanceSnapshotArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupInstanceSnapshotResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args, &rv, "", opts...)
-			if err != nil {
-				return LookupInstanceSnapshotResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupInstanceSnapshotResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupInstanceSnapshotResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args, LookupInstanceSnapshotResultOutput{}, options).(LookupInstanceSnapshotResultOutput), nil
 		}).(LookupInstanceSnapshotResultOutput)
 }
 

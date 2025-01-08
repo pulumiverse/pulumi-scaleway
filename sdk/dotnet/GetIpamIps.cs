@@ -183,6 +183,92 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIpamIpsResult> Invoke(GetIpamIpsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpamIpsResult>("scaleway:index/getIpamIps:getIpamIps", args ?? new GetIpamIpsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
+        /// 
+        /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+        /// 
+        /// ## Examples
+        /// 
+        /// ### By tag
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byTag = Scaleway.GetIpamIps.Invoke(new()
+        ///     {
+        ///         Tags = new[]
+        ///         {
+        ///             "tag",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By type and resource
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+        ///     {
+        ///         Name = "my vpc",
+        ///     });
+        /// 
+        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     {
+        ///         VpcId = vpc01.Id,
+        ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+        ///         {
+        ///             Subnet = "172.16.32.0/22",
+        ///         },
+        ///     });
+        /// 
+        ///     var redis01 = new Scaleway.RedisCluster("redis01", new()
+        ///     {
+        ///         Name = "my_redis_cluster",
+        ///         Version = "7.0.5",
+        ///         NodeType = "RED1-XS",
+        ///         UserName = "my_initial_user",
+        ///         Password = "thiZ_is_v&amp;ry_s3cret",
+        ///         ClusterSize = 3,
+        ///         PrivateNetworks = new[]
+        ///         {
+        ///             new Scaleway.Inputs.RedisClusterPrivateNetworkArgs
+        ///             {
+        ///                 Id = pn01.Id,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var byTypeAndResource = Scaleway.GetIpamIps.Invoke(new()
+        ///     {
+        ///         Type = "ipv4",
+        ///         Resource = new Scaleway.Inputs.GetIpamIpsResourceInputArgs
+        ///         {
+        ///             Id = redis01.Id,
+        ///             Type = "redis_cluster",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIpamIpsResult> Invoke(GetIpamIpsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpamIpsResult>("scaleway:index/getIpamIps:getIpamIps", args ?? new GetIpamIpsInvokeArgs(), options.WithDefaults());
     }
 
 

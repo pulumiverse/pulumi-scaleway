@@ -167,6 +167,84 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetSecretVersionResult> Invoke(GetSecretVersionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+        /// 
+        /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Use Secret Manager
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - create a secret named `fooii`
+        /// - create a new version of `fooii` containing data (`your_secret`)
+        /// - retrieve the secret version specified by the secret ID and the desired version
+        /// - retrieve the secret version specified by the secret name and the desired version
+        /// 
+        /// The output blocks display the sensitive data contained in your secret version.
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Create a secret named fooii
+        ///     var main = new Scaleway.Secret("main", new()
+        ///     {
+        ///         Name = "fooii",
+        ///         Description = "barr",
+        ///     });
+        /// 
+        ///     // Create a version of fooii containing data
+        ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
+        ///     {
+        ///         Description = "your description",
+        ///         SecretId = main.Id,
+        ///         Data = "your_secret",
+        ///     });
+        /// 
+        ///     // Retrieve the secret version specified by the secret ID and the desired version
+        ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
+        ///     {
+        ///         SecretId = main.Id,
+        ///         Revision = "1",
+        ///     });
+        /// 
+        ///     // Retrieve the secret version specified by the secret name and the desired version
+        ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
+        ///     {
+        ///         SecretName = main.Name,
+        ///         Revision = "1",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ## Data information
+        /// 
+        /// Note: This data source provides you with access to the secret payload, which is encoded in base64.
+        /// 
+        /// Keep in mind that this is a sensitive attribute. For more information,
+        /// see Sensitive Data in State.
+        /// 
+        /// &gt; **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+        /// </summary>
+        public static Output<GetSecretVersionResult> Invoke(GetSecretVersionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());
     }
 
 

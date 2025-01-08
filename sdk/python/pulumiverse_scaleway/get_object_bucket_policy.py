@@ -128,7 +128,7 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
 def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
                                     project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketPolicyResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectBucketPolicyResult]:
     """
     The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
@@ -153,7 +153,7 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
     __args__['bucket'] = bucket
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy', __args__, opts=opts, typ=GetObjectBucketPolicyResult)
     return __ret__.apply(lambda __response__: GetObjectBucketPolicyResult(
         bucket=pulumi.get(__response__, 'bucket'),

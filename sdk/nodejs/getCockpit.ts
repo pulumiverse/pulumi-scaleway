@@ -116,7 +116,7 @@ export interface GetCockpitResult {
  * });
  * ```
  */
-export function getCockpitOutput(args?: GetCockpitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCockpitResult> {
+export function getCockpitOutput(args?: GetCockpitOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCockpitResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getCockpit:getCockpit", {

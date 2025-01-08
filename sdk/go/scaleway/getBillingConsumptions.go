@@ -42,21 +42,11 @@ type GetBillingConsumptionsResult struct {
 }
 
 func GetBillingConsumptionsOutput(ctx *pulumi.Context, args GetBillingConsumptionsOutputArgs, opts ...pulumi.InvokeOption) GetBillingConsumptionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetBillingConsumptionsResultOutput, error) {
 			args := v.(GetBillingConsumptionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetBillingConsumptionsResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getBillingConsumptions:getBillingConsumptions", args, &rv, "", opts...)
-			if err != nil {
-				return GetBillingConsumptionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetBillingConsumptionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetBillingConsumptionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getBillingConsumptions:getBillingConsumptions", args, GetBillingConsumptionsResultOutput{}, options).(GetBillingConsumptionsResultOutput), nil
 		}).(GetBillingConsumptionsResultOutput)
 }
 

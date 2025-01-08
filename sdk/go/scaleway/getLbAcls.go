@@ -85,21 +85,11 @@ type GetLbAclsResult struct {
 }
 
 func GetLbAclsOutput(ctx *pulumi.Context, args GetLbAclsOutputArgs, opts ...pulumi.InvokeOption) GetLbAclsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetLbAclsResultOutput, error) {
 			args := v.(GetLbAclsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetLbAclsResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbAcls:getLbAcls", args, &rv, "", opts...)
-			if err != nil {
-				return GetLbAclsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetLbAclsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetLbAclsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getLbAcls:getLbAcls", args, GetLbAclsResultOutput{}, options).(GetLbAclsResultOutput), nil
 		}).(GetLbAclsResultOutput)
 }
 

@@ -202,7 +202,7 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                               region: Optional[pulumi.Input[Optional[str]]] = None,
                               tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryImageResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryImageResult]:
     """
     Gets information about a Container Registry image.
 
@@ -223,7 +223,7 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
     __args__['projectId'] = project_id
     __args__['region'] = region
     __args__['tags'] = tags
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getRegistryImage:getRegistryImage', __args__, opts=opts, typ=GetRegistryImageResult)
     return __ret__.apply(lambda __response__: GetRegistryImageResult(
         id=pulumi.get(__response__, 'id'),

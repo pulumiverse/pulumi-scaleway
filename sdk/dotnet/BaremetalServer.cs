@@ -301,6 +301,54 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With custom partitioning
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var configCustomPartitioning = config.Get("configCustomPartitioning") ?? "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912},{\"label\":\"swap\",\"number\":2,\"size\":4294967296},{\"label\":\"boot\",\"number\":3,\"size\":1073741824},{\"label\":\"root\",\"number\":4,\"size\":1017827045376}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"swap\",\"number\":1,\"size\":4294967296},{\"label\":\"boot\",\"number\":2,\"size\":1073741824},{\"label\":\"root\",\"number\":3,\"size\":1017827045376}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/md0\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/md1\",\"format\":\"ext4\",\"mountpoint\":\"/\"}],\"raids\":[{\"devices\":[\"/dev/nvme0n1p3\",\"/dev/nvme1n1p2\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md0\"},{\"devices\":[\"/dev/nvme0n1p4\",\"/dev/nvme1n1p3\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md1\"}],\"zfs\":{\"pools\":[]}}";
+    ///     var myOs = Scaleway.GetBaremetalOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.IamSshKey("main", new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     {
+    ///         Name = "%s",
+    ///         Zone = "fr-par-1",
+    ///         Description = "test a description",
+    ///         Offer = "EM-B220E-NVME",
+    ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
+    ///         Partitioning = configCustomPartitioning,
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform-test",
+    ///             "scaleway_baremetal_server",
+    ///             "minimal",
+    ///         },
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             main.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -411,7 +459,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OsName { get; private set; } = null!;
 
         /// <summary>
-        /// The partitioning schema in json format
+        /// The partitioning schema in JSON format
         /// </summary>
         [Output("partitioning")]
         public Output<string?> Partitioning { get; private set; } = null!;
@@ -584,7 +632,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Os { get; set; }
 
         /// <summary>
-        /// The partitioning schema in json format
+        /// The partitioning schema in JSON format
         /// </summary>
         [Input("partitioning")]
         public Input<string>? Partitioning { get; set; }
@@ -817,7 +865,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OsName { get; set; }
 
         /// <summary>
-        /// The partitioning schema in json format
+        /// The partitioning schema in JSON format
         /// </summary>
         [Input("partitioning")]
         public Input<string>? Partitioning { get; set; }

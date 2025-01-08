@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIamSshKeyResult> Invoke(GetIamSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamSshKeyResult>("scaleway:index/getIamSshKey:getIamSshKey", args ?? new GetIamSshKeyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get SSH key information based on its ID or name.
+        /// </summary>
+        public static Output<GetIamSshKeyResult> Invoke(GetIamSshKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamSshKeyResult>("scaleway:index/getIamSshKey:getIamSshKey", args ?? new GetIamSshKeyInvokeArgs(), options.WithDefaults());
     }
 
 

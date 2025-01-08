@@ -73,21 +73,11 @@ type LookupObjectBucketPolicyResult struct {
 }
 
 func LookupObjectBucketPolicyOutput(ctx *pulumi.Context, args LookupObjectBucketPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupObjectBucketPolicyResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupObjectBucketPolicyResultOutput, error) {
 			args := v.(LookupObjectBucketPolicyArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupObjectBucketPolicyResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args, &rv, "", opts...)
-			if err != nil {
-				return LookupObjectBucketPolicyResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupObjectBucketPolicyResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupObjectBucketPolicyResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args, LookupObjectBucketPolicyResultOutput{}, options).(LookupObjectBucketPolicyResultOutput), nil
 		}).(LookupObjectBucketPolicyResultOutput)
 }
 

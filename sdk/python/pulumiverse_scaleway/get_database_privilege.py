@@ -143,7 +143,7 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
                                   instance_id: Optional[pulumi.Input[str]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   user_name: Optional[pulumi.Input[str]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabasePrivilegeResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabasePrivilegeResult]:
     """
     Gets information about the privileges in a database.
 
@@ -170,7 +170,7 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     __args__['userName'] = user_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabasePrivilege:getDatabasePrivilege', __args__, opts=opts, typ=GetDatabasePrivilegeResult)
     return __ret__.apply(lambda __response__: GetDatabasePrivilegeResult(
         database_name=pulumi.get(__response__, 'database_name'),

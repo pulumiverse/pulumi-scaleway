@@ -58,21 +58,11 @@ type LookupLoadbalancerCertificateResult struct {
 }
 
 func LookupLoadbalancerCertificateOutput(ctx *pulumi.Context, args LookupLoadbalancerCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerCertificateResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupLoadbalancerCertificateResultOutput, error) {
 			args := v.(LookupLoadbalancerCertificateArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupLoadbalancerCertificateResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", args, &rv, "", opts...)
-			if err != nil {
-				return LookupLoadbalancerCertificateResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupLoadbalancerCertificateResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupLoadbalancerCertificateResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", args, LookupLoadbalancerCertificateResultOutput{}, options).(LookupLoadbalancerCertificateResultOutput), nil
 		}).(LookupLoadbalancerCertificateResultOutput)
 }
 

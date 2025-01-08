@@ -60,21 +60,11 @@ type LookupInstanceSecurityGroupResult struct {
 }
 
 func LookupInstanceSecurityGroupOutput(ctx *pulumi.Context, args LookupInstanceSecurityGroupOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceSecurityGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupInstanceSecurityGroupResultOutput, error) {
 			args := v.(LookupInstanceSecurityGroupArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupInstanceSecurityGroupResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args, &rv, "", opts...)
-			if err != nil {
-				return LookupInstanceSecurityGroupResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupInstanceSecurityGroupResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupInstanceSecurityGroupResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", args, LookupInstanceSecurityGroupResultOutput{}, options).(LookupInstanceSecurityGroupResultOutput), nil
 		}).(LookupInstanceSecurityGroupResultOutput)
 }
 

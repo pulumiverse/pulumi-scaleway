@@ -130,7 +130,7 @@ export interface GetKubernetesNodePoolResult {
 /**
  * Gets information about a Kubernetes Cluster's Pool.
  */
-export function getKubernetesNodePoolOutput(args?: GetKubernetesNodePoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesNodePoolResult> {
+export function getKubernetesNodePoolOutput(args?: GetKubernetesNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesNodePoolResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {

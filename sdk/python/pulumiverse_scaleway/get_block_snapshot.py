@@ -143,7 +143,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
                               snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
                               volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                               zone: Optional[pulumi.Input[Optional[str]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockSnapshotResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlockSnapshotResult]:
     """
     The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 
@@ -162,7 +162,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
     __args__['snapshotId'] = snapshot_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult)
     return __ret__.apply(lambda __response__: GetBlockSnapshotResult(
         id=pulumi.get(__response__, 'id'),

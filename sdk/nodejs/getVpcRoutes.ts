@@ -80,7 +80,7 @@ export interface GetVpcRoutesResult {
 /**
  * Gets information about multiple VPC routes.
  */
-export function getVpcRoutesOutput(args?: GetVpcRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcRoutesResult> {
+export function getVpcRoutesOutput(args?: GetVpcRoutesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcRoutesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcRoutes:getVpcRoutes", {

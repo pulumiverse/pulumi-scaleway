@@ -136,7 +136,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                         organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                         tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                         user_id: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamUserResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIamUserResult]:
     """
     Use this data source to get information on an existing IAM user based on its ID or email address.
     For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
@@ -167,7 +167,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['organizationId'] = organization_id
     __args__['tags'] = tags
     __args__['userId'] = user_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamUser:getIamUser', __args__, opts=opts, typ=GetIamUserResult)
     return __ret__.apply(lambda __response__: GetIamUserResult(
         email=pulumi.get(__response__, 'email'),

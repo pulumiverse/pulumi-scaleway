@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetTemDomainResult> Invoke(GetTemDomainInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a transactional email domain.
+        /// </summary>
+        public static Output<GetTemDomainResult> Invoke(GetTemDomainInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -95,6 +95,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
+        /// Customer's encryption keys to encrypt data (SSE-C)
+        /// </summary>
+        [Output("sseCustomerKey")]
+        public Output<string?> SseCustomerKey { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         /// </summary>
         [Output("storageClass")]
@@ -136,6 +142,10 @@ namespace Pulumiverse.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                AdditionalSecretOutputs =
+                {
+                    "sseCustomerKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -220,6 +230,22 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("sseCustomerKey")]
+        private Input<string>? _sseCustomerKey;
+
+        /// <summary>
+        /// Customer's encryption keys to encrypt data (SSE-C)
+        /// </summary>
+        public Input<string>? SseCustomerKey
+        {
+            get => _sseCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sseCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -314,6 +340,22 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("sseCustomerKey")]
+        private Input<string>? _sseCustomerKey;
+
+        /// <summary>
+        /// Customer's encryption keys to encrypt data (SSE-C)
+        /// </summary>
+        public Input<string>? SseCustomerKey
+        {
+            get => _sseCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sseCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.

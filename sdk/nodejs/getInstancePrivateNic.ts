@@ -107,7 +107,7 @@ export interface GetInstancePrivateNicResult {
  * });
  * ```
  */
-export function getInstancePrivateNicOutput(args: GetInstancePrivateNicOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancePrivateNicResult> {
+export function getInstancePrivateNicOutput(args: GetInstancePrivateNicOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstancePrivateNicResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", {
         "privateNetworkId": args.privateNetworkId,

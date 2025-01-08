@@ -107,7 +107,7 @@ export interface GetInstanceImageResult {
 /**
  * Gets information about an instance image.
  */
-export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceImageResult> {
+export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceImageResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceImage:getInstanceImage", {

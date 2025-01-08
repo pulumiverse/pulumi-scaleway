@@ -39,6 +39,7 @@ namespace Pulumiverse.Scaleway
     ///         ProjectId = project.Id,
     ///         Name = "my-data-source",
     ///         Type = "metrics",
+    ///         RetentionDays = 6,
     ///     });
     /// 
     /// });
@@ -94,6 +95,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
+        /// The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        /// </summary>
+        [Output("retentionDays")]
+        public Output<int> RetentionDays { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates whether the data source is synchronized with Grafana.
         /// </summary>
         [Output("synchronizedWithGrafana")]
@@ -125,7 +132,7 @@ namespace Pulumiverse.Scaleway
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public CockpitSource(string name, CockpitSourceArgs? args = null, CustomResourceOptions? options = null)
+        public CockpitSource(string name, CockpitSourceArgs args, CustomResourceOptions? options = null)
             : base("scaleway:index/cockpitSource:CockpitSource", name, args ?? new CockpitSourceArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -183,6 +190,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
+        /// The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        /// </summary>
+        [Input("retentionDays", required: true)]
+        public Input<int> RetentionDays { get; set; } = null!;
+
+        /// <summary>
         /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         /// </summary>
         [Input("type")]
@@ -231,6 +244,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        /// </summary>
+        [Input("retentionDays")]
+        public Input<int>? RetentionDays { get; set; }
 
         /// <summary>
         /// Indicates whether the data source is synchronized with Grafana.

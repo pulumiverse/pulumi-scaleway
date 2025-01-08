@@ -233,7 +233,7 @@ def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]
                                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        security_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceSecurityGroupResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceSecurityGroupResult]:
     """
     Gets information about a Security Group.
 
@@ -248,7 +248,7 @@ def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]
     __args__['projectId'] = project_id
     __args__['securityGroupId'] = security_group_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup', __args__, opts=opts, typ=GetInstanceSecurityGroupResult)
     return __ret__.apply(lambda __response__: GetInstanceSecurityGroupResult(
         description=pulumi.get(__response__, 'description'),

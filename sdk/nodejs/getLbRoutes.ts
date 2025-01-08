@@ -92,7 +92,7 @@ export interface GetLbRoutesResult {
  * });
  * ```
  */
-export function getLbRoutesOutput(args?: GetLbRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbRoutesResult> {
+export function getLbRoutesOutput(args?: GetLbRoutesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbRoutesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbRoutes:getLbRoutes", {

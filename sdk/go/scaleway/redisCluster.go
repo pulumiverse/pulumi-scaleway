@@ -158,8 +158,13 @@ type RedisCluster struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// The number of nodes in the Redis™ cluster.
 	//
-	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-	// which is minimum 3 (1 main node + 2 secondary nodes)
+	// > **Important:**
+	//
+	// - Cluster_size = 1 for Standalone mode (single node).
+	//
+	// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+	//
+	// - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 	//
 	// > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
 	// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -266,8 +271,13 @@ type redisClusterState struct {
 	Certificate *string `pulumi:"certificate"`
 	// The number of nodes in the Redis™ cluster.
 	//
-	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-	// which is minimum 3 (1 main node + 2 secondary nodes)
+	// > **Important:**
+	//
+	// - Cluster_size = 1 for Standalone mode (single node).
+	//
+	// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+	//
+	// - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 	//
 	// > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
 	// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -326,8 +336,13 @@ type RedisClusterState struct {
 	Certificate pulumi.StringPtrInput
 	// The number of nodes in the Redis™ cluster.
 	//
-	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-	// which is minimum 3 (1 main node + 2 secondary nodes)
+	// > **Important:**
+	//
+	// - Cluster_size = 1 for Standalone mode (single node).
+	//
+	// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+	//
+	// - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 	//
 	// > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
 	// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -388,8 +403,13 @@ type redisClusterArgs struct {
 	Acls []RedisClusterAcl `pulumi:"acls"`
 	// The number of nodes in the Redis™ cluster.
 	//
-	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-	// which is minimum 3 (1 main node + 2 secondary nodes)
+	// > **Important:**
+	//
+	// - Cluster_size = 1 for Standalone mode (single node).
+	//
+	// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+	//
+	// - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 	//
 	// > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
 	// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -443,8 +463,13 @@ type RedisClusterArgs struct {
 	Acls RedisClusterAclArrayInput
 	// The number of nodes in the Redis™ cluster.
 	//
-	// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-	// which is minimum 3 (1 main node + 2 secondary nodes)
+	// > **Important:**
+	//
+	// - Cluster_size = 1 for Standalone mode (single node).
+	//
+	// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+	//
+	// - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 	//
 	// > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
 	// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -591,8 +616,13 @@ func (o RedisClusterOutput) Certificate() pulumi.StringOutput {
 
 // The number of nodes in the Redis™ cluster.
 //
-// > **Important:** You cannot set `clusterSize` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-// which is minimum 3 (1 main node + 2 secondary nodes)
+// > **Important:**
+//
+// - Cluster_size = 1 for Standalone mode (single node).
+//
+// - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+//
+// - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 //
 // > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `clusterSize` than you initially
 // did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller

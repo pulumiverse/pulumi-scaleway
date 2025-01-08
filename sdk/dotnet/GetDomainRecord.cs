@@ -97,6 +97,49 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetDomainRecordResult> Invoke(GetDomainRecordInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainRecordResult>("scaleway:index/getDomainRecord:getDomainRecord", args ?? new GetDomainRecordInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
+        /// 
+        /// ## Query domain records
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+        /// - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Query record by DNS zone, record name, type and content
+        ///     var byContent = Scaleway.GetDomainRecord.Invoke(new()
+        ///     {
+        ///         DnsZone = "domain.tld",
+        ///         Name = "www",
+        ///         Type = "A",
+        ///         Data = "1.2.3.4",
+        ///     });
+        /// 
+        ///     // Query record by DNS zone and record ID
+        ///     var byId = Scaleway.GetDomainRecord.Invoke(new()
+        ///     {
+        ///         DnsZone = "domain.tld",
+        ///         RecordId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDomainRecordResult> Invoke(GetDomainRecordInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDomainRecordResult>("scaleway:index/getDomainRecord:getDomainRecord", args ?? new GetDomainRecordInvokeArgs(), options.WithDefaults());
     }
 
 

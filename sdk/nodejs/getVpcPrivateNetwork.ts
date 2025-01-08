@@ -117,7 +117,7 @@ export interface GetVpcPrivateNetworkResult {
  * });
  * ```
  */
-export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
+export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {

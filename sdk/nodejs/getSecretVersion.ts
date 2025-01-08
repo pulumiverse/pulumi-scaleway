@@ -191,7 +191,7 @@ export interface GetSecretVersionResult {
  *
  * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
-export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretVersionResult> {
+export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretVersionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getSecretVersion:getSecretVersion", {

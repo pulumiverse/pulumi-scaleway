@@ -159,21 +159,11 @@ type GetVpcPublicPatRuleResult struct {
 }
 
 func GetVpcPublicPatRuleOutput(ctx *pulumi.Context, args GetVpcPublicPatRuleOutputArgs, opts ...pulumi.InvokeOption) GetVpcPublicPatRuleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetVpcPublicPatRuleResultOutput, error) {
 			args := v.(GetVpcPublicPatRuleArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetVpcPublicPatRuleResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args, &rv, "", opts...)
-			if err != nil {
-				return GetVpcPublicPatRuleResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetVpcPublicPatRuleResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetVpcPublicPatRuleResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args, GetVpcPublicPatRuleResultOutput{}, options).(GetVpcPublicPatRuleResultOutput), nil
 		}).(GetVpcPublicPatRuleResultOutput)
 }
 

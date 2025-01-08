@@ -111,6 +111,56 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetLbBackendResult> Invoke(GetLbBackendInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbBackendResult>("scaleway:index/getLbBackend:getLbBackend", args ?? new GetLbBackendInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information about Scaleway Load Balancer backends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.LoadbalancerIp("main");
+        /// 
+        ///     var mainLoadbalancer = new Scaleway.Loadbalancer("main", new()
+        ///     {
+        ///         IpId = main.Id,
+        ///         Name = "data-test-lb-backend",
+        ///         Type = "LB-S",
+        ///     });
+        /// 
+        ///     var mainLoadbalancerBackend = new Scaleway.LoadbalancerBackend("main", new()
+        ///     {
+        ///         LbId = mainLoadbalancer.Id,
+        ///         Name = "backend01",
+        ///         ForwardProtocol = "http",
+        ///         ForwardPort = 80,
+        ///     });
+        /// 
+        ///     var byID = Scaleway.GetLbBackend.Invoke(new()
+        ///     {
+        ///         BackendId = mainLoadbalancerBackend.Id,
+        ///     });
+        /// 
+        ///     var byName = Scaleway.GetLbBackend.Invoke(new()
+        ///     {
+        ///         Name = mainLoadbalancerBackend.Name,
+        ///         LbId = mainLoadbalancer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbBackendResult> Invoke(GetLbBackendInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbBackendResult>("scaleway:index/getLbBackend:getLbBackend", args ?? new GetLbBackendInvokeArgs(), options.WithDefaults());
     }
 
 

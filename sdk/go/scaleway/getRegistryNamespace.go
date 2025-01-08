@@ -54,21 +54,11 @@ type LookupRegistryNamespaceResult struct {
 }
 
 func LookupRegistryNamespaceOutput(ctx *pulumi.Context, args LookupRegistryNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryNamespaceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRegistryNamespaceResultOutput, error) {
 			args := v.(LookupRegistryNamespaceArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRegistryNamespaceResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getRegistryNamespace:getRegistryNamespace", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRegistryNamespaceResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRegistryNamespaceResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRegistryNamespaceResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getRegistryNamespace:getRegistryNamespace", args, LookupRegistryNamespaceResultOutput{}, options).(LookupRegistryNamespaceResultOutput), nil
 		}).(LookupRegistryNamespaceResultOutput)
 }
 

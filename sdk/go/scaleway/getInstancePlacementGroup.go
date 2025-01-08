@@ -55,21 +55,11 @@ type LookupInstancePlacementGroupResult struct {
 }
 
 func LookupInstancePlacementGroupOutput(ctx *pulumi.Context, args LookupInstancePlacementGroupOutputArgs, opts ...pulumi.InvokeOption) LookupInstancePlacementGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupInstancePlacementGroupResultOutput, error) {
 			args := v.(LookupInstancePlacementGroupArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupInstancePlacementGroupResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", args, &rv, "", opts...)
-			if err != nil {
-				return LookupInstancePlacementGroupResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupInstancePlacementGroupResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupInstancePlacementGroupResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", args, LookupInstancePlacementGroupResultOutput{}, options).(LookupInstancePlacementGroupResultOutput), nil
 		}).(LookupInstancePlacementGroupResultOutput)
 }
 

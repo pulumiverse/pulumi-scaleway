@@ -273,7 +273,7 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                         tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                         type: Optional[pulumi.Input[Optional[str]]] = None,
                         zonal: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpamIpsResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpamIpsResult]:
     """
     Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
 
@@ -341,7 +341,7 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     __args__['tags'] = tags
     __args__['type'] = type
     __args__['zonal'] = zonal
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIpamIps:getIpamIps', __args__, opts=opts, typ=GetIpamIpsResult)
     return __ret__.apply(lambda __response__: GetIpamIpsResult(
         attached=pulumi.get(__response__, 'attached'),

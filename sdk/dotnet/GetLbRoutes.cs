@@ -79,6 +79,40 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetLbRoutesResult> Invoke(GetLbRoutesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbRoutesResult>("scaleway:index/getLbRoutes:getLbRoutes", args ?? new GetLbRoutesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Load Balancer routes.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Find routes that share the same frontend ID
+        ///     var byFrontendID = Scaleway.GetLbRoutes.Invoke(new()
+        ///     {
+        ///         FrontendId = frt01.Id,
+        ///     });
+        /// 
+        ///     // Find routes by frontend ID and zone
+        ///     var myKey = Scaleway.GetLbRoutes.Invoke(new()
+        ///     {
+        ///         FrontendId = "11111111-1111-1111-1111-111111111111",
+        ///         Zone = "fr-par-2",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbRoutesResult> Invoke(GetLbRoutesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbRoutesResult>("scaleway:index/getLbRoutes:getLbRoutes", args ?? new GetLbRoutesInvokeArgs(), options.WithDefaults());
     }
 
 

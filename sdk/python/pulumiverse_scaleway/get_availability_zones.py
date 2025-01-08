@@ -105,7 +105,7 @@ def get_availability_zones(region: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         zones=pulumi.get(__ret__, 'zones'))
 def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAvailabilityZonesResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAvailabilityZonesResult]:
     """
     The `get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
 
@@ -131,7 +131,7 @@ def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] 
     """
     __args__ = dict()
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult)
     return __ret__.apply(lambda __response__: GetAvailabilityZonesResult(
         id=pulumi.get(__response__, 'id'),

@@ -78,7 +78,7 @@ export interface GetVpcPublicGatewayDhcpResult {
  * });
  * ```
  */
-export function getVpcPublicGatewayDhcpOutput(args: GetVpcPublicGatewayDhcpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpResult> {
+export function getVpcPublicGatewayDhcpOutput(args: GetVpcPublicGatewayDhcpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPublicGatewayDhcpResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,

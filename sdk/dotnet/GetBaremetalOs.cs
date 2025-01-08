@@ -81,6 +81,41 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetBaremetalOsResult> Invoke(GetBaremetalOsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOsResult>("scaleway:index/getBaremetalOs:getBaremetalOs", args ?? new GetBaremetalOsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a baremetal operating system.
+        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses).
+        /// 
+        /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by os name and version
+        ///     var byName = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     {
+        ///         Name = "Ubuntu",
+        ///         Version = "20.04 LTS (Focal Fossa)",
+        ///     });
+        /// 
+        ///     // Get info by os id
+        ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     {
+        ///         OsId = "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBaremetalOsResult> Invoke(GetBaremetalOsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOsResult>("scaleway:index/getBaremetalOs:getBaremetalOs", args ?? new GetBaremetalOsInvokeArgs(), options.WithDefaults());
     }
 
 

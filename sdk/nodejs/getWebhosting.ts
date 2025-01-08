@@ -105,7 +105,7 @@ export interface GetWebhostingResult {
  * });
  * ```
  */
-export function getWebhostingOutput(args?: GetWebhostingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebhostingResult> {
+export function getWebhostingOutput(args?: GetWebhostingOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebhostingResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getWebhosting:getWebhosting", {

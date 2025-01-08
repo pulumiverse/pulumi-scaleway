@@ -90,7 +90,7 @@ export interface GetIamApplicationResult {
  * });
  * ```
  */
-export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamApplicationResult> {
+export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamApplicationResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamApplication:getIamApplication", {

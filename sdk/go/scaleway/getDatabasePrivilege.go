@@ -77,21 +77,11 @@ type LookupDatabasePrivilegeResult struct {
 }
 
 func LookupDatabasePrivilegeOutput(ctx *pulumi.Context, args LookupDatabasePrivilegeOutputArgs, opts ...pulumi.InvokeOption) LookupDatabasePrivilegeResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDatabasePrivilegeResultOutput, error) {
 			args := v.(LookupDatabasePrivilegeArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDatabasePrivilegeResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDatabasePrivilegeResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDatabasePrivilegeResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDatabasePrivilegeResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args, LookupDatabasePrivilegeResultOutput{}, options).(LookupDatabasePrivilegeResultOutput), nil
 		}).(LookupDatabasePrivilegeResultOutput)
 }
 

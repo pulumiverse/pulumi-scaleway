@@ -51,21 +51,11 @@ type LookupDomainZoneResult struct {
 }
 
 func LookupDomainZoneOutput(ctx *pulumi.Context, args LookupDomainZoneOutputArgs, opts ...pulumi.InvokeOption) LookupDomainZoneResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDomainZoneResultOutput, error) {
 			args := v.(LookupDomainZoneArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDomainZoneResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getDomainZone:getDomainZone", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDomainZoneResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDomainZoneResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDomainZoneResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getDomainZone:getDomainZone", args, LookupDomainZoneResultOutput{}, options).(LookupDomainZoneResultOutput), nil
 		}).(LookupDomainZoneResultOutput)
 }
 

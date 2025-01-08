@@ -151,7 +151,7 @@ export interface GetDomainRecordResult {
  * });
  * ```
  */
-export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainRecordResult> {
+export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDomainRecordResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDomainRecord:getDomainRecord", {

@@ -158,7 +158,7 @@ export class ObjectBucket extends pulumi.CustomResource {
      * API URL of the bucket
      */
     public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
-    public readonly corsRules!: pulumi.Output<outputs.ObjectBucketCorsRule[] | undefined>;
+    public readonly corsRules!: pulumi.Output<outputs.ObjectBucketCorsRule[]>;
     /**
      * The endpoint URL of the bucket.
      */

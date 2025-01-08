@@ -70,7 +70,7 @@ export interface GetIamApiKeyResult {
  * });
  * ```
  */
-export function getIamApiKeyOutput(args: GetIamApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamApiKeyResult> {
+export function getIamApiKeyOutput(args: GetIamApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamApiKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamApiKey:getIamApiKey", {
         "accessKey": args.accessKey,

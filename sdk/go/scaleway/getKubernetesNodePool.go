@@ -84,21 +84,11 @@ type LookupKubernetesNodePoolResult struct {
 }
 
 func LookupKubernetesNodePoolOutput(ctx *pulumi.Context, args LookupKubernetesNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupKubernetesNodePoolResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupKubernetesNodePoolResultOutput, error) {
 			args := v.(LookupKubernetesNodePoolArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupKubernetesNodePoolResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args, &rv, "", opts...)
-			if err != nil {
-				return LookupKubernetesNodePoolResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupKubernetesNodePoolResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupKubernetesNodePoolResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args, LookupKubernetesNodePoolResultOutput{}, options).(LookupKubernetesNodePoolResultOutput), nil
 		}).(LookupKubernetesNodePoolResultOutput)
 }
 

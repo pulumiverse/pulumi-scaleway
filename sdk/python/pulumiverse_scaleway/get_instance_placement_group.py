@@ -182,7 +182,7 @@ def get_instance_placement_group_output(name: Optional[pulumi.Input[Optional[str
                                         placement_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstancePlacementGroupResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstancePlacementGroupResult]:
     """
     Gets information about a Security Group.
 
@@ -197,7 +197,7 @@ def get_instance_placement_group_output(name: Optional[pulumi.Input[Optional[str
     __args__['placementGroupId'] = placement_group_id
     __args__['projectId'] = project_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup', __args__, opts=opts, typ=GetInstancePlacementGroupResult)
     return __ret__.apply(lambda __response__: GetInstancePlacementGroupResult(
         id=pulumi.get(__response__, 'id'),

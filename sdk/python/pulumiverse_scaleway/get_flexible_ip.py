@@ -215,7 +215,7 @@ def get_flexible_ip(flexible_ip_id: Optional[str] = None,
 def get_flexible_ip_output(flexible_ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                            ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFlexibleIpResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexibleIpResult]:
     """
     Gets information about a Flexible IP.
 
@@ -228,7 +228,7 @@ def get_flexible_ip_output(flexible_ip_id: Optional[pulumi.Input[Optional[str]]]
     __args__['flexibleIpId'] = flexible_ip_id
     __args__['ipAddress'] = ip_address
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFlexibleIp:getFlexibleIp', __args__, opts=opts, typ=GetFlexibleIpResult)
     return __ret__.apply(lambda __response__: GetFlexibleIpResult(
         created_at=pulumi.get(__response__, 'created_at'),

@@ -220,7 +220,7 @@ def get_iot_device_output(device_id: Optional[pulumi.Input[Optional[str]]] = Non
                           hub_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           region: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIotDeviceResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIotDeviceResult]:
     """
     Gets information about an IOT Device.
 
@@ -237,7 +237,7 @@ def get_iot_device_output(device_id: Optional[pulumi.Input[Optional[str]]] = Non
     __args__['hubId'] = hub_id
     __args__['name'] = name
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIotDevice:getIotDevice', __args__, opts=opts, typ=GetIotDeviceResult)
     return __ret__.apply(lambda __response__: GetIotDeviceResult(
         allow_insecure=pulumi.get(__response__, 'allow_insecure'),

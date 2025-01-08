@@ -232,7 +232,7 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
                                    vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
     """
     Gets information about a Private Network.
 
@@ -263,7 +263,7 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     __args__['projectId'] = project_id
     __args__['region'] = region
     __args__['vpcId'] = vpc_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork', __args__, opts=opts, typ=GetVpcPrivateNetworkResult)
     return __ret__.apply(lambda __response__: GetVpcPrivateNetworkResult(
         created_at=pulumi.get(__response__, 'created_at'),

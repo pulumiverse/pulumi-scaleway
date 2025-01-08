@@ -91,6 +91,46 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetInstancePrivateNicResult> Invoke(GetInstancePrivateNicInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancePrivateNicResult>("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args ?? new GetInstancePrivateNicInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an instance private NIC.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byNicId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     {
+        ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        ///     var byPnId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     {
+        ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        ///     var byTags = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     {
+        ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///         Tags = new[]
+        ///         {
+        ///             "mytag",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetInstancePrivateNicResult> Invoke(GetInstancePrivateNicInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstancePrivateNicResult>("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args ?? new GetInstancePrivateNicInvokeArgs(), options.WithDefaults());
     }
 
 

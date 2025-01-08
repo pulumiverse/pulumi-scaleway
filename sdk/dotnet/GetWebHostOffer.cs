@@ -73,6 +73,37 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetWebHostOfferResult> Invoke(GetWebHostOfferInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetWebHostOfferResult>("scaleway:index/getWebHostOffer:getWebHostOffer", args ?? new GetWebHostOfferInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a webhosting offer.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by offer name
+        ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     {
+        ///         Name = "performance",
+        ///     });
+        /// 
+        ///     // Get info by offer id
+        ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     {
+        ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetWebHostOfferResult> Invoke(GetWebHostOfferInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetWebHostOfferResult>("scaleway:index/getWebHostOffer:getWebHostOffer", args ?? new GetWebHostOfferInvokeArgs(), options.WithDefaults());
     }
 
 

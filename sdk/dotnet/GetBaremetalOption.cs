@@ -75,6 +75,38 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetBaremetalOptionResult> Invoke(GetBaremetalOptionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOptionResult>("scaleway:index/getBaremetalOption:getBaremetalOption", args ?? new GetBaremetalOptionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a baremetal option.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by option name 
+        ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     {
+        ///         Name = "Remote Access",
+        ///     });
+        /// 
+        ///     // Get info by option id
+        ///     var byId = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     {
+        ///         OptionId = "931df052-d713-4674-8b58-96a63244c8e2",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBaremetalOptionResult> Invoke(GetBaremetalOptionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOptionResult>("scaleway:index/getBaremetalOption:getBaremetalOption", args ?? new GetBaremetalOptionInvokeArgs(), options.WithDefaults());
     }
 
 

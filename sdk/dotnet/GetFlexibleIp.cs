@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetFlexibleIpResult> Invoke(GetFlexibleIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexibleIpResult>("scaleway:index/getFlexibleIp:getFlexibleIp", args ?? new GetFlexibleIpInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Flexible IP.
+        /// </summary>
+        public static Output<GetFlexibleIpResult> Invoke(GetFlexibleIpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFlexibleIpResult>("scaleway:index/getFlexibleIp:getFlexibleIp", args ?? new GetFlexibleIpInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -113,7 +113,7 @@ def get_database_acl(instance_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'))
 def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
                             region: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseAclResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseAclResult]:
     """
     Gets information about the Database Instance network Access Control List.
 
@@ -134,7 +134,7 @@ def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabaseAcl:getDatabaseAcl', __args__, opts=opts, typ=GetDatabaseAclResult)
     return __ret__.apply(lambda __response__: GetDatabaseAclResult(
         acl_rules=pulumi.get(__response__, 'acl_rules'),

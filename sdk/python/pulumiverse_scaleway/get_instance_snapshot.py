@@ -202,7 +202,7 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceSnapshotResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceSnapshotResult]:
     """
     Gets information about an instance snapshot.
 
@@ -231,7 +231,7 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
     __args__['projectId'] = project_id
     __args__['snapshotId'] = snapshot_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceSnapshot:getInstanceSnapshot', __args__, opts=opts, typ=GetInstanceSnapshotResult)
     return __ret__.apply(lambda __response__: GetInstanceSnapshotResult(
         created_at=pulumi.get(__response__, 'created_at'),

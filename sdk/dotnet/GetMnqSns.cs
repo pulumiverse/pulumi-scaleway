@@ -71,6 +71,36 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetMnqSnsResult> Invoke(GetMnqSnsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMnqSnsResult>("scaleway:index/getMnqSns:getMnqSns", args ?? new GetMnqSnsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about SNS for a Project
+        /// 
+        /// ## Examples
+        /// 
+        /// ### Basic
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // For default project
+        ///     var main = Scaleway.GetMnqSns.Invoke();
+        /// 
+        ///     // For specific project
+        ///     var forProject = Scaleway.GetMnqSns.Invoke(new()
+        ///     {
+        ///         ProjectId = mainScalewayAccountProject.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetMnqSnsResult> Invoke(GetMnqSnsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMnqSnsResult>("scaleway:index/getMnqSns:getMnqSns", args ?? new GetMnqSnsInvokeArgs(), options.WithDefaults());
     }
 
 

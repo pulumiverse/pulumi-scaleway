@@ -279,7 +279,7 @@ def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIotHubResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIotHubResult]:
     """
     Gets information about an IOT Hub.
 
@@ -296,7 +296,7 @@ def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIotHub:getIotHub', __args__, opts=opts, typ=GetIotHubResult)
     return __ret__.apply(lambda __response__: GetIotHubResult(
         connected_device_count=pulumi.get(__response__, 'connected_device_count'),

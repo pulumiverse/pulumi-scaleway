@@ -58,21 +58,11 @@ type GetRegistryImageTagResult struct {
 }
 
 func GetRegistryImageTagOutput(ctx *pulumi.Context, args GetRegistryImageTagOutputArgs, opts ...pulumi.InvokeOption) GetRegistryImageTagResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetRegistryImageTagResultOutput, error) {
 			args := v.(GetRegistryImageTagArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetRegistryImageTagResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getRegistryImageTag:getRegistryImageTag", args, &rv, "", opts...)
-			if err != nil {
-				return GetRegistryImageTagResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetRegistryImageTagResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetRegistryImageTagResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getRegistryImageTag:getRegistryImageTag", args, GetRegistryImageTagResultOutput{}, options).(GetRegistryImageTagResultOutput), nil
 		}).(GetRegistryImageTagResultOutput)
 }
 

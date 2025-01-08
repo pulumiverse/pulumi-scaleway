@@ -190,7 +190,7 @@ def get_iam_group(group_id: Optional[str] = None,
 def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
                          name: Optional[pulumi.Input[Optional[str]]] = None,
                          organization_id: Optional[pulumi.Input[Optional[str]]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamGroupResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIamGroupResult]:
     """
     Gets information about an existing IAM group.
 
@@ -220,7 +220,7 @@ def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['groupId'] = group_id
     __args__['name'] = name
     __args__['organizationId'] = organization_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamGroup:getIamGroup', __args__, opts=opts, typ=GetIamGroupResult)
     return __ret__.apply(lambda __response__: GetIamGroupResult(
         application_ids=pulumi.get(__response__, 'application_ids'),

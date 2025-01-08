@@ -77,6 +77,39 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIamGroupResult> Invoke(GetIamGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamGroupResult>("scaleway:index/getIamGroup:getIamGroup", args ?? new GetIamGroupInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an existing IAM group.
+        /// 
+        /// For more information, refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by name
+        ///     var findByName = Scaleway.GetIamGroup.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///     });
+        /// 
+        ///     // Get info by group ID
+        ///     var findById = Scaleway.GetIamGroup.Invoke(new()
+        ///     {
+        ///         GroupId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIamGroupResult> Invoke(GetIamGroupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamGroupResult>("scaleway:index/getIamGroup:getIamGroup", args ?? new GetIamGroupInvokeArgs(), options.WithDefaults());
     }
 
 

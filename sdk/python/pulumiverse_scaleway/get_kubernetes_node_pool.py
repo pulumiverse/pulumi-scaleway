@@ -387,7 +387,7 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
                                     pool_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
                                     size: Optional[pulumi.Input[Optional[int]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesNodePoolResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKubernetesNodePoolResult]:
     """
     Gets information about a Kubernetes Cluster's Pool.
 
@@ -404,7 +404,7 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
     __args__['poolId'] = pool_id
     __args__['region'] = region
     __args__['size'] = size
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getKubernetesNodePool:getKubernetesNodePool', __args__, opts=opts, typ=GetKubernetesNodePoolResult)
     return __ret__.apply(lambda __response__: GetKubernetesNodePoolResult(
         autohealing=pulumi.get(__response__, 'autohealing'),

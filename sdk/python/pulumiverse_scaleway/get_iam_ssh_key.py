@@ -181,7 +181,7 @@ def get_iam_ssh_key(name: Optional[str] = None,
 def get_iam_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
                            ssh_key_id: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamSshKeyResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIamSshKeyResult]:
     """
     Use this data source to get SSH key information based on its ID or name.
 
@@ -197,7 +197,7 @@ def get_iam_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['sshKeyId'] = ssh_key_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamSshKey:getIamSshKey', __args__, opts=opts, typ=GetIamSshKeyResult)
     return __ret__.apply(lambda __response__: GetIamSshKeyResult(
         created_at=pulumi.get(__response__, 'created_at'),

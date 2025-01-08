@@ -27,6 +27,14 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetInstanceServersResult> Invoke(GetInstanceServersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceServersResult>("scaleway:index/getInstanceServers:getInstanceServers", args ?? new GetInstanceServersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple instance servers.
+        /// 
+        /// ## Examples
+        /// </summary>
+        public static Output<GetInstanceServersResult> Invoke(GetInstanceServersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceServersResult>("scaleway:index/getInstanceServers:getInstanceServers", args ?? new GetInstanceServersInvokeArgs(), options.WithDefaults());
     }
 
 

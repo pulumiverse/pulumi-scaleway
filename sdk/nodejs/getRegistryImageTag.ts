@@ -81,7 +81,7 @@ export interface GetRegistryImageTagResult {
 /**
  * Gets information about a specific tag of a Container Registry image.
  */
-export function getRegistryImageTagOutput(args: GetRegistryImageTagOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryImageTagResult> {
+export function getRegistryImageTagOutput(args: GetRegistryImageTagOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryImageTagResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRegistryImageTag:getRegistryImageTag", {
         "imageId": args.imageId,

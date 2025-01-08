@@ -234,7 +234,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> DhcpId { get; private set; } = null!;
 
         /// <summary>
-        /// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Output("enableDhcp")]
         public Output<bool?> EnableDhcp { get; private set; } = null!;
@@ -353,7 +353,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
@@ -427,7 +427,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }

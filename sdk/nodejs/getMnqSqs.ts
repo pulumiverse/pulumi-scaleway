@@ -80,7 +80,7 @@ export interface GetMnqSqsResult {
  * });
  * ```
  */
-export function getMnqSqsOutput(args?: GetMnqSqsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMnqSqsResult> {
+export function getMnqSqsOutput(args?: GetMnqSqsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMnqSqsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMnqSqs:getMnqSqs", {

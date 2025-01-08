@@ -176,7 +176,7 @@ def get_instance_ip(address: Optional[str] = None,
         zone=pulumi.get(__ret__, 'zone'))
 def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None,
                            id: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceIpResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceIpResult]:
     """
     Gets information about an instance IP.
 
@@ -189,7 +189,7 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
     __args__ = dict()
     __args__['address'] = address
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceIp:getInstanceIp', __args__, opts=opts, typ=GetInstanceIpResult)
     return __ret__.apply(lambda __response__: GetInstanceIpResult(
         address=pulumi.get(__response__, 'address'),

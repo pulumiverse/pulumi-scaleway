@@ -265,7 +265,7 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
                                                    reservation_id: Optional[pulumi.Input[Optional[str]]] = None,
                                                    wait_for_dhcp: Optional[pulumi.Input[Optional[bool]]] = None,
                                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
+                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
     Gets information about a DHCP entry. For further information, please see the
     API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
@@ -366,7 +366,7 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
     __args__['reservationId'] = reservation_id
     __args__['waitForDhcp'] = wait_for_dhcp
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpReservationResult)
     return __ret__.apply(lambda __response__: GetVpcPublicGatewayDhcpReservationResult(
         created_at=pulumi.get(__response__, 'created_at'),

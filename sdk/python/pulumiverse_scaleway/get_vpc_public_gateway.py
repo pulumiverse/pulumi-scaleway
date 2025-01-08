@@ -252,7 +252,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   public_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
     Gets information about a Public Gateway.
 
@@ -282,7 +282,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     __args__['projectId'] = project_id
     __args__['publicGatewayId'] = public_gateway_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGateway:getVpcPublicGateway', __args__, opts=opts, typ=GetVpcPublicGatewayResult)
     return __ret__.apply(lambda __response__: GetVpcPublicGatewayResult(
         bastion_enabled=pulumi.get(__response__, 'bastion_enabled'),

@@ -71,7 +71,7 @@ export interface GetRegistryNamespaceResult {
 /**
  * Gets information about a registry namespace.
  */
-export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryNamespaceResult> {
+export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryNamespaceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRegistryNamespace:getRegistryNamespace", {

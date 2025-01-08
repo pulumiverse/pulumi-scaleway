@@ -80,7 +80,7 @@ export interface GetObjectBucketPolicyResult {
  * });
  * ```
  */
-export function getObjectBucketPolicyOutput(args: GetObjectBucketPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketPolicyResult> {
+export function getObjectBucketPolicyOutput(args: GetObjectBucketPolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectBucketPolicyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", {
         "bucket": args.bucket,

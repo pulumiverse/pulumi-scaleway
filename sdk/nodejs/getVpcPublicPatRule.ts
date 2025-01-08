@@ -185,7 +185,7 @@ export interface GetVpcPublicPatRuleResult {
  * });
  * ```
  */
-export function getVpcPublicPatRuleOutput(args: GetVpcPublicPatRuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicPatRuleResult> {
+export function getVpcPublicPatRuleOutput(args: GetVpcPublicPatRuleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPublicPatRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", {
         "patRuleId": args.patRuleId,

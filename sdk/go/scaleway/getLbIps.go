@@ -56,21 +56,11 @@ type GetLbIpsResult struct {
 }
 
 func GetLbIpsOutput(ctx *pulumi.Context, args GetLbIpsOutputArgs, opts ...pulumi.InvokeOption) GetLbIpsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetLbIpsResultOutput, error) {
 			args := v.(GetLbIpsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetLbIpsResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbIps:getLbIps", args, &rv, "", opts...)
-			if err != nil {
-				return GetLbIpsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetLbIpsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetLbIpsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getLbIps:getLbIps", args, GetLbIpsResultOutput{}, options).(GetLbIpsResultOutput), nil
 		}).(GetLbIpsResultOutput)
 }
 

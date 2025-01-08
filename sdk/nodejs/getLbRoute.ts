@@ -115,7 +115,7 @@ export interface GetLbRouteResult {
  * });
  * ```
  */
-export function getLbRouteOutput(args: GetLbRouteOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbRouteResult> {
+export function getLbRouteOutput(args: GetLbRouteOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbRouteResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbRoute:getLbRoute", {
         "routeId": args.routeId,

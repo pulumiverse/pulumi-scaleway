@@ -99,7 +99,7 @@ export interface GetInstanceSnapshotResult {
  * });
  * ```
  */
-export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceSnapshotResult> {
+export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceSnapshotResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {

@@ -236,7 +236,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
                                    gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    gateway_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcGatewayNetworkResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcGatewayNetworkResult]:
     """
     Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
 
@@ -267,7 +267,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     __args__['gatewayId'] = gateway_id
     __args__['gatewayNetworkId'] = gateway_network_id
     __args__['privateNetworkId'] = private_network_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork', __args__, opts=opts, typ=GetVpcGatewayNetworkResult)
     return __ret__.apply(lambda __response__: GetVpcGatewayNetworkResult(
         cleanup_dhcp=pulumi.get(__response__, 'cleanup_dhcp'),

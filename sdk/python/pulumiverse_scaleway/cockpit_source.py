@@ -19,17 +19,20 @@ __all__ = ['CockpitSourceArgs', 'CockpitSource']
 @pulumi.input_type
 class CockpitSourceArgs:
     def __init__(__self__, *,
+                 retention_days: pulumi.Input[int],
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CockpitSource resource.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
         :param pulumi.Input[str] name: The name of the data source.
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] region: ) The region where the data source is located.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
+        pulumi.set(__self__, "retention_days", retention_days)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -38,6 +41,18 @@ class CockpitSourceArgs:
             pulumi.set(__self__, "region", region)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Input[int]:
+        """
+        The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_days", value)
 
     @property
     @pulumi.getter
@@ -97,6 +112,7 @@ class _CockpitSourceState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  push_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 retention_days: Optional[pulumi.Input[int]] = None,
                  synchronized_with_grafana: Optional[pulumi.Input[bool]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -109,6 +125,7 @@ class _CockpitSourceState:
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
         :param pulumi.Input[str] region: ) The region where the data source is located.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
         :param pulumi.Input[bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         :param pulumi.Input[str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
@@ -126,6 +143,8 @@ class _CockpitSourceState:
             pulumi.set(__self__, "push_url", push_url)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if retention_days is not None:
+            pulumi.set(__self__, "retention_days", retention_days)
         if synchronized_with_grafana is not None:
             pulumi.set(__self__, "synchronized_with_grafana", synchronized_with_grafana)
         if type is not None:
@@ -208,6 +227,18 @@ class _CockpitSourceState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention_days", value)
+
+    @property
     @pulumi.getter(name="synchronizedWithGrafana")
     def synchronized_with_grafana(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -264,6 +295,7 @@ class CockpitSource(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 retention_days: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -285,7 +317,8 @@ class CockpitSource(pulumi.CustomResource):
         main = scaleway.CockpitSource("main",
             project_id=project.id,
             name="my-data-source",
-            type="metrics")
+            type="metrics",
+            retention_days=6)
         ```
 
         ## Import
@@ -303,13 +336,14 @@ class CockpitSource(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the data source.
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] region: ) The region where the data source is located.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[CockpitSourceArgs] = None,
+                 args: CockpitSourceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The `CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
@@ -330,7 +364,8 @@ class CockpitSource(pulumi.CustomResource):
         main = scaleway.CockpitSource("main",
             project_id=project.id,
             name="my-data-source",
-            type="metrics")
+            type="metrics",
+            retention_days=6)
         ```
 
         ## Import
@@ -361,6 +396,7 @@ class CockpitSource(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 retention_days: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -374,6 +410,9 @@ class CockpitSource(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            if retention_days is None and not opts.urn:
+                raise TypeError("Missing required property 'retention_days'")
+            __props__.__dict__["retention_days"] = retention_days
             __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
             __props__.__dict__["origin"] = None
@@ -397,6 +436,7 @@ class CockpitSource(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             push_url: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            retention_days: Optional[pulumi.Input[int]] = None,
             synchronized_with_grafana: Optional[pulumi.Input[bool]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
@@ -414,6 +454,7 @@ class CockpitSource(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
         :param pulumi.Input[str] region: ) The region where the data source is located.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
         :param pulumi.Input[bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         :param pulumi.Input[str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
@@ -429,6 +470,7 @@ class CockpitSource(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["push_url"] = push_url
         __props__.__dict__["region"] = region
+        __props__.__dict__["retention_days"] = retention_days
         __props__.__dict__["synchronized_with_grafana"] = synchronized_with_grafana
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -482,6 +524,14 @@ class CockpitSource(pulumi.CustomResource):
         ) The region where the data source is located.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Output[int]:
+        """
+        The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        """
+        return pulumi.get(self, "retention_days")
 
     @property
     @pulumi.getter(name="synchronizedWithGrafana")

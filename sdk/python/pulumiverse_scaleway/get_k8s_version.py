@@ -151,7 +151,7 @@ def get_k8s_version(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'))
 def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
                            region: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetK8sVersionResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sVersionResult]:
     """
     Gets information about a Kubernetes version.
     For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
@@ -185,7 +185,7 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getK8sVersion:getK8sVersion', __args__, opts=opts, typ=GetK8sVersionResult)
     return __ret__.apply(lambda __response__: GetK8sVersionResult(
         available_cnis=pulumi.get(__response__, 'available_cnis'),

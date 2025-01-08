@@ -337,6 +337,65 @@ import (
 //
 // ```
 //
+// ### With custom partitioning
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			configCustomPartitioning := "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912},{\"label\":\"swap\",\"number\":2,\"size\":4294967296},{\"label\":\"boot\",\"number\":3,\"size\":1073741824},{\"label\":\"root\",\"number\":4,\"size\":1017827045376}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"swap\",\"number\":1,\"size\":4294967296},{\"label\":\"boot\",\"number\":2,\"size\":1073741824},{\"label\":\"root\",\"number\":3,\"size\":1017827045376}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/md0\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/md1\",\"format\":\"ext4\",\"mountpoint\":\"/\"}],\"raids\":[{\"devices\":[\"/dev/nvme0n1p3\",\"/dev/nvme1n1p2\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md0\"},{\"devices\":[\"/dev/nvme0n1p4\",\"/dev/nvme1n1p3\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md1\"}],\"zfs\":{\"pools\":[]}}"
+//			if param := cfg.Get("configCustomPartitioning"); param != "" {
+//				configCustomPartitioning = param
+//			}
+//			myOs, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-1"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			main, err := scaleway.NewIamSshKey(ctx, "main", &scaleway.IamSshKeyArgs{
+//				Name: pulumi.String("main"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//				Name:         pulumi.String("%s"),
+//				Zone:         pulumi.String("fr-par-1"),
+//				Description:  pulumi.String("test a description"),
+//				Offer:        pulumi.String("EM-B220E-NVME"),
+//				Os:           pulumi.String(myOs.OsId),
+//				Partitioning: pulumi.String(configCustomPartitioning),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform-test"),
+//					pulumi.String("scaleway_baremetal_server"),
+//					pulumi.String("minimal"),
+//				},
+//				SshKeyIds: pulumi.StringArray{
+//					main.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -385,7 +444,7 @@ type BaremetalServer struct {
 	Os pulumi.StringPtrOutput `pulumi:"os"`
 	// The name of the os.
 	OsName pulumi.StringOutput `pulumi:"osName"`
-	// The partitioning schema in json format
+	// The partitioning schema in JSON format
 	Partitioning pulumi.StringPtrOutput `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
@@ -490,7 +549,7 @@ type baremetalServerState struct {
 	Os *string `pulumi:"os"`
 	// The name of the os.
 	OsName *string `pulumi:"osName"`
-	// The partitioning schema in json format
+	// The partitioning schema in JSON format
 	Partitioning *string `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
@@ -552,7 +611,7 @@ type BaremetalServerState struct {
 	Os pulumi.StringPtrInput
 	// The name of the os.
 	OsName pulumi.StringPtrInput
-	// The partitioning schema in json format
+	// The partitioning schema in JSON format
 	Partitioning pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
@@ -602,7 +661,7 @@ type baremetalServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os *string `pulumi:"os"`
-	// The partitioning schema in json format
+	// The partitioning schema in JSON format
 	Partitioning *string `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
@@ -649,7 +708,7 @@ type BaremetalServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
 	Os pulumi.StringPtrInput
-	// The partitioning schema in json format
+	// The partitioning schema in JSON format
 	Partitioning pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
@@ -842,7 +901,7 @@ func (o BaremetalServerOutput) OsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.OsName }).(pulumi.StringOutput)
 }
 
-// The partitioning schema in json format
+// The partitioning schema in JSON format
 func (o BaremetalServerOutput) Partitioning() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Partitioning }).(pulumi.StringPtrOutput)
 }

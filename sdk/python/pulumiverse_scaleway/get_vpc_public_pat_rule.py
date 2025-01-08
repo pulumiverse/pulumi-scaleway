@@ -235,7 +235,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
         zone=pulumi.get(__ret__, 'zone'))
 def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = None,
                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicPatRuleResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicPatRuleResult]:
     """
     Gets information about a Public Gateway PAT rule. For further information, please see the
     API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
@@ -297,7 +297,7 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
     __args__ = dict()
     __args__['patRuleId'] = pat_rule_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule', __args__, opts=opts, typ=GetVpcPublicPatRuleResult)
     return __ret__.apply(lambda __response__: GetVpcPublicPatRuleResult(
         created_at=pulumi.get(__response__, 'created_at'),

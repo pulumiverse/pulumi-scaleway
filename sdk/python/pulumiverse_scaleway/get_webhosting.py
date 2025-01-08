@@ -280,7 +280,7 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                           organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                           project_id: Optional[pulumi.Input[Optional[str]]] = None,
                           webhosting_id: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebhostingResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhostingResult]:
     """
     Gets information about a webhosting.
 
@@ -307,7 +307,7 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
     __args__['webhostingId'] = webhosting_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getWebhosting:getWebhosting', __args__, opts=opts, typ=GetWebhostingResult)
     return __ret__.apply(lambda __response__: GetWebhostingResult(
         cpanel_urls=pulumi.get(__response__, 'cpanel_urls'),

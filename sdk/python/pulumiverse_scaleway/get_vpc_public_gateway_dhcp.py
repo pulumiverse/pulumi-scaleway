@@ -263,7 +263,7 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
         valid_lifetime=pulumi.get(__ret__, 'valid_lifetime'),
         zone=pulumi.get(__ret__, 'zone'))
 def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpResult]:
     """
     Gets information about a Public Gateway DHCP configuration.
 
@@ -280,7 +280,7 @@ def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = No
     """
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp', __args__, opts=opts, typ=GetVpcPublicGatewayDhcpResult)
     return __ret__.apply(lambda __response__: GetVpcPublicGatewayDhcpResult(
         address=pulumi.get(__response__, 'address'),

@@ -130,7 +130,7 @@ def get_billing_invoices(invoice_type: Optional[str] = None,
 def get_billing_invoices_output(invoice_type: Optional[pulumi.Input[Optional[str]]] = None,
                                 started_after: Optional[pulumi.Input[Optional[str]]] = None,
                                 started_before: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBillingInvoicesResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBillingInvoicesResult]:
     """
     Gets information about your Scaleway invoices.
 
@@ -143,7 +143,7 @@ def get_billing_invoices_output(invoice_type: Optional[pulumi.Input[Optional[str
     __args__['invoiceType'] = invoice_type
     __args__['startedAfter'] = started_after
     __args__['startedBefore'] = started_before
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBillingInvoices:getBillingInvoices', __args__, opts=opts, typ=GetBillingInvoicesResult)
     return __ret__.apply(lambda __response__: GetBillingInvoicesResult(
         id=pulumi.get(__response__, 'id'),

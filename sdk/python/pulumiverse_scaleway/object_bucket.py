@@ -794,7 +794,7 @@ class ObjectBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="corsRules")
-    def cors_rules(self) -> pulumi.Output[Optional[Sequence['outputs.ObjectBucketCorsRule']]]:
+    def cors_rules(self) -> pulumi.Output[Sequence['outputs.ObjectBucketCorsRule']]:
         return pulumi.get(self, "cors_rules")
 
     @property

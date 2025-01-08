@@ -66,6 +66,10 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
     }
 
     /**
+     * URL for Grafana.
+     */
+    public /*out*/ readonly grafanaUrl!: pulumi.Output<string>;
+    /**
      * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */
     public readonly login!: pulumi.Output<string>;
@@ -95,6 +99,7 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CockpitGrafanaUserState | undefined;
+            resourceInputs["grafanaUrl"] = state ? state.grafanaUrl : undefined;
             resourceInputs["login"] = state ? state.login : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -110,6 +115,7 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
             resourceInputs["login"] = args ? args.login : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["grafanaUrl"] = undefined /*out*/;
             resourceInputs["password"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -123,6 +129,10 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CockpitGrafanaUser resources.
  */
 export interface CockpitGrafanaUserState {
+    /**
+     * URL for Grafana.
+     */
+    grafanaUrl?: pulumi.Input<string>;
     /**
      * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */

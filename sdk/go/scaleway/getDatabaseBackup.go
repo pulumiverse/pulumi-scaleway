@@ -95,21 +95,11 @@ type LookupDatabaseBackupResult struct {
 }
 
 func LookupDatabaseBackupOutput(ctx *pulumi.Context, args LookupDatabaseBackupOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseBackupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDatabaseBackupResultOutput, error) {
 			args := v.(LookupDatabaseBackupArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDatabaseBackupResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getDatabaseBackup:getDatabaseBackup", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDatabaseBackupResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDatabaseBackupResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDatabaseBackupResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getDatabaseBackup:getDatabaseBackup", args, LookupDatabaseBackupResultOutput{}, options).(LookupDatabaseBackupResultOutput), nil
 		}).(LookupDatabaseBackupResultOutput)
 }
 

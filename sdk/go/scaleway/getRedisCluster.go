@@ -77,21 +77,11 @@ type LookupRedisClusterResult struct {
 }
 
 func LookupRedisClusterOutput(ctx *pulumi.Context, args LookupRedisClusterOutputArgs, opts ...pulumi.InvokeOption) LookupRedisClusterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRedisClusterResultOutput, error) {
 			args := v.(LookupRedisClusterArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRedisClusterResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getRedisCluster:getRedisCluster", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRedisClusterResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRedisClusterResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRedisClusterResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getRedisCluster:getRedisCluster", args, LookupRedisClusterResultOutput{}, options).(LookupRedisClusterResultOutput), nil
 		}).(LookupRedisClusterResultOutput)
 }
 

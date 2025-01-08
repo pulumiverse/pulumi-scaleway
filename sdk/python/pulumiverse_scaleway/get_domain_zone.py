@@ -176,7 +176,7 @@ def get_domain_zone(domain: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                            subdomain: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainZoneResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainZoneResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -186,7 +186,7 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['domain'] = domain
     __args__['subdomain'] = subdomain
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDomainZone:getDomainZone', __args__, opts=opts, typ=GetDomainZoneResult)
     return __ret__.apply(lambda __response__: GetDomainZoneResult(
         domain=pulumi.get(__response__, 'domain'),

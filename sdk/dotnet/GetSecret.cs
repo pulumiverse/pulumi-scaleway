@@ -109,6 +109,55 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("scaleway:index/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+        /// 
+        /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Create a secret and get its information
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - create a secret named `foo` with the description `barr`
+        /// - retrieve the secret's information using the secret's ID
+        /// - retrieve the secret's information using the secret's name
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Create a secret
+        ///     var main = new Scaleway.Secret("main", new()
+        ///     {
+        ///         Name = "foo",
+        ///         Description = "barr",
+        ///     });
+        /// 
+        ///     // Get the secret information specified by the secret ID
+        ///     var mySecret = Scaleway.GetSecret.Invoke(new()
+        ///     {
+        ///         SecretId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        ///     // Get the secret information specified by the secret name
+        ///     var byName = Scaleway.GetSecret.Invoke(new()
+        ///     {
+        ///         Name = "your_secret_name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("scaleway:index/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
     }
 
 
