@@ -58,6 +58,8 @@ type ObjectItem struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// Customer's encryption keys to encrypt data (SSE-C)
+	SseCustomerKey pulumi.StringPtrOutput `pulumi:"sseCustomerKey"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
 	// Map of tags.
@@ -79,6 +81,13 @@ func NewObjectItem(ctx *pulumi.Context,
 	if args.Key == nil {
 		return nil, errors.New("invalid value for required argument 'Key'")
 	}
+	if args.SseCustomerKey != nil {
+		args.SseCustomerKey = pulumi.ToSecret(args.SseCustomerKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"sseCustomerKey",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectItem
 	err := ctx.RegisterResource("scaleway:index/objectItem:ObjectItem", name, args, &resource, opts...)
@@ -122,6 +131,8 @@ type objectItemState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
 	Region *string `pulumi:"region"`
+	// Customer's encryption keys to encrypt data (SSE-C)
+	SseCustomerKey *string `pulumi:"sseCustomerKey"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass *string `pulumi:"storageClass"`
 	// Map of tags.
@@ -151,6 +162,8 @@ type ObjectItemState struct {
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrInput
+	// Customer's encryption keys to encrypt data (SSE-C)
+	SseCustomerKey pulumi.StringPtrInput
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass pulumi.StringPtrInput
 	// Map of tags.
@@ -184,6 +197,8 @@ type objectItemArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
 	Region *string `pulumi:"region"`
+	// Customer's encryption keys to encrypt data (SSE-C)
+	SseCustomerKey *string `pulumi:"sseCustomerKey"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass *string `pulumi:"storageClass"`
 	// Map of tags.
@@ -214,6 +229,8 @@ type ObjectItemArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrInput
+	// Customer's encryption keys to encrypt data (SSE-C)
+	SseCustomerKey pulumi.StringPtrInput
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
 	StorageClass pulumi.StringPtrInput
 	// Map of tags.
@@ -354,6 +371,11 @@ func (o ObjectItemOutput) ProjectId() pulumi.StringOutput {
 // The Scaleway region the bucket resides in.
 func (o ObjectItemOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// Customer's encryption keys to encrypt data (SSE-C)
+func (o ObjectItemOutput) SseCustomerKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.SseCustomerKey }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.

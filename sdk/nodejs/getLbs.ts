@@ -82,7 +82,7 @@ export interface GetLbsResult {
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  */
-export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbsResult> {
+export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbs:getLbs", {

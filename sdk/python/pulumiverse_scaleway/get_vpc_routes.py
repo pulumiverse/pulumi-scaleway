@@ -173,7 +173,7 @@ def get_vpc_routes_output(is_ipv6: Optional[pulumi.Input[Optional[bool]]] = None
                           region: Optional[pulumi.Input[Optional[str]]] = None,
                           tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcRoutesResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcRoutesResult]:
     """
     Gets information about multiple VPC routes.
 
@@ -194,7 +194,7 @@ def get_vpc_routes_output(is_ipv6: Optional[pulumi.Input[Optional[bool]]] = None
     __args__['region'] = region
     __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcRoutes:getVpcRoutes', __args__, opts=opts, typ=GetVpcRoutesResult)
     return __ret__.apply(lambda __response__: GetVpcRoutesResult(
         id=pulumi.get(__response__, 'id'),

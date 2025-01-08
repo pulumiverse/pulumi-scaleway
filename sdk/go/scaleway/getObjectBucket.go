@@ -117,21 +117,11 @@ type LookupObjectBucketResult struct {
 }
 
 func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutputArgs, opts ...pulumi.InvokeOption) LookupObjectBucketResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupObjectBucketResultOutput, error) {
 			args := v.(LookupObjectBucketArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupObjectBucketResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getObjectBucket:getObjectBucket", args, &rv, "", opts...)
-			if err != nil {
-				return LookupObjectBucketResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupObjectBucketResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupObjectBucketResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getObjectBucket:getObjectBucket", args, LookupObjectBucketResultOutput{}, options).(LookupObjectBucketResultOutput), nil
 		}).(LookupObjectBucketResultOutput)
 }
 

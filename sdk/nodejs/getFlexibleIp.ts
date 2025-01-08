@@ -70,7 +70,7 @@ export interface GetFlexibleIpResult {
 /**
  * Gets information about a Flexible IP.
  */
-export function getFlexibleIpOutput(args?: GetFlexibleIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFlexibleIpResult> {
+export function getFlexibleIpOutput(args?: GetFlexibleIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFlexibleIpResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getFlexibleIp:getFlexibleIp", {

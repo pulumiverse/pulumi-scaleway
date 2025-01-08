@@ -73,6 +73,37 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetInstanceSnapshotResult> Invoke(GetInstanceSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceSnapshotResult>("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args ?? new GetInstanceSnapshotInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an instance snapshot.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by snapshot name
+        ///     var byName = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     {
+        ///         Name = "my-snapshot-name",
+        ///     });
+        /// 
+        ///     // Get info by snapshot ID
+        ///     var byId = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     {
+        ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetInstanceSnapshotResult> Invoke(GetInstanceSnapshotInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceSnapshotResult>("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args ?? new GetInstanceSnapshotInvokeArgs(), options.WithDefaults());
     }
 
 

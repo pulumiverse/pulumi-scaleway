@@ -235,6 +235,118 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIpamIpResult> Invoke(GetIpamIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpamIpResult>("scaleway:index/getIpamIp:getIpamIp", args ?? new GetIpamIpInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.
+        /// 
+        /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+        /// 
+        /// ## Examples
+        /// 
+        /// ### IPAM IP ID
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by ipam ip id
+        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     {
+        ///         IpamIpId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Instance Private Network IP
+        /// 
+        /// Get an Instance's IP on a Private Network.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Connect your instance to a private network using a private nic.
+        ///     var nic = new Scaleway.InstancePrivateNic("nic", new()
+        ///     {
+        ///         ServerId = server.Id,
+        ///         PrivateNetworkId = pn.Id,
+        ///     });
+        /// 
+        ///     // Find server private IPv4 using private-nic mac address
+        ///     var byMac = Scaleway.GetIpamIp.Invoke(new()
+        ///     {
+        ///         MacAddress = nic.MacAddress,
+        ///         Type = "ipv4",
+        ///     });
+        /// 
+        ///     // Find server private IPv4 using private-nic id
+        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     {
+        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         {
+        ///             Id = nic.Id,
+        ///             Type = "instance_private_nic",
+        ///         },
+        ///         Type = "ipv4",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### RDB instance
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Find the private IPv4 using resource name
+        ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+        /// 
+        ///     var main = new Scaleway.DatabaseInstance("main", new()
+        ///     {
+        ///         Name = "test-rdb",
+        ///         NodeType = "DB-DEV-S",
+        ///         Engine = "PostgreSQL-15",
+        ///         IsHaCluster = true,
+        ///         DisableBackup = true,
+        ///         UserName = "my_initial_user",
+        ///         Password = "thiZ_is_v&amp;ry_s3cret",
+        ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+        ///         {
+        ///             PnId = pn.Id,
+        ///         },
+        ///     });
+        /// 
+        ///     var byName = Scaleway.GetIpamIp.Invoke(new()
+        ///     {
+        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         {
+        ///             Name = main.Name,
+        ///             Type = "rdb_instance",
+        ///         },
+        ///         Type = "ipv4",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIpamIpResult> Invoke(GetIpamIpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpamIpResult>("scaleway:index/getIpamIp:getIpamIp", args ?? new GetIpamIpInvokeArgs(), options.WithDefaults());
     }
 
 

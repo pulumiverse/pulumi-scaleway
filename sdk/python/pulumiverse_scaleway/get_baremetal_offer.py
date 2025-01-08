@@ -212,7 +212,7 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
                                offer_id: Optional[pulumi.Input[Optional[str]]] = None,
                                subscription_period: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOfferResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalOfferResult]:
     """
     Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
@@ -228,7 +228,7 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
     __args__['offerId'] = offer_id
     __args__['subscriptionPeriod'] = subscription_period
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalOffer:getBaremetalOffer', __args__, opts=opts, typ=GetBaremetalOfferResult)
     return __ret__.apply(lambda __response__: GetBaremetalOfferResult(
         bandwidth=pulumi.get(__response__, 'bandwidth'),

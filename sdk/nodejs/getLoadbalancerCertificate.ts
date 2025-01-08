@@ -74,7 +74,7 @@ export interface GetLoadbalancerCertificateResult {
  *
  * ## Examples
  */
-export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerCertificateResult> {
+export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadbalancerCertificateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", {

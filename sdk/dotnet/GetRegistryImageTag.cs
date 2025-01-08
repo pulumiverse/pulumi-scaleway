@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetRegistryImageTagResult> Invoke(GetRegistryImageTagInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageTagResult>("scaleway:index/getRegistryImageTag:getRegistryImageTag", args ?? new GetRegistryImageTagInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a specific tag of a Container Registry image.
+        /// </summary>
+        public static Output<GetRegistryImageTagResult> Invoke(GetRegistryImageTagInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageTagResult>("scaleway:index/getRegistryImageTag:getRegistryImageTag", args ?? new GetRegistryImageTagInvokeArgs(), options.WithDefaults());
     }
 
 

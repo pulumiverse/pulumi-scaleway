@@ -352,7 +352,7 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  region: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
     Gets information about an Database Instance.
 
@@ -371,7 +371,7 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult)
     return __ret__.apply(lambda __response__: GetDatabaseInstanceResult(
         backup_same_region=pulumi.get(__response__, 'backup_same_region'),

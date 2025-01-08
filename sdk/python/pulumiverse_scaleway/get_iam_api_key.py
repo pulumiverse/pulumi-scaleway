@@ -175,7 +175,7 @@ def get_iam_api_key(access_key: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         user_id=pulumi.get(__ret__, 'user_id'))
 def get_iam_api_key_output(access_key: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamApiKeyResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIamApiKeyResult]:
     """
     Gets information about an existing IAM API key. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).
 
@@ -194,7 +194,7 @@ def get_iam_api_key_output(access_key: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['accessKey'] = access_key
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamApiKey:getIamApiKey', __args__, opts=opts, typ=GetIamApiKeyResult)
     return __ret__.apply(lambda __response__: GetIamApiKeyResult(
         access_key=pulumi.get(__response__, 'access_key'),

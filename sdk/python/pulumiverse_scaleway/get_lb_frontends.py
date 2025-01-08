@@ -155,7 +155,7 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             project_id: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbFrontendsResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbFrontendsResult]:
     """
     Gets information about multiple Load Balancer frontends.
 
@@ -184,7 +184,7 @@ def get_lb_frontends_output(lb_id: Optional[pulumi.Input[str]] = None,
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbFrontends:getLbFrontends', __args__, opts=opts, typ=GetLbFrontendsResult)
     return __ret__.apply(lambda __response__: GetLbFrontendsResult(
         frontends=pulumi.get(__response__, 'frontends'),

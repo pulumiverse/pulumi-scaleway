@@ -72,21 +72,11 @@ type LookupIamApiKeyResult struct {
 }
 
 func LookupIamApiKeyOutput(ctx *pulumi.Context, args LookupIamApiKeyOutputArgs, opts ...pulumi.InvokeOption) LookupIamApiKeyResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupIamApiKeyResultOutput, error) {
 			args := v.(LookupIamApiKeyArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupIamApiKeyResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getIamApiKey:getIamApiKey", args, &rv, "", opts...)
-			if err != nil {
-				return LookupIamApiKeyResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupIamApiKeyResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupIamApiKeyResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getIamApiKey:getIamApiKey", args, LookupIamApiKeyResultOutput{}, options).(LookupIamApiKeyResultOutput), nil
 		}).(LookupIamApiKeyResultOutput)
 }
 

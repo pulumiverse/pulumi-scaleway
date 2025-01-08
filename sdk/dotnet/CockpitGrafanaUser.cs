@@ -58,6 +58,12 @@ namespace Pulumiverse.Scaleway
     public partial class CockpitGrafanaUser : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// URL for Grafana.
+        /// </summary>
+        [Output("grafanaUrl")]
+        public Output<string> GrafanaUrl { get; private set; } = null!;
+
+        /// <summary>
         /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Output("login")]
@@ -158,6 +164,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class CockpitGrafanaUserState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// URL for Grafana.
+        /// </summary>
+        [Input("grafanaUrl")]
+        public Input<string>? GrafanaUrl { get; set; }
+
         /// <summary>
         /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>

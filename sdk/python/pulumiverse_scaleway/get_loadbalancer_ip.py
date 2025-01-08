@@ -193,7 +193,7 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
                                ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
     """
     Gets information about a Load Balancer IP address.
 
@@ -212,7 +212,7 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
     __args__['ipId'] = ip_id
     __args__['projectId'] = project_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLoadbalancerIp:getLoadbalancerIp', __args__, opts=opts, typ=GetLoadbalancerIpResult)
     return __ret__.apply(lambda __response__: GetLoadbalancerIpResult(
         id=pulumi.get(__response__, 'id'),

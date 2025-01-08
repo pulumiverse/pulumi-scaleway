@@ -198,7 +198,7 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
                    region: Optional[pulumi.Input[Optional[str]]] = None,
                    vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcResult]:
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcResult]:
     """
     Gets information about a Scaleway Virtual Private Cloud.
 
@@ -230,7 +230,7 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     __args__['vpcId'] = vpc_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpc:getVpc', __args__, opts=opts, typ=GetVpcResult)
     return __ret__.apply(lambda __response__: GetVpcResult(
         created_at=pulumi.get(__response__, 'created_at'),

@@ -63,7 +63,7 @@ export interface GetDomainZoneResult {
      */
     readonly updatedAt: string;
 }
-export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainZoneResult> {
+export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDomainZoneResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDomainZone:getDomainZone", {

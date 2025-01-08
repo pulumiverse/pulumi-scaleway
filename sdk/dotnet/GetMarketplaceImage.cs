@@ -59,6 +59,30 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetMarketplaceImageResult> Invoke(GetMarketplaceImageInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMarketplaceImageResult>("scaleway:index/getMarketplaceImage:getMarketplaceImage", args ?? new GetMarketplaceImageInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets local image ID of an image from its label name.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
+        ///     {
+        ///         Label = "ubuntu_jammy",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetMarketplaceImageResult> Invoke(GetMarketplaceImageInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMarketplaceImageResult>("scaleway:index/getMarketplaceImage:getMarketplaceImage", args ?? new GetMarketplaceImageInvokeArgs(), options.WithDefaults());
     }
 
 

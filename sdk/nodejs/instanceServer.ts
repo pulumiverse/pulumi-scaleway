@@ -322,7 +322,9 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly placementGroupPolicyRespected!: pulumi.Output<boolean>;
     /**
-     * The Scaleway internal IP address of the server.
+     * The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
+     *
+     * @deprecated Use ipamIp datasource instead to fetch your server's IP in your private network.
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
     /**
@@ -577,7 +579,9 @@ export interface InstanceServerState {
      */
     placementGroupPolicyRespected?: pulumi.Input<boolean>;
     /**
-     * The Scaleway internal IP address of the server.
+     * The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
+     *
+     * @deprecated Use ipamIp datasource instead to fetch your server's IP in your private network.
      */
     privateIp?: pulumi.Input<string>;
     /**

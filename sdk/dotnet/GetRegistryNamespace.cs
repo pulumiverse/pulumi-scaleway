@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetRegistryNamespaceResult> Invoke(GetRegistryNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a registry namespace.
+        /// </summary>
+        public static Output<GetRegistryNamespaceResult> Invoke(GetRegistryNamespaceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

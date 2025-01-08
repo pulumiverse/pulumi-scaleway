@@ -209,6 +209,105 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetVpcPublicPatRuleResult> Invoke(GetVpcPublicPatRuleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Public Gateway PAT rule. For further information, please see the
+        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+        ///     {
+        ///         InboundDefaultPolicy = "drop",
+        ///         OutboundDefaultPolicy = "accept",
+        ///         InboundRules = new[]
+        ///         {
+        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             {
+        ///                 Action = "accept",
+        ///                 Port = 22,
+        ///                 Protocol = "TCP",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
+        ///     {
+        ///         Name = "my-server",
+        ///         Type = "PLAY2-NANO",
+        ///         Image = "ubuntu_jammy",
+        ///         SecurityGroupId = sg01.Id,
+        ///     });
+        /// 
+        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     {
+        ///         Name = "my-pn",
+        ///     });
+        /// 
+        ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+        ///     {
+        ///         ServerId = srv01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///     });
+        /// 
+        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     {
+        ///         Subnet = "192.168.0.0/24",
+        ///     });
+        /// 
+        ///     var ip01 = new Scaleway.VpcPublicGatewayIp("ip01");
+        /// 
+        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     {
+        ///         Name = "my-pg",
+        ///         Type = "VPC-GW-S",
+        ///         IpId = ip01.Id,
+        ///     });
+        /// 
+        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     });
+        /// 
+        ///     var rsv01 = new Scaleway.VpcPublicGatewayDhcpReservation("rsv01", new()
+        ///     {
+        ///         GatewayNetworkId = gn01.Id,
+        ///         MacAddress = pnic01.MacAddress,
+        ///         IpAddress = "192.168.0.7",
+        ///     });
+        /// 
+        ///     var pat01 = new Scaleway.VpcPublicGatewayPatRule("pat01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateIp = rsv01.IpAddress,
+        ///         PrivatePort = 22,
+        ///         PublicPort = 2202,
+        ///         Protocol = "tcp",
+        ///     });
+        /// 
+        ///     var main = Scaleway.GetVpcPublicPatRule.Invoke(new()
+        ///     {
+        ///         PatRuleId = pat01.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpcPublicPatRuleResult> Invoke(GetVpcPublicPatRuleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicPatRuleResult>("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", args ?? new GetVpcPublicPatRuleInvokeArgs(), options.WithDefaults());
     }
 
 

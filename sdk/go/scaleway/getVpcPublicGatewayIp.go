@@ -72,21 +72,11 @@ type LookupVpcPublicGatewayIpResult struct {
 }
 
 func LookupVpcPublicGatewayIpOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayIpOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayIpResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupVpcPublicGatewayIpResultOutput, error) {
 			args := v.(LookupVpcPublicGatewayIpArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupVpcPublicGatewayIpResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args, &rv, "", opts...)
-			if err != nil {
-				return LookupVpcPublicGatewayIpResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupVpcPublicGatewayIpResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupVpcPublicGatewayIpResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args, LookupVpcPublicGatewayIpResultOutput{}, options).(LookupVpcPublicGatewayIpResultOutput), nil
 		}).(LookupVpcPublicGatewayIpResultOutput)
 }
 

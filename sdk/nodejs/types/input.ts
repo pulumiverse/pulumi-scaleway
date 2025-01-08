@@ -847,7 +847,7 @@ export interface InstanceServerRootVolume {
      * Size of the root volume in gigabytes.
      * To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
      * check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
-     * Updates to this field will recreate a new resource.
+     * Depending on `volumeType`, updates to this field may recreate a new resource.
      */
     sizeInGb?: pulumi.Input<number>;
     /**

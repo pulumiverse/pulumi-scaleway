@@ -153,7 +153,7 @@ def get_cockpit(project_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         push_urls=pulumi.get(__ret__, 'push_urls'))
 def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCockpitResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCockpitResult]:
     """
     > **Important:**  The data source `Cockpit` has been deprecated and will no longer be supported. Instead, use resource `Cockpit`.
 
@@ -193,7 +193,7 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getCockpit:getCockpit', __args__, opts=opts, typ=GetCockpitResult)
     return __ret__.apply(lambda __response__: GetCockpitResult(
         endpoints=pulumi.get(__response__, 'endpoints'),

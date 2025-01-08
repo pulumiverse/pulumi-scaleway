@@ -59,21 +59,11 @@ type LookupLoadbalancerIpResult struct {
 }
 
 func LookupLoadbalancerIpOutput(ctx *pulumi.Context, args LookupLoadbalancerIpOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerIpResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupLoadbalancerIpResultOutput, error) {
 			args := v.(LookupLoadbalancerIpArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupLoadbalancerIpResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args, &rv, "", opts...)
-			if err != nil {
-				return LookupLoadbalancerIpResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupLoadbalancerIpResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupLoadbalancerIpResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args, LookupLoadbalancerIpResultOutput{}, options).(LookupLoadbalancerIpResultOutput), nil
 		}).(LookupLoadbalancerIpResultOutput)
 }
 

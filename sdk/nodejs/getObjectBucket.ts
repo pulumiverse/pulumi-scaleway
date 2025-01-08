@@ -135,7 +135,7 @@ export interface GetObjectBucketResult {
  * });
  * ```
  */
-export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectBucketResult> {
+export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectBucketResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getObjectBucket:getObjectBucket", {

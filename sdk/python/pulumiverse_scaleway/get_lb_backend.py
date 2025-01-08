@@ -410,7 +410,7 @@ def get_lb_backend(backend_id: Optional[str] = None,
 def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = None,
                           lb_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbBackendResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbBackendResult]:
     """
     Get information about Scaleway Load Balancer backends.
 
@@ -449,7 +449,7 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     __args__['backendId'] = backend_id
     __args__['lbId'] = lb_id
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbBackend:getLbBackend', __args__, opts=opts, typ=GetLbBackendResult)
     return __ret__.apply(lambda __response__: GetLbBackendResult(
         backend_id=pulumi.get(__response__, 'backend_id'),

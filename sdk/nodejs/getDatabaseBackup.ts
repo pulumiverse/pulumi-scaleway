@@ -106,7 +106,7 @@ export interface GetDatabaseBackupResult {
  * });
  * ```
  */
-export function getDatabaseBackupOutput(args?: GetDatabaseBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseBackupResult> {
+export function getDatabaseBackupOutput(args?: GetDatabaseBackupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseBackupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseBackup:getDatabaseBackup", {

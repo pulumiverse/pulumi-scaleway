@@ -263,7 +263,7 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
  * });
  * ```
  */
-export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGatewayDhcpReservationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayDhcpReservationResult> {
+export function getVpcPublicGatewayDhcpReservationOutput(args?: GetVpcPublicGatewayDhcpReservationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPublicGatewayDhcpReservationResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", {

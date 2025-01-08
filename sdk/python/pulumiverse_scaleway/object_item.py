@@ -28,6 +28,7 @@ class ObjectItemArgs:
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 sse_customer_key: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
@@ -44,6 +45,7 @@ class ObjectItemArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
@@ -64,6 +66,8 @@ class ObjectItemArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if sse_customer_key is not None:
+            pulumi.set(__self__, "sse_customer_key", sse_customer_key)
         if storage_class is not None:
             pulumi.set(__self__, "storage_class", storage_class)
         if tags is not None:
@@ -182,6 +186,18 @@ class ObjectItemArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="sseCustomerKey")
+    def sse_customer_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Customer's encryption keys to encrypt data (SSE-C)
+        """
+        return pulumi.get(self, "sse_customer_key")
+
+    @sse_customer_key.setter
+    def sse_customer_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sse_customer_key", value)
+
+    @property
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
@@ -230,6 +246,7 @@ class _ObjectItemState:
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 sse_customer_key: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
@@ -246,6 +263,7 @@ class _ObjectItemState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
@@ -268,6 +286,8 @@ class _ObjectItemState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if sse_customer_key is not None:
+            pulumi.set(__self__, "sse_customer_key", sse_customer_key)
         if storage_class is not None:
             pulumi.set(__self__, "storage_class", storage_class)
         if tags is not None:
@@ -386,6 +406,18 @@ class _ObjectItemState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="sseCustomerKey")
+    def sse_customer_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Customer's encryption keys to encrypt data (SSE-C)
+        """
+        return pulumi.get(self, "sse_customer_key")
+
+    @sse_customer_key.setter
+    def sse_customer_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sse_customer_key", value)
+
+    @property
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
@@ -436,6 +468,7 @@ class ObjectItem(pulumi.CustomResource):
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 sse_customer_key: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
@@ -478,6 +511,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
@@ -537,6 +571,7 @@ class ObjectItem(pulumi.CustomResource):
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 sse_customer_key: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
@@ -562,9 +597,12 @@ class ObjectItem(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["sse_customer_key"] = None if sse_customer_key is None else pulumi.Output.secret(sse_customer_key)
             __props__.__dict__["storage_class"] = storage_class
             __props__.__dict__["tags"] = tags
             __props__.__dict__["visibility"] = visibility
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["sseCustomerKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ObjectItem, __self__).__init__(
             'scaleway:index/objectItem:ObjectItem',
             resource_name,
@@ -584,6 +622,7 @@ class ObjectItem(pulumi.CustomResource):
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            sse_customer_key: Optional[pulumi.Input[str]] = None,
             storage_class: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             visibility: Optional[pulumi.Input[str]] = None) -> 'ObjectItem':
@@ -605,6 +644,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Map of metadata used for the object (keys must be lowercase).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
+        :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
@@ -622,6 +662,7 @@ class ObjectItem(pulumi.CustomResource):
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["sse_customer_key"] = sse_customer_key
         __props__.__dict__["storage_class"] = storage_class
         __props__.__dict__["tags"] = tags
         __props__.__dict__["visibility"] = visibility
@@ -700,6 +741,14 @@ class ObjectItem(pulumi.CustomResource):
         The Scaleway region the bucket resides in.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="sseCustomerKey")
+    def sse_customer_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        Customer's encryption keys to encrypt data (SSE-C)
+        """
+        return pulumi.get(self, "sse_customer_key")
 
     @property
     @pulumi.getter(name="storageClass")

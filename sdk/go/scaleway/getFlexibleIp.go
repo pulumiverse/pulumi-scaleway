@@ -56,21 +56,11 @@ type LookupFlexibleIpResult struct {
 }
 
 func LookupFlexibleIpOutput(ctx *pulumi.Context, args LookupFlexibleIpOutputArgs, opts ...pulumi.InvokeOption) LookupFlexibleIpResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupFlexibleIpResultOutput, error) {
 			args := v.(LookupFlexibleIpArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupFlexibleIpResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getFlexibleIp:getFlexibleIp", args, &rv, "", opts...)
-			if err != nil {
-				return LookupFlexibleIpResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupFlexibleIpResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupFlexibleIpResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getFlexibleIp:getFlexibleIp", args, LookupFlexibleIpResultOutput{}, options).(LookupFlexibleIpResultOutput), nil
 		}).(LookupFlexibleIpResultOutput)
 }
 

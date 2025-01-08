@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetInstanceVolumeResult> Invoke(GetInstanceVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an instance volume.
+        /// </summary>
+        public static Output<GetInstanceVolumeResult> Invoke(GetInstanceVolumeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithDefaults());
     }
 
 

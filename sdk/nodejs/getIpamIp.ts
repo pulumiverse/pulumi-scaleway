@@ -255,7 +255,7 @@ export interface GetIpamIpResult {
  * });
  * ```
  */
-export function getIpamIpOutput(args?: GetIpamIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpamIpResult> {
+export function getIpamIpOutput(args?: GetIpamIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpamIpResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIpamIp:getIpamIp", {

@@ -96,7 +96,7 @@ export interface GetBaremetalOsResult {
  * });
  * ```
  */
-export function getBaremetalOsOutput(args?: GetBaremetalOsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOsResult> {
+export function getBaremetalOsOutput(args?: GetBaremetalOsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOs:getBaremetalOs", {

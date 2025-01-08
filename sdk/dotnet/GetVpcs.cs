@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetVpcsResult> Invoke(GetVpcsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcsResult>("scaleway:index/getVpcs:getVpcs", args ?? new GetVpcsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Virtual Private Clouds.
+        /// </summary>
+        public static Output<GetVpcsResult> Invoke(GetVpcsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcsResult>("scaleway:index/getVpcs:getVpcs", args ?? new GetVpcsInvokeArgs(), options.WithDefaults());
     }
 
 

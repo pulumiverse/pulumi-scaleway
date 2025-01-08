@@ -182,7 +182,7 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceVolumeResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceVolumeResult]:
     """
     Gets information about an instance volume.
 
@@ -199,7 +199,7 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     __args__['projectId'] = project_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceVolume:getInstanceVolume', __args__, opts=opts, typ=GetInstanceVolumeResult)
     return __ret__.apply(lambda __response__: GetInstanceVolumeResult(
         from_snapshot_id=pulumi.get(__response__, 'from_snapshot_id'),

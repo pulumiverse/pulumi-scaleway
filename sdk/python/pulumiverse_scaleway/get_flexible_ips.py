@@ -183,7 +183,7 @@ def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = 
                             server_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                             tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFlexibleIpsResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexibleIpsResult]:
     """
     Gets information about multiple Flexible IPs.
 
@@ -228,7 +228,7 @@ def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = 
     __args__['serverIds'] = server_ids
     __args__['tags'] = tags
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFlexibleIps:getFlexibleIps', __args__, opts=opts, typ=GetFlexibleIpsResult)
     return __ret__.apply(lambda __response__: GetFlexibleIpsResult(
         id=pulumi.get(__response__, 'id'),

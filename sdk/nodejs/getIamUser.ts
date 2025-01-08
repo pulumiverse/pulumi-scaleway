@@ -96,7 +96,7 @@ export interface GetIamUserResult {
  * });
  * ```
  */
-export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamUserResult> {
+export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamUserResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamUser:getIamUser", {

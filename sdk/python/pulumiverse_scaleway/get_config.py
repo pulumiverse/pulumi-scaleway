@@ -159,12 +159,12 @@ def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfi
         secret_key_source=pulumi.get(__ret__, 'secret_key_source'),
         zone=pulumi.get(__ret__, 'zone'),
         zone_source=pulumi.get(__ret__, 'zone_source'))
-def get_config_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigResult]:
+def get_config_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConfigResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getConfig:getConfig', __args__, opts=opts, typ=GetConfigResult)
     return __ret__.apply(lambda __response__: GetConfigResult(
         access_key=pulumi.get(__response__, 'access_key'),

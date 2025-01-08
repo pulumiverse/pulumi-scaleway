@@ -52,6 +52,7 @@ from .get_block_snapshot import *
 from .get_block_volume import *
 from .get_cockpit import *
 from .get_cockpit_plan import *
+from .get_cockpit_source import *
 from .get_config import *
 from .get_container import *
 from .get_container_namespace import *

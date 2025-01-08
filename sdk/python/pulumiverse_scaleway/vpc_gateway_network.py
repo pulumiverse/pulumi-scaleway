@@ -36,7 +36,7 @@ class VpcGatewayNetworkArgs:
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
         :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -111,7 +111,7 @@ class VpcGatewayNetworkArgs:
     @pulumi.getter(name="enableDhcp")
     def enable_dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
@@ -189,7 +189,7 @@ class _VpcGatewayNetworkState:
         :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[str] created_at: The date and time of the creation of the GatewayNetwork.
         :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -267,7 +267,7 @@ class _VpcGatewayNetworkState:
     @pulumi.getter(name="enableDhcp")
     def enable_dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
@@ -518,7 +518,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -730,7 +730,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[str] created_at: The date and time of the creation of the GatewayNetwork.
         :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -788,7 +788,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
     @pulumi.getter(name="enableDhcp")
     def enable_dhcp(self) -> pulumi.Output[Optional[bool]]:
         """
-        WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 

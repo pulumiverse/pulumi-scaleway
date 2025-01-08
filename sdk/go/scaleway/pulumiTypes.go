@@ -5619,7 +5619,7 @@ type InstanceServerRootVolume struct {
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
-	// Updates to this field will recreate a new resource.
+	// Depending on `volumeType`, updates to this field may recreate a new resource.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
 	VolumeId *string `pulumi:"volumeId"`
@@ -5652,7 +5652,7 @@ type InstanceServerRootVolumeArgs struct {
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
-	// Updates to this field will recreate a new resource.
+	// Depending on `volumeType`, updates to this field may recreate a new resource.
 	SizeInGb pulumi.IntPtrInput `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
@@ -5762,7 +5762,7 @@ func (o InstanceServerRootVolumeOutput) SbsIops() pulumi.IntPtrOutput {
 // Size of the root volume in gigabytes.
 // To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 // check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
-// Updates to this field will recreate a new resource.
+// Depending on `volumeType`, updates to this field may recreate a new resource.
 func (o InstanceServerRootVolumeOutput) SizeInGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *int { return v.SizeInGb }).(pulumi.IntPtrOutput)
 }
@@ -5846,7 +5846,7 @@ func (o InstanceServerRootVolumePtrOutput) SbsIops() pulumi.IntPtrOutput {
 // Size of the root volume in gigabytes.
 // To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 // check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
-// Updates to this field will recreate a new resource.
+// Depending on `volumeType`, updates to this field may recreate a new resource.
 func (o InstanceServerRootVolumePtrOutput) SizeInGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *int {
 		if v == nil {

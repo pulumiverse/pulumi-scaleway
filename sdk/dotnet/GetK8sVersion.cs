@@ -105,6 +105,53 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetK8sVersionResult> Invoke(GetK8sVersionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sVersionResult>("scaleway:index/getK8sVersion:getK8sVersion", args ?? new GetK8sVersionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Kubernetes version.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+        /// 
+        /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Use the latest version
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var latest = Scaleway.GetK8sVersion.Invoke(new()
+        ///     {
+        ///         Name = "latest",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Use a specific version
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byName = Scaleway.GetK8sVersion.Invoke(new()
+        ///     {
+        ///         Name = "1.26.0",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetK8sVersionResult> Invoke(GetK8sVersionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetK8sVersionResult>("scaleway:index/getK8sVersion:getK8sVersion", args ?? new GetK8sVersionInvokeArgs(), options.WithDefaults());
     }
 
 

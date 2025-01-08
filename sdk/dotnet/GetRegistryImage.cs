@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetRegistryImageResult> Invoke(GetRegistryImageInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Container Registry image.
+        /// </summary>
+        public static Output<GetRegistryImageResult> Invoke(GetRegistryImageInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -69,6 +69,35 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetVpcPublicGatewayIpResult> Invoke(GetVpcPublicGatewayIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Public Gateway public flexible IP address.
+        /// 
+        /// For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.VpcPublicGatewayIp("main");
+        /// 
+        ///     var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new()
+        ///     {
+        ///         IpId = main.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpcPublicGatewayIpResult> Invoke(GetVpcPublicGatewayIpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayIpResult>("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", args ?? new GetVpcPublicGatewayIpInvokeArgs(), options.WithDefaults());
     }
 
 

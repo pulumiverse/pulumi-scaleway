@@ -178,7 +178,7 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
                                     server_id: Optional[pulumi.Input[str]] = None,
                                     tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                     zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstancePrivateNicResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstancePrivateNicResult]:
     """
     Gets information about an instance private NIC.
 
@@ -212,7 +212,7 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
     __args__['serverId'] = server_id
     __args__['tags'] = tags
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstancePrivateNic:getInstancePrivateNic', __args__, opts=opts, typ=GetInstancePrivateNicResult)
     return __ret__.apply(lambda __response__: GetInstancePrivateNicResult(
         id=pulumi.get(__response__, 'id'),

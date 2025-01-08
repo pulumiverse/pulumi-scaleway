@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetBaremetalOfferResult> Invoke(GetBaremetalOfferInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOfferResult>("scaleway:index/getBaremetalOffer:getBaremetalOffer", args ?? new GetBaremetalOfferInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// </summary>
+        public static Output<GetBaremetalOfferResult> Invoke(GetBaremetalOfferInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOfferResult>("scaleway:index/getBaremetalOffer:getBaremetalOffer", args ?? new GetBaremetalOfferInvokeArgs(), options.WithDefaults());
     }
 
 

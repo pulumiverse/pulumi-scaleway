@@ -257,7 +257,7 @@ def get_secret_version_output(organization_id: Optional[pulumi.Input[Optional[st
                               revision: Optional[pulumi.Input[Optional[str]]] = None,
                               secret_id: Optional[pulumi.Input[Optional[str]]] = None,
                               secret_name: Optional[pulumi.Input[Optional[str]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretVersionResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretVersionResult]:
     """
     The `SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
 
@@ -323,7 +323,7 @@ def get_secret_version_output(organization_id: Optional[pulumi.Input[Optional[st
     __args__['revision'] = revision
     __args__['secretId'] = secret_id
     __args__['secretName'] = secret_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getSecretVersion:getSecretVersion', __args__, opts=opts, typ=GetSecretVersionResult)
     return __ret__.apply(lambda __response__: GetSecretVersionResult(
         created_at=pulumi.get(__response__, 'created_at'),

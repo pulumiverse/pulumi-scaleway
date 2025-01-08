@@ -98,7 +98,7 @@ export interface GetLbAclsResult {
  * });
  * ```
  */
-export function getLbAclsOutput(args: GetLbAclsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbAclsResult> {
+export function getLbAclsOutput(args: GetLbAclsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbAclsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbAcls:getLbAcls", {
         "frontendId": args.frontendId,

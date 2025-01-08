@@ -415,7 +415,9 @@ type InstanceServer struct {
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected pulumi.BoolOutput `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
+	// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
+	//
+	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -555,7 +557,9 @@ type instanceServerState struct {
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected *bool `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
+	// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
+	//
+	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp *string `pulumi:"privateIp"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -663,7 +667,9 @@ type InstanceServerState struct {
 	PlacementGroupId pulumi.StringPtrInput
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected pulumi.BoolPtrInput
-	// The Scaleway internal IP address of the server.
+	// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
+	//
+	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp pulumi.StringPtrInput
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -1076,7 +1082,9 @@ func (o InstanceServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput 
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
 
-// The Scaleway internal IP address of the server.
+// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
+//
+// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 func (o InstanceServerOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
 }

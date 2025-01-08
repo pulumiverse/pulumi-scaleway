@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetInstancePlacementGroupResult> Invoke(GetInstancePlacementGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancePlacementGroupResult>("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", args ?? new GetInstancePlacementGroupInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Security Group.
+        /// </summary>
+        public static Output<GetInstancePlacementGroupResult> Invoke(GetInstancePlacementGroupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstancePlacementGroupResult>("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", args ?? new GetInstancePlacementGroupInvokeArgs(), options.WithDefaults());
     }
 
 

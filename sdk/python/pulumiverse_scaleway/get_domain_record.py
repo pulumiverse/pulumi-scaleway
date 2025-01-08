@@ -277,7 +277,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
                              record_id: Optional[pulumi.Input[Optional[str]]] = None,
                              type: Optional[pulumi.Input[Optional[str]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDomainRecordResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainRecordResult]:
     """
     The `DomainRecord` data source is used to get information about an existing domain record.
 
@@ -319,7 +319,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['projectId'] = project_id
     __args__['recordId'] = record_id
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDomainRecord:getDomainRecord', __args__, opts=opts, typ=GetDomainRecordResult)
     return __ret__.apply(lambda __response__: GetDomainRecordResult(
         data=pulumi.get(__response__, 'data'),

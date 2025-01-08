@@ -231,21 +231,11 @@ type LookupVpcPublicGatewayDhcpReservationResult struct {
 }
 
 func LookupVpcPublicGatewayDhcpReservationOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayDhcpReservationOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayDhcpReservationResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupVpcPublicGatewayDhcpReservationResultOutput, error) {
 			args := v.(LookupVpcPublicGatewayDhcpReservationArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupVpcPublicGatewayDhcpReservationResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args, &rv, "", opts...)
-			if err != nil {
-				return LookupVpcPublicGatewayDhcpReservationResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupVpcPublicGatewayDhcpReservationResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupVpcPublicGatewayDhcpReservationResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args, LookupVpcPublicGatewayDhcpReservationResultOutput{}, options).(LookupVpcPublicGatewayDhcpReservationResultOutput), nil
 		}).(LookupVpcPublicGatewayDhcpReservationResultOutput)
 }
 

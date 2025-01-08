@@ -168,7 +168,7 @@ def get_iam_application(application_id: Optional[str] = None,
 def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                organization_id: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamApplicationResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIamApplicationResult]:
     """
     Gets information about an existing IAM application.
 
@@ -196,7 +196,7 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
     __args__['applicationId'] = application_id
     __args__['name'] = name
     __args__['organizationId'] = organization_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIamApplication:getIamApplication', __args__, opts=opts, typ=GetIamApplicationResult)
     return __ret__.apply(lambda __response__: GetIamApplicationResult(
         application_id=pulumi.get(__response__, 'application_id'),

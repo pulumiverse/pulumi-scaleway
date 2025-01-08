@@ -158,7 +158,7 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             project_id: Optional[pulumi.Input[Optional[str]]] = None,
                             volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockVolumeResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
     The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
     Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
@@ -174,7 +174,7 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['projectId'] = project_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockVolume:getBlockVolume', __args__, opts=opts, typ=GetBlockVolumeResult)
     return __ret__.apply(lambda __response__: GetBlockVolumeResult(
         id=pulumi.get(__response__, 'id'),

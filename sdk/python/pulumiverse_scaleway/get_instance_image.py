@@ -265,7 +265,7 @@ def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]
                               name: Optional[pulumi.Input[Optional[str]]] = None,
                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                               zone: Optional[pulumi.Input[Optional[str]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceImageResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceImageResult]:
     """
     Gets information about an instance image.
 
@@ -284,7 +284,7 @@ def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceImage:getInstanceImage', __args__, opts=opts, typ=GetInstanceImageResult)
     return __ret__.apply(lambda __response__: GetInstanceImageResult(
         additional_volume_ids=pulumi.get(__response__, 'additional_volume_ids'),

@@ -91,7 +91,7 @@ export interface GetBaremetalOptionResult {
  * });
  * ```
  */
-export function getBaremetalOptionOutput(args?: GetBaremetalOptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOptionResult> {
+export function getBaremetalOptionOutput(args?: GetBaremetalOptionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOptionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOption:getBaremetalOption", {

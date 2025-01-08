@@ -220,7 +220,7 @@ export interface GetContainerResult {
  *
  * > **Important** Updating the `name` argument will recreate the container.
  */
-export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerResult> {
+export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetContainerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getContainer:getContainer", {
         "containerId": args.containerId,

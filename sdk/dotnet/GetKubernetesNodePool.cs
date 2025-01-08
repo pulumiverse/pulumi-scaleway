@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetKubernetesNodePoolResult> Invoke(GetKubernetesNodePoolInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Kubernetes Cluster's Pool.
+        /// </summary>
+        public static Output<GetKubernetesNodePoolResult> Invoke(GetKubernetesNodePoolInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesNodePoolResult>("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", args ?? new GetKubernetesNodePoolInvokeArgs(), options.WithDefaults());
     }
 
 

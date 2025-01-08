@@ -79,6 +79,40 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetLbFrontendsResult> Invoke(GetLbFrontendsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbFrontendsResult>("scaleway:index/getLbFrontends:getLbFrontends", args ?? new GetLbFrontendsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Load Balancer frontends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Find frontends that share the same LB ID
+        ///     var byLBID = Scaleway.GetLbFrontends.Invoke(new()
+        ///     {
+        ///         LbId = lb01.Id,
+        ///     });
+        /// 
+        ///     // Find frontends by LB ID and name
+        ///     var byLBIDAndName = Scaleway.GetLbFrontends.Invoke(new()
+        ///     {
+        ///         LbId = lb01.Id,
+        ///         Name = "tf-frontend-datasource",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbFrontendsResult> Invoke(GetLbFrontendsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbFrontendsResult>("scaleway:index/getLbFrontends:getLbFrontends", args ?? new GetLbFrontendsInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -304,7 +304,7 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
                              zone: Optional[pulumi.Input[Optional[str]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRedisClusterResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRedisClusterResult]:
     """
     Gets information about a Redis™ cluster.
 
@@ -323,7 +323,7 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getRedisCluster:getRedisCluster', __args__, opts=opts, typ=GetRedisClusterResult)
     return __ret__.apply(lambda __response__: GetRedisClusterResult(
         acls=pulumi.get(__response__, 'acls'),

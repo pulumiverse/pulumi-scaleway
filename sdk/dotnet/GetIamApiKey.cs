@@ -61,6 +61,31 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIamApiKeyResult> Invoke(GetIamApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamApiKeyResult>("scaleway:index/getIamApiKey:getIamApiKey", args ?? new GetIamApiKeyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an existing IAM API key. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get api key infos by id (access_key)
+        ///     var main = Scaleway.GetIamApiKey.Invoke(new()
+        ///     {
+        ///         AccessKey = "SCWABCDEFGHIJKLMNOPQ",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIamApiKeyResult> Invoke(GetIamApiKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamApiKeyResult>("scaleway:index/getIamApiKey:getIamApiKey", args ?? new GetIamApiKeyInvokeArgs(), options.WithDefaults());
     }
 
 

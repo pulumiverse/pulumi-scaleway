@@ -92,7 +92,7 @@ def get_cockpit_plan(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
 def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCockpitPlanResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCockpitPlanResult]:
     """
     The `get_cockpit_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
 
@@ -118,7 +118,7 @@ def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getCockpitPlan:getCockpitPlan', __args__, opts=opts, typ=GetCockpitPlanResult)
     return __ret__.apply(lambda __response__: GetCockpitPlanResult(
         id=pulumi.get(__response__, 'id'),

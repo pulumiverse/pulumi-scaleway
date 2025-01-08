@@ -132,7 +132,7 @@ export interface GetLbFrontendResult {
  * });
  * ```
  */
-export function getLbFrontendOutput(args?: GetLbFrontendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbFrontendResult> {
+export function getLbFrontendOutput(args?: GetLbFrontendOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbFrontendResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbFrontend:getLbFrontend", {

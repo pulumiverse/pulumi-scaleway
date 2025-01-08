@@ -165,7 +165,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
 def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcPublicGatewayIpResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayIpResult]:
     """
     Gets information about a Public Gateway public flexible IP address.
 
@@ -184,7 +184,7 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     """
     __args__ = dict()
     __args__['ipId'] = ip_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp', __args__, opts=opts, typ=GetVpcPublicGatewayIpResult)
     return __ret__.apply(lambda __response__: GetVpcPublicGatewayIpResult(
         address=pulumi.get(__response__, 'address'),

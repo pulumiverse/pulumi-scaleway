@@ -159,21 +159,11 @@ type GetIpamIpsResult struct {
 }
 
 func GetIpamIpsOutput(ctx *pulumi.Context, args GetIpamIpsOutputArgs, opts ...pulumi.InvokeOption) GetIpamIpsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetIpamIpsResultOutput, error) {
 			args := v.(GetIpamIpsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetIpamIpsResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getIpamIps:getIpamIps", args, &rv, "", opts...)
-			if err != nil {
-				return GetIpamIpsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetIpamIpsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetIpamIpsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getIpamIps:getIpamIps", args, GetIpamIpsResultOutput{}, options).(GetIpamIpsResultOutput), nil
 		}).(GetIpamIpsResultOutput)
 }
 

@@ -81,7 +81,7 @@ export interface GetTemDomainResult {
 /**
  * Gets information about a transactional email domain.
  */
-export function getTemDomainOutput(args?: GetTemDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTemDomainResult> {
+export function getTemDomainOutput(args?: GetTemDomainOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTemDomainResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getTemDomain:getTemDomain", {

@@ -27,6 +27,14 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetFunctionNamespaceResult> Invoke(GetFunctionNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+        /// 
+        /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+        /// </summary>
+        public static Output<GetFunctionNamespaceResult> Invoke(GetFunctionNamespaceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

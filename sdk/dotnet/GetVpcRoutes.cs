@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetVpcRoutesResult> Invoke(GetVpcRoutesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcRoutesResult>("scaleway:index/getVpcRoutes:getVpcRoutes", args ?? new GetVpcRoutesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple VPC routes.
+        /// </summary>
+        public static Output<GetVpcRoutesResult> Invoke(GetVpcRoutesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcRoutesResult>("scaleway:index/getVpcRoutes:getVpcRoutes", args ?? new GetVpcRoutesInvokeArgs(), options.WithDefaults());
     }
 
 

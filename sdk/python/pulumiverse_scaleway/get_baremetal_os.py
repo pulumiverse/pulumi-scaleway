@@ -133,7 +133,7 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             os_id: Optional[pulumi.Input[Optional[str]]] = None,
                             version: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOsResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalOsResult]:
     """
     Gets information about a baremetal operating system.
     For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses).
@@ -164,7 +164,7 @@ def get_baremetal_os_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['osId'] = os_id
     __args__['version'] = version
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalOs:getBaremetalOs', __args__, opts=opts, typ=GetBaremetalOsResult)
     return __ret__.apply(lambda __response__: GetBaremetalOsResult(
         id=pulumi.get(__response__, 'id'),

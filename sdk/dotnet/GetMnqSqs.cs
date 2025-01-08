@@ -71,6 +71,36 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetMnqSqsResult> Invoke(GetMnqSqsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMnqSqsResult>("scaleway:index/getMnqSqs:getMnqSqs", args ?? new GetMnqSqsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about SQS for a Project
+        /// 
+        /// ## Examples
+        /// 
+        /// ### Basic
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // For default project
+        ///     var main = Scaleway.GetMnqSqs.Invoke();
+        /// 
+        ///     // For specific project
+        ///     var forProject = Scaleway.GetMnqSqs.Invoke(new()
+        ///     {
+        ///         ProjectId = mainScalewayAccountProject.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetMnqSqsResult> Invoke(GetMnqSqsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMnqSqsResult>("scaleway:index/getMnqSqs:getMnqSqs", args ?? new GetMnqSqsInvokeArgs(), options.WithDefaults());
     }
 
 

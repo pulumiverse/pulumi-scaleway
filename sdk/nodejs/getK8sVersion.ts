@@ -109,7 +109,7 @@ export interface GetK8sVersionResult {
  * });
  * ```
  */
-export function getK8sVersionOutput(args: GetK8sVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sVersionResult> {
+export function getK8sVersionOutput(args: GetK8sVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sVersionResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getK8sVersion:getK8sVersion", {
         "name": args.name,

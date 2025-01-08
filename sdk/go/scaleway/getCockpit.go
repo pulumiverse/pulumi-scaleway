@@ -105,21 +105,11 @@ type LookupCockpitResult struct {
 }
 
 func LookupCockpitOutput(ctx *pulumi.Context, args LookupCockpitOutputArgs, opts ...pulumi.InvokeOption) LookupCockpitResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCockpitResultOutput, error) {
 			args := v.(LookupCockpitArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCockpitResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getCockpit:getCockpit", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCockpitResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCockpitResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCockpitResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getCockpit:getCockpit", args, LookupCockpitResultOutput{}, options).(LookupCockpitResultOutput), nil
 		}).(LookupCockpitResultOutput)
 }
 

@@ -63,6 +63,32 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetDatabaseResult> Invoke(GetDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseResult>("scaleway:index/getDatabase:getDatabase", args ?? new GetDatabaseInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a database.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
+        ///     var myDb = Scaleway.GetDatabase.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///         Name = "foobar",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDatabaseResult> Invoke(GetDatabaseInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseResult>("scaleway:index/getDatabase:getDatabase", args ?? new GetDatabaseInvokeArgs(), options.WithDefaults());
     }
 
 

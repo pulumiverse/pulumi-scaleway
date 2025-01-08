@@ -39,18 +39,8 @@ type GetConfigResult struct {
 
 func GetConfigOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetConfigResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetConfigResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetConfigResult
-		secret, err := ctx.InvokePackageRaw("scaleway:index/getConfig:getConfig", nil, &rv, "", opts...)
-		if err != nil {
-			return GetConfigResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetConfigResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetConfigResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("scaleway:index/getConfig:getConfig", nil, GetConfigResultOutput{}, options).(GetConfigResultOutput), nil
 	}).(GetConfigResultOutput)
 }
 

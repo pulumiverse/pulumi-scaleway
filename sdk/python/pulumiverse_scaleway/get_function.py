@@ -315,7 +315,7 @@ def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = Non
                         namespace_id: Optional[pulumi.Input[str]] = None,
                         project_id: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFunctionResult]:
     """
     The `Function` data source is used to retrieve information about a Serverless Function.
 
@@ -336,7 +336,7 @@ def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = Non
     __args__['namespaceId'] = namespace_id
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFunction:getFunction', __args__, opts=opts, typ=GetFunctionResult)
     return __ret__.apply(lambda __response__: GetFunctionResult(
         cpu_limit=pulumi.get(__response__, 'cpu_limit'),

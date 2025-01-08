@@ -62,6 +62,7 @@
         "getBlockVolume.ts",
         "getCockpit.ts",
         "getCockpitPlan.ts",
+        "getCockpitSource.ts",
         "getConfig.ts",
         "getContainer.ts",
         "getContainerNamespace.ts",

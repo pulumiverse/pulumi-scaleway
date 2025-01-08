@@ -75,7 +75,7 @@ export interface GetCockpitPlanResult {
  * const main = new scaleway.Cockpit("main", {plan: premium.then(premium => premium.id)});
  * ```
  */
-export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCockpitPlanResult> {
+export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCockpitPlanResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getCockpitPlan:getCockpitPlan", {
         "name": args.name,

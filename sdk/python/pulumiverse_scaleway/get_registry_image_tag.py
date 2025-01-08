@@ -196,7 +196,7 @@ def get_registry_image_tag_output(image_id: Optional[pulumi.Input[str]] = None,
                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   tag_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryImageTagResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryImageTagResult]:
     """
     Gets information about a specific tag of a Container Registry image.
 
@@ -213,7 +213,7 @@ def get_registry_image_tag_output(image_id: Optional[pulumi.Input[str]] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     __args__['tagId'] = tag_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getRegistryImageTag:getRegistryImageTag', __args__, opts=opts, typ=GetRegistryImageTagResult)
     return __ret__.apply(lambda __response__: GetRegistryImageTagResult(
         created_at=pulumi.get(__response__, 'created_at'),

@@ -75,6 +75,38 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIamUserResult> Invoke(GetIamUserInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamUserResult>("scaleway:index/getIamUser:getIamUser", args ?? new GetIamUserInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get information on an existing IAM user based on its ID or email address.
+        /// For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by user id
+        ///     var findById = Scaleway.GetIamUser.Invoke(new()
+        ///     {
+        ///         UserId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        ///     // Get info by email address
+        ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
+        ///     {
+        ///         Email = "foo@bar.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIamUserResult> Invoke(GetIamUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamUserResult>("scaleway:index/getIamUser:getIamUser", args ?? new GetIamUserInvokeArgs(), options.WithDefaults());
     }
 
 

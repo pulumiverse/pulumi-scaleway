@@ -87,6 +87,44 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetContainerNamespaceResult> Invoke(GetContainerNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+        /// 
+        /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
+        /// 
+        /// ## Retrieve a Serverless Containers namespace
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a namespace by its name
+        /// - retrieve a namespace by its ID
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by namespace name
+        ///     var byName = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     {
+        ///         Name = "my-namespace-name",
+        ///     });
+        /// 
+        ///     // Get info by namespace ID
+        ///     var byId = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     {
+        ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetContainerNamespaceResult> Invoke(GetContainerNamespaceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

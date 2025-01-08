@@ -50,8 +50,13 @@ class RedisClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis™ cluster.
                
-               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-               which is minimum 3 (1 main node + 2 secondary nodes)
+               > **Important:**
+               
+               - Cluster_size = 1 for Standalone mode (single node).
+               
+               - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+               
+               - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
                
                > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
                did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -172,8 +177,13 @@ class RedisClusterArgs:
         """
         The number of nodes in the Redis™ cluster.
 
-        > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-        which is minimum 3 (1 main node + 2 secondary nodes)
+        > **Important:**
+
+        - Cluster_size = 1 for Standalone mode (single node).
+
+        - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+
+        - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 
         > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
         did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -318,8 +328,13 @@ class _RedisClusterState:
         :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis™ cluster.
                
-               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-               which is minimum 3 (1 main node + 2 secondary nodes)
+               > **Important:**
+               
+               - Cluster_size = 1 for Standalone mode (single node).
+               
+               - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+               
+               - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
                
                > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
                did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -420,8 +435,13 @@ class _RedisClusterState:
         """
         The number of nodes in the Redis™ cluster.
 
-        > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-        which is minimum 3 (1 main node + 2 secondary nodes)
+        > **Important:**
+
+        - Cluster_size = 1 for Standalone mode (single node).
+
+        - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+
+        - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 
         > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
         did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -722,8 +742,13 @@ class RedisCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis™ cluster.
                
-               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-               which is minimum 3 (1 main node + 2 secondary nodes)
+               > **Important:**
+               
+               - Cluster_size = 1 for Standalone mode (single node).
+               
+               - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+               
+               - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
                
                > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
                did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -945,8 +970,13 @@ class RedisCluster(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[int] cluster_size: The number of nodes in the Redis™ cluster.
                
-               > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-               which is minimum 3 (1 main node + 2 secondary nodes)
+               > **Important:**
+               
+               - Cluster_size = 1 for Standalone mode (single node).
+               
+               - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+               
+               - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
                
                > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
                did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
@@ -1027,8 +1057,13 @@ class RedisCluster(pulumi.CustomResource):
         """
         The number of nodes in the Redis™ cluster.
 
-        > **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode
-        which is minimum 3 (1 main node + 2 secondary nodes)
+        > **Important:**
+
+        - Cluster_size = 1 for Standalone mode (single node).
+
+        - Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.
+
+        - Cluster_size >= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
 
         > **Important:** If you are using the cluster mode (>=3 nodes), you can set a bigger `cluster_size` than you initially
         did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller

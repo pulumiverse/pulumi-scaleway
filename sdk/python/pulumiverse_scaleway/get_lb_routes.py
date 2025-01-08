@@ -141,7 +141,7 @@ def get_lb_routes(frontend_id: Optional[str] = None,
 def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = None,
                          project_id: Optional[pulumi.Input[Optional[str]]] = None,
                          zone: Optional[pulumi.Input[Optional[str]]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbRoutesResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbRoutesResult]:
     """
     Gets information about multiple Load Balancer routes.
 
@@ -168,7 +168,7 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     __args__['frontendId'] = frontend_id
     __args__['projectId'] = project_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getLbRoutes:getLbRoutes', __args__, opts=opts, typ=GetLbRoutesResult)
     return __ret__.apply(lambda __response__: GetLbRoutesResult(
         frontend_id=pulumi.get(__response__, 'frontend_id'),

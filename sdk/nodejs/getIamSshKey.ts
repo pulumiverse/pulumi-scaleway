@@ -74,7 +74,7 @@ export interface GetIamSshKeyResult {
 /**
  * Use this data source to get SSH key information based on its ID or name.
  */
-export function getIamSshKeyOutput(args?: GetIamSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamSshKeyResult> {
+export function getIamSshKeyOutput(args?: GetIamSshKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamSshKeyResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamSshKey:getIamSshKey", {

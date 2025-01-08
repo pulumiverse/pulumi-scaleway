@@ -114,7 +114,7 @@ def get_marketplace_image(instance_type: Optional[str] = None,
 def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[str]]] = None,
                                  label: Optional[pulumi.Input[str]] = None,
                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMarketplaceImageResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMarketplaceImageResult]:
     """
     Gets local image ID of an image from its label name.
 
@@ -138,7 +138,7 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
     __args__['instanceType'] = instance_type
     __args__['label'] = label
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getMarketplaceImage:getMarketplaceImage', __args__, opts=opts, typ=GetMarketplaceImageResult)
     return __ret__.apply(lambda __response__: GetMarketplaceImageResult(
         id=pulumi.get(__response__, 'id'),

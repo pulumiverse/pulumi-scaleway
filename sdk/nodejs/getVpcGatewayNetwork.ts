@@ -107,7 +107,7 @@ export interface GetVpcGatewayNetworkResult {
  * });
  * ```
  */
-export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcGatewayNetworkResult> {
+export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcGatewayNetworkResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", {

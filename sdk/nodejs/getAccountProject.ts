@@ -61,7 +61,7 @@ export interface GetAccountProjectResult {
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
-export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountProjectResult> {
+export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountProjectResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getAccountProject:getAccountProject", {

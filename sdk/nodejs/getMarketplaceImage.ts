@@ -73,7 +73,7 @@ export interface GetMarketplaceImageResult {
  * });
  * ```
  */
-export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMarketplaceImageResult> {
+export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMarketplaceImageResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMarketplaceImage:getMarketplaceImage", {
         "instanceType": args.instanceType,

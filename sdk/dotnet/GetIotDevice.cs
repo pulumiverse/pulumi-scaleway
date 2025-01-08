@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetIotDeviceResult> Invoke(GetIotDeviceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an IOT Device.
+        /// </summary>
+        public static Output<GetIotDeviceResult> Invoke(GetIotDeviceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIotDeviceResult>("scaleway:index/getIotDevice:getIotDevice", args ?? new GetIotDeviceInvokeArgs(), options.WithDefaults());
     }
 
 

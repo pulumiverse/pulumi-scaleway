@@ -17,6 +17,9 @@ namespace Pulumiverse.Scaleway
 
         public static Output<GetConfigResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetConfigResult>("scaleway:index/getConfig:getConfig", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<GetConfigResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetConfigResult>("scaleway:index/getConfig:getConfig", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

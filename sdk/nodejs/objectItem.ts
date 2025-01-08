@@ -96,6 +96,10 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
+     * Customer's encryption keys to encrypt data (SSE-C)
+     */
+    public readonly sseCustomerKey!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
     public readonly storageClass!: pulumi.Output<string | undefined>;
@@ -130,6 +134,7 @@ export class ObjectItem extends pulumi.CustomResource {
             resourceInputs["metadata"] = state ? state.metadata : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["sseCustomerKey"] = state ? state.sseCustomerKey : undefined;
             resourceInputs["storageClass"] = state ? state.storageClass : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["visibility"] = state ? state.visibility : undefined;
@@ -150,11 +155,14 @@ export class ObjectItem extends pulumi.CustomResource {
             resourceInputs["metadata"] = args ? args.metadata : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["sseCustomerKey"] = args?.sseCustomerKey ? pulumi.secret(args.sseCustomerKey) : undefined;
             resourceInputs["storageClass"] = args ? args.storageClass : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["sseCustomerKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ObjectItem.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -201,6 +209,10 @@ export interface ObjectItemState {
      * The Scaleway region the bucket resides in.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Customer's encryption keys to encrypt data (SSE-C)
+     */
+    sseCustomerKey?: pulumi.Input<string>;
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
@@ -257,6 +269,10 @@ export interface ObjectItemArgs {
      * The Scaleway region the bucket resides in.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Customer's encryption keys to encrypt data (SSE-C)
+     */
+    sseCustomerKey?: pulumi.Input<string>;
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */

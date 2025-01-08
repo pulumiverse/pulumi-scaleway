@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway.Inputs
         /// Size of the root volume in gigabytes.
         /// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
         /// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
-        /// Updates to this field will recreate a new resource.
+        /// Depending on `volume_type`, updates to this field may recreate a new resource.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }

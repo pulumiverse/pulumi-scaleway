@@ -24,6 +24,7 @@ import * as utilities from "./utilities";
  *     projectId: project.id,
  *     name: "my-data-source",
  *     type: "metrics",
+ *     retentionDays: 6,
  * });
  * ```
  *
@@ -90,6 +91,10 @@ export class CockpitSource extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
+     * The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+     */
+    public readonly retentionDays!: pulumi.Output<number>;
+    /**
      * Indicates whether the data source is synchronized with Grafana.
      */
     public /*out*/ readonly synchronizedWithGrafana!: pulumi.Output<boolean>;
@@ -113,7 +118,7 @@ export class CockpitSource extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: CockpitSourceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: CockpitSourceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CockpitSourceArgs | CockpitSourceState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -125,15 +130,20 @@ export class CockpitSource extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["pushUrl"] = state ? state.pushUrl : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["retentionDays"] = state ? state.retentionDays : undefined;
             resourceInputs["synchronizedWithGrafana"] = state ? state.synchronizedWithGrafana : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
         } else {
             const args = argsOrState as CockpitSourceArgs | undefined;
+            if ((!args || args.retentionDays === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'retentionDays'");
+            }
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["retentionDays"] = args ? args.retentionDays : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["origin"] = undefined /*out*/;
@@ -176,6 +186,10 @@ export interface CockpitSourceState {
      */
     region?: pulumi.Input<string>;
     /**
+     * The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+     */
+    retentionDays?: pulumi.Input<number>;
+    /**
      * Indicates whether the data source is synchronized with Grafana.
      */
     synchronizedWithGrafana?: pulumi.Input<boolean>;
@@ -209,6 +223,10 @@ export interface CockpitSourceArgs {
      * ) The region where the data source is located.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+     */
+    retentionDays: pulumi.Input<number>;
     /**
      * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */

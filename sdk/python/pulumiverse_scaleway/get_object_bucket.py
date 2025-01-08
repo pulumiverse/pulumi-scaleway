@@ -228,7 +228,7 @@ def get_object_bucket(name: Optional[str] = None,
 def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectBucketResult]:
     """
     The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 
@@ -272,7 +272,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getObjectBucket:getObjectBucket', __args__, opts=opts, typ=GetObjectBucketResult)
     return __ret__.apply(lambda __response__: GetObjectBucketResult(
         acl=pulumi.get(__response__, 'acl'),

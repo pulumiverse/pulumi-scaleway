@@ -88,7 +88,7 @@ export interface GetDatabasePrivilegeResult {
  * });
  * ```
  */
-export function getDatabasePrivilegeOutput(args: GetDatabasePrivilegeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabasePrivilegeResult> {
+export function getDatabasePrivilegeOutput(args: GetDatabasePrivilegeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabasePrivilegeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
         "databaseName": args.databaseName,

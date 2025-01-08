@@ -23,6 +23,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetInstanceIpResult> Invoke(GetInstanceIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceIpResult>("scaleway:index/getInstanceIp:getInstanceIp", args ?? new GetInstanceIpInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an instance IP.
+        /// </summary>
+        public static Output<GetInstanceIpResult> Invoke(GetInstanceIpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceIpResult>("scaleway:index/getInstanceIp:getInstanceIp", args ?? new GetInstanceIpInvokeArgs(), options.WithDefaults());
     }
 
 

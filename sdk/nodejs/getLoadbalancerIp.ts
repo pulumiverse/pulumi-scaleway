@@ -80,7 +80,7 @@ export interface GetLoadbalancerIpResult {
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
-export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadbalancerIpResult> {
+export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadbalancerIpResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {

@@ -53,21 +53,11 @@ type LookupInstanceIpResult struct {
 }
 
 func LookupInstanceIpOutput(ctx *pulumi.Context, args LookupInstanceIpOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceIpResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupInstanceIpResultOutput, error) {
 			args := v.(LookupInstanceIpArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupInstanceIpResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstanceIp:getInstanceIp", args, &rv, "", opts...)
-			if err != nil {
-				return LookupInstanceIpResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupInstanceIpResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupInstanceIpResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getInstanceIp:getInstanceIp", args, LookupInstanceIpResultOutput{}, options).(LookupInstanceIpResultOutput), nil
 		}).(LookupInstanceIpResultOutput)
 }
 

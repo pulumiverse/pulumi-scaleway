@@ -88,7 +88,7 @@ export interface GetBaremetalOfferResult {
 /**
  * Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
  */
-export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOfferResult> {
+export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOfferResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOffer:getBaremetalOffer", {

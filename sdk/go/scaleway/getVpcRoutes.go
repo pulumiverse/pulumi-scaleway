@@ -56,21 +56,11 @@ type GetVpcRoutesResult struct {
 }
 
 func GetVpcRoutesOutput(ctx *pulumi.Context, args GetVpcRoutesOutputArgs, opts ...pulumi.InvokeOption) GetVpcRoutesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetVpcRoutesResultOutput, error) {
 			args := v.(GetVpcRoutesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetVpcRoutesResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcRoutes:getVpcRoutes", args, &rv, "", opts...)
-			if err != nil {
-				return GetVpcRoutesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetVpcRoutesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetVpcRoutesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getVpcRoutes:getVpcRoutes", args, GetVpcRoutesResultOutput{}, options).(GetVpcRoutesResultOutput), nil
 		}).(GetVpcRoutesResultOutput)
 }
 

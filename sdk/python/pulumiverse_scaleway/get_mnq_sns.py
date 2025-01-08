@@ -116,7 +116,7 @@ def get_mnq_sns(project_id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'))
 def get_mnq_sns_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMnqSnsResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMnqSnsResult]:
     """
     Gets information about SNS for a Project
 
@@ -141,7 +141,7 @@ def get_mnq_sns_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getMnqSns:getMnqSns', __args__, opts=opts, typ=GetMnqSnsResult)
     return __ret__.apply(lambda __response__: GetMnqSnsResult(
         endpoint=pulumi.get(__response__, 'endpoint'),

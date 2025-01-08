@@ -125,6 +125,63 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetLbFrontendResult> Invoke(GetLbFrontendInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbFrontendResult>("scaleway:index/getLbFrontend:getLbFrontend", args ?? new GetLbFrontendInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information about Scaleway Load Balancer frontends.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+        /// 
+        ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+        ///     {
+        ///         IpId = ip01.Id,
+        ///         Name = "test-lb",
+        ///         Type = "lb-s",
+        ///     });
+        /// 
+        ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+        ///     {
+        ///         LbId = lb01.Id,
+        ///         ForwardProtocol = "tcp",
+        ///         ForwardPort = 80,
+        ///         ProxyProtocol = "none",
+        ///     });
+        /// 
+        ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+        ///     {
+        ///         LbId = lb01.Id,
+        ///         BackendId = bkd01.Id,
+        ///         InboundPort = 80,
+        ///     });
+        /// 
+        ///     var byID = Scaleway.GetLbFrontend.Invoke(new()
+        ///     {
+        ///         FrontendId = frt01.Id,
+        ///     });
+        /// 
+        ///     var byName = Scaleway.GetLbFrontend.Invoke(new()
+        ///     {
+        ///         Name = frt01.Name,
+        ///         LbId = lb01.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbFrontendResult> Invoke(GetLbFrontendInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbFrontendResult>("scaleway:index/getLbFrontend:getLbFrontend", args ?? new GetLbFrontendInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -132,7 +132,7 @@ def get_baremetal_option(name: Optional[str] = None,
 def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                 option_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalOptionResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalOptionResult]:
     """
     Gets information about a baremetal option.
     For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -158,7 +158,7 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
     __args__['name'] = name
     __args__['optionId'] = option_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalOption:getBaremetalOption', __args__, opts=opts, typ=GetBaremetalOptionResult)
     return __ret__.apply(lambda __response__: GetBaremetalOptionResult(
         id=pulumi.get(__response__, 'id'),

@@ -231,7 +231,7 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    namespace_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerNamespaceResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContainerNamespaceResult]:
     """
     The `ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
 
@@ -265,7 +265,7 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
     __args__['namespaceId'] = namespace_id
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getContainerNamespace:getContainerNamespace', __args__, opts=opts, typ=GetContainerNamespaceResult)
     return __ret__.apply(lambda __response__: GetContainerNamespaceResult(
         description=pulumi.get(__response__, 'description'),

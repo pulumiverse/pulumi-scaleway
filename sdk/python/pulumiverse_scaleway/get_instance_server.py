@@ -450,7 +450,7 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                server_id: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceServerResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceServerResult]:
     """
     Gets information about an instance server.
 
@@ -465,7 +465,7 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     __args__['projectId'] = project_id
     __args__['serverId'] = server_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstanceServer:getInstanceServer', __args__, opts=opts, typ=GetInstanceServerResult)
     return __ret__.apply(lambda __response__: GetInstanceServerResult(
         additional_volume_ids=pulumi.get(__response__, 'additional_volume_ids'),

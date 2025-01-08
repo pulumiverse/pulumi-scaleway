@@ -131,6 +131,66 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public static Output<GetObjectBucketResult> Invoke(GetObjectBucketInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+        /// 
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+        /// 
+        /// ## Retrieve an Object Storage bucket
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a bucket by its name
+        /// - retrieve a bucket by its ID
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.ObjectBucket("main", new()
+        ///     {
+        ///         Name = "bucket.test.com",
+        ///         Tags = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///     });
+        /// 
+        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     {
+        ///         Name = main.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Retrieve a bucket from a specific project
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     {
+        ///         Name = "bucket.test.com",
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetObjectBucketResult> Invoke(GetObjectBucketInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());
     }
 
 

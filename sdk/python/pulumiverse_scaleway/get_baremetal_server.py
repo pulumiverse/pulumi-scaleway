@@ -361,7 +361,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
                                 project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 server_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 zone: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBaremetalServerResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalServerResult]:
     """
     Gets information about a baremetal server.
     For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -389,7 +389,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
     __args__['projectId'] = project_id
     __args__['serverId'] = server_id
     __args__['zone'] = zone
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalServer:getBaremetalServer', __args__, opts=opts, typ=GetBaremetalServerResult)
     return __ret__.apply(lambda __response__: GetBaremetalServerResult(
         description=pulumi.get(__response__, 'description'),

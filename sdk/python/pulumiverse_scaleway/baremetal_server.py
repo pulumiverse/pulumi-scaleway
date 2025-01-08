@@ -54,7 +54,7 @@ class BaremetalServerArgs:
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] partitioning: The partitioning schema in json format
+        :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -197,7 +197,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def partitioning(self) -> Optional[pulumi.Input[str]]:
         """
-        The partitioning schema in json format
+        The partitioning schema in JSON format
         """
         return pulumi.get(self, "partitioning")
 
@@ -379,7 +379,7 @@ class _BaremetalServerState:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
-        :param pulumi.Input[str] partitioning: The partitioning schema in json format
+        :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -635,7 +635,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def partitioning(self) -> Optional[pulumi.Input[str]]:
         """
-        The partitioning schema in json format
+        The partitioning schema in JSON format
         """
         return pulumi.get(self, "partitioning")
 
@@ -928,6 +928,36 @@ class BaremetalServer(pulumi.CustomResource):
             install_config_afterward=True)
         ```
 
+        ### With custom partitioning
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        config = pulumi.Config()
+        config_custom_partitioning = config.get("configCustomPartitioning")
+        if config_custom_partitioning is None:
+            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912},{\\"label\\":\\"swap\\",\\"number\\":2,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":3,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":4,\\"size\\":1017827045376}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"swap\\",\\"number\\":1,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1017827045376}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/md0\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/md1\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"}],\\"raids\\":[{\\"devices\\":[\\"/dev/nvme0n1p3\\",\\"/dev/nvme1n1p2\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md0\\"},{\\"devices\\":[\\"/dev/nvme0n1p4\\",\\"/dev/nvme1n1p3\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md1\\"}],\\"zfs\\":{\\"pools\\":[]}}"
+        my_os = scaleway.get_baremetal_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        main = scaleway.IamSshKey("main", name="main")
+        base = scaleway.BaremetalServer("base",
+            name="%s",
+            zone="fr-par-1",
+            description="test a description",
+            offer="EM-B220E-NVME",
+            os=my_os.os_id,
+            partitioning=config_custom_partitioning,
+            tags=[
+                "terraform-test",
+                "scaleway_baremetal_server",
+                "minimal",
+            ],
+            ssh_key_ids=[main.id])
+        ```
+
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -953,7 +983,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
-        :param pulumi.Input[str] partitioning: The partitioning schema in json format
+        :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -1111,6 +1141,36 @@ class BaremetalServer(pulumi.CustomResource):
             install_config_afterward=True)
         ```
 
+        ### With custom partitioning
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        config = pulumi.Config()
+        config_custom_partitioning = config.get("configCustomPartitioning")
+        if config_custom_partitioning is None:
+            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912},{\\"label\\":\\"swap\\",\\"number\\":2,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":3,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":4,\\"size\\":1017827045376}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"swap\\",\\"number\\":1,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1017827045376}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/md0\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/md1\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"}],\\"raids\\":[{\\"devices\\":[\\"/dev/nvme0n1p3\\",\\"/dev/nvme1n1p2\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md0\\"},{\\"devices\\":[\\"/dev/nvme0n1p4\\",\\"/dev/nvme1n1p3\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md1\\"}],\\"zfs\\":{\\"pools\\":[]}}"
+        my_os = scaleway.get_baremetal_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        main = scaleway.IamSshKey("main", name="main")
+        base = scaleway.BaremetalServer("base",
+            name="%s",
+            zone="fr-par-1",
+            description="test a description",
+            offer="EM-B220E-NVME",
+            os=my_os.os_id,
+            partitioning=config_custom_partitioning,
+            tags=[
+                "terraform-test",
+                "scaleway_baremetal_server",
+                "minimal",
+            ],
+            ssh_key_ids=[main.id])
+        ```
+
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -1257,7 +1317,7 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
-        :param pulumi.Input[str] partitioning: The partitioning schema in json format
+        :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -1432,7 +1492,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def partitioning(self) -> pulumi.Output[Optional[str]]:
         """
-        The partitioning schema in json format
+        The partitioning schema in JSON format
         """
         return pulumi.get(self, "partitioning")
 

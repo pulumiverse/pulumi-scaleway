@@ -74,7 +74,7 @@ export interface GetIotHubResult {
 /**
  * Gets information about an IOT Hub.
  */
-export function getIotHubOutput(args?: GetIotHubOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotHubResult> {
+export function getIotHubOutput(args?: GetIotHubOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIotHubResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIotHub:getIotHub", {

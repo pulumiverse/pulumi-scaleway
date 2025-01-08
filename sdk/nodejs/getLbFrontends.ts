@@ -97,7 +97,7 @@ export interface GetLbFrontendsResult {
  * });
  * ```
  */
-export function getLbFrontendsOutput(args: GetLbFrontendsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbFrontendsResult> {
+export function getLbFrontendsOutput(args: GetLbFrontendsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbFrontendsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbFrontends:getLbFrontends", {
         "lbId": args.lbId,

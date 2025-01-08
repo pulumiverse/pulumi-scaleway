@@ -73,17 +73,21 @@ class CockpitGrafanaUserArgs:
 @pulumi.input_type
 class _CockpitGrafanaUserState:
     def __init__(__self__, *,
+                 grafana_url: Optional[pulumi.Input[str]] = None,
                  login: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CockpitGrafanaUser resources.
+        :param pulumi.Input[str] grafana_url: URL for Grafana.
         :param pulumi.Input[str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         :param pulumi.Input[str] password: The password of the Grafana user.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[str] role: The role assigned to the Grafana user. Must be `editor` or `viewer`.
         """
+        if grafana_url is not None:
+            pulumi.set(__self__, "grafana_url", grafana_url)
         if login is not None:
             pulumi.set(__self__, "login", login)
         if password is not None:
@@ -92,6 +96,18 @@ class _CockpitGrafanaUserState:
             pulumi.set(__self__, "project_id", project_id)
         if role is not None:
             pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="grafanaUrl")
+    def grafana_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL for Grafana.
+        """
+        return pulumi.get(self, "grafana_url")
+
+    @grafana_url.setter
+    def grafana_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "grafana_url", value)
 
     @property
     @pulumi.getter
@@ -261,6 +277,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
+            __props__.__dict__["grafana_url"] = None
             __props__.__dict__["password"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -274,6 +291,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            grafana_url: Optional[pulumi.Input[str]] = None,
             login: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -285,6 +303,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] grafana_url: URL for Grafana.
         :param pulumi.Input[str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         :param pulumi.Input[str] password: The password of the Grafana user.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
@@ -294,11 +313,20 @@ class CockpitGrafanaUser(pulumi.CustomResource):
 
         __props__ = _CockpitGrafanaUserState.__new__(_CockpitGrafanaUserState)
 
+        __props__.__dict__["grafana_url"] = grafana_url
         __props__.__dict__["login"] = login
         __props__.__dict__["password"] = password
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["role"] = role
         return CockpitGrafanaUser(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="grafanaUrl")
+    def grafana_url(self) -> pulumi.Output[str]:
+        """
+        URL for Grafana.
+        """
+        return pulumi.get(self, "grafana_url")
 
     @property
     @pulumi.getter

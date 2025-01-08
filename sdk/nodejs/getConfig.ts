@@ -29,7 +29,7 @@ export interface GetConfigResult {
     readonly zone: string;
     readonly zoneSource: string;
 }
-export function getConfigOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetConfigResult> {
+export function getConfigOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getConfig:getConfig", {
     }, opts);
