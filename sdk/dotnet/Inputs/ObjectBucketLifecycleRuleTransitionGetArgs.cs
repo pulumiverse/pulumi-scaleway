@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<int>? Days { get; set; }
 
         /// <summary>
-        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
         /// 
         /// 
         /// &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.

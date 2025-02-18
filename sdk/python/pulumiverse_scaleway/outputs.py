@@ -16,6 +16,7 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AppleSiliconServerPrivateNetwork',
     'BaremetalServerIp',
     'BaremetalServerIpv4',
     'BaremetalServerIpv6',
@@ -25,6 +26,9 @@ __all__ = [
     'CockpitEndpoint',
     'CockpitPushUrl',
     'CockpitTokenScopes',
+    'ContainerHealthCheck',
+    'ContainerHealthCheckHttp',
+    'ContainerScalingOption',
     'ContainerTriggerNats',
     'ContainerTriggerSqs',
     'DatabaseAclAclRule',
@@ -122,6 +126,9 @@ __all__ = [
     'GetBillingInvoicesInvoiceResult',
     'GetCockpitEndpointResult',
     'GetCockpitPushUrlResult',
+    'GetContainerHealthCheckResult',
+    'GetContainerHealthCheckHttpResult',
+    'GetContainerScalingOptionResult',
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
     'GetDatabaseInstanceLogsPolicyResult',
@@ -198,6 +205,105 @@ __all__ = [
     'GetWebhostingCpanelUrlResult',
     'GetWebhostingOptionResult',
 ]
+
+@pulumi.output_type
+class AppleSiliconServerPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "ipamIpIds":
+            suggest = "ipam_ip_ids"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AppleSiliconServerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AppleSiliconServerPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AppleSiliconServerPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 created_at: Optional[str] = None,
+                 ipam_ip_ids: Optional[Sequence[str]] = None,
+                 status: Optional[str] = None,
+                 updated_at: Optional[str] = None,
+                 vlan: Optional[int] = None):
+        """
+        :param str id: The ID of the server.
+        :param str created_at: The date and time of the creation of the Apple Silicon server.
+        :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to attach to the server
+        :param str status: The private network status
+        :param str updated_at: The date and time of the last update of the Apple Silicon server.
+        :param int vlan: The VLAN ID associated to the private network
+        """
+        pulumi.set(__self__, "id", id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if ipam_ip_ids is not None:
+            pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        The date and time of the creation of the Apple Silicon server.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="ipamIpIds")
+    def ipam_ip_ids(self) -> Optional[Sequence[str]]:
+        """
+        List of IPAM IP IDs to attach to the server
+        """
+        return pulumi.get(self, "ipam_ip_ids")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The private network status
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        """
+        The date and time of the last update of the Apple Silicon server.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[int]:
+        """
+        The VLAN ID associated to the private network
+        """
+        return pulumi.get(self, "vlan")
+
 
 @pulumi.output_type
 class BaremetalServerIp(dict):
@@ -829,6 +935,145 @@ class CockpitTokenScopes(dict):
         Permission to write traces.
         """
         return pulumi.get(self, "write_traces")
+
+
+@pulumi.output_type
+class ContainerHealthCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failureThreshold":
+            suggest = "failure_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerHealthCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerHealthCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerHealthCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failure_threshold: int,
+                 https: Sequence['outputs.ContainerHealthCheckHttp'],
+                 interval: str):
+        """
+        :param int failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
+        :param Sequence['ContainerHealthCheckHttpArgs'] https: HTTP health check configuration.
+        :param str interval: Period between health checks.
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "https", https)
+        pulumi.set(__self__, "interval", interval)
+
+    @property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> int:
+        """
+        Number of consecutive health check failures before considering the container unhealthy.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @property
+    @pulumi.getter
+    def https(self) -> Sequence['outputs.ContainerHealthCheckHttp']:
+        """
+        HTTP health check configuration.
+        """
+        return pulumi.get(self, "https")
+
+    @property
+    @pulumi.getter
+    def interval(self) -> str:
+        """
+        Period between health checks.
+        """
+        return pulumi.get(self, "interval")
+
+
+@pulumi.output_type
+class ContainerHealthCheckHttp(dict):
+    def __init__(__self__, *,
+                 path: str):
+        """
+        :param str path: Path to use for the HTTP health check.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class ContainerScalingOption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "concurrentRequestsThreshold":
+            suggest = "concurrent_requests_threshold"
+        elif key == "cpuUsageThreshold":
+            suggest = "cpu_usage_threshold"
+        elif key == "memoryUsageThreshold":
+            suggest = "memory_usage_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerScalingOption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerScalingOption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerScalingOption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 concurrent_requests_threshold: Optional[int] = None,
+                 cpu_usage_threshold: Optional[int] = None,
+                 memory_usage_threshold: Optional[int] = None):
+        """
+        :param int concurrent_requests_threshold: Scale depending on the number of concurrent requests being processed per container instance.
+        :param int cpu_usage_threshold: Scale depending on the CPU usage of a container instance.
+        :param int memory_usage_threshold: Scale depending on the memory usage of a container instance.
+        """
+        if concurrent_requests_threshold is not None:
+            pulumi.set(__self__, "concurrent_requests_threshold", concurrent_requests_threshold)
+        if cpu_usage_threshold is not None:
+            pulumi.set(__self__, "cpu_usage_threshold", cpu_usage_threshold)
+        if memory_usage_threshold is not None:
+            pulumi.set(__self__, "memory_usage_threshold", memory_usage_threshold)
+
+    @property
+    @pulumi.getter(name="concurrentRequestsThreshold")
+    def concurrent_requests_threshold(self) -> Optional[int]:
+        """
+        Scale depending on the number of concurrent requests being processed per container instance.
+        """
+        return pulumi.get(self, "concurrent_requests_threshold")
+
+    @property
+    @pulumi.getter(name="cpuUsageThreshold")
+    def cpu_usage_threshold(self) -> Optional[int]:
+        """
+        Scale depending on the CPU usage of a container instance.
+        """
+        return pulumi.get(self, "cpu_usage_threshold")
+
+    @property
+    @pulumi.getter(name="memoryUsageThreshold")
+    def memory_usage_threshold(self) -> Optional[int]:
+        """
+        Scale depending on the memory usage of a container instance.
+        """
+        return pulumi.get(self, "memory_usage_threshold")
 
 
 @pulumi.output_type
@@ -3264,7 +3509,7 @@ class IotRouteS3(dict):
         """
         :param str bucket_name: The name of the S3 route's destination bucket (e.g. `my-object-storage`).
         :param str bucket_region: The region of the S3 route's destination bucket (e.g. `fr-par`).
-        :param str strategy: How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+        :param str strategy: How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         :param str object_prefix: The string to prefix object names with (e.g. `mykeyprefix-`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -3293,7 +3538,7 @@ class IotRouteS3(dict):
     @pulumi.getter
     def strategy(self) -> str:
         """
-        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         """
         return pulumi.get(self, "strategy")
 
@@ -5456,7 +5701,7 @@ class ObjectBucketLifecycleRuleTransition(dict):
                  storage_class: str,
                  days: Optional[int] = None):
         """
-        :param str storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        :param str storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
                
                
                > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -5475,7 +5720,7 @@ class ObjectBucketLifecycleRuleTransition(dict):
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> str:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
 
         > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -5538,7 +5783,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
                  days: Optional[int] = None,
                  years: Optional[int] = None):
         """
-        :param str mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        :param str mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
         :param int days: The number of days you want to specify for the default retention period.
         :param int years: The number of years you want to specify for the default retention period.
         """
@@ -5552,7 +5797,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetention(dict):
     @pulumi.getter
     def mode(self) -> str:
         """
-        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
         """
         return pulumi.get(self, "mode")
 
@@ -5713,6 +5958,7 @@ class RedisClusterPrivateNetwork(dict):
                Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
                scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
                If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
                
                > The `private_network` conflicts with `acl`. Only one should be specified.
                
@@ -5763,6 +6009,7 @@ class RedisClusterPrivateNetwork(dict):
         Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 
         > The `private_network` conflicts with `acl`. Only one should be specified.
 
@@ -7074,6 +7321,104 @@ class GetCockpitPushUrlResult(dict):
         Push URL for metrics (Grafana Mimir)
         """
         return pulumi.get(self, "push_metrics_url")
+
+
+@pulumi.output_type
+class GetContainerHealthCheckResult(dict):
+    def __init__(__self__, *,
+                 failure_threshold: int,
+                 https: Sequence['outputs.GetContainerHealthCheckHttpResult'],
+                 interval: str):
+        """
+        :param int failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
+        :param Sequence['GetContainerHealthCheckHttpArgs'] https: HTTP health check configuration.
+        :param str interval: Period between health checks (in seconds).
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "https", https)
+        pulumi.set(__self__, "interval", interval)
+
+    @property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> int:
+        """
+        Number of consecutive health check failures before considering the container unhealthy.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @property
+    @pulumi.getter
+    def https(self) -> Sequence['outputs.GetContainerHealthCheckHttpResult']:
+        """
+        HTTP health check configuration.
+        """
+        return pulumi.get(self, "https")
+
+    @property
+    @pulumi.getter
+    def interval(self) -> str:
+        """
+        Period between health checks (in seconds).
+        """
+        return pulumi.get(self, "interval")
+
+
+@pulumi.output_type
+class GetContainerHealthCheckHttpResult(dict):
+    def __init__(__self__, *,
+                 path: str):
+        """
+        :param str path: Path to use for the HTTP health check.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class GetContainerScalingOptionResult(dict):
+    def __init__(__self__, *,
+                 concurrent_requests_threshold: int,
+                 cpu_usage_threshold: int,
+                 memory_usage_threshold: int):
+        """
+        :param int concurrent_requests_threshold: Scale depending on the number of concurrent requests being processed per container instance.
+        :param int cpu_usage_threshold: Scale depending on the CPU usage of a container instance.
+        :param int memory_usage_threshold: Scale depending on the memory usage of a container instance.
+        """
+        pulumi.set(__self__, "concurrent_requests_threshold", concurrent_requests_threshold)
+        pulumi.set(__self__, "cpu_usage_threshold", cpu_usage_threshold)
+        pulumi.set(__self__, "memory_usage_threshold", memory_usage_threshold)
+
+    @property
+    @pulumi.getter(name="concurrentRequestsThreshold")
+    def concurrent_requests_threshold(self) -> int:
+        """
+        Scale depending on the number of concurrent requests being processed per container instance.
+        """
+        return pulumi.get(self, "concurrent_requests_threshold")
+
+    @property
+    @pulumi.getter(name="cpuUsageThreshold")
+    def cpu_usage_threshold(self) -> int:
+        """
+        Scale depending on the CPU usage of a container instance.
+        """
+        return pulumi.get(self, "cpu_usage_threshold")
+
+    @property
+    @pulumi.getter(name="memoryUsageThreshold")
+    def memory_usage_threshold(self) -> int:
+        """
+        Scale depending on the memory usage of a container instance.
+        """
+        return pulumi.get(self, "memory_usage_threshold")
 
 
 @pulumi.output_type

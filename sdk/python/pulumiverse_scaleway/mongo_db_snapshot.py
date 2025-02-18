@@ -274,7 +274,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway MongoDB® snapshots.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-databases/mongodb/).
+        For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
 
         ## Example Usage
 
@@ -315,7 +315,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway MongoDB® snapshots.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-databases/mongodb/).
+        For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
 
         ## Example Usage
 

@@ -64,6 +64,10 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public readonly fromSnapshotId!: pulumi.Output<string | undefined>;
     /**
+     * If true, consider that this volume may have been migrated and no longer exists.
+     */
+    public readonly migrateToSbs!: pulumi.Output<boolean | undefined>;
+    /**
      * The name of the volume. If not provided it will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
@@ -110,6 +114,7 @@ export class InstanceVolume extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as InstanceVolumeState | undefined;
             resourceInputs["fromSnapshotId"] = state ? state.fromSnapshotId : undefined;
+            resourceInputs["migrateToSbs"] = state ? state.migrateToSbs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -124,6 +129,7 @@ export class InstanceVolume extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["fromSnapshotId"] = args ? args.fromSnapshotId : undefined;
+            resourceInputs["migrateToSbs"] = args ? args.migrateToSbs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["sizeInGb"] = args ? args.sizeInGb : undefined;
@@ -146,6 +152,10 @@ export interface InstanceVolumeState {
      * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     fromSnapshotId?: pulumi.Input<string>;
+    /**
+     * If true, consider that this volume may have been migrated and no longer exists.
+     */
+    migrateToSbs?: pulumi.Input<boolean>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
@@ -188,6 +198,10 @@ export interface InstanceVolumeArgs {
      * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
     fromSnapshotId?: pulumi.Input<string>;
+    /**
+     * If true, consider that this volume may have been migrated and no longer exists.
+     */
+    migrateToSbs?: pulumi.Input<boolean>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */

@@ -107,6 +107,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+        /// 
+        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
         /// </summary>
         [Output("pushDefaultRoute")]
         public Output<bool> PushDefaultRoute { get; private set; } = null!;
@@ -262,6 +264,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+        /// 
+        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }
@@ -384,6 +388,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+        /// 
+        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }

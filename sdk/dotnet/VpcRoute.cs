@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway VPC Routes.
-    /// For more information, see [the main documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).
+    /// For more information, see [the main documentation](https://www.scaleway.com/en/docs/vpc/concepts/).
     /// 
     /// ## Example Usage
     /// 

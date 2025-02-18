@@ -46,6 +46,8 @@ class VpcPublicGatewayDhcpArgs:
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+               
+               > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
@@ -195,6 +197,8 @@ class VpcPublicGatewayDhcpArgs:
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+
+        > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -297,6 +301,8 @@ class _VpcPublicGatewayDhcpState:
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+               
+               > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
@@ -467,6 +473,8 @@ class _VpcPublicGatewayDhcpState:
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+
+        > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -614,6 +622,8 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+               
+               > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
@@ -755,6 +765,8 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         :param pulumi.Input[str] pool_low: Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         :param pulumi.Input[bool] push_default_route: Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+               
+               > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         :param pulumi.Input[bool] push_dns_server: Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
         :param pulumi.Input[int] rebind_timer: After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         :param pulumi.Input[int] renew_timer: After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
@@ -872,6 +884,8 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
     def push_default_route(self) -> pulumi.Output[bool]:
         """
         Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+
+        > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
         """
         return pulumi.get(self, "push_default_route")
 

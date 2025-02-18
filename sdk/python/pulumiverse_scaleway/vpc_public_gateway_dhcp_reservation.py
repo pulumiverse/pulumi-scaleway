@@ -232,7 +232,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+        Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/vpc/concepts/#dhcp).
 
         These static associations are used to assign IP addresses based on the MAC addresses of the resource.
 
@@ -302,7 +302,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
                  args: VpcPublicGatewayDhcpReservationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+        Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/vpc/concepts/#dhcp).
 
         These static associations are used to assign IP addresses based on the MAC addresses of the resource.
 

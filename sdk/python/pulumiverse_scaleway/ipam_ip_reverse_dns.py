@@ -170,7 +170,7 @@ class IpamIpReverseDns(pulumi.CustomResource):
         """
         Manage the reverse DNS of IP addresses managed by Scaleway's IP Address Management (IPAM) service.
 
-        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
 
         ## Import
 
@@ -198,7 +198,7 @@ class IpamIpReverseDns(pulumi.CustomResource):
         """
         Manage the reverse DNS of IP addresses managed by Scaleway's IP Address Management (IPAM) service.
 
-        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
 
         ## Import
 

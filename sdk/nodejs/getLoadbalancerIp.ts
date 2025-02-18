@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Load Balancer IP address.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
 export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIpResult> {
     args = args || {};
@@ -78,7 +78,7 @@ export interface GetLoadbalancerIpResult {
 /**
  * Gets information about a Load Balancer IP address.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
 export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadbalancerIpResult> {
     args = args || {};

@@ -15,7 +15,7 @@ import (
 //
 // Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 //
-// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
 //
 // ## Retrieve a Serverless Container
 //
@@ -107,11 +107,12 @@ type LookupContainerResult struct {
 	Description string `pulumi:"description"`
 	// The container domain name.
 	DomainName string `pulumi:"domainName"`
-	// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+	// The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
-	ErrorMessage string `pulumi:"errorMessage"`
-	HttpOption   string `pulumi:"httpOption"`
+	ErrorMessage string                    `pulumi:"errorMessage"`
+	HealthChecks []GetContainerHealthCheck `pulumi:"healthChecks"`
+	HttpOption   string                    `pulumi:"httpOption"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The maximum number of simultaneous requests your container can handle at the same time.
@@ -138,8 +139,10 @@ type LookupContainerResult struct {
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 string `pulumi:"registrySha256"`
 	// (Optional) Execution environment of the container.
-	Sandbox                    string            `pulumi:"sandbox"`
-	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	Sandbox string `pulumi:"sandbox"`
+	// Configuration block used to decide when to scale up or down. Possible values:
+	ScalingOptions             []GetContainerScalingOption `pulumi:"scalingOptions"`
+	SecretEnvironmentVariables map[string]string           `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status string `pulumi:"status"`
 	// The maximum amount of time your container can spend processing a request before being stopped.
@@ -213,7 +216,7 @@ func (o LookupContainerResultOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.DomainName }).(pulumi.StringOutput)
 }
 
-// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+// The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
 func (o LookupContainerResultOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupContainerResult) map[string]string { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
@@ -221,6 +224,10 @@ func (o LookupContainerResultOutput) EnvironmentVariables() pulumi.StringMapOutp
 // The error message of the container.
 func (o LookupContainerResultOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+func (o LookupContainerResultOutput) HealthChecks() GetContainerHealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupContainerResult) []GetContainerHealthCheck { return v.HealthChecks }).(GetContainerHealthCheckArrayOutput)
 }
 
 func (o LookupContainerResultOutput) HttpOption() pulumi.StringOutput {
@@ -297,6 +304,11 @@ func (o LookupContainerResultOutput) RegistrySha256() pulumi.StringOutput {
 // (Optional) Execution environment of the container.
 func (o LookupContainerResultOutput) Sandbox() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Sandbox }).(pulumi.StringOutput)
+}
+
+// Configuration block used to decide when to scale up or down. Possible values:
+func (o LookupContainerResultOutput) ScalingOptions() GetContainerScalingOptionArrayOutput {
+	return o.ApplyT(func(v LookupContainerResult) []GetContainerScalingOption { return v.ScalingOptions }).(GetContainerScalingOptionArrayOutput)
 }
 
 func (o LookupContainerResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {

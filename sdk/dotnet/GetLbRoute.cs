@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Get information about Scaleway Load Balancer routes.
         /// 
-        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Get information about Scaleway Load Balancer routes.
         /// 
-        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 
@@ -131,7 +131,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Get information about Scaleway Load Balancer routes.
         /// 
-        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
         /// 
         /// ## Example Usage
         /// 

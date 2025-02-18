@@ -8,7 +8,19 @@
                 "current": "scaleway:index/accountSshKey:AccountSshKey"
             },
             "scaleway_apple_silicon_server": {
-                "current": "scaleway:index/appleSiliconServer:AppleSiliconServer"
+                "current": "scaleway:index/appleSiliconServer:AppleSiliconServer",
+                "fields": {
+                    "private_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "ipam_ip_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "scaleway_baremetal_server": {
                 "current": "scaleway:index/baremetalServer:BaremetalServer",
@@ -93,7 +105,22 @@
                 }
             },
             "scaleway_container": {
-                "current": "scaleway:index/container:Container"
+                "current": "scaleway:index/container:Container",
+                "fields": {
+                    "health_check": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "http": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "scaling_option": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_container_cron": {
                 "current": "scaleway:index/containerCron:ContainerCron"
@@ -897,6 +924,9 @@
                     }
                 }
             },
+            "scaleway_rdb_snapshot": {
+                "current": "scaleway:index/rdbSnapshot:RdbSnapshot"
+            },
             "scaleway_rdb_user": {
                 "current": "scaleway:index/databaseUser:DatabaseUser"
             },
@@ -1186,7 +1216,22 @@
                 "current": "scaleway:index/getConfig:getConfig"
             },
             "scaleway_container": {
-                "current": "scaleway:index/getContainer:getContainer"
+                "current": "scaleway:index/getContainer:getContainer",
+                "fields": {
+                    "health_check": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "http": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "scaling_option": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_container_namespace": {
                 "current": "scaleway:index/getContainerNamespace:getContainerNamespace",

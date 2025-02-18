@@ -148,7 +148,7 @@ export class IotRoute extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     public readonly database!: pulumi.Output<outputs.IotRouteDatabase | undefined>;
     /**
@@ -164,11 +164,11 @@ export class IotRoute extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+     * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     public readonly rest!: pulumi.Output<outputs.IotRouteRest | undefined>;
     /**
-     * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+     * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     public readonly s3!: pulumi.Output<outputs.IotRouteS3 | undefined>;
     /**
@@ -228,7 +228,7 @@ export interface IotRouteState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     database?: pulumi.Input<inputs.IotRouteDatabase>;
     /**
@@ -244,11 +244,11 @@ export interface IotRouteState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+     * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     rest?: pulumi.Input<inputs.IotRouteRest>;
     /**
-     * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+     * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     s3?: pulumi.Input<inputs.IotRouteS3>;
     /**
@@ -262,7 +262,7 @@ export interface IotRouteState {
  */
 export interface IotRouteArgs {
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     database?: pulumi.Input<inputs.IotRouteDatabase>;
     /**
@@ -278,11 +278,11 @@ export interface IotRouteArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+     * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     rest?: pulumi.Input<inputs.IotRouteRest>;
     /**
-     * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+     * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     s3?: pulumi.Input<inputs.IotRouteS3>;
     /**

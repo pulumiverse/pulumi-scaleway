@@ -65,6 +65,7 @@ type LookupDatabaseInstanceResult struct {
 	ReadReplicas    []GetDatabaseInstanceReadReplica    `pulumi:"readReplicas"`
 	Region          *string                             `pulumi:"region"`
 	Settings        map[string]string                   `pulumi:"settings"`
+	SnapshotId      string                              `pulumi:"snapshotId"`
 	Tags            []string                            `pulumi:"tags"`
 	UserName        string                              `pulumi:"userName"`
 	VolumeSizeInGb  int                                 `pulumi:"volumeSizeInGb"`
@@ -208,6 +209,10 @@ func (o LookupDatabaseInstanceResultOutput) Region() pulumi.StringPtrOutput {
 
 func (o LookupDatabaseInstanceResultOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) Tags() pulumi.StringArrayOutput {

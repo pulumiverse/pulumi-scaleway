@@ -26,7 +26,7 @@ class CockpitSourceArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CockpitSource resource.
-        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         :param pulumi.Input[str] name: The name of the data source.
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] region: ) The region where the data source is located.
@@ -46,7 +46,7 @@ class CockpitSourceArgs:
     @pulumi.getter(name="retentionDays")
     def retention_days(self) -> pulumi.Input[int]:
         """
-        The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         """
         return pulumi.get(self, "retention_days")
 
@@ -125,7 +125,7 @@ class _CockpitSourceState:
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
         :param pulumi.Input[str] region: ) The region where the data source is located.
-        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         :param pulumi.Input[bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         :param pulumi.Input[str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
@@ -230,7 +230,7 @@ class _CockpitSourceState:
     @pulumi.getter(name="retentionDays")
     def retention_days(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         """
         return pulumi.get(self, "retention_days")
 
@@ -336,7 +336,7 @@ class CockpitSource(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the data source.
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] region: ) The region where the data source is located.
-        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         """
         ...
@@ -454,7 +454,7 @@ class CockpitSource(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: ) The ID of the Project the data source is associated with.
         :param pulumi.Input[str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
         :param pulumi.Input[str] region: ) The region where the data source is located.
-        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        :param pulumi.Input[int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         :param pulumi.Input[bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param pulumi.Input[str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         :param pulumi.Input[str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
@@ -529,7 +529,7 @@ class CockpitSource(pulumi.CustomResource):
     @pulumi.getter(name="retentionDays")
     def retention_days(self) -> pulumi.Output[int]:
         """
-        The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         """
         return pulumi.get(self, "retention_days")
 

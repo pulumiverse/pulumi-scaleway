@@ -130,7 +130,7 @@ def get_lbs(name: Optional[str] = None,
     """
     Gets information about multiple Load Balancers.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
 
 
     :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.
@@ -162,7 +162,7 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     """
     Gets information about multiple Load Balancers.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
 
 
     :param str name: The Load Balancer name to filter for. Load Balancers with a matching name are listed.

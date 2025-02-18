@@ -27,7 +27,7 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -100,6 +100,9 @@ class GetDatabaseInstanceResult:
         if settings and not isinstance(settings, dict):
             raise TypeError("Expected argument 'settings' to be a dict")
         pulumi.set(__self__, "settings", settings)
+        if snapshot_id and not isinstance(snapshot_id, str):
+            raise TypeError("Expected argument 'snapshot_id' to be a str")
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -237,6 +240,11 @@ class GetDatabaseInstanceResult:
         return pulumi.get(self, "settings")
 
     @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        return pulumi.get(self, "snapshot_id")
+
+    @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
@@ -287,6 +295,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             read_replicas=self.read_replicas,
             region=self.region,
             settings=self.settings,
+            snapshot_id=self.snapshot_id,
             tags=self.tags,
             user_name=self.user_name,
             volume_size_in_gb=self.volume_size_in_gb,
@@ -344,6 +353,7 @@ def get_database_instance(instance_id: Optional[str] = None,
         read_replicas=pulumi.get(__ret__, 'read_replicas'),
         region=pulumi.get(__ret__, 'region'),
         settings=pulumi.get(__ret__, 'settings'),
+        snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         tags=pulumi.get(__ret__, 'tags'),
         user_name=pulumi.get(__ret__, 'user_name'),
         volume_size_in_gb=pulumi.get(__ret__, 'volume_size_in_gb'),
@@ -398,6 +408,7 @@ def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[str
         read_replicas=pulumi.get(__response__, 'read_replicas'),
         region=pulumi.get(__response__, 'region'),
         settings=pulumi.get(__response__, 'settings'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
         tags=pulumi.get(__response__, 'tags'),
         user_name=pulumi.get(__response__, 'user_name'),
         volume_size_in_gb=pulumi.get(__response__, 'volume_size_in_gb'),

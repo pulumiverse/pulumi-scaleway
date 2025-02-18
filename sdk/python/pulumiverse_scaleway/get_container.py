@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetContainerResult',
@@ -26,7 +27,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, secret_environment_variables=None, status=None, timeout=None):
+    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, status=None, timeout=None):
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -51,6 +52,9 @@ class GetContainerResult:
         if error_message and not isinstance(error_message, str):
             raise TypeError("Expected argument 'error_message' to be a str")
         pulumi.set(__self__, "error_message", error_message)
+        if health_checks and not isinstance(health_checks, list):
+            raise TypeError("Expected argument 'health_checks' to be a list")
+        pulumi.set(__self__, "health_checks", health_checks)
         if http_option and not isinstance(http_option, str):
             raise TypeError("Expected argument 'http_option' to be a str")
         pulumi.set(__self__, "http_option", http_option)
@@ -99,6 +103,9 @@ class GetContainerResult:
         if sandbox and not isinstance(sandbox, str):
             raise TypeError("Expected argument 'sandbox' to be a str")
         pulumi.set(__self__, "sandbox", sandbox)
+        if scaling_options and not isinstance(scaling_options, list):
+            raise TypeError("Expected argument 'scaling_options' to be a list")
+        pulumi.set(__self__, "scaling_options", scaling_options)
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
@@ -158,7 +165,7 @@ class GetContainerResult:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Mapping[str, str]:
         """
-        The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -169,6 +176,11 @@ class GetContainerResult:
         The error message of the container.
         """
         return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="healthChecks")
+    def health_checks(self) -> Sequence['outputs.GetContainerHealthCheckResult']:
+        return pulumi.get(self, "health_checks")
 
     @property
     @pulumi.getter(name="httpOption")
@@ -287,6 +299,14 @@ class GetContainerResult:
         return pulumi.get(self, "sandbox")
 
     @property
+    @pulumi.getter(name="scalingOptions")
+    def scaling_options(self) -> Sequence['outputs.GetContainerScalingOptionResult']:
+        """
+        Configuration block used to decide when to scale up or down. Possible values:
+        """
+        return pulumi.get(self, "scaling_options")
+
+    @property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Mapping[str, str]:
         return pulumi.get(self, "secret_environment_variables")
@@ -322,6 +342,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             domain_name=self.domain_name,
             environment_variables=self.environment_variables,
             error_message=self.error_message,
+            health_checks=self.health_checks,
             http_option=self.http_option,
             id=self.id,
             max_concurrency=self.max_concurrency,
@@ -338,6 +359,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             registry_image=self.registry_image,
             registry_sha256=self.registry_sha256,
             sandbox=self.sandbox,
+            scaling_options=self.scaling_options,
             secret_environment_variables=self.secret_environment_variables,
             status=self.status,
             timeout=self.timeout)
@@ -354,7 +376,7 @@ def get_container(container_id: Optional[str] = None,
 
     Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
-    For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+    For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
 
     ## Retrieve a Serverless Container
 
@@ -413,6 +435,7 @@ def get_container(container_id: Optional[str] = None,
         domain_name=pulumi.get(__ret__, 'domain_name'),
         environment_variables=pulumi.get(__ret__, 'environment_variables'),
         error_message=pulumi.get(__ret__, 'error_message'),
+        health_checks=pulumi.get(__ret__, 'health_checks'),
         http_option=pulumi.get(__ret__, 'http_option'),
         id=pulumi.get(__ret__, 'id'),
         max_concurrency=pulumi.get(__ret__, 'max_concurrency'),
@@ -429,6 +452,7 @@ def get_container(container_id: Optional[str] = None,
         registry_image=pulumi.get(__ret__, 'registry_image'),
         registry_sha256=pulumi.get(__ret__, 'registry_sha256'),
         sandbox=pulumi.get(__ret__, 'sandbox'),
+        scaling_options=pulumi.get(__ret__, 'scaling_options'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
         status=pulumi.get(__ret__, 'status'),
         timeout=pulumi.get(__ret__, 'timeout'))
@@ -443,7 +467,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
 
     Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
-    For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+    For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
 
     ## Retrieve a Serverless Container
 
@@ -501,6 +525,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
         domain_name=pulumi.get(__response__, 'domain_name'),
         environment_variables=pulumi.get(__response__, 'environment_variables'),
         error_message=pulumi.get(__response__, 'error_message'),
+        health_checks=pulumi.get(__response__, 'health_checks'),
         http_option=pulumi.get(__response__, 'http_option'),
         id=pulumi.get(__response__, 'id'),
         max_concurrency=pulumi.get(__response__, 'max_concurrency'),
@@ -517,6 +542,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
         registry_image=pulumi.get(__response__, 'registry_image'),
         registry_sha256=pulumi.get(__response__, 'registry_sha256'),
         sandbox=pulumi.get(__response__, 'sandbox'),
+        scaling_options=pulumi.get(__response__, 'scaling_options'),
         secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
         status=pulumi.get(__response__, 'status'),
         timeout=pulumi.get(__response__, 'timeout')))

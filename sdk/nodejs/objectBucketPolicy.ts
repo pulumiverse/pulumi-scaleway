@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+ * The `scaleway.ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
  *
- * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
+ * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
  *
  * ## Example Usage
  *
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Project ID
- * const default = scaleway.getAccountProject({
+ * const _default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // IAM configuration
@@ -66,7 +66,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Project ID
- * const default = scaleway.getAccountProject({
+ * const _default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // IAM configuration
@@ -111,7 +111,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const reading-app = scaleway.getIamApplication({
+ * const reading_app = scaleway.getIamApplication({
  *     name: "reading-app",
  * });
  * const reading_api_key = new scaleway.IamApiKey("reading-api-key", {applicationId: reading_app.then(reading_app => reading_app.id)});
@@ -129,7 +129,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Scaleway project ID
- * const default = scaleway.getAccountProject({
+ * const _default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // Object storage configuration
@@ -165,7 +165,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Project ID
- * const default = scaleway.getAccountProject({
+ * const _default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * // Object storage configuration
@@ -195,7 +195,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+ * **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-storage-aws-cli/).
  *
  * ## Import
  *

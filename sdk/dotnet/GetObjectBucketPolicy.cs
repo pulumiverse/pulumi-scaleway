@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
-        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
         /// 
         /// ## Retrieve the bucket policy of a bucket
         /// 
@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
-        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
         /// 
         /// ## Retrieve the bucket policy of a bucket
         /// 
@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
-        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+        /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
         /// 
         /// ## Retrieve the bucket policy of a bucket
         /// 

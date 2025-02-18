@@ -13,6 +13,148 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AppleSiliconServerPrivateNetwork struct {
+	// The date and time of the creation of the Apple Silicon server.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The ID of the server.
+	Id string `pulumi:"id"`
+	// List of IPAM IP IDs to attach to the server
+	IpamIpIds []string `pulumi:"ipamIpIds"`
+	// The private network status
+	Status *string `pulumi:"status"`
+	// The date and time of the last update of the Apple Silicon server.
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// The VLAN ID associated to the private network
+	Vlan *int `pulumi:"vlan"`
+}
+
+// AppleSiliconServerPrivateNetworkInput is an input type that accepts AppleSiliconServerPrivateNetworkArgs and AppleSiliconServerPrivateNetworkOutput values.
+// You can construct a concrete instance of `AppleSiliconServerPrivateNetworkInput` via:
+//
+//	AppleSiliconServerPrivateNetworkArgs{...}
+type AppleSiliconServerPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToAppleSiliconServerPrivateNetworkOutput() AppleSiliconServerPrivateNetworkOutput
+	ToAppleSiliconServerPrivateNetworkOutputWithContext(context.Context) AppleSiliconServerPrivateNetworkOutput
+}
+
+type AppleSiliconServerPrivateNetworkArgs struct {
+	// The date and time of the creation of the Apple Silicon server.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// The ID of the server.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPAM IP IDs to attach to the server
+	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
+	// The private network status
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// The date and time of the last update of the Apple Silicon server.
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+	// The VLAN ID associated to the private network
+	Vlan pulumi.IntPtrInput `pulumi:"vlan"`
+}
+
+func (AppleSiliconServerPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppleSiliconServerPrivateNetwork)(nil)).Elem()
+}
+
+func (i AppleSiliconServerPrivateNetworkArgs) ToAppleSiliconServerPrivateNetworkOutput() AppleSiliconServerPrivateNetworkOutput {
+	return i.ToAppleSiliconServerPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i AppleSiliconServerPrivateNetworkArgs) ToAppleSiliconServerPrivateNetworkOutputWithContext(ctx context.Context) AppleSiliconServerPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppleSiliconServerPrivateNetworkOutput)
+}
+
+// AppleSiliconServerPrivateNetworkArrayInput is an input type that accepts AppleSiliconServerPrivateNetworkArray and AppleSiliconServerPrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `AppleSiliconServerPrivateNetworkArrayInput` via:
+//
+//	AppleSiliconServerPrivateNetworkArray{ AppleSiliconServerPrivateNetworkArgs{...} }
+type AppleSiliconServerPrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToAppleSiliconServerPrivateNetworkArrayOutput() AppleSiliconServerPrivateNetworkArrayOutput
+	ToAppleSiliconServerPrivateNetworkArrayOutputWithContext(context.Context) AppleSiliconServerPrivateNetworkArrayOutput
+}
+
+type AppleSiliconServerPrivateNetworkArray []AppleSiliconServerPrivateNetworkInput
+
+func (AppleSiliconServerPrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AppleSiliconServerPrivateNetwork)(nil)).Elem()
+}
+
+func (i AppleSiliconServerPrivateNetworkArray) ToAppleSiliconServerPrivateNetworkArrayOutput() AppleSiliconServerPrivateNetworkArrayOutput {
+	return i.ToAppleSiliconServerPrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i AppleSiliconServerPrivateNetworkArray) ToAppleSiliconServerPrivateNetworkArrayOutputWithContext(ctx context.Context) AppleSiliconServerPrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppleSiliconServerPrivateNetworkArrayOutput)
+}
+
+type AppleSiliconServerPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (AppleSiliconServerPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppleSiliconServerPrivateNetwork)(nil)).Elem()
+}
+
+func (o AppleSiliconServerPrivateNetworkOutput) ToAppleSiliconServerPrivateNetworkOutput() AppleSiliconServerPrivateNetworkOutput {
+	return o
+}
+
+func (o AppleSiliconServerPrivateNetworkOutput) ToAppleSiliconServerPrivateNetworkOutputWithContext(ctx context.Context) AppleSiliconServerPrivateNetworkOutput {
+	return o
+}
+
+// The date and time of the creation of the Apple Silicon server.
+func (o AppleSiliconServerPrivateNetworkOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the server.
+func (o AppleSiliconServerPrivateNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IPAM IP IDs to attach to the server
+func (o AppleSiliconServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
+}
+
+// The private network status
+func (o AppleSiliconServerPrivateNetworkOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the last update of the Apple Silicon server.
+func (o AppleSiliconServerPrivateNetworkOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The VLAN ID associated to the private network
+func (o AppleSiliconServerPrivateNetworkOutput) Vlan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *int { return v.Vlan }).(pulumi.IntPtrOutput)
+}
+
+type AppleSiliconServerPrivateNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (AppleSiliconServerPrivateNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AppleSiliconServerPrivateNetwork)(nil)).Elem()
+}
+
+func (o AppleSiliconServerPrivateNetworkArrayOutput) ToAppleSiliconServerPrivateNetworkArrayOutput() AppleSiliconServerPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o AppleSiliconServerPrivateNetworkArrayOutput) ToAppleSiliconServerPrivateNetworkArrayOutputWithContext(ctx context.Context) AppleSiliconServerPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o AppleSiliconServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) AppleSiliconServerPrivateNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AppleSiliconServerPrivateNetwork {
+		return vs[0].([]AppleSiliconServerPrivateNetwork)[vs[1].(int)]
+	}).(AppleSiliconServerPrivateNetworkOutput)
+}
+
 type BaremetalServerIp struct {
 	// The address of the IPv6.
 	Address *string `pulumi:"address"`
@@ -1265,6 +1407,333 @@ func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 		}
 		return v.WriteTraces
 	}).(pulumi.BoolPtrOutput)
+}
+
+type ContainerHealthCheck struct {
+	// Number of consecutive health check failures before considering the container unhealthy.
+	FailureThreshold int `pulumi:"failureThreshold"`
+	// HTTP health check configuration.
+	Https []ContainerHealthCheckHttp `pulumi:"https"`
+	// Period between health checks.
+	Interval string `pulumi:"interval"`
+}
+
+// ContainerHealthCheckInput is an input type that accepts ContainerHealthCheckArgs and ContainerHealthCheckOutput values.
+// You can construct a concrete instance of `ContainerHealthCheckInput` via:
+//
+//	ContainerHealthCheckArgs{...}
+type ContainerHealthCheckInput interface {
+	pulumi.Input
+
+	ToContainerHealthCheckOutput() ContainerHealthCheckOutput
+	ToContainerHealthCheckOutputWithContext(context.Context) ContainerHealthCheckOutput
+}
+
+type ContainerHealthCheckArgs struct {
+	// Number of consecutive health check failures before considering the container unhealthy.
+	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
+	// HTTP health check configuration.
+	Https ContainerHealthCheckHttpArrayInput `pulumi:"https"`
+	// Period between health checks.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (ContainerHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerHealthCheck)(nil)).Elem()
+}
+
+func (i ContainerHealthCheckArgs) ToContainerHealthCheckOutput() ContainerHealthCheckOutput {
+	return i.ToContainerHealthCheckOutputWithContext(context.Background())
+}
+
+func (i ContainerHealthCheckArgs) ToContainerHealthCheckOutputWithContext(ctx context.Context) ContainerHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerHealthCheckOutput)
+}
+
+// ContainerHealthCheckArrayInput is an input type that accepts ContainerHealthCheckArray and ContainerHealthCheckArrayOutput values.
+// You can construct a concrete instance of `ContainerHealthCheckArrayInput` via:
+//
+//	ContainerHealthCheckArray{ ContainerHealthCheckArgs{...} }
+type ContainerHealthCheckArrayInput interface {
+	pulumi.Input
+
+	ToContainerHealthCheckArrayOutput() ContainerHealthCheckArrayOutput
+	ToContainerHealthCheckArrayOutputWithContext(context.Context) ContainerHealthCheckArrayOutput
+}
+
+type ContainerHealthCheckArray []ContainerHealthCheckInput
+
+func (ContainerHealthCheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContainerHealthCheck)(nil)).Elem()
+}
+
+func (i ContainerHealthCheckArray) ToContainerHealthCheckArrayOutput() ContainerHealthCheckArrayOutput {
+	return i.ToContainerHealthCheckArrayOutputWithContext(context.Background())
+}
+
+func (i ContainerHealthCheckArray) ToContainerHealthCheckArrayOutputWithContext(ctx context.Context) ContainerHealthCheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerHealthCheckArrayOutput)
+}
+
+type ContainerHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (ContainerHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerHealthCheck)(nil)).Elem()
+}
+
+func (o ContainerHealthCheckOutput) ToContainerHealthCheckOutput() ContainerHealthCheckOutput {
+	return o
+}
+
+func (o ContainerHealthCheckOutput) ToContainerHealthCheckOutputWithContext(ctx context.Context) ContainerHealthCheckOutput {
+	return o
+}
+
+// Number of consecutive health check failures before considering the container unhealthy.
+func (o ContainerHealthCheckOutput) FailureThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v ContainerHealthCheck) int { return v.FailureThreshold }).(pulumi.IntOutput)
+}
+
+// HTTP health check configuration.
+func (o ContainerHealthCheckOutput) Https() ContainerHealthCheckHttpArrayOutput {
+	return o.ApplyT(func(v ContainerHealthCheck) []ContainerHealthCheckHttp { return v.Https }).(ContainerHealthCheckHttpArrayOutput)
+}
+
+// Period between health checks.
+func (o ContainerHealthCheckOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerHealthCheck) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type ContainerHealthCheckArrayOutput struct{ *pulumi.OutputState }
+
+func (ContainerHealthCheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContainerHealthCheck)(nil)).Elem()
+}
+
+func (o ContainerHealthCheckArrayOutput) ToContainerHealthCheckArrayOutput() ContainerHealthCheckArrayOutput {
+	return o
+}
+
+func (o ContainerHealthCheckArrayOutput) ToContainerHealthCheckArrayOutputWithContext(ctx context.Context) ContainerHealthCheckArrayOutput {
+	return o
+}
+
+func (o ContainerHealthCheckArrayOutput) Index(i pulumi.IntInput) ContainerHealthCheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContainerHealthCheck {
+		return vs[0].([]ContainerHealthCheck)[vs[1].(int)]
+	}).(ContainerHealthCheckOutput)
+}
+
+type ContainerHealthCheckHttp struct {
+	// Path to use for the HTTP health check.
+	Path string `pulumi:"path"`
+}
+
+// ContainerHealthCheckHttpInput is an input type that accepts ContainerHealthCheckHttpArgs and ContainerHealthCheckHttpOutput values.
+// You can construct a concrete instance of `ContainerHealthCheckHttpInput` via:
+//
+//	ContainerHealthCheckHttpArgs{...}
+type ContainerHealthCheckHttpInput interface {
+	pulumi.Input
+
+	ToContainerHealthCheckHttpOutput() ContainerHealthCheckHttpOutput
+	ToContainerHealthCheckHttpOutputWithContext(context.Context) ContainerHealthCheckHttpOutput
+}
+
+type ContainerHealthCheckHttpArgs struct {
+	// Path to use for the HTTP health check.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (ContainerHealthCheckHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (i ContainerHealthCheckHttpArgs) ToContainerHealthCheckHttpOutput() ContainerHealthCheckHttpOutput {
+	return i.ToContainerHealthCheckHttpOutputWithContext(context.Background())
+}
+
+func (i ContainerHealthCheckHttpArgs) ToContainerHealthCheckHttpOutputWithContext(ctx context.Context) ContainerHealthCheckHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerHealthCheckHttpOutput)
+}
+
+// ContainerHealthCheckHttpArrayInput is an input type that accepts ContainerHealthCheckHttpArray and ContainerHealthCheckHttpArrayOutput values.
+// You can construct a concrete instance of `ContainerHealthCheckHttpArrayInput` via:
+//
+//	ContainerHealthCheckHttpArray{ ContainerHealthCheckHttpArgs{...} }
+type ContainerHealthCheckHttpArrayInput interface {
+	pulumi.Input
+
+	ToContainerHealthCheckHttpArrayOutput() ContainerHealthCheckHttpArrayOutput
+	ToContainerHealthCheckHttpArrayOutputWithContext(context.Context) ContainerHealthCheckHttpArrayOutput
+}
+
+type ContainerHealthCheckHttpArray []ContainerHealthCheckHttpInput
+
+func (ContainerHealthCheckHttpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (i ContainerHealthCheckHttpArray) ToContainerHealthCheckHttpArrayOutput() ContainerHealthCheckHttpArrayOutput {
+	return i.ToContainerHealthCheckHttpArrayOutputWithContext(context.Background())
+}
+
+func (i ContainerHealthCheckHttpArray) ToContainerHealthCheckHttpArrayOutputWithContext(ctx context.Context) ContainerHealthCheckHttpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerHealthCheckHttpArrayOutput)
+}
+
+type ContainerHealthCheckHttpOutput struct{ *pulumi.OutputState }
+
+func (ContainerHealthCheckHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (o ContainerHealthCheckHttpOutput) ToContainerHealthCheckHttpOutput() ContainerHealthCheckHttpOutput {
+	return o
+}
+
+func (o ContainerHealthCheckHttpOutput) ToContainerHealthCheckHttpOutputWithContext(ctx context.Context) ContainerHealthCheckHttpOutput {
+	return o
+}
+
+// Path to use for the HTTP health check.
+func (o ContainerHealthCheckHttpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerHealthCheckHttp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type ContainerHealthCheckHttpArrayOutput struct{ *pulumi.OutputState }
+
+func (ContainerHealthCheckHttpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (o ContainerHealthCheckHttpArrayOutput) ToContainerHealthCheckHttpArrayOutput() ContainerHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o ContainerHealthCheckHttpArrayOutput) ToContainerHealthCheckHttpArrayOutputWithContext(ctx context.Context) ContainerHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o ContainerHealthCheckHttpArrayOutput) Index(i pulumi.IntInput) ContainerHealthCheckHttpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContainerHealthCheckHttp {
+		return vs[0].([]ContainerHealthCheckHttp)[vs[1].(int)]
+	}).(ContainerHealthCheckHttpOutput)
+}
+
+type ContainerScalingOption struct {
+	// Scale depending on the number of concurrent requests being processed per container instance.
+	ConcurrentRequestsThreshold *int `pulumi:"concurrentRequestsThreshold"`
+	// Scale depending on the CPU usage of a container instance.
+	CpuUsageThreshold *int `pulumi:"cpuUsageThreshold"`
+	// Scale depending on the memory usage of a container instance.
+	MemoryUsageThreshold *int `pulumi:"memoryUsageThreshold"`
+}
+
+// ContainerScalingOptionInput is an input type that accepts ContainerScalingOptionArgs and ContainerScalingOptionOutput values.
+// You can construct a concrete instance of `ContainerScalingOptionInput` via:
+//
+//	ContainerScalingOptionArgs{...}
+type ContainerScalingOptionInput interface {
+	pulumi.Input
+
+	ToContainerScalingOptionOutput() ContainerScalingOptionOutput
+	ToContainerScalingOptionOutputWithContext(context.Context) ContainerScalingOptionOutput
+}
+
+type ContainerScalingOptionArgs struct {
+	// Scale depending on the number of concurrent requests being processed per container instance.
+	ConcurrentRequestsThreshold pulumi.IntPtrInput `pulumi:"concurrentRequestsThreshold"`
+	// Scale depending on the CPU usage of a container instance.
+	CpuUsageThreshold pulumi.IntPtrInput `pulumi:"cpuUsageThreshold"`
+	// Scale depending on the memory usage of a container instance.
+	MemoryUsageThreshold pulumi.IntPtrInput `pulumi:"memoryUsageThreshold"`
+}
+
+func (ContainerScalingOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerScalingOption)(nil)).Elem()
+}
+
+func (i ContainerScalingOptionArgs) ToContainerScalingOptionOutput() ContainerScalingOptionOutput {
+	return i.ToContainerScalingOptionOutputWithContext(context.Background())
+}
+
+func (i ContainerScalingOptionArgs) ToContainerScalingOptionOutputWithContext(ctx context.Context) ContainerScalingOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerScalingOptionOutput)
+}
+
+// ContainerScalingOptionArrayInput is an input type that accepts ContainerScalingOptionArray and ContainerScalingOptionArrayOutput values.
+// You can construct a concrete instance of `ContainerScalingOptionArrayInput` via:
+//
+//	ContainerScalingOptionArray{ ContainerScalingOptionArgs{...} }
+type ContainerScalingOptionArrayInput interface {
+	pulumi.Input
+
+	ToContainerScalingOptionArrayOutput() ContainerScalingOptionArrayOutput
+	ToContainerScalingOptionArrayOutputWithContext(context.Context) ContainerScalingOptionArrayOutput
+}
+
+type ContainerScalingOptionArray []ContainerScalingOptionInput
+
+func (ContainerScalingOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContainerScalingOption)(nil)).Elem()
+}
+
+func (i ContainerScalingOptionArray) ToContainerScalingOptionArrayOutput() ContainerScalingOptionArrayOutput {
+	return i.ToContainerScalingOptionArrayOutputWithContext(context.Background())
+}
+
+func (i ContainerScalingOptionArray) ToContainerScalingOptionArrayOutputWithContext(ctx context.Context) ContainerScalingOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerScalingOptionArrayOutput)
+}
+
+type ContainerScalingOptionOutput struct{ *pulumi.OutputState }
+
+func (ContainerScalingOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerScalingOption)(nil)).Elem()
+}
+
+func (o ContainerScalingOptionOutput) ToContainerScalingOptionOutput() ContainerScalingOptionOutput {
+	return o
+}
+
+func (o ContainerScalingOptionOutput) ToContainerScalingOptionOutputWithContext(ctx context.Context) ContainerScalingOptionOutput {
+	return o
+}
+
+// Scale depending on the number of concurrent requests being processed per container instance.
+func (o ContainerScalingOptionOutput) ConcurrentRequestsThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ContainerScalingOption) *int { return v.ConcurrentRequestsThreshold }).(pulumi.IntPtrOutput)
+}
+
+// Scale depending on the CPU usage of a container instance.
+func (o ContainerScalingOptionOutput) CpuUsageThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ContainerScalingOption) *int { return v.CpuUsageThreshold }).(pulumi.IntPtrOutput)
+}
+
+// Scale depending on the memory usage of a container instance.
+func (o ContainerScalingOptionOutput) MemoryUsageThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ContainerScalingOption) *int { return v.MemoryUsageThreshold }).(pulumi.IntPtrOutput)
+}
+
+type ContainerScalingOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (ContainerScalingOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContainerScalingOption)(nil)).Elem()
+}
+
+func (o ContainerScalingOptionArrayOutput) ToContainerScalingOptionArrayOutput() ContainerScalingOptionArrayOutput {
+	return o
+}
+
+func (o ContainerScalingOptionArrayOutput) ToContainerScalingOptionArrayOutputWithContext(ctx context.Context) ContainerScalingOptionArrayOutput {
+	return o
+}
+
+func (o ContainerScalingOptionArrayOutput) Index(i pulumi.IntInput) ContainerScalingOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContainerScalingOption {
+		return vs[0].([]ContainerScalingOption)[vs[1].(int)]
+	}).(ContainerScalingOptionOutput)
 }
 
 type ContainerTriggerNats struct {
@@ -7094,7 +7563,7 @@ type IotRouteS3 struct {
 	BucketRegion string `pulumi:"bucketRegion"`
 	// The string to prefix object names with (e.g. `mykeyprefix-`).
 	ObjectPrefix *string `pulumi:"objectPrefix"`
-	// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+	// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
 	Strategy string `pulumi:"strategy"`
 }
 
@@ -7116,7 +7585,7 @@ type IotRouteS3Args struct {
 	BucketRegion pulumi.StringInput `pulumi:"bucketRegion"`
 	// The string to prefix object names with (e.g. `mykeyprefix-`).
 	ObjectPrefix pulumi.StringPtrInput `pulumi:"objectPrefix"`
-	// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+	// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
 	Strategy pulumi.StringInput `pulumi:"strategy"`
 }
 
@@ -7212,7 +7681,7 @@ func (o IotRouteS3Output) ObjectPrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IotRouteS3) *string { return v.ObjectPrefix }).(pulumi.StringPtrOutput)
 }
 
-// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
 func (o IotRouteS3Output) Strategy() pulumi.StringOutput {
 	return o.ApplyT(func(v IotRouteS3) string { return v.Strategy }).(pulumi.StringOutput)
 }
@@ -7271,7 +7740,7 @@ func (o IotRouteS3PtrOutput) ObjectPrefix() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+// How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
 func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotRouteS3) *string {
 		if v == nil {
@@ -12473,7 +12942,7 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput
 type ObjectBucketLifecycleRuleTransition struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 	//
 	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -12497,7 +12966,7 @@ type ObjectBucketLifecycleRuleTransitionInput interface {
 type ObjectBucketLifecycleRuleTransitionArgs struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 	//
 	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -12563,7 +13032,7 @@ func (o ObjectBucketLifecycleRuleTransitionOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 //
 // > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 // **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -12736,7 +13205,7 @@ func (o ObjectBucketLockConfigurationRulePtrOutput) DefaultRetention() ObjectBuc
 type ObjectBucketLockConfigurationRuleDefaultRetention struct {
 	// The number of days you want to specify for the default retention period.
 	Days *int `pulumi:"days"`
-	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
 	Mode string `pulumi:"mode"`
 	// The number of years you want to specify for the default retention period.
 	Years *int `pulumi:"years"`
@@ -12756,7 +13225,7 @@ type ObjectBucketLockConfigurationRuleDefaultRetentionInput interface {
 type ObjectBucketLockConfigurationRuleDefaultRetentionArgs struct {
 	// The number of days you want to specify for the default retention period.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The number of years you want to specify for the default retention period.
 	Years pulumi.IntPtrInput `pulumi:"years"`
@@ -12844,7 +13313,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.I
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -12888,7 +13357,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *string {
 		if v == nil {
@@ -13460,6 +13929,7 @@ type RedisClusterPrivateNetwork struct {
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	// > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 	//
 	// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
 	//
@@ -13501,6 +13971,7 @@ type RedisClusterPrivateNetworkArgs struct {
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	// > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 	//
 	// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
 	//
@@ -13587,6 +14058,7 @@ func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 // Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 // scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 // If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+// > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 //
 // > The `privateNetwork` conflicts with `acl`. Only one should be specified.
 //
@@ -16333,6 +16805,333 @@ func (o GetCockpitPushUrlArrayOutput) Index(i pulumi.IntInput) GetCockpitPushUrl
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCockpitPushUrl {
 		return vs[0].([]GetCockpitPushUrl)[vs[1].(int)]
 	}).(GetCockpitPushUrlOutput)
+}
+
+type GetContainerHealthCheck struct {
+	// Number of consecutive health check failures before considering the container unhealthy.
+	FailureThreshold int `pulumi:"failureThreshold"`
+	// HTTP health check configuration.
+	Https []GetContainerHealthCheckHttp `pulumi:"https"`
+	// Period between health checks (in seconds).
+	Interval string `pulumi:"interval"`
+}
+
+// GetContainerHealthCheckInput is an input type that accepts GetContainerHealthCheckArgs and GetContainerHealthCheckOutput values.
+// You can construct a concrete instance of `GetContainerHealthCheckInput` via:
+//
+//	GetContainerHealthCheckArgs{...}
+type GetContainerHealthCheckInput interface {
+	pulumi.Input
+
+	ToGetContainerHealthCheckOutput() GetContainerHealthCheckOutput
+	ToGetContainerHealthCheckOutputWithContext(context.Context) GetContainerHealthCheckOutput
+}
+
+type GetContainerHealthCheckArgs struct {
+	// Number of consecutive health check failures before considering the container unhealthy.
+	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
+	// HTTP health check configuration.
+	Https GetContainerHealthCheckHttpArrayInput `pulumi:"https"`
+	// Period between health checks (in seconds).
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (GetContainerHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerHealthCheck)(nil)).Elem()
+}
+
+func (i GetContainerHealthCheckArgs) ToGetContainerHealthCheckOutput() GetContainerHealthCheckOutput {
+	return i.ToGetContainerHealthCheckOutputWithContext(context.Background())
+}
+
+func (i GetContainerHealthCheckArgs) ToGetContainerHealthCheckOutputWithContext(ctx context.Context) GetContainerHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerHealthCheckOutput)
+}
+
+// GetContainerHealthCheckArrayInput is an input type that accepts GetContainerHealthCheckArray and GetContainerHealthCheckArrayOutput values.
+// You can construct a concrete instance of `GetContainerHealthCheckArrayInput` via:
+//
+//	GetContainerHealthCheckArray{ GetContainerHealthCheckArgs{...} }
+type GetContainerHealthCheckArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerHealthCheckArrayOutput() GetContainerHealthCheckArrayOutput
+	ToGetContainerHealthCheckArrayOutputWithContext(context.Context) GetContainerHealthCheckArrayOutput
+}
+
+type GetContainerHealthCheckArray []GetContainerHealthCheckInput
+
+func (GetContainerHealthCheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerHealthCheck)(nil)).Elem()
+}
+
+func (i GetContainerHealthCheckArray) ToGetContainerHealthCheckArrayOutput() GetContainerHealthCheckArrayOutput {
+	return i.ToGetContainerHealthCheckArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerHealthCheckArray) ToGetContainerHealthCheckArrayOutputWithContext(ctx context.Context) GetContainerHealthCheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerHealthCheckArrayOutput)
+}
+
+type GetContainerHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (GetContainerHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerHealthCheck)(nil)).Elem()
+}
+
+func (o GetContainerHealthCheckOutput) ToGetContainerHealthCheckOutput() GetContainerHealthCheckOutput {
+	return o
+}
+
+func (o GetContainerHealthCheckOutput) ToGetContainerHealthCheckOutputWithContext(ctx context.Context) GetContainerHealthCheckOutput {
+	return o
+}
+
+// Number of consecutive health check failures before considering the container unhealthy.
+func (o GetContainerHealthCheckOutput) FailureThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetContainerHealthCheck) int { return v.FailureThreshold }).(pulumi.IntOutput)
+}
+
+// HTTP health check configuration.
+func (o GetContainerHealthCheckOutput) Https() GetContainerHealthCheckHttpArrayOutput {
+	return o.ApplyT(func(v GetContainerHealthCheck) []GetContainerHealthCheckHttp { return v.Https }).(GetContainerHealthCheckHttpArrayOutput)
+}
+
+// Period between health checks (in seconds).
+func (o GetContainerHealthCheckOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerHealthCheck) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type GetContainerHealthCheckArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerHealthCheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerHealthCheck)(nil)).Elem()
+}
+
+func (o GetContainerHealthCheckArrayOutput) ToGetContainerHealthCheckArrayOutput() GetContainerHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetContainerHealthCheckArrayOutput) ToGetContainerHealthCheckArrayOutputWithContext(ctx context.Context) GetContainerHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetContainerHealthCheckArrayOutput) Index(i pulumi.IntInput) GetContainerHealthCheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerHealthCheck {
+		return vs[0].([]GetContainerHealthCheck)[vs[1].(int)]
+	}).(GetContainerHealthCheckOutput)
+}
+
+type GetContainerHealthCheckHttp struct {
+	// Path to use for the HTTP health check.
+	Path string `pulumi:"path"`
+}
+
+// GetContainerHealthCheckHttpInput is an input type that accepts GetContainerHealthCheckHttpArgs and GetContainerHealthCheckHttpOutput values.
+// You can construct a concrete instance of `GetContainerHealthCheckHttpInput` via:
+//
+//	GetContainerHealthCheckHttpArgs{...}
+type GetContainerHealthCheckHttpInput interface {
+	pulumi.Input
+
+	ToGetContainerHealthCheckHttpOutput() GetContainerHealthCheckHttpOutput
+	ToGetContainerHealthCheckHttpOutputWithContext(context.Context) GetContainerHealthCheckHttpOutput
+}
+
+type GetContainerHealthCheckHttpArgs struct {
+	// Path to use for the HTTP health check.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (GetContainerHealthCheckHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (i GetContainerHealthCheckHttpArgs) ToGetContainerHealthCheckHttpOutput() GetContainerHealthCheckHttpOutput {
+	return i.ToGetContainerHealthCheckHttpOutputWithContext(context.Background())
+}
+
+func (i GetContainerHealthCheckHttpArgs) ToGetContainerHealthCheckHttpOutputWithContext(ctx context.Context) GetContainerHealthCheckHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerHealthCheckHttpOutput)
+}
+
+// GetContainerHealthCheckHttpArrayInput is an input type that accepts GetContainerHealthCheckHttpArray and GetContainerHealthCheckHttpArrayOutput values.
+// You can construct a concrete instance of `GetContainerHealthCheckHttpArrayInput` via:
+//
+//	GetContainerHealthCheckHttpArray{ GetContainerHealthCheckHttpArgs{...} }
+type GetContainerHealthCheckHttpArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerHealthCheckHttpArrayOutput() GetContainerHealthCheckHttpArrayOutput
+	ToGetContainerHealthCheckHttpArrayOutputWithContext(context.Context) GetContainerHealthCheckHttpArrayOutput
+}
+
+type GetContainerHealthCheckHttpArray []GetContainerHealthCheckHttpInput
+
+func (GetContainerHealthCheckHttpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (i GetContainerHealthCheckHttpArray) ToGetContainerHealthCheckHttpArrayOutput() GetContainerHealthCheckHttpArrayOutput {
+	return i.ToGetContainerHealthCheckHttpArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerHealthCheckHttpArray) ToGetContainerHealthCheckHttpArrayOutputWithContext(ctx context.Context) GetContainerHealthCheckHttpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerHealthCheckHttpArrayOutput)
+}
+
+type GetContainerHealthCheckHttpOutput struct{ *pulumi.OutputState }
+
+func (GetContainerHealthCheckHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (o GetContainerHealthCheckHttpOutput) ToGetContainerHealthCheckHttpOutput() GetContainerHealthCheckHttpOutput {
+	return o
+}
+
+func (o GetContainerHealthCheckHttpOutput) ToGetContainerHealthCheckHttpOutputWithContext(ctx context.Context) GetContainerHealthCheckHttpOutput {
+	return o
+}
+
+// Path to use for the HTTP health check.
+func (o GetContainerHealthCheckHttpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerHealthCheckHttp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type GetContainerHealthCheckHttpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerHealthCheckHttpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerHealthCheckHttp)(nil)).Elem()
+}
+
+func (o GetContainerHealthCheckHttpArrayOutput) ToGetContainerHealthCheckHttpArrayOutput() GetContainerHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o GetContainerHealthCheckHttpArrayOutput) ToGetContainerHealthCheckHttpArrayOutputWithContext(ctx context.Context) GetContainerHealthCheckHttpArrayOutput {
+	return o
+}
+
+func (o GetContainerHealthCheckHttpArrayOutput) Index(i pulumi.IntInput) GetContainerHealthCheckHttpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerHealthCheckHttp {
+		return vs[0].([]GetContainerHealthCheckHttp)[vs[1].(int)]
+	}).(GetContainerHealthCheckHttpOutput)
+}
+
+type GetContainerScalingOption struct {
+	// Scale depending on the number of concurrent requests being processed per container instance.
+	ConcurrentRequestsThreshold int `pulumi:"concurrentRequestsThreshold"`
+	// Scale depending on the CPU usage of a container instance.
+	CpuUsageThreshold int `pulumi:"cpuUsageThreshold"`
+	// Scale depending on the memory usage of a container instance.
+	MemoryUsageThreshold int `pulumi:"memoryUsageThreshold"`
+}
+
+// GetContainerScalingOptionInput is an input type that accepts GetContainerScalingOptionArgs and GetContainerScalingOptionOutput values.
+// You can construct a concrete instance of `GetContainerScalingOptionInput` via:
+//
+//	GetContainerScalingOptionArgs{...}
+type GetContainerScalingOptionInput interface {
+	pulumi.Input
+
+	ToGetContainerScalingOptionOutput() GetContainerScalingOptionOutput
+	ToGetContainerScalingOptionOutputWithContext(context.Context) GetContainerScalingOptionOutput
+}
+
+type GetContainerScalingOptionArgs struct {
+	// Scale depending on the number of concurrent requests being processed per container instance.
+	ConcurrentRequestsThreshold pulumi.IntInput `pulumi:"concurrentRequestsThreshold"`
+	// Scale depending on the CPU usage of a container instance.
+	CpuUsageThreshold pulumi.IntInput `pulumi:"cpuUsageThreshold"`
+	// Scale depending on the memory usage of a container instance.
+	MemoryUsageThreshold pulumi.IntInput `pulumi:"memoryUsageThreshold"`
+}
+
+func (GetContainerScalingOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerScalingOption)(nil)).Elem()
+}
+
+func (i GetContainerScalingOptionArgs) ToGetContainerScalingOptionOutput() GetContainerScalingOptionOutput {
+	return i.ToGetContainerScalingOptionOutputWithContext(context.Background())
+}
+
+func (i GetContainerScalingOptionArgs) ToGetContainerScalingOptionOutputWithContext(ctx context.Context) GetContainerScalingOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerScalingOptionOutput)
+}
+
+// GetContainerScalingOptionArrayInput is an input type that accepts GetContainerScalingOptionArray and GetContainerScalingOptionArrayOutput values.
+// You can construct a concrete instance of `GetContainerScalingOptionArrayInput` via:
+//
+//	GetContainerScalingOptionArray{ GetContainerScalingOptionArgs{...} }
+type GetContainerScalingOptionArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerScalingOptionArrayOutput() GetContainerScalingOptionArrayOutput
+	ToGetContainerScalingOptionArrayOutputWithContext(context.Context) GetContainerScalingOptionArrayOutput
+}
+
+type GetContainerScalingOptionArray []GetContainerScalingOptionInput
+
+func (GetContainerScalingOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerScalingOption)(nil)).Elem()
+}
+
+func (i GetContainerScalingOptionArray) ToGetContainerScalingOptionArrayOutput() GetContainerScalingOptionArrayOutput {
+	return i.ToGetContainerScalingOptionArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerScalingOptionArray) ToGetContainerScalingOptionArrayOutputWithContext(ctx context.Context) GetContainerScalingOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerScalingOptionArrayOutput)
+}
+
+type GetContainerScalingOptionOutput struct{ *pulumi.OutputState }
+
+func (GetContainerScalingOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerScalingOption)(nil)).Elem()
+}
+
+func (o GetContainerScalingOptionOutput) ToGetContainerScalingOptionOutput() GetContainerScalingOptionOutput {
+	return o
+}
+
+func (o GetContainerScalingOptionOutput) ToGetContainerScalingOptionOutputWithContext(ctx context.Context) GetContainerScalingOptionOutput {
+	return o
+}
+
+// Scale depending on the number of concurrent requests being processed per container instance.
+func (o GetContainerScalingOptionOutput) ConcurrentRequestsThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetContainerScalingOption) int { return v.ConcurrentRequestsThreshold }).(pulumi.IntOutput)
+}
+
+// Scale depending on the CPU usage of a container instance.
+func (o GetContainerScalingOptionOutput) CpuUsageThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetContainerScalingOption) int { return v.CpuUsageThreshold }).(pulumi.IntOutput)
+}
+
+// Scale depending on the memory usage of a container instance.
+func (o GetContainerScalingOptionOutput) MemoryUsageThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetContainerScalingOption) int { return v.MemoryUsageThreshold }).(pulumi.IntOutput)
+}
+
+type GetContainerScalingOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerScalingOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerScalingOption)(nil)).Elem()
+}
+
+func (o GetContainerScalingOptionArrayOutput) ToGetContainerScalingOptionArrayOutput() GetContainerScalingOptionArrayOutput {
+	return o
+}
+
+func (o GetContainerScalingOptionArrayOutput) ToGetContainerScalingOptionArrayOutputWithContext(ctx context.Context) GetContainerScalingOptionArrayOutput {
+	return o
+}
+
+func (o GetContainerScalingOptionArrayOutput) Index(i pulumi.IntInput) GetContainerScalingOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerScalingOption {
+		return vs[0].([]GetContainerScalingOption)[vs[1].(int)]
+	}).(GetContainerScalingOptionOutput)
 }
 
 type GetDatabaseAclAclRule struct {
@@ -26527,6 +27326,8 @@ func (o GetWebhostingOptionArrayOutput) Index(i pulumi.IntInput) GetWebhostingOp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AppleSiliconServerPrivateNetworkInput)(nil)).Elem(), AppleSiliconServerPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AppleSiliconServerPrivateNetworkArrayInput)(nil)).Elem(), AppleSiliconServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv4Input)(nil)).Elem(), BaremetalServerIpv4Args{})
@@ -26545,6 +27346,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlArrayInput)(nil)).Elem(), CockpitPushUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckInput)(nil)).Elem(), ContainerHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckArrayInput)(nil)).Elem(), ContainerHealthCheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckHttpInput)(nil)).Elem(), ContainerHealthCheckHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckHttpArrayInput)(nil)).Elem(), ContainerHealthCheckHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerScalingOptionInput)(nil)).Elem(), ContainerScalingOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerScalingOptionArrayInput)(nil)).Elem(), ContainerScalingOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsPtrInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
@@ -26736,6 +27543,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointArrayInput)(nil)).Elem(), GetCockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlInput)(nil)).Elem(), GetCockpitPushUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlArrayInput)(nil)).Elem(), GetCockpitPushUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckInput)(nil)).Elem(), GetContainerHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckArrayInput)(nil)).Elem(), GetContainerHealthCheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckHttpInput)(nil)).Elem(), GetContainerHealthCheckHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckHttpArrayInput)(nil)).Elem(), GetContainerHealthCheckHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerScalingOptionInput)(nil)).Elem(), GetContainerScalingOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerScalingOptionArrayInput)(nil)).Elem(), GetContainerScalingOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleInput)(nil)).Elem(), GetDatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleArrayInput)(nil)).Elem(), GetDatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArgs{})
@@ -26886,6 +27699,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingCpanelUrlArrayInput)(nil)).Elem(), GetWebhostingCpanelUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingOptionInput)(nil)).Elem(), GetWebhostingOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingOptionArrayInput)(nil)).Elem(), GetWebhostingOptionArray{})
+	pulumi.RegisterOutputType(AppleSiliconServerPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(AppleSiliconServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpv4Output{})
@@ -26904,6 +27719,12 @@ func init() {
 	pulumi.RegisterOutputType(CockpitPushUrlArrayOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
+	pulumi.RegisterOutputType(ContainerHealthCheckOutput{})
+	pulumi.RegisterOutputType(ContainerHealthCheckArrayOutput{})
+	pulumi.RegisterOutputType(ContainerHealthCheckHttpOutput{})
+	pulumi.RegisterOutputType(ContainerHealthCheckHttpArrayOutput{})
+	pulumi.RegisterOutputType(ContainerScalingOptionOutput{})
+	pulumi.RegisterOutputType(ContainerScalingOptionArrayOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerNatsOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
@@ -27095,6 +27916,12 @@ func init() {
 	pulumi.RegisterOutputType(GetCockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetCockpitPushUrlOutput{})
 	pulumi.RegisterOutputType(GetCockpitPushUrlArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerHealthCheckOutput{})
+	pulumi.RegisterOutputType(GetContainerHealthCheckArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerHealthCheckHttpOutput{})
+	pulumi.RegisterOutputType(GetContainerHealthCheckHttpArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerScalingOptionOutput{})
+	pulumi.RegisterOutputType(GetContainerScalingOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerOutput{})

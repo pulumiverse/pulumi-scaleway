@@ -26,13 +26,16 @@ class GetInstanceVolumeResult:
     """
     A collection of values returned by getInstanceVolume.
     """
-    def __init__(__self__, from_snapshot_id=None, id=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
+    def __init__(__self__, from_snapshot_id=None, id=None, migrate_to_sbs=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
         if from_snapshot_id and not isinstance(from_snapshot_id, str):
             raise TypeError("Expected argument 'from_snapshot_id' to be a str")
         pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if migrate_to_sbs and not isinstance(migrate_to_sbs, bool):
+            raise TypeError("Expected argument 'migrate_to_sbs' to be a bool")
+        pulumi.set(__self__, "migrate_to_sbs", migrate_to_sbs)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -73,6 +76,11 @@ class GetInstanceVolumeResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="migrateToSbs")
+    def migrate_to_sbs(self) -> bool:
+        return pulumi.get(self, "migrate_to_sbs")
 
     @property
     @pulumi.getter
@@ -131,6 +139,7 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
         return GetInstanceVolumeResult(
             from_snapshot_id=self.from_snapshot_id,
             id=self.id,
+            migrate_to_sbs=self.migrate_to_sbs,
             name=self.name,
             organization_id=self.organization_id,
             project_id=self.project_id,
@@ -169,6 +178,7 @@ def get_instance_volume(name: Optional[str] = None,
     return AwaitableGetInstanceVolumeResult(
         from_snapshot_id=pulumi.get(__ret__, 'from_snapshot_id'),
         id=pulumi.get(__ret__, 'id'),
+        migrate_to_sbs=pulumi.get(__ret__, 'migrate_to_sbs'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -204,6 +214,7 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     return __ret__.apply(lambda __response__: GetInstanceVolumeResult(
         from_snapshot_id=pulumi.get(__response__, 'from_snapshot_id'),
         id=pulumi.get(__response__, 'id'),
+        migrate_to_sbs=pulumi.get(__response__, 'migrate_to_sbs'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),

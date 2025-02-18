@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/network/vpc/concepts/#dhcp).
+// Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/vpc/concepts/#dhcp).
 //
 // These static associations are used to assign IP addresses based on the MAC addresses of the resource.
 //

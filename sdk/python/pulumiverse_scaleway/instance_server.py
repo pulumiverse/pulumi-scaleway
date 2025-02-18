@@ -38,7 +38,6 @@ class InstanceServerArgs:
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]] = None,
                  replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
-                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -85,9 +84,6 @@ class InstanceServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-               
-               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
@@ -138,11 +134,6 @@ class InstanceServerArgs:
             pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
-        if routed_ip_enabled is not None:
-            warnings.warn("""Routed IP is the default configuration, it should always be true""", DeprecationWarning)
-            pulumi.log.warn("""routed_ip_enabled is deprecated: Routed IP is the default configuration, it should always be true""")
-        if routed_ip_enabled is not None:
-            pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
         if state is not None:
@@ -383,21 +374,6 @@ class InstanceServerArgs:
         pulumi.set(self, "root_volume", value)
 
     @property
-    @pulumi.getter(name="routedIpEnabled")
-    @_utilities.deprecated("""Routed IP is the default configuration, it should always be true""")
-    def routed_ip_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-
-        > **Important:** Enabling routed ip will restart the server
-        """
-        return pulumi.get(self, "routed_ip_enabled")
-
-    @routed_ip_enabled.setter
-    def routed_ip_enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "routed_ip_enabled", value)
-
-    @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -489,7 +465,6 @@ class _InstanceServerState:
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]] = None,
                  replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
-                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -532,7 +507,7 @@ class _InstanceServerState:
                
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
-        :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
+        :param pulumi.Input[bool] placement_group_policy_respected: (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -541,9 +516,6 @@ class _InstanceServerState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-               
-               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
@@ -628,11 +600,6 @@ class _InstanceServerState:
             pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
-        if routed_ip_enabled is not None:
-            warnings.warn("""Routed IP is the default configuration, it should always be true""", DeprecationWarning)
-            pulumi.log.warn("""routed_ip_enabled is deprecated: Routed IP is the default configuration, it should always be true""")
-        if routed_ip_enabled is not None:
-            pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
         if state is not None:
@@ -854,7 +821,7 @@ class _InstanceServerState:
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> Optional[pulumi.Input[bool]]:
         """
-        True when the placement group policy is respected.
+        (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -948,21 +915,6 @@ class _InstanceServerState:
     @root_volume.setter
     def root_volume(self, value: Optional[pulumi.Input['InstanceServerRootVolumeArgs']]):
         pulumi.set(self, "root_volume", value)
-
-    @property
-    @pulumi.getter(name="routedIpEnabled")
-    @_utilities.deprecated("""Routed IP is the default configuration, it should always be true""")
-    def routed_ip_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-
-        > **Important:** Enabling routed ip will restart the server
-        """
-        return pulumi.get(self, "routed_ip_enabled")
-
-    @routed_ip_enabled.setter
-    def routed_ip_enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "routed_ip_enabled", value)
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -1068,7 +1020,6 @@ class InstanceServer(pulumi.CustomResource):
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]]] = None,
                  replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']]] = None,
-                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1292,9 +1243,6 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-               
-               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
@@ -1530,7 +1478,6 @@ class InstanceServer(pulumi.CustomResource):
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]]] = None,
                  replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']]] = None,
-                 routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1562,7 +1509,6 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["public_ips"] = public_ips
             __props__.__dict__["replace_on_type_change"] = replace_on_type_change
             __props__.__dict__["root_volume"] = root_volume
-            __props__.__dict__["routed_ip_enabled"] = routed_ip_enabled
             __props__.__dict__["security_group_id"] = security_group_id
             __props__.__dict__["state"] = state
             __props__.__dict__["tags"] = tags
@@ -1611,7 +1557,6 @@ class InstanceServer(pulumi.CustomResource):
             public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]]] = None,
             replace_on_type_change: Optional[pulumi.Input[bool]] = None,
             root_volume: Optional[pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']]] = None,
-            routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
             security_group_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1659,7 +1604,7 @@ class InstanceServer(pulumi.CustomResource):
                
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
-        :param pulumi.Input[bool] placement_group_policy_respected: True when the placement group policy is respected.
+        :param pulumi.Input[bool] placement_group_policy_respected: (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
         :param pulumi.Input[str] private_ip: The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -1668,9 +1613,6 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPublicIpArgs', 'InstanceServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[Union['InstanceServerRootVolumeArgs', 'InstanceServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-               
-               > **Important:** Enabling routed ip will restart the server
         :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
@@ -1715,7 +1657,6 @@ class InstanceServer(pulumi.CustomResource):
         __props__.__dict__["public_ips"] = public_ips
         __props__.__dict__["replace_on_type_change"] = replace_on_type_change
         __props__.__dict__["root_volume"] = root_volume
-        __props__.__dict__["routed_ip_enabled"] = routed_ip_enabled
         __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["state"] = state
         __props__.__dict__["tags"] = tags
@@ -1872,7 +1813,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> pulumi.Output[bool]:
         """
-        True when the placement group policy is respected.
+        (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
@@ -1934,17 +1875,6 @@ class InstanceServer(pulumi.CustomResource):
         Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
-
-    @property
-    @pulumi.getter(name="routedIpEnabled")
-    @_utilities.deprecated("""Routed IP is the default configuration, it should always be true""")
-    def routed_ip_enabled(self) -> pulumi.Output[bool]:
-        """
-        If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-
-        > **Important:** Enabling routed ip will restart the server
-        """
-        return pulumi.get(self, "routed_ip_enabled")
 
     @property
     @pulumi.getter(name="securityGroupId")

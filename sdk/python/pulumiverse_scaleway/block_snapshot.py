@@ -205,7 +205,7 @@ class BlockSnapshot(pulumi.CustomResource):
         """
         The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
 
-        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
 
@@ -253,7 +253,7 @@ class BlockSnapshot(pulumi.CustomResource):
         """
         The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
 
-        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
 

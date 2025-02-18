@@ -193,6 +193,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectBucketWebsiteConfiguration{}
 	case "scaleway:index/objectItem:ObjectItem":
 		r = &ObjectItem{}
+	case "scaleway:index/rdbSnapshot:RdbSnapshot":
+		r = &RdbSnapshot{}
 	case "scaleway:index/redisCluster:RedisCluster":
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
@@ -690,6 +692,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/objectItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/rdbSnapshot",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

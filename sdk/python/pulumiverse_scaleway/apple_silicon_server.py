@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AppleSiliconServerArgs', 'AppleSiliconServer']
 
@@ -20,7 +22,9 @@ __all__ = ['AppleSiliconServerArgs', 'AppleSiliconServer']
 class AppleSiliconServerArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
+                 enable_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
@@ -28,15 +32,21 @@ class AppleSiliconServerArgs:
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
+        :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the server should be created.
         """
         pulumi.set(__self__, "type", type)
+        if enable_vpc is not None:
+            pulumi.set(__self__, "enable_vpc", enable_vpc)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_networks is not None:
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if zone is not None:
@@ -57,6 +67,18 @@ class AppleSiliconServerArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="enableVpc")
+    def enable_vpc(self) -> Optional[pulumi.Input[bool]]:
+        """
+        : Enables the VPC option when set to true.
+        """
+        return pulumi.get(self, "enable_vpc")
+
+    @enable_vpc.setter
+    def enable_vpc(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_vpc", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -67,6 +89,18 @@ class AppleSiliconServerArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]]]:
+        """
+        The private networks to attach to the server
+        """
+        return pulumi.get(self, "private_networks")
+
+    @private_networks.setter
+    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]]]):
+        pulumi.set(self, "private_networks", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -100,22 +134,27 @@ class _AppleSiliconServerState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
                  deletable_at: Optional[pulumi.Input[str]] = None,
+                 enable_vpc: Optional[pulumi.Input[bool]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  vnc_url: Optional[pulumi.Input[str]] = None,
+                 vpc_status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AppleSiliconServer resources.
         :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
         :param pulumi.Input[str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
+        :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] ip: IPv4 address of the server (IPv4 address).
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[str] state: The state of the server.
@@ -124,6 +163,7 @@ class _AppleSiliconServerState:
                resource.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
         :param pulumi.Input[str] vnc_url: URL of the VNC.
+        :param pulumi.Input[str] vpc_status: The current status of the VPC option.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the server should be created.
         """
@@ -131,12 +171,16 @@ class _AppleSiliconServerState:
             pulumi.set(__self__, "created_at", created_at)
         if deletable_at is not None:
             pulumi.set(__self__, "deletable_at", deletable_at)
+        if enable_vpc is not None:
+            pulumi.set(__self__, "enable_vpc", enable_vpc)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if private_networks is not None:
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if state is not None:
@@ -147,6 +191,8 @@ class _AppleSiliconServerState:
             pulumi.set(__self__, "updated_at", updated_at)
         if vnc_url is not None:
             pulumi.set(__self__, "vnc_url", vnc_url)
+        if vpc_status is not None:
+            pulumi.set(__self__, "vpc_status", vpc_status)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -173,6 +219,18 @@ class _AppleSiliconServerState:
     @deletable_at.setter
     def deletable_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "deletable_at", value)
+
+    @property
+    @pulumi.getter(name="enableVpc")
+    def enable_vpc(self) -> Optional[pulumi.Input[bool]]:
+        """
+        : Enables the VPC option when set to true.
+        """
+        return pulumi.get(self, "enable_vpc")
+
+    @enable_vpc.setter
+    def enable_vpc(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_vpc", value)
 
     @property
     @pulumi.getter
@@ -209,6 +267,18 @@ class _AppleSiliconServerState:
     @organization_id.setter
     def organization_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization_id", value)
+
+    @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]]]:
+        """
+        The private networks to attach to the server
+        """
+        return pulumi.get(self, "private_networks")
+
+    @private_networks.setter
+    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AppleSiliconServerPrivateNetworkArgs']]]]):
+        pulumi.set(self, "private_networks", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -274,6 +344,18 @@ class _AppleSiliconServerState:
         pulumi.set(self, "vnc_url", value)
 
     @property
+    @pulumi.getter(name="vpcStatus")
+    def vpc_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The current status of the VPC option.
+        """
+        return pulumi.get(self, "vpc_status")
+
+    @vpc_status.setter
+    def vpc_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_status", value)
+
+    @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -292,7 +374,9 @@ class AppleSiliconServer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -326,7 +410,9 @@ class AppleSiliconServer(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] name: The name of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
@@ -383,7 +469,9 @@ class AppleSiliconServer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -396,7 +484,9 @@ class AppleSiliconServer(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AppleSiliconServerArgs.__new__(AppleSiliconServerArgs)
 
+            __props__.__dict__["enable_vpc"] = enable_vpc
             __props__.__dict__["name"] = name
+            __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -409,6 +499,7 @@ class AppleSiliconServer(pulumi.CustomResource):
             __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["vnc_url"] = None
+            __props__.__dict__["vpc_status"] = None
         super(AppleSiliconServer, __self__).__init__(
             'scaleway:index/appleSiliconServer:AppleSiliconServer',
             resource_name,
@@ -421,14 +512,17 @@ class AppleSiliconServer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             deletable_at: Optional[pulumi.Input[str]] = None,
+            enable_vpc: Optional[pulumi.Input[bool]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             vnc_url: Optional[pulumi.Input[str]] = None,
+            vpc_status: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'AppleSiliconServer':
         """
         Get an existing AppleSiliconServer resource's state with the given name, id, and optional extra
@@ -439,9 +533,11 @@ class AppleSiliconServer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
         :param pulumi.Input[str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
+        :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] ip: IPv4 address of the server (IPv4 address).
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[str] state: The state of the server.
@@ -450,6 +546,7 @@ class AppleSiliconServer(pulumi.CustomResource):
                resource.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
         :param pulumi.Input[str] vnc_url: URL of the VNC.
+        :param pulumi.Input[str] vpc_status: The current status of the VPC option.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the server should be created.
         """
@@ -459,14 +556,17 @@ class AppleSiliconServer(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["deletable_at"] = deletable_at
+        __props__.__dict__["enable_vpc"] = enable_vpc
         __props__.__dict__["ip"] = ip
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vnc_url"] = vnc_url
+        __props__.__dict__["vpc_status"] = vpc_status
         __props__.__dict__["zone"] = zone
         return AppleSiliconServer(resource_name, opts=opts, __props__=__props__)
 
@@ -485,6 +585,14 @@ class AppleSiliconServer(pulumi.CustomResource):
         The minimal date and time on which you can delete this server due to Apple licence
         """
         return pulumi.get(self, "deletable_at")
+
+    @property
+    @pulumi.getter(name="enableVpc")
+    def enable_vpc(self) -> pulumi.Output[Optional[bool]]:
+        """
+        : Enables the VPC option when set to true.
+        """
+        return pulumi.get(self, "enable_vpc")
 
     @property
     @pulumi.getter
@@ -509,6 +617,14 @@ class AppleSiliconServer(pulumi.CustomResource):
         The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="privateNetworks")
+    def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.AppleSiliconServerPrivateNetwork']]]:
+        """
+        The private networks to attach to the server
+        """
+        return pulumi.get(self, "private_networks")
 
     @property
     @pulumi.getter(name="projectId")
@@ -552,6 +668,14 @@ class AppleSiliconServer(pulumi.CustomResource):
         URL of the VNC.
         """
         return pulumi.get(self, "vnc_url")
+
+    @property
+    @pulumi.getter(name="vpcStatus")
+    def vpc_status(self) -> pulumi.Output[str]:
+        """
+        The current status of the VPC option.
+        """
+        return pulumi.get(self, "vpc_status")
 
     @property
     @pulumi.getter

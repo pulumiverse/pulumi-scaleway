@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
  *
- * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
  *
  * ## Examples
  *
@@ -160,7 +160,7 @@ export interface GetIpamIpsResult {
 /**
  * Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.
  *
- * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+ * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
  *
  * ## Examples
  *

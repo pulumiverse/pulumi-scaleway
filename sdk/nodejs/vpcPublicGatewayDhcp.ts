@@ -97,6 +97,8 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+     *
+     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
      */
     public readonly pushDefaultRoute!: pulumi.Output<boolean>;
     /**
@@ -234,6 +236,8 @@ export interface VpcPublicGatewayDhcpState {
     projectId?: pulumi.Input<string>;
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+     *
+     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
     /**
@@ -304,6 +308,8 @@ export interface VpcPublicGatewayDhcpArgs {
     projectId?: pulumi.Input<string>;
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+     *
+     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
     /**

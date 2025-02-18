@@ -14,13 +14,13 @@ import (
 
 // The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
 //
-// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 //
 // ## Example Usage
 //
 // ### Create a Block Storage volume
 //
-// The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
+// The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/block-storage/concepts/#iops).
 //
 // ```go
 // package main
@@ -103,7 +103,9 @@ import (
 type BlockVolume struct {
 	pulumi.CustomResourceState
 
-	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+	// The instance volume to create the block volume from
+	InstanceVolumeId pulumi.StringOutput `pulumi:"instanceVolumeId"`
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntOutput `pulumi:"iops"`
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -152,7 +154,9 @@ func GetBlockVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BlockVolume resources.
 type blockVolumeState struct {
-	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+	// The instance volume to create the block volume from
+	InstanceVolumeId *string `pulumi:"instanceVolumeId"`
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops *int `pulumi:"iops"`
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -169,7 +173,9 @@ type blockVolumeState struct {
 }
 
 type BlockVolumeState struct {
-	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+	// The instance volume to create the block volume from
+	InstanceVolumeId pulumi.StringPtrInput
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntPtrInput
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -190,7 +196,9 @@ func (BlockVolumeState) ElementType() reflect.Type {
 }
 
 type blockVolumeArgs struct {
-	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+	// The instance volume to create the block volume from
+	InstanceVolumeId *string `pulumi:"instanceVolumeId"`
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops int `pulumi:"iops"`
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -208,7 +216,9 @@ type blockVolumeArgs struct {
 
 // The set of arguments for constructing a BlockVolume resource.
 type BlockVolumeArgs struct {
-	// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+	// The instance volume to create the block volume from
+	InstanceVolumeId pulumi.StringPtrInput
+	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntInput
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -311,7 +321,12 @@ func (o BlockVolumeOutput) ToBlockVolumeOutputWithContext(ctx context.Context) B
 	return o
 }
 
-// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+// The instance volume to create the block volume from
+func (o BlockVolumeOutput) InstanceVolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v *BlockVolume) pulumi.StringOutput { return v.InstanceVolumeId }).(pulumi.StringOutput)
+}
+
+// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 func (o BlockVolumeOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.IntOutput { return v.Iops }).(pulumi.IntOutput)
 }

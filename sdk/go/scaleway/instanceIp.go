@@ -63,9 +63,7 @@ type InstanceIp struct {
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-	//
-	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -115,9 +113,7 @@ type instanceIpState struct {
 	ServerId *string `pulumi:"serverId"`
 	// The tags associated with the IP.
 	Tags []string `pulumi:"tags"`
-	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-	//
-	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 	Type *string `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
@@ -138,9 +134,7 @@ type InstanceIpState struct {
 	ServerId pulumi.StringPtrInput
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayInput
-	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-	//
-	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 	Type pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
@@ -155,9 +149,7 @@ type instanceIpArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The tags associated with the IP.
 	Tags []string `pulumi:"tags"`
-	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-	//
-	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 	Type *string `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
@@ -169,9 +161,7 @@ type InstanceIpArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayInput
-	// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-	//
-	// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+	// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 	Type pulumi.StringPtrInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
@@ -299,9 +289,7 @@ func (o InstanceIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-//
-// > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 func (o InstanceIpOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -188,7 +188,7 @@ type IotRoute struct {
 
 	// The date and time the Route was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database IotRouteDatabasePtrOutput `pulumi:"database"`
 	// The hub ID to which the Route will be attached to.
 	HubId pulumi.StringOutput `pulumi:"hubId"`
@@ -196,9 +196,9 @@ type IotRoute struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Defaults to provider `region`) The region in which the Route is attached to.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest IotRouteRestPtrOutput `pulumi:"rest"`
-	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	S3 IotRouteS3PtrOutput `pulumi:"s3"`
 	// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
 	Topic pulumi.StringOutput `pulumi:"topic"`
@@ -242,7 +242,7 @@ func GetIotRoute(ctx *pulumi.Context,
 type iotRouteState struct {
 	// The date and time the Route was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database *IotRouteDatabase `pulumi:"database"`
 	// The hub ID to which the Route will be attached to.
 	HubId *string `pulumi:"hubId"`
@@ -250,9 +250,9 @@ type iotRouteState struct {
 	Name *string `pulumi:"name"`
 	// (Defaults to provider `region`) The region in which the Route is attached to.
 	Region *string `pulumi:"region"`
-	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest *IotRouteRest `pulumi:"rest"`
-	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	S3 *IotRouteS3 `pulumi:"s3"`
 	// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
 	Topic *string `pulumi:"topic"`
@@ -261,7 +261,7 @@ type iotRouteState struct {
 type IotRouteState struct {
 	// The date and time the Route was created.
 	CreatedAt pulumi.StringPtrInput
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database IotRouteDatabasePtrInput
 	// The hub ID to which the Route will be attached to.
 	HubId pulumi.StringPtrInput
@@ -269,9 +269,9 @@ type IotRouteState struct {
 	Name pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region in which the Route is attached to.
 	Region pulumi.StringPtrInput
-	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest IotRouteRestPtrInput
-	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	S3 IotRouteS3PtrInput
 	// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
 	Topic pulumi.StringPtrInput
@@ -282,7 +282,7 @@ func (IotRouteState) ElementType() reflect.Type {
 }
 
 type iotRouteArgs struct {
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database *IotRouteDatabase `pulumi:"database"`
 	// The hub ID to which the Route will be attached to.
 	HubId string `pulumi:"hubId"`
@@ -290,9 +290,9 @@ type iotRouteArgs struct {
 	Name *string `pulumi:"name"`
 	// (Defaults to provider `region`) The region in which the Route is attached to.
 	Region *string `pulumi:"region"`
-	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest *IotRouteRest `pulumi:"rest"`
-	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	S3 *IotRouteS3 `pulumi:"s3"`
 	// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
 	Topic string `pulumi:"topic"`
@@ -300,7 +300,7 @@ type iotRouteArgs struct {
 
 // The set of arguments for constructing a IotRoute resource.
 type IotRouteArgs struct {
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database IotRouteDatabasePtrInput
 	// The hub ID to which the Route will be attached to.
 	HubId pulumi.StringInput
@@ -308,9 +308,9 @@ type IotRouteArgs struct {
 	Name pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region in which the Route is attached to.
 	Region pulumi.StringPtrInput
-	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest IotRouteRestPtrInput
-	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	S3 IotRouteS3PtrInput
 	// The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
 	Topic pulumi.StringInput
@@ -408,7 +408,7 @@ func (o IotRouteOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotRoute) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 func (o IotRouteOutput) Database() IotRouteDatabasePtrOutput {
 	return o.ApplyT(func(v *IotRoute) IotRouteDatabasePtrOutput { return v.Database }).(IotRouteDatabasePtrOutput)
 }
@@ -428,12 +428,12 @@ func (o IotRouteOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotRoute) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 func (o IotRouteOutput) Rest() IotRouteRestPtrOutput {
 	return o.ApplyT(func(v *IotRoute) IotRouteRestPtrOutput { return v.Rest }).(IotRouteRestPtrOutput)
 }
 
-// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 func (o IotRouteOutput) S3() IotRouteS3PtrOutput {
 	return o.ApplyT(func(v *IotRoute) IotRouteS3PtrOutput { return v.S3 }).(IotRouteS3PtrOutput)
 }

@@ -156,7 +156,7 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
     """
     Get information about Scaleway Load Balancer frontends.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 
@@ -218,7 +218,7 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
     """
     Get information about Scaleway Load Balancer frontends.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-frontends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
     ## Example Usage
 

@@ -117,10 +117,6 @@ export interface GetInstanceServerResult {
     readonly replaceOnTypeChange: boolean;
     readonly rootVolumes: outputs.GetInstanceServerRootVolume[];
     /**
-     * True if the server support routed ip only.
-     */
-    readonly routedIpEnabled: boolean;
-    /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
     readonly securityGroupId: string;

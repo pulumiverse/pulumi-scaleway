@@ -15,6 +15,8 @@ else:
 from . import _utilities
 
 __all__ = [
+    'AppleSiliconServerPrivateNetworkArgs',
+    'AppleSiliconServerPrivateNetworkArgsDict',
     'BaremetalServerIpArgs',
     'BaremetalServerIpArgsDict',
     'BaremetalServerIpv4Args',
@@ -33,6 +35,12 @@ __all__ = [
     'CockpitPushUrlArgsDict',
     'CockpitTokenScopesArgs',
     'CockpitTokenScopesArgsDict',
+    'ContainerHealthCheckArgs',
+    'ContainerHealthCheckArgsDict',
+    'ContainerHealthCheckHttpArgs',
+    'ContainerHealthCheckHttpArgsDict',
+    'ContainerScalingOptionArgs',
+    'ContainerScalingOptionArgsDict',
     'ContainerTriggerNatsArgs',
     'ContainerTriggerNatsArgsDict',
     'ContainerTriggerSqsArgs',
@@ -210,6 +218,137 @@ __all__ = [
 ]
 
 MYPY = False
+
+if not MYPY:
+    class AppleSiliconServerPrivateNetworkArgsDict(TypedDict):
+        id: pulumi.Input[str]
+        """
+        The ID of the server.
+        """
+        created_at: NotRequired[pulumi.Input[str]]
+        """
+        The date and time of the creation of the Apple Silicon server.
+        """
+        ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of IPAM IP IDs to attach to the server
+        """
+        status: NotRequired[pulumi.Input[str]]
+        """
+        The private network status
+        """
+        updated_at: NotRequired[pulumi.Input[str]]
+        """
+        The date and time of the last update of the Apple Silicon server.
+        """
+        vlan: NotRequired[pulumi.Input[int]]
+        """
+        The VLAN ID associated to the private network
+        """
+elif False:
+    AppleSiliconServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AppleSiliconServerPrivateNetworkArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] id: The ID of the server.
+        :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipam_ip_ids: List of IPAM IP IDs to attach to the server
+        :param pulumi.Input[str] status: The private network status
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[int] vlan: The VLAN ID associated to the private network
+        """
+        pulumi.set(__self__, "id", id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if ipam_ip_ids is not None:
+            pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        The ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date and time of the creation of the Apple Silicon server.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="ipamIpIds")
+    def ipam_ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IPAM IP IDs to attach to the server
+        """
+        return pulumi.get(self, "ipam_ip_ids")
+
+    @ipam_ip_ids.setter
+    def ipam_ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipam_ip_ids", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network status
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date and time of the last update of the Apple Silicon server.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[int]]:
+        """
+        The VLAN ID associated to the private network
+        """
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan", value)
+
 
 if not MYPY:
     class BaremetalServerIpArgsDict(TypedDict):
@@ -1075,6 +1214,178 @@ class CockpitTokenScopesArgs:
     @write_traces.setter
     def write_traces(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "write_traces", value)
+
+
+if not MYPY:
+    class ContainerHealthCheckArgsDict(TypedDict):
+        failure_threshold: pulumi.Input[int]
+        """
+        Number of consecutive health check failures before considering the container unhealthy.
+        """
+        https: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]
+        """
+        HTTP health check configuration.
+        """
+        interval: pulumi.Input[str]
+        """
+        Period between health checks.
+        """
+elif False:
+    ContainerHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ContainerHealthCheckArgs:
+    def __init__(__self__, *,
+                 failure_threshold: pulumi.Input[int],
+                 https: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]],
+                 interval: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
+        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]] https: HTTP health check configuration.
+        :param pulumi.Input[str] interval: Period between health checks.
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "https", https)
+        pulumi.set(__self__, "interval", interval)
+
+    @property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> pulumi.Input[int]:
+        """
+        Number of consecutive health check failures before considering the container unhealthy.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @failure_threshold.setter
+    def failure_threshold(self, value: pulumi.Input[int]):
+        pulumi.set(self, "failure_threshold", value)
+
+    @property
+    @pulumi.getter
+    def https(self) -> pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]]:
+        """
+        HTTP health check configuration.
+        """
+        return pulumi.get(self, "https")
+
+    @https.setter
+    def https(self, value: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]]):
+        pulumi.set(self, "https", value)
+
+    @property
+    @pulumi.getter
+    def interval(self) -> pulumi.Input[str]:
+        """
+        Period between health checks.
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: pulumi.Input[str]):
+        pulumi.set(self, "interval", value)
+
+
+if not MYPY:
+    class ContainerHealthCheckHttpArgsDict(TypedDict):
+        path: pulumi.Input[str]
+        """
+        Path to use for the HTTP health check.
+        """
+elif False:
+    ContainerHealthCheckHttpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ContainerHealthCheckHttpArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] path: Path to use for the HTTP health check.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+
+if not MYPY:
+    class ContainerScalingOptionArgsDict(TypedDict):
+        concurrent_requests_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Scale depending on the number of concurrent requests being processed per container instance.
+        """
+        cpu_usage_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Scale depending on the CPU usage of a container instance.
+        """
+        memory_usage_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Scale depending on the memory usage of a container instance.
+        """
+elif False:
+    ContainerScalingOptionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ContainerScalingOptionArgs:
+    def __init__(__self__, *,
+                 concurrent_requests_threshold: Optional[pulumi.Input[int]] = None,
+                 cpu_usage_threshold: Optional[pulumi.Input[int]] = None,
+                 memory_usage_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] concurrent_requests_threshold: Scale depending on the number of concurrent requests being processed per container instance.
+        :param pulumi.Input[int] cpu_usage_threshold: Scale depending on the CPU usage of a container instance.
+        :param pulumi.Input[int] memory_usage_threshold: Scale depending on the memory usage of a container instance.
+        """
+        if concurrent_requests_threshold is not None:
+            pulumi.set(__self__, "concurrent_requests_threshold", concurrent_requests_threshold)
+        if cpu_usage_threshold is not None:
+            pulumi.set(__self__, "cpu_usage_threshold", cpu_usage_threshold)
+        if memory_usage_threshold is not None:
+            pulumi.set(__self__, "memory_usage_threshold", memory_usage_threshold)
+
+    @property
+    @pulumi.getter(name="concurrentRequestsThreshold")
+    def concurrent_requests_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scale depending on the number of concurrent requests being processed per container instance.
+        """
+        return pulumi.get(self, "concurrent_requests_threshold")
+
+    @concurrent_requests_threshold.setter
+    def concurrent_requests_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "concurrent_requests_threshold", value)
+
+    @property
+    @pulumi.getter(name="cpuUsageThreshold")
+    def cpu_usage_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scale depending on the CPU usage of a container instance.
+        """
+        return pulumi.get(self, "cpu_usage_threshold")
+
+    @cpu_usage_threshold.setter
+    def cpu_usage_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpu_usage_threshold", value)
+
+    @property
+    @pulumi.getter(name="memoryUsageThreshold")
+    def memory_usage_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scale depending on the memory usage of a container instance.
+        """
+        return pulumi.get(self, "memory_usage_threshold")
+
+    @memory_usage_threshold.setter
+    def memory_usage_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_usage_threshold", value)
 
 
 if not MYPY:
@@ -4470,7 +4781,7 @@ if not MYPY:
         """
         strategy: pulumi.Input[str]
         """
-        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         """
         object_prefix: NotRequired[pulumi.Input[str]]
         """
@@ -4489,7 +4800,7 @@ class IotRouteS3Args:
         """
         :param pulumi.Input[str] bucket_name: The name of the S3 route's destination bucket (e.g. `my-object-storage`).
         :param pulumi.Input[str] bucket_region: The region of the S3 route's destination bucket (e.g. `fr-par`).
-        :param pulumi.Input[str] strategy: How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+        :param pulumi.Input[str] strategy: How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         :param pulumi.Input[str] object_prefix: The string to prefix object names with (e.g. `mykeyprefix-`).
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -4526,7 +4837,7 @@ class IotRouteS3Args:
     @pulumi.getter
     def strategy(self) -> pulumi.Input[str]:
         """
-        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         """
         return pulumi.get(self, "strategy")
 
@@ -7328,7 +7639,7 @@ if not MYPY:
     class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
         storage_class: pulumi.Input[str]
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
 
         > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -7351,7 +7662,7 @@ class ObjectBucketLifecycleRuleTransitionArgs:
                  storage_class: pulumi.Input[str],
                  days: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
                
                
                > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -7370,7 +7681,7 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[str]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
 
         > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -7434,7 +7745,7 @@ if not MYPY:
     class ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
         mode: pulumi.Input[str]
         """
-        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
         """
         days: NotRequired[pulumi.Input[int]]
         """
@@ -7454,7 +7765,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
                  days: Optional[pulumi.Input[int]] = None,
                  years: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        :param pulumi.Input[str] mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
         :param pulumi.Input[int] days: The number of days you want to specify for the default retention period.
         :param pulumi.Input[int] years: The number of years you want to specify for the default retention period.
         """
@@ -7468,7 +7779,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
         """
-        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
         """
         return pulumi.get(self, "mode")
 
@@ -7697,6 +8008,7 @@ if not MYPY:
         Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 
         > The `private_network` conflicts with `acl`. Only one should be specified.
 
@@ -7735,6 +8047,7 @@ class RedisClusterPrivateNetworkArgs:
                Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
                scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
                If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
                
                > The `private_network` conflicts with `acl`. Only one should be specified.
                
@@ -7793,6 +8106,7 @@ class RedisClusterPrivateNetworkArgs:
         Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 
         > The `private_network` conflicts with `acl`. Only one should be specified.
 

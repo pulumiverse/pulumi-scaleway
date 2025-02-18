@@ -13,7 +13,7 @@ import (
 
 // The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 //
-// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupBlockSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockSnapshotResult

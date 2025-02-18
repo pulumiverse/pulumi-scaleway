@@ -61,6 +61,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> DeletableAt { get; private set; } = null!;
 
         /// <summary>
+        /// : Enables the VPC option when set to true.
+        /// </summary>
+        [Output("enableVpc")]
+        public Output<bool?> EnableVpc { get; private set; } = null!;
+
+        /// <summary>
         /// IPv4 address of the server (IPv4 address).
         /// </summary>
         [Output("ip")]
@@ -77,6 +83,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// The private networks to attach to the server
+        /// </summary>
+        [Output("privateNetworks")]
+        public Output<ImmutableArray<Outputs.AppleSiliconServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
         /// `project_id`) The ID of the project the server is
@@ -110,6 +122,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("vncUrl")]
         public Output<string> VncUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The current status of the VPC option.
+        /// </summary>
+        [Output("vpcStatus")]
+        public Output<string> VpcStatus { get; private set; } = null!;
 
         /// <summary>
         /// `zone`) The zone in which
@@ -166,10 +184,28 @@ namespace Pulumiverse.Scaleway
     public sealed class AppleSiliconServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// : Enables the VPC option when set to true.
+        /// </summary>
+        [Input("enableVpc")]
+        public Input<bool>? EnableVpc { get; set; }
+
+        /// <summary>
         /// The name of the server.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("privateNetworks")]
+        private InputList<Inputs.AppleSiliconServerPrivateNetworkArgs>? _privateNetworks;
+
+        /// <summary>
+        /// The private networks to attach to the server
+        /// </summary>
+        public InputList<Inputs.AppleSiliconServerPrivateNetworkArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.AppleSiliconServerPrivateNetworkArgs>());
+            set => _privateNetworks = value;
+        }
 
         /// <summary>
         /// `project_id`) The ID of the project the server is
@@ -214,6 +250,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DeletableAt { get; set; }
 
         /// <summary>
+        /// : Enables the VPC option when set to true.
+        /// </summary>
+        [Input("enableVpc")]
+        public Input<bool>? EnableVpc { get; set; }
+
+        /// <summary>
         /// IPv4 address of the server (IPv4 address).
         /// </summary>
         [Input("ip")]
@@ -230,6 +272,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        [Input("privateNetworks")]
+        private InputList<Inputs.AppleSiliconServerPrivateNetworkGetArgs>? _privateNetworks;
+
+        /// <summary>
+        /// The private networks to attach to the server
+        /// </summary>
+        public InputList<Inputs.AppleSiliconServerPrivateNetworkGetArgs> PrivateNetworks
+        {
+            get => _privateNetworks ?? (_privateNetworks = new InputList<Inputs.AppleSiliconServerPrivateNetworkGetArgs>());
+            set => _privateNetworks = value;
+        }
 
         /// <summary>
         /// `project_id`) The ID of the project the server is
@@ -263,6 +317,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("vncUrl")]
         public Input<string>? VncUrl { get; set; }
+
+        /// <summary>
+        /// The current status of the VPC option.
+        /// </summary>
+        [Input("vpcStatus")]
+        public Input<string>? VpcStatus { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which

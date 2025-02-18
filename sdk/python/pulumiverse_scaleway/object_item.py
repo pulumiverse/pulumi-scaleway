@@ -46,7 +46,7 @@ class ObjectItemArgs:
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
@@ -201,7 +201,7 @@ class ObjectItemArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         """
         return pulumi.get(self, "storage_class")
 
@@ -264,7 +264,7 @@ class _ObjectItemState:
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
@@ -421,7 +421,7 @@ class _ObjectItemState:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         """
         return pulumi.get(self, "storage_class")
 
@@ -474,9 +474,9 @@ class ObjectItem(pulumi.CustomResource):
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
-        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
         ## Import
 
@@ -512,7 +512,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
@@ -523,9 +523,9 @@ class ObjectItem(pulumi.CustomResource):
                  args: ObjectItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
-        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
         ## Import
 
@@ -645,7 +645,7 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
-        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        :param pulumi.Input[str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags.
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`.
         """
@@ -754,7 +754,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Output[Optional[str]]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
         """
         return pulumi.get(self, "storage_class")
 

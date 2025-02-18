@@ -870,6 +870,11 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { RdbSnapshotArgs, RdbSnapshotState } from "./rdbSnapshot";
+export type RdbSnapshot = import("./rdbSnapshot").RdbSnapshot;
+export const RdbSnapshot: typeof import("./rdbSnapshot").RdbSnapshot = null as any;
+utilities.lazyLoad(exports, ["RdbSnapshot"], () => require("./rdbSnapshot"));
+
 export { RedisClusterArgs, RedisClusterState } from "./redisCluster";
 export type RedisCluster = import("./redisCluster").RedisCluster;
 export const RedisCluster: typeof import("./redisCluster").RedisCluster = null as any;
@@ -1151,6 +1156,8 @@ const _module = {
                 return new ObjectBucketWebsiteConfiguration(name, <any>undefined, { urn })
             case "scaleway:index/objectItem:ObjectItem":
                 return new ObjectItem(name, <any>undefined, { urn })
+            case "scaleway:index/rdbSnapshot:RdbSnapshot":
+                return new RdbSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/redisCluster:RedisCluster":
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
@@ -1280,6 +1287,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfigu
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/rdbSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/sdbDatabase", _module)

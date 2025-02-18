@@ -318,7 +318,7 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
     /**
-     * True when the placement group policy is respected.
+     * (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
      */
     public /*out*/ readonly placementGroupPolicyRespected!: pulumi.Output<boolean>;
     /**
@@ -354,14 +354,6 @@ export class InstanceServer extends pulumi.CustomResource {
      * Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
      */
     public readonly rootVolume!: pulumi.Output<outputs.InstanceServerRootVolume>;
-    /**
-     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-     *
-     * > **Important:** Enabling routed ip will restart the server
-     *
-     * @deprecated Routed IP is the default configuration, it should always be true
-     */
-    public readonly routedIpEnabled!: pulumi.Output<boolean>;
     /**
      * The security group the server is attached to
      */
@@ -433,7 +425,6 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["publicIps"] = state ? state.publicIps : undefined;
             resourceInputs["replaceOnTypeChange"] = state ? state.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = state ? state.rootVolume : undefined;
-            resourceInputs["routedIpEnabled"] = state ? state.routedIpEnabled : undefined;
             resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -461,7 +452,6 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["publicIps"] = args ? args.publicIps : undefined;
             resourceInputs["replaceOnTypeChange"] = args ? args.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
-            resourceInputs["routedIpEnabled"] = args ? args.routedIpEnabled : undefined;
             resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
             resourceInputs["state"] = args ? args.state : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -575,7 +565,7 @@ export interface InstanceServerState {
      */
     placementGroupId?: pulumi.Input<string>;
     /**
-     * True when the placement group policy is respected.
+     * (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
      */
     placementGroupPolicyRespected?: pulumi.Input<boolean>;
     /**
@@ -611,14 +601,6 @@ export interface InstanceServerState {
      * Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
      */
     rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
-    /**
-     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-     *
-     * > **Important:** Enabling routed ip will restart the server
-     *
-     * @deprecated Routed IP is the default configuration, it should always be true
-     */
-    routedIpEnabled?: pulumi.Input<boolean>;
     /**
      * The security group the server is attached to
      */
@@ -744,14 +726,6 @@ export interface InstanceServerArgs {
      * Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
      */
     rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
-    /**
-     * If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-     *
-     * > **Important:** Enabling routed ip will restart the server
-     *
-     * @deprecated Routed IP is the default configuration, it should always be true
-     */
-    routedIpEnabled?: pulumi.Input<boolean>;
     /**
      * The security group the server is attached to
      */

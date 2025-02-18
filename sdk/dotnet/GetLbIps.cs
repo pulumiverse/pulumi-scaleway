@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer IP addresses.
         /// 
-        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
         /// </summary>
         public static Task<GetLbIpsResult> InvokeAsync(GetLbIpsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsArgs(), options.WithDefaults());
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer IP addresses.
         /// 
-        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
         /// </summary>
         public static Output<GetLbIpsResult> Invoke(GetLbIpsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsInvokeArgs(), options.WithDefaults());
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer IP addresses.
         /// 
-        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
         /// </summary>
         public static Output<GetLbIpsResult> Invoke(GetLbIpsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsInvokeArgs(), options.WithDefaults());

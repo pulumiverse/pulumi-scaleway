@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
  *
- * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
 export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockSnapshotResult> {
     args = args || {};
@@ -65,7 +65,7 @@ export interface GetBlockSnapshotResult {
 /**
  * The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
  *
- * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
 export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBlockSnapshotResult> {
     args = args || {};

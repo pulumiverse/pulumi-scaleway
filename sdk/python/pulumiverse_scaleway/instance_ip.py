@@ -27,9 +27,7 @@ class InstanceIpArgs:
         The set of arguments for constructing a InstanceIp resource.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
-        :param pulumi.Input[str] type: The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-               
-               > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        :param pulumi.Input[str] type: The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         if project_id is not None:
@@ -69,9 +67,7 @@ class InstanceIpArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-
-        > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         """
         return pulumi.get(self, "type")
 
@@ -113,9 +109,7 @@ class _InstanceIpState:
         :param pulumi.Input[str] reverse: The reverse dns attached to this IP
         :param pulumi.Input[str] server_id: The server associated with this IP
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
-        :param pulumi.Input[str] type: The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-               
-               > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        :param pulumi.Input[str] type: The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         if address is not None:
@@ -225,9 +219,7 @@ class _InstanceIpState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-
-        > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         """
         return pulumi.get(self, "type")
 
@@ -284,9 +276,7 @@ class InstanceIp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
-        :param pulumi.Input[str] type: The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-               
-               > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        :param pulumi.Input[str] type: The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         ...
@@ -387,9 +377,7 @@ class InstanceIp(pulumi.CustomResource):
         :param pulumi.Input[str] reverse: The reverse dns attached to this IP
         :param pulumi.Input[str] server_id: The server associated with this IP
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
-        :param pulumi.Input[str] type: The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-               
-               > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        :param pulumi.Input[str] type: The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -467,9 +455,7 @@ class InstanceIp(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-
-        > **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         """
         return pulumi.get(self, "type")
 

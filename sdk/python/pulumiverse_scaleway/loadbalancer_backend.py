@@ -1022,7 +1022,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         """
         Creates and manages Scaleway Load Balancer backends.
 
-        or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        or more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Example Usage
 
@@ -1106,7 +1106,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         """
         Creates and manages Scaleway Load Balancer backends.
 
-        or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        or more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Example Usage
 

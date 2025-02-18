@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        /// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         /// </summary>
         [Output("retentionDays")]
         public Output<int> RetentionDays { get; private set; } = null!;
@@ -190,7 +190,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        /// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         /// </summary>
         [Input("retentionDays", required: true)]
         public Input<int> RetentionDays { get; set; } = null!;
@@ -246,7 +246,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+        /// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         /// </summary>
         [Input("retentionDays")]
         public Input<int>? RetentionDays { get; set; }

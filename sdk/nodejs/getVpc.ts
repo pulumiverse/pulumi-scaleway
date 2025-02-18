@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get default VPC info
- * const default = scaleway.getVpc({
+ * const _default = scaleway.getVpc({
  *     isDefault: true,
  * });
  * ```
@@ -104,7 +104,7 @@ export interface GetVpcResult {
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get default VPC info
- * const default = scaleway.getVpc({
+ * const _default = scaleway.getVpc({
  *     isDefault: true,
  * });
  * ```

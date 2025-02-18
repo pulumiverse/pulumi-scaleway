@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Load Balancer ACLs.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
  *
  * ## Example Usage
  *
@@ -79,7 +79,7 @@ export interface GetLbAclsResult {
 /**
  * Gets information about multiple Load Balancer ACLs.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
  *
  * ## Example Usage
  *

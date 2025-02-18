@@ -353,7 +353,7 @@ class IpamIp(pulumi.CustomResource):
         """
         Books and manages IPAM IPs.
 
-        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
 
         ## Example Usage
 
@@ -463,7 +463,7 @@ class IpamIp(pulumi.CustomResource):
         """
         Books and manages IPAM IPs.
 
-        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/#ipam).
+        For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
 
         ## Example Usage
 

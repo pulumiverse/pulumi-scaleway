@@ -115,7 +115,7 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     """
     Gets information about multiple Load Balancer ACLs.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
 
     ## Example Usage
 
@@ -160,7 +160,7 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     """
     Gets information about multiple Load Balancer ACLs.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
 
     ## Example Usage
 
