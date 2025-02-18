@@ -109,6 +109,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly bool MigrateToSbs;
         public readonly string? Name;
         /// <summary>
         /// The ID of the organization the volume is associated with.
@@ -127,6 +128,8 @@ namespace Pulumiverse.Scaleway
             string fromSnapshotId,
 
             string id,
+
+            bool migrateToSbs,
 
             string? name,
 
@@ -148,6 +151,7 @@ namespace Pulumiverse.Scaleway
         {
             FromSnapshotId = fromSnapshotId;
             Id = id;
+            MigrateToSbs = migrateToSbs;
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;

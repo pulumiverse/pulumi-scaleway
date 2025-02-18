@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// Manage Scaleway Messaging and queuing SNS topics.
     /// For further information, see
-    /// our [main documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-topics/).
+    /// our [main documentation](https://www.scaleway.com/en/docs/messaging/how-to/create-manage-topics/).
     /// 
     /// ## Example Usage
     /// 

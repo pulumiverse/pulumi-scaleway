@@ -14,21 +14,21 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
-        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Task<GetBlockVolumeResult> InvokeAsync(GetBlockVolumeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeArgs(), options.WithDefaults());
 
         /// <summary>
         /// The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
-        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Output<GetBlockVolumeResult> Invoke(GetBlockVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
-        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Output<GetBlockVolumeResult> Invoke(GetBlockVolumeInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeInvokeArgs(), options.WithDefaults());
@@ -107,6 +107,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string InstanceVolumeId;
         public readonly int Iops;
         public readonly string? Name;
         public readonly string? ProjectId;
@@ -119,6 +120,8 @@ namespace Pulumiverse.Scaleway
         [OutputConstructor]
         private GetBlockVolumeResult(
             string id,
+
+            string instanceVolumeId,
 
             int iops,
 
@@ -137,6 +140,7 @@ namespace Pulumiverse.Scaleway
             string? zone)
         {
             Id = id;
+            InstanceVolumeId = instanceVolumeId;
             Iops = iops;
             Name = name;
             ProjectId = projectId;

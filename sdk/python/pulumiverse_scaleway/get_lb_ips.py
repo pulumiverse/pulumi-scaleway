@@ -134,7 +134,7 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
     """
     Gets information about multiple Load Balancer IP addresses.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
 
     :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.
@@ -170,7 +170,7 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     """
     Gets information about multiple Load Balancer IP addresses.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 
 
     :param str ip_cidr_range: The IP CIDR range to filter for. IPs within a matching CIDR block are listed.

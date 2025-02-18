@@ -110,7 +110,7 @@ def get_account_project(name: Optional[str] = None,
     """
     The `AccountProject` data source is used to retrieve information about a Scaleway project.
 
-    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
 
     :param str name: The name of the Project.
@@ -143,7 +143,7 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     """
     The `AccountProject` data source is used to retrieve information about a Scaleway project.
 
-    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
 
     :param str name: The name of the Project.

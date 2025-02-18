@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -69,6 +71,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly deletableAt!: pulumi.Output<string>;
     /**
+     * : Enables the VPC option when set to true.
+     */
+    public readonly enableVpc!: pulumi.Output<boolean | undefined>;
+    /**
      * IPv4 address of the server (IPv4 address).
      */
     public /*out*/ readonly ip!: pulumi.Output<string>;
@@ -80,6 +86,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      * The organization ID the server is associated with.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    /**
+     * The private networks to attach to the server
+     */
+    public readonly privateNetworks!: pulumi.Output<outputs.AppleSiliconServerPrivateNetwork[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
@@ -104,6 +114,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly vncUrl!: pulumi.Output<string>;
     /**
+     * The current status of the VPC option.
+     */
+    public /*out*/ readonly vpcStatus!: pulumi.Output<string>;
+    /**
      * `zone`) The zone in which
      * the server should be created.
      */
@@ -124,21 +138,26 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             const state = argsOrState as AppleSiliconServerState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deletableAt"] = state ? state.deletableAt : undefined;
+            resourceInputs["enableVpc"] = state ? state.enableVpc : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["vncUrl"] = state ? state.vncUrl : undefined;
+            resourceInputs["vpcStatus"] = state ? state.vpcStatus : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as AppleSiliconServerArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["enableVpc"] = args ? args.enableVpc : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
@@ -149,6 +168,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["vncUrl"] = undefined /*out*/;
+            resourceInputs["vpcStatus"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AppleSiliconServer.__pulumiType, name, resourceInputs, opts);
@@ -168,6 +188,10 @@ export interface AppleSiliconServerState {
      */
     deletableAt?: pulumi.Input<string>;
     /**
+     * : Enables the VPC option when set to true.
+     */
+    enableVpc?: pulumi.Input<boolean>;
+    /**
      * IPv4 address of the server (IPv4 address).
      */
     ip?: pulumi.Input<string>;
@@ -179,6 +203,10 @@ export interface AppleSiliconServerState {
      * The organization ID the server is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The private networks to attach to the server
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[]>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
@@ -203,6 +231,10 @@ export interface AppleSiliconServerState {
      */
     vncUrl?: pulumi.Input<string>;
     /**
+     * The current status of the VPC option.
+     */
+    vpcStatus?: pulumi.Input<string>;
+    /**
      * `zone`) The zone in which
      * the server should be created.
      */
@@ -214,9 +246,17 @@ export interface AppleSiliconServerState {
  */
 export interface AppleSiliconServerArgs {
     /**
+     * : Enables the VPC option when set to true.
+     */
+    enableVpc?: pulumi.Input<boolean>;
+    /**
      * The name of the server.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The private networks to attach to the server
+     */
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[]>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.

@@ -413,7 +413,7 @@ type InstanceServer struct {
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
-	// True when the placement group policy is respected.
+	// (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
 	PlacementGroupPolicyRespected pulumi.BoolOutput `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
 	//
@@ -434,12 +434,6 @@ type InstanceServer struct {
 	ReplaceOnTypeChange pulumi.BoolPtrOutput `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume InstanceServerRootVolumeOutput `pulumi:"rootVolume"`
-	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-	//
-	// > **Important:** Enabling routed ip will restart the server
-	//
-	// Deprecated: Routed IP is the default configuration, it should always be true
-	RoutedIpEnabled pulumi.BoolOutput `pulumi:"routedIpEnabled"`
 	// The security group the server is attached to
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -555,7 +549,7 @@ type instanceServerState struct {
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
-	// True when the placement group policy is respected.
+	// (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
 	PlacementGroupPolicyRespected *bool `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
 	//
@@ -576,12 +570,6 @@ type instanceServerState struct {
 	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
-	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-	//
-	// > **Important:** Enabling routed ip will restart the server
-	//
-	// Deprecated: Routed IP is the default configuration, it should always be true
-	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
 	// The security group the server is attached to
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -665,7 +653,7 @@ type InstanceServerState struct {
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
-	// True when the placement group policy is respected.
+	// (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
 	PlacementGroupPolicyRespected pulumi.BoolPtrInput
 	// The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
 	//
@@ -686,12 +674,6 @@ type InstanceServerState struct {
 	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
-	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-	//
-	// > **Important:** Enabling routed ip will restart the server
-	//
-	// Deprecated: Routed IP is the default configuration, it should always be true
-	RoutedIpEnabled pulumi.BoolPtrInput
 	// The security group the server is attached to
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -773,12 +755,6 @@ type instanceServerArgs struct {
 	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
-	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-	//
-	// > **Important:** Enabling routed ip will restart the server
-	//
-	// Deprecated: Routed IP is the default configuration, it should always be true
-	RoutedIpEnabled *bool `pulumi:"routedIpEnabled"`
 	// The security group the server is attached to
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -857,12 +833,6 @@ type InstanceServerArgs struct {
 	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
-	// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-	//
-	// > **Important:** Enabling routed ip will restart the server
-	//
-	// Deprecated: Routed IP is the default configuration, it should always be true
-	RoutedIpEnabled pulumi.BoolPtrInput
 	// The security group the server is attached to
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -1077,7 +1047,7 @@ func (o InstanceServerOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
 }
 
-// True when the placement group policy is respected.
+// (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
 func (o InstanceServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
@@ -1120,15 +1090,6 @@ func (o InstanceServerOutput) ReplaceOnTypeChange() pulumi.BoolPtrOutput {
 // Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerRootVolumeOutput { return v.RootVolume }).(InstanceServerRootVolumeOutput)
-}
-
-// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-//
-// > **Important:** Enabling routed ip will restart the server
-//
-// Deprecated: Routed IP is the default configuration, it should always be true
-func (o InstanceServerOutput) RoutedIpEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v *InstanceServer) pulumi.BoolOutput { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
 // The security group the server is attached to

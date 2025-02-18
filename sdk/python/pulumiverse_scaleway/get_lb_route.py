@@ -117,7 +117,7 @@ def get_lb_route(route_id: Optional[str] = None,
     """
     Get information about Scaleway Load Balancer routes.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
     ## Example Usage
 
@@ -169,7 +169,7 @@ def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
     """
     Get information about Scaleway Load Balancer routes.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 
     ## Example Usage
 

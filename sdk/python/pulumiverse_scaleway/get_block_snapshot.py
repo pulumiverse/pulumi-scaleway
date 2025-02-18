@@ -112,7 +112,7 @@ def get_block_snapshot(name: Optional[str] = None,
     """
     The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 
-    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
     :param str name: The name of the snapshot. Only one of name or snapshot_id should be specified.
@@ -147,7 +147,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
     """
     The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 
-    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
     :param str name: The name of the snapshot. Only one of name or snapshot_id should be specified.

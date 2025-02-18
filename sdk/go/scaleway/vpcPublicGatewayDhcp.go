@@ -74,6 +74,8 @@ type VpcPublicGatewayDhcp struct {
 	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+	//
+	// > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
 	PushDefaultRoute pulumi.BoolOutput `pulumi:"pushDefaultRoute"`
 	// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
 	PushDnsServer pulumi.BoolOutput `pulumi:"pushDnsServer"`
@@ -145,6 +147,8 @@ type vpcPublicGatewayDhcpState struct {
 	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+	//
+	// > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
 	PushDefaultRoute *bool `pulumi:"pushDefaultRoute"`
 	// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
 	PushDnsServer *bool `pulumi:"pushDnsServer"`
@@ -184,6 +188,8 @@ type VpcPublicGatewayDhcpState struct {
 	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId pulumi.StringPtrInput
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+	//
+	// > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
 	PushDefaultRoute pulumi.BoolPtrInput
 	// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
 	PushDnsServer pulumi.BoolPtrInput
@@ -223,6 +229,8 @@ type vpcPublicGatewayDhcpArgs struct {
 	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+	//
+	// > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
 	PushDefaultRoute *bool `pulumi:"pushDefaultRoute"`
 	// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
 	PushDnsServer *bool `pulumi:"pushDnsServer"`
@@ -257,6 +265,8 @@ type VpcPublicGatewayDhcpArgs struct {
 	// `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
 	ProjectId pulumi.StringPtrInput
 	// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+	//
+	// > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
 	PushDefaultRoute pulumi.BoolPtrInput
 	// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
 	PushDnsServer pulumi.BoolPtrInput
@@ -410,6 +420,8 @@ func (o VpcPublicGatewayDhcpOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+//
+// > **Warning**: If you need to setup a default route, it's recommended to use the `VpcGatewayNetwork` resource instead.
 func (o VpcPublicGatewayDhcpOutput) PushDefaultRoute() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayDhcp) pulumi.BoolOutput { return v.PushDefaultRoute }).(pulumi.BoolOutput)
 }

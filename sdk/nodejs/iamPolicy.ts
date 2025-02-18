@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Creates and manages Scaleway IAM Policies. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#path-policies-create-a-new-policy).
  *
- * > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
+ * > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/iam/reference-content/permission-sets/).
  *
  * ## Example Usage
  *
@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const default = scaleway.getAccountProject({
+ * const _default = scaleway.getAccountProject({
  *     name: "default",
  * });
  * const app = new scaleway.IamApplication("app", {name: "my app"});

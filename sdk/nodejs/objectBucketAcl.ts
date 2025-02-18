@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-operations/#putbucketacl).
+ * For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-operations/#putbucketacl).
  *
  * ### With Grants
  *

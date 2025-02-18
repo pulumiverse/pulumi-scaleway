@@ -57,6 +57,8 @@ type InstanceVolume struct {
 
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 	FromSnapshotId pulumi.StringPtrOutput `pulumi:"fromSnapshotId"`
+	// If true, consider that this volume may have been migrated and no longer exists.
+	MigrateToSbs pulumi.BoolPtrOutput `pulumi:"migrateToSbs"`
 	// The name of the volume. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the volume is associated with.
@@ -110,6 +112,8 @@ func GetInstanceVolume(ctx *pulumi.Context,
 type instanceVolumeState struct {
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
+	// If true, consider that this volume may have been migrated and no longer exists.
+	MigrateToSbs *bool `pulumi:"migrateToSbs"`
 	// The name of the volume. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// The organization ID the volume is associated with.
@@ -131,6 +135,8 @@ type instanceVolumeState struct {
 type InstanceVolumeState struct {
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 	FromSnapshotId pulumi.StringPtrInput
+	// If true, consider that this volume may have been migrated and no longer exists.
+	MigrateToSbs pulumi.BoolPtrInput
 	// The name of the volume. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// The organization ID the volume is associated with.
@@ -156,6 +162,8 @@ func (InstanceVolumeState) ElementType() reflect.Type {
 type instanceVolumeArgs struct {
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`
+	// If true, consider that this volume may have been migrated and no longer exists.
+	MigrateToSbs *bool `pulumi:"migrateToSbs"`
 	// The name of the volume. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the volume is associated with.
@@ -174,6 +182,8 @@ type instanceVolumeArgs struct {
 type InstanceVolumeArgs struct {
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 	FromSnapshotId pulumi.StringPtrInput
+	// If true, consider that this volume may have been migrated and no longer exists.
+	MigrateToSbs pulumi.BoolPtrInput
 	// The name of the volume. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the volume is associated with.
@@ -278,6 +288,11 @@ func (o InstanceVolumeOutput) ToInstanceVolumeOutputWithContext(ctx context.Cont
 // If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 func (o InstanceVolumeOutput) FromSnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringPtrOutput { return v.FromSnapshotId }).(pulumi.StringPtrOutput)
+}
+
+// If true, consider that this volume may have been migrated and no longer exists.
+func (o InstanceVolumeOutput) MigrateToSbs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InstanceVolume) pulumi.BoolPtrOutput { return v.MigrateToSbs }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the volume. If not provided it will be randomly generated.

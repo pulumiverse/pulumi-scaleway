@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Load Balancer Backends.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Example Usage
  *
@@ -78,7 +78,7 @@ export interface GetLbBackendsResult {
 /**
  * Gets information about multiple Load Balancer Backends.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
  *
  * ## Example Usage
  *

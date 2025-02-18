@@ -21,6 +21,7 @@ class InstanceVolumeArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
                  from_snapshot_id: Optional[pulumi.Input[str]] = None,
+                 migrate_to_sbs: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -30,6 +31,7 @@ class InstanceVolumeArgs:
         The set of arguments for constructing a InstanceVolume resource.
         :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        :param pulumi.Input[bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
@@ -39,6 +41,8 @@ class InstanceVolumeArgs:
         pulumi.set(__self__, "type", type)
         if from_snapshot_id is not None:
             pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
+        if migrate_to_sbs is not None:
+            pulumi.set(__self__, "migrate_to_sbs", migrate_to_sbs)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -73,6 +77,18 @@ class InstanceVolumeArgs:
     @from_snapshot_id.setter
     def from_snapshot_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "from_snapshot_id", value)
+
+    @property
+    @pulumi.getter(name="migrateToSbs")
+    def migrate_to_sbs(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, consider that this volume may have been migrated and no longer exists.
+        """
+        return pulumi.get(self, "migrate_to_sbs")
+
+    @migrate_to_sbs.setter
+    def migrate_to_sbs(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "migrate_to_sbs", value)
 
     @property
     @pulumi.getter
@@ -139,6 +155,7 @@ class InstanceVolumeArgs:
 class _InstanceVolumeState:
     def __init__(__self__, *,
                  from_snapshot_id: Optional[pulumi.Input[str]] = None,
+                 migrate_to_sbs: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -150,6 +167,7 @@ class _InstanceVolumeState:
         """
         Input properties used for looking up and filtering InstanceVolume resources.
         :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        :param pulumi.Input[bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the volume is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
@@ -161,6 +179,8 @@ class _InstanceVolumeState:
         """
         if from_snapshot_id is not None:
             pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
+        if migrate_to_sbs is not None:
+            pulumi.set(__self__, "migrate_to_sbs", migrate_to_sbs)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
@@ -189,6 +209,18 @@ class _InstanceVolumeState:
     @from_snapshot_id.setter
     def from_snapshot_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "from_snapshot_id", value)
+
+    @property
+    @pulumi.getter(name="migrateToSbs")
+    def migrate_to_sbs(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, consider that this volume may have been migrated and no longer exists.
+        """
+        return pulumi.get(self, "migrate_to_sbs")
+
+    @migrate_to_sbs.setter
+    def migrate_to_sbs(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "migrate_to_sbs", value)
 
     @property
     @pulumi.getter
@@ -293,6 +325,7 @@ class InstanceVolume(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  from_snapshot_id: Optional[pulumi.Input[str]] = None,
+                 migrate_to_sbs: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -329,6 +362,7 @@ class InstanceVolume(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        :param pulumi.Input[bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
@@ -384,6 +418,7 @@ class InstanceVolume(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  from_snapshot_id: Optional[pulumi.Input[str]] = None,
+                 migrate_to_sbs: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -400,6 +435,7 @@ class InstanceVolume(pulumi.CustomResource):
             __props__ = InstanceVolumeArgs.__new__(InstanceVolumeArgs)
 
             __props__.__dict__["from_snapshot_id"] = from_snapshot_id
+            __props__.__dict__["migrate_to_sbs"] = migrate_to_sbs
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["size_in_gb"] = size_in_gb
@@ -421,6 +457,7 @@ class InstanceVolume(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             from_snapshot_id: Optional[pulumi.Input[str]] = None,
+            migrate_to_sbs: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -437,6 +474,7 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        :param pulumi.Input[bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the volume is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
@@ -451,6 +489,7 @@ class InstanceVolume(pulumi.CustomResource):
         __props__ = _InstanceVolumeState.__new__(_InstanceVolumeState)
 
         __props__.__dict__["from_snapshot_id"] = from_snapshot_id
+        __props__.__dict__["migrate_to_sbs"] = migrate_to_sbs
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
@@ -468,6 +507,14 @@ class InstanceVolume(pulumi.CustomResource):
         If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         """
         return pulumi.get(self, "from_snapshot_id")
+
+    @property
+    @pulumi.getter(name="migrateToSbs")
+    def migrate_to_sbs(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, consider that this volume may have been migrated and no longer exists.
+        """
+        return pulumi.get(self, "migrate_to_sbs")
 
     @property
     @pulumi.getter

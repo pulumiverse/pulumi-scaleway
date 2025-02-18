@@ -76,8 +76,6 @@ type LookupInstanceServerResult struct {
 	PublicIps           []GetInstanceServerPublicIp   `pulumi:"publicIps"`
 	ReplaceOnTypeChange bool                          `pulumi:"replaceOnTypeChange"`
 	RootVolumes         []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
-	// True if the server support routed ip only.
-	RoutedIpEnabled bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId string  `pulumi:"securityGroupId"`
 	ServerId        *string `pulumi:"serverId"`
@@ -243,11 +241,6 @@ func (o LookupInstanceServerResultOutput) ReplaceOnTypeChange() pulumi.BoolOutpu
 
 func (o LookupInstanceServerResultOutput) RootVolumes() GetInstanceServerRootVolumeArrayOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) []GetInstanceServerRootVolume { return v.RootVolumes }).(GetInstanceServerRootVolumeArrayOutput)
-}
-
-// True if the server support routed ip only.
-func (o LookupInstanceServerResultOutput) RoutedIpEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupInstanceServerResult) bool { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
 // The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.

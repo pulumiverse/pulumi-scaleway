@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
     /// 
-    /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+    /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
     /// 
     /// ## Example Usage
     /// 
@@ -100,6 +100,88 @@ namespace Pulumiverse.Scaleway
     /// ~&gt;**Important:** Make sure to select the right resources, as you will be billed based on compute usage over time and the number of Containers executions.
     /// Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
     /// 
+    /// ## Health check configuration
+    /// 
+    /// Custom health checks can be configured on the container.
+    /// 
+    /// It's possible to specify the HTTP path that the probe will listen to and the number of failures before considering the container as unhealthy.
+    /// During a deployment, if a newly created container fails to pass the health check, the deployment is aborted.
+    /// As a result, lowering this value can help to reduce the time it takes to detect a failed deployment.
+    /// The period between health checks is also configurable.
+    /// 
+    /// Example:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Container("main", new()
+    ///     {
+    ///         Name = "my-container-02",
+    ///         NamespaceId = mainScalewayContainerNamespace.Id,
+    ///         HealthChecks = new[]
+    ///         {
+    ///             new Scaleway.Inputs.ContainerHealthCheckArgs
+    ///             {
+    ///                 Https = new[]
+    ///                 {
+    ///                     new Scaleway.Inputs.ContainerHealthCheckHttpArgs
+    ///                     {
+    ///                         Path = "/ping",
+    ///                     },
+    ///                 },
+    ///                 FailureThreshold = 40,
+    ///                 Interval = "3s",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ~&gt;**Important:** Another probe type can be set to TCP with the API, but currently the SDK has not been updated with this parameter.
+    /// This is why the only probe that can be used here is the HTTP probe.
+    /// Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
+    /// 
+    /// ## Scaling option configuration
+    /// 
+    /// Scaling option block configuration allows you to choose which parameter will scale up/down containers.
+    /// Options are number of concurrent requests, CPU or memory usage.
+    /// It replaces current `max_concurrency` that has been deprecated.
+    /// 
+    /// Example:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Container("main", new()
+    ///     {
+    ///         Name = "my-container-02",
+    ///         NamespaceId = mainScalewayContainerNamespace.Id,
+    ///         ScalingOptions = new[]
+    ///         {
+    ///             new Scaleway.Inputs.ContainerScalingOptionArgs
+    ///             {
+    ///                 ConcurrentRequestsThreshold = 15,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ~&gt;**Important**: A maximum of one of these parameters may be set. Also, when `cpu_usage_threshold` or `memory_usage_threshold` are used, `min_scale` can't be set to 0.
+    /// Refer to the [API Reference](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-create-a-new-container) for more information.
+    /// 
     /// ## Import
     /// 
     /// Containers can be imported using, `{region}/{id}`, as shown below:
@@ -128,7 +210,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
         /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
@@ -146,7 +228,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> DomainName { get; private set; } = null!;
 
         /// <summary>
-        /// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         /// </summary>
         [Output("environmentVariables")]
         public Output<ImmutableDictionary<string, string>> EnvironmentVariables { get; private set; } = null!;
@@ -156,6 +238,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("errorMessage")]
         public Output<string> ErrorMessage { get; private set; } = null!;
+
+        /// <summary>
+        /// Health check configuration of the container.
+        /// </summary>
+        [Output("healthChecks")]
+        public Output<ImmutableArray<Outputs.ContainerHealthCheck>> HealthChecks { get; private set; } = null!;
 
         /// <summary>
         /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
@@ -244,7 +332,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Sandbox { get; private set; } = null!;
 
         /// <summary>
-        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+        /// Configuration block used to decide when to scale up or down. Possible values:
+        /// </summary>
+        [Output("scalingOptions")]
+        public Output<ImmutableArray<Outputs.ContainerScalingOption>> ScalingOptions { get; private set; } = null!;
+
+        /// <summary>
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
@@ -321,7 +415,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
         /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -336,12 +430,24 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
             get => _environmentVariables ?? (_environmentVariables = new InputMap<string>());
             set => _environmentVariables = value;
+        }
+
+        [Input("healthChecks")]
+        private InputList<Inputs.ContainerHealthCheckArgs>? _healthChecks;
+
+        /// <summary>
+        /// Health check configuration of the container.
+        /// </summary>
+        public InputList<Inputs.ContainerHealthCheckArgs> HealthChecks
+        {
+            get => _healthChecks ?? (_healthChecks = new InputList<Inputs.ContainerHealthCheckArgs>());
+            set => _healthChecks = value;
         }
 
         /// <summary>
@@ -430,11 +536,23 @@ namespace Pulumiverse.Scaleway
         [Input("sandbox")]
         public Input<string>? Sandbox { get; set; }
 
+        [Input("scalingOptions")]
+        private InputList<Inputs.ContainerScalingOptionArgs>? _scalingOptions;
+
+        /// <summary>
+        /// Configuration block used to decide when to scale up or down. Possible values:
+        /// </summary>
+        public InputList<Inputs.ContainerScalingOptionArgs> ScalingOptions
+        {
+            get => _scalingOptions ?? (_scalingOptions = new InputList<Inputs.ContainerScalingOptionArgs>());
+            set => _scalingOptions = value;
+        }
+
         [Input("secretEnvironmentVariables")]
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {
@@ -481,7 +599,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
         /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -502,7 +620,7 @@ namespace Pulumiverse.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -515,6 +633,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("errorMessage")]
         public Input<string>? ErrorMessage { get; set; }
+
+        [Input("healthChecks")]
+        private InputList<Inputs.ContainerHealthCheckGetArgs>? _healthChecks;
+
+        /// <summary>
+        /// Health check configuration of the container.
+        /// </summary>
+        public InputList<Inputs.ContainerHealthCheckGetArgs> HealthChecks
+        {
+            get => _healthChecks ?? (_healthChecks = new InputList<Inputs.ContainerHealthCheckGetArgs>());
+            set => _healthChecks = value;
+        }
 
         /// <summary>
         /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
@@ -602,11 +732,23 @@ namespace Pulumiverse.Scaleway
         [Input("sandbox")]
         public Input<string>? Sandbox { get; set; }
 
+        [Input("scalingOptions")]
+        private InputList<Inputs.ContainerScalingOptionGetArgs>? _scalingOptions;
+
+        /// <summary>
+        /// Configuration block used to decide when to scale up or down. Possible values:
+        /// </summary>
+        public InputList<Inputs.ContainerScalingOptionGetArgs> ScalingOptions
+        {
+            get => _scalingOptions ?? (_scalingOptions = new InputList<Inputs.ContainerScalingOptionGetArgs>());
+            set => _scalingOptions = value;
+        }
+
         [Input("secretEnvironmentVariables")]
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {

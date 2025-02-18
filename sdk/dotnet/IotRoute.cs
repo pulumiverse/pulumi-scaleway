@@ -164,7 +164,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Output("database")]
         public Output<Outputs.IotRouteDatabase?> Database { get; private set; } = null!;
@@ -188,13 +188,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Output("rest")]
         public Output<Outputs.IotRouteRest?> Rest { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Output("s3")]
         public Output<Outputs.IotRouteS3?> S3 { get; private set; } = null!;
@@ -253,7 +253,7 @@ namespace Pulumiverse.Scaleway
     public sealed class IotRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("database")]
         public Input<Inputs.IotRouteDatabaseArgs>? Database { get; set; }
@@ -277,13 +277,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("rest")]
         public Input<Inputs.IotRouteRestArgs>? Rest { get; set; }
 
         /// <summary>
-        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("s3")]
         public Input<Inputs.IotRouteS3Args>? S3 { get; set; }
@@ -309,7 +309,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Database-Route) for a better understanding of the parameters.
+        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("database")]
         public Input<Inputs.IotRouteDatabaseGetArgs>? Database { get; set; }
@@ -333,13 +333,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-REST-Route) for a better understanding of the parameters.
+        /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("rest")]
         public Input<Inputs.IotRouteRestGetArgs>? Rest { get; set; }
 
         /// <summary>
-        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Scaleway-Object-Storage-Route) for a better understanding of the parameters.
+        /// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("s3")]
         public Input<Inputs.IotRouteS3GetArgs>? S3 { get; set; }

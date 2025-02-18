@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway MongoDB® snapshots.
-// For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-databases/mongodb/).
+// For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
 //
 // ## Example Usage
 //

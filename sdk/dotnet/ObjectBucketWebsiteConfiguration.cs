@@ -11,9 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+    /// The `scaleway.ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
     /// 
-    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/) for more information on bucket websites.
+    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/use-bucket-website/) for more information on bucket websites.
     /// 
     /// ## Example Usage
     /// 

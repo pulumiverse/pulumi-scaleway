@@ -27,6 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         /// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         /// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+        /// &gt; **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
         /// 
         /// &gt; The `private_network` conflicts with `acl`. Only one should be specified.
         /// 

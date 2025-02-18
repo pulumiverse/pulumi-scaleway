@@ -21,13 +21,13 @@ __all__ = ['DatabaseInstanceArgs', 'DatabaseInstance']
 @pulumi.input_type
 class DatabaseInstanceArgs:
     def __init__(__self__, *,
-                 engine: pulumi.Input[str],
                  node_type: pulumi.Input[str],
                  backup_same_region: Optional[pulumi.Input[bool]] = None,
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
                  encryption_at_rest: Optional[pulumi.Input[bool]] = None,
+                 engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]] = None,
@@ -38,15 +38,13 @@ class DatabaseInstanceArgs:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DatabaseInstance resource.
-        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-               
-               > **Important** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
                > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
@@ -58,6 +56,9 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
+        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
+               
+               > **Important** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -72,6 +73,8 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
+        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+               captured in the specified snapshot. Conflicts with the `engine` attribute.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -81,7 +84,6 @@ class DatabaseInstanceArgs:
                > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
         """
-        pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "node_type", node_type)
         if backup_same_region is not None:
             pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -93,6 +95,8 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "disable_backup", disable_backup)
         if encryption_at_rest is not None:
             pulumi.set(__self__, "encryption_at_rest", encryption_at_rest)
+        if engine is not None:
+            pulumi.set(__self__, "engine", engine)
         if init_settings is not None:
             pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
@@ -113,6 +117,8 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "region", region)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if user_name is not None:
@@ -121,20 +127,6 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "volume_size_in_gb", volume_size_in_gb)
         if volume_type is not None:
             pulumi.set(__self__, "volume_type", volume_type)
-
-    @property
-    @pulumi.getter
-    def engine(self) -> pulumi.Input[str]:
-        """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
-
-        > **Important** Updates to `engine` will recreate the Database Instance.
-        """
-        return pulumi.get(self, "engine")
-
-    @engine.setter
-    def engine(self, value: pulumi.Input[str]):
-        pulumi.set(self, "engine", value)
 
     @property
     @pulumi.getter(name="nodeType")
@@ -212,6 +204,20 @@ class DatabaseInstanceArgs:
     @encryption_at_rest.setter
     def encryption_at_rest(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "encryption_at_rest", value)
+
+    @property
+    @pulumi.getter
+    def engine(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database Instance's engine version (e.g. `PostgreSQL-11`).
+
+        > **Important** Updates to `engine` will recreate the Database Instance.
+        """
+        return pulumi.get(self, "engine")
+
+    @engine.setter
+    def engine(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "engine", value)
 
     @property
     @pulumi.getter(name="initSettings")
@@ -338,6 +344,19 @@ class DatabaseInstanceArgs:
         pulumi.set(self, "settings", value)
 
     @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+        captured in the specified snapshot. Conflicts with the `engine` attribute.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -415,6 +434,7 @@ class _DatabaseInstanceState:
                  read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceReadReplicaArgs']]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -454,6 +474,8 @@ class _DatabaseInstanceState:
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
+        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+               captured in the specified snapshot. Conflicts with the `engine` attribute.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -513,6 +535,8 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "region", region)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if user_name is not None:
@@ -800,6 +824,19 @@ class _DatabaseInstanceState:
         pulumi.set(self, "settings", value)
 
     @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+        captured in the specified snapshot. Conflicts with the `engine` attribute.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -874,6 +911,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -1057,6 +1095,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
+        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+               captured in the specified snapshot. Conflicts with the `engine` attribute.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -1252,6 +1292,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -1270,8 +1311,6 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
             __props__.__dict__["disable_backup"] = disable_backup
             __props__.__dict__["encryption_at_rest"] = encryption_at_rest
-            if engine is None and not opts.urn:
-                raise TypeError("Missing required property 'engine'")
             __props__.__dict__["engine"] = engine
             __props__.__dict__["init_settings"] = init_settings
             __props__.__dict__["is_ha_cluster"] = is_ha_cluster
@@ -1286,6 +1325,7 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["settings"] = settings
+            __props__.__dict__["snapshot_id"] = snapshot_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["user_name"] = user_name
             __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
@@ -1329,6 +1369,7 @@ class DatabaseInstance(pulumi.CustomResource):
             read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            snapshot_id: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             user_name: Optional[pulumi.Input[str]] = None,
             volume_size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -1373,6 +1414,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
+        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+               captured in the specified snapshot. Conflicts with the `engine` attribute.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -1408,6 +1451,7 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["read_replicas"] = read_replicas
         __props__.__dict__["region"] = region
         __props__.__dict__["settings"] = settings
+        __props__.__dict__["snapshot_id"] = snapshot_id
         __props__.__dict__["tags"] = tags
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
@@ -1602,6 +1646,15 @@ class DatabaseInstance(pulumi.CustomResource):
         Map of engine settings to be set on a running instance.
         """
         return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+        captured in the specified snapshot. Conflicts with the `engine` attribute.
+        """
+        return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter

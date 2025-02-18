@@ -7,13 +7,13 @@ import * as utilities from "./utilities";
 /**
  * The `scaleway.BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
  *
- * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
  * ## Example Usage
  *
  * ### Create a Block Storage volume
  *
- * The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
+ * The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/block-storage/concepts/#iops).
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,7 +87,11 @@ export class BlockVolume extends pulumi.CustomResource {
     }
 
     /**
-     * The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+     * The instance volume to create the block volume from
+     */
+    public readonly instanceVolumeId!: pulumi.Output<string>;
+    /**
+     * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
     public readonly iops!: pulumi.Output<number>;
     /**
@@ -128,6 +132,7 @@ export class BlockVolume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BlockVolumeState | undefined;
+            resourceInputs["instanceVolumeId"] = state ? state.instanceVolumeId : undefined;
             resourceInputs["iops"] = state ? state.iops : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -140,6 +145,7 @@ export class BlockVolume extends pulumi.CustomResource {
             if ((!args || args.iops === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'iops'");
             }
+            resourceInputs["instanceVolumeId"] = args ? args.instanceVolumeId : undefined;
             resourceInputs["iops"] = args ? args.iops : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -158,7 +164,11 @@ export class BlockVolume extends pulumi.CustomResource {
  */
 export interface BlockVolumeState {
     /**
-     * The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+     * The instance volume to create the block volume from
+     */
+    instanceVolumeId?: pulumi.Input<string>;
+    /**
+     * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
     iops?: pulumi.Input<number>;
     /**
@@ -192,7 +202,11 @@ export interface BlockVolumeState {
  */
 export interface BlockVolumeArgs {
     /**
-     * The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+     * The instance volume to create the block volume from
+     */
+    instanceVolumeId?: pulumi.Input<string>;
+    /**
+     * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
     iops: pulumi.Input<number>;
     /**

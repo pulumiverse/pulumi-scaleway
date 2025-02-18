@@ -5,6 +5,33 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppleSiliconServerPrivateNetwork {
+    /**
+     * The date and time of the creation of the Apple Silicon server.
+     */
+    createdAt: string;
+    /**
+     * The ID of the server.
+     */
+    id: string;
+    /**
+     * List of IPAM IP IDs to attach to the server
+     */
+    ipamIpIds: string[];
+    /**
+     * The private network status
+     */
+    status: string;
+    /**
+     * The date and time of the last update of the Apple Silicon server.
+     */
+    updatedAt: string;
+    /**
+     * The VLAN ID associated to the private network
+     */
+    vlan: number;
+}
+
 export interface BaremetalServerIp {
     /**
      * The address of the IPv6.
@@ -182,6 +209,43 @@ export interface CockpitTokenScopes {
      * Permission to write traces.
      */
     writeTraces?: boolean;
+}
+
+export interface ContainerHealthCheck {
+    /**
+     * Number of consecutive health check failures before considering the container unhealthy.
+     */
+    failureThreshold: number;
+    /**
+     * HTTP health check configuration.
+     */
+    https: outputs.ContainerHealthCheckHttp[];
+    /**
+     * Period between health checks.
+     */
+    interval: string;
+}
+
+export interface ContainerHealthCheckHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: string;
+}
+
+export interface ContainerScalingOption {
+    /**
+     * Scale depending on the number of concurrent requests being processed per container instance.
+     */
+    concurrentRequestsThreshold?: number;
+    /**
+     * Scale depending on the CPU usage of a container instance.
+     */
+    cpuUsageThreshold?: number;
+    /**
+     * Scale depending on the memory usage of a container instance.
+     */
+    memoryUsageThreshold?: number;
 }
 
 export interface ContainerTriggerNats {
@@ -772,6 +836,43 @@ export interface GetCockpitPushUrl {
      * Push URL for metrics (Grafana Mimir)
      */
     pushMetricsUrl: string;
+}
+
+export interface GetContainerHealthCheck {
+    /**
+     * Number of consecutive health check failures before considering the container unhealthy.
+     */
+    failureThreshold: number;
+    /**
+     * HTTP health check configuration.
+     */
+    https: outputs.GetContainerHealthCheckHttp[];
+    /**
+     * Period between health checks (in seconds).
+     */
+    interval: string;
+}
+
+export interface GetContainerHealthCheckHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: string;
+}
+
+export interface GetContainerScalingOption {
+    /**
+     * Scale depending on the number of concurrent requests being processed per container instance.
+     */
+    concurrentRequestsThreshold: number;
+    /**
+     * Scale depending on the CPU usage of a container instance.
+     */
+    cpuUsageThreshold: number;
+    /**
+     * Scale depending on the memory usage of a container instance.
+     */
+    memoryUsageThreshold: number;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -2932,7 +3033,7 @@ export interface IotRouteS3 {
      */
     objectPrefix?: string;
     /**
-     * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+     * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
      */
     strategy: string;
 }
@@ -3530,7 +3631,7 @@ export interface ObjectBucketLifecycleRuleTransition {
      */
     days?: number;
     /**
-     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
      *
      *
      * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
@@ -3556,7 +3657,7 @@ export interface ObjectBucketLockConfigurationRuleDefaultRetention {
      */
     days?: number;
     /**
-     * The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
+     * The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
      */
     mode: string;
     /**
@@ -3620,6 +3721,7 @@ export interface RedisClusterPrivateNetwork {
      * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
      * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
      * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     * > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
      *
      * > The `privateNetwork` conflicts with `acl`. Only one should be specified.
      *

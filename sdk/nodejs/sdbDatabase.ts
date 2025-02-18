@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * The `scaleway.SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
  *
- * Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless/sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
+ * Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless-sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
  *
  * ## Example Usage
  *

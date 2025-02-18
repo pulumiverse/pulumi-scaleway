@@ -40,8 +40,9 @@ type LookupInstanceVolumeArgs struct {
 type LookupInstanceVolumeResult struct {
 	FromSnapshotId string `pulumi:"fromSnapshotId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string  `pulumi:"id"`
-	Name *string `pulumi:"name"`
+	Id           string  `pulumi:"id"`
+	MigrateToSbs bool    `pulumi:"migrateToSbs"`
+	Name         *string `pulumi:"name"`
 	// The ID of the organization the volume is associated with.
 	OrganizationId string   `pulumi:"organizationId"`
 	ProjectId      *string  `pulumi:"projectId"`
@@ -102,6 +103,10 @@ func (o LookupInstanceVolumeResultOutput) FromSnapshotId() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupInstanceVolumeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceVolumeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceVolumeResultOutput) MigrateToSbs() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceVolumeResult) bool { return v.MigrateToSbs }).(pulumi.BoolOutput)
 }
 
 func (o LookupInstanceVolumeResultOutput) Name() pulumi.StringPtrOutput {

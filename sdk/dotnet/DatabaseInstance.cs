@@ -374,6 +374,13 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
 
         /// <summary>
+        /// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+        /// captured in the specified snapshot. Conflicts with the `engine` attribute.
+        /// </summary>
+        [Output("snapshotId")]
+        public Output<string?> SnapshotId { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the Database Instance.
         /// </summary>
         [Output("tags")]
@@ -487,8 +494,8 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important** Updates to `engine` will recreate the Database Instance.
         /// </summary>
-        [Input("engine", required: true)]
-        public Input<string> Engine { get; set; } = null!;
+        [Input("engine")]
+        public Input<string>? Engine { get; set; }
 
         [Input("initSettings")]
         private InputMap<string>? _initSettings;
@@ -592,6 +599,13 @@ namespace Pulumiverse.Scaleway
             get => _settings ?? (_settings = new InputMap<string>());
             set => _settings = value;
         }
+
+        /// <summary>
+        /// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+        /// captured in the specified snapshot. Conflicts with the `engine` attribute.
+        /// </summary>
+        [Input("snapshotId")]
+        public Input<string>? SnapshotId { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -811,6 +825,13 @@ namespace Pulumiverse.Scaleway
             get => _settings ?? (_settings = new InputMap<string>());
             set => _settings = value;
         }
+
+        /// <summary>
+        /// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+        /// captured in the specified snapshot. Conflicts with the `engine` attribute.
+        /// </summary>
+        [Input("snapshotId")]
+        public Input<string>? SnapshotId { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
- * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
 export function getBlockVolume(args?: GetBlockVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockVolumeResult> {
     args = args || {};
@@ -49,6 +49,7 @@ export interface GetBlockVolumeResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly instanceVolumeId: string;
     readonly iops: number;
     readonly name?: string;
     readonly projectId?: string;
@@ -60,7 +61,7 @@ export interface GetBlockVolumeResult {
 }
 /**
  * The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
- * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
 export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBlockVolumeResult> {
     args = args || {};

@@ -91,7 +91,7 @@ export class CockpitSource extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
      */
     public readonly retentionDays!: pulumi.Output<number>;
     /**
@@ -186,7 +186,7 @@ export interface CockpitSourceState {
      */
     region?: pulumi.Input<string>;
     /**
-     * The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
      */
     retentionDays?: pulumi.Input<number>;
     /**
@@ -224,7 +224,7 @@ export interface CockpitSourceArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
      */
     retentionDays: pulumi.Input<number>;
     /**

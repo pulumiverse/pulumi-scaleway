@@ -84,9 +84,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-        /// 
-        /// &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        /// The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -163,9 +161,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-        /// 
-        /// &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        /// The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -233,9 +229,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the IP (`nat`, `routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-        /// 
-        /// &gt; **Important:** An IP can migrate from `nat` to `routed_ipv4` but cannot be converted back
+        /// The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

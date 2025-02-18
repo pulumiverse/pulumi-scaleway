@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
         /// 
-        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Task<GetBlockSnapshotResult> InvokeAsync(GetBlockSnapshotArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotArgs(), options.WithDefaults());
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
         /// 
-        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
         /// 
-        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
         public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());

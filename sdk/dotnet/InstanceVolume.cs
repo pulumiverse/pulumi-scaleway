@@ -54,6 +54,12 @@ namespace Pulumiverse.Scaleway
         public Output<string?> FromSnapshotId { get; private set; } = null!;
 
         /// <summary>
+        /// If true, consider that this volume may have been migrated and no longer exists.
+        /// </summary>
+        [Output("migrateToSbs")]
+        public Output<bool?> MigrateToSbs { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the volume. If not provided it will be randomly generated.
         /// </summary>
         [Output("name")]
@@ -155,6 +161,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? FromSnapshotId { get; set; }
 
         /// <summary>
+        /// If true, consider that this volume may have been migrated and no longer exists.
+        /// </summary>
+        [Input("migrateToSbs")]
+        public Input<bool>? MigrateToSbs { get; set; }
+
+        /// <summary>
         /// The name of the volume. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -209,6 +221,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
+
+        /// <summary>
+        /// If true, consider that this volume may have been migrated and no longer exists.
+        /// </summary>
+        [Input("migrateToSbs")]
+        public Input<bool>? MigrateToSbs { get; set; }
 
         /// <summary>
         /// The name of the volume. If not provided it will be randomly generated.

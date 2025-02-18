@@ -336,7 +336,7 @@ def get_lb_backend(backend_id: Optional[str] = None,
     """
     Get information about Scaleway Load Balancer backends.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
     ## Example Usage
 
@@ -414,7 +414,7 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     """
     Get information about Scaleway Load Balancer backends.
 
-    For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+    For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
     ## Example Usage
 

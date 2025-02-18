@@ -293,6 +293,11 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly settings!: pulumi.Output<{[key: string]: string}>;
     /**
+     * ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+     * captured in the specified snapshot. Conflicts with the `engine` attribute.
+     */
+    public readonly snapshotId!: pulumi.Output<string | undefined>;
+    /**
      * The tags associated with the Database Instance.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
@@ -348,15 +353,13 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["readReplicas"] = state ? state.readReplicas : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["settings"] = state ? state.settings : undefined;
+            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
             resourceInputs["volumeSizeInGb"] = state ? state.volumeSizeInGb : undefined;
             resourceInputs["volumeType"] = state ? state.volumeType : undefined;
         } else {
             const args = argsOrState as DatabaseInstanceArgs | undefined;
-            if ((!args || args.engine === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'engine'");
-            }
             if ((!args || args.nodeType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
@@ -377,6 +380,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["settings"] = args ? args.settings : undefined;
+            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
             resourceInputs["volumeSizeInGb"] = args ? args.volumeSizeInGb : undefined;
@@ -502,6 +506,11 @@ export interface DatabaseInstanceState {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+     * captured in the specified snapshot. Conflicts with the `engine` attribute.
+     */
+    snapshotId?: pulumi.Input<string>;
+    /**
      * The tags associated with the Database Instance.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
@@ -552,7 +561,7 @@ export interface DatabaseInstanceArgs {
      *
      * > **Important** Updates to `engine` will recreate the Database Instance.
      */
-    engine: pulumi.Input<string>;
+    engine?: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
      */
@@ -606,6 +615,11 @@ export interface DatabaseInstanceArgs {
      * Map of engine settings to be set on a running instance.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+     * captured in the specified snapshot. Conflicts with the `engine` attribute.
+     */
+    snapshotId?: pulumi.Input<string>;
     /**
      * The tags associated with the Database Instance.
      */

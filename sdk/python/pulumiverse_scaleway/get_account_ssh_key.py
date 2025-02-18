@@ -143,7 +143,7 @@ def get_account_ssh_key(name: Optional[str] = None,
     """
     The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 
-    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
 
 
     :param str name: The name of the SSH key.
@@ -177,7 +177,7 @@ def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     """
     The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 
-    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
 
 
     :param str name: The name of the SSH key.

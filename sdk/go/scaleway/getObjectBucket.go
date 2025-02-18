@@ -13,7 +13,7 @@ import (
 
 // The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 //
-// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
 //
 // ## Retrieve an Object Storage bucket
 //

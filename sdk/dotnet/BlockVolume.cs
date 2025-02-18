@@ -13,13 +13,13 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// The `scaleway.BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
     /// 
-    /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+    /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
     /// 
     /// ## Example Usage
     /// 
     /// ### Create a Block Storage volume
     /// 
-    /// The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
+    /// The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/block-storage/concepts/#iops).
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -86,7 +86,13 @@ namespace Pulumiverse.Scaleway
     public partial class BlockVolume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        /// The instance volume to create the block volume from
+        /// </summary>
+        [Output("instanceVolumeId")]
+        public Output<string> InstanceVolumeId { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         /// </summary>
         [Output("iops")]
         public Output<int> Iops { get; private set; } = null!;
@@ -175,7 +181,13 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        /// The instance volume to create the block volume from
+        /// </summary>
+        [Input("instanceVolumeId")]
+        public Input<string>? InstanceVolumeId { get; set; }
+
+        /// <summary>
+        /// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         /// </summary>
         [Input("iops", required: true)]
         public Input<int> Iops { get; set; } = null!;
@@ -231,7 +243,13 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockVolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        /// The instance volume to create the block volume from
+        /// </summary>
+        [Input("instanceVolumeId")]
+        public Input<string>? InstanceVolumeId { get; set; }
+
+        /// <summary>
+        /// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         /// </summary>
         [Input("iops")]
         public Input<int>? Iops { get; set; }

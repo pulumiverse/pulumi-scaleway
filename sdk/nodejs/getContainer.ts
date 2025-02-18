@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -9,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
- * For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+ * For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
  *
  * ## Retrieve a Serverless Container
  *
@@ -103,13 +105,14 @@ export interface GetContainerResult {
      */
     readonly domainName: string;
     /**
-     * The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+     * The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
      */
     readonly environmentVariables: {[key: string]: string};
     /**
      * The error message of the container.
      */
     readonly errorMessage: string;
+    readonly healthChecks: outputs.GetContainerHealthCheck[];
     readonly httpOption: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -162,6 +165,10 @@ export interface GetContainerResult {
      * (Optional) Execution environment of the container.
      */
     readonly sandbox: string;
+    /**
+     * Configuration block used to decide when to scale up or down. Possible values:
+     */
+    readonly scalingOptions: outputs.GetContainerScalingOption[];
     readonly secretEnvironmentVariables: {[key: string]: string};
     /**
      * The container status.
@@ -177,7 +184,7 @@ export interface GetContainerResult {
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
- * For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+ * For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
  *
  * ## Retrieve a Serverless Container
  *

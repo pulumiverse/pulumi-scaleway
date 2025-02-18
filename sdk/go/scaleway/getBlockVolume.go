@@ -12,7 +12,7 @@ import (
 )
 
 // The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
-// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ...pulumi.InvokeOption) (*LookupBlockVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockVolumeResult
@@ -38,15 +38,16 @@ type LookupBlockVolumeArgs struct {
 // A collection of values returned by getBlockVolume.
 type LookupBlockVolumeResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	Iops       int      `pulumi:"iops"`
-	Name       *string  `pulumi:"name"`
-	ProjectId  *string  `pulumi:"projectId"`
-	SizeInGb   int      `pulumi:"sizeInGb"`
-	SnapshotId string   `pulumi:"snapshotId"`
-	Tags       []string `pulumi:"tags"`
-	VolumeId   *string  `pulumi:"volumeId"`
-	Zone       *string  `pulumi:"zone"`
+	Id               string   `pulumi:"id"`
+	InstanceVolumeId string   `pulumi:"instanceVolumeId"`
+	Iops             int      `pulumi:"iops"`
+	Name             *string  `pulumi:"name"`
+	ProjectId        *string  `pulumi:"projectId"`
+	SizeInGb         int      `pulumi:"sizeInGb"`
+	SnapshotId       string   `pulumi:"snapshotId"`
+	Tags             []string `pulumi:"tags"`
+	VolumeId         *string  `pulumi:"volumeId"`
+	Zone             *string  `pulumi:"zone"`
 }
 
 func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupBlockVolumeResultOutput {
@@ -92,6 +93,10 @@ func (o LookupBlockVolumeResultOutput) ToLookupBlockVolumeResultOutputWithContex
 // The provider-assigned unique ID for this managed resource.
 func (o LookupBlockVolumeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBlockVolumeResultOutput) InstanceVolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.InstanceVolumeId }).(pulumi.StringOutput)
 }
 
 func (o LookupBlockVolumeResultOutput) Iops() pulumi.IntOutput {

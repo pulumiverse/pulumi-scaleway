@@ -178,6 +178,7 @@ from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
 from .object_item import *
 from .provider import *
+from .rdb_snapshot import *
 from .redis_cluster import *
 from .registry_namespace import *
 from .sdb_database import *
@@ -896,6 +897,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/objectItem:ObjectItem": "ObjectItem"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/rdbSnapshot",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/rdbSnapshot:RdbSnapshot": "RdbSnapshot"
   }
  },
  {

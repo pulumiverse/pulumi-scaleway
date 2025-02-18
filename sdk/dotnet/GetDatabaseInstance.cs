@@ -137,6 +137,7 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetDatabaseInstanceReadReplicaResult> ReadReplicas;
         public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Settings;
+        public readonly string SnapshotId;
         public readonly ImmutableArray<string> Tags;
         public readonly string UserName;
         public readonly int VolumeSizeInGb;
@@ -192,6 +193,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableDictionary<string, string> settings,
 
+            string snapshotId,
+
             ImmutableArray<string> tags,
 
             string userName,
@@ -224,6 +227,7 @@ namespace Pulumiverse.Scaleway
             ReadReplicas = readReplicas;
             Region = region;
             Settings = settings;
+            SnapshotId = snapshotId;
             Tags = tags;
             UserName = userName;
             VolumeSizeInGb = volumeSizeInGb;

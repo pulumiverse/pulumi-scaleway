@@ -83,9 +83,7 @@ export class InstanceIp extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-     *
-     * > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+     * The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -165,9 +163,7 @@ export interface InstanceIpState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-     *
-     * > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+     * The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
      */
     type?: pulumi.Input<string>;
     /**
@@ -189,9 +185,7 @@ export interface InstanceIpArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the IP (`nat`, `routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
-     *
-     * > **Important:** An IP can migrate from `nat` to `routedIpv4` but cannot be converted back
+     * The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
      */
     type?: pulumi.Input<string>;
     /**

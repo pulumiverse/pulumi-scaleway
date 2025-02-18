@@ -408,7 +408,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> PlacementGroupId { get; private set; } = null!;
 
         /// <summary>
-        /// True when the placement group policy is respected.
+        /// (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
         /// </summary>
         [Output("placementGroupPolicyRespected")]
         public Output<bool> PlacementGroupPolicyRespected { get; private set; } = null!;
@@ -455,14 +455,6 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("rootVolume")]
         public Output<Outputs.InstanceServerRootVolume> RootVolume { get; private set; } = null!;
-
-        /// <summary>
-        /// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-        /// 
-        /// &gt; **Important:** Enabling routed ip will restart the server
-        /// </summary>
-        [Output("routedIpEnabled")]
-        public Output<bool> RoutedIpEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The security group the server is attached to
@@ -695,14 +687,6 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.InstanceServerRootVolumeArgs>? RootVolume { get; set; }
 
         /// <summary>
-        /// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-        /// 
-        /// &gt; **Important:** Enabling routed ip will restart the server
-        /// </summary>
-        [Input("routedIpEnabled")]
-        public Input<bool>? RoutedIpEnabled { get; set; }
-
-        /// <summary>
         /// The security group the server is attached to
         /// </summary>
         [Input("securityGroupId")]
@@ -890,7 +874,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
-        /// True when the placement group policy is respected.
+        /// (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
         /// </summary>
         [Input("placementGroupPolicyRespected")]
         public Input<bool>? PlacementGroupPolicyRespected { get; set; }
@@ -949,14 +933,6 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeGetArgs>? RootVolume { get; set; }
-
-        /// <summary>
-        /// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
-        /// 
-        /// &gt; **Important:** Enabling routed ip will restart the server
-        /// </summary>
-        [Input("routedIpEnabled")]
-        public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
         /// The security group the server is attached to

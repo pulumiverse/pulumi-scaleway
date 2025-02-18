@@ -60,12 +60,16 @@ type AppleSiliconServer struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt pulumi.StringOutput `pulumi:"deletableAt"`
+	// : Enables the VPC option when set to true.
+	EnableVpc pulumi.BoolPtrOutput `pulumi:"enableVpc"`
 	// IPv4 address of the server (IPv4 address).
 	Ip pulumi.StringOutput `pulumi:"ip"`
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The private networks to attach to the server
+	PrivateNetworks AppleSiliconServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -79,6 +83,8 @@ type AppleSiliconServer struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// URL of the VNC.
 	VncUrl pulumi.StringOutput `pulumi:"vncUrl"`
+	// The current status of the VPC option.
+	VpcStatus pulumi.StringOutput `pulumi:"vpcStatus"`
 	// `zone`) The zone in which
 	// the server should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -121,12 +127,16 @@ type appleSiliconServerState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt *string `pulumi:"deletableAt"`
+	// : Enables the VPC option when set to true.
+	EnableVpc *bool `pulumi:"enableVpc"`
 	// IPv4 address of the server (IPv4 address).
 	Ip *string `pulumi:"ip"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The private networks to attach to the server
+	PrivateNetworks []AppleSiliconServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -140,6 +150,8 @@ type appleSiliconServerState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// URL of the VNC.
 	VncUrl *string `pulumi:"vncUrl"`
+	// The current status of the VPC option.
+	VpcStatus *string `pulumi:"vpcStatus"`
 	// `zone`) The zone in which
 	// the server should be created.
 	Zone *string `pulumi:"zone"`
@@ -150,12 +162,16 @@ type AppleSiliconServerState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt pulumi.StringPtrInput
+	// : Enables the VPC option when set to true.
+	EnableVpc pulumi.BoolPtrInput
 	// IPv4 address of the server (IPv4 address).
 	Ip pulumi.StringPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The private networks to attach to the server
+	PrivateNetworks AppleSiliconServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
@@ -169,6 +185,8 @@ type AppleSiliconServerState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// URL of the VNC.
 	VncUrl pulumi.StringPtrInput
+	// The current status of the VPC option.
+	VpcStatus pulumi.StringPtrInput
 	// `zone`) The zone in which
 	// the server should be created.
 	Zone pulumi.StringPtrInput
@@ -179,8 +197,12 @@ func (AppleSiliconServerState) ElementType() reflect.Type {
 }
 
 type appleSiliconServerArgs struct {
+	// : Enables the VPC option when set to true.
+	EnableVpc *bool `pulumi:"enableVpc"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
+	// The private networks to attach to the server
+	PrivateNetworks []AppleSiliconServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -195,8 +217,12 @@ type appleSiliconServerArgs struct {
 
 // The set of arguments for constructing a AppleSiliconServer resource.
 type AppleSiliconServerArgs struct {
+	// : Enables the VPC option when set to true.
+	EnableVpc pulumi.BoolPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
+	// The private networks to attach to the server
+	PrivateNetworks AppleSiliconServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
@@ -306,6 +332,11 @@ func (o AppleSiliconServerOutput) DeletableAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.DeletableAt }).(pulumi.StringOutput)
 }
 
+// : Enables the VPC option when set to true.
+func (o AppleSiliconServerOutput) EnableVpc() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) pulumi.BoolPtrOutput { return v.EnableVpc }).(pulumi.BoolPtrOutput)
+}
+
 // IPv4 address of the server (IPv4 address).
 func (o AppleSiliconServerOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
@@ -319,6 +350,11 @@ func (o AppleSiliconServerOutput) Name() pulumi.StringOutput {
 // The organization ID the server is associated with.
 func (o AppleSiliconServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The private networks to attach to the server
+func (o AppleSiliconServerOutput) PrivateNetworks() AppleSiliconServerPrivateNetworkArrayOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) AppleSiliconServerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(AppleSiliconServerPrivateNetworkArrayOutput)
 }
 
 // `projectId`) The ID of the project the server is
@@ -347,6 +383,11 @@ func (o AppleSiliconServerOutput) UpdatedAt() pulumi.StringOutput {
 // URL of the VNC.
 func (o AppleSiliconServerOutput) VncUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.VncUrl }).(pulumi.StringOutput)
+}
+
+// The current status of the VPC option.
+func (o AppleSiliconServerOutput) VpcStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.VpcStatus }).(pulumi.StringOutput)
 }
 
 // `zone`) The zone in which

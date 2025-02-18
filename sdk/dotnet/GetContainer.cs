@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
-        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
         /// 
         /// ## Retrieve a Serverless Container
         /// 
@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
-        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
         /// 
         /// ## Retrieve a Serverless Container
         /// 
@@ -143,7 +143,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
-        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
         /// 
         /// ## Retrieve a Serverless Container
         /// 
@@ -281,13 +281,14 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string DomainName;
         /// <summary>
-        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        /// The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
         /// </summary>
         public readonly ImmutableDictionary<string, string> EnvironmentVariables;
         /// <summary>
         /// The error message of the container.
         /// </summary>
         public readonly string ErrorMessage;
+        public readonly ImmutableArray<Outputs.GetContainerHealthCheckResult> HealthChecks;
         public readonly string HttpOption;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -340,6 +341,10 @@ namespace Pulumiverse.Scaleway
         /// (Optional) Execution environment of the container.
         /// </summary>
         public readonly string Sandbox;
+        /// <summary>
+        /// Configuration block used to decide when to scale up or down. Possible values:
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetContainerScalingOptionResult> ScalingOptions;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         /// <summary>
         /// The container status.
@@ -367,6 +372,8 @@ namespace Pulumiverse.Scaleway
             ImmutableDictionary<string, string> environmentVariables,
 
             string errorMessage,
+
+            ImmutableArray<Outputs.GetContainerHealthCheckResult> healthChecks,
 
             string httpOption,
 
@@ -400,6 +407,8 @@ namespace Pulumiverse.Scaleway
 
             string sandbox,
 
+            ImmutableArray<Outputs.GetContainerScalingOptionResult> scalingOptions,
+
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
             string status,
@@ -414,6 +423,7 @@ namespace Pulumiverse.Scaleway
             DomainName = domainName;
             EnvironmentVariables = environmentVariables;
             ErrorMessage = errorMessage;
+            HealthChecks = healthChecks;
             HttpOption = httpOption;
             Id = id;
             MaxConcurrency = maxConcurrency;
@@ -430,6 +440,7 @@ namespace Pulumiverse.Scaleway
             RegistryImage = registryImage;
             RegistrySha256 = registrySha256;
             Sandbox = sandbox;
+            ScalingOptions = scalingOptions;
             SecretEnvironmentVariables = secretEnvironmentVariables;
             Status = status;
             Timeout = timeout;

@@ -27,7 +27,7 @@ class GetInstanceServerResult:
     """
     A collection of values returned by getInstanceServer.
     """
-    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, routed_ip_enabled=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -100,9 +100,6 @@ class GetInstanceServerResult:
         if root_volumes and not isinstance(root_volumes, list):
             raise TypeError("Expected argument 'root_volumes' to be a list")
         pulumi.set(__self__, "root_volumes", root_volumes)
-        if routed_ip_enabled and not isinstance(routed_ip_enabled, bool):
-            raise TypeError("Expected argument 'routed_ip_enabled' to be a bool")
-        pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id and not isinstance(security_group_id, str):
             raise TypeError("Expected argument 'security_group_id' to be a str")
         pulumi.set(__self__, "security_group_id", security_group_id)
@@ -292,14 +289,6 @@ class GetInstanceServerResult:
         return pulumi.get(self, "root_volumes")
 
     @property
-    @pulumi.getter(name="routedIpEnabled")
-    def routed_ip_enabled(self) -> bool:
-        """
-        True if the server support routed ip only.
-        """
-        return pulumi.get(self, "routed_ip_enabled")
-
-    @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> str:
         """
@@ -381,7 +370,6 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
             public_ips=self.public_ips,
             replace_on_type_change=self.replace_on_type_change,
             root_volumes=self.root_volumes,
-            routed_ip_enabled=self.routed_ip_enabled,
             security_group_id=self.security_group_id,
             server_id=self.server_id,
             state=self.state,
@@ -438,7 +426,6 @@ def get_instance_server(name: Optional[str] = None,
         public_ips=pulumi.get(__ret__, 'public_ips'),
         replace_on_type_change=pulumi.get(__ret__, 'replace_on_type_change'),
         root_volumes=pulumi.get(__ret__, 'root_volumes'),
-        routed_ip_enabled=pulumi.get(__ret__, 'routed_ip_enabled'),
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
         state=pulumi.get(__ret__, 'state'),
@@ -492,7 +479,6 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
         public_ips=pulumi.get(__response__, 'public_ips'),
         replace_on_type_change=pulumi.get(__response__, 'replace_on_type_change'),
         root_volumes=pulumi.get(__response__, 'root_volumes'),
-        routed_ip_enabled=pulumi.get(__response__, 'routed_ip_enabled'),
         security_group_id=pulumi.get(__response__, 'security_group_id'),
         server_id=pulumi.get(__response__, 'server_id'),
         state=pulumi.get(__response__, 'state'),

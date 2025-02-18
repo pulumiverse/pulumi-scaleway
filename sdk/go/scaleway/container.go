@@ -16,7 +16,7 @@ import (
 //
 // Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 //
-// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/).
 //
 // ## Example Usage
 //
@@ -112,6 +112,98 @@ import (
 // ~>**Important:** Make sure to select the right resources, as you will be billed based on compute usage over time and the number of Containers executions.
 // Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
 //
+// ## Health check configuration
+//
+// Custom health checks can be configured on the container.
+//
+// It's possible to specify the HTTP path that the probe will listen to and the number of failures before considering the container as unhealthy.
+// During a deployment, if a newly created container fails to pass the health check, the deployment is aborted.
+// As a result, lowering this value can help to reduce the time it takes to detect a failed deployment.
+// The period between health checks is also configurable.
+//
+// Example:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//				Name:        pulumi.String("my-container-02"),
+//				NamespaceId: pulumi.Any(mainScalewayContainerNamespace.Id),
+//				HealthChecks: scaleway.ContainerHealthCheckArray{
+//					&scaleway.ContainerHealthCheckArgs{
+//						Https: scaleway.ContainerHealthCheckHttpArray{
+//							&scaleway.ContainerHealthCheckHttpArgs{
+//								Path: pulumi.String("/ping"),
+//							},
+//						},
+//						FailureThreshold: pulumi.Int(40),
+//						Interval:         pulumi.String("3s"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ~>**Important:** Another probe type can be set to TCP with the API, but currently the SDK has not been updated with this parameter.
+// This is why the only probe that can be used here is the HTTP probe.
+// Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
+//
+// ## Scaling option configuration
+//
+// Scaling option block configuration allows you to choose which parameter will scale up/down containers.
+// Options are number of concurrent requests, CPU or memory usage.
+// It replaces current `maxConcurrency` that has been deprecated.
+//
+// Example:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//				Name:        pulumi.String("my-container-02"),
+//				NamespaceId: pulumi.Any(mainScalewayContainerNamespace.Id),
+//				ScalingOptions: scaleway.ContainerScalingOptionArray{
+//					&scaleway.ContainerScalingOptionArgs{
+//						ConcurrentRequestsThreshold: pulumi.Int(15),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ~>**Important**: A maximum of one of these parameters may be set. Also, when `cpuUsageThreshold` or `memoryUsageThreshold` are used, `minScale` can't be set to 0.
+// Refer to the [API Reference](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-create-a-new-container) for more information.
+//
 // ## Import
 //
 // Containers can be imported using, `{region}/{id}`, as shown below:
@@ -130,19 +222,23 @@ type Container struct {
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
 	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The native domain name of the container
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
-	// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
+	// Health check configuration of the container.
+	HealthChecks ContainerHealthCheckArrayOutput `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time.
+	//
+	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
 	// The maximum number of instances this container can scale to.
 	MaxScale pulumi.IntOutput `pulumi:"maxScale"`
@@ -170,7 +266,9 @@ type Container struct {
 	RegistrySha256 pulumi.StringPtrOutput `pulumi:"registrySha256"`
 	// Execution environment of the container.
 	Sandbox pulumi.StringOutput `pulumi:"sandbox"`
-	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+	// Configuration block used to decide when to scale up or down. Possible values:
+	ScalingOptions ContainerScalingOptionArrayOutput `pulumi:"scalingOptions"`
+	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -224,19 +322,23 @@ type containerState struct {
 	CronStatus *string `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
 	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
 	// The native domain name of the container
 	DomainName *string `pulumi:"domainName"`
-	// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage *string `pulumi:"errorMessage"`
+	// Health check configuration of the container.
+	HealthChecks []ContainerHealthCheck `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time.
+	//
+	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum number of instances this container can scale to.
 	MaxScale *int `pulumi:"maxScale"`
@@ -264,7 +366,9 @@ type containerState struct {
 	RegistrySha256 *string `pulumi:"registrySha256"`
 	// Execution environment of the container.
 	Sandbox *string `pulumi:"sandbox"`
-	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+	// Configuration block used to decide when to scale up or down. Possible values:
+	ScalingOptions []ContainerScalingOption `pulumi:"scalingOptions"`
+	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status *string `pulumi:"status"`
@@ -279,19 +383,23 @@ type ContainerState struct {
 	CronStatus pulumi.StringPtrInput
 	// Boolean indicating whether the container is in a production environment.
 	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
 	// The native domain name of the container
 	DomainName pulumi.StringPtrInput
-	// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
 	// The error message of the container.
 	ErrorMessage pulumi.StringPtrInput
+	// Health check configuration of the container.
+	HealthChecks ContainerHealthCheckArrayInput
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrInput
 	// The maximum number of simultaneous requests your container can handle at the same time.
+	//
+	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum number of instances this container can scale to.
 	MaxScale pulumi.IntPtrInput
@@ -319,7 +427,9 @@ type ContainerState struct {
 	RegistrySha256 pulumi.StringPtrInput
 	// Execution environment of the container.
 	Sandbox pulumi.StringPtrInput
-	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+	// Configuration block used to decide when to scale up or down. Possible values:
+	ScalingOptions ContainerScalingOptionArrayInput
+	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
 	Status pulumi.StringPtrInput
@@ -336,15 +446,19 @@ type containerArgs struct {
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Boolean indicating whether the container is in a production environment.
 	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
-	// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
+	// Health check configuration of the container.
+	HealthChecks []ContainerHealthCheck `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of simultaneous requests your container can handle at the same time.
+	//
+	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum number of instances this container can scale to.
 	MaxScale *int `pulumi:"maxScale"`
@@ -372,7 +486,9 @@ type containerArgs struct {
 	RegistrySha256 *string `pulumi:"registrySha256"`
 	// Execution environment of the container.
 	Sandbox *string `pulumi:"sandbox"`
-	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+	// Configuration block used to decide when to scale up or down. Possible values:
+	ScalingOptions []ContainerScalingOption `pulumi:"scalingOptions"`
+	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status *string `pulumi:"status"`
@@ -386,15 +502,19 @@ type ContainerArgs struct {
 	CpuLimit pulumi.IntPtrInput
 	// Boolean indicating whether the container is in a production environment.
 	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
-	// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
+	// Health check configuration of the container.
+	HealthChecks ContainerHealthCheckArrayInput
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrInput
 	// The maximum number of simultaneous requests your container can handle at the same time.
+	//
+	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum number of instances this container can scale to.
 	MaxScale pulumi.IntPtrInput
@@ -422,7 +542,9 @@ type ContainerArgs struct {
 	RegistrySha256 pulumi.StringPtrInput
 	// Execution environment of the container.
 	Sandbox pulumi.StringPtrInput
-	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+	// Configuration block used to decide when to scale up or down. Possible values:
+	ScalingOptions ContainerScalingOptionArrayInput
+	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
 	Status pulumi.StringPtrInput
@@ -529,7 +651,7 @@ func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 
 // Boolean indicating whether the container is in a production environment.
 //
-// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 func (o ContainerOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -544,7 +666,7 @@ func (o ContainerOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
 }
 
-// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 func (o ContainerOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
 }
@@ -554,12 +676,19 @@ func (o ContainerOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
+// Health check configuration of the container.
+func (o ContainerOutput) HealthChecks() ContainerHealthCheckArrayOutput {
+	return o.ApplyT(func(v *Container) ContainerHealthCheckArrayOutput { return v.HealthChecks }).(ContainerHealthCheckArrayOutput)
+}
+
 // Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 func (o ContainerOutput) HttpOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of simultaneous requests your container can handle at the same time.
+//
+// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 func (o ContainerOutput) MaxConcurrency() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MaxConcurrency }).(pulumi.IntOutput)
 }
@@ -626,7 +755,12 @@ func (o ContainerOutput) Sandbox() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Sandbox }).(pulumi.StringOutput)
 }
 
-// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
+// Configuration block used to decide when to scale up or down. Possible values:
+func (o ContainerOutput) ScalingOptions() ContainerScalingOptionArrayOutput {
+	return o.ApplyT(func(v *Container) ContainerScalingOptionArrayOutput { return v.ScalingOptions }).(ContainerScalingOptionArrayOutput)
+}
+
+// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 func (o ContainerOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }

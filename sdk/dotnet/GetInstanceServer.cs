@@ -171,10 +171,6 @@ namespace Pulumiverse.Scaleway
         public readonly bool ReplaceOnTypeChange;
         public readonly ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> RootVolumes;
         /// <summary>
-        /// True if the server support routed ip only.
-        /// </summary>
-        public readonly bool RoutedIpEnabled;
-        /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         /// </summary>
         public readonly string SecurityGroupId;
@@ -248,8 +244,6 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> rootVolumes,
 
-            bool routedIpEnabled,
-
             string securityGroupId,
 
             string? serverId,
@@ -288,7 +282,6 @@ namespace Pulumiverse.Scaleway
             PublicIps = publicIps;
             ReplaceOnTypeChange = replaceOnTypeChange;
             RootVolumes = rootVolumes;
-            RoutedIpEnabled = routedIpEnabled;
             SecurityGroupId = securityGroupId;
             ServerId = serverId;
             State = state;

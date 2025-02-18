@@ -51,6 +51,7 @@ export interface GetInstanceVolumeResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly migrateToSbs: boolean;
     readonly name?: string;
     /**
      * The ID of the organization the volume is associated with.

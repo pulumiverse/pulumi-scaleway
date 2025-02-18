@@ -26,10 +26,13 @@ class GetBlockVolumeResult:
     """
     A collection of values returned by getBlockVolume.
     """
-    def __init__(__self__, id=None, iops=None, name=None, project_id=None, size_in_gb=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, id=None, instance_volume_id=None, iops=None, name=None, project_id=None, size_in_gb=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if instance_volume_id and not isinstance(instance_volume_id, str):
+            raise TypeError("Expected argument 'instance_volume_id' to be a str")
+        pulumi.set(__self__, "instance_volume_id", instance_volume_id)
         if iops and not isinstance(iops, int):
             raise TypeError("Expected argument 'iops' to be a int")
         pulumi.set(__self__, "iops", iops)
@@ -62,6 +65,11 @@ class GetBlockVolumeResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceVolumeId")
+    def instance_volume_id(self) -> str:
+        return pulumi.get(self, "instance_volume_id")
 
     @property
     @pulumi.getter
@@ -111,6 +119,7 @@ class AwaitableGetBlockVolumeResult(GetBlockVolumeResult):
             yield self
         return GetBlockVolumeResult(
             id=self.id,
+            instance_volume_id=self.instance_volume_id,
             iops=self.iops,
             name=self.name,
             project_id=self.project_id,
@@ -128,7 +137,7 @@ def get_block_volume(name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockVolumeResult:
     """
     The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
-    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
@@ -146,6 +155,7 @@ def get_block_volume(name: Optional[str] = None,
 
     return AwaitableGetBlockVolumeResult(
         id=pulumi.get(__ret__, 'id'),
+        instance_volume_id=pulumi.get(__ret__, 'instance_volume_id'),
         iops=pulumi.get(__ret__, 'iops'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -161,7 +171,7 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
     The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
-    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
@@ -178,6 +188,7 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockVolume:getBlockVolume', __args__, opts=opts, typ=GetBlockVolumeResult)
     return __ret__.apply(lambda __response__: GetBlockVolumeResult(
         id=pulumi.get(__response__, 'id'),
+        instance_volume_id=pulumi.get(__response__, 'instance_volume_id'),
         iops=pulumi.get(__response__, 'iops'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),

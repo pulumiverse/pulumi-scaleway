@@ -342,6 +342,9 @@ type DatabaseInstance struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
+	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Identifier for the first user of the Database Instance.
@@ -363,9 +366,6 @@ func NewDatabaseInstance(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Engine == nil {
-		return nil, errors.New("invalid value for required argument 'Engine'")
-	}
 	if args.NodeType == nil {
 		return nil, errors.New("invalid value for required argument 'NodeType'")
 	}
@@ -458,6 +458,9 @@ type databaseInstanceState struct {
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
+	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the Database Instance.
@@ -532,6 +535,9 @@ type DatabaseInstanceState struct {
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
+	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the Database Instance.
@@ -564,7 +570,7 @@ type databaseInstanceArgs struct {
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important** Updates to `engine` will recreate the Database Instance.
-	Engine string `pulumi:"engine"`
+	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the Database Instance.
@@ -596,6 +602,9 @@ type databaseInstanceArgs struct {
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
+	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the Database Instance.
@@ -625,7 +634,7 @@ type DatabaseInstanceArgs struct {
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important** Updates to `engine` will recreate the Database Instance.
-	Engine pulumi.StringInput
+	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the Database Instance.
@@ -657,6 +666,9 @@ type DatabaseInstanceArgs struct {
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
+	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the Database Instance.
@@ -881,6 +893,12 @@ func (o DatabaseInstanceOutput) Region() pulumi.StringOutput {
 // Map of engine settings to be set on a running instance.
 func (o DatabaseInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
+// captured in the specified snapshot. Conflicts with the `engine` attribute.
+func (o DatabaseInstanceOutput) SnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }
 
 // The tags associated with the Database Instance.

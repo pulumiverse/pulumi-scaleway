@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
  *
- * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+ * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
 export function getAccountProject(args?: GetAccountProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountProjectResult> {
     args = args || {};
@@ -59,7 +59,7 @@ export interface GetAccountProjectResult {
 /**
  * The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
  *
- * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+ * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
 export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountProjectResult> {
     args = args || {};

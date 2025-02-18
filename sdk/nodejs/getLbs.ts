@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Load Balancers.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  */
 export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbsResult> {
     args = args || {};
@@ -80,7 +80,7 @@ export interface GetLbsResult {
 /**
  * Gets information about multiple Load Balancers.
  *
- * For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  */
 export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbsResult> {
     args = args || {};

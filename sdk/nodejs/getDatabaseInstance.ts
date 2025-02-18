@@ -77,6 +77,7 @@ export interface GetDatabaseInstanceResult {
     readonly readReplicas: outputs.GetDatabaseInstanceReadReplica[];
     readonly region?: string;
     readonly settings: {[key: string]: string};
+    readonly snapshotId: string;
     readonly tags: string[];
     readonly userName: string;
     readonly volumeSizeInGb: number;

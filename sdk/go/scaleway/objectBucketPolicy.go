@@ -12,9 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+// The `ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 //
-// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
+// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
 //
 // ## Example Usage
 //
@@ -141,7 +141,7 @@ import (
 //				return err
 //			}
 //			// IAM configuration
-//			_, err = scaleway.NewIamApplication(ctx, "reading-app", &scaleway.IamApplicationArgs{
+//			reading_app, err := scaleway.NewIamApplication(ctx, "reading-app", &scaleway.IamApplicationArgs{
 //				Name: pulumi.String("reading-app"),
 //			})
 //			if err != nil {
@@ -398,7 +398,7 @@ import (
 //
 // ```
 //
-// **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+// **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-storage-aws-cli/).
 //
 // ## Import
 //

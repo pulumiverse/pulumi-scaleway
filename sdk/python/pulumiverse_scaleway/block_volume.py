@@ -20,6 +20,7 @@ __all__ = ['BlockVolumeArgs', 'BlockVolume']
 class BlockVolumeArgs:
     def __init__(__self__, *,
                  iops: pulumi.Input[int],
+                 instance_volume_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  size_in_gb: Optional[pulumi.Input[int]] = None,
@@ -28,7 +29,8 @@ class BlockVolumeArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BlockVolume resource.
-        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
@@ -37,6 +39,8 @@ class BlockVolumeArgs:
         :param pulumi.Input[str] zone: ). The zone in which the volume should be created.
         """
         pulumi.set(__self__, "iops", iops)
+        if instance_volume_id is not None:
+            pulumi.set(__self__, "instance_volume_id", instance_volume_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -54,13 +58,25 @@ class BlockVolumeArgs:
     @pulumi.getter
     def iops(self) -> pulumi.Input[int]:
         """
-        The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
 
     @iops.setter
     def iops(self, value: pulumi.Input[int]):
         pulumi.set(self, "iops", value)
+
+    @property
+    @pulumi.getter(name="instanceVolumeId")
+    def instance_volume_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The instance volume to create the block volume from
+        """
+        return pulumi.get(self, "instance_volume_id")
+
+    @instance_volume_id.setter
+    def instance_volume_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_volume_id", value)
 
     @property
     @pulumi.getter
@@ -138,6 +154,7 @@ class BlockVolumeArgs:
 @pulumi.input_type
 class _BlockVolumeState:
     def __init__(__self__, *,
+                 instance_volume_id: Optional[pulumi.Input[str]] = None,
                  iops: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -147,7 +164,8 @@ class _BlockVolumeState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BlockVolume resources.
-        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] instance_volume_id: The instance volume to create the block volume from
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
@@ -155,6 +173,8 @@ class _BlockVolumeState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[str] zone: ). The zone in which the volume should be created.
         """
+        if instance_volume_id is not None:
+            pulumi.set(__self__, "instance_volume_id", instance_volume_id)
         if iops is not None:
             pulumi.set(__self__, "iops", iops)
         if name is not None:
@@ -171,10 +191,22 @@ class _BlockVolumeState:
             pulumi.set(__self__, "zone", zone)
 
     @property
+    @pulumi.getter(name="instanceVolumeId")
+    def instance_volume_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The instance volume to create the block volume from
+        """
+        return pulumi.get(self, "instance_volume_id")
+
+    @instance_volume_id.setter
+    def instance_volume_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_volume_id", value)
+
+    @property
     @pulumi.getter
     def iops(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
 
@@ -260,6 +292,7 @@ class BlockVolume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 instance_volume_id: Optional[pulumi.Input[str]] = None,
                  iops: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -271,13 +304,13 @@ class BlockVolume(pulumi.CustomResource):
         """
         The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
 
-        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
 
         ### Create a Block Storage volume
 
-        The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
+        The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/block-storage/concepts/#iops).
 
         ```python
         import pulumi
@@ -320,7 +353,8 @@ class BlockVolume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] instance_volume_id: The instance volume to create the block volume from
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
@@ -337,13 +371,13 @@ class BlockVolume(pulumi.CustomResource):
         """
         The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
 
-        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
         ## Example Usage
 
         ### Create a Block Storage volume
 
-        The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/storage/block/concepts/#iops).
+        The following command allows you to create a Block Storage volume of 20 GB with a 5000 [IOPS](https://www.scaleway.com/en/docs/block-storage/concepts/#iops).
 
         ```python
         import pulumi
@@ -399,6 +433,7 @@ class BlockVolume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 instance_volume_id: Optional[pulumi.Input[str]] = None,
                  iops: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -415,6 +450,7 @@ class BlockVolume(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BlockVolumeArgs.__new__(BlockVolumeArgs)
 
+            __props__.__dict__["instance_volume_id"] = instance_volume_id
             if iops is None and not opts.urn:
                 raise TypeError("Missing required property 'iops'")
             __props__.__dict__["iops"] = iops
@@ -434,6 +470,7 @@ class BlockVolume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            instance_volume_id: Optional[pulumi.Input[str]] = None,
             iops: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -448,7 +485,8 @@ class BlockVolume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[str] instance_volume_id: The instance volume to create the block volume from
+        :param pulumi.Input[int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
@@ -460,6 +498,7 @@ class BlockVolume(pulumi.CustomResource):
 
         __props__ = _BlockVolumeState.__new__(_BlockVolumeState)
 
+        __props__.__dict__["instance_volume_id"] = instance_volume_id
         __props__.__dict__["iops"] = iops
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
@@ -470,10 +509,18 @@ class BlockVolume(pulumi.CustomResource):
         return BlockVolume(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="instanceVolumeId")
+    def instance_volume_id(self) -> pulumi.Output[str]:
+        """
+        The instance volume to create the block volume from
+        """
+        return pulumi.get(self, "instance_volume_id")
+
+    @property
     @pulumi.getter
     def iops(self) -> pulumi.Output[int]:
         """
-        The maximum [IOPs](https://www.scaleway.com/en/docs/storage/block/concepts/#iops) expected, must match available options.
+        The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
 
