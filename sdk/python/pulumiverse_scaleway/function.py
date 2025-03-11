@@ -48,7 +48,7 @@ class FunctionArgs:
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         :param pulumi.Input[int] max_scale: The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each function. Defaults to 256 MB.
         :param pulumi.Input[int] min_scale: The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
@@ -183,7 +183,7 @@ class FunctionArgs:
     @pulumi.getter(name="httpOption")
     def http_option(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP traffic configuration
+        Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
@@ -356,7 +356,7 @@ class _FunctionState:
         :param pulumi.Input[str] domain_name: The native domain name of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         :param pulumi.Input[str] handler: Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         :param pulumi.Input[int] max_scale: The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each function. Defaults to 256 MB.
         :param pulumi.Input[int] min_scale: The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
@@ -493,7 +493,7 @@ class _FunctionState:
     @pulumi.getter(name="httpOption")
     def http_option(self) -> Optional[pulumi.Input[str]]:
         """
-        HTTP traffic configuration
+        Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
@@ -725,7 +725,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         :param pulumi.Input[str] handler: Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         :param pulumi.Input[int] max_scale: The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each function. Defaults to 256 MB.
         :param pulumi.Input[int] min_scale: The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
@@ -879,7 +879,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] domain_name: The native domain name of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         :param pulumi.Input[str] handler: Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
-        :param pulumi.Input[str] http_option: HTTP traffic configuration
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         :param pulumi.Input[int] max_scale: The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each function. Defaults to 256 MB.
         :param pulumi.Input[int] min_scale: The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
@@ -975,7 +975,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter(name="httpOption")
     def http_option(self) -> pulumi.Output[Optional[str]]:
         """
-        HTTP traffic configuration
+        Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 

@@ -189,8 +189,6 @@ export class Container extends pulumi.CustomResource {
     public /*out*/ readonly cronStatus!: pulumi.Output<string>;
     /**
      * Boolean indicating whether the container is in a production environment.
-     *
-     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
     public readonly deploy!: pulumi.Output<boolean | undefined>;
     /**
@@ -210,7 +208,7 @@ export class Container extends pulumi.CustomResource {
      */
     public /*out*/ readonly errorMessage!: pulumi.Output<string>;
     /**
-     * Health check configuration of the container.
+     * Health check configuration block of the container.
      */
     public readonly healthChecks!: pulumi.Output<outputs.ContainerHealthCheck[]>;
     /**
@@ -218,7 +216,13 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly httpOption!: pulumi.Output<string | undefined>;
     /**
-     * The maximum number of simultaneous requests your container can handle at the same time.
+     * Local storage limit of the container (in MB)
+     *
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+     */
+    public readonly localStorageLimit!: pulumi.Output<number>;
+    /**
+     * The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
      *
      * @deprecated Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
      */
@@ -286,7 +290,7 @@ export class Container extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
-     * The maximum amount of time your container can spend processing a request before being stopped.
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
     public readonly timeout!: pulumi.Output<number>;
 
@@ -312,6 +316,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
             resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
             resourceInputs["httpOption"] = state ? state.httpOption : undefined;
+            resourceInputs["localStorageLimit"] = state ? state.localStorageLimit : undefined;
             resourceInputs["maxConcurrency"] = state ? state.maxConcurrency : undefined;
             resourceInputs["maxScale"] = state ? state.maxScale : undefined;
             resourceInputs["memoryLimit"] = state ? state.memoryLimit : undefined;
@@ -340,6 +345,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
             resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
             resourceInputs["httpOption"] = args ? args.httpOption : undefined;
+            resourceInputs["localStorageLimit"] = args ? args.localStorageLimit : undefined;
             resourceInputs["maxConcurrency"] = args ? args.maxConcurrency : undefined;
             resourceInputs["maxScale"] = args ? args.maxScale : undefined;
             resourceInputs["memoryLimit"] = args ? args.memoryLimit : undefined;
@@ -382,8 +388,6 @@ export interface ContainerState {
     cronStatus?: pulumi.Input<string>;
     /**
      * Boolean indicating whether the container is in a production environment.
-     *
-     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
     deploy?: pulumi.Input<boolean>;
     /**
@@ -403,7 +407,7 @@ export interface ContainerState {
      */
     errorMessage?: pulumi.Input<string>;
     /**
-     * Health check configuration of the container.
+     * Health check configuration block of the container.
      */
     healthChecks?: pulumi.Input<pulumi.Input<inputs.ContainerHealthCheck>[]>;
     /**
@@ -411,7 +415,13 @@ export interface ContainerState {
      */
     httpOption?: pulumi.Input<string>;
     /**
-     * The maximum number of simultaneous requests your container can handle at the same time.
+     * Local storage limit of the container (in MB)
+     *
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+     */
+    localStorageLimit?: pulumi.Input<number>;
+    /**
+     * The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
      *
      * @deprecated Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
      */
@@ -479,7 +489,7 @@ export interface ContainerState {
      */
     status?: pulumi.Input<string>;
     /**
-     * The maximum amount of time your container can spend processing a request before being stopped.
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
     timeout?: pulumi.Input<number>;
 }
@@ -494,8 +504,6 @@ export interface ContainerArgs {
     cpuLimit?: pulumi.Input<number>;
     /**
      * Boolean indicating whether the container is in a production environment.
-     *
-     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
     deploy?: pulumi.Input<boolean>;
     /**
@@ -507,7 +515,7 @@ export interface ContainerArgs {
      */
     environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Health check configuration of the container.
+     * Health check configuration block of the container.
      */
     healthChecks?: pulumi.Input<pulumi.Input<inputs.ContainerHealthCheck>[]>;
     /**
@@ -515,7 +523,13 @@ export interface ContainerArgs {
      */
     httpOption?: pulumi.Input<string>;
     /**
-     * The maximum number of simultaneous requests your container can handle at the same time.
+     * Local storage limit of the container (in MB)
+     *
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+     */
+    localStorageLimit?: pulumi.Input<number>;
+    /**
+     * The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
      *
      * @deprecated Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
      */
@@ -583,7 +597,7 @@ export interface ContainerArgs {
      */
     status?: pulumi.Input<string>;
     /**
-     * The maximum amount of time your container can spend processing a request before being stopped.
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
     timeout?: pulumi.Input<number>;
 }

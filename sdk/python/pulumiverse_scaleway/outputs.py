@@ -90,6 +90,7 @@ __all__ = [
     'LoadbalancerPrivateNetwork',
     'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
+    'MongoDbInstancePrivateNetwork',
     'MongoDbInstancePublicNetwork',
     'ObjectBucketAclAccessControlPolicy',
     'ObjectBucketAclAccessControlPolicyGrant',
@@ -113,7 +114,9 @@ __all__ = [
     'VpcPrivateNetworkIpv4Subnet',
     'VpcPrivateNetworkIpv6Subnet',
     'WebhostingCpanelUrl',
+    'WebhostingNameServer',
     'WebhostingOption',
+    'WebhostingRecord',
     'GetBaremetalOfferCpuResult',
     'GetBaremetalOfferDiskResult',
     'GetBaremetalOfferMemoryResult',
@@ -185,6 +188,7 @@ __all__ = [
     'GetLoadbalancerCertificateCustomCertificateResult',
     'GetLoadbalancerCertificateLetsencryptResult',
     'GetLoadbalancerPrivateNetworkResult',
+    'GetMongoDbInstancePrivateNetworkResult',
     'GetMongoDbInstancePublicNetworkResult',
     'GetObjectBucketCorsRuleResult',
     'GetObjectBucketLifecycleRuleResult',
@@ -201,9 +205,13 @@ __all__ = [
     'GetVpcPrivateNetworkIpv6SubnetResult',
     'GetVpcRoutesRouteResult',
     'GetVpcsVpcResult',
+    'GetWebHostOfferOfferResult',
+    'GetWebHostOfferOfferOptionResult',
     'GetWebHostOfferProductResult',
     'GetWebhostingCpanelUrlResult',
+    'GetWebhostingNameServerResult',
     'GetWebhostingOptionResult',
+    'GetWebhostingRecordResult',
 ]
 
 @pulumi.output_type
@@ -963,7 +971,7 @@ class ContainerHealthCheck(dict):
         """
         :param int failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
         :param Sequence['ContainerHealthCheckHttpArgs'] https: HTTP health check configuration.
-        :param str interval: Period between health checks.
+        :param str interval: Period between health checks (in seconds).
         """
         pulumi.set(__self__, "failure_threshold", failure_threshold)
         pulumi.set(__self__, "https", https)
@@ -989,7 +997,7 @@ class ContainerHealthCheck(dict):
     @pulumi.getter
     def interval(self) -> str:
         """
-        Period between health checks.
+        Period between health checks (in seconds).
         """
         return pulumi.get(self, "interval")
 
@@ -2169,13 +2177,13 @@ class IamPolicyRule(dict):
                  project_ids: Optional[Sequence[str]] = None):
         """
         :param Sequence[str] permission_set_names: Names of permission sets bind to the rule.
+        :param str condition: The condition of the rule.
                
                **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
                
                ```shell
-               scw IAM permission-set list
+               scw iam permission-set list
                ```
-        :param str condition: The condition of the IAM policy.
         :param str organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param Sequence[str] project_ids: List of project IDs scoped to the rule.
                
@@ -2194,12 +2202,6 @@ class IamPolicyRule(dict):
     def permission_set_names(self) -> Sequence[str]:
         """
         Names of permission sets bind to the rule.
-
-        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
-
-        ```shell
-        scw IAM permission-set list
-        ```
         """
         return pulumi.get(self, "permission_set_names")
 
@@ -2207,7 +2209,13 @@ class IamPolicyRule(dict):
     @pulumi.getter
     def condition(self) -> Optional[str]:
         """
-        The condition of the IAM policy.
+        The condition of the rule.
+
+        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+
+        ```shell
+        scw iam permission-set list
+        ```
         """
         return pulumi.get(self, "condition")
 
@@ -4231,6 +4239,7 @@ class KubernetesNodePoolNode(dict):
                  status: Optional[str] = None):
         """
         :param str name: The name for the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param str public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param str public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
@@ -4250,6 +4259,7 @@ class KubernetesNodePoolNode(dict):
     def name(self) -> Optional[str]:
         """
         The name for the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
@@ -5243,6 +5253,91 @@ class MnqSqsCredentialsPermissions(dict):
 
 
 @pulumi.output_type
+class MongoDbInstancePrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pnId":
+            suggest = "pn_id"
+        elif key == "dnsRecords":
+            suggest = "dns_records"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MongoDbInstancePrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MongoDbInstancePrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MongoDbInstancePrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pn_id: str,
+                 dns_records: Optional[Sequence[str]] = None,
+                 id: Optional[str] = None,
+                 ips: Optional[Sequence[str]] = None,
+                 port: Optional[int] = None):
+        """
+        :param str pn_id: The ID of the Private Network.
+        :param Sequence[str] dns_records: List of DNS records for your endpoint.
+        :param str id: The ID of the endpoint.
+        :param Sequence[str] ips: List of IP addresses for your endpoint.
+        :param int port: TCP port of the endpoint.
+        """
+        pulumi.set(__self__, "pn_id", pn_id)
+        if dns_records is not None:
+            pulumi.set(__self__, "dns_records", dns_records)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> str:
+        """
+        The ID of the Private Network.
+        """
+        return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter(name="dnsRecords")
+    def dns_records(self) -> Optional[Sequence[str]]:
+        """
+        List of DNS records for your endpoint.
+        """
+        return pulumi.get(self, "dns_records")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[Sequence[str]]:
+        """
+        List of IP addresses for your endpoint.
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        TCP port of the endpoint.
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
 class MongoDbInstancePublicNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5267,8 +5362,8 @@ class MongoDbInstancePublicNetwork(dict):
                  port: Optional[int] = None):
         """
         :param str dns_record: The DNS record of your endpoint
-        :param str id: The ID of the MongoDB® instance.
-        :param int port: TCP port of the endpoint
+        :param str id: The ID of the endpoint.
+        :param int port: TCP port of the endpoint.
         """
         if dns_record is not None:
             pulumi.set(__self__, "dns_record", dns_record)
@@ -5289,7 +5384,7 @@ class MongoDbInstancePublicNetwork(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the MongoDB® instance.
+        The ID of the endpoint.
         """
         return pulumi.get(self, "id")
 
@@ -5297,7 +5392,7 @@ class MongoDbInstancePublicNetwork(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        TCP port of the endpoint
+        TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 
@@ -6538,6 +6633,58 @@ class WebhostingCpanelUrl(dict):
 
 
 @pulumi.output_type
+class WebhostingNameServer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WebhostingNameServer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WebhostingNameServer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WebhostingNameServer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 hostname: Optional[str] = None,
+                 is_default: Optional[bool] = None,
+                 status: Optional[str] = None):
+        """
+        :param str status: The hosting status.
+        """
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if is_default is not None:
+            pulumi.set(__self__, "is_default", is_default)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The hosting status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class WebhostingOption(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
@@ -6566,6 +6713,69 @@ class WebhostingOption(dict):
         The option name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class WebhostingRecord(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 priority: Optional[int] = None,
+                 status: Optional[str] = None,
+                 ttl: Optional[int] = None,
+                 type: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str name: The option name.
+        :param str status: The hosting status.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The option name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The hosting status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[int]:
+        return pulumi.get(self, "ttl")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -7245,7 +7455,7 @@ class GetCockpitEndpointResult(dict):
         :param str grafana_url: (Deprecated) URL for Grafana.
         :param str logs_url: (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         :param str metrics_url: (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        :param str traces_url: The traces URL
+        :param str traces_url: The traces URL.
         """
         pulumi.set(__self__, "alertmanager_url", alertmanager_url)
         pulumi.set(__self__, "grafana_url", grafana_url)
@@ -7289,7 +7499,7 @@ class GetCockpitEndpointResult(dict):
     @pulumi.getter(name="tracesUrl")
     def traces_url(self) -> str:
         """
-        The traces URL
+        The traces URL.
         """
         return pulumi.get(self, "traces_url")
 
@@ -11108,6 +11318,68 @@ class GetLoadbalancerPrivateNetworkResult(dict):
 
 
 @pulumi.output_type
+class GetMongoDbInstancePrivateNetworkResult(dict):
+    def __init__(__self__, *,
+                 dns_records: Sequence[str],
+                 id: str,
+                 ips: Sequence[str],
+                 pn_id: str,
+                 port: int):
+        """
+        :param Sequence[str] dns_records: List of DNS records for your endpoint
+        :param str id: The ID of the MongoDB® Instance.
+        :param Sequence[str] ips: List of IP addresses for your endpoint
+        :param str pn_id: The private network ID
+        :param int port: TCP port of the endpoint
+        """
+        pulumi.set(__self__, "dns_records", dns_records)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "pn_id", pn_id)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="dnsRecords")
+    def dns_records(self) -> Sequence[str]:
+        """
+        List of DNS records for your endpoint
+        """
+        return pulumi.get(self, "dns_records")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the MongoDB® Instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        """
+        List of IP addresses for your endpoint
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> str:
+        """
+        The private network ID
+        """
+        return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        TCP port of the endpoint
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
 class GetMongoDbInstancePublicNetworkResult(dict):
     def __init__(__self__, *,
                  dns_record: str,
@@ -12008,6 +12280,207 @@ class GetVpcsVpcResult(dict):
 
 
 @pulumi.output_type
+class GetWebHostOfferOfferResult(dict):
+    def __init__(__self__, *,
+                 available: bool,
+                 billing_operation_path: str,
+                 control_panel_name: str,
+                 end_of_life: bool,
+                 id: str,
+                 name: str,
+                 options: Sequence['outputs.GetWebHostOfferOfferOptionResult'],
+                 price: str,
+                 quota_warning: str):
+        """
+        :param bool available: Indicates if the offer is available.
+        :param str billing_operation_path: The billing operation identifier for the option.
+        :param str control_panel_name: The name of the control panel (e.g., Cpanel or Plesk).
+        :param bool end_of_life: Indicates if the offer is deprecated or no longer supported.
+        :param str id: The unique identifier of the option.
+        :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+        :param Sequence['GetWebHostOfferOfferOptionArgs'] options: A list of available options for the offer:
+        :param str price: The offer price.
+        :param str quota_warning: Warning information regarding quota limitations for the option.
+        """
+        pulumi.set(__self__, "available", available)
+        pulumi.set(__self__, "billing_operation_path", billing_operation_path)
+        pulumi.set(__self__, "control_panel_name", control_panel_name)
+        pulumi.set(__self__, "end_of_life", end_of_life)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "options", options)
+        pulumi.set(__self__, "price", price)
+        pulumi.set(__self__, "quota_warning", quota_warning)
+
+    @property
+    @pulumi.getter
+    def available(self) -> bool:
+        """
+        Indicates if the offer is available.
+        """
+        return pulumi.get(self, "available")
+
+    @property
+    @pulumi.getter(name="billingOperationPath")
+    def billing_operation_path(self) -> str:
+        """
+        The billing operation identifier for the option.
+        """
+        return pulumi.get(self, "billing_operation_path")
+
+    @property
+    @pulumi.getter(name="controlPanelName")
+    def control_panel_name(self) -> str:
+        """
+        The name of the control panel (e.g., Cpanel or Plesk).
+        """
+        return pulumi.get(self, "control_panel_name")
+
+    @property
+    @pulumi.getter(name="endOfLife")
+    def end_of_life(self) -> bool:
+        """
+        Indicates if the offer is deprecated or no longer supported.
+        """
+        return pulumi.get(self, "end_of_life")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The unique identifier of the option.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The offer name. Only one of `name` and `offer_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def options(self) -> Sequence['outputs.GetWebHostOfferOfferOptionResult']:
+        """
+        A list of available options for the offer:
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter
+    def price(self) -> str:
+        """
+        The offer price.
+        """
+        return pulumi.get(self, "price")
+
+    @property
+    @pulumi.getter(name="quotaWarning")
+    def quota_warning(self) -> str:
+        """
+        Warning information regarding quota limitations for the option.
+        """
+        return pulumi.get(self, "quota_warning")
+
+
+@pulumi.output_type
+class GetWebHostOfferOfferOptionResult(dict):
+    def __init__(__self__, *,
+                 billing_operation_path: str,
+                 current_value: int,
+                 id: str,
+                 max_value: int,
+                 min_value: int,
+                 name: str,
+                 price: str,
+                 quota_warning: str):
+        """
+        :param str billing_operation_path: The billing operation identifier for the option.
+        :param int current_value: The current value set for the option.
+        :param str id: The unique identifier of the option.
+        :param int max_value: The maximum allowed value for the option.
+        :param int min_value: The minimum value for the option.
+        :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+        :param str price: The offer price.
+        :param str quota_warning: Warning information regarding quota limitations for the option.
+        """
+        pulumi.set(__self__, "billing_operation_path", billing_operation_path)
+        pulumi.set(__self__, "current_value", current_value)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_value", max_value)
+        pulumi.set(__self__, "min_value", min_value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "price", price)
+        pulumi.set(__self__, "quota_warning", quota_warning)
+
+    @property
+    @pulumi.getter(name="billingOperationPath")
+    def billing_operation_path(self) -> str:
+        """
+        The billing operation identifier for the option.
+        """
+        return pulumi.get(self, "billing_operation_path")
+
+    @property
+    @pulumi.getter(name="currentValue")
+    def current_value(self) -> int:
+        """
+        The current value set for the option.
+        """
+        return pulumi.get(self, "current_value")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The unique identifier of the option.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="maxValue")
+    def max_value(self) -> int:
+        """
+        The maximum allowed value for the option.
+        """
+        return pulumi.get(self, "max_value")
+
+    @property
+    @pulumi.getter(name="minValue")
+    def min_value(self) -> int:
+        """
+        The minimum value for the option.
+        """
+        return pulumi.get(self, "min_value")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The offer name. Only one of `name` and `offer_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def price(self) -> str:
+        """
+        The offer price.
+        """
+        return pulumi.get(self, "price")
+
+    @property
+    @pulumi.getter(name="quotaWarning")
+    def quota_warning(self) -> str:
+        """
+        Warning information regarding quota limitations for the option.
+        """
+        return pulumi.get(self, "quota_warning")
+
+
+@pulumi.output_type
 class GetWebHostOfferProductResult(dict):
     def __init__(__self__, *,
                  databases_quota: int,
@@ -12133,6 +12606,32 @@ class GetWebhostingCpanelUrlResult(dict):
 
 
 @pulumi.output_type
+class GetWebhostingNameServerResult(dict):
+    def __init__(__self__, *,
+                 hostname: str,
+                 is_default: bool,
+                 status: str):
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "is_default", is_default)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetWebhostingOptionResult(dict):
     def __init__(__self__, *,
                  id: str,
@@ -12149,5 +12648,52 @@ class GetWebhostingOptionResult(dict):
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetWebhostingRecordResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 priority: int,
+                 status: str,
+                 ttl: int,
+                 type: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "ttl", ttl)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> int:
+        return pulumi.get(self, "ttl")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 

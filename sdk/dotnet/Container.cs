@@ -209,8 +209,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
-        /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
@@ -240,7 +238,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
-        /// Health check configuration of the container.
+        /// Health check configuration block of the container.
         /// </summary>
         [Output("healthChecks")]
         public Output<ImmutableArray<Outputs.ContainerHealthCheck>> HealthChecks { get; private set; } = null!;
@@ -252,7 +250,15 @@ namespace Pulumiverse.Scaleway
         public Output<string?> HttpOption { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time.
+        /// Local storage limit of the container (in MB)
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// </summary>
+        [Output("localStorageLimit")]
+        public Output<int> LocalStorageLimit { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         /// </summary>
         [Output("maxConcurrency")]
         public Output<int> MaxConcurrency { get; private set; } = null!;
@@ -350,7 +356,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum amount of time your container can spend processing a request before being stopped.
+        /// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
@@ -414,8 +420,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
-        /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -442,7 +446,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.ContainerHealthCheckArgs>? _healthChecks;
 
         /// <summary>
-        /// Health check configuration of the container.
+        /// Health check configuration block of the container.
         /// </summary>
         public InputList<Inputs.ContainerHealthCheckArgs> HealthChecks
         {
@@ -457,7 +461,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time.
+        /// Local storage limit of the container (in MB)
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// </summary>
+        [Input("localStorageLimit")]
+        public Input<int>? LocalStorageLimit { get; set; }
+
+        /// <summary>
+        /// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         /// </summary>
         [Input("maxConcurrency")]
         public Input<int>? MaxConcurrency { get; set; }
@@ -571,7 +583,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The maximum amount of time your container can spend processing a request before being stopped.
+        /// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -598,8 +610,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
-        /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -638,7 +648,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.ContainerHealthCheckGetArgs>? _healthChecks;
 
         /// <summary>
-        /// Health check configuration of the container.
+        /// Health check configuration block of the container.
         /// </summary>
         public InputList<Inputs.ContainerHealthCheckGetArgs> HealthChecks
         {
@@ -653,7 +663,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time.
+        /// Local storage limit of the container (in MB)
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// </summary>
+        [Input("localStorageLimit")]
+        public Input<int>? LocalStorageLimit { get; set; }
+
+        /// <summary>
+        /// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         /// </summary>
         [Input("maxConcurrency")]
         public Input<int>? MaxConcurrency { get; set; }
@@ -767,7 +785,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The maximum amount of time your container can spend processing a request before being stopped.
+        /// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

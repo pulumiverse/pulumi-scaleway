@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway compute Instances. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
+// Creates and manages Scaleway compute Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
 //
 // Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 //
@@ -64,9 +64,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			data, err := scaleway.NewInstanceVolume(ctx, "data", &scaleway.InstanceVolumeArgs{
+//			data, err := scaleway.NewBlockVolume(ctx, "data", &scaleway.BlockVolumeArgs{
 //				SizeInGb: pulumi.Int(100),
-//				Type:     pulumi.String("b_ssd"),
+//				Iops:     pulumi.Int(5000),
 //			})
 //			if err != nil {
 //				return err
@@ -244,8 +244,7 @@ import (
 //				Type:  pulumi.String("PRO2-XXS"),
 //				Image: pulumi.String("ubuntu_jammy"),
 //				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
-//					VolumeType: pulumi.String("b_ssd"),
-//					SizeInGb:   pulumi.Int(100),
+//					SizeInGb: pulumi.Int(100),
 //				},
 //			})
 //			if err != nil {
@@ -271,15 +270,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			snapshot, err := scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
+//			snapshot, err := scaleway.LookupBlockSnapshot(ctx, &scaleway.LookupBlockSnapshotArgs{
 //				Name: pulumi.StringRef("my_snapshot"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			fromSnapshot, err := scaleway.NewInstanceVolume(ctx, "from_snapshot", &scaleway.InstanceVolumeArgs{
-//				FromSnapshotId: pulumi.String(snapshot.Id),
-//				Type:           pulumi.String("b_ssd"),
+//			fromSnapshot, err := scaleway.NewBlockVolume(ctx, "from_snapshot", &scaleway.BlockVolumeArgs{
+//				SnapshotId: pulumi.String(snapshot.Id),
+//				Iops:       pulumi.Int(5000),
 //			})
 //			if err != nil {
 //				return err
@@ -287,7 +286,8 @@ import (
 //			_, err = scaleway.NewInstanceServer(ctx, "from_snapshot", &scaleway.InstanceServerArgs{
 //				Type: pulumi.String("PRO2-XXS"),
 //				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
-//					VolumeId: fromSnapshot.ID(),
+//					VolumeId:   fromSnapshot.ID(),
+//					VolumeType: pulumi.String("sbs_volume"),
 //				},
 //			})
 //			if err != nil {

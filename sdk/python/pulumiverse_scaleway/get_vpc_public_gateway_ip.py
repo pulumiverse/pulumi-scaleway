@@ -135,7 +135,7 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     """
     Gets information about a Public Gateway public flexible IP address.
 
-    For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+    For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
 
     ## Example Usage
 
@@ -169,7 +169,7 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     """
     Gets information about a Public Gateway public flexible IP address.
 
-    For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+    For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
 
     ## Example Usage
 

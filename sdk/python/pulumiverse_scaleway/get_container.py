@@ -27,7 +27,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, id=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, status=None, timeout=None):
+    def __init__(__self__, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, id=None, local_storage_limit=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, status=None, timeout=None):
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -61,6 +61,9 @@ class GetContainerResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if local_storage_limit and not isinstance(local_storage_limit, int):
+            raise TypeError("Expected argument 'local_storage_limit' to be a int")
+        pulumi.set(__self__, "local_storage_limit", local_storage_limit)
         if max_concurrency and not isinstance(max_concurrency, int):
             raise TypeError("Expected argument 'max_concurrency' to be a int")
         pulumi.set(__self__, "max_concurrency", max_concurrency)
@@ -180,6 +183,9 @@ class GetContainerResult:
     @property
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Sequence['outputs.GetContainerHealthCheckResult']:
+        """
+        Health check configuration block of the container.
+        """
         return pulumi.get(self, "health_checks")
 
     @property
@@ -194,6 +200,11 @@ class GetContainerResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="localStorageLimit")
+    def local_storage_limit(self) -> int:
+        return pulumi.get(self, "local_storage_limit")
 
     @property
     @pulumi.getter(name="maxConcurrency")
@@ -345,6 +356,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             health_checks=self.health_checks,
             http_option=self.http_option,
             id=self.id,
+            local_storage_limit=self.local_storage_limit,
             max_concurrency=self.max_concurrency,
             max_scale=self.max_scale,
             memory_limit=self.memory_limit,
@@ -438,6 +450,7 @@ def get_container(container_id: Optional[str] = None,
         health_checks=pulumi.get(__ret__, 'health_checks'),
         http_option=pulumi.get(__ret__, 'http_option'),
         id=pulumi.get(__ret__, 'id'),
+        local_storage_limit=pulumi.get(__ret__, 'local_storage_limit'),
         max_concurrency=pulumi.get(__ret__, 'max_concurrency'),
         max_scale=pulumi.get(__ret__, 'max_scale'),
         memory_limit=pulumi.get(__ret__, 'memory_limit'),
@@ -528,6 +541,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
         health_checks=pulumi.get(__response__, 'health_checks'),
         http_option=pulumi.get(__response__, 'http_option'),
         id=pulumi.get(__response__, 'id'),
+        local_storage_limit=pulumi.get(__response__, 'local_storage_limit'),
         max_concurrency=pulumi.get(__response__, 'max_concurrency'),
         max_scale=pulumi.get(__response__, 'max_scale'),
         memory_limit=pulumi.get(__response__, 'memory_limit'),

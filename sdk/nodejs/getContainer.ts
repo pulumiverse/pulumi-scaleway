@@ -112,12 +112,16 @@ export interface GetContainerResult {
      * The error message of the container.
      */
     readonly errorMessage: string;
+    /**
+     * Health check configuration block of the container.
+     */
     readonly healthChecks: outputs.GetContainerHealthCheck[];
     readonly httpOption: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly localStorageLimit: number;
     /**
      * The maximum number of simultaneous requests your container can handle at the same time.
      */

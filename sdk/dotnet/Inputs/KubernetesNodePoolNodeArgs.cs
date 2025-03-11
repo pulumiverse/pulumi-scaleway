@@ -15,6 +15,7 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         /// <summary>
         /// The name for the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("name")]

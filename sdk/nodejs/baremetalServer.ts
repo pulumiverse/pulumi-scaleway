@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
+ * Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
  *
  * ## Example Usage
  *
@@ -21,9 +21,13 @@ import * as utilities from "./utilities";
  * const main = scaleway.getIamSshKey({
  *     name: "main",
  * });
+ * const myOffer = scaleway.getBaremetalOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-I220E-NVME",
+ * });
  * const base = new scaleway.BaremetalServer("base", {
  *     zone: "fr-par-2",
- *     offer: "GP-BM1-S",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
  *     sshKeyIds: [mainScalewayAccountSshKey.id],
  * });
@@ -198,11 +202,16 @@ import * as utilities from "./utilities";
  *     version: "22.04 LTS (Jammy Jellyfish)",
  * });
  * const main = new scaleway.IamSshKey("main", {name: "main"});
+ * const myOffer = scaleway.getBaremetalOffer({
+ *     zone: "fr-par-1",
+ *     name: "EM-B220E-NVME",
+ *     subscriptionPeriod: "hourly",
+ * });
  * const base = new scaleway.BaremetalServer("base", {
  *     name: "%s",
  *     zone: "fr-par-1",
  *     description: "test a description",
- *     offer: "EM-B220E-NVME",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
  *     partitioning: configCustomPartitioning,
  *     tags: [
@@ -285,7 +294,7 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The offer name or UUID of the baremetal server.
+     * The offer UUID of the baremetal server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
@@ -479,7 +488,7 @@ export interface BaremetalServerState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The offer name or UUID of the baremetal server.
+     * The offer UUID of the baremetal server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
@@ -580,7 +589,7 @@ export interface BaremetalServerArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The offer name or UUID of the baremetal server.
+     * The offer UUID of the baremetal server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.

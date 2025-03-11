@@ -15,7 +15,13 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IamPolicyRule
     {
         /// <summary>
-        /// The condition of the IAM policy.
+        /// The condition of the rule.
+        /// 
+        /// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+        /// 
+        /// ```shell
+        /// scw iam permission-set list
+        /// ```
         /// </summary>
         public readonly string? Condition;
         /// <summary>
@@ -24,12 +30,6 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly string? OrganizationId;
         /// <summary>
         /// Names of permission sets bind to the rule.
-        /// 
-        /// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
-        /// 
-        /// ```shell
-        /// scw IAM permission-set list
-        /// ```
         /// </summary>
         public readonly ImmutableArray<string> PermissionSetNames;
         /// <summary>

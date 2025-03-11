@@ -283,7 +283,7 @@ class TemWebhook(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Transactional Email Webhooks.
-        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+        For more information, refer to the [API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 
@@ -385,7 +385,7 @@ class TemWebhook(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Transactional Email Webhooks.
-        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
+        For more information, refer to the [API documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 

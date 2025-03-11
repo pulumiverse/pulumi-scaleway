@@ -143,6 +143,7 @@ class _WebhostingState:
                  dns_status: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 name_servers: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingNameServerArgs']]]] = None,
                  offer_id: Optional[pulumi.Input[str]] = None,
                  offer_name: Optional[pulumi.Input[str]] = None,
                  option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -151,6 +152,7 @@ class _WebhostingState:
                  platform_hostname: Optional[pulumi.Input[str]] = None,
                  platform_number: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 records: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingRecordArgs']]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -163,14 +165,16 @@ class _WebhostingState:
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
         :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
+        :param pulumi.Input[Sequence[pulumi.Input['WebhostingNameServerArgs']]] name_servers: List of nameservers associated with the webhosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
         :param pulumi.Input[Sequence[pulumi.Input['WebhostingOptionArgs']]] options: The active options of the hosting.
-        :param pulumi.Input[str] organization_id: The organization ID the hosting is associated with.
+        :param pulumi.Input[str] organization_id: (Deprecated) The organization ID the hosting is associated with.
         :param pulumi.Input[str] platform_hostname: The hostname of the host platform.
         :param pulumi.Input[int] platform_number: The number of the host platform.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input['WebhostingRecordArgs']]] records: List of DNS records associated with the webhosting.
         :param pulumi.Input[str] region: `region`) The region of the Hosting.
         :param pulumi.Input[str] status: The hosting status.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the hosting.
@@ -187,6 +191,8 @@ class _WebhostingState:
             pulumi.set(__self__, "domain", domain)
         if email is not None:
             pulumi.set(__self__, "email", email)
+        if name_servers is not None:
+            pulumi.set(__self__, "name_servers", name_servers)
         if offer_id is not None:
             pulumi.set(__self__, "offer_id", offer_id)
         if offer_name is not None:
@@ -196,6 +202,9 @@ class _WebhostingState:
         if options is not None:
             pulumi.set(__self__, "options", options)
         if organization_id is not None:
+            warnings.warn("""The organization_id field is deprecated and will be removed in the next major version.""", DeprecationWarning)
+            pulumi.log.warn("""organization_id is deprecated: The organization_id field is deprecated and will be removed in the next major version.""")
+        if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if platform_hostname is not None:
             pulumi.set(__self__, "platform_hostname", platform_hostname)
@@ -203,6 +212,8 @@ class _WebhostingState:
             pulumi.set(__self__, "platform_number", platform_number)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if records is not None:
+            pulumi.set(__self__, "records", records)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if status is not None:
@@ -275,6 +286,18 @@ class _WebhostingState:
         pulumi.set(self, "email", value)
 
     @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingNameServerArgs']]]]:
+        """
+        List of nameservers associated with the webhosting.
+        """
+        return pulumi.get(self, "name_servers")
+
+    @name_servers.setter
+    def name_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingNameServerArgs']]]]):
+        pulumi.set(self, "name_servers", value)
+
+    @property
     @pulumi.getter(name="offerId")
     def offer_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -324,9 +347,10 @@ class _WebhostingState:
 
     @property
     @pulumi.getter(name="organizationId")
+    @_utilities.deprecated("""The organization_id field is deprecated and will be removed in the next major version.""")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the hosting is associated with.
+        (Deprecated) The organization ID the hosting is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -369,6 +393,18 @@ class _WebhostingState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingRecordArgs']]]]:
+        """
+        List of DNS records associated with the webhosting.
+        """
+        return pulumi.get(self, "records")
+
+    @records.setter
+    def records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingRecordArgs']]]]):
+        pulumi.set(self, "records", value)
 
     @property
     @pulumi.getter
@@ -446,7 +482,7 @@ class Webhosting(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Web Hostings.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 
         ## Example Usage
 
@@ -455,7 +491,8 @@ class Webhosting(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        by_name = scaleway.get_web_host_offer(name="lite")
+        by_name = scaleway.get_web_host_offer(name="lite",
+            control_panel="Cpanel")
         main = scaleway.Webhosting("main",
             offer_id=by_name.offer_id,
             email="your@email.com",
@@ -495,7 +532,7 @@ class Webhosting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Web Hostings.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 
         ## Example Usage
 
@@ -504,7 +541,8 @@ class Webhosting(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        by_name = scaleway.get_web_host_offer(name="lite")
+        by_name = scaleway.get_web_host_offer(name="lite",
+            control_panel="Cpanel")
         main = scaleway.Webhosting("main",
             offer_id=by_name.offer_id,
             email="your@email.com",
@@ -573,11 +611,13 @@ class Webhosting(pulumi.CustomResource):
             __props__.__dict__["cpanel_urls"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dns_status"] = None
+            __props__.__dict__["name_servers"] = None
             __props__.__dict__["offer_name"] = None
             __props__.__dict__["options"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["platform_hostname"] = None
             __props__.__dict__["platform_number"] = None
+            __props__.__dict__["records"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["username"] = None
@@ -596,6 +636,7 @@ class Webhosting(pulumi.CustomResource):
             dns_status: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             email: Optional[pulumi.Input[str]] = None,
+            name_servers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebhostingNameServerArgs', 'WebhostingNameServerArgsDict']]]]] = None,
             offer_id: Optional[pulumi.Input[str]] = None,
             offer_name: Optional[pulumi.Input[str]] = None,
             option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -604,6 +645,7 @@ class Webhosting(pulumi.CustomResource):
             platform_hostname: Optional[pulumi.Input[str]] = None,
             platform_number: Optional[pulumi.Input[int]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            records: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebhostingRecordArgs', 'WebhostingRecordArgsDict']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -621,14 +663,16 @@ class Webhosting(pulumi.CustomResource):
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
         :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WebhostingNameServerArgs', 'WebhostingNameServerArgsDict']]]] name_servers: List of nameservers associated with the webhosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
         :param pulumi.Input[Sequence[pulumi.Input[Union['WebhostingOptionArgs', 'WebhostingOptionArgsDict']]]] options: The active options of the hosting.
-        :param pulumi.Input[str] organization_id: The organization ID the hosting is associated with.
+        :param pulumi.Input[str] organization_id: (Deprecated) The organization ID the hosting is associated with.
         :param pulumi.Input[str] platform_hostname: The hostname of the host platform.
         :param pulumi.Input[int] platform_number: The number of the host platform.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the VPC is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WebhostingRecordArgs', 'WebhostingRecordArgsDict']]]] records: List of DNS records associated with the webhosting.
         :param pulumi.Input[str] region: `region`) The region of the Hosting.
         :param pulumi.Input[str] status: The hosting status.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the hosting.
@@ -644,6 +688,7 @@ class Webhosting(pulumi.CustomResource):
         __props__.__dict__["dns_status"] = dns_status
         __props__.__dict__["domain"] = domain
         __props__.__dict__["email"] = email
+        __props__.__dict__["name_servers"] = name_servers
         __props__.__dict__["offer_id"] = offer_id
         __props__.__dict__["offer_name"] = offer_name
         __props__.__dict__["option_ids"] = option_ids
@@ -652,6 +697,7 @@ class Webhosting(pulumi.CustomResource):
         __props__.__dict__["platform_hostname"] = platform_hostname
         __props__.__dict__["platform_number"] = platform_number
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["records"] = records
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -700,6 +746,14 @@ class Webhosting(pulumi.CustomResource):
         return pulumi.get(self, "email")
 
     @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> pulumi.Output[Sequence['outputs.WebhostingNameServer']]:
+        """
+        List of nameservers associated with the webhosting.
+        """
+        return pulumi.get(self, "name_servers")
+
+    @property
     @pulumi.getter(name="offerId")
     def offer_id(self) -> pulumi.Output[str]:
         """
@@ -733,9 +787,10 @@ class Webhosting(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="organizationId")
+    @_utilities.deprecated("""The organization_id field is deprecated and will be removed in the next major version.""")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the hosting is associated with.
+        (Deprecated) The organization ID the hosting is associated with.
         """
         return pulumi.get(self, "organization_id")
 
@@ -762,6 +817,14 @@ class Webhosting(pulumi.CustomResource):
         `project_id`) The ID of the project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def records(self) -> pulumi.Output[Sequence['outputs.WebhostingRecord']]:
+        """
+        List of DNS records associated with the webhosting.
+        """
+        return pulumi.get(self, "records")
 
     @property
     @pulumi.getter

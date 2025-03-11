@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway MongoDB® instance.
-    /// For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+    /// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
     /// 
     /// ## Example Usage
     /// 
@@ -35,6 +35,40 @@ namespace Pulumiverse.Scaleway
     ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         VolumeSizeInGb = 5,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Private Network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "my_private_network",
+    ///         Region = "fr-par",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.MongoDbInstance("main", new()
+    ///     {
+    ///         Name = "test-mongodb-basic1",
+    ///         Version = "7.0.12",
+    ///         NodeType = "MGDB-PLAY2-NANO",
+    ///         NodeNumber = 1,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         VolumeSizeInGb = 5,
+    ///         PrivateNetwork = new Scaleway.Inputs.MongoDbInstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn02.Id,
+    ///         },
     ///     });
     /// 
     /// });
@@ -103,6 +137,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// Private Network endpoints of the Database Instance.
+        /// </summary>
+        [Output("privateNetwork")]
+        public Output<Outputs.MongoDbInstancePrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
         /// The project_id you want to attach the resource to
@@ -256,6 +296,12 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
+        /// Private Network endpoints of the Database Instance.
+        /// </summary>
+        [Input("privateNetwork")]
+        public Input<Inputs.MongoDbInstancePrivateNetworkArgs>? PrivateNetwork { get; set; }
+
+        /// <summary>
         /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
@@ -374,6 +420,12 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Private Network endpoints of the Database Instance.
+        /// </summary>
+        [Input("privateNetwork")]
+        public Input<Inputs.MongoDbInstancePrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
         /// The project_id you want to attach the resource to

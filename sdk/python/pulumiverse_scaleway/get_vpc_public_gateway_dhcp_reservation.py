@@ -147,7 +147,7 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpReservationResult:
     """
     Gets information about a DHCP entry. For further information, please see the
-    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+    [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
 
     ## Example Dynamic
 
@@ -268,7 +268,7 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
     Gets information about a DHCP entry. For further information, please see the
-    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+    [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
 
     ## Example Dynamic
 

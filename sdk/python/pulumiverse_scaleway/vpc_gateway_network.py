@@ -403,7 +403,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
 
         It allows the attachment of Private Networks to Public Gateways and DHCP configurations.
-        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 
         ## Example Usage
 
@@ -536,7 +536,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
 
         It allows the attachment of Private Networks to Public Gateways and DHCP configurations.
-        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 
         ## Example Usage
 

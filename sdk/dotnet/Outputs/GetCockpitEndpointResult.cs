@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string MetricsUrl;
         /// <summary>
-        /// The traces URL
+        /// The traces URL.
         /// </summary>
         public readonly string TracesUrl;
 

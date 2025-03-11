@@ -72,6 +72,9 @@ export interface GetCockpitResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * @deprecated The 'plan' attribute is deprecated and will be removed in a future version. Any changes to this attribute will have no effect.
+     */
     readonly plan: string;
     /**
      * (Deprecated) ID of the current pricing plan

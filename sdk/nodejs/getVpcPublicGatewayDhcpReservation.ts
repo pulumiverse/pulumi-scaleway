@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a DHCP entry. For further information, please see the
- * API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+ * [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
  *
  * ## Example Dynamic
  *
@@ -165,7 +165,7 @@ export interface GetVpcPublicGatewayDhcpReservationResult {
 }
 /**
  * Gets information about a DHCP entry. For further information, please see the
- * API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+ * [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
  *
  * ## Example Dynamic
  *

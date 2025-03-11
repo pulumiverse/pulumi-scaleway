@@ -97,7 +97,7 @@ def get_baremetal_option(name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalOptionResult:
     """
     Gets information about a baremetal option.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
     ## Example Usage
 
@@ -105,7 +105,7 @@ def get_baremetal_option(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    # Get info by option name 
+    # Get info by option name
     by_name = scaleway.get_baremetal_option(name="Remote Access")
     # Get info by option id
     by_id = scaleway.get_baremetal_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
@@ -135,7 +135,7 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalOptionResult]:
     """
     Gets information about a baremetal option.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
     ## Example Usage
 
@@ -143,7 +143,7 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_scaleway as scaleway
 
-    # Get info by option name 
+    # Get info by option name
     by_name = scaleway.get_baremetal_option(name="Remote Access")
     # Get info by option id
     by_id = scaleway.get_baremetal_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")

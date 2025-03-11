@@ -76,21 +76,23 @@ type LookupWebhostingResult struct {
 	Domain     *string                  `pulumi:"domain"`
 	Email      string                   `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string                `pulumi:"id"`
-	OfferId          string                `pulumi:"offerId"`
-	OfferName        string                `pulumi:"offerName"`
-	OptionIds        []string              `pulumi:"optionIds"`
-	Options          []GetWebhostingOption `pulumi:"options"`
-	OrganizationId   string                `pulumi:"organizationId"`
-	PlatformHostname string                `pulumi:"platformHostname"`
-	PlatformNumber   int                   `pulumi:"platformNumber"`
-	ProjectId        *string               `pulumi:"projectId"`
-	Region           string                `pulumi:"region"`
-	Status           string                `pulumi:"status"`
-	Tags             []string              `pulumi:"tags"`
-	UpdatedAt        string                `pulumi:"updatedAt"`
-	Username         string                `pulumi:"username"`
-	WebhostingId     *string               `pulumi:"webhostingId"`
+	Id               string                    `pulumi:"id"`
+	NameServers      []GetWebhostingNameServer `pulumi:"nameServers"`
+	OfferId          string                    `pulumi:"offerId"`
+	OfferName        string                    `pulumi:"offerName"`
+	OptionIds        []string                  `pulumi:"optionIds"`
+	Options          []GetWebhostingOption     `pulumi:"options"`
+	OrganizationId   string                    `pulumi:"organizationId"`
+	PlatformHostname string                    `pulumi:"platformHostname"`
+	PlatformNumber   int                       `pulumi:"platformNumber"`
+	ProjectId        *string                   `pulumi:"projectId"`
+	Records          []GetWebhostingRecord     `pulumi:"records"`
+	Region           string                    `pulumi:"region"`
+	Status           string                    `pulumi:"status"`
+	Tags             []string                  `pulumi:"tags"`
+	UpdatedAt        string                    `pulumi:"updatedAt"`
+	Username         string                    `pulumi:"username"`
+	WebhostingId     *string                   `pulumi:"webhostingId"`
 }
 
 func LookupWebhostingOutput(ctx *pulumi.Context, args LookupWebhostingOutputArgs, opts ...pulumi.InvokeOption) LookupWebhostingResultOutput {
@@ -158,6 +160,10 @@ func (o LookupWebhostingResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWebhostingResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupWebhostingResultOutput) NameServers() GetWebhostingNameServerArrayOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) []GetWebhostingNameServer { return v.NameServers }).(GetWebhostingNameServerArrayOutput)
+}
+
 func (o LookupWebhostingResultOutput) OfferId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWebhostingResult) string { return v.OfferId }).(pulumi.StringOutput)
 }
@@ -188,6 +194,10 @@ func (o LookupWebhostingResultOutput) PlatformNumber() pulumi.IntOutput {
 
 func (o LookupWebhostingResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupWebhostingResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupWebhostingResultOutput) Records() GetWebhostingRecordArrayOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) []GetWebhostingRecord { return v.Records }).(GetWebhostingRecordArrayOutput)
 }
 
 func (o LookupWebhostingResultOutput) Region() pulumi.StringOutput {

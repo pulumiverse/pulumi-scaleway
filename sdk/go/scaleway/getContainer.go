@@ -110,11 +110,13 @@ type LookupContainerResult struct {
 	// The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
-	ErrorMessage string                    `pulumi:"errorMessage"`
+	ErrorMessage string `pulumi:"errorMessage"`
+	// Health check configuration block of the container.
 	HealthChecks []GetContainerHealthCheck `pulumi:"healthChecks"`
 	HttpOption   string                    `pulumi:"httpOption"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id                string `pulumi:"id"`
+	LocalStorageLimit int    `pulumi:"localStorageLimit"`
 	// The maximum number of simultaneous requests your container can handle at the same time.
 	MaxConcurrency int `pulumi:"maxConcurrency"`
 	// The maximum number of instances the container can scale to.
@@ -226,6 +228,7 @@ func (o LookupContainerResultOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
+// Health check configuration block of the container.
 func (o LookupContainerResultOutput) HealthChecks() GetContainerHealthCheckArrayOutput {
 	return o.ApplyT(func(v LookupContainerResult) []GetContainerHealthCheck { return v.HealthChecks }).(GetContainerHealthCheckArrayOutput)
 }
@@ -237,6 +240,10 @@ func (o LookupContainerResultOutput) HttpOption() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupContainerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupContainerResultOutput) LocalStorageLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupContainerResult) int { return v.LocalStorageLimit }).(pulumi.IntOutput)
 }
 
 // The maximum number of simultaneous requests your container can handle at the same time.

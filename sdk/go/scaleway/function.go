@@ -35,7 +35,7 @@ type Function struct {
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
 	Handler pulumi.StringOutput `pulumi:"handler"`
-	// HTTP traffic configuration
+	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
 	// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
 	MaxScale pulumi.IntPtrOutput `pulumi:"maxScale"`
@@ -131,7 +131,7 @@ type functionState struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
 	Handler *string `pulumi:"handler"`
-	// HTTP traffic configuration
+	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
 	MaxScale *int `pulumi:"maxScale"`
@@ -179,7 +179,7 @@ type FunctionState struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
 	Handler pulumi.StringPtrInput
-	// HTTP traffic configuration
+	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrInput
 	// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
 	MaxScale pulumi.IntPtrInput
@@ -227,7 +227,7 @@ type functionArgs struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
 	Handler string `pulumi:"handler"`
-	// HTTP traffic configuration
+	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption *string `pulumi:"httpOption"`
 	// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
 	MaxScale *int `pulumi:"maxScale"`
@@ -270,7 +270,7 @@ type FunctionArgs struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
 	Handler pulumi.StringInput
-	// HTTP traffic configuration
+	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrInput
 	// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
 	MaxScale pulumi.IntPtrInput
@@ -420,7 +420,7 @@ func (o FunctionOutput) Handler() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Handler }).(pulumi.StringOutput)
 }
 
-// HTTP traffic configuration
+// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 func (o FunctionOutput) HttpOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
 }

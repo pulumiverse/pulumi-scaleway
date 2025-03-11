@@ -221,7 +221,7 @@ export interface ContainerHealthCheck {
      */
     https: pulumi.Input<pulumi.Input<inputs.ContainerHealthCheckHttp>[]>;
     /**
-     * Period between health checks.
+     * Period between health checks (in seconds).
      */
     interval: pulumi.Input<string>;
 }
@@ -620,7 +620,13 @@ export interface GetIpamIpsResourceArgs {
 
 export interface IamPolicyRule {
     /**
-     * The condition of the IAM policy.
+     * The condition of the rule.
+     *
+     * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+     *
+     * ```shell
+     * scw iam permission-set list
+     * ```
      */
     condition?: pulumi.Input<string>;
     /**
@@ -629,12 +635,6 @@ export interface IamPolicyRule {
     organizationId?: pulumi.Input<string>;
     /**
      * Names of permission sets bind to the rule.
-     *
-     * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
-     *
-     * ```shell
-     * scw IAM permission-set list
-     * ```
      */
     permissionSetNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -1225,6 +1225,7 @@ export interface KubernetesClusterOpenIdConnectConfig {
 export interface KubernetesNodePoolNode {
     /**
      * The name for the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     name?: pulumi.Input<string>;
@@ -1513,17 +1514,40 @@ export interface MnqSqsCredentialsPermissions {
     canReceive?: pulumi.Input<boolean>;
 }
 
+export interface MongoDbInstancePrivateNetwork {
+    /**
+     * List of DNS records for your endpoint.
+     */
+    dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the endpoint.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * List of IP addresses for your endpoint.
+     */
+    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the Private Network.
+     */
+    pnId: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint.
+     */
+    port?: pulumi.Input<number>;
+}
+
 export interface MongoDbInstancePublicNetwork {
     /**
      * The DNS record of your endpoint
      */
     dnsRecord?: pulumi.Input<string>;
     /**
-     * The ID of the MongoDB® instance.
+     * The ID of the endpoint.
      */
     id?: pulumi.Input<string>;
     /**
-     * TCP port of the endpoint
+     * TCP port of the endpoint.
      */
     port?: pulumi.Input<number>;
 }
@@ -1891,6 +1915,15 @@ export interface WebhostingCpanelUrl {
     webmail?: pulumi.Input<string>;
 }
 
+export interface WebhostingNameServer {
+    hostname?: pulumi.Input<string>;
+    isDefault?: pulumi.Input<boolean>;
+    /**
+     * The hosting status.
+     */
+    status?: pulumi.Input<string>;
+}
+
 export interface WebhostingOption {
     /**
      * The option ID.
@@ -1900,4 +1933,19 @@ export interface WebhostingOption {
      * The option name.
      */
     name?: pulumi.Input<string>;
+}
+
+export interface WebhostingRecord {
+    /**
+     * The option name.
+     */
+    name?: pulumi.Input<string>;
+    priority?: pulumi.Input<number>;
+    /**
+     * The hosting status.
+     */
+    status?: pulumi.Input<string>;
+    ttl?: pulumi.Input<number>;
+    type?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }

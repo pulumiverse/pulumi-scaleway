@@ -71,6 +71,7 @@ export interface GetWebhostingResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly nameServers: outputs.GetWebhostingNameServer[];
     readonly offerId: string;
     readonly offerName: string;
     readonly optionIds: string[];
@@ -79,6 +80,7 @@ export interface GetWebhostingResult {
     readonly platformHostname: string;
     readonly platformNumber: number;
     readonly projectId?: string;
+    readonly records: outputs.GetWebhostingRecord[];
     readonly region: string;
     readonly status: string;
     readonly tags: string[];

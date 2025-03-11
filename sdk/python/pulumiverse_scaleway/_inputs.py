@@ -163,6 +163,8 @@ __all__ = [
     'MnqSnsCredentialsPermissionsArgsDict',
     'MnqSqsCredentialsPermissionsArgs',
     'MnqSqsCredentialsPermissionsArgsDict',
+    'MongoDbInstancePrivateNetworkArgs',
+    'MongoDbInstancePrivateNetworkArgsDict',
     'MongoDbInstancePublicNetworkArgs',
     'MongoDbInstancePublicNetworkArgsDict',
     'ObjectBucketAclAccessControlPolicyArgs',
@@ -209,8 +211,12 @@ __all__ = [
     'VpcPrivateNetworkIpv6SubnetArgsDict',
     'WebhostingCpanelUrlArgs',
     'WebhostingCpanelUrlArgsDict',
+    'WebhostingNameServerArgs',
+    'WebhostingNameServerArgsDict',
     'WebhostingOptionArgs',
     'WebhostingOptionArgsDict',
+    'WebhostingRecordArgs',
+    'WebhostingRecordArgsDict',
     'GetIpamIpResourceArgs',
     'GetIpamIpResourceArgsDict',
     'GetIpamIpsResourceArgs',
@@ -1228,7 +1234,7 @@ if not MYPY:
         """
         interval: pulumi.Input[str]
         """
-        Period between health checks.
+        Period between health checks (in seconds).
         """
 elif False:
     ContainerHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
@@ -1242,7 +1248,7 @@ class ContainerHealthCheckArgs:
         """
         :param pulumi.Input[int] failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]] https: HTTP health check configuration.
-        :param pulumi.Input[str] interval: Period between health checks.
+        :param pulumi.Input[str] interval: Period between health checks (in seconds).
         """
         pulumi.set(__self__, "failure_threshold", failure_threshold)
         pulumi.set(__self__, "https", https)
@@ -1276,7 +1282,7 @@ class ContainerHealthCheckArgs:
     @pulumi.getter
     def interval(self) -> pulumi.Input[str]:
         """
-        Period between health checks.
+        Period between health checks (in seconds).
         """
         return pulumi.get(self, "interval")
 
@@ -2862,16 +2868,16 @@ if not MYPY:
         permission_set_names: pulumi.Input[Sequence[pulumi.Input[str]]]
         """
         Names of permission sets bind to the rule.
+        """
+        condition: NotRequired[pulumi.Input[str]]
+        """
+        The condition of the rule.
 
         **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
         ```shell
-        scw IAM permission-set list
+        scw iam permission-set list
         ```
-        """
-        condition: NotRequired[pulumi.Input[str]]
-        """
-        The condition of the IAM policy.
         """
         organization_id: NotRequired[pulumi.Input[str]]
         """
@@ -2895,13 +2901,13 @@ class IamPolicyRuleArgs:
                  project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permission_set_names: Names of permission sets bind to the rule.
+        :param pulumi.Input[str] condition: The condition of the rule.
                
                **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
                
                ```shell
-               scw IAM permission-set list
+               scw iam permission-set list
                ```
-        :param pulumi.Input[str] condition: The condition of the IAM policy.
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: List of project IDs scoped to the rule.
                
@@ -2920,12 +2926,6 @@ class IamPolicyRuleArgs:
     def permission_set_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         Names of permission sets bind to the rule.
-
-        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
-
-        ```shell
-        scw IAM permission-set list
-        ```
         """
         return pulumi.get(self, "permission_set_names")
 
@@ -2937,7 +2937,13 @@ class IamPolicyRuleArgs:
     @pulumi.getter
     def condition(self) -> Optional[pulumi.Input[str]]:
         """
-        The condition of the IAM policy.
+        The condition of the rule.
+
+        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+
+        ```shell
+        scw iam permission-set list
+        ```
         """
         return pulumi.get(self, "condition")
 
@@ -5706,6 +5712,7 @@ if not MYPY:
         name: NotRequired[pulumi.Input[str]]
         """
         The name for the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         public_ip: NotRequired[pulumi.Input[str]]
@@ -5732,6 +5739,7 @@ class KubernetesNodePoolNodeArgs:
                  status: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: The name for the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param pulumi.Input[str] public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
@@ -5757,6 +5765,7 @@ class KubernetesNodePoolNodeArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name for the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
@@ -7057,6 +7066,117 @@ class MnqSqsCredentialsPermissionsArgs:
 
 
 if not MYPY:
+    class MongoDbInstancePrivateNetworkArgsDict(TypedDict):
+        pn_id: pulumi.Input[str]
+        """
+        The ID of the Private Network.
+        """
+        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of DNS records for your endpoint.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the endpoint.
+        """
+        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of IP addresses for your endpoint.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        TCP port of the endpoint.
+        """
+elif False:
+    MongoDbInstancePrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class MongoDbInstancePrivateNetworkArgs:
+    def __init__(__self__, *,
+                 pn_id: pulumi.Input[str],
+                 dns_records: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 port: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] pn_id: The ID of the Private Network.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_records: List of DNS records for your endpoint.
+        :param pulumi.Input[str] id: The ID of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: List of IP addresses for your endpoint.
+        :param pulumi.Input[int] port: TCP port of the endpoint.
+        """
+        pulumi.set(__self__, "pn_id", pn_id)
+        if dns_records is not None:
+            pulumi.set(__self__, "dns_records", dns_records)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the Private Network.
+        """
+        return pulumi.get(self, "pn_id")
+
+    @pn_id.setter
+    def pn_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pn_id", value)
+
+    @property
+    @pulumi.getter(name="dnsRecords")
+    def dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of DNS records for your endpoint.
+        """
+        return pulumi.get(self, "dns_records")
+
+    @dns_records.setter
+    def dns_records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "dns_records", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IP addresses for your endpoint.
+        """
+        return pulumi.get(self, "ips")
+
+    @ips.setter
+    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ips", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port of the endpoint.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+
+if not MYPY:
     class MongoDbInstancePublicNetworkArgsDict(TypedDict):
         dns_record: NotRequired[pulumi.Input[str]]
         """
@@ -7064,11 +7184,11 @@ if not MYPY:
         """
         id: NotRequired[pulumi.Input[str]]
         """
-        The ID of the MongoDB® instance.
+        The ID of the endpoint.
         """
         port: NotRequired[pulumi.Input[int]]
         """
-        TCP port of the endpoint
+        TCP port of the endpoint.
         """
 elif False:
     MongoDbInstancePublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
@@ -7081,8 +7201,8 @@ class MongoDbInstancePublicNetworkArgs:
                  port: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] dns_record: The DNS record of your endpoint
-        :param pulumi.Input[str] id: The ID of the MongoDB® instance.
-        :param pulumi.Input[int] port: TCP port of the endpoint
+        :param pulumi.Input[str] id: The ID of the endpoint.
+        :param pulumi.Input[int] port: TCP port of the endpoint.
         """
         if dns_record is not None:
             pulumi.set(__self__, "dns_record", dns_record)
@@ -7107,7 +7227,7 @@ class MongoDbInstancePublicNetworkArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the MongoDB® instance.
+        The ID of the endpoint.
         """
         return pulumi.get(self, "id")
 
@@ -7119,7 +7239,7 @@ class MongoDbInstancePublicNetworkArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        TCP port of the endpoint
+        TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 
@@ -8807,6 +8927,64 @@ class WebhostingCpanelUrlArgs:
 
 
 if not MYPY:
+    class WebhostingNameServerArgsDict(TypedDict):
+        hostname: NotRequired[pulumi.Input[str]]
+        is_default: NotRequired[pulumi.Input[bool]]
+        status: NotRequired[pulumi.Input[str]]
+        """
+        The hosting status.
+        """
+elif False:
+    WebhostingNameServerArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class WebhostingNameServerArgs:
+    def __init__(__self__, *,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 is_default: Optional[pulumi.Input[bool]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] status: The hosting status.
+        """
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if is_default is not None:
+            pulumi.set(__self__, "is_default", is_default)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "is_default")
+
+    @is_default.setter
+    def is_default(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_default", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The hosting status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+if not MYPY:
     class WebhostingOptionArgsDict(TypedDict):
         id: NotRequired[pulumi.Input[str]]
         """
@@ -8856,6 +9034,110 @@ class WebhostingOptionArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+if not MYPY:
+    class WebhostingRecordArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        The option name.
+        """
+        priority: NotRequired[pulumi.Input[int]]
+        status: NotRequired[pulumi.Input[str]]
+        """
+        The hosting status.
+        """
+        ttl: NotRequired[pulumi.Input[int]]
+        type: NotRequired[pulumi.Input[str]]
+        value: NotRequired[pulumi.Input[str]]
+elif False:
+    WebhostingRecordArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class WebhostingRecordArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: The option name.
+        :param pulumi.Input[str] status: The hosting status.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The option name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The hosting status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 if not MYPY:

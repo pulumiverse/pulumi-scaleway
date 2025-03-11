@@ -47,29 +47,37 @@ class KubernetesNodePoolArgs:
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[int] size: The size of the pool.
+               
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
         :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               
                > **Important:** When enabled, an update of the `size` will not be taken into account.
         :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] kubelet_args: The Kubelet arguments to be used by this pool
         :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[str] name: The name for the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+               
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               
                > **Important:** Updates to this field will recreate a new resource.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -139,6 +147,7 @@ class KubernetesNodePoolArgs:
     def size(self) -> pulumi.Input[int]:
         """
         The size of the pool.
+
         > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
@@ -164,6 +173,7 @@ class KubernetesNodePoolArgs:
     def autoscaling(self) -> Optional[pulumi.Input[bool]]:
         """
         Enables the autoscaling feature for this pool.
+
         > **Important:** When enabled, an update of the `size` will not be taken into account.
         """
         return pulumi.get(self, "autoscaling")
@@ -177,6 +187,7 @@ class KubernetesNodePoolArgs:
     def container_runtime(self) -> Optional[pulumi.Input[str]]:
         """
         The container runtime of the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "container_runtime")
@@ -226,6 +237,7 @@ class KubernetesNodePoolArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name for the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
@@ -239,6 +251,7 @@ class KubernetesNodePoolArgs:
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
         The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
@@ -252,6 +265,7 @@ class KubernetesNodePoolArgs:
     def public_ip_disabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "public_ip_disabled")
@@ -301,7 +315,8 @@ class KubernetesNodePoolArgs:
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The tags associated with the pool.
-        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+
+        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
 
@@ -338,6 +353,7 @@ class KubernetesNodePoolArgs:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the pool should be created.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "zone")
@@ -379,9 +395,11 @@ class _KubernetesNodePoolState:
         Input properties used for looking up and filtering KubernetesNodePool resources.
         :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
         :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               
                > **Important:** When enabled, an update of the `size` will not be taken into account.
         :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
         :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the pool.
         :param pulumi.Input[int] current_size: The actual size of the pool
@@ -389,28 +407,34 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[str] name: The name for the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[int] size: The size of the pool.
+               
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+               
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[str] updated_at: The last update date of the pool.
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[str] version: The version of the pool.
         :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               
                > **Important:** Updates to this field will recreate a new resource.
         """
         if autohealing is not None:
@@ -481,6 +505,7 @@ class _KubernetesNodePoolState:
     def autoscaling(self) -> Optional[pulumi.Input[bool]]:
         """
         Enables the autoscaling feature for this pool.
+
         > **Important:** When enabled, an update of the `size` will not be taken into account.
         """
         return pulumi.get(self, "autoscaling")
@@ -506,6 +531,7 @@ class _KubernetesNodePoolState:
     def container_runtime(self) -> Optional[pulumi.Input[str]]:
         """
         The container runtime of the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "container_runtime")
@@ -579,6 +605,7 @@ class _KubernetesNodePoolState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name for the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
@@ -618,6 +645,7 @@ class _KubernetesNodePoolState:
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
         """
         The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
@@ -631,6 +659,7 @@ class _KubernetesNodePoolState:
     def public_ip_disabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "public_ip_disabled")
@@ -680,6 +709,7 @@ class _KubernetesNodePoolState:
     def size(self) -> Optional[pulumi.Input[int]]:
         """
         The size of the pool.
+
         > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
@@ -705,7 +735,8 @@ class _KubernetesNodePoolState:
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The tags associated with the pool.
-        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+
+        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
 
@@ -766,6 +797,7 @@ class _KubernetesNodePoolState:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the pool should be created.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "zone")
@@ -815,32 +847,40 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
         :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               
                > **Important:** When enabled, an update of the `size` will not be taken into account.
         :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
         :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] kubelet_args: The Kubelet arguments to be used by this pool
         :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[str] name: The name for the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[int] size: The size of the pool.
+               
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+               
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               
                > **Important:** Updates to this field will recreate a new resource.
         """
         ...
@@ -978,9 +1018,11 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] autohealing: Enables the autohealing feature for this pool.
         :param pulumi.Input[bool] autoscaling: Enables the autoscaling feature for this pool.
+               
                > **Important:** When enabled, an update of the `size` will not be taken into account.
         :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
         :param pulumi.Input[str] container_runtime: The container runtime of the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the pool.
         :param pulumi.Input[int] current_size: The actual size of the pool
@@ -988,28 +1030,34 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[str] name: The name for the pool.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict']]]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[int] size: The size of the pool.
+               
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+               
+               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[str] updated_at: The last update date of the pool.
         :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[str] version: The version of the pool.
         :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
+               
                > **Important:** Updates to this field will recreate a new resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1056,6 +1104,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def autoscaling(self) -> pulumi.Output[Optional[bool]]:
         """
         Enables the autoscaling feature for this pool.
+
         > **Important:** When enabled, an update of the `size` will not be taken into account.
         """
         return pulumi.get(self, "autoscaling")
@@ -1073,6 +1122,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def container_runtime(self) -> pulumi.Output[Optional[str]]:
         """
         The container runtime of the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "container_runtime")
@@ -1122,6 +1172,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The name for the pool.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
@@ -1149,6 +1200,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def placement_group_id(self) -> pulumi.Output[Optional[str]]:
         """
         The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
@@ -1158,6 +1210,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def public_ip_disabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "public_ip_disabled")
@@ -1191,6 +1244,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def size(self) -> pulumi.Output[int]:
         """
         The size of the pool.
+
         > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
@@ -1208,7 +1262,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The tags associated with the pool.
-        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+
+        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
 
@@ -1249,6 +1304,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     def zone(self) -> pulumi.Output[str]:
         """
         `zone`) The zone in which the pool should be created.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "zone")

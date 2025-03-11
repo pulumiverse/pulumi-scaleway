@@ -1028,7 +1028,7 @@ class InstanceServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway compute Instances. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
+        Creates and manages Scaleway compute Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
 
         Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 
@@ -1053,9 +1053,9 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        data = scaleway.InstanceVolume("data",
+        data = scaleway.BlockVolume("data",
             size_in_gb=100,
-            type="b_ssd")
+            iops=5000)
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -1147,7 +1147,6 @@ class InstanceServer(pulumi.CustomResource):
             type="PRO2-XXS",
             image="ubuntu_jammy",
             root_volume={
-                "volume_type": "b_ssd",
                 "size_in_gb": 100,
             })
         ```
@@ -1159,14 +1158,15 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
-        from_snapshot = scaleway.InstanceVolume("from_snapshot",
-            from_snapshot_id=snapshot.id,
-            type="b_ssd")
+        snapshot = scaleway.get_block_snapshot(name="my_snapshot")
+        from_snapshot = scaleway.BlockVolume("from_snapshot",
+            snapshot_id=snapshot.id,
+            iops=5000)
         from_snapshot_instance_server = scaleway.InstanceServer("from_snapshot",
             type="PRO2-XXS",
             root_volume={
                 "volume_id": from_snapshot.id,
+                "volume_type": "sbs_volume",
             })
         ```
 
@@ -1267,7 +1267,7 @@ class InstanceServer(pulumi.CustomResource):
                  args: InstanceServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway compute Instances. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
+        Creates and manages Scaleway compute Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
 
         Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 
@@ -1292,9 +1292,9 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        data = scaleway.InstanceVolume("data",
+        data = scaleway.BlockVolume("data",
             size_in_gb=100,
-            type="b_ssd")
+            iops=5000)
         web = scaleway.InstanceServer("web",
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -1386,7 +1386,6 @@ class InstanceServer(pulumi.CustomResource):
             type="PRO2-XXS",
             image="ubuntu_jammy",
             root_volume={
-                "volume_type": "b_ssd",
                 "size_in_gb": 100,
             })
         ```
@@ -1398,14 +1397,15 @@ class InstanceServer(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        snapshot = scaleway.get_instance_snapshot(name="my_snapshot")
-        from_snapshot = scaleway.InstanceVolume("from_snapshot",
-            from_snapshot_id=snapshot.id,
-            type="b_ssd")
+        snapshot = scaleway.get_block_snapshot(name="my_snapshot")
+        from_snapshot = scaleway.BlockVolume("from_snapshot",
+            snapshot_id=snapshot.id,
+            iops=5000)
         from_snapshot_instance_server = scaleway.InstanceServer("from_snapshot",
             type="PRO2-XXS",
             root_volume={
                 "volume_id": from_snapshot.id,
+                "volume_type": "sbs_volume",
             })
         ```
 

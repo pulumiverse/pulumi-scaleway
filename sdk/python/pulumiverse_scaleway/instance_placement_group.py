@@ -269,7 +269,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
+        Creates and manages Compute Instance Placement Groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
 
         ## Example Usage
 
@@ -306,7 +306,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
                  args: Optional[InstancePlacementGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
+        Creates and manages Compute Instance Placement Groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
 
         ## Example Usage
 

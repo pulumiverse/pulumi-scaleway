@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway MongoDB® instance.
-// For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
 //
 // ## Example Usage
 //
@@ -39,6 +39,48 @@ import (
 //				UserName:       pulumi.String("my_initial_user"),
 //				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				VolumeSizeInGb: pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Private Network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//				Name:   pulumi.String("my_private_network"),
+//				Region: pulumi.String("fr-par"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewMongoDbInstance(ctx, "main", &scaleway.MongoDbInstanceArgs{
+//				Name:           pulumi.String("test-mongodb-basic1"),
+//				Version:        pulumi.String("7.0.12"),
+//				NodeType:       pulumi.String("MGDB-PLAY2-NANO"),
+//				NodeNumber:     pulumi.Int(1),
+//				UserName:       pulumi.String("my_initial_user"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				VolumeSizeInGb: pulumi.Int(5),
+//				PrivateNetwork: &scaleway.MongoDbInstancePrivateNetworkArgs{
+//					PnId: pulumi.Any(pn02.Id),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -100,6 +142,8 @@ type MongoDbInstance struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password of the user.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// Private Network endpoints of the Database Instance.
+	PrivateNetwork MongoDbInstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Public network specs details.
@@ -177,6 +221,8 @@ type mongoDbInstanceState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
+	// Private Network endpoints of the Database Instance.
+	PrivateNetwork *MongoDbInstancePrivateNetwork `pulumi:"privateNetwork"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// Public network specs details.
@@ -212,6 +258,8 @@ type MongoDbInstanceState struct {
 	NodeType pulumi.StringPtrInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
+	// Private Network endpoints of the Database Instance.
+	PrivateNetwork MongoDbInstancePrivateNetworkPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// Public network specs details.
@@ -249,6 +297,8 @@ type mongoDbInstanceArgs struct {
 	NodeType string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
+	// Private Network endpoints of the Database Instance.
+	PrivateNetwork *MongoDbInstancePrivateNetwork `pulumi:"privateNetwork"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// Public network specs details.
@@ -281,6 +331,8 @@ type MongoDbInstanceArgs struct {
 	NodeType pulumi.StringInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
+	// Private Network endpoints of the Database Instance.
+	PrivateNetwork MongoDbInstancePrivateNetworkPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// Public network specs details.
@@ -413,6 +465,11 @@ func (o MongoDbInstanceOutput) NodeType() pulumi.StringOutput {
 // Password of the user.
 func (o MongoDbInstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Private Network endpoints of the Database Instance.
+func (o MongoDbInstanceOutput) PrivateNetwork() MongoDbInstancePrivateNetworkPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstance) MongoDbInstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(MongoDbInstancePrivateNetworkPtrOutput)
 }
 
 // The projectId you want to attach the resource to

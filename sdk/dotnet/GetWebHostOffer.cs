@@ -29,6 +29,7 @@ namespace Pulumiverse.Scaleway
         ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
+        ///         ControlPanel = "Cpanel",
         ///     });
         /// 
         ///     // Get info by offer id
@@ -60,6 +61,7 @@ namespace Pulumiverse.Scaleway
         ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
+        ///         ControlPanel = "Cpanel",
         ///     });
         /// 
         ///     // Get info by offer id
@@ -91,6 +93,7 @@ namespace Pulumiverse.Scaleway
         ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
+        ///         ControlPanel = "Cpanel",
         ///     });
         /// 
         ///     // Get info by offer id
@@ -109,6 +112,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetWebHostOfferArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Name of the control panel (Cpanel or Plesk). This argument is only used when `offer_id` is not specified.
+        /// </summary>
+        [Input("controlPanel")]
+        public string? ControlPanel { get; set; }
+
         /// <summary>
         /// The offer name. Only one of `name` and `offer_id` should be specified.
         /// </summary>
@@ -135,6 +144,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetWebHostOfferInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Name of the control panel (Cpanel or Plesk). This argument is only used when `offer_id` is not specified.
+        /// </summary>
+        [Input("controlPanel")]
+        public Input<string>? ControlPanel { get; set; }
+
         /// <summary>
         /// The offer name. Only one of `name` and `offer_id` should be specified.
         /// </summary>
@@ -164,21 +179,29 @@ namespace Pulumiverse.Scaleway
     public sealed class GetWebHostOfferResult
     {
         /// <summary>
-        /// The unique identifier used for billing.
+        /// The billing operation identifier for the option.
         /// </summary>
         public readonly string BillingOperationPath;
+        public readonly string? ControlPanel;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the option.
+        /// </summary>
         public readonly string? Name;
         public readonly string? OfferId;
+        /// <summary>
+        /// The detailed offer of the hosting.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetWebHostOfferOfferResult> Offers;
         /// <summary>
         /// The offer price.
         /// </summary>
         public readonly string Price;
         /// <summary>
-        /// The offer product.
+        /// (deprecated) The offer product.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetWebHostOfferProductResult> Products;
         public readonly string Region;
@@ -187,11 +210,15 @@ namespace Pulumiverse.Scaleway
         private GetWebHostOfferResult(
             string billingOperationPath,
 
+            string? controlPanel,
+
             string id,
 
             string? name,
 
             string? offerId,
+
+            ImmutableArray<Outputs.GetWebHostOfferOfferResult> offers,
 
             string price,
 
@@ -200,9 +227,11 @@ namespace Pulumiverse.Scaleway
             string region)
         {
             BillingOperationPath = billingOperationPath;
+            ControlPanel = controlPanel;
             Id = id;
             Name = name;
             OfferId = offerId;
+            Offers = offers;
             Price = price;
             Products = products;
             Region = region;

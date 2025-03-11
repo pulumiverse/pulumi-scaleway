@@ -58,7 +58,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Handler { get; private set; } = null!;
 
         /// <summary>
-        /// HTTP traffic configuration
+        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         /// </summary>
         [Output("httpOption")]
         public Output<string?> HttpOption { get; private set; } = null!;
@@ -234,7 +234,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Handler { get; set; } = null!;
 
         /// <summary>
-        /// HTTP traffic configuration
+        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
@@ -383,7 +383,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Handler { get; set; }
 
         /// <summary>
-        /// HTTP traffic configuration
+        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }

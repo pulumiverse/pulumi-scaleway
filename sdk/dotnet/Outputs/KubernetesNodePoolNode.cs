@@ -16,6 +16,7 @@ namespace Pulumiverse.Scaleway.Outputs
     {
         /// <summary>
         /// The name for the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         public readonly string? Name;

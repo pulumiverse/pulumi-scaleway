@@ -20,13 +20,13 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? DnsRecord { get; set; }
 
         /// <summary>
-        /// The ID of the MongoDB® instance.
+        /// The ID of the endpoint.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// TCP port of the endpoint
+        /// TCP port of the endpoint.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }

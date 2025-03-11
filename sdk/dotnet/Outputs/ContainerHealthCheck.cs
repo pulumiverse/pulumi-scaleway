@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.ContainerHealthCheckHttp> Https;
         /// <summary>
-        /// Period between health checks.
+        /// Period between health checks (in seconds).
         /// </summary>
         public readonly string Interval;
 

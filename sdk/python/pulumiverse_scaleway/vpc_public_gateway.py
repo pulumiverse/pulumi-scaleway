@@ -466,7 +466,7 @@ class VpcPublicGateway(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Public Gateways.
-        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
 
         ## Example Usage
 
@@ -517,7 +517,7 @@ class VpcPublicGateway(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Public Gateways.
-        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway).
 
         ## Example Usage
 

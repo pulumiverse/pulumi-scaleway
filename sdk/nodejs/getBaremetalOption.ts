@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a baremetal option.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ * For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
  *
  * ## Example Usage
  *
@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by option name 
+ * // Get info by option name
  * const byName = scaleway.getBaremetalOption({
  *     name: "Remote Access",
  * });
@@ -73,7 +73,7 @@ export interface GetBaremetalOptionResult {
 }
 /**
  * Gets information about a baremetal option.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+ * For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
  *
  * ## Example Usage
  *
@@ -81,7 +81,7 @@ export interface GetBaremetalOptionResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * // Get info by option name 
+ * // Get info by option name
  * const byName = scaleway.getBaremetalOption({
  *     name: "Remote Access",
  * });

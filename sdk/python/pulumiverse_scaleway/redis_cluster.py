@@ -660,7 +660,7 @@ class RedisCluster(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Redis™ clusters.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
 
         ## Example Usage
 
@@ -790,7 +790,7 @@ class RedisCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Redis™ clusters.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
 
         ## Example Usage
 

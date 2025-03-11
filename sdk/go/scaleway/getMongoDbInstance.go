@@ -50,8 +50,9 @@ type LookupMongoDbInstanceResult struct {
 	// The number of nodes in the MongoDB® cluster.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// The type of MongoDB® node.
-	NodeType string `pulumi:"nodeType"`
-	Password string `pulumi:"password"`
+	NodeType        string                             `pulumi:"nodeType"`
+	Password        string                             `pulumi:"password"`
+	PrivateNetworks []GetMongoDbInstancePrivateNetwork `pulumi:"privateNetworks"`
 	// The ID of the project the instance belongs to.
 	ProjectId *string `pulumi:"projectId"`
 	// The details of the public network configuration, if applicable.
@@ -144,6 +145,10 @@ func (o LookupMongoDbInstanceResultOutput) NodeType() pulumi.StringOutput {
 
 func (o LookupMongoDbInstanceResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongoDbInstanceResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupMongoDbInstanceResultOutput) PrivateNetworks() GetMongoDbInstancePrivateNetworkArrayOutput {
+	return o.ApplyT(func(v LookupMongoDbInstanceResult) []GetMongoDbInstancePrivateNetwork { return v.PrivateNetworks }).(GetMongoDbInstancePrivateNetworkArrayOutput)
 }
 
 // The ID of the project the instance belongs to.

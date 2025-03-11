@@ -483,7 +483,7 @@ class InferenceDeployment(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Managed Inference deployments.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/inference/).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/inference/).
 
         ## Example Usage
 
@@ -535,7 +535,7 @@ class InferenceDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Managed Inference deployments.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/inference/).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/inference/).
 
         ## Example Usage
 

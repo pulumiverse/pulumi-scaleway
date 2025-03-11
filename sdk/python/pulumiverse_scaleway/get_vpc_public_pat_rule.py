@@ -159,7 +159,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicPatRuleResult:
     """
     Gets information about a Public Gateway PAT rule. For further information, please see the
-    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
+    [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
 
     ## Example Usage
 
@@ -238,7 +238,7 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicPatRuleResult]:
     """
     Gets information about a Public Gateway PAT rule. For further information, please see the
-    API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
+    [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-pat-rules-list-pat-rules).
 
     ## Example Usage
 

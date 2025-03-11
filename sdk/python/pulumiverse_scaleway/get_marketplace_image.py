@@ -26,10 +26,13 @@ class GetMarketplaceImageResult:
     """
     A collection of values returned by getMarketplaceImage.
     """
-    def __init__(__self__, id=None, instance_type=None, label=None, zone=None):
+    def __init__(__self__, id=None, image_type=None, instance_type=None, label=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if image_type and not isinstance(image_type, str):
+            raise TypeError("Expected argument 'image_type' to be a str")
+        pulumi.set(__self__, "image_type", image_type)
         if instance_type and not isinstance(instance_type, str):
             raise TypeError("Expected argument 'instance_type' to be a str")
         pulumi.set(__self__, "instance_type", instance_type)
@@ -47,6 +50,11 @@ class GetMarketplaceImageResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> Optional[str]:
+        return pulumi.get(self, "image_type")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -71,12 +79,14 @@ class AwaitableGetMarketplaceImageResult(GetMarketplaceImageResult):
             yield self
         return GetMarketplaceImageResult(
             id=self.id,
+            image_type=self.image_type,
             instance_type=self.instance_type,
             label=self.label,
             zone=self.zone)
 
 
-def get_marketplace_image(instance_type: Optional[str] = None,
+def get_marketplace_image(image_type: Optional[str] = None,
+                          instance_type: Optional[str] = None,
                           label: Optional[str] = None,
                           zone: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMarketplaceImageResult:
@@ -93,6 +103,7 @@ def get_marketplace_image(instance_type: Optional[str] = None,
     ```
 
 
+    :param str image_type: The local image type, `instance_local` or `instance_sbs`.
     :param str instance_type: The instance type the image is compatible with.
            You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
     :param str label: Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
@@ -100,6 +111,7 @@ def get_marketplace_image(instance_type: Optional[str] = None,
     :param str zone: `zone`) The zone in which the image exists.
     """
     __args__ = dict()
+    __args__['imageType'] = image_type
     __args__['instanceType'] = instance_type
     __args__['label'] = label
     __args__['zone'] = zone
@@ -108,10 +120,12 @@ def get_marketplace_image(instance_type: Optional[str] = None,
 
     return AwaitableGetMarketplaceImageResult(
         id=pulumi.get(__ret__, 'id'),
+        image_type=pulumi.get(__ret__, 'image_type'),
         instance_type=pulumi.get(__ret__, 'instance_type'),
         label=pulumi.get(__ret__, 'label'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[str]]] = None,
+def get_marketplace_image_output(image_type: Optional[pulumi.Input[Optional[str]]] = None,
+                                 instance_type: Optional[pulumi.Input[Optional[str]]] = None,
                                  label: Optional[pulumi.Input[str]] = None,
                                  zone: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMarketplaceImageResult]:
@@ -128,6 +142,7 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
     ```
 
 
+    :param str image_type: The local image type, `instance_local` or `instance_sbs`.
     :param str instance_type: The instance type the image is compatible with.
            You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
     :param str label: Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
@@ -135,6 +150,7 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
     :param str zone: `zone`) The zone in which the image exists.
     """
     __args__ = dict()
+    __args__['imageType'] = image_type
     __args__['instanceType'] = instance_type
     __args__['label'] = label
     __args__['zone'] = zone
@@ -142,6 +158,7 @@ def get_marketplace_image_output(instance_type: Optional[pulumi.Input[Optional[s
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getMarketplaceImage:getMarketplaceImage', __args__, opts=opts, typ=GetMarketplaceImageResult)
     return __ret__.apply(lambda __response__: GetMarketplaceImageResult(
         id=pulumi.get(__response__, 'id'),
+        image_type=pulumi.get(__response__, 'image_type'),
         instance_type=pulumi.get(__response__, 'instance_type'),
         label=pulumi.get(__response__, 'label'),
         zone=pulumi.get(__response__, 'zone')))

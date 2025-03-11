@@ -25,17 +25,19 @@ type Cockpit struct {
 
 	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 	//
-	// Deprecated: Please use `CockpitSource` instead
+	// Deprecated: Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
 	Endpoints CockpitEndpointArrayOutput `pulumi:"endpoints"`
 	// Name of the plan to use. Available plans are: free, premium, and custom.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan pulumi.StringPtrOutput `pulumi:"plan"`
 	// (Deprecated) The ID of the current pricing plan.
 	//
-	// Deprecated: Please use Name only
+	// Deprecated: The 'plan_id' attribute is deprecated and will be removed in a future release.
 	PlanId pulumi.StringOutput `pulumi:"planId"`
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Push_url
+	// [DEPRECATED] Push_url
 	//
 	// Deprecated: Please use `CockpitSource` instead
 	PushUrls CockpitPushUrlArrayOutput `pulumi:"pushUrls"`
@@ -73,17 +75,19 @@ func GetCockpit(ctx *pulumi.Context,
 type cockpitState struct {
 	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 	//
-	// Deprecated: Please use `CockpitSource` instead
+	// Deprecated: Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
 	Endpoints []CockpitEndpoint `pulumi:"endpoints"`
 	// Name of the plan to use. Available plans are: free, premium, and custom.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan *string `pulumi:"plan"`
 	// (Deprecated) The ID of the current pricing plan.
 	//
-	// Deprecated: Please use Name only
+	// Deprecated: The 'plan_id' attribute is deprecated and will be removed in a future release.
 	PlanId *string `pulumi:"planId"`
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// Push_url
+	// [DEPRECATED] Push_url
 	//
 	// Deprecated: Please use `CockpitSource` instead
 	PushUrls []CockpitPushUrl `pulumi:"pushUrls"`
@@ -92,17 +96,19 @@ type cockpitState struct {
 type CockpitState struct {
 	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 	//
-	// Deprecated: Please use `CockpitSource` instead
+	// Deprecated: Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
 	Endpoints CockpitEndpointArrayInput
 	// Name of the plan to use. Available plans are: free, premium, and custom.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan pulumi.StringPtrInput
 	// (Deprecated) The ID of the current pricing plan.
 	//
-	// Deprecated: Please use Name only
+	// Deprecated: The 'plan_id' attribute is deprecated and will be removed in a future release.
 	PlanId pulumi.StringPtrInput
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
-	// Push_url
+	// [DEPRECATED] Push_url
 	//
 	// Deprecated: Please use `CockpitSource` instead
 	PushUrls CockpitPushUrlArrayInput
@@ -114,6 +120,8 @@ func (CockpitState) ElementType() reflect.Type {
 
 type cockpitArgs struct {
 	// Name of the plan to use. Available plans are: free, premium, and custom.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan *string `pulumi:"plan"`
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -122,6 +130,8 @@ type cockpitArgs struct {
 // The set of arguments for constructing a Cockpit resource.
 type CockpitArgs struct {
 	// Name of the plan to use. Available plans are: free, premium, and custom.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan pulumi.StringPtrInput
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -216,19 +226,21 @@ func (o CockpitOutput) ToCockpitOutputWithContext(ctx context.Context) CockpitOu
 
 // (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 //
-// Deprecated: Please use `CockpitSource` instead
+// Deprecated: Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
 func (o CockpitOutput) Endpoints() CockpitEndpointArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitEndpointArrayOutput { return v.Endpoints }).(CockpitEndpointArrayOutput)
 }
 
 // Name of the plan to use. Available plans are: free, premium, and custom.
+//
+// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 func (o CockpitOutput) Plan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringPtrOutput { return v.Plan }).(pulumi.StringPtrOutput)
 }
 
 // (Deprecated) The ID of the current pricing plan.
 //
-// Deprecated: Please use Name only
+// Deprecated: The 'plan_id' attribute is deprecated and will be removed in a future release.
 func (o CockpitOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
 }
@@ -238,7 +250,7 @@ func (o CockpitOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Push_url
+// [DEPRECATED] Push_url
 //
 // Deprecated: Please use `CockpitSource` instead
 func (o CockpitOutput) PushUrls() CockpitPushUrlArrayOutput {

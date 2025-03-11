@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a baremetal option.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
         /// ## Example Usage
         /// 
@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Get info by option name 
+        ///     // Get info by option name
         ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
@@ -46,7 +46,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about a baremetal option.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
         /// ## Example Usage
         /// 
@@ -58,7 +58,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Get info by option name 
+        ///     // Get info by option name
         ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about a baremetal option.
-        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
         /// ## Example Usage
         /// 
@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Get info by option name 
+        ///     // Get info by option name
         ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
+// Creates and manages Scaleway Kubernetes clusters. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
 //
 // ## Example Usage
 //
@@ -223,7 +223,7 @@ import (
 //
 // ```
 //
-// The `nullResource` is needed because when the cluster is created, it's status is `poolRequired`, but the kubeconfig can already be downloaded.
+// The `nullResource` is needed because when the cluster is created, its status is `poolRequired`, but the kubeconfig can already be downloaded.
 // It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
 //
 // ### With the Helm provider

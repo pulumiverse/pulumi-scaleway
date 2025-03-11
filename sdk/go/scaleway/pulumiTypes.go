@@ -1414,7 +1414,7 @@ type ContainerHealthCheck struct {
 	FailureThreshold int `pulumi:"failureThreshold"`
 	// HTTP health check configuration.
 	Https []ContainerHealthCheckHttp `pulumi:"https"`
-	// Period between health checks.
+	// Period between health checks (in seconds).
 	Interval string `pulumi:"interval"`
 }
 
@@ -1434,7 +1434,7 @@ type ContainerHealthCheckArgs struct {
 	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
 	// HTTP health check configuration.
 	Https ContainerHealthCheckHttpArrayInput `pulumi:"https"`
-	// Period between health checks.
+	// Period between health checks (in seconds).
 	Interval pulumi.StringInput `pulumi:"interval"`
 }
 
@@ -1499,7 +1499,7 @@ func (o ContainerHealthCheckOutput) Https() ContainerHealthCheckHttpArrayOutput 
 	return o.ApplyT(func(v ContainerHealthCheck) []ContainerHealthCheckHttp { return v.Https }).(ContainerHealthCheckHttpArrayOutput)
 }
 
-// Period between health checks.
+// Period between health checks (in seconds).
 func (o ContainerHealthCheckOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) string { return v.Interval }).(pulumi.StringOutput)
 }
@@ -4515,13 +4515,13 @@ func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 }
 
 type IamPolicyRule struct {
-	// The condition of the IAM policy.
+	// The condition of the rule.
+	//
+	// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 	Condition *string `pulumi:"condition"`
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId *string `pulumi:"organizationId"`
 	// Names of permission sets bind to the rule.
-	//
-	// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 	PermissionSetNames []string `pulumi:"permissionSetNames"`
 	// List of project IDs scoped to the rule.
 	//
@@ -4541,13 +4541,13 @@ type IamPolicyRuleInput interface {
 }
 
 type IamPolicyRuleArgs struct {
-	// The condition of the IAM policy.
+	// The condition of the rule.
+	//
+	// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 	Condition pulumi.StringPtrInput `pulumi:"condition"`
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// Names of permission sets bind to the rule.
-	//
-	// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 	PermissionSetNames pulumi.StringArrayInput `pulumi:"permissionSetNames"`
 	// List of project IDs scoped to the rule.
 	//
@@ -4606,7 +4606,9 @@ func (o IamPolicyRuleOutput) ToIamPolicyRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The condition of the IAM policy.
+// The condition of the rule.
+//
+// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 func (o IamPolicyRuleOutput) Condition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamPolicyRule) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
@@ -4617,8 +4619,6 @@ func (o IamPolicyRuleOutput) OrganizationId() pulumi.StringPtrOutput {
 }
 
 // Names of permission sets bind to the rule.
-//
-// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 func (o IamPolicyRuleOutput) PermissionSetNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IamPolicyRule) []string { return v.PermissionSetNames }).(pulumi.StringArrayOutput)
 }
@@ -9221,6 +9221,7 @@ func (o KubernetesClusterOpenIdConnectConfigPtrOutput) UsernamePrefix() pulumi.S
 
 type KubernetesNodePoolNode struct {
 	// The name for the pool.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
 	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
@@ -9248,6 +9249,7 @@ type KubernetesNodePoolNodeInput interface {
 
 type KubernetesNodePoolNodeArgs struct {
 	// The name for the pool.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
@@ -9314,6 +9316,7 @@ func (o KubernetesNodePoolNodeOutput) ToKubernetesNodePoolNodeOutputWithContext(
 }
 
 // The name for the pool.
+//
 // > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
@@ -11750,12 +11753,225 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
+type MongoDbInstancePrivateNetwork struct {
+	// List of DNS records for your endpoint.
+	DnsRecords []string `pulumi:"dnsRecords"`
+	// The ID of the endpoint.
+	Id *string `pulumi:"id"`
+	// List of IP addresses for your endpoint.
+	Ips []string `pulumi:"ips"`
+	// The ID of the Private Network.
+	PnId string `pulumi:"pnId"`
+	// TCP port of the endpoint.
+	Port *int `pulumi:"port"`
+}
+
+// MongoDbInstancePrivateNetworkInput is an input type that accepts MongoDbInstancePrivateNetworkArgs and MongoDbInstancePrivateNetworkOutput values.
+// You can construct a concrete instance of `MongoDbInstancePrivateNetworkInput` via:
+//
+//	MongoDbInstancePrivateNetworkArgs{...}
+type MongoDbInstancePrivateNetworkInput interface {
+	pulumi.Input
+
+	ToMongoDbInstancePrivateNetworkOutput() MongoDbInstancePrivateNetworkOutput
+	ToMongoDbInstancePrivateNetworkOutputWithContext(context.Context) MongoDbInstancePrivateNetworkOutput
+}
+
+type MongoDbInstancePrivateNetworkArgs struct {
+	// List of DNS records for your endpoint.
+	DnsRecords pulumi.StringArrayInput `pulumi:"dnsRecords"`
+	// The ID of the endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// List of IP addresses for your endpoint.
+	Ips pulumi.StringArrayInput `pulumi:"ips"`
+	// The ID of the Private Network.
+	PnId pulumi.StringInput `pulumi:"pnId"`
+	// TCP port of the endpoint.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (MongoDbInstancePrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (i MongoDbInstancePrivateNetworkArgs) ToMongoDbInstancePrivateNetworkOutput() MongoDbInstancePrivateNetworkOutput {
+	return i.ToMongoDbInstancePrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i MongoDbInstancePrivateNetworkArgs) ToMongoDbInstancePrivateNetworkOutputWithContext(ctx context.Context) MongoDbInstancePrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePrivateNetworkOutput)
+}
+
+func (i MongoDbInstancePrivateNetworkArgs) ToMongoDbInstancePrivateNetworkPtrOutput() MongoDbInstancePrivateNetworkPtrOutput {
+	return i.ToMongoDbInstancePrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i MongoDbInstancePrivateNetworkArgs) ToMongoDbInstancePrivateNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePrivateNetworkOutput).ToMongoDbInstancePrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// MongoDbInstancePrivateNetworkPtrInput is an input type that accepts MongoDbInstancePrivateNetworkArgs, MongoDbInstancePrivateNetworkPtr and MongoDbInstancePrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `MongoDbInstancePrivateNetworkPtrInput` via:
+//
+//	        MongoDbInstancePrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type MongoDbInstancePrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToMongoDbInstancePrivateNetworkPtrOutput() MongoDbInstancePrivateNetworkPtrOutput
+	ToMongoDbInstancePrivateNetworkPtrOutputWithContext(context.Context) MongoDbInstancePrivateNetworkPtrOutput
+}
+
+type mongoDbInstancePrivateNetworkPtrType MongoDbInstancePrivateNetworkArgs
+
+func MongoDbInstancePrivateNetworkPtr(v *MongoDbInstancePrivateNetworkArgs) MongoDbInstancePrivateNetworkPtrInput {
+	return (*mongoDbInstancePrivateNetworkPtrType)(v)
+}
+
+func (*mongoDbInstancePrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (i *mongoDbInstancePrivateNetworkPtrType) ToMongoDbInstancePrivateNetworkPtrOutput() MongoDbInstancePrivateNetworkPtrOutput {
+	return i.ToMongoDbInstancePrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *mongoDbInstancePrivateNetworkPtrType) ToMongoDbInstancePrivateNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePrivateNetworkPtrOutput)
+}
+
+type MongoDbInstancePrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (MongoDbInstancePrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (o MongoDbInstancePrivateNetworkOutput) ToMongoDbInstancePrivateNetworkOutput() MongoDbInstancePrivateNetworkOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateNetworkOutput) ToMongoDbInstancePrivateNetworkOutputWithContext(ctx context.Context) MongoDbInstancePrivateNetworkOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateNetworkOutput) ToMongoDbInstancePrivateNetworkPtrOutput() MongoDbInstancePrivateNetworkPtrOutput {
+	return o.ToMongoDbInstancePrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o MongoDbInstancePrivateNetworkOutput) ToMongoDbInstancePrivateNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MongoDbInstancePrivateNetwork) *MongoDbInstancePrivateNetwork {
+		return &v
+	}).(MongoDbInstancePrivateNetworkPtrOutput)
+}
+
+// List of DNS records for your endpoint.
+func (o MongoDbInstancePrivateNetworkOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateNetwork) []string { return v.DnsRecords }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the endpoint.
+func (o MongoDbInstancePrivateNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// List of IP addresses for your endpoint.
+func (o MongoDbInstancePrivateNetworkOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Private Network.
+func (o MongoDbInstancePrivateNetworkOutput) PnId() pulumi.StringOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// TCP port of the endpoint.
+func (o MongoDbInstancePrivateNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type MongoDbInstancePrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (MongoDbInstancePrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (o MongoDbInstancePrivateNetworkPtrOutput) ToMongoDbInstancePrivateNetworkPtrOutput() MongoDbInstancePrivateNetworkPtrOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateNetworkPtrOutput) ToMongoDbInstancePrivateNetworkPtrOutputWithContext(ctx context.Context) MongoDbInstancePrivateNetworkPtrOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateNetworkPtrOutput) Elem() MongoDbInstancePrivateNetworkOutput {
+	return o.ApplyT(func(v *MongoDbInstancePrivateNetwork) MongoDbInstancePrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret MongoDbInstancePrivateNetwork
+		return ret
+	}).(MongoDbInstancePrivateNetworkOutput)
+}
+
+// List of DNS records for your endpoint.
+func (o MongoDbInstancePrivateNetworkPtrOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *MongoDbInstancePrivateNetwork) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DnsRecords
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the endpoint.
+func (o MongoDbInstancePrivateNetworkPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstancePrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of IP addresses for your endpoint.
+func (o MongoDbInstancePrivateNetworkPtrOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *MongoDbInstancePrivateNetwork) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Ips
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Private Network.
+func (o MongoDbInstancePrivateNetworkPtrOutput) PnId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstancePrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PnId
+	}).(pulumi.StringPtrOutput)
+}
+
+// TCP port of the endpoint.
+func (o MongoDbInstancePrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstancePrivateNetwork) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
 type MongoDbInstancePublicNetwork struct {
 	// The DNS record of your endpoint
 	DnsRecord *string `pulumi:"dnsRecord"`
-	// The ID of the MongoDB® instance.
+	// The ID of the endpoint.
 	Id *string `pulumi:"id"`
-	// TCP port of the endpoint
+	// TCP port of the endpoint.
 	Port *int `pulumi:"port"`
 }
 
@@ -11773,9 +11989,9 @@ type MongoDbInstancePublicNetworkInput interface {
 type MongoDbInstancePublicNetworkArgs struct {
 	// The DNS record of your endpoint
 	DnsRecord pulumi.StringPtrInput `pulumi:"dnsRecord"`
-	// The ID of the MongoDB® instance.
+	// The ID of the endpoint.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// TCP port of the endpoint
+	// TCP port of the endpoint.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
@@ -11861,12 +12077,12 @@ func (o MongoDbInstancePublicNetworkOutput) DnsRecord() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoDbInstancePublicNetwork) *string { return v.DnsRecord }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the MongoDB® instance.
+// The ID of the endpoint.
 func (o MongoDbInstancePublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoDbInstancePublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// TCP port of the endpoint
+// TCP port of the endpoint.
 func (o MongoDbInstancePublicNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v MongoDbInstancePublicNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -11905,7 +12121,7 @@ func (o MongoDbInstancePublicNetworkPtrOutput) DnsRecord() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ID of the MongoDB® instance.
+// The ID of the endpoint.
 func (o MongoDbInstancePublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstancePublicNetwork) *string {
 		if v == nil {
@@ -11915,7 +12131,7 @@ func (o MongoDbInstancePublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// TCP port of the endpoint
+// TCP port of the endpoint.
 func (o MongoDbInstancePublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstancePublicNetwork) *int {
 		if v == nil {
@@ -15141,6 +15357,115 @@ func (o WebhostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) WebhostingCpane
 	}).(WebhostingCpanelUrlOutput)
 }
 
+type WebhostingNameServer struct {
+	Hostname  *string `pulumi:"hostname"`
+	IsDefault *bool   `pulumi:"isDefault"`
+	// The hosting status.
+	Status *string `pulumi:"status"`
+}
+
+// WebhostingNameServerInput is an input type that accepts WebhostingNameServerArgs and WebhostingNameServerOutput values.
+// You can construct a concrete instance of `WebhostingNameServerInput` via:
+//
+//	WebhostingNameServerArgs{...}
+type WebhostingNameServerInput interface {
+	pulumi.Input
+
+	ToWebhostingNameServerOutput() WebhostingNameServerOutput
+	ToWebhostingNameServerOutputWithContext(context.Context) WebhostingNameServerOutput
+}
+
+type WebhostingNameServerArgs struct {
+	Hostname  pulumi.StringPtrInput `pulumi:"hostname"`
+	IsDefault pulumi.BoolPtrInput   `pulumi:"isDefault"`
+	// The hosting status.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (WebhostingNameServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhostingNameServer)(nil)).Elem()
+}
+
+func (i WebhostingNameServerArgs) ToWebhostingNameServerOutput() WebhostingNameServerOutput {
+	return i.ToWebhostingNameServerOutputWithContext(context.Background())
+}
+
+func (i WebhostingNameServerArgs) ToWebhostingNameServerOutputWithContext(ctx context.Context) WebhostingNameServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingNameServerOutput)
+}
+
+// WebhostingNameServerArrayInput is an input type that accepts WebhostingNameServerArray and WebhostingNameServerArrayOutput values.
+// You can construct a concrete instance of `WebhostingNameServerArrayInput` via:
+//
+//	WebhostingNameServerArray{ WebhostingNameServerArgs{...} }
+type WebhostingNameServerArrayInput interface {
+	pulumi.Input
+
+	ToWebhostingNameServerArrayOutput() WebhostingNameServerArrayOutput
+	ToWebhostingNameServerArrayOutputWithContext(context.Context) WebhostingNameServerArrayOutput
+}
+
+type WebhostingNameServerArray []WebhostingNameServerInput
+
+func (WebhostingNameServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebhostingNameServer)(nil)).Elem()
+}
+
+func (i WebhostingNameServerArray) ToWebhostingNameServerArrayOutput() WebhostingNameServerArrayOutput {
+	return i.ToWebhostingNameServerArrayOutputWithContext(context.Background())
+}
+
+func (i WebhostingNameServerArray) ToWebhostingNameServerArrayOutputWithContext(ctx context.Context) WebhostingNameServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingNameServerArrayOutput)
+}
+
+type WebhostingNameServerOutput struct{ *pulumi.OutputState }
+
+func (WebhostingNameServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhostingNameServer)(nil)).Elem()
+}
+
+func (o WebhostingNameServerOutput) ToWebhostingNameServerOutput() WebhostingNameServerOutput {
+	return o
+}
+
+func (o WebhostingNameServerOutput) ToWebhostingNameServerOutputWithContext(ctx context.Context) WebhostingNameServerOutput {
+	return o
+}
+
+func (o WebhostingNameServerOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebhostingNameServer) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+func (o WebhostingNameServerOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v WebhostingNameServer) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
+// The hosting status.
+func (o WebhostingNameServerOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebhostingNameServer) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type WebhostingNameServerArrayOutput struct{ *pulumi.OutputState }
+
+func (WebhostingNameServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebhostingNameServer)(nil)).Elem()
+}
+
+func (o WebhostingNameServerArrayOutput) ToWebhostingNameServerArrayOutput() WebhostingNameServerArrayOutput {
+	return o
+}
+
+func (o WebhostingNameServerArrayOutput) ToWebhostingNameServerArrayOutputWithContext(ctx context.Context) WebhostingNameServerArrayOutput {
+	return o
+}
+
+func (o WebhostingNameServerArrayOutput) Index(i pulumi.IntInput) WebhostingNameServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebhostingNameServer {
+		return vs[0].([]WebhostingNameServer)[vs[1].(int)]
+	}).(WebhostingNameServerOutput)
+}
+
 type WebhostingOption struct {
 	// The option ID.
 	Id *string `pulumi:"id"`
@@ -15245,6 +15570,136 @@ func (o WebhostingOptionArrayOutput) Index(i pulumi.IntInput) WebhostingOptionOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebhostingOption {
 		return vs[0].([]WebhostingOption)[vs[1].(int)]
 	}).(WebhostingOptionOutput)
+}
+
+type WebhostingRecord struct {
+	// The option name.
+	Name     *string `pulumi:"name"`
+	Priority *int    `pulumi:"priority"`
+	// The hosting status.
+	Status *string `pulumi:"status"`
+	Ttl    *int    `pulumi:"ttl"`
+	Type   *string `pulumi:"type"`
+	Value  *string `pulumi:"value"`
+}
+
+// WebhostingRecordInput is an input type that accepts WebhostingRecordArgs and WebhostingRecordOutput values.
+// You can construct a concrete instance of `WebhostingRecordInput` via:
+//
+//	WebhostingRecordArgs{...}
+type WebhostingRecordInput interface {
+	pulumi.Input
+
+	ToWebhostingRecordOutput() WebhostingRecordOutput
+	ToWebhostingRecordOutputWithContext(context.Context) WebhostingRecordOutput
+}
+
+type WebhostingRecordArgs struct {
+	// The option name.
+	Name     pulumi.StringPtrInput `pulumi:"name"`
+	Priority pulumi.IntPtrInput    `pulumi:"priority"`
+	// The hosting status.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	Ttl    pulumi.IntPtrInput    `pulumi:"ttl"`
+	Type   pulumi.StringPtrInput `pulumi:"type"`
+	Value  pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (WebhostingRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhostingRecord)(nil)).Elem()
+}
+
+func (i WebhostingRecordArgs) ToWebhostingRecordOutput() WebhostingRecordOutput {
+	return i.ToWebhostingRecordOutputWithContext(context.Background())
+}
+
+func (i WebhostingRecordArgs) ToWebhostingRecordOutputWithContext(ctx context.Context) WebhostingRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingRecordOutput)
+}
+
+// WebhostingRecordArrayInput is an input type that accepts WebhostingRecordArray and WebhostingRecordArrayOutput values.
+// You can construct a concrete instance of `WebhostingRecordArrayInput` via:
+//
+//	WebhostingRecordArray{ WebhostingRecordArgs{...} }
+type WebhostingRecordArrayInput interface {
+	pulumi.Input
+
+	ToWebhostingRecordArrayOutput() WebhostingRecordArrayOutput
+	ToWebhostingRecordArrayOutputWithContext(context.Context) WebhostingRecordArrayOutput
+}
+
+type WebhostingRecordArray []WebhostingRecordInput
+
+func (WebhostingRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebhostingRecord)(nil)).Elem()
+}
+
+func (i WebhostingRecordArray) ToWebhostingRecordArrayOutput() WebhostingRecordArrayOutput {
+	return i.ToWebhostingRecordArrayOutputWithContext(context.Background())
+}
+
+func (i WebhostingRecordArray) ToWebhostingRecordArrayOutputWithContext(ctx context.Context) WebhostingRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingRecordArrayOutput)
+}
+
+type WebhostingRecordOutput struct{ *pulumi.OutputState }
+
+func (WebhostingRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhostingRecord)(nil)).Elem()
+}
+
+func (o WebhostingRecordOutput) ToWebhostingRecordOutput() WebhostingRecordOutput {
+	return o
+}
+
+func (o WebhostingRecordOutput) ToWebhostingRecordOutputWithContext(ctx context.Context) WebhostingRecordOutput {
+	return o
+}
+
+// The option name.
+func (o WebhostingRecordOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebhostingRecord) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o WebhostingRecordOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WebhostingRecord) *int { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// The hosting status.
+func (o WebhostingRecordOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebhostingRecord) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o WebhostingRecordOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WebhostingRecord) *int { return v.Ttl }).(pulumi.IntPtrOutput)
+}
+
+func (o WebhostingRecordOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebhostingRecord) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o WebhostingRecordOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebhostingRecord) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type WebhostingRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (WebhostingRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebhostingRecord)(nil)).Elem()
+}
+
+func (o WebhostingRecordArrayOutput) ToWebhostingRecordArrayOutput() WebhostingRecordArrayOutput {
+	return o
+}
+
+func (o WebhostingRecordArrayOutput) ToWebhostingRecordArrayOutputWithContext(ctx context.Context) WebhostingRecordArrayOutput {
+	return o
+}
+
+func (o WebhostingRecordArrayOutput) Index(i pulumi.IntInput) WebhostingRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebhostingRecord {
+		return vs[0].([]WebhostingRecord)[vs[1].(int)]
+	}).(WebhostingRecordOutput)
 }
 
 type GetBaremetalOfferCpu struct {
@@ -16577,7 +17032,7 @@ type GetCockpitEndpoint struct {
 	LogsUrl string `pulumi:"logsUrl"`
 	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl string `pulumi:"metricsUrl"`
-	// The traces URL
+	// The traces URL.
 	TracesUrl string `pulumi:"tracesUrl"`
 }
 
@@ -16601,7 +17056,7 @@ type GetCockpitEndpointArgs struct {
 	LogsUrl pulumi.StringInput `pulumi:"logsUrl"`
 	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl pulumi.StringInput `pulumi:"metricsUrl"`
-	// The traces URL
+	// The traces URL.
 	TracesUrl pulumi.StringInput `pulumi:"tracesUrl"`
 }
 
@@ -16676,7 +17131,7 @@ func (o GetCockpitEndpointOutput) MetricsUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.MetricsUrl }).(pulumi.StringOutput)
 }
 
-// The traces URL
+// The traces URL.
 func (o GetCockpitEndpointOutput) TracesUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.TracesUrl }).(pulumi.StringOutput)
 }
@@ -24897,6 +25352,139 @@ func (o GetLoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetLo
 	}).(GetLoadbalancerPrivateNetworkOutput)
 }
 
+type GetMongoDbInstancePrivateNetwork struct {
+	// List of DNS records for your endpoint
+	DnsRecords []string `pulumi:"dnsRecords"`
+	// The ID of the MongoDB® Instance.
+	Id string `pulumi:"id"`
+	// List of IP addresses for your endpoint
+	Ips []string `pulumi:"ips"`
+	// The private network ID
+	PnId string `pulumi:"pnId"`
+	// TCP port of the endpoint
+	Port int `pulumi:"port"`
+}
+
+// GetMongoDbInstancePrivateNetworkInput is an input type that accepts GetMongoDbInstancePrivateNetworkArgs and GetMongoDbInstancePrivateNetworkOutput values.
+// You can construct a concrete instance of `GetMongoDbInstancePrivateNetworkInput` via:
+//
+//	GetMongoDbInstancePrivateNetworkArgs{...}
+type GetMongoDbInstancePrivateNetworkInput interface {
+	pulumi.Input
+
+	ToGetMongoDbInstancePrivateNetworkOutput() GetMongoDbInstancePrivateNetworkOutput
+	ToGetMongoDbInstancePrivateNetworkOutputWithContext(context.Context) GetMongoDbInstancePrivateNetworkOutput
+}
+
+type GetMongoDbInstancePrivateNetworkArgs struct {
+	// List of DNS records for your endpoint
+	DnsRecords pulumi.StringArrayInput `pulumi:"dnsRecords"`
+	// The ID of the MongoDB® Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of IP addresses for your endpoint
+	Ips pulumi.StringArrayInput `pulumi:"ips"`
+	// The private network ID
+	PnId pulumi.StringInput `pulumi:"pnId"`
+	// TCP port of the endpoint
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetMongoDbInstancePrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (i GetMongoDbInstancePrivateNetworkArgs) ToGetMongoDbInstancePrivateNetworkOutput() GetMongoDbInstancePrivateNetworkOutput {
+	return i.ToGetMongoDbInstancePrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i GetMongoDbInstancePrivateNetworkArgs) ToGetMongoDbInstancePrivateNetworkOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoDbInstancePrivateNetworkOutput)
+}
+
+// GetMongoDbInstancePrivateNetworkArrayInput is an input type that accepts GetMongoDbInstancePrivateNetworkArray and GetMongoDbInstancePrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `GetMongoDbInstancePrivateNetworkArrayInput` via:
+//
+//	GetMongoDbInstancePrivateNetworkArray{ GetMongoDbInstancePrivateNetworkArgs{...} }
+type GetMongoDbInstancePrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoDbInstancePrivateNetworkArrayOutput() GetMongoDbInstancePrivateNetworkArrayOutput
+	ToGetMongoDbInstancePrivateNetworkArrayOutputWithContext(context.Context) GetMongoDbInstancePrivateNetworkArrayOutput
+}
+
+type GetMongoDbInstancePrivateNetworkArray []GetMongoDbInstancePrivateNetworkInput
+
+func (GetMongoDbInstancePrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (i GetMongoDbInstancePrivateNetworkArray) ToGetMongoDbInstancePrivateNetworkArrayOutput() GetMongoDbInstancePrivateNetworkArrayOutput {
+	return i.ToGetMongoDbInstancePrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoDbInstancePrivateNetworkArray) ToGetMongoDbInstancePrivateNetworkArrayOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoDbInstancePrivateNetworkArrayOutput)
+}
+
+type GetMongoDbInstancePrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetMongoDbInstancePrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (o GetMongoDbInstancePrivateNetworkOutput) ToGetMongoDbInstancePrivateNetworkOutput() GetMongoDbInstancePrivateNetworkOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePrivateNetworkOutput) ToGetMongoDbInstancePrivateNetworkOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateNetworkOutput {
+	return o
+}
+
+// List of DNS records for your endpoint
+func (o GetMongoDbInstancePrivateNetworkOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateNetwork) []string { return v.DnsRecords }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the MongoDB® Instance.
+func (o GetMongoDbInstancePrivateNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IP addresses for your endpoint
+func (o GetMongoDbInstancePrivateNetworkOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+// The private network ID
+func (o GetMongoDbInstancePrivateNetworkOutput) PnId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// TCP port of the endpoint
+func (o GetMongoDbInstancePrivateNetworkOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateNetwork) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type GetMongoDbInstancePrivateNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoDbInstancePrivateNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoDbInstancePrivateNetwork)(nil)).Elem()
+}
+
+func (o GetMongoDbInstancePrivateNetworkArrayOutput) ToGetMongoDbInstancePrivateNetworkArrayOutput() GetMongoDbInstancePrivateNetworkArrayOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePrivateNetworkArrayOutput) ToGetMongoDbInstancePrivateNetworkArrayOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateNetworkArrayOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetMongoDbInstancePrivateNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoDbInstancePrivateNetwork {
+		return vs[0].([]GetMongoDbInstancePrivateNetwork)[vs[1].(int)]
+	}).(GetMongoDbInstancePrivateNetworkOutput)
+}
+
 type GetMongoDbInstancePublicNetwork struct {
 	// The DNS record of your endpoint
 	DnsRecord string `pulumi:"dnsRecord"`
@@ -26956,6 +27544,335 @@ func (o GetVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetVpcsVpcOutput {
 	}).(GetVpcsVpcOutput)
 }
 
+type GetWebHostOfferOffer struct {
+	// Indicates if the offer is available.
+	Available bool `pulumi:"available"`
+	// The billing operation identifier for the option.
+	BillingOperationPath string `pulumi:"billingOperationPath"`
+	// The name of the control panel (e.g., Cpanel or Plesk).
+	ControlPanelName string `pulumi:"controlPanelName"`
+	// Indicates if the offer is deprecated or no longer supported.
+	EndOfLife bool `pulumi:"endOfLife"`
+	// The unique identifier of the option.
+	Id string `pulumi:"id"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name string `pulumi:"name"`
+	// A list of available options for the offer:
+	Options []GetWebHostOfferOfferOption `pulumi:"options"`
+	// The offer price.
+	Price string `pulumi:"price"`
+	// Warning information regarding quota limitations for the option.
+	QuotaWarning string `pulumi:"quotaWarning"`
+}
+
+// GetWebHostOfferOfferInput is an input type that accepts GetWebHostOfferOfferArgs and GetWebHostOfferOfferOutput values.
+// You can construct a concrete instance of `GetWebHostOfferOfferInput` via:
+//
+//	GetWebHostOfferOfferArgs{...}
+type GetWebHostOfferOfferInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferOfferOutput() GetWebHostOfferOfferOutput
+	ToGetWebHostOfferOfferOutputWithContext(context.Context) GetWebHostOfferOfferOutput
+}
+
+type GetWebHostOfferOfferArgs struct {
+	// Indicates if the offer is available.
+	Available pulumi.BoolInput `pulumi:"available"`
+	// The billing operation identifier for the option.
+	BillingOperationPath pulumi.StringInput `pulumi:"billingOperationPath"`
+	// The name of the control panel (e.g., Cpanel or Plesk).
+	ControlPanelName pulumi.StringInput `pulumi:"controlPanelName"`
+	// Indicates if the offer is deprecated or no longer supported.
+	EndOfLife pulumi.BoolInput `pulumi:"endOfLife"`
+	// The unique identifier of the option.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A list of available options for the offer:
+	Options GetWebHostOfferOfferOptionArrayInput `pulumi:"options"`
+	// The offer price.
+	Price pulumi.StringInput `pulumi:"price"`
+	// Warning information regarding quota limitations for the option.
+	QuotaWarning pulumi.StringInput `pulumi:"quotaWarning"`
+}
+
+func (GetWebHostOfferOfferArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferOffer)(nil)).Elem()
+}
+
+func (i GetWebHostOfferOfferArgs) ToGetWebHostOfferOfferOutput() GetWebHostOfferOfferOutput {
+	return i.ToGetWebHostOfferOfferOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferOfferArgs) ToGetWebHostOfferOfferOutputWithContext(ctx context.Context) GetWebHostOfferOfferOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferOfferOutput)
+}
+
+// GetWebHostOfferOfferArrayInput is an input type that accepts GetWebHostOfferOfferArray and GetWebHostOfferOfferArrayOutput values.
+// You can construct a concrete instance of `GetWebHostOfferOfferArrayInput` via:
+//
+//	GetWebHostOfferOfferArray{ GetWebHostOfferOfferArgs{...} }
+type GetWebHostOfferOfferArrayInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferOfferArrayOutput() GetWebHostOfferOfferArrayOutput
+	ToGetWebHostOfferOfferArrayOutputWithContext(context.Context) GetWebHostOfferOfferArrayOutput
+}
+
+type GetWebHostOfferOfferArray []GetWebHostOfferOfferInput
+
+func (GetWebHostOfferOfferArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferOffer)(nil)).Elem()
+}
+
+func (i GetWebHostOfferOfferArray) ToGetWebHostOfferOfferArrayOutput() GetWebHostOfferOfferArrayOutput {
+	return i.ToGetWebHostOfferOfferArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferOfferArray) ToGetWebHostOfferOfferArrayOutputWithContext(ctx context.Context) GetWebHostOfferOfferArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferOfferArrayOutput)
+}
+
+type GetWebHostOfferOfferOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferOfferOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferOffer)(nil)).Elem()
+}
+
+func (o GetWebHostOfferOfferOutput) ToGetWebHostOfferOfferOutput() GetWebHostOfferOfferOutput {
+	return o
+}
+
+func (o GetWebHostOfferOfferOutput) ToGetWebHostOfferOfferOutputWithContext(ctx context.Context) GetWebHostOfferOfferOutput {
+	return o
+}
+
+// Indicates if the offer is available.
+func (o GetWebHostOfferOfferOutput) Available() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) bool { return v.Available }).(pulumi.BoolOutput)
+}
+
+// The billing operation identifier for the option.
+func (o GetWebHostOfferOfferOutput) BillingOperationPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) string { return v.BillingOperationPath }).(pulumi.StringOutput)
+}
+
+// The name of the control panel (e.g., Cpanel or Plesk).
+func (o GetWebHostOfferOfferOutput) ControlPanelName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) string { return v.ControlPanelName }).(pulumi.StringOutput)
+}
+
+// Indicates if the offer is deprecated or no longer supported.
+func (o GetWebHostOfferOfferOutput) EndOfLife() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) bool { return v.EndOfLife }).(pulumi.BoolOutput)
+}
+
+// The unique identifier of the option.
+func (o GetWebHostOfferOfferOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The offer name. Only one of `name` and `offerId` should be specified.
+func (o GetWebHostOfferOfferOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of available options for the offer:
+func (o GetWebHostOfferOfferOutput) Options() GetWebHostOfferOfferOptionArrayOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) []GetWebHostOfferOfferOption { return v.Options }).(GetWebHostOfferOfferOptionArrayOutput)
+}
+
+// The offer price.
+func (o GetWebHostOfferOfferOutput) Price() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) string { return v.Price }).(pulumi.StringOutput)
+}
+
+// Warning information regarding quota limitations for the option.
+func (o GetWebHostOfferOfferOutput) QuotaWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOffer) string { return v.QuotaWarning }).(pulumi.StringOutput)
+}
+
+type GetWebHostOfferOfferArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferOfferArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferOffer)(nil)).Elem()
+}
+
+func (o GetWebHostOfferOfferArrayOutput) ToGetWebHostOfferOfferArrayOutput() GetWebHostOfferOfferArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferOfferArrayOutput) ToGetWebHostOfferOfferArrayOutputWithContext(ctx context.Context) GetWebHostOfferOfferArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferOfferArrayOutput) Index(i pulumi.IntInput) GetWebHostOfferOfferOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebHostOfferOffer {
+		return vs[0].([]GetWebHostOfferOffer)[vs[1].(int)]
+	}).(GetWebHostOfferOfferOutput)
+}
+
+type GetWebHostOfferOfferOption struct {
+	// The billing operation identifier for the option.
+	BillingOperationPath string `pulumi:"billingOperationPath"`
+	// The current value set for the option.
+	CurrentValue int `pulumi:"currentValue"`
+	// The unique identifier of the option.
+	Id string `pulumi:"id"`
+	// The maximum allowed value for the option.
+	MaxValue int `pulumi:"maxValue"`
+	// The minimum value for the option.
+	MinValue int `pulumi:"minValue"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name string `pulumi:"name"`
+	// The offer price.
+	Price string `pulumi:"price"`
+	// Warning information regarding quota limitations for the option.
+	QuotaWarning string `pulumi:"quotaWarning"`
+}
+
+// GetWebHostOfferOfferOptionInput is an input type that accepts GetWebHostOfferOfferOptionArgs and GetWebHostOfferOfferOptionOutput values.
+// You can construct a concrete instance of `GetWebHostOfferOfferOptionInput` via:
+//
+//	GetWebHostOfferOfferOptionArgs{...}
+type GetWebHostOfferOfferOptionInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferOfferOptionOutput() GetWebHostOfferOfferOptionOutput
+	ToGetWebHostOfferOfferOptionOutputWithContext(context.Context) GetWebHostOfferOfferOptionOutput
+}
+
+type GetWebHostOfferOfferOptionArgs struct {
+	// The billing operation identifier for the option.
+	BillingOperationPath pulumi.StringInput `pulumi:"billingOperationPath"`
+	// The current value set for the option.
+	CurrentValue pulumi.IntInput `pulumi:"currentValue"`
+	// The unique identifier of the option.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The maximum allowed value for the option.
+	MaxValue pulumi.IntInput `pulumi:"maxValue"`
+	// The minimum value for the option.
+	MinValue pulumi.IntInput `pulumi:"minValue"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The offer price.
+	Price pulumi.StringInput `pulumi:"price"`
+	// Warning information regarding quota limitations for the option.
+	QuotaWarning pulumi.StringInput `pulumi:"quotaWarning"`
+}
+
+func (GetWebHostOfferOfferOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferOfferOption)(nil)).Elem()
+}
+
+func (i GetWebHostOfferOfferOptionArgs) ToGetWebHostOfferOfferOptionOutput() GetWebHostOfferOfferOptionOutput {
+	return i.ToGetWebHostOfferOfferOptionOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferOfferOptionArgs) ToGetWebHostOfferOfferOptionOutputWithContext(ctx context.Context) GetWebHostOfferOfferOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferOfferOptionOutput)
+}
+
+// GetWebHostOfferOfferOptionArrayInput is an input type that accepts GetWebHostOfferOfferOptionArray and GetWebHostOfferOfferOptionArrayOutput values.
+// You can construct a concrete instance of `GetWebHostOfferOfferOptionArrayInput` via:
+//
+//	GetWebHostOfferOfferOptionArray{ GetWebHostOfferOfferOptionArgs{...} }
+type GetWebHostOfferOfferOptionArrayInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferOfferOptionArrayOutput() GetWebHostOfferOfferOptionArrayOutput
+	ToGetWebHostOfferOfferOptionArrayOutputWithContext(context.Context) GetWebHostOfferOfferOptionArrayOutput
+}
+
+type GetWebHostOfferOfferOptionArray []GetWebHostOfferOfferOptionInput
+
+func (GetWebHostOfferOfferOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferOfferOption)(nil)).Elem()
+}
+
+func (i GetWebHostOfferOfferOptionArray) ToGetWebHostOfferOfferOptionArrayOutput() GetWebHostOfferOfferOptionArrayOutput {
+	return i.ToGetWebHostOfferOfferOptionArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferOfferOptionArray) ToGetWebHostOfferOfferOptionArrayOutputWithContext(ctx context.Context) GetWebHostOfferOfferOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferOfferOptionArrayOutput)
+}
+
+type GetWebHostOfferOfferOptionOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferOfferOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferOfferOption)(nil)).Elem()
+}
+
+func (o GetWebHostOfferOfferOptionOutput) ToGetWebHostOfferOfferOptionOutput() GetWebHostOfferOfferOptionOutput {
+	return o
+}
+
+func (o GetWebHostOfferOfferOptionOutput) ToGetWebHostOfferOfferOptionOutputWithContext(ctx context.Context) GetWebHostOfferOfferOptionOutput {
+	return o
+}
+
+// The billing operation identifier for the option.
+func (o GetWebHostOfferOfferOptionOutput) BillingOperationPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) string { return v.BillingOperationPath }).(pulumi.StringOutput)
+}
+
+// The current value set for the option.
+func (o GetWebHostOfferOfferOptionOutput) CurrentValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) int { return v.CurrentValue }).(pulumi.IntOutput)
+}
+
+// The unique identifier of the option.
+func (o GetWebHostOfferOfferOptionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The maximum allowed value for the option.
+func (o GetWebHostOfferOfferOptionOutput) MaxValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) int { return v.MaxValue }).(pulumi.IntOutput)
+}
+
+// The minimum value for the option.
+func (o GetWebHostOfferOfferOptionOutput) MinValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) int { return v.MinValue }).(pulumi.IntOutput)
+}
+
+// The offer name. Only one of `name` and `offerId` should be specified.
+func (o GetWebHostOfferOfferOptionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The offer price.
+func (o GetWebHostOfferOfferOptionOutput) Price() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) string { return v.Price }).(pulumi.StringOutput)
+}
+
+// Warning information regarding quota limitations for the option.
+func (o GetWebHostOfferOfferOptionOutput) QuotaWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferOfferOption) string { return v.QuotaWarning }).(pulumi.StringOutput)
+}
+
+type GetWebHostOfferOfferOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferOfferOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferOfferOption)(nil)).Elem()
+}
+
+func (o GetWebHostOfferOfferOptionArrayOutput) ToGetWebHostOfferOfferOptionArrayOutput() GetWebHostOfferOfferOptionArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferOfferOptionArrayOutput) ToGetWebHostOfferOfferOptionArrayOutputWithContext(ctx context.Context) GetWebHostOfferOfferOptionArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferOfferOptionArrayOutput) Index(i pulumi.IntInput) GetWebHostOfferOfferOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebHostOfferOfferOption {
+		return vs[0].([]GetWebHostOfferOfferOption)[vs[1].(int)]
+	}).(GetWebHostOfferOfferOptionOutput)
+}
+
 type GetWebHostOfferProduct struct {
 	// The quota of databases.
 	DatabasesQuota int `pulumi:"databasesQuota"`
@@ -27225,6 +28142,112 @@ func (o GetWebhostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) GetWebhostin
 	}).(GetWebhostingCpanelUrlOutput)
 }
 
+type GetWebhostingNameServer struct {
+	Hostname  string `pulumi:"hostname"`
+	IsDefault bool   `pulumi:"isDefault"`
+	Status    string `pulumi:"status"`
+}
+
+// GetWebhostingNameServerInput is an input type that accepts GetWebhostingNameServerArgs and GetWebhostingNameServerOutput values.
+// You can construct a concrete instance of `GetWebhostingNameServerInput` via:
+//
+//	GetWebhostingNameServerArgs{...}
+type GetWebhostingNameServerInput interface {
+	pulumi.Input
+
+	ToGetWebhostingNameServerOutput() GetWebhostingNameServerOutput
+	ToGetWebhostingNameServerOutputWithContext(context.Context) GetWebhostingNameServerOutput
+}
+
+type GetWebhostingNameServerArgs struct {
+	Hostname  pulumi.StringInput `pulumi:"hostname"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	Status    pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetWebhostingNameServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingNameServer)(nil)).Elem()
+}
+
+func (i GetWebhostingNameServerArgs) ToGetWebhostingNameServerOutput() GetWebhostingNameServerOutput {
+	return i.ToGetWebhostingNameServerOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingNameServerArgs) ToGetWebhostingNameServerOutputWithContext(ctx context.Context) GetWebhostingNameServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingNameServerOutput)
+}
+
+// GetWebhostingNameServerArrayInput is an input type that accepts GetWebhostingNameServerArray and GetWebhostingNameServerArrayOutput values.
+// You can construct a concrete instance of `GetWebhostingNameServerArrayInput` via:
+//
+//	GetWebhostingNameServerArray{ GetWebhostingNameServerArgs{...} }
+type GetWebhostingNameServerArrayInput interface {
+	pulumi.Input
+
+	ToGetWebhostingNameServerArrayOutput() GetWebhostingNameServerArrayOutput
+	ToGetWebhostingNameServerArrayOutputWithContext(context.Context) GetWebhostingNameServerArrayOutput
+}
+
+type GetWebhostingNameServerArray []GetWebhostingNameServerInput
+
+func (GetWebhostingNameServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingNameServer)(nil)).Elem()
+}
+
+func (i GetWebhostingNameServerArray) ToGetWebhostingNameServerArrayOutput() GetWebhostingNameServerArrayOutput {
+	return i.ToGetWebhostingNameServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingNameServerArray) ToGetWebhostingNameServerArrayOutputWithContext(ctx context.Context) GetWebhostingNameServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingNameServerArrayOutput)
+}
+
+type GetWebhostingNameServerOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingNameServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingNameServer)(nil)).Elem()
+}
+
+func (o GetWebhostingNameServerOutput) ToGetWebhostingNameServerOutput() GetWebhostingNameServerOutput {
+	return o
+}
+
+func (o GetWebhostingNameServerOutput) ToGetWebhostingNameServerOutputWithContext(ctx context.Context) GetWebhostingNameServerOutput {
+	return o
+}
+
+func (o GetWebhostingNameServerOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingNameServer) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o GetWebhostingNameServerOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebhostingNameServer) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+func (o GetWebhostingNameServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingNameServer) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetWebhostingNameServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingNameServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingNameServer)(nil)).Elem()
+}
+
+func (o GetWebhostingNameServerArrayOutput) ToGetWebhostingNameServerArrayOutput() GetWebhostingNameServerArrayOutput {
+	return o
+}
+
+func (o GetWebhostingNameServerArrayOutput) ToGetWebhostingNameServerArrayOutputWithContext(ctx context.Context) GetWebhostingNameServerArrayOutput {
+	return o
+}
+
+func (o GetWebhostingNameServerArrayOutput) Index(i pulumi.IntInput) GetWebhostingNameServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebhostingNameServer {
+		return vs[0].([]GetWebhostingNameServer)[vs[1].(int)]
+	}).(GetWebhostingNameServerOutput)
+}
+
 type GetWebhostingOption struct {
 	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
@@ -27323,6 +28346,130 @@ func (o GetWebhostingOptionArrayOutput) Index(i pulumi.IntInput) GetWebhostingOp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebhostingOption {
 		return vs[0].([]GetWebhostingOption)[vs[1].(int)]
 	}).(GetWebhostingOptionOutput)
+}
+
+type GetWebhostingRecord struct {
+	Name     string `pulumi:"name"`
+	Priority int    `pulumi:"priority"`
+	Status   string `pulumi:"status"`
+	Ttl      int    `pulumi:"ttl"`
+	Type     string `pulumi:"type"`
+	Value    string `pulumi:"value"`
+}
+
+// GetWebhostingRecordInput is an input type that accepts GetWebhostingRecordArgs and GetWebhostingRecordOutput values.
+// You can construct a concrete instance of `GetWebhostingRecordInput` via:
+//
+//	GetWebhostingRecordArgs{...}
+type GetWebhostingRecordInput interface {
+	pulumi.Input
+
+	ToGetWebhostingRecordOutput() GetWebhostingRecordOutput
+	ToGetWebhostingRecordOutputWithContext(context.Context) GetWebhostingRecordOutput
+}
+
+type GetWebhostingRecordArgs struct {
+	Name     pulumi.StringInput `pulumi:"name"`
+	Priority pulumi.IntInput    `pulumi:"priority"`
+	Status   pulumi.StringInput `pulumi:"status"`
+	Ttl      pulumi.IntInput    `pulumi:"ttl"`
+	Type     pulumi.StringInput `pulumi:"type"`
+	Value    pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetWebhostingRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingRecord)(nil)).Elem()
+}
+
+func (i GetWebhostingRecordArgs) ToGetWebhostingRecordOutput() GetWebhostingRecordOutput {
+	return i.ToGetWebhostingRecordOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingRecordArgs) ToGetWebhostingRecordOutputWithContext(ctx context.Context) GetWebhostingRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingRecordOutput)
+}
+
+// GetWebhostingRecordArrayInput is an input type that accepts GetWebhostingRecordArray and GetWebhostingRecordArrayOutput values.
+// You can construct a concrete instance of `GetWebhostingRecordArrayInput` via:
+//
+//	GetWebhostingRecordArray{ GetWebhostingRecordArgs{...} }
+type GetWebhostingRecordArrayInput interface {
+	pulumi.Input
+
+	ToGetWebhostingRecordArrayOutput() GetWebhostingRecordArrayOutput
+	ToGetWebhostingRecordArrayOutputWithContext(context.Context) GetWebhostingRecordArrayOutput
+}
+
+type GetWebhostingRecordArray []GetWebhostingRecordInput
+
+func (GetWebhostingRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingRecord)(nil)).Elem()
+}
+
+func (i GetWebhostingRecordArray) ToGetWebhostingRecordArrayOutput() GetWebhostingRecordArrayOutput {
+	return i.ToGetWebhostingRecordArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingRecordArray) ToGetWebhostingRecordArrayOutputWithContext(ctx context.Context) GetWebhostingRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingRecordArrayOutput)
+}
+
+type GetWebhostingRecordOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingRecord)(nil)).Elem()
+}
+
+func (o GetWebhostingRecordOutput) ToGetWebhostingRecordOutput() GetWebhostingRecordOutput {
+	return o
+}
+
+func (o GetWebhostingRecordOutput) ToGetWebhostingRecordOutputWithContext(ctx context.Context) GetWebhostingRecordOutput {
+	return o
+}
+
+func (o GetWebhostingRecordOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetWebhostingRecordOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebhostingRecord) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o GetWebhostingRecordOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetWebhostingRecordOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebhostingRecord) int { return v.Ttl }).(pulumi.IntOutput)
+}
+
+func (o GetWebhostingRecordOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o GetWebhostingRecordOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetWebhostingRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingRecord)(nil)).Elem()
+}
+
+func (o GetWebhostingRecordArrayOutput) ToGetWebhostingRecordArrayOutput() GetWebhostingRecordArrayOutput {
+	return o
+}
+
+func (o GetWebhostingRecordArrayOutput) ToGetWebhostingRecordArrayOutputWithContext(ctx context.Context) GetWebhostingRecordArrayOutput {
+	return o
+}
+
+func (o GetWebhostingRecordArrayOutput) Index(i pulumi.IntInput) GetWebhostingRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebhostingRecord {
+		return vs[0].([]GetWebhostingRecord)[vs[1].(int)]
+	}).(GetWebhostingRecordOutput)
 }
 
 func init() {
@@ -27472,6 +28619,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateNetworkInput)(nil)).Elem(), MongoDbInstancePrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateNetworkPtrInput)(nil)).Elem(), MongoDbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePublicNetworkInput)(nil)).Elem(), MongoDbInstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePublicNetworkPtrInput)(nil)).Elem(), MongoDbInstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
@@ -27518,8 +28667,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingCpanelUrlInput)(nil)).Elem(), WebhostingCpanelUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingCpanelUrlArrayInput)(nil)).Elem(), WebhostingCpanelUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingNameServerInput)(nil)).Elem(), WebhostingNameServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingNameServerArrayInput)(nil)).Elem(), WebhostingNameServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingOptionInput)(nil)).Elem(), WebhostingOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingOptionArrayInput)(nil)).Elem(), WebhostingOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingRecordInput)(nil)).Elem(), WebhostingRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingRecordArrayInput)(nil)).Elem(), WebhostingRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferCpuInput)(nil)).Elem(), GetBaremetalOfferCpuArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferDiskInput)(nil)).Elem(), GetBaremetalOfferDiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferDiskArrayInput)(nil)).Elem(), GetBaremetalOfferDiskArray{})
@@ -27661,6 +28814,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptArrayInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateNetworkInput)(nil)).Elem(), GetMongoDbInstancePrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateNetworkArrayInput)(nil)).Elem(), GetMongoDbInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePublicNetworkInput)(nil)).Elem(), GetMongoDbInstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePublicNetworkArrayInput)(nil)).Elem(), GetMongoDbInstancePublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleInput)(nil)).Elem(), GetObjectBucketCorsRuleArgs{})
@@ -27693,12 +28848,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcRoutesRouteArrayInput)(nil)).Elem(), GetVpcRoutesRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcInput)(nil)).Elem(), GetVpcsVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcArrayInput)(nil)).Elem(), GetVpcsVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferOfferInput)(nil)).Elem(), GetWebHostOfferOfferArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferOfferArrayInput)(nil)).Elem(), GetWebHostOfferOfferArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferOfferOptionInput)(nil)).Elem(), GetWebHostOfferOfferOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferOfferOptionArrayInput)(nil)).Elem(), GetWebHostOfferOfferOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingCpanelUrlInput)(nil)).Elem(), GetWebhostingCpanelUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingCpanelUrlArrayInput)(nil)).Elem(), GetWebhostingCpanelUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingNameServerInput)(nil)).Elem(), GetWebhostingNameServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingNameServerArrayInput)(nil)).Elem(), GetWebhostingNameServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingOptionInput)(nil)).Elem(), GetWebhostingOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingOptionArrayInput)(nil)).Elem(), GetWebhostingOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingRecordInput)(nil)).Elem(), GetWebhostingRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingRecordArrayInput)(nil)).Elem(), GetWebhostingRecordArray{})
 	pulumi.RegisterOutputType(AppleSiliconServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(AppleSiliconServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
@@ -27845,6 +29008,8 @@ func init() {
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(MongoDbInstancePrivateNetworkOutput{})
+	pulumi.RegisterOutputType(MongoDbInstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePublicNetworkOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePublicNetworkPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOutput{})
@@ -27891,8 +29056,12 @@ func init() {
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetArrayOutput{})
 	pulumi.RegisterOutputType(WebhostingCpanelUrlOutput{})
 	pulumi.RegisterOutputType(WebhostingCpanelUrlArrayOutput{})
+	pulumi.RegisterOutputType(WebhostingNameServerOutput{})
+	pulumi.RegisterOutputType(WebhostingNameServerArrayOutput{})
 	pulumi.RegisterOutputType(WebhostingOptionOutput{})
 	pulumi.RegisterOutputType(WebhostingOptionArrayOutput{})
+	pulumi.RegisterOutputType(WebhostingRecordOutput{})
+	pulumi.RegisterOutputType(WebhostingRecordArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferCpuOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferDiskOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferDiskArrayOutput{})
@@ -28034,6 +29203,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateLetsencryptArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoDbInstancePrivateNetworkOutput{})
+	pulumi.RegisterOutputType(GetMongoDbInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketCorsRuleOutput{})
@@ -28066,10 +29237,18 @@ func init() {
 	pulumi.RegisterOutputType(GetVpcRoutesRouteArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcsVpcOutput{})
 	pulumi.RegisterOutputType(GetVpcsVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferOfferOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferOfferArrayOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferOfferOptionOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferOfferOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductArrayOutput{})
 	pulumi.RegisterOutputType(GetWebhostingCpanelUrlOutput{})
 	pulumi.RegisterOutputType(GetWebhostingCpanelUrlArrayOutput{})
+	pulumi.RegisterOutputType(GetWebhostingNameServerOutput{})
+	pulumi.RegisterOutputType(GetWebhostingNameServerArrayOutput{})
 	pulumi.RegisterOutputType(GetWebhostingOptionOutput{})
 	pulumi.RegisterOutputType(GetWebhostingOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetWebhostingRecordOutput{})
+	pulumi.RegisterOutputType(GetWebhostingRecordArrayOutput{})
 }

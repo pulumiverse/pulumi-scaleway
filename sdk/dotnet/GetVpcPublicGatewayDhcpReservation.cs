@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about a DHCP entry. For further information, please see the
-        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+        /// [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
         /// 
         /// ## Example Dynamic
         /// 
@@ -169,7 +169,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about a DHCP entry. For further information, please see the
-        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+        /// [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
         /// 
         /// ## Example Dynamic
         /// 
@@ -324,7 +324,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Gets information about a DHCP entry. For further information, please see the
-        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+        /// [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
         /// 
         /// ## Example Dynamic
         /// 

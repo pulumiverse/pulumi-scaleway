@@ -29,12 +29,16 @@ class CockpitArgs:
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         """
         if plan is not None:
+            warnings.warn("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""", DeprecationWarning)
+            pulumi.log.warn("""plan is deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
+        if plan is not None:
             pulumi.set(__self__, "plan", plan)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
@@ -72,18 +76,21 @@ class _CockpitState:
         :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
         :param pulumi.Input[str] plan_id: (Deprecated) The ID of the current pricing plan.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]] push_urls: Push_url
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]] push_urls: [DEPRECATED] Push_url
         """
         if endpoints is not None:
-            warnings.warn("""Please use `CockpitSource` instead""", DeprecationWarning)
-            pulumi.log.warn("""endpoints is deprecated: Please use `CockpitSource` instead""")
+            warnings.warn("""Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.""", DeprecationWarning)
+            pulumi.log.warn("""endpoints is deprecated: Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.""")
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
         if plan is not None:
+            warnings.warn("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""", DeprecationWarning)
+            pulumi.log.warn("""plan is deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
+        if plan is not None:
             pulumi.set(__self__, "plan", plan)
         if plan_id is not None:
-            warnings.warn("""Please use Name only""", DeprecationWarning)
-            pulumi.log.warn("""plan_id is deprecated: Please use Name only""")
+            warnings.warn("""The 'plan_id' attribute is deprecated and will be removed in a future release.""", DeprecationWarning)
+            pulumi.log.warn("""plan_id is deprecated: The 'plan_id' attribute is deprecated and will be removed in a future release.""")
         if plan_id is not None:
             pulumi.set(__self__, "plan_id", plan_id)
         if project_id is not None:
@@ -96,7 +103,7 @@ class _CockpitState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Please use `CockpitSource` instead""")
+    @_utilities.deprecated("""Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.""")
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
         """
         (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
@@ -109,6 +116,7 @@ class _CockpitState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
@@ -121,7 +129,7 @@ class _CockpitState:
 
     @property
     @pulumi.getter(name="planId")
-    @_utilities.deprecated("""Please use Name only""")
+    @_utilities.deprecated("""The 'plan_id' attribute is deprecated and will be removed in a future release.""")
     def plan_id(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) The ID of the current pricing plan.
@@ -149,7 +157,7 @@ class _CockpitState:
     @_utilities.deprecated("""Please use `CockpitSource` instead""")
     def push_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]:
         """
-        Push_url
+        [DEPRECATED] Push_url
         """
         return pulumi.get(self, "push_urls")
 
@@ -256,7 +264,7 @@ class Cockpit(pulumi.CustomResource):
         :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
         :param pulumi.Input[str] plan_id: (Deprecated) The ID of the current pricing plan.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]] push_urls: Push_url
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]] push_urls: [DEPRECATED] Push_url
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -271,7 +279,7 @@ class Cockpit(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Please use `CockpitSource` instead""")
+    @_utilities.deprecated("""Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.""")
     def endpoints(self) -> pulumi.Output[Sequence['outputs.CockpitEndpoint']]:
         """
         (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
@@ -280,6 +288,7 @@ class Cockpit(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
     def plan(self) -> pulumi.Output[Optional[str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
@@ -288,7 +297,7 @@ class Cockpit(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="planId")
-    @_utilities.deprecated("""Please use Name only""")
+    @_utilities.deprecated("""The 'plan_id' attribute is deprecated and will be removed in a future release.""")
     def plan_id(self) -> pulumi.Output[str]:
         """
         (Deprecated) The ID of the current pricing plan.
@@ -308,7 +317,7 @@ class Cockpit(pulumi.CustomResource):
     @_utilities.deprecated("""Please use `CockpitSource` instead""")
     def push_urls(self) -> pulumi.Output[Sequence['outputs.CockpitPushUrl']]:
         """
-        Push_url
+        [DEPRECATED] Push_url
         """
         return pulumi.get(self, "push_urls")
 

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway compute Instances. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
+    /// Creates and manages Scaleway compute Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
     /// 
     /// Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
     /// 
@@ -49,10 +49,10 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var data = new Scaleway.InstanceVolume("data", new()
+    ///     var data = new Scaleway.BlockVolume("data", new()
     ///     {
     ///         SizeInGb = 100,
-    ///         Type = "b_ssd",
+    ///         Iops = 5000,
     ///     });
     /// 
     ///     var web = new Scaleway.InstanceServer("web", new()
@@ -206,7 +206,6 @@ namespace Pulumiverse.Scaleway
     ///         Image = "ubuntu_jammy",
     ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
     ///         {
-    ///             VolumeType = "b_ssd",
     ///             SizeInGb = 100,
     ///         },
     ///     });
@@ -225,15 +224,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var snapshot = Scaleway.GetInstanceSnapshot.Invoke(new()
+    ///     var snapshot = Scaleway.GetBlockSnapshot.Invoke(new()
     ///     {
     ///         Name = "my_snapshot",
     ///     });
     /// 
-    ///     var fromSnapshot = new Scaleway.InstanceVolume("from_snapshot", new()
+    ///     var fromSnapshot = new Scaleway.BlockVolume("from_snapshot", new()
     ///     {
-    ///         FromSnapshotId = snapshot.Apply(getInstanceSnapshotResult =&gt; getInstanceSnapshotResult.Id),
-    ///         Type = "b_ssd",
+    ///         SnapshotId = snapshot.Apply(getBlockSnapshotResult =&gt; getBlockSnapshotResult.Id),
+    ///         Iops = 5000,
     ///     });
     /// 
     ///     var fromSnapshotInstanceServer = new Scaleway.InstanceServer("from_snapshot", new()
@@ -242,6 +241,7 @@ namespace Pulumiverse.Scaleway
     ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
     ///         {
     ///             VolumeId = fromSnapshot.Id,
+    ///             VolumeType = "sbs_volume",
     ///         },
     ///     });
     /// 

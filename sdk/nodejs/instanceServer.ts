@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway compute Instances. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
+ * Creates and manages Scaleway compute Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
  *
  * Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
  *
@@ -33,9 +33,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const data = new scaleway.InstanceVolume("data", {
+ * const data = new scaleway.BlockVolume("data", {
  *     sizeInGb: 100,
- *     type: "b_ssd",
+ *     iops: 5000,
  * });
  * const web = new scaleway.InstanceServer("web", {
  *     type: "DEV1-S",
@@ -133,7 +133,6 @@ import * as utilities from "./utilities";
  *     type: "PRO2-XXS",
  *     image: "ubuntu_jammy",
  *     rootVolume: {
- *         volumeType: "b_ssd",
  *         sizeInGb: 100,
  *     },
  * });
@@ -146,17 +145,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const snapshot = scaleway.getInstanceSnapshot({
+ * const snapshot = scaleway.getBlockSnapshot({
  *     name: "my_snapshot",
  * });
- * const fromSnapshot = new scaleway.InstanceVolume("from_snapshot", {
- *     fromSnapshotId: snapshot.then(snapshot => snapshot.id),
- *     type: "b_ssd",
+ * const fromSnapshot = new scaleway.BlockVolume("from_snapshot", {
+ *     snapshotId: snapshot.then(snapshot => snapshot.id),
+ *     iops: 5000,
  * });
  * const fromSnapshotInstanceServer = new scaleway.InstanceServer("from_snapshot", {
  *     type: "PRO2-XXS",
  *     rootVolume: {
  *         volumeId: fromSnapshot.id,
+ *         volumeType: "sbs_volume",
  *     },
  * });
  * ```

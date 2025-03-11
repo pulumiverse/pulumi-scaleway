@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Web Hostings.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/webhosting/).
  *
  * ## Example Usage
  *
@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  *
  * const byName = scaleway.getWebHostOffer({
  *     name: "lite",
+ *     controlPanel: "Cpanel",
  * });
  * const main = new scaleway.Webhosting("main", {
  *     offerId: byName.then(byName => byName.offerId),
@@ -91,6 +92,10 @@ export class Webhosting extends pulumi.CustomResource {
      */
     public readonly email!: pulumi.Output<string>;
     /**
+     * List of nameservers associated with the webhosting.
+     */
+    public /*out*/ readonly nameServers!: pulumi.Output<outputs.WebhostingNameServer[]>;
+    /**
      * The ID of the selected offer for the hosting.
      */
     public readonly offerId!: pulumi.Output<string>;
@@ -107,7 +112,9 @@ export class Webhosting extends pulumi.CustomResource {
      */
     public /*out*/ readonly options!: pulumi.Output<outputs.WebhostingOption[]>;
     /**
-     * The organization ID the hosting is associated with.
+     * (Deprecated) The organization ID the hosting is associated with.
+     *
+     * @deprecated The organizationId field is deprecated and will be removed in the next major version.
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -122,6 +129,10 @@ export class Webhosting extends pulumi.CustomResource {
      * `projectId`) The ID of the project the VPC is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * List of DNS records associated with the webhosting.
+     */
+    public /*out*/ readonly records!: pulumi.Output<outputs.WebhostingRecord[]>;
     /**
      * `region`) The region of the Hosting.
      */
@@ -161,6 +172,7 @@ export class Webhosting extends pulumi.CustomResource {
             resourceInputs["dnsStatus"] = state ? state.dnsStatus : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["nameServers"] = state ? state.nameServers : undefined;
             resourceInputs["offerId"] = state ? state.offerId : undefined;
             resourceInputs["offerName"] = state ? state.offerName : undefined;
             resourceInputs["optionIds"] = state ? state.optionIds : undefined;
@@ -169,6 +181,7 @@ export class Webhosting extends pulumi.CustomResource {
             resourceInputs["platformHostname"] = state ? state.platformHostname : undefined;
             resourceInputs["platformNumber"] = state ? state.platformNumber : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["records"] = state ? state.records : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -195,11 +208,13 @@ export class Webhosting extends pulumi.CustomResource {
             resourceInputs["cpanelUrls"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dnsStatus"] = undefined /*out*/;
+            resourceInputs["nameServers"] = undefined /*out*/;
             resourceInputs["offerName"] = undefined /*out*/;
             resourceInputs["options"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["platformHostname"] = undefined /*out*/;
             resourceInputs["platformNumber"] = undefined /*out*/;
+            resourceInputs["records"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
@@ -234,6 +249,10 @@ export interface WebhostingState {
      */
     email?: pulumi.Input<string>;
     /**
+     * List of nameservers associated with the webhosting.
+     */
+    nameServers?: pulumi.Input<pulumi.Input<inputs.WebhostingNameServer>[]>;
+    /**
      * The ID of the selected offer for the hosting.
      */
     offerId?: pulumi.Input<string>;
@@ -250,7 +269,9 @@ export interface WebhostingState {
      */
     options?: pulumi.Input<pulumi.Input<inputs.WebhostingOption>[]>;
     /**
-     * The organization ID the hosting is associated with.
+     * (Deprecated) The organization ID the hosting is associated with.
+     *
+     * @deprecated The organizationId field is deprecated and will be removed in the next major version.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -265,6 +286,10 @@ export interface WebhostingState {
      * `projectId`) The ID of the project the VPC is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * List of DNS records associated with the webhosting.
+     */
+    records?: pulumi.Input<pulumi.Input<inputs.WebhostingRecord>[]>;
     /**
      * `region`) The region of the Hosting.
      */
