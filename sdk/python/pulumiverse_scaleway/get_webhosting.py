@@ -27,7 +27,7 @@ class GetWebhostingResult:
     """
     A collection of values returned by getWebhosting.
     """
-    def __init__(__self__, cpanel_urls=None, created_at=None, dns_status=None, domain=None, email=None, id=None, offer_id=None, offer_name=None, option_ids=None, options=None, organization_id=None, platform_hostname=None, platform_number=None, project_id=None, region=None, status=None, tags=None, updated_at=None, username=None, webhosting_id=None):
+    def __init__(__self__, cpanel_urls=None, created_at=None, dns_status=None, domain=None, email=None, id=None, name_servers=None, offer_id=None, offer_name=None, option_ids=None, options=None, organization_id=None, platform_hostname=None, platform_number=None, project_id=None, records=None, region=None, status=None, tags=None, updated_at=None, username=None, webhosting_id=None):
         if cpanel_urls and not isinstance(cpanel_urls, list):
             raise TypeError("Expected argument 'cpanel_urls' to be a list")
         pulumi.set(__self__, "cpanel_urls", cpanel_urls)
@@ -46,6 +46,9 @@ class GetWebhostingResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if name_servers and not isinstance(name_servers, list):
+            raise TypeError("Expected argument 'name_servers' to be a list")
+        pulumi.set(__self__, "name_servers", name_servers)
         if offer_id and not isinstance(offer_id, str):
             raise TypeError("Expected argument 'offer_id' to be a str")
         pulumi.set(__self__, "offer_id", offer_id)
@@ -70,6 +73,9 @@ class GetWebhostingResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if records and not isinstance(records, list):
+            raise TypeError("Expected argument 'records' to be a list")
+        pulumi.set(__self__, "records", records)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -123,6 +129,11 @@ class GetWebhostingResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> Sequence['outputs.GetWebhostingNameServerResult']:
+        return pulumi.get(self, "name_servers")
+
+    @property
     @pulumi.getter(name="offerId")
     def offer_id(self) -> str:
         return pulumi.get(self, "offer_id")
@@ -161,6 +172,11 @@ class GetWebhostingResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def records(self) -> Sequence['outputs.GetWebhostingRecordResult']:
+        return pulumi.get(self, "records")
 
     @property
     @pulumi.getter
@@ -205,6 +221,7 @@ class AwaitableGetWebhostingResult(GetWebhostingResult):
             domain=self.domain,
             email=self.email,
             id=self.id,
+            name_servers=self.name_servers,
             offer_id=self.offer_id,
             offer_name=self.offer_name,
             option_ids=self.option_ids,
@@ -213,6 +230,7 @@ class AwaitableGetWebhostingResult(GetWebhostingResult):
             platform_hostname=self.platform_hostname,
             platform_number=self.platform_number,
             project_id=self.project_id,
+            records=self.records,
             region=self.region,
             status=self.status,
             tags=self.tags,
@@ -262,6 +280,7 @@ def get_webhosting(domain: Optional[str] = None,
         domain=pulumi.get(__ret__, 'domain'),
         email=pulumi.get(__ret__, 'email'),
         id=pulumi.get(__ret__, 'id'),
+        name_servers=pulumi.get(__ret__, 'name_servers'),
         offer_id=pulumi.get(__ret__, 'offer_id'),
         offer_name=pulumi.get(__ret__, 'offer_name'),
         option_ids=pulumi.get(__ret__, 'option_ids'),
@@ -270,6 +289,7 @@ def get_webhosting(domain: Optional[str] = None,
         platform_hostname=pulumi.get(__ret__, 'platform_hostname'),
         platform_number=pulumi.get(__ret__, 'platform_number'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        records=pulumi.get(__ret__, 'records'),
         region=pulumi.get(__ret__, 'region'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -316,6 +336,7 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
         domain=pulumi.get(__response__, 'domain'),
         email=pulumi.get(__response__, 'email'),
         id=pulumi.get(__response__, 'id'),
+        name_servers=pulumi.get(__response__, 'name_servers'),
         offer_id=pulumi.get(__response__, 'offer_id'),
         offer_name=pulumi.get(__response__, 'offer_name'),
         option_ids=pulumi.get(__response__, 'option_ids'),
@@ -324,6 +345,7 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
         platform_hostname=pulumi.get(__response__, 'platform_hostname'),
         platform_number=pulumi.get(__response__, 'platform_number'),
         project_id=pulumi.get(__response__, 'project_id'),
+        records=pulumi.get(__response__, 'records'),
         region=pulumi.get(__response__, 'region'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),

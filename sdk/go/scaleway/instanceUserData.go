@@ -18,7 +18,7 @@ import (
 //
 // The typical use case is to pass something like a shell script or a configuration file as user data.
 //
-// For more information about [userData](https://www.scaleway.com/en/developers/api/instance/#path-user-data-list-user-data)  check our documentation guide [here](https://www.scaleway.com/en/docs/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init).
+// For more information about [userData](https://www.scaleway.com/en/developers/api/instance/#path-user-data-list-user-data) check our documentation guide [here](https://www.scaleway.com/en/docs/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init).
 //
 // About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
 //

@@ -96,7 +96,8 @@ type LookupCockpitResult struct {
 	// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
 	Endpoints []GetCockpitEndpoint `pulumi:"endpoints"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Deprecated: The 'plan' attribute is deprecated and will be removed in a future version. Any changes to this attribute will have no effect.
 	Plan string `pulumi:"plan"`
 	// (Deprecated) ID of the current pricing plan
 	PlanId    string              `pulumi:"planId"`
@@ -148,6 +149,7 @@ func (o LookupCockpitResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCockpitResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Deprecated: The 'plan' attribute is deprecated and will be removed in a future version. Any changes to this attribute will have no effect.
 func (o LookupCockpitResultOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCockpitResult) string { return v.Plan }).(pulumi.StringOutput)
 }

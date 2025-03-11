@@ -221,7 +221,7 @@ export interface ContainerHealthCheck {
      */
     https: outputs.ContainerHealthCheckHttp[];
     /**
-     * Period between health checks.
+     * Period between health checks (in seconds).
      */
     interval: string;
 }
@@ -822,7 +822,7 @@ export interface GetCockpitEndpoint {
      */
     metricsUrl: string;
     /**
-     * The traces URL
+     * The traces URL.
      */
     tracesUrl: string;
 }
@@ -2236,6 +2236,29 @@ export interface GetLoadbalancerPrivateNetwork {
     zone: string;
 }
 
+export interface GetMongoDbInstancePrivateNetwork {
+    /**
+     * List of DNS records for your endpoint
+     */
+    dnsRecords: string[];
+    /**
+     * The ID of the MongoDB® Instance.
+     */
+    id: string;
+    /**
+     * List of IP addresses for your endpoint
+     */
+    ips: string[];
+    /**
+     * The private network ID
+     */
+    pnId: string;
+    /**
+     * TCP port of the endpoint
+     */
+    port: number;
+}
+
 export interface GetMongoDbInstancePublicNetwork {
     /**
      * The DNS record of your endpoint
@@ -2561,6 +2584,80 @@ export interface GetVpcsVpc {
     updateAt: string;
 }
 
+export interface GetWebHostOfferOffer {
+    /**
+     * Indicates if the offer is available.
+     */
+    available: boolean;
+    /**
+     * The billing operation identifier for the option.
+     */
+    billingOperationPath: string;
+    /**
+     * The name of the control panel (e.g., Cpanel or Plesk).
+     */
+    controlPanelName: string;
+    /**
+     * Indicates if the offer is deprecated or no longer supported.
+     */
+    endOfLife: boolean;
+    /**
+     * The unique identifier of the option.
+     */
+    id: string;
+    /**
+     * The offer name. Only one of `name` and `offerId` should be specified.
+     */
+    name: string;
+    /**
+     * A list of available options for the offer:
+     */
+    options: outputs.GetWebHostOfferOfferOption[];
+    /**
+     * The offer price.
+     */
+    price: string;
+    /**
+     * Warning information regarding quota limitations for the option.
+     */
+    quotaWarning: string;
+}
+
+export interface GetWebHostOfferOfferOption {
+    /**
+     * The billing operation identifier for the option.
+     */
+    billingOperationPath: string;
+    /**
+     * The current value set for the option.
+     */
+    currentValue: number;
+    /**
+     * The unique identifier of the option.
+     */
+    id: string;
+    /**
+     * The maximum allowed value for the option.
+     */
+    maxValue: number;
+    /**
+     * The minimum value for the option.
+     */
+    minValue: number;
+    /**
+     * The offer name. Only one of `name` and `offerId` should be specified.
+     */
+    name: string;
+    /**
+     * The offer price.
+     */
+    price: string;
+    /**
+     * Warning information regarding quota limitations for the option.
+     */
+    quotaWarning: string;
+}
+
 export interface GetWebHostOfferProduct {
     /**
      * The quota of databases.
@@ -2605,14 +2702,35 @@ export interface GetWebhostingCpanelUrl {
     webmail: string;
 }
 
+export interface GetWebhostingNameServer {
+    hostname: string;
+    isDefault: boolean;
+    status: string;
+}
+
 export interface GetWebhostingOption {
     id: string;
     name: string;
 }
 
+export interface GetWebhostingRecord {
+    name: string;
+    priority: number;
+    status: string;
+    ttl: number;
+    type: string;
+    value: string;
+}
+
 export interface IamPolicyRule {
     /**
-     * The condition of the IAM policy.
+     * The condition of the rule.
+     *
+     * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+     *
+     * ```shell
+     * scw iam permission-set list
+     * ```
      */
     condition?: string;
     /**
@@ -2621,12 +2739,6 @@ export interface IamPolicyRule {
     organizationId?: string;
     /**
      * Names of permission sets bind to the rule.
-     *
-     * **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
-     *
-     * ```shell
-     * scw IAM permission-set list
-     * ```
      */
     permissionSetNames: string[];
     /**
@@ -3217,6 +3329,7 @@ export interface KubernetesClusterOpenIdConnectConfig {
 export interface KubernetesNodePoolNode {
     /**
      * The name for the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     name: string;
@@ -3505,17 +3618,40 @@ export interface MnqSqsCredentialsPermissions {
     canReceive: boolean;
 }
 
+export interface MongoDbInstancePrivateNetwork {
+    /**
+     * List of DNS records for your endpoint.
+     */
+    dnsRecords: string[];
+    /**
+     * The ID of the endpoint.
+     */
+    id: string;
+    /**
+     * List of IP addresses for your endpoint.
+     */
+    ips: string[];
+    /**
+     * The ID of the Private Network.
+     */
+    pnId: string;
+    /**
+     * TCP port of the endpoint.
+     */
+    port: number;
+}
+
 export interface MongoDbInstancePublicNetwork {
     /**
      * The DNS record of your endpoint
      */
     dnsRecord: string;
     /**
-     * The ID of the MongoDB® instance.
+     * The ID of the endpoint.
      */
     id: string;
     /**
-     * TCP port of the endpoint
+     * TCP port of the endpoint.
      */
     port: number;
 }
@@ -3883,6 +4019,15 @@ export interface WebhostingCpanelUrl {
     webmail: string;
 }
 
+export interface WebhostingNameServer {
+    hostname: string;
+    isDefault: boolean;
+    /**
+     * The hosting status.
+     */
+    status: string;
+}
+
 export interface WebhostingOption {
     /**
      * The option ID.
@@ -3892,5 +4037,20 @@ export interface WebhostingOption {
      * The option name.
      */
     name: string;
+}
+
+export interface WebhostingRecord {
+    /**
+     * The option name.
+     */
+    name: string;
+    priority: number;
+    /**
+     * The hosting status.
+     */
+    status: string;
+    ttl: number;
+    type: string;
+    value: string;
 }
 

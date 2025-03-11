@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
 export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetMarketplaceImageResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getMarketplaceImage:getMarketplaceImage", {
+        "imageType": args.imageType,
         "instanceType": args.instanceType,
         "label": args.label,
         "zone": args.zone,
@@ -31,6 +32,10 @@ export function getMarketplaceImage(args: GetMarketplaceImageArgs, opts?: pulumi
  * A collection of arguments for invoking getMarketplaceImage.
  */
 export interface GetMarketplaceImageArgs {
+    /**
+     * The local image type, `instanceLocal` or `instanceSbs`.
+     */
+    imageType?: string;
     /**
      * The instance type the image is compatible with.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
@@ -55,6 +60,7 @@ export interface GetMarketplaceImageResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly imageType?: string;
     readonly instanceType?: string;
     readonly label: string;
     readonly zone: string;
@@ -76,6 +82,7 @@ export interface GetMarketplaceImageResult {
 export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMarketplaceImageResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMarketplaceImage:getMarketplaceImage", {
+        "imageType": args.imageType,
         "instanceType": args.instanceType,
         "label": args.label,
         "zone": args.zone,
@@ -86,6 +93,10 @@ export function getMarketplaceImageOutput(args: GetMarketplaceImageOutputArgs, o
  * A collection of arguments for invoking getMarketplaceImage.
  */
 export interface GetMarketplaceImageOutputArgs {
+    /**
+     * The local image type, `instanceLocal` or `instanceSbs`.
+     */
+    imageType?: pulumi.Input<string>;
     /**
      * The instance type the image is compatible with.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).

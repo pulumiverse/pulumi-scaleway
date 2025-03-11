@@ -48,17 +48,19 @@ export class Cockpit extends pulumi.CustomResource {
     /**
      * (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
      *
-     * @deprecated Please use `scaleway.CockpitSource` instead
+     * @deprecated Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.CockpitEndpoint[]>;
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     public readonly plan!: pulumi.Output<string | undefined>;
     /**
      * (Deprecated) The ID of the current pricing plan.
      *
-     * @deprecated Please use Name only
+     * @deprecated The 'plan_id' attribute is deprecated and will be removed in a future release.
      */
     public /*out*/ readonly planId!: pulumi.Output<string>;
     /**
@@ -66,7 +68,7 @@ export class Cockpit extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Push_url
+     * [DEPRECATED] Push_url
      *
      * @deprecated Please use `scaleway.CockpitSource` instead
      */
@@ -110,17 +112,19 @@ export interface CockpitState {
     /**
      * (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
      *
-     * @deprecated Please use `scaleway.CockpitSource` instead
+     * @deprecated Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.CockpitEndpoint>[]>;
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     plan?: pulumi.Input<string>;
     /**
      * (Deprecated) The ID of the current pricing plan.
      *
-     * @deprecated Please use Name only
+     * @deprecated The 'plan_id' attribute is deprecated and will be removed in a future release.
      */
     planId?: pulumi.Input<string>;
     /**
@@ -128,7 +132,7 @@ export interface CockpitState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Push_url
+     * [DEPRECATED] Push_url
      *
      * @deprecated Please use `scaleway.CockpitSource` instead
      */
@@ -141,6 +145,8 @@ export interface CockpitState {
 export interface CockpitArgs {
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     plan?: pulumi.Input<string>;
     /**

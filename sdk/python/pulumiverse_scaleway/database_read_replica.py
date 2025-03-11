@@ -218,7 +218,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Read Replicas.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -321,7 +321,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Read Replicas.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 

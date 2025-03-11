@@ -51,6 +51,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly autohealing!: pulumi.Output<boolean | undefined>;
     /**
      * Enables the autoscaling feature for this pool.
+     *
      * > **Important:** When enabled, an update of the `size` will not be taken into account.
      */
     public readonly autoscaling!: pulumi.Output<boolean | undefined>;
@@ -60,6 +61,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly clusterId!: pulumi.Output<string>;
     /**
      * The container runtime of the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly containerRuntime!: pulumi.Output<string | undefined>;
@@ -85,6 +87,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly minSize!: pulumi.Output<number | undefined>;
     /**
      * The name for the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly name!: pulumi.Output<string>;
@@ -100,11 +103,13 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public /*out*/ readonly nodes!: pulumi.Output<outputs.KubernetesNodePoolNode[]>;
     /**
      * The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly placementGroupId!: pulumi.Output<string | undefined>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly publicIpDisabled!: pulumi.Output<boolean | undefined>;
@@ -122,6 +127,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly rootVolumeType!: pulumi.Output<string>;
     /**
      * The size of the pool.
+     *
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
      */
     public readonly size!: pulumi.Output<number>;
@@ -131,7 +137,8 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * The tags associated with the pool.
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+     *
+     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
@@ -152,6 +159,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly waitForPoolReady!: pulumi.Output<boolean | undefined>;
     /**
      * `zone`) The zone in which the pool should be created.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     public readonly zone!: pulumi.Output<string>;
@@ -246,6 +254,7 @@ export interface KubernetesNodePoolState {
     autohealing?: pulumi.Input<boolean>;
     /**
      * Enables the autoscaling feature for this pool.
+     *
      * > **Important:** When enabled, an update of the `size` will not be taken into account.
      */
     autoscaling?: pulumi.Input<boolean>;
@@ -255,6 +264,7 @@ export interface KubernetesNodePoolState {
     clusterId?: pulumi.Input<string>;
     /**
      * The container runtime of the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     containerRuntime?: pulumi.Input<string>;
@@ -280,6 +290,7 @@ export interface KubernetesNodePoolState {
     minSize?: pulumi.Input<number>;
     /**
      * The name for the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     name?: pulumi.Input<string>;
@@ -295,11 +306,13 @@ export interface KubernetesNodePoolState {
     nodes?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolNode>[]>;
     /**
      * The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     publicIpDisabled?: pulumi.Input<boolean>;
@@ -317,6 +330,7 @@ export interface KubernetesNodePoolState {
     rootVolumeType?: pulumi.Input<string>;
     /**
      * The size of the pool.
+     *
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
      */
     size?: pulumi.Input<number>;
@@ -326,7 +340,8 @@ export interface KubernetesNodePoolState {
     status?: pulumi.Input<string>;
     /**
      * The tags associated with the pool.
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+     *
+     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -347,6 +362,7 @@ export interface KubernetesNodePoolState {
     waitForPoolReady?: pulumi.Input<boolean>;
     /**
      * `zone`) The zone in which the pool should be created.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     zone?: pulumi.Input<string>;
@@ -362,6 +378,7 @@ export interface KubernetesNodePoolArgs {
     autohealing?: pulumi.Input<boolean>;
     /**
      * Enables the autoscaling feature for this pool.
+     *
      * > **Important:** When enabled, an update of the `size` will not be taken into account.
      */
     autoscaling?: pulumi.Input<boolean>;
@@ -371,6 +388,7 @@ export interface KubernetesNodePoolArgs {
     clusterId: pulumi.Input<string>;
     /**
      * The container runtime of the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     containerRuntime?: pulumi.Input<string>;
@@ -388,6 +406,7 @@ export interface KubernetesNodePoolArgs {
     minSize?: pulumi.Input<number>;
     /**
      * The name for the pool.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     name?: pulumi.Input<string>;
@@ -399,11 +418,13 @@ export interface KubernetesNodePoolArgs {
     nodeType: pulumi.Input<string>;
     /**
      * The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     publicIpDisabled?: pulumi.Input<boolean>;
@@ -421,12 +442,14 @@ export interface KubernetesNodePoolArgs {
     rootVolumeType?: pulumi.Input<string>;
     /**
      * The size of the pool.
+     *
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
      */
     size: pulumi.Input<number>;
     /**
      * The tags associated with the pool.
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+     *
+     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -439,6 +462,7 @@ export interface KubernetesNodePoolArgs {
     waitForPoolReady?: pulumi.Input<boolean>;
     /**
      * `zone`) The zone in which the pool should be created.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     zone?: pulumi.Input<string>;

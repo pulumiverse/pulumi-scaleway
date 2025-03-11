@@ -177,7 +177,7 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalOfferResult:
     """
-    Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
 
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
@@ -214,7 +214,7 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalOfferResult]:
     """
-    Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
 
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.

@@ -25,6 +25,7 @@ class MongoDbInstanceArgs:
                  node_type: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_network: Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input['MongoDbInstancePublicNetworkArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -41,6 +42,7 @@ class MongoDbInstanceArgs:
         :param pulumi.Input[str] node_type: The type of MongoDB® intance to create.
         :param pulumi.Input[str] name: Name of the MongoDB® instance.
         :param pulumi.Input[str] password: Password of the user.
+        :param pulumi.Input['MongoDbInstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input['MongoDbInstancePublicNetworkArgs'] public_network: Public network specs details.
         :param pulumi.Input[str] region: The region you want to attach the resource to
@@ -58,6 +60,8 @@ class MongoDbInstanceArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_network is not None:
+            pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if public_network is not None:
@@ -126,6 +130,18 @@ class MongoDbInstanceArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']]:
+        """
+        Private Network endpoints of the Database Instance.
+        """
+        return pulumi.get(self, "private_network")
+
+    @private_network.setter
+    def private_network(self, value: Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']]):
+        pulumi.set(self, "private_network", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -256,6 +272,7 @@ class _MongoDbInstanceState:
                  node_number: Optional[pulumi.Input[int]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_network: Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input['MongoDbInstancePublicNetworkArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -274,6 +291,7 @@ class _MongoDbInstanceState:
         :param pulumi.Input[int] node_number: Number of nodes in the instance
         :param pulumi.Input[str] node_type: The type of MongoDB® intance to create.
         :param pulumi.Input[str] password: Password of the user.
+        :param pulumi.Input['MongoDbInstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input['MongoDbInstancePublicNetworkArgs'] public_network: Public network specs details.
         :param pulumi.Input[str] region: The region you want to attach the resource to
@@ -296,6 +314,8 @@ class _MongoDbInstanceState:
             pulumi.set(__self__, "node_type", node_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_network is not None:
+            pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if public_network is not None:
@@ -378,6 +398,18 @@ class _MongoDbInstanceState:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']]:
+        """
+        Private Network endpoints of the Database Instance.
+        """
+        return pulumi.get(self, "private_network")
+
+    @private_network.setter
+    def private_network(self, value: Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']]):
+        pulumi.set(self, "private_network", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -521,6 +553,7 @@ class MongoDbInstance(pulumi.CustomResource):
                  node_number: Optional[pulumi.Input[int]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_network: Optional[pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input[Union['MongoDbInstancePublicNetworkArgs', 'MongoDbInstancePublicNetworkArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -534,7 +567,7 @@ class MongoDbInstance(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway MongoDB® instance.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
 
         ## Example Usage
 
@@ -552,6 +585,28 @@ class MongoDbInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=5)
+        ```
+
+        ### Private Network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="my_private_network",
+            region="fr-par")
+        main = scaleway.MongoDbInstance("main",
+            name="test-mongodb-basic1",
+            version="7.0.12",
+            node_type="MGDB-PLAY2-NANO",
+            node_number=1,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=5,
+            private_network={
+                "pn_id": pn02["id"],
+            })
         ```
 
         ### Restore From Snapshot
@@ -583,6 +638,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[int] node_number: Number of nodes in the instance
         :param pulumi.Input[str] node_type: The type of MongoDB® intance to create.
         :param pulumi.Input[str] password: Password of the user.
+        :param pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[Union['MongoDbInstancePublicNetworkArgs', 'MongoDbInstancePublicNetworkArgsDict']] public_network: Public network specs details.
         :param pulumi.Input[str] region: The region you want to attach the resource to
@@ -602,7 +658,7 @@ class MongoDbInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway MongoDB® instance.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
 
         ## Example Usage
 
@@ -620,6 +676,28 @@ class MongoDbInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=5)
+        ```
+
+        ### Private Network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        pn01 = scaleway.VpcPrivateNetwork("pn01",
+            name="my_private_network",
+            region="fr-par")
+        main = scaleway.MongoDbInstance("main",
+            name="test-mongodb-basic1",
+            version="7.0.12",
+            node_type="MGDB-PLAY2-NANO",
+            node_number=1,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=5,
+            private_network={
+                "pn_id": pn02["id"],
+            })
         ```
 
         ### Restore From Snapshot
@@ -664,6 +742,7 @@ class MongoDbInstance(pulumi.CustomResource):
                  node_number: Optional[pulumi.Input[int]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_network: Optional[pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input[Union['MongoDbInstancePublicNetworkArgs', 'MongoDbInstancePublicNetworkArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -691,6 +770,7 @@ class MongoDbInstance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_network"] = public_network
             __props__.__dict__["region"] = region
@@ -720,6 +800,7 @@ class MongoDbInstance(pulumi.CustomResource):
             node_number: Optional[pulumi.Input[int]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            private_network: Optional[pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_network: Optional[pulumi.Input[Union['MongoDbInstancePublicNetworkArgs', 'MongoDbInstancePublicNetworkArgsDict']]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -743,6 +824,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[int] node_number: Number of nodes in the instance
         :param pulumi.Input[str] node_type: The type of MongoDB® intance to create.
         :param pulumi.Input[str] password: Password of the user.
+        :param pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[Union['MongoDbInstancePublicNetworkArgs', 'MongoDbInstancePublicNetworkArgsDict']] public_network: Public network specs details.
         :param pulumi.Input[str] region: The region you want to attach the resource to
@@ -764,6 +846,7 @@ class MongoDbInstance(pulumi.CustomResource):
         __props__.__dict__["node_number"] = node_number
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["password"] = password
+        __props__.__dict__["private_network"] = private_network
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_network"] = public_network
         __props__.__dict__["region"] = region
@@ -816,6 +899,14 @@ class MongoDbInstance(pulumi.CustomResource):
         Password of the user.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> pulumi.Output[Optional['outputs.MongoDbInstancePrivateNetwork']]:
+        """
+        Private Network endpoints of the Database Instance.
+        """
+        return pulumi.get(self, "private_network")
 
     @property
     @pulumi.getter(name="projectId")

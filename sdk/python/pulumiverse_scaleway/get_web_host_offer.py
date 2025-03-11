@@ -27,10 +27,13 @@ class GetWebHostOfferResult:
     """
     A collection of values returned by getWebHostOffer.
     """
-    def __init__(__self__, billing_operation_path=None, id=None, name=None, offer_id=None, price=None, products=None, region=None):
+    def __init__(__self__, billing_operation_path=None, control_panel=None, id=None, name=None, offer_id=None, offers=None, price=None, products=None, region=None):
         if billing_operation_path and not isinstance(billing_operation_path, str):
             raise TypeError("Expected argument 'billing_operation_path' to be a str")
         pulumi.set(__self__, "billing_operation_path", billing_operation_path)
+        if control_panel and not isinstance(control_panel, str):
+            raise TypeError("Expected argument 'control_panel' to be a str")
+        pulumi.set(__self__, "control_panel", control_panel)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -40,6 +43,9 @@ class GetWebHostOfferResult:
         if offer_id and not isinstance(offer_id, str):
             raise TypeError("Expected argument 'offer_id' to be a str")
         pulumi.set(__self__, "offer_id", offer_id)
+        if offers and not isinstance(offers, list):
+            raise TypeError("Expected argument 'offers' to be a list")
+        pulumi.set(__self__, "offers", offers)
         if price and not isinstance(price, str):
             raise TypeError("Expected argument 'price' to be a str")
         pulumi.set(__self__, "price", price)
@@ -54,9 +60,14 @@ class GetWebHostOfferResult:
     @pulumi.getter(name="billingOperationPath")
     def billing_operation_path(self) -> str:
         """
-        The unique identifier used for billing.
+        The billing operation identifier for the option.
         """
         return pulumi.get(self, "billing_operation_path")
+
+    @property
+    @pulumi.getter(name="controlPanel")
+    def control_panel(self) -> Optional[str]:
+        return pulumi.get(self, "control_panel")
 
     @property
     @pulumi.getter
@@ -69,12 +80,23 @@ class GetWebHostOfferResult:
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the option.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="offerId")
     def offer_id(self) -> Optional[str]:
         return pulumi.get(self, "offer_id")
+
+    @property
+    @pulumi.getter
+    def offers(self) -> Sequence['outputs.GetWebHostOfferOfferResult']:
+        """
+        The detailed offer of the hosting.
+        """
+        return pulumi.get(self, "offers")
 
     @property
     @pulumi.getter
@@ -86,9 +108,10 @@ class GetWebHostOfferResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""The product field is deprecated. Please use the offer field instead.""")
     def products(self) -> Sequence['outputs.GetWebHostOfferProductResult']:
         """
-        The offer product.
+        (deprecated) The offer product.
         """
         return pulumi.get(self, "products")
 
@@ -105,15 +128,18 @@ class AwaitableGetWebHostOfferResult(GetWebHostOfferResult):
             yield self
         return GetWebHostOfferResult(
             billing_operation_path=self.billing_operation_path,
+            control_panel=self.control_panel,
             id=self.id,
             name=self.name,
             offer_id=self.offer_id,
+            offers=self.offers,
             price=self.price,
             products=self.products,
             region=self.region)
 
 
-def get_web_host_offer(name: Optional[str] = None,
+def get_web_host_offer(control_panel: Optional[str] = None,
+                       name: Optional[str] = None,
                        offer_id: Optional[str] = None,
                        region: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebHostOfferResult:
@@ -127,17 +153,20 @@ def get_web_host_offer(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by offer name
-    by_name = scaleway.get_web_host_offer(name="performance")
+    by_name = scaleway.get_web_host_offer(name="performance",
+        control_panel="Cpanel")
     # Get info by offer id
     by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
 
+    :param str control_panel: Name of the control panel (Cpanel or Plesk). This argument is only used when `offer_id` is not specified.
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param str region: `region`) The region in which offer exists.
     """
     __args__ = dict()
+    __args__['controlPanel'] = control_panel
     __args__['name'] = name
     __args__['offerId'] = offer_id
     __args__['region'] = region
@@ -146,13 +175,16 @@ def get_web_host_offer(name: Optional[str] = None,
 
     return AwaitableGetWebHostOfferResult(
         billing_operation_path=pulumi.get(__ret__, 'billing_operation_path'),
+        control_panel=pulumi.get(__ret__, 'control_panel'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         offer_id=pulumi.get(__ret__, 'offer_id'),
+        offers=pulumi.get(__ret__, 'offers'),
         price=pulumi.get(__ret__, 'price'),
         products=pulumi.get(__ret__, 'products'),
         region=pulumi.get(__ret__, 'region'))
-def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+def get_web_host_offer_output(control_panel: Optional[pulumi.Input[Optional[str]]] = None,
+                              name: Optional[pulumi.Input[Optional[str]]] = None,
                               offer_id: Optional[pulumi.Input[Optional[str]]] = None,
                               region: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebHostOfferResult]:
@@ -166,17 +198,20 @@ def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi_scaleway as scaleway
 
     # Get info by offer name
-    by_name = scaleway.get_web_host_offer(name="performance")
+    by_name = scaleway.get_web_host_offer(name="performance",
+        control_panel="Cpanel")
     # Get info by offer id
     by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
 
+    :param str control_panel: Name of the control panel (Cpanel or Plesk). This argument is only used when `offer_id` is not specified.
     :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param str region: `region`) The region in which offer exists.
     """
     __args__ = dict()
+    __args__['controlPanel'] = control_panel
     __args__['name'] = name
     __args__['offerId'] = offer_id
     __args__['region'] = region
@@ -184,9 +219,11 @@ def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getWebHostOffer:getWebHostOffer', __args__, opts=opts, typ=GetWebHostOfferResult)
     return __ret__.apply(lambda __response__: GetWebHostOfferResult(
         billing_operation_path=pulumi.get(__response__, 'billing_operation_path'),
+        control_panel=pulumi.get(__response__, 'control_panel'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         offer_id=pulumi.get(__response__, 'offer_id'),
+        offers=pulumi.get(__response__, 'offers'),
         price=pulumi.get(__response__, 'price'),
         products=pulumi.get(__response__, 'products'),
         region=pulumi.get(__response__, 'region')))

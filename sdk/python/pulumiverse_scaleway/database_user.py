@@ -219,7 +219,7 @@ class DatabaseUser(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages database users.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -278,7 +278,7 @@ class DatabaseUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages database users.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 

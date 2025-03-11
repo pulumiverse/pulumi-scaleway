@@ -89,6 +89,12 @@ namespace Pulumiverse.Scaleway
     public sealed class GetMarketplaceImageArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The local image type, `instance_local` or `instance_sbs`.
+        /// </summary>
+        [Input("imageType")]
+        public string? ImageType { get; set; }
+
+        /// <summary>
         /// The instance type the image is compatible with.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
         /// </summary>
@@ -116,6 +122,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class GetMarketplaceImageInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The local image type, `instance_local` or `instance_sbs`.
+        /// </summary>
+        [Input("imageType")]
+        public Input<string>? ImageType { get; set; }
+
         /// <summary>
         /// The instance type the image is compatible with.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
@@ -150,6 +162,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? ImageType;
         public readonly string? InstanceType;
         public readonly string Label;
         public readonly string Zone;
@@ -158,6 +171,8 @@ namespace Pulumiverse.Scaleway
         private GetMarketplaceImageResult(
             string id,
 
+            string? imageType,
+
             string? instanceType,
 
             string label,
@@ -165,6 +180,7 @@ namespace Pulumiverse.Scaleway
             string zone)
         {
             Id = id;
+            ImageType = imageType;
             InstanceType = instanceType;
             Label = label;
             Zone = zone;

@@ -194,7 +194,7 @@ class Database(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages databases.
-        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information, refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -243,7 +243,7 @@ class Database(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages databases.
-        For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information, refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 

@@ -41,7 +41,7 @@ class BaremetalServerArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BaremetalServer resource.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
+        :param pulumi.Input[str] offer: The offer UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
@@ -107,7 +107,7 @@ class BaremetalServerArgs:
     @pulumi.getter
     def offer(self) -> pulumi.Input[str]:
         """
-        The offer name or UUID of the baremetal server.
+        The offer UUID of the baremetal server.
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
@@ -366,7 +366,7 @@ class _BaremetalServerState:
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]] ipv4s: (List of) The IPv4 addresses of the server.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
+        :param pulumi.Input[str] offer: The offer UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
@@ -545,7 +545,7 @@ class _BaremetalServerState:
     @pulumi.getter
     def offer(self) -> Optional[pulumi.Input[str]]:
         """
-        The offer name or UUID of the baremetal server.
+        The offer UUID of the baremetal server.
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
@@ -790,7 +790,7 @@ class BaremetalServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
+        Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 
         ## Example Usage
 
@@ -802,9 +802,11 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.get_iam_ssh_key(name="main")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
         base = scaleway.BaremetalServer("base",
             zone="fr-par-2",
-            offer="GP-BM1-S",
+            offer=my_offer.offer_id,
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main_scaleway_account_ssh_key["id"]])
         ```
@@ -943,11 +945,14 @@ class BaremetalServer(pulumi.CustomResource):
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
         main = scaleway.IamSshKey("main", name="main")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-1",
+            name="EM-B220E-NVME",
+            subscription_period="hourly")
         base = scaleway.BaremetalServer("base",
             name="%s",
             zone="fr-par-1",
             description="test a description",
-            offer="EM-B220E-NVME",
+            offer=my_offer.offer_id,
             os=my_os.os_id,
             partitioning=config_custom_partitioning,
             tags=[
@@ -974,7 +979,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
         :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
+        :param pulumi.Input[str] offer: The offer UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
@@ -1003,7 +1008,7 @@ class BaremetalServer(pulumi.CustomResource):
                  args: BaremetalServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
+        Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 
         ## Example Usage
 
@@ -1015,9 +1020,11 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.get_iam_ssh_key(name="main")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
         base = scaleway.BaremetalServer("base",
             zone="fr-par-2",
-            offer="GP-BM1-S",
+            offer=my_offer.offer_id,
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
             ssh_key_ids=[main_scaleway_account_ssh_key["id"]])
         ```
@@ -1156,11 +1163,14 @@ class BaremetalServer(pulumi.CustomResource):
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
         main = scaleway.IamSshKey("main", name="main")
+        my_offer = scaleway.get_baremetal_offer(zone="fr-par-1",
+            name="EM-B220E-NVME",
+            subscription_period="hourly")
         base = scaleway.BaremetalServer("base",
             name="%s",
             zone="fr-par-1",
             description="test a description",
-            offer="EM-B220E-NVME",
+            offer=my_offer.offer_id,
             os=my_os.os_id,
             partitioning=config_custom_partitioning,
             tags=[
@@ -1304,7 +1314,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv4Args', 'BaremetalServerIpv4ArgsDict']]]] ipv4s: (List of) The IPv4 addresses of the server.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv6Args', 'BaremetalServerIpv6ArgsDict']]]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
-        :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
+        :param pulumi.Input[str] offer: The offer UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
@@ -1430,7 +1440,7 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def offer(self) -> pulumi.Output[str]:
         """
-        The offer name or UUID of the baremetal server.
+        The offer UUID of the baremetal server.
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.

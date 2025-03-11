@@ -12,12 +12,69 @@ namespace Pulumiverse.Scaleway
 {
     public static class GetConfig
     {
+        /// <summary>
+        /// Gets information about the current configuration that Scaleway provider is using.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get configuration information
+        ///     var main = Scaleway.GetConfig.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetConfigResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetConfigResult>("scaleway:index/getConfig:getConfig", InvokeArgs.Empty, options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about the current configuration that Scaleway provider is using.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get configuration information
+        ///     var main = Scaleway.GetConfig.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetConfigResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetConfigResult>("scaleway:index/getConfig:getConfig", InvokeArgs.Empty, options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about the current configuration that Scaleway provider is using.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get configuration information
+        ///     var main = Scaleway.GetConfig.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetConfigResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetConfigResult>("scaleway:index/getConfig:getConfig", InvokeArgs.Empty, options.WithDefaults());
     }

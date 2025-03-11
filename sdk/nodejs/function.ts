@@ -65,7 +65,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly handler!: pulumi.Output<string>;
     /**
-     * HTTP traffic configuration
+     * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
     public readonly httpOption!: pulumi.Output<string | undefined>;
     /**
@@ -236,7 +236,7 @@ export interface FunctionState {
      */
     handler?: pulumi.Input<string>;
     /**
-     * HTTP traffic configuration
+     * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
     httpOption?: pulumi.Input<string>;
     /**
@@ -321,7 +321,7 @@ export interface FunctionArgs {
      */
     handler: pulumi.Input<string>;
     /**
-     * HTTP traffic configuration
+     * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
     httpOption?: pulumi.Input<string>;
     /**

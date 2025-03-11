@@ -4,6 +4,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Gets information about the current configuration that Scaleway provider is using.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get configuration information
+ * const main = scaleway.getConfig({});
+ * ```
+ */
 export function getConfig(opts?: pulumi.InvokeOptions): Promise<GetConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getConfig:getConfig", {
@@ -29,6 +42,19 @@ export interface GetConfigResult {
     readonly zone: string;
     readonly zoneSource: string;
 }
+/**
+ * Gets information about the current configuration that Scaleway provider is using.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * // Get configuration information
+ * const main = scaleway.getConfig({});
+ * ```
+ */
 export function getConfigOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getConfig:getConfig", {

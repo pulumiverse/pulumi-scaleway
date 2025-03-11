@@ -383,7 +383,7 @@ class AppleSiliconServer(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Apple silicon. For more information,
-        see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+        see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 
         ## Example Usage
 
@@ -429,7 +429,7 @@ class AppleSiliconServer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Apple silicon. For more information,
-        see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+        see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 
         ## Example Usage
 

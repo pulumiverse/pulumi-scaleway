@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Public Gateway public flexible IP address.
         /// 
-        /// For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+        /// For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
         /// 
         /// ## Example Usage
         /// 
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Public Gateway public flexible IP address.
         /// 
-        /// For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+        /// For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
         /// 
         /// ## Example Usage
         /// 
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Gets information about a Public Gateway public flexible IP address.
         /// 
-        /// For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+        /// For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
         /// 
         /// ## Example Usage
         /// 

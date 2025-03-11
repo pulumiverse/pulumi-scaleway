@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Public Gateway public flexible IP address.
  *
- * For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+ * For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
  *
  * ## Example Usage
  *
@@ -58,7 +58,7 @@ export interface GetVpcPublicGatewayIpResult {
 /**
  * Gets information about a Public Gateway public flexible IP address.
  *
- * For further information, please see the API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
+ * For further information, please see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-ips-list-ips).
  *
  * ## Example Usage
  *

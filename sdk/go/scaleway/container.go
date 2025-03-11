@@ -221,8 +221,6 @@ type Container struct {
 	// The cron status of the container.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
-	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -232,11 +230,15 @@ type Container struct {
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
-	// Health check configuration of the container.
+	// Health check configuration block of the container.
 	HealthChecks ContainerHealthCheckArrayOutput `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
-	// The maximum number of simultaneous requests your container can handle at the same time.
+	// Local storage limit of the container (in MB)
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	LocalStorageLimit pulumi.IntOutput `pulumi:"localStorageLimit"`
+	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
 	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
@@ -272,7 +274,7 @@ type Container struct {
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The maximum amount of time your container can spend processing a request before being stopped.
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 }
 
@@ -321,8 +323,6 @@ type containerState struct {
 	// The cron status of the container.
 	CronStatus *string `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
-	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
@@ -332,11 +332,15 @@ type containerState struct {
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage *string `pulumi:"errorMessage"`
-	// Health check configuration of the container.
+	// Health check configuration block of the container.
 	HealthChecks []ContainerHealthCheck `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption *string `pulumi:"httpOption"`
-	// The maximum number of simultaneous requests your container can handle at the same time.
+	// Local storage limit of the container (in MB)
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	LocalStorageLimit *int `pulumi:"localStorageLimit"`
+	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
 	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
@@ -372,7 +376,7 @@ type containerState struct {
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status *string `pulumi:"status"`
-	// The maximum amount of time your container can spend processing a request before being stopped.
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -382,8 +386,6 @@ type ContainerState struct {
 	// The cron status of the container.
 	CronStatus pulumi.StringPtrInput
 	// Boolean indicating whether the container is in a production environment.
-	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
@@ -393,11 +395,15 @@ type ContainerState struct {
 	EnvironmentVariables pulumi.StringMapInput
 	// The error message of the container.
 	ErrorMessage pulumi.StringPtrInput
-	// Health check configuration of the container.
+	// Health check configuration block of the container.
 	HealthChecks ContainerHealthCheckArrayInput
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrInput
-	// The maximum number of simultaneous requests your container can handle at the same time.
+	// Local storage limit of the container (in MB)
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	LocalStorageLimit pulumi.IntPtrInput
+	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
 	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency pulumi.IntPtrInput
@@ -433,7 +439,7 @@ type ContainerState struct {
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
 	Status pulumi.StringPtrInput
-	// The maximum amount of time your container can spend processing a request before being stopped.
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -445,18 +451,20 @@ type containerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Boolean indicating whether the container is in a production environment.
-	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
-	// Health check configuration of the container.
+	// Health check configuration block of the container.
 	HealthChecks []ContainerHealthCheck `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption *string `pulumi:"httpOption"`
-	// The maximum number of simultaneous requests your container can handle at the same time.
+	// Local storage limit of the container (in MB)
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	LocalStorageLimit *int `pulumi:"localStorageLimit"`
+	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
 	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
@@ -492,7 +500,7 @@ type containerArgs struct {
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// The container status.
 	Status *string `pulumi:"status"`
-	// The maximum amount of time your container can spend processing a request before being stopped.
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -501,18 +509,20 @@ type ContainerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit pulumi.IntPtrInput
 	// Boolean indicating whether the container is in a production environment.
-	//
-	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
-	// Health check configuration of the container.
+	// Health check configuration block of the container.
 	HealthChecks ContainerHealthCheckArrayInput
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
 	HttpOption pulumi.StringPtrInput
-	// The maximum number of simultaneous requests your container can handle at the same time.
+	// Local storage limit of the container (in MB)
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+	LocalStorageLimit pulumi.IntPtrInput
+	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
 	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 	MaxConcurrency pulumi.IntPtrInput
@@ -548,7 +558,7 @@ type ContainerArgs struct {
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// The container status.
 	Status pulumi.StringPtrInput
-	// The maximum amount of time your container can spend processing a request before being stopped.
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -650,8 +660,6 @@ func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 }
 
 // Boolean indicating whether the container is in a production environment.
-//
-// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 func (o ContainerOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -676,7 +684,7 @@ func (o ContainerOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
-// Health check configuration of the container.
+// Health check configuration block of the container.
 func (o ContainerOutput) HealthChecks() ContainerHealthCheckArrayOutput {
 	return o.ApplyT(func(v *Container) ContainerHealthCheckArrayOutput { return v.HealthChecks }).(ContainerHealthCheckArrayOutput)
 }
@@ -686,7 +694,14 @@ func (o ContainerOutput) HttpOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of simultaneous requests your container can handle at the same time.
+// Local storage limit of the container (in MB)
+//
+// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+func (o ContainerOutput) LocalStorageLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.LocalStorageLimit }).(pulumi.IntOutput)
+}
+
+// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 //
 // Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
 func (o ContainerOutput) MaxConcurrency() pulumi.IntOutput {
@@ -770,7 +785,7 @@ func (o ContainerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time your container can spend processing a request before being stopped.
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 func (o ContainerOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }

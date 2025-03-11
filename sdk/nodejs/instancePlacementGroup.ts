@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Compute Instance Placement Groups. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
+ * Creates and manages Compute Instance Placement Groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-list-placement-groups).
  *
  * ## Example Usage
  *

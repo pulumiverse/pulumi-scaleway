@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class IamPolicyRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The condition of the IAM policy.
+        /// The condition of the rule.
+        /// 
+        /// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+        /// 
+        /// ```shell
+        /// scw iam permission-set list
+        /// ```
         /// </summary>
         [Input("condition")]
         public Input<string>? Condition { get; set; }
@@ -30,12 +36,6 @@ namespace Pulumiverse.Scaleway.Inputs
 
         /// <summary>
         /// Names of permission sets bind to the rule.
-        /// 
-        /// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
-        /// 
-        /// ```shell
-        /// scw IAM permission-set list
-        /// ```
         /// </summary>
         public InputList<string> PermissionSetNames
         {

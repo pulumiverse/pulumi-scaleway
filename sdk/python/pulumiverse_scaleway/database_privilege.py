@@ -201,7 +201,7 @@ class DatabasePrivilege(pulumi.CustomResource):
                  __props__=None):
         """
         Create and manage Scaleway database privileges.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
 
         ## Example Usage
 
@@ -258,7 +258,7 @@ class DatabasePrivilege(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create and manage Scaleway database privileges.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
 
         ## Example Usage
 

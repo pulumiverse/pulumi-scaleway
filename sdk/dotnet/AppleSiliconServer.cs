@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Apple silicon. For more information,
-    /// see [the documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+    /// see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
     /// 
     /// ## Example Usage
     /// 

@@ -108,7 +108,7 @@ def get_k8s_version(name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetK8sVersionResult:
     """
     Gets information about a Kubernetes version.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+    For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
 
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
@@ -154,7 +154,7 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sVersionResult]:
     """
     Gets information about a Kubernetes version.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api).
+    For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
 
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 

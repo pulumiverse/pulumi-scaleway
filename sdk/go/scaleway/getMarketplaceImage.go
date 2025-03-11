@@ -50,6 +50,8 @@ func GetMarketplaceImage(ctx *pulumi.Context, args *GetMarketplaceImageArgs, opt
 
 // A collection of arguments for invoking getMarketplaceImage.
 type GetMarketplaceImageArgs struct {
+	// The local image type, `instanceLocal` or `instanceSbs`.
+	ImageType *string `pulumi:"imageType"`
 	// The instance type the image is compatible with.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType *string `pulumi:"instanceType"`
@@ -64,6 +66,7 @@ type GetMarketplaceImageArgs struct {
 type GetMarketplaceImageResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id           string  `pulumi:"id"`
+	ImageType    *string `pulumi:"imageType"`
 	InstanceType *string `pulumi:"instanceType"`
 	Label        string  `pulumi:"label"`
 	Zone         string  `pulumi:"zone"`
@@ -80,6 +83,8 @@ func GetMarketplaceImageOutput(ctx *pulumi.Context, args GetMarketplaceImageOutp
 
 // A collection of arguments for invoking getMarketplaceImage.
 type GetMarketplaceImageOutputArgs struct {
+	// The local image type, `instanceLocal` or `instanceSbs`.
+	ImageType pulumi.StringPtrInput `pulumi:"imageType"`
 	// The instance type the image is compatible with.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
 	InstanceType pulumi.StringPtrInput `pulumi:"instanceType"`
@@ -112,6 +117,10 @@ func (o GetMarketplaceImageResultOutput) ToGetMarketplaceImageResultOutputWithCo
 // The provider-assigned unique ID for this managed resource.
 func (o GetMarketplaceImageResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMarketplaceImageResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetMarketplaceImageResultOutput) ImageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMarketplaceImageResult) *string { return v.ImageType }).(pulumi.StringPtrOutput)
 }
 
 func (o GetMarketplaceImageResultOutput) InstanceType() pulumi.StringPtrOutput {

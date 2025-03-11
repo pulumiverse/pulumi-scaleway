@@ -19,11 +19,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? DnsRecord;
         /// <summary>
-        /// The ID of the MongoDB® instance.
+        /// The ID of the endpoint.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// TCP port of the endpoint
+        /// TCP port of the endpoint.
         /// </summary>
         public readonly int? Port;
 

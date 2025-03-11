@@ -32,6 +32,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Enables the autoscaling feature for this pool.
+        /// 
         /// &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
         /// </summary>
         [Output("autoscaling")]
@@ -45,6 +46,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The container runtime of the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("containerRuntime")]
@@ -82,6 +84,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name for the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("name")]
@@ -103,6 +106,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("placementGroupId")]
@@ -110,6 +114,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("publicIpDisabled")]
@@ -135,6 +140,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the pool.
+        /// 
         /// &gt; **Important:** This field will only be used at creation if autoscaling is enabled.
         /// </summary>
         [Output("size")]
@@ -148,7 +154,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The tags associated with the pool.
-        /// &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+        /// 
+        /// &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -179,6 +186,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the pool should be created.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("zone")]
@@ -239,6 +247,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Enables the autoscaling feature for this pool.
+        /// 
         /// &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
         /// </summary>
         [Input("autoscaling")]
@@ -252,6 +261,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The container runtime of the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("containerRuntime")]
@@ -283,6 +293,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name for the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("name")]
@@ -298,6 +309,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("placementGroupId")]
@@ -305,6 +317,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("publicIpDisabled")]
@@ -330,6 +343,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the pool.
+        /// 
         /// &gt; **Important:** This field will only be used at creation if autoscaling is enabled.
         /// </summary>
         [Input("size", required: true)]
@@ -340,7 +354,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The tags associated with the pool.
-        /// &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+        /// 
+        /// &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         /// </summary>
         public InputList<string> Tags
         {
@@ -362,6 +377,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the pool should be created.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("zone")]
@@ -383,6 +399,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Enables the autoscaling feature for this pool.
+        /// 
         /// &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
         /// </summary>
         [Input("autoscaling")]
@@ -396,6 +413,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The container runtime of the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("containerRuntime")]
@@ -439,6 +457,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name for the pool.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("name")]
@@ -466,6 +485,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("placementGroupId")]
@@ -473,6 +493,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("publicIpDisabled")]
@@ -498,6 +519,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the pool.
+        /// 
         /// &gt; **Important:** This field will only be used at creation if autoscaling is enabled.
         /// </summary>
         [Input("size")]
@@ -514,7 +536,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The tags associated with the pool.
-        /// &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
+        /// 
+        /// &gt; Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         /// </summary>
         public InputList<string> Tags
         {
@@ -548,6 +571,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the pool should be created.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("zone")]

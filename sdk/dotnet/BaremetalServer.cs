@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
+    /// Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
     /// 
     /// ## Example Usage
     /// 
@@ -31,10 +31,16 @@ namespace Pulumiverse.Scaleway
     ///         Name = "main",
     ///     });
     /// 
+    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-I220E-NVME",
+    ///     });
+    /// 
     ///     var @base = new Scaleway.BaremetalServer("base", new()
     ///     {
     ///         Zone = "fr-par-2",
-    ///         Offer = "GP-BM1-S",
+    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
     ///         Os = "d17d6872-0412-45d9-a198-af82c34d3c5c",
     ///         SshKeyIds = new[]
     ///         {
@@ -326,12 +332,19 @@ namespace Pulumiverse.Scaleway
     ///         Name = "main",
     ///     });
     /// 
+    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "EM-B220E-NVME",
+    ///         SubscriptionPeriod = "hourly",
+    ///     });
+    /// 
     ///     var @base = new Scaleway.BaremetalServer("base", new()
     ///     {
     ///         Name = "%s",
     ///         Zone = "fr-par-1",
     ///         Description = "test a description",
-    ///         Offer = "EM-B220E-NVME",
+    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
     ///         Os = myOs.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
     ///         Partitioning = configCustomPartitioning,
     ///         Tags = new[]
@@ -411,7 +424,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The offer name or UUID of the baremetal server.
+        /// The offer UUID of the baremetal server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `offer` will recreate the server.
@@ -602,7 +615,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The offer name or UUID of the baremetal server.
+        /// The offer UUID of the baremetal server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `offer` will recreate the server.
@@ -811,7 +824,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The offer name or UUID of the baremetal server.
+        /// The offer UUID of the baremetal server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `offer` will recreate the server.

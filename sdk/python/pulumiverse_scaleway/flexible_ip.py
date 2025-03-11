@@ -351,7 +351,7 @@ class FlexibleIp(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway flexible IPs.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
 
         ## Example Usage
 
@@ -435,7 +435,7 @@ class FlexibleIp(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway flexible IPs.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
 
         ## Example Usage
 

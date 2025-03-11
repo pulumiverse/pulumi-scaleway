@@ -184,6 +184,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<Outputs.GetWebhostingNameServerResult> NameServers;
         public readonly string OfferId;
         public readonly string OfferName;
         public readonly ImmutableArray<string> OptionIds;
@@ -192,6 +193,7 @@ namespace Pulumiverse.Scaleway
         public readonly string PlatformHostname;
         public readonly int PlatformNumber;
         public readonly string? ProjectId;
+        public readonly ImmutableArray<Outputs.GetWebhostingRecordResult> Records;
         public readonly string Region;
         public readonly string Status;
         public readonly ImmutableArray<string> Tags;
@@ -213,6 +215,8 @@ namespace Pulumiverse.Scaleway
 
             string id,
 
+            ImmutableArray<Outputs.GetWebhostingNameServerResult> nameServers,
+
             string offerId,
 
             string offerName,
@@ -228,6 +232,8 @@ namespace Pulumiverse.Scaleway
             int platformNumber,
 
             string? projectId,
+
+            ImmutableArray<Outputs.GetWebhostingRecordResult> records,
 
             string region,
 
@@ -247,6 +253,7 @@ namespace Pulumiverse.Scaleway
             Domain = domain;
             Email = email;
             Id = id;
+            NameServers = nameServers;
             OfferId = offerId;
             OfferName = offerName;
             OptionIds = optionIds;
@@ -255,6 +262,7 @@ namespace Pulumiverse.Scaleway
             PlatformHostname = platformHostname;
             PlatformNumber = platformNumber;
             ProjectId = projectId;
+            Records = records;
             Region = region;
             Status = status;
             Tags = tags;

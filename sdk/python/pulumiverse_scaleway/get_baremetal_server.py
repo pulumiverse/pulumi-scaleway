@@ -300,7 +300,7 @@ def get_baremetal_server(name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBaremetalServerResult:
     """
     Gets information about a baremetal server.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
     ## Example Usage
 
@@ -364,7 +364,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalServerResult]:
     """
     Gets information about a baremetal server.
-    For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+    For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
     ## Example Usage
 

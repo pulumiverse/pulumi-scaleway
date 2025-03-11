@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+// Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOfferResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOfferResult

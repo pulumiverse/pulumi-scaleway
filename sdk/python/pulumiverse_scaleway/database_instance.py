@@ -919,7 +919,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information, see refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -1114,7 +1114,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+        For more information, see refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 

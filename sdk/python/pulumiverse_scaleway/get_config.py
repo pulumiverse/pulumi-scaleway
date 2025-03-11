@@ -141,7 +141,17 @@ class AwaitableGetConfigResult(GetConfigResult):
 
 def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfigResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about the current configuration that Scaleway provider is using.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get configuration information
+    main = scaleway.get_config()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -161,7 +171,17 @@ def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfi
         zone_source=pulumi.get(__ret__, 'zone_source'))
 def get_config_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConfigResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about the current configuration that Scaleway provider is using.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get configuration information
+    main = scaleway.get_config()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

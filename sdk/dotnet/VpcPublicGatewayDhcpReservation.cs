@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Statically assigned IP addresses should fall within the configured subnet, but be outside of the dynamic range.
     /// 
-    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
+    /// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
     /// 
     /// [DHCP reservations](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-entries-e40fb6) hold both dynamic DHCP leases (IP addresses dynamically assigned by the gateway to resources) and static user-created DHCP reservations.
     /// 

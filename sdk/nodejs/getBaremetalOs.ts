@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about a baremetal operating system.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses).
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses).
  *
  * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
  *
@@ -75,7 +75,7 @@ export interface GetBaremetalOsResult {
 }
 /**
  * Gets information about a baremetal operating system.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses).
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses).
  *
  * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw baremetal os list` to list all available operating systems.
  *

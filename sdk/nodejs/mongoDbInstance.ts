@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway MongoDB® instance.
- * For more information refer to [the API documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+ * For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
  *
  * ## Example Usage
  *
@@ -26,6 +26,30 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     volumeSizeInGb: 5,
+ * });
+ * ```
+ *
+ * ### Private Network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ *     name: "my_private_network",
+ *     region: "fr-par",
+ * });
+ * const main = new scaleway.MongoDbInstance("main", {
+ *     name: "test-mongodb-basic1",
+ *     version: "7.0.12",
+ *     nodeType: "MGDB-PLAY2-NANO",
+ *     nodeNumber: 1,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     volumeSizeInGb: 5,
+ *     privateNetwork: {
+ *         pnId: pn02.id,
+ *     },
  * });
  * ```
  *
@@ -102,6 +126,10 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * Private Network endpoints of the Database Instance.
+     */
+    public readonly privateNetwork!: pulumi.Output<outputs.MongoDbInstancePrivateNetwork | undefined>;
+    /**
      * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -164,6 +192,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicNetwork"] = state ? state.publicNetwork : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -187,6 +216,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = args ? args.nodeNumber : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["publicNetwork"] = args ? args.publicNetwork : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -231,6 +261,10 @@ export interface MongoDbInstanceState {
      * Password of the user.
      */
     password?: pulumi.Input<string>;
+    /**
+     * Private Network endpoints of the Database Instance.
+     */
+    privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
     /**
      * The projectId you want to attach the resource to
      */
@@ -297,6 +331,10 @@ export interface MongoDbInstanceArgs {
      * Password of the user.
      */
     password?: pulumi.Input<string>;
+    /**
+     * Private Network endpoints of the Database Instance.
+     */
+    privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
     /**
      * The projectId you want to attach the resource to
      */

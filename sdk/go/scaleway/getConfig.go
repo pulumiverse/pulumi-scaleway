@@ -11,6 +11,32 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about the current configuration that Scaleway provider is using.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get configuration information
+//			_, err := scaleway.GetConfig(ctx, map[string]interface{}{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetConfigResult

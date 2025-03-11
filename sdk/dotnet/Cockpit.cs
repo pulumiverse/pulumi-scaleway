@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Push_url
+        /// [DEPRECATED] Push_url
         /// </summary>
         [Output("pushUrls")]
         public Output<ImmutableArray<Outputs.CockpitPushUrl>> PushUrls { get; private set; } = null!;
@@ -127,7 +127,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         /// </summary>
-        [Obsolete(@"Please use `scaleway.CockpitSource` instead")]
+        [Obsolete(@"Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.")]
         public InputList<Inputs.CockpitEndpointGetArgs> Endpoints
         {
             get => _endpoints ?? (_endpoints = new InputList<Inputs.CockpitEndpointGetArgs>());
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitPushUrlGetArgs>? _pushUrls;
 
         /// <summary>
-        /// Push_url
+        /// [DEPRECATED] Push_url
         /// </summary>
         [Obsolete(@"Please use `scaleway.CockpitSource` instead")]
         public InputList<Inputs.CockpitPushUrlGetArgs> PushUrls

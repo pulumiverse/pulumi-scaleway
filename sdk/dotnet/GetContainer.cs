@@ -288,12 +288,16 @@ namespace Pulumiverse.Scaleway
         /// The error message of the container.
         /// </summary>
         public readonly string ErrorMessage;
+        /// <summary>
+        /// Health check configuration block of the container.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetContainerHealthCheckResult> HealthChecks;
         public readonly string HttpOption;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly int LocalStorageLimit;
         /// <summary>
         /// The maximum number of simultaneous requests your container can handle at the same time.
         /// </summary>
@@ -379,6 +383,8 @@ namespace Pulumiverse.Scaleway
 
             string id,
 
+            int localStorageLimit,
+
             int maxConcurrency,
 
             int maxScale,
@@ -426,6 +432,7 @@ namespace Pulumiverse.Scaleway
             HealthChecks = healthChecks;
             HttpOption = httpOption;
             Id = id;
+            LocalStorageLimit = localStorageLimit;
             MaxConcurrency = maxConcurrency;
             MaxScale = maxScale;
             MemoryLimit = memoryLimit;

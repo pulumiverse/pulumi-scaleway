@@ -245,7 +245,7 @@ class RegistryNamespace(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Container Registry.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/registry).
 
         ## Example Usage
 
@@ -289,7 +289,7 @@ class RegistryNamespace(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Container Registry.
-        For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/registry).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/registry).
 
         ## Example Usage
 

@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * // Get info by offer name
  * const byName = scaleway.getWebHostOffer({
  *     name: "performance",
+ *     controlPanel: "Cpanel",
  * });
  * // Get info by offer id
  * const byId = scaleway.getWebHostOffer({
@@ -29,6 +30,7 @@ export function getWebHostOffer(args?: GetWebHostOfferArgs, opts?: pulumi.Invoke
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getWebHostOffer:getWebHostOffer", {
+        "controlPanel": args.controlPanel,
         "name": args.name,
         "offerId": args.offerId,
         "region": args.region,
@@ -39,6 +41,10 @@ export function getWebHostOffer(args?: GetWebHostOfferArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getWebHostOffer.
  */
 export interface GetWebHostOfferArgs {
+    /**
+     * Name of the control panel (Cpanel or Plesk). This argument is only used when `offerId` is not specified.
+     */
+    controlPanel?: string;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */
@@ -58,21 +64,31 @@ export interface GetWebHostOfferArgs {
  */
 export interface GetWebHostOfferResult {
     /**
-     * The unique identifier used for billing.
+     * The billing operation identifier for the option.
      */
     readonly billingOperationPath: string;
+    readonly controlPanel?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The name of the option.
+     */
     readonly name?: string;
     readonly offerId?: string;
+    /**
+     * The detailed offer of the hosting.
+     */
+    readonly offers: outputs.GetWebHostOfferOffer[];
     /**
      * The offer price.
      */
     readonly price: string;
     /**
-     * The offer product.
+     * (deprecated) The offer product.
+     *
+     * @deprecated The product field is deprecated. Please use the offer field instead.
      */
     readonly products: outputs.GetWebHostOfferProduct[];
     readonly region: string;
@@ -89,6 +105,7 @@ export interface GetWebHostOfferResult {
  * // Get info by offer name
  * const byName = scaleway.getWebHostOffer({
  *     name: "performance",
+ *     controlPanel: "Cpanel",
  * });
  * // Get info by offer id
  * const byId = scaleway.getWebHostOffer({
@@ -100,6 +117,7 @@ export function getWebHostOfferOutput(args?: GetWebHostOfferOutputArgs, opts?: p
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getWebHostOffer:getWebHostOffer", {
+        "controlPanel": args.controlPanel,
         "name": args.name,
         "offerId": args.offerId,
         "region": args.region,
@@ -110,6 +128,10 @@ export function getWebHostOfferOutput(args?: GetWebHostOfferOutputArgs, opts?: p
  * A collection of arguments for invoking getWebHostOffer.
  */
 export interface GetWebHostOfferOutputArgs {
+    /**
+     * Name of the control panel (Cpanel or Plesk). This argument is only used when `offerId` is not specified.
+     */
+    controlPanel?: pulumi.Input<string>;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */

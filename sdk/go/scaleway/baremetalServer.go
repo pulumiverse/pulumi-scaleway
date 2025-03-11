@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
+// Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 //
 // ## Example Usage
 //
@@ -36,9 +36,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-I220E-NVME"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 //				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String("GP-BM1-S"),
+//				Offer: pulumi.String(myOffer.OfferId),
 //				Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
 //				SshKeyIds: pulumi.StringArray{
 //					mainScalewayAccountSshKey.Id,
@@ -371,11 +378,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//				Zone:               pulumi.StringRef("fr-par-1"),
+//				Name:               pulumi.StringRef("EM-B220E-NVME"),
+//				SubscriptionPeriod: pulumi.StringRef("hourly"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 //				Name:         pulumi.String("%s"),
 //				Zone:         pulumi.String("fr-par-1"),
 //				Description:  pulumi.String("test a description"),
-//				Offer:        pulumi.String("EM-B220E-NVME"),
+//				Offer:        pulumi.String(myOffer.OfferId),
 //				Os:           pulumi.String(myOs.OsId),
 //				Partitioning: pulumi.String(configCustomPartitioning),
 //				Tags: pulumi.StringArray{
@@ -424,7 +439,7 @@ type BaremetalServer struct {
 	Ipv6s BaremetalServerIpv6ArrayOutput `pulumi:"ipv6s"`
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The offer name or UUID of the baremetal server.
+	// The offer UUID of the baremetal server.
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
@@ -529,7 +544,7 @@ type baremetalServerState struct {
 	Ipv6s []BaremetalServerIpv6 `pulumi:"ipv6s"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The offer name or UUID of the baremetal server.
+	// The offer UUID of the baremetal server.
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
@@ -591,7 +606,7 @@ type BaremetalServerState struct {
 	Ipv6s BaremetalServerIpv6ArrayInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The offer name or UUID of the baremetal server.
+	// The offer UUID of the baremetal server.
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
@@ -649,7 +664,7 @@ type baremetalServerArgs struct {
 	InstallConfigAfterward *bool `pulumi:"installConfigAfterward"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The offer name or UUID of the baremetal server.
+	// The offer UUID of the baremetal server.
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
@@ -696,7 +711,7 @@ type BaremetalServerArgs struct {
 	InstallConfigAfterward pulumi.BoolPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The offer name or UUID of the baremetal server.
+	// The offer UUID of the baremetal server.
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
@@ -860,7 +875,7 @@ func (o BaremetalServerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The offer name or UUID of the baremetal server.
+// The offer UUID of the baremetal server.
 // Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 //
 // > **Important:** Updates to `offer` will recreate the server.

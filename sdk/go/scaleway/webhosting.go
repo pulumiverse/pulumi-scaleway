@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Web Hostings.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
+// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 //
 // ## Example Usage
 //
@@ -30,7 +30,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			byName, err := scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
-//				Name: pulumi.StringRef("lite"),
+//				Name:         pulumi.StringRef("lite"),
+//				ControlPanel: pulumi.StringRef("Cpanel"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -76,6 +77,8 @@ type Webhosting struct {
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The contact email of the client for the hosting.
 	Email pulumi.StringOutput `pulumi:"email"`
+	// List of nameservers associated with the webhosting.
+	NameServers WebhostingNameServerArrayOutput `pulumi:"nameServers"`
 	// The ID of the selected offer for the hosting.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
 	// The name of the active offer.
@@ -84,7 +87,9 @@ type Webhosting struct {
 	OptionIds pulumi.StringArrayOutput `pulumi:"optionIds"`
 	// The active options of the hosting.
 	Options WebhostingOptionArrayOutput `pulumi:"options"`
-	// The organization ID the hosting is associated with.
+	// (Deprecated) The organization ID the hosting is associated with.
+	//
+	// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The hostname of the host platform.
 	PlatformHostname pulumi.StringOutput `pulumi:"platformHostname"`
@@ -92,6 +97,8 @@ type Webhosting struct {
 	PlatformNumber pulumi.IntOutput `pulumi:"platformNumber"`
 	// `projectId`) The ID of the project the VPC is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// List of DNS records associated with the webhosting.
+	Records WebhostingRecordArrayOutput `pulumi:"records"`
 	// `region`) The region of the Hosting.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The hosting status.
@@ -153,6 +160,8 @@ type webhostingState struct {
 	Domain *string `pulumi:"domain"`
 	// The contact email of the client for the hosting.
 	Email *string `pulumi:"email"`
+	// List of nameservers associated with the webhosting.
+	NameServers []WebhostingNameServer `pulumi:"nameServers"`
 	// The ID of the selected offer for the hosting.
 	OfferId *string `pulumi:"offerId"`
 	// The name of the active offer.
@@ -161,7 +170,9 @@ type webhostingState struct {
 	OptionIds []string `pulumi:"optionIds"`
 	// The active options of the hosting.
 	Options []WebhostingOption `pulumi:"options"`
-	// The organization ID the hosting is associated with.
+	// (Deprecated) The organization ID the hosting is associated with.
+	//
+	// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The hostname of the host platform.
 	PlatformHostname *string `pulumi:"platformHostname"`
@@ -169,6 +180,8 @@ type webhostingState struct {
 	PlatformNumber *int `pulumi:"platformNumber"`
 	// `projectId`) The ID of the project the VPC is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// List of DNS records associated with the webhosting.
+	Records []WebhostingRecord `pulumi:"records"`
 	// `region`) The region of the Hosting.
 	Region *string `pulumi:"region"`
 	// The hosting status.
@@ -192,6 +205,8 @@ type WebhostingState struct {
 	Domain pulumi.StringPtrInput
 	// The contact email of the client for the hosting.
 	Email pulumi.StringPtrInput
+	// List of nameservers associated with the webhosting.
+	NameServers WebhostingNameServerArrayInput
 	// The ID of the selected offer for the hosting.
 	OfferId pulumi.StringPtrInput
 	// The name of the active offer.
@@ -200,7 +215,9 @@ type WebhostingState struct {
 	OptionIds pulumi.StringArrayInput
 	// The active options of the hosting.
 	Options WebhostingOptionArrayInput
-	// The organization ID the hosting is associated with.
+	// (Deprecated) The organization ID the hosting is associated with.
+	//
+	// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 	OrganizationId pulumi.StringPtrInput
 	// The hostname of the host platform.
 	PlatformHostname pulumi.StringPtrInput
@@ -208,6 +225,8 @@ type WebhostingState struct {
 	PlatformNumber pulumi.IntPtrInput
 	// `projectId`) The ID of the project the VPC is associated with.
 	ProjectId pulumi.StringPtrInput
+	// List of DNS records associated with the webhosting.
+	Records WebhostingRecordArrayInput
 	// `region`) The region of the Hosting.
 	Region pulumi.StringPtrInput
 	// The hosting status.
@@ -371,6 +390,11 @@ func (o WebhostingOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
+// List of nameservers associated with the webhosting.
+func (o WebhostingOutput) NameServers() WebhostingNameServerArrayOutput {
+	return o.ApplyT(func(v *Webhosting) WebhostingNameServerArrayOutput { return v.NameServers }).(WebhostingNameServerArrayOutput)
+}
+
 // The ID of the selected offer for the hosting.
 func (o WebhostingOutput) OfferId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.OfferId }).(pulumi.StringOutput)
@@ -391,7 +415,9 @@ func (o WebhostingOutput) Options() WebhostingOptionArrayOutput {
 	return o.ApplyT(func(v *Webhosting) WebhostingOptionArrayOutput { return v.Options }).(WebhostingOptionArrayOutput)
 }
 
-// The organization ID the hosting is associated with.
+// (Deprecated) The organization ID the hosting is associated with.
+//
+// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 func (o WebhostingOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -409,6 +435,11 @@ func (o WebhostingOutput) PlatformNumber() pulumi.IntOutput {
 // `projectId`) The ID of the project the VPC is associated with.
 func (o WebhostingOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// List of DNS records associated with the webhosting.
+func (o WebhostingOutput) Records() WebhostingRecordArrayOutput {
+	return o.ApplyT(func(v *Webhosting) WebhostingRecordArrayOutput { return v.Records }).(WebhostingRecordArrayOutput)
 }
 
 // `region`) The region of the Hosting.

@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// Period between health checks.
+        /// Period between health checks (in seconds).
         /// </summary>
         [Input("interval", required: true)]
         public Input<string> Interval { get; set; } = null!;

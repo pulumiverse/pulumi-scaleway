@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway compute Instance Volumes.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-volumes-list-volumes).
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-volumes-list-volumes).
  *
  * ## Example Usage
  *

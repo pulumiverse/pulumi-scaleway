@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Web Hostings.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
+    /// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/webhosting/).
     /// 
     /// ## Example Usage
     /// 
@@ -28,6 +28,7 @@ namespace Pulumiverse.Scaleway
     ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
     ///     {
     ///         Name = "lite",
+    ///         ControlPanel = "Cpanel",
     ///     });
     /// 
     ///     var main = new Scaleway.Webhosting("main", new()
@@ -90,6 +91,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Email { get; private set; } = null!;
 
         /// <summary>
+        /// List of nameservers associated with the webhosting.
+        /// </summary>
+        [Output("nameServers")]
+        public Output<ImmutableArray<Outputs.WebhostingNameServer>> NameServers { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the selected offer for the hosting.
         /// </summary>
         [Output("offerId")]
@@ -114,7 +121,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.WebhostingOption>> Options { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the hosting is associated with.
+        /// (Deprecated) The organization ID the hosting is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -136,6 +143,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// List of DNS records associated with the webhosting.
+        /// </summary>
+        [Output("records")]
+        public Output<ImmutableArray<Outputs.WebhostingRecord>> Records { get; private set; } = null!;
 
         /// <summary>
         /// `region`) The region of the Hosting.
@@ -312,6 +325,18 @@ namespace Pulumiverse.Scaleway
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        [Input("nameServers")]
+        private InputList<Inputs.WebhostingNameServerGetArgs>? _nameServers;
+
+        /// <summary>
+        /// List of nameservers associated with the webhosting.
+        /// </summary>
+        public InputList<Inputs.WebhostingNameServerGetArgs> NameServers
+        {
+            get => _nameServers ?? (_nameServers = new InputList<Inputs.WebhostingNameServerGetArgs>());
+            set => _nameServers = value;
+        }
+
         /// <summary>
         /// The ID of the selected offer for the hosting.
         /// </summary>
@@ -349,7 +374,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The organization ID the hosting is associated with.
+        /// (Deprecated) The organization ID the hosting is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -371,6 +396,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("records")]
+        private InputList<Inputs.WebhostingRecordGetArgs>? _records;
+
+        /// <summary>
+        /// List of DNS records associated with the webhosting.
+        /// </summary>
+        public InputList<Inputs.WebhostingRecordGetArgs> Records
+        {
+            get => _records ?? (_records = new InputList<Inputs.WebhostingRecordGetArgs>());
+            set => _records = value;
+        }
 
         /// <summary>
         /// `region`) The region of the Hosting.

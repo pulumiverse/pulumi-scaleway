@@ -28,6 +28,7 @@ class ContainerArgs:
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
                  http_option: Optional[pulumi.Input[str]] = None,
+                 local_storage_limit: Optional[pulumi.Input[int]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -51,13 +52,14 @@ class ContainerArgs:
                > **Important** Updating the `name` argument will recreate the container.
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
-        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration of the container.
+        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] local_storage_limit: Local storage limit of the container (in MB)
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
         :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
@@ -72,7 +74,7 @@ class ContainerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
+        :param pulumi.Input[int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         pulumi.set(__self__, "namespace_id", namespace_id)
         if cpu_limit is not None:
@@ -87,6 +89,8 @@ class ContainerArgs:
             pulumi.set(__self__, "health_checks", health_checks)
         if http_option is not None:
             pulumi.set(__self__, "http_option", http_option)
+        if local_storage_limit is not None:
+            pulumi.set(__self__, "local_storage_limit", local_storage_limit)
         if max_concurrency is not None:
             warnings.warn("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""", DeprecationWarning)
             pulumi.log.warn("""max_concurrency is deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
@@ -154,8 +158,6 @@ class ContainerArgs:
     def deploy(self) -> Optional[pulumi.Input[bool]]:
         """
         Boolean indicating whether the container is in a production environment.
-
-        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "deploy")
 
@@ -191,7 +193,7 @@ class ContainerArgs:
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
         """
-        Health check configuration of the container.
+        Health check configuration block of the container.
         """
         return pulumi.get(self, "health_checks")
 
@@ -212,11 +214,25 @@ class ContainerArgs:
         pulumi.set(self, "http_option", value)
 
     @property
+    @pulumi.getter(name="localStorageLimit")
+    def local_storage_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Local storage limit of the container (in MB)
+
+        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        """
+        return pulumi.get(self, "local_storage_limit")
+
+    @local_storage_limit.setter
+    def local_storage_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "local_storage_limit", value)
+
+    @property
     @pulumi.getter(name="maxConcurrency")
     @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
     def max_concurrency(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time.
+        The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -396,7 +412,7 @@ class ContainerArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time your container can spend processing a request before being stopped.
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -417,6 +433,7 @@ class _ContainerState:
                  error_message: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
                  http_option: Optional[pulumi.Input[str]] = None,
+                 local_storage_limit: Optional[pulumi.Input[int]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -439,15 +456,16 @@ class _ContainerState:
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[str] cron_status: The cron status of the container.
         :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
-        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration of the container.
+        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] local_storage_limit: Local storage limit of the container (in MB)
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
         :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
@@ -465,7 +483,7 @@ class _ContainerState:
         :param pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
+        :param pulumi.Input[int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         if cpu_limit is not None:
             pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -485,6 +503,8 @@ class _ContainerState:
             pulumi.set(__self__, "health_checks", health_checks)
         if http_option is not None:
             pulumi.set(__self__, "http_option", http_option)
+        if local_storage_limit is not None:
+            pulumi.set(__self__, "local_storage_limit", local_storage_limit)
         if max_concurrency is not None:
             warnings.warn("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""", DeprecationWarning)
             pulumi.log.warn("""max_concurrency is deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
@@ -552,8 +572,6 @@ class _ContainerState:
     def deploy(self) -> Optional[pulumi.Input[bool]]:
         """
         Boolean indicating whether the container is in a production environment.
-
-        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "deploy")
 
@@ -613,7 +631,7 @@ class _ContainerState:
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
         """
-        Health check configuration of the container.
+        Health check configuration block of the container.
         """
         return pulumi.get(self, "health_checks")
 
@@ -634,11 +652,25 @@ class _ContainerState:
         pulumi.set(self, "http_option", value)
 
     @property
+    @pulumi.getter(name="localStorageLimit")
+    def local_storage_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Local storage limit of the container (in MB)
+
+        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        """
+        return pulumi.get(self, "local_storage_limit")
+
+    @local_storage_limit.setter
+    def local_storage_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "local_storage_limit", value)
+
+    @property
     @pulumi.getter(name="maxConcurrency")
     @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
     def max_concurrency(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time.
+        The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -832,7 +864,7 @@ class _ContainerState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time your container can spend processing a request before being stopped.
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -852,6 +884,7 @@ class Container(pulumi.CustomResource):
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
                  http_option: Optional[pulumi.Input[str]] = None,
+                 local_storage_limit: Optional[pulumi.Input[int]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -1015,13 +1048,14 @@ class Container(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration of the container.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] local_storage_limit: Local storage limit of the container (in MB)
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
         :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
@@ -1039,7 +1073,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
+        :param pulumi.Input[int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         ...
     @overload
@@ -1209,6 +1243,7 @@ class Container(pulumi.CustomResource):
                  environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
                  http_option: Optional[pulumi.Input[str]] = None,
+                 local_storage_limit: Optional[pulumi.Input[int]] = None,
                  max_concurrency: Optional[pulumi.Input[int]] = None,
                  max_scale: Optional[pulumi.Input[int]] = None,
                  memory_limit: Optional[pulumi.Input[int]] = None,
@@ -1241,6 +1276,7 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["http_option"] = http_option
+            __props__.__dict__["local_storage_limit"] = local_storage_limit
             __props__.__dict__["max_concurrency"] = max_concurrency
             __props__.__dict__["max_scale"] = max_scale
             __props__.__dict__["memory_limit"] = memory_limit
@@ -1284,6 +1320,7 @@ class Container(pulumi.CustomResource):
             error_message: Optional[pulumi.Input[str]] = None,
             health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
             http_option: Optional[pulumi.Input[str]] = None,
+            local_storage_limit: Optional[pulumi.Input[int]] = None,
             max_concurrency: Optional[pulumi.Input[int]] = None,
             max_scale: Optional[pulumi.Input[int]] = None,
             memory_limit: Optional[pulumi.Input[int]] = None,
@@ -1311,15 +1348,16 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[str] cron_status: The cron status of the container.
         :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration of the container.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] local_storage_limit: Local storage limit of the container (in MB)
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
         :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
@@ -1337,7 +1375,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
+        :param pulumi.Input[int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1352,6 +1390,7 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["health_checks"] = health_checks
         __props__.__dict__["http_option"] = http_option
+        __props__.__dict__["local_storage_limit"] = local_storage_limit
         __props__.__dict__["max_concurrency"] = max_concurrency
         __props__.__dict__["max_scale"] = max_scale
         __props__.__dict__["memory_limit"] = memory_limit
@@ -1392,8 +1431,6 @@ class Container(pulumi.CustomResource):
     def deploy(self) -> pulumi.Output[Optional[bool]]:
         """
         Boolean indicating whether the container is in a production environment.
-
-        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "deploy")
 
@@ -1433,7 +1470,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> pulumi.Output[Sequence['outputs.ContainerHealthCheck']]:
         """
-        Health check configuration of the container.
+        Health check configuration block of the container.
         """
         return pulumi.get(self, "health_checks")
 
@@ -1446,11 +1483,21 @@ class Container(pulumi.CustomResource):
         return pulumi.get(self, "http_option")
 
     @property
+    @pulumi.getter(name="localStorageLimit")
+    def local_storage_limit(self) -> pulumi.Output[int]:
+        """
+        Local storage limit of the container (in MB)
+
+        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        """
+        return pulumi.get(self, "local_storage_limit")
+
+    @property
     @pulumi.getter(name="maxConcurrency")
     @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
     def max_concurrency(self) -> pulumi.Output[int]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time.
+        The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -1580,7 +1627,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[int]:
         """
-        The maximum amount of time your container can spend processing a request before being stopped.
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         return pulumi.get(self, "timeout")
 
