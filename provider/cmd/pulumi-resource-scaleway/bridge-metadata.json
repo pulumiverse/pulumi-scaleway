@@ -768,6 +768,19 @@
             "scaleway_mongodb_instance": {
                 "current": "scaleway:index/mongoDbInstance:MongoDbInstance",
                 "fields": {
+                    "private_network": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "dns_records": {
+                                    "maxItemsOne": false
+                                },
+                                "ips": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "public_network": {
                         "maxItemsOne": true
                     },
@@ -1083,10 +1096,16 @@
                     "cpanel_urls": {
                         "maxItemsOne": false
                     },
+                    "name_servers": {
+                        "maxItemsOne": false
+                    },
                     "option_ids": {
                         "maxItemsOne": false
                     },
                     "options": {
+                        "maxItemsOne": false
+                    },
+                    "records": {
                         "maxItemsOne": false
                     },
                     "tags": {
@@ -1877,6 +1896,19 @@
             "scaleway_mongodb_instance": {
                 "current": "scaleway:index/getMongoDbInstance:getMongoDbInstance",
                 "fields": {
+                    "private_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dns_records": {
+                                    "maxItemsOne": false
+                                },
+                                "ips": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "public_network": {
                         "maxItemsOne": false
                     },
@@ -2140,10 +2172,16 @@
                     "cpanel_urls": {
                         "maxItemsOne": false
                     },
+                    "name_servers": {
+                        "maxItemsOne": false
+                    },
                     "option_ids": {
                         "maxItemsOne": false
                     },
                     "options": {
+                        "maxItemsOne": false
+                    },
+                    "records": {
                         "maxItemsOne": false
                     },
                     "tags": {
@@ -2154,6 +2192,16 @@
             "scaleway_webhosting_offer": {
                 "current": "scaleway:index/getWebHostOffer:getWebHostOffer",
                 "fields": {
+                    "offer": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "options": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "product": {
                         "maxItemsOne": false
                     }
